@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.topografix.com/GPX/1/0" version="1.0" creator="Groundspeak, Inc. All Rights Reserved. http://www.groundspeak.com" xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd http://www.groundspeak.com/cache/1/0 http://www.groundspeak.com/cache/1/0/cache.xsd">
+  <name>Cache Listing Generated from Geocaching.com</name>
+  <desc>This is an individual cache generated from Geocaching.com</desc>
+  <author>Account "smilingscott" From Geocaching.com</author>
+  <email>contact@geocaching.com</email>
+  <url>http://www.geocaching.com</url>
+  <urlname>Geocaching - High Tech Treasure Hunting</urlname>
+  <time>2010-01-16T20:50:29.9137989Z</time>
+  <keywords>cache, geocache</keywords>
+  <bounds minlat="45.424117" minlon="-75.553333" maxlat="45.424117" maxlon="-75.553333"/>
+  <wpt lat="45.424117" lon="-75.553333">
+    <time>2009-04-11T07:00:00Z</time>
+    <name>GC1PX6Q</name>
+    <desc>OMAX- Old Winston the elephant by Smiling Scott &amp; HappyJax, Traditional Cache (1.5/1.5)</desc>
+    <url>http://www.geocaching.com/seek/cache_details.aspx?guid=94a6997f-bd1c-4130-9df5-d63db64d30ac</url>
+    <urlname>OMAX- Old Winston the elephant</urlname>
+    <sym>Geocache</sym>
+    <type>Geocache|Traditional Cache</type>
+    <groundspeak:cache xmlns:groundspeak="http://www.groundspeak.com/cache/1/0" id="1194920" available="True" archived="False">
+      <groundspeak:name>OMAX- Old Winston the elephant</groundspeak:name>
+      <groundspeak:placed_by>Smiling Scott &amp; HappyJax</groundspeak:placed_by>
+      <groundspeak:owner id="2033173">smilingscott</groundspeak:owner>
+      <groundspeak:type>Traditional Cache</groundspeak:type>
+      <groundspeak:container>Regular</groundspeak:container>
+      <groundspeak:difficulty>1.5</groundspeak:difficulty>
+      <groundspeak:terrain>1.5</groundspeak:terrain>
+      <groundspeak:country>Canada</groundspeak:country>
+      <groundspeak:state>Ontario</groundspeak:state>
+      <groundspeak:short_description html="False">This cache should not be found until after 6:00 a.m., Saturday May 2, 2009 and any logs before then will be ridiculed.</groundspeak:short_description>
+      <groundspeak:long_description html="False">OLD WINSTON THE ELEPHANT
+Old Winston the elephant has an interesting story.  One day Old Winston was just relaxing somewhere in the Ottawa area, when he was kidnapped by a bunch of hooligans.  He was brought to a forest where he enjoyed his new home but old Winston was neglected and some local teenagers abused him and did not treat him right.  One day, the hooligans who kidnapped him decided to return to see how he was doing and felt sorry for the old guy.  They decided to give him a name and it just happened that there was an old cigarette package sitting near the elephant which one could only read "Winston".  From then on the elephant was called Winston and the hooligans grew a liking to Winston and would visit him frequently.  Over the years they would visit him but the visits would spread out over time and Winston was left in the woods all by himself again.  Many years past and one day the hooligans came back to see how he was doing but to their dismay Winston was gone and presumably went on a safari.  A couple more years past and sure enough Winston some how turned up in the most unlikely place, which was in the backyard of one of the hooligans.  The teen, now turned man, fixed Winston up and decided to take him to another place where others can visit Winston and take pictures of him.  Hopefully, Winston will enjoy his new home and many people will visit him and give him some love that he truly deserves.
+Please take a picture with Winston and try to bring along some elephant friends to put in the cache box so he can talk to when nobody visits him.</groundspeak:long_description>
+      <groundspeak:encoded_hints>If you look at the tree near by, one could see a elephant face watching over the cache (it is the branch)</groundspeak:encoded_hints>
+      <groundspeak:logs>
+        <groundspeak:log id="93129135">
+          <groundspeak:date>2009-12-19T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="425817">cron</groundspeak:finder>
+          <groundspeak:text encoded="False">#3455 19-12-2009 18h01
+
+Wow, there's an elephant! It didn't look like it with all the snow, but once I shaked it a bit, I could definitely see it!
+
+The coordinates didn't seem very good, but it was a no miss.
+
+TNLNSL</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="89559301">
+          <groundspeak:date>2009-11-05T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="844288">lizandbob</groundspeak:finder>
+          <groundspeak:text encoded="False">We really enjoyed finding Old Winston today, and he seemed to be in relatively good shape.  We  signed the log, and continued on our walk in the woods.  It was trying hard to snow today.  Thanks for the great cache.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="85031742">
+          <groundspeak:date>2009-09-20T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1831986">guydes</groundspeak:finder>
+          <groundspeak:text encoded="False">No 2304  7/7  Trouvé en solo</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="82316870">
+          <groundspeak:date>2009-08-28T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1641452">the_bod</groundspeak:finder>
+          <groundspeak:text encoded="False">Walked in from Only The Fastest during my lunchtime to find this amazing cache.
+
+Thanks for the trip in the woods
+
+TNLNSL
+#599</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="80917992">
+          <groundspeak:date>2009-08-16T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="53354">GPComd</groundspeak:finder>
+          <groundspeak:text encoded="False">I hadn't looked at the log pics before finding this one, and was amazed with Winston.  Noty something I'd want to drag through the woods to the cache site!
+Thanks for the cache and hunt!
+
+GPC</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="80914138">
+          <groundspeak:date>2009-08-16T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1152417">SigsPig</groundspeak:finder>
+          <groundspeak:text encoded="False">After finding beaver, we proceeded to bigger game. GPC spotted a hawk in the area which continued to remind us he wasn't amused with our presence. No dive bombing but lots of vocal activity.
+Watch out for barb wire near the final GZ. 
+Thanks for the cache</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="75530767">
+          <groundspeak:date>2009-06-28T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="2302705">mulaire</groundspeak:finder>
+          <groundspeak:text encoded="False">It was in the forest. It was fun and pleasant. It was big and gray.
+
+
+Merci pour cette belle cache. C'est loin dans la forêt.C'est amusant et plaisant. C'est gros et gris.
+
+alex+raymond09 </groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="75258975">
+          <groundspeak:date>2009-06-26T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1402695">Sakidoo</groundspeak:finder>
+          <groundspeak:text encoded="False">What an amazing effort.   Great job.  One of the best of OMAX and one of my personal favorites.   Thanks a lot for this cache.    Caches that bring a smile to my face get a huge thumbs up.   Good work and very original.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="75209820">
+          <groundspeak:date>2009-06-25T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1761120">elyob</groundspeak:finder>
+          <groundspeak:text encoded="False">Smiling Scott must use some awesome bug-prevention strategy setting up his hides.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="93293197">
+          <groundspeak:date>2009-06-20T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="292440">MAPSIT</groundspeak:finder>
+          <groundspeak:text encoded="False">Found this one with The Burrow about 12:50. Loved the setup. TNLNSL. Thanks for putting this one out for the event.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="74687020">
+          <groundspeak:date>2009-06-20T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="218748">The Burrow</groundspeak:finder>
+          <groundspeak:text encoded="False">#3148 Found it with MAPSIT at 12:50, and all is in good condition.  We also took the Innis road approach, and parked in the lot at N45 25.800 W075 33.800, then used the trail head at N45 25.740 W075 33.805, using the pedestrian controlled crosswalk to cross the Innis Bypass.  As we were getting ready at the car, putting on out bug hats, nets, gloves, and boots, we met Elyob and Ziggy the wonderdog in the parking lot. They wished us well, before we headed down the mostly level trails to this cache. We liked what you did with the elephant! TNLNSL Thanks Smiling Scott &amp; Happy Jax, for the fun cache, and the nice walk in the woods. The Burrow.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="73377405">
+          <groundspeak:date>2009-06-06T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="177433">meadow_muffin</groundspeak:finder>
+          <groundspeak:text encoded="False">Found today at 08:45 hrs with with SOB's.
+Greeely Grizzly, GIS-Guy and myself. 
+
+Nice area but  we elected to take a straigt line to the cache, bad idea for a 300m bushwack. Greely Grizzly found the trail on our way out.
+
+TFTC</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="73266226">
+          <groundspeak:date>2009-06-06T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="363827">Greely Grizzly</groundspeak:finder>
+          <groundspeak:text encoded="False">Found today at 10:35 hrs with Meadow-Muffin and GIS-Guy.
+
+Again, we had contemplated going after this from Renaud Rd, but reconsidered and headed to the Innis Bypass. Followed the nice walking trail from the traffic lights.
+
+Well done on the Elephant.
+
+TNLNSL. TFTC.
+
+Greely Grizzly</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="72692868">
+          <groundspeak:date>2009-05-31T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1289340">Weathervane</groundspeak:finder>
+          <groundspeak:text encoded="False">Another excellent cache. This one must have taken quite a while to put together.  All of us cachers appreciate the time and effort you have spent creating this cache. Very enjoyable find for both Mrs Weathervane and I. TNLN TFTCSL </groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="72492379">
+          <groundspeak:date>2009-05-30T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="129457">moule</groundspeak:finder>
+          <groundspeak:text encoded="False">An easy find. Thanks Moule </groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="71404851">
+          <groundspeak:date>2009-05-20T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="575166">thesauros rex</groundspeak:finder>
+          <groundspeak:text encoded="False">Did not have any themed items to trade in this cache, and so penguins lament gave the kids food instead. Despite no toys, little joe loved the set-up. Who would have thought our trip to the "jungle" would actually include an elephant! tftc 
+team thesauros rex</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="71334753">
+          <groundspeak:date>2009-05-19T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="689530">Inkyfiller</groundspeak:finder>
+          <groundspeak:text encoded="False">Winston is in great shape - he's made friends with local bunny who hopped by to say hi. Bit of a trek but the kids will love this cache. TNLN SL  Inkyfiller</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="70774172">
+          <groundspeak:date>2009-05-13T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="284062">dadndaughter</groundspeak:finder>
+          <groundspeak:text encoded="False">Found at 19:52 with Charlie. The #$%^&amp;* mosquitos were still with us on our trek through these woods/swamp. Like the other caches in this series, I scribbled my name in the log book and got outta there!.
+TNLNSL
+TFTC</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="70763886">
+          <groundspeak:date>2009-05-13T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1130471">TigrePlus</groundspeak:finder>
+          <groundspeak:text encoded="False">20090513 16:30 20°C Ensoleillé
+En cette belle journée ensoleillée, une expédition dans le bois était à l’horaire. Avant de découvrir la cache, on m’avait découvert. Les moustiques sont de retour en pleine force. Il y en a partout. Il ne faut surtout pas s’arrêter. Trouver la cache et son gardien sans problème. Quel beau travail pour faire cet éléphant.
+Merci Smiling Scott &amp; HappyJax pour la cache.
+</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="70685777">
+          <groundspeak:date>2009-05-10T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="2199857">pglg</groundspeak:finder>
+          <groundspeak:text encoded="False">Great job on the sculpture, who is the artist?
+I took pictures to show so people would believe me.</groundspeak:text>
+        </groundspeak:log>
+      </groundspeak:logs>
+      <groundspeak:travelbugs/>
+    </groundspeak:cache>
+  </wpt>
+</gpx>
