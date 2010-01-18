@@ -11,17 +11,30 @@
  implied. See the License for the specific language governing permissions and limitations under the License. 
 */
 using System;
+using Gtk;
+using ocmgtk;
 
-namespace ocmtest
-{
-	class MainClass
+public partial class MainWindow: Gtk.Window
+{	
+	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
-		public static void Main(string[] args)
-		{
-			ocmengine.nunit.TestParser ptest = new ocmengine.nunit.TestParser();
-			ptest.TestSingleGPX();
-			//ptest.TestMultiGPX();
-			System.Console.WriteLine("DONE!");
-		}
+		Build ();
+	}
+	
+	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
+	{
+		Application.Quit ();
+		a.RetVal = true;
+	}
+
+	protected virtual void OnQuit (object sender, System.EventArgs e)
+	{
+		Application.Quit();
+	}
+
+	protected virtual void doAbout(object sender, System.EventArgs e)
+	{
+		ocmgtk.OCMAboutDialog dlg = new ocmgtk.OCMAboutDialog();
+		dlg.Show();
 	}
 }

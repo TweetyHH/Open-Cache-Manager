@@ -11,17 +11,18 @@
  implied. See the License for the specific language governing permissions and limitations under the License. 
 */
 using System;
+using Gtk;
 
-namespace ocmtest
+namespace ocmgtk
 {
 	class MainClass
 	{
-		public static void Main(string[] args)
+		public static void Main (string[] args)
 		{
-			ocmengine.nunit.TestParser ptest = new ocmengine.nunit.TestParser();
-			ptest.TestSingleGPX();
-			//ptest.TestMultiGPX();
-			System.Console.WriteLine("DONE!");
+			Application.Init ();
+			MainWindow win = new MainWindow ();
+			win.Show ();
+			Application.Run ();
 		}
 	}
 }
