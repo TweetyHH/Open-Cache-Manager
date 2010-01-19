@@ -46,7 +46,9 @@ namespace ocmgtk {
             // Container child hbox4.Gtk.Box+BoxChild
             this.image1 = new Gtk.Image();
             this.image1.Name = "image1";
-            this.image1.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-about", Gtk.IconSize.Menu, 16);
+            this.image1.Xpad = 5;
+            this.image1.Ypad = 5;
+            this.image1.Pixbuf = Gdk.Pixbuf.LoadFromResource("traditional.svg");
             this.hbox4.Add(this.image1);
             Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.hbox4[this.image1]));
             w2.Position = 0;
@@ -102,7 +104,7 @@ namespace ocmgtk {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 400;
-            this.DefaultHeight = 87;
+            this.DefaultHeight = 169;
             this.Show();
             this.buttonCancel.Clicked += new System.EventHandler(this.doClose);
         }

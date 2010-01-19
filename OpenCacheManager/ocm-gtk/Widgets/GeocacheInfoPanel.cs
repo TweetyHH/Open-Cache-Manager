@@ -14,8 +14,8 @@ using System;
 using System.IO;
 using System.Collections;
 using Gtk;
+using WebKit;
 using ocmengine;
-
 namespace ocmgtk
 {
 	
@@ -23,15 +23,12 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class GeocacheInfoPanel : Gtk.Bin
 	{
-		HTML descriptionWidget;
-		
+		WebView descriptionWidget;
 		public GeocacheInfoPanel()
 		{
 			this.Build();
-			descriptionWidget = new HTML();
-			descriptionWidget.LoadEmpty();
+			descriptionWidget = new WebView();
 			longDescriptionScroll.Add(descriptionWidget);
-			
 		}
 		
 		public void setCacheInfo(Geocache cache)
@@ -40,13 +37,14 @@ namespace ocmgtk
 			cacheNameLabel.Text = cache.CacheName;
 			cacheDifficultyLabel1.Text = cache.Difficulty.ToString();
 			cacheTerrainLabel.Text = cache.Terrain.ToString();
-			shortDescriptionLabel.Text = cache.ShortDesc;
-			descriptionWidget.LoadFromString(cache.LongDesc);
+			shortDescriptionLabel.Text = cache.ShortDesc;;			
+			descriptionWidget.LoadHtmlString(cache.LongDesc,"http://www.geocaching.com");
 			dateLabel.Text = cache.Time.ToShortDateString();
 			hintLabel.Text = cache.Hint;
 			cacheTypeLabel.Text = cache.TypeOfCache.ToString();
 			placedByLabel.Text = cache.PlacedBy;
 			cacheSizeLabel.Text = cache.Container;
+			this.ShowAll();
 		}
 	}
 }

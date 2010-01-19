@@ -19,6 +19,10 @@ namespace ocmgtk {
         
         private Gtk.Label label19;
         
+        private Gtk.Fixed fixed2;
+        
+        private Gtk.Label label1;
+        
         private Gtk.ScrolledWindow logScroll;
         
         private Gtk.Label label21;
@@ -34,7 +38,7 @@ namespace ocmgtk {
             this.notebook1 = new Gtk.Notebook();
             this.notebook1.CanFocus = true;
             this.notebook1.Name = "notebook1";
-            this.notebook1.CurrentPage = 1;
+            this.notebook1.CurrentPage = 3;
             // Container child notebook1.Gtk.Notebook+NotebookChild
             this.cacheinfo = new ocmgtk.GeocacheInfoPanel();
             this.cacheinfo.Events = ((Gdk.EventMask)(256));
@@ -47,13 +51,26 @@ namespace ocmgtk {
             this.notebook1.SetTabLabel(this.cacheinfo, this.label19);
             this.label19.ShowAll();
             // Container child notebook1.Gtk.Notebook+NotebookChild
+            this.fixed2 = new Gtk.Fixed();
+            this.fixed2.Name = "fixed2";
+            this.fixed2.HasWindow = false;
+            this.notebook1.Add(this.fixed2);
+            Gtk.Notebook.NotebookChild w2 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.fixed2]));
+            w2.Position = 1;
+            // Notebook tab
+            this.label1 = new Gtk.Label();
+            this.label1.Name = "label1";
+            this.label1.LabelProp = Mono.Unix.Catalog.GetString("Map");
+            this.notebook1.SetTabLabel(this.fixed2, this.label1);
+            this.label1.ShowAll();
+            // Container child notebook1.Gtk.Notebook+NotebookChild
             this.logScroll = new Gtk.ScrolledWindow();
             this.logScroll.CanFocus = true;
             this.logScroll.Name = "logScroll";
             this.logScroll.ShadowType = ((Gtk.ShadowType)(1));
             this.notebook1.Add(this.logScroll);
-            Gtk.Notebook.NotebookChild w2 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.logScroll]));
-            w2.Position = 1;
+            Gtk.Notebook.NotebookChild w3 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.logScroll]));
+            w3.Position = 2;
             // Notebook tab
             this.label21 = new Gtk.Label();
             this.label21.Name = "label21";
@@ -61,13 +78,13 @@ namespace ocmgtk {
             this.notebook1.SetTabLabel(this.logScroll, this.label21);
             this.label21.ShowAll();
             // Notebook tab
-            Gtk.Label w3 = new Gtk.Label();
-            w3.Visible = true;
-            this.notebook1.Add(w3);
+            Gtk.Label w4 = new Gtk.Label();
+            w4.Visible = true;
+            this.notebook1.Add(w4);
             this.label20 = new Gtk.Label();
             this.label20.Name = "label20";
             this.label20.LabelProp = Mono.Unix.Catalog.GetString("Child Waypoints");
-            this.notebook1.SetTabLabel(w3, this.label20);
+            this.notebook1.SetTabLabel(w4, this.label20);
             this.label20.ShowAll();
             this.Add(this.notebook1);
             if ((this.Child != null)) {

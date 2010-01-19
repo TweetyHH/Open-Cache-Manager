@@ -106,11 +106,11 @@ public partial class MainWindow {
         this.AddAccelGroup(this.UIManager.AccelGroup);
         this.Name = "MainWindow";
         this.Title = Mono.Unix.Catalog.GetString("Open Cache Manager");
+        this.Icon = Gdk.Pixbuf.LoadFromResource("traditional.svg");
         this.WindowPosition = ((Gtk.WindowPosition)(1));
         // Container child MainWindow.Gtk.Container+ContainerChild
         this.vbox1 = new Gtk.VBox();
         this.vbox1.Name = "vbox1";
-        this.vbox1.Spacing = 6;
         // Container child vbox1.Gtk.Box+BoxChild
         this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='OpenAction' action='OpenAction'/><menuitem name='ExportAction' action='ExportAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'/><menu name='ViewAction' action='ViewAction'/><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
         this.mainmenubar = ((Gtk.MenuBar)(this.UIManager.GetWidget("/mainmenubar")));
@@ -170,7 +170,7 @@ public partial class MainWindow {
             this.Child.ShowAll();
         }
         this.DefaultWidth = 842;
-        this.DefaultHeight = 731;
+        this.DefaultHeight = 874;
         this.Show();
         this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
         this.QuitAction.Activated += new System.EventHandler(this.OnQuit);

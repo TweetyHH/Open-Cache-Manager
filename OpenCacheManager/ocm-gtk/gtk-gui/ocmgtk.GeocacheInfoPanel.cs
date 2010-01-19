@@ -107,9 +107,7 @@ namespace ocmgtk {
             // Container child hbox1.Gtk.Box+BoxChild
             this.image1 = new Gtk.Image();
             this.image1.Name = "image1";
-            this.image1.Xpad = 5;
-            this.image1.Ypad = 5;
-            this.image1.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-about", Gtk.IconSize.Menu, 16);
+            this.image1.Pixbuf = Gdk.Pixbuf.LoadFromResource("traditional.svg");
             this.hbox1.Add(this.image1);
             Gtk.Box.BoxChild w1 = ((Gtk.Box.BoxChild)(this.hbox1[this.image1]));
             w1.Position = 0;
@@ -438,7 +436,7 @@ namespace ocmgtk {
             w32.Fill = false;
             // Container child vbox1.Gtk.Box+BoxChild
             this.longDescriptionScroll = new Gtk.ScrolledWindow();
-            this.longDescriptionScroll.HeightRequest = 250;
+            this.longDescriptionScroll.HeightRequest = 350;
             this.longDescriptionScroll.CanFocus = true;
             this.longDescriptionScroll.Name = "longDescriptionScroll";
             this.longDescriptionScroll.ShadowType = ((Gtk.ShadowType)(1));

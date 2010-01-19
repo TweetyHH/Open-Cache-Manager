@@ -8,12 +8,13 @@
     <ProjectGuid>{56CC4363-E847-4529-AF7D-0252DA748F76}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AssemblyName>ocm-gtk</AssemblyName>
+    <Description>The GTK UI for Open Cache Manager</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bind</OutputPath>
+    <OutputPath>..\bin</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
@@ -21,7 +22,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <OutputPath>..\bin</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -30,29 +31,22 @@
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="Mono.Posix" />
-    <Reference Include="gtkhtml-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="libstetic, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\usr\lib\monodevelop\AddIns\MonoDevelop.GtkCore\libstetic.dll</HintPath>
+    </Reference>
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="Mono.Posix" />
+    <Reference Include="webkit-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745">
+      <Package>webkit-sharp-1.0</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\..\osma\map.svg" />
+    <EmbeddedResource Include="..\icons\scalable\hicolor\traditional.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -60,14 +54,16 @@
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="GeocacheInfoPanel.cs" />
     <Compile Include="gtk-gui\ocmgtk.GeocacheInfoPanel.cs" />
-    <Compile Include="GeoCachePane.cs" />
     <Compile Include="gtk-gui\ocmgtk.GeoCachePane.cs" />
-    <Compile Include="CacheList.cs" />
     <Compile Include="gtk-gui\ocmgtk.CacheList.cs" />
-    <Compile Include="OCMAboutDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.OCMAboutDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.MapWidget.cs" />
+    <Compile Include="Widgets\CacheList.cs" />
+    <Compile Include="Widgets\MapWidget.cs" />
+    <Compile Include="Widgets\GeocacheInfoPanel.cs" />
+    <Compile Include="Widgets\GeoCachePane.cs" />
+    <Compile Include="Dialogs\OCMAboutDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.desktop" />
@@ -78,5 +74,9 @@
       <Project>{A742EB76-61CC-451E-93AA-D9BC7407868C}</Project>
       <Name>ocmengine</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dialogs\" />
+    <Folder Include="Widgets\" />
   </ItemGroup>
 </Project>
