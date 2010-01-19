@@ -8,12 +8,14 @@
     <ProjectGuid>{A742EB76-61CC-451E-93AA-D9BC7407868C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>ocmengine</AssemblyName>
+    <Description>The library provides the geocache library management</Description>
+    <RootNamespace>ocmengin</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bind</OutputPath>
+    <OutputPath>..\lib</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
@@ -22,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <OutputPath>..\lib</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -30,9 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
-    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dependencies\nunit\bin\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=2.4.7.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+      <Package>nunit-2.4</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -41,10 +42,6 @@
     <Compile Include="CacheLog.cs" />
     <Compile Include="Waypoint.cs" />
     <Compile Include="GPXParser.cs" />
-    <Compile Include="NUNIT\TestParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="NUNIT\" />
-  </ItemGroup>
 </Project>
