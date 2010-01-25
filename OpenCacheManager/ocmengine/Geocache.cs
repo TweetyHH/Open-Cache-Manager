@@ -33,7 +33,9 @@ namespace ocmengine
 			MAZE,
 			VIRTUAL,
 			WEBCAM,
-			REVERSE};
+			REVERSE,
+			FOUND,
+			OTHER};
 		
 		
 		private string m_cacheName;
@@ -49,6 +51,8 @@ namespace ocmengine
 		private string m_hint;
 		private List<CacheLog> m_logs;
 		private string m_container;
+		private bool m_available;
+		private bool m_archived;
 		
 		public string CacheName
 		{
@@ -128,6 +132,18 @@ namespace ocmengine
 			set {m_logs = value;}
 		}
 		
+		public bool Archived
+		{
+			get {return m_archived;}
+			set {m_archived = value;}
+		}
+		
+		public bool Available
+		{
+			get {return m_available;}
+			set {m_available = value;}
+		}
+				
 		
 		/// <summary>
 		/// Creates a new Geocache object. Only public for testing purposes.

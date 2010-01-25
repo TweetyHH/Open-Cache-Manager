@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>OpenLayers: Yahoo Layer</title>
+    <link rel="stylesheet" href="../theme/default/style.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <script src="http://api.maps.yahoo.com/ajaxymap?v=3.0&appid=oWet3MfV34GPEQAvAw8iyLR3nVYLYDv_nnanofrm1I74CvY6PdqPl.Q8ayihhE39iQ-"></script>
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+   <script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
+    <script type="text/javascript">
+        var map, layer, velayer;
+
+        function init(){
+            map = new OpenLayers.Map('map');
+
+            yahooLayer = new OpenLayers.Layer.Yahoo( "Yahoo");
+
+            map.addLayer(yahooLayer);
+
+            layer = new OpenLayers.Layer.WMS( "OpenLayers WMS",
+                "http://labs.metacarta.com/wms/vmap0", {layers: 'basic'} );
+            map.addLayer(layer);
+
+ 	    var pois = new OpenLayers.Layer.Text( "Geocaches",
+                    { location:"./textfile.txt",
+                      projection: map.displayProjection
+                    });
+            map.addLayer(pois);
+
+	    var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Open Street Maps");
+	    map.addLayer(layerMapnik);
+
+            map.setCenter(new OpenLayers.LonLat(-75.63399, 45.39271), 10);
+            map.addControl(new OpenLayers.Control.LayerSwitcher());
+        }
+    </script>
+  </head>
+  <body onload="init()">
+    <h1 id="title">Yahoo Base Layer Example</h1>
+
+        <div id="tags">
+        </div>
+
+        <p id="shortdesc">
+            Shows how you would add a yahoo layer and add the LayerSwitcher control
+        </p>
+
+        <div id="map" class="smallmap"></div>
+
+        <div id="docs">
+            This is an example of how to add a yahoo layer to the OpenLayers window.  In order to enable a
+            yahoo layer. Also shown in this example is the LayerSwitcher() control for toggling between both the yahoo layer and
+            the open layer WMS.
+        </div>
+
+  </body>
+</html>

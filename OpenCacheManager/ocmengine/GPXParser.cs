@@ -27,10 +27,8 @@ namespace ocmengine
 		{
 		}
 		
-		public ArrayList parseGPXFile(FileStream fs)
-		{
-			ArrayList points = new ArrayList();
-			
+		public void parseGPXFile(FileStream fs, CacheStore store)
+		{			
 			XmlReader reader = XmlReader.Create(fs);
 			while (reader.Read())
 			{
@@ -40,7 +38,7 @@ namespace ocmengine
 						if (reader.Name == "wpt")
 						{
 							Waypoint pt = processWaypoint(reader);
-							points.Add(pt);
+							store.AddWaypoint(pt);							
 						}
 						break;
 					case XmlNodeType.EndElement:
@@ -48,7 +46,6 @@ namespace ocmengine
 				}
 			}
 			
-			return points;
 		}
 		
 		private Waypoint processWaypoint(XmlReader reader)
@@ -87,7 +84,9 @@ namespace ocmengine
 			}
 			else if (reader.Name == "url")
 			{
-				pt.URL = new Uri(reader.ReadElementContentAsString());
+				String url = reader.ReadElementContentAsString().Trim();
+				if (!String.IsNullOrEmpty(url))
+					pt.URL = new Uri(url);
 			}
 			else if (reader.Name == "desc")
 			{
@@ -120,8 +119,13 @@ namespace ocmengine
 		private void parseGeocacheElement(ref Waypoint pt, XmlReader reader)
 		{
 			Geocache cache = pt as Geocache;
-			if (reader.NamespaceURI == "http://www.groundspeak.com/cache/1/0")
+			if (reader.NamespaceURI.StartsWith("http://www.groundspeak.com/cache"))
 			{
+				if (reader.LocalName == "cache")
+				{
+					cache.Available = Boolean.Parse(reader.GetAttribute("available"));
+					cache.Archived = Boolean.Parse(reader.GetAttribute("archived"));
+				}
 				if (reader.LocalName == "name")
 				{
 					cache.CacheName = reader.ReadElementContentAsString();
@@ -136,8 +140,7 @@ namespace ocmengine
 				}
 				else if (reader.LocalName == "type")
 				{
-					//TODO: FIX THIS
-					cache.TypeOfCache = Geocache.CacheType.TRADITIONAL;
+					ParseCacheType(reader.ReadElementContentAsString(), ref cache);
 				}
 				else if (reader.LocalName == "difficulty")
 				{
@@ -166,6 +169,21 @@ namespace ocmengine
 				else if (reader.LocalName == "logs")
 				{
 					parseCacheLogs(ref cache, reader);
+				}
+				else if (reader.LocalName == "travelbug")
+				{
+					parseTravelBug(ref cache, reader);
+				}
+			}
+		}
+		
+		private void parseTravelBug(ref Geocache cache, XmlReader reader)
+		{
+			while (reader.Read())
+			{
+				if (reader.LocalName == "travelbug")
+				{
+					return;
 				}
 			}
 		}
@@ -213,6 +231,27 @@ namespace ocmengine
 				}
 			}
 			cache.AddLog(log);			
+		}
+		
+		private void ParseCacheType(String type, ref Geocache cache)
+		{
+			if (type == "Unknown Cache")
+				cache.TypeOfCache = Geocache.CacheType.MYSTERY;
+			else if (type == "Traditional Cache")
+				cache.TypeOfCache = Geocache.CacheType.TRADITIONAL;
+			else if (type == "Multi-cache")
+				cache.TypeOfCache = Geocache.CacheType.MULTI;
+			else if (type == "Letterbox Hybrid")
+				cache.TypeOfCache = Geocache.CacheType.LETTERBOX;
+			else if (type == "Earthcache")
+				cache.TypeOfCache = Geocache.CacheType.EARTH;
+			else if (type =="Wherigo Cache")
+				cache.TypeOfCache = Geocache.CacheType.WHERIGO;
+			else if (type == "Webcam Cache")
+				cache.TypeOfCache = Geocache.CacheType.WEBCAM;
+			else
+				cache.TypeOfCache = Geocache.CacheType.OTHER;
+				
 		}
 		
 		

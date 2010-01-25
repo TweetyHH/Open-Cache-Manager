@@ -13,12 +13,18 @@
 using System;
 using Gtk;
 using ocmgtk;
+using ocmengine;
 
 public partial class MainWindow: Gtk.Window
-{	
+{
+	
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
+		UIMonitor mon = UIMonitor.getInstance();
+	   	mon.GeoPane = cachePane;
+		mon.StatusBar = statusbar1;		
+		cacheList.UpdateCountStatus();
 	}
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -36,5 +42,25 @@ public partial class MainWindow: Gtk.Window
 	{
 		ocmgtk.OCMAboutDialog dlg = new ocmgtk.OCMAboutDialog();
 		dlg.Show();
+	}
+
+	protected virtual void OnToggleArchive (object sender, System.EventArgs e)
+	{
+		cacheList.ToggleArchivedCaches();
+	}
+
+	protected virtual void OnToggleUnavailable (object sender, System.EventArgs e)
+	{
+		cacheList.ToggleUnavailableCaches();
+	}
+
+	protected virtual void OnToggleMine (object sender, System.EventArgs e)
+	{
+		
+	}
+
+	protected virtual void OnToggleFound (object sender, System.EventArgs e)
+	{
+		cacheList.ToggleFoundCaches();
 	}
 }

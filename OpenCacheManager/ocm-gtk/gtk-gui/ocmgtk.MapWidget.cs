@@ -13,15 +13,70 @@ namespace ocmgtk {
     
     public partial class MapWidget {
         
+        private Gtk.VBox vbox1;
+        
+        private Gtk.HBox hbox1;
+        
+        private Gtk.ComboBox combobox1;
+        
+        private Gtk.Button goButton;
+        
+        private Gtk.ScrolledWindow mapWindow;
+        
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget ocmgtk.MapWidget
             Stetic.BinContainer.Attach(this);
             this.Name = "ocmgtk.MapWidget";
+            // Container child ocmgtk.MapWidget.Gtk.Container+ContainerChild
+            this.vbox1 = new Gtk.VBox();
+            this.vbox1.Name = "vbox1";
+            this.vbox1.Spacing = 6;
+            // Container child vbox1.Gtk.Box+BoxChild
+            this.hbox1 = new Gtk.HBox();
+            this.hbox1.Name = "hbox1";
+            this.hbox1.Homogeneous = true;
+            this.hbox1.Spacing = 6;
+            // Container child hbox1.Gtk.Box+BoxChild
+            this.combobox1 = Gtk.ComboBox.NewText();
+            this.combobox1.AppendText(Mono.Unix.Catalog.GetString("Geocache"));
+            this.combobox1.Name = "combobox1";
+            this.hbox1.Add(this.combobox1);
+            Gtk.Box.BoxChild w1 = ((Gtk.Box.BoxChild)(this.hbox1[this.combobox1]));
+            w1.Position = 0;
+            w1.Expand = false;
+            w1.Fill = false;
+            // Container child hbox1.Gtk.Box+BoxChild
+            this.goButton = new Gtk.Button();
+            this.goButton.WidthRequest = 73;
+            this.goButton.CanFocus = true;
+            this.goButton.Name = "goButton";
+            this.goButton.UseUnderline = true;
+            this.goButton.Label = Mono.Unix.Catalog.GetString("Go");
+            this.hbox1.Add(this.goButton);
+            Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.hbox1[this.goButton]));
+            w2.Position = 1;
+            w2.Expand = false;
+            w2.Fill = false;
+            this.vbox1.Add(this.hbox1);
+            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.vbox1[this.hbox1]));
+            w3.Position = 0;
+            w3.Expand = false;
+            w3.Fill = false;
+            // Container child vbox1.Gtk.Box+BoxChild
+            this.mapWindow = new Gtk.ScrolledWindow();
+            this.mapWindow.CanFocus = true;
+            this.mapWindow.Name = "mapWindow";
+            this.mapWindow.ShadowType = ((Gtk.ShadowType)(1));
+            this.vbox1.Add(this.mapWindow);
+            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.vbox1[this.mapWindow]));
+            w4.Position = 1;
+            this.Add(this.vbox1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.Hide();
+            this.goButton.Clicked += new System.EventHandler(this.goToPoint);
         }
     }
 }

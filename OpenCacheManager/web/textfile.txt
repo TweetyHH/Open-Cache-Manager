@@ -1,0 +1,4 @@
+lat	lon	title	description	icon	iconSize	iconOffset
+45.39271	-75.63399	Geocache	A geocache	traditional.png	24,24	0,0
+
+

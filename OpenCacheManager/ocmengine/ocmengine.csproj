@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AssemblyName>ocmengine</AssemblyName>
     <Description>The library provides the geocache library management</Description>
-    <RootNamespace>ocmengin</RootNamespace>
+    <RootNamespace>ocmengine</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,11 +37,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Geocache.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="CacheLog.cs" />
     <Compile Include="Waypoint.cs" />
     <Compile Include="GPXParser.cs" />
+    <Compile Include="Utilities.cs" />
+    <Compile Include="DegreeMinutes.cs" />
+    <Compile Include="Geocache.cs" />
+    <Compile Include="CacheStore.cs" />
+    <Compile Include="Engine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

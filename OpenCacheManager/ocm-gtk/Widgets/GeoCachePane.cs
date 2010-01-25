@@ -17,24 +17,11 @@ namespace ocmgtk
 		public GeoCachePane()
 		{
 			this.Build();
-			/*temp  test code
-			 * Gdk.Pixbuf buf = new Gdk.Pixbuf("/home/campbelk/osma/map.svg", 800, 800);
-			image2.Pixbuf = buf;
+		}
 		
-			
-			// TEMP
-			FileStream fs = File.Open("../src/OpenCacheManager/test/multi.gpx", FileMode.Open);
-			GPXParser parser = new GPXParser();
-			ArrayList caches =  parser.parseGPXFile(fs);
-		 	cacheinfo.setCacheInfo(caches[0] as Geocache);
-			
-			/*List<CacheLog> logs = (caches[0] as Geocache).CacheLogs;
-			String html = "";
-			for (int i=0; i < logs.Count; i++)
-			{
-				html += logs[i].toHTML();
-			}
-			htmlwidget.LoadFromString(html);*/
+		public void setCache(Geocache cache)
+		{
+			cacheInfo.setCacheInfo(cache);
 		}
 	}
 }

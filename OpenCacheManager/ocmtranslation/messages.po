@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2010-01-19 08:29:56-0500\n"
-"PO-Revision-Date: 2010-01-19 08:29:57-0500\n"
-"Last-Translator: campbelk\n"
+"POT-Creation-Date: 2010-01-24 10:21:50-0500\n"
+"PO-Revision-Date: 2010-01-24 10:21:50-0500\n"
+"Last-Translator: Kyle Campbell <kmcamp_ott@yahoo.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -59,108 +59,44 @@ msgstr ""
 msgid "Open Cache Manager"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:120
-msgid "<big><b>A Geocache</b></big>"
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:140
+msgid "PLACED_BY"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:132
-msgid "<big><b>GCAB01</b></big>"
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:168
+msgid "PLACED_ON"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:154
-msgid "Placed By:"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:165
-msgid "Some cacher"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:183
-msgid "Placed on:"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:196
-msgid "Some Date"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:219
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:203
 msgid "<big>Some Coordinate</big>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:249
-msgid "<b>Cache Type:</b>"
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:233
+msgid "<b>CACHE_TYPE</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:260
-msgid "Some type"
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:263
+msgid "<b>CACHE_SIZE</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:280
-msgid "<b>Cache Size:</b>"
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:293
+msgid "<b>DIFFICULTY</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:291
-msgid "Some Size"
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:323
+msgid "<b>TERRAIN</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:311
-msgid "<b>Difficulty:</b>"
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:357
+msgid "<b>HINT</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:322
-msgid "Some Difficulty"
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:376
+msgid "<b>LONGDESCRIPTION</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:342
-msgid "<b>Terrain:</b>"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:353
-msgid "Some terrain"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:373
-msgid "<b>Found:</b>"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:384
-msgid "No"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:406
-msgid "A short description"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:410
-msgid "<b>Short Description</b>"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:429
-msgid "<b>Long Description</b>"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:458
-msgid "Some hint"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:462
-msgid "<b>Hints</b>"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:51
-msgid "Cache Description"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:72
-msgid "Map"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:86
-msgid "Logs"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:95
-msgid "Child Waypoints"
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:44
+msgid "INFO"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMAboutDialog.cs:59
@@ -169,5 +105,29 @@ msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMAboutDialog.cs:73
 msgid "Copyright 2009, Kyle Campbell"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.MapWidget.cs:41
+msgid "Geocache"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.MapWidget.cs:54
+msgid "Go"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/CacheList.cs:31
+msgid "ICON"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/CacheList.cs:32
+msgid "CODE"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/CacheList.cs:33
+msgid "TITLE"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/CacheList.cs:34
+msgid "DISTANCE"
 msgstr ""
 

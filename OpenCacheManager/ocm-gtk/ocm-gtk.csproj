@@ -47,6 +47,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="..\..\..\..\osma\map.svg" />
     <EmbeddedResource Include="..\icons\scalable\hicolor\traditional.svg" />
+    <EmbeddedResource Include="..\icons\scalable\hicolor\multi.svg" />
+    <EmbeddedResource Include="..\icons\scalable\hicolor\waypoint-flag-red.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="Widgets\GeocacheInfoPanel.cs" />
     <Compile Include="Widgets\GeoCachePane.cs" />
     <Compile Include="Dialogs\OCMAboutDialog.cs" />
+    <Compile Include="UIMonitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.desktop" />

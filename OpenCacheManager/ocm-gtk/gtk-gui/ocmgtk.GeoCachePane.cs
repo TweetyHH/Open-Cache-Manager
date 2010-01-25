@@ -13,21 +13,13 @@ namespace ocmgtk {
     
     public partial class GeoCachePane {
         
-        private Gtk.Notebook notebook1;
+        private Gtk.Alignment alignment1;
         
-        private ocmgtk.GeocacheInfoPanel cacheinfo;
+        private Gtk.Notebook notebook2;
         
-        private Gtk.Label label19;
+        private ocmgtk.GeocacheInfoPanel cacheInfo;
         
-        private Gtk.Fixed fixed2;
-        
-        private Gtk.Label label1;
-        
-        private Gtk.ScrolledWindow logScroll;
-        
-        private Gtk.Label label21;
-        
-        private Gtk.Label label20;
+        private Gtk.Label label4;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -35,58 +27,26 @@ namespace ocmgtk {
             Stetic.BinContainer.Attach(this);
             this.Name = "ocmgtk.GeoCachePane";
             // Container child ocmgtk.GeoCachePane.Gtk.Container+ContainerChild
-            this.notebook1 = new Gtk.Notebook();
-            this.notebook1.CanFocus = true;
-            this.notebook1.Name = "notebook1";
-            this.notebook1.CurrentPage = 3;
-            // Container child notebook1.Gtk.Notebook+NotebookChild
-            this.cacheinfo = new ocmgtk.GeocacheInfoPanel();
-            this.cacheinfo.Events = ((Gdk.EventMask)(256));
-            this.cacheinfo.Name = "cacheinfo";
-            this.notebook1.Add(this.cacheinfo);
+            this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment1.Name = "alignment1";
+            // Container child alignment1.Gtk.Container+ContainerChild
+            this.notebook2 = new Gtk.Notebook();
+            this.notebook2.CanFocus = true;
+            this.notebook2.Name = "notebook2";
+            this.notebook2.CurrentPage = 0;
+            // Container child notebook2.Gtk.Notebook+NotebookChild
+            this.cacheInfo = new ocmgtk.GeocacheInfoPanel();
+            this.cacheInfo.Events = ((Gdk.EventMask)(256));
+            this.cacheInfo.Name = "cacheInfo";
+            this.notebook2.Add(this.cacheInfo);
             // Notebook tab
-            this.label19 = new Gtk.Label();
-            this.label19.Name = "label19";
-            this.label19.LabelProp = Mono.Unix.Catalog.GetString("Cache Description");
-            this.notebook1.SetTabLabel(this.cacheinfo, this.label19);
-            this.label19.ShowAll();
-            // Container child notebook1.Gtk.Notebook+NotebookChild
-            this.fixed2 = new Gtk.Fixed();
-            this.fixed2.Name = "fixed2";
-            this.fixed2.HasWindow = false;
-            this.notebook1.Add(this.fixed2);
-            Gtk.Notebook.NotebookChild w2 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.fixed2]));
-            w2.Position = 1;
-            // Notebook tab
-            this.label1 = new Gtk.Label();
-            this.label1.Name = "label1";
-            this.label1.LabelProp = Mono.Unix.Catalog.GetString("Map");
-            this.notebook1.SetTabLabel(this.fixed2, this.label1);
-            this.label1.ShowAll();
-            // Container child notebook1.Gtk.Notebook+NotebookChild
-            this.logScroll = new Gtk.ScrolledWindow();
-            this.logScroll.CanFocus = true;
-            this.logScroll.Name = "logScroll";
-            this.logScroll.ShadowType = ((Gtk.ShadowType)(1));
-            this.notebook1.Add(this.logScroll);
-            Gtk.Notebook.NotebookChild w3 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.logScroll]));
-            w3.Position = 2;
-            // Notebook tab
-            this.label21 = new Gtk.Label();
-            this.label21.Name = "label21";
-            this.label21.LabelProp = Mono.Unix.Catalog.GetString("Logs");
-            this.notebook1.SetTabLabel(this.logScroll, this.label21);
-            this.label21.ShowAll();
-            // Notebook tab
-            Gtk.Label w4 = new Gtk.Label();
-            w4.Visible = true;
-            this.notebook1.Add(w4);
-            this.label20 = new Gtk.Label();
-            this.label20.Name = "label20";
-            this.label20.LabelProp = Mono.Unix.Catalog.GetString("Child Waypoints");
-            this.notebook1.SetTabLabel(w4, this.label20);
-            this.label20.ShowAll();
-            this.Add(this.notebook1);
+            this.label4 = new Gtk.Label();
+            this.label4.Name = "label4";
+            this.label4.LabelProp = Mono.Unix.Catalog.GetString("INFO");
+            this.notebook2.SetTabLabel(this.cacheInfo, this.label4);
+            this.label4.ShowAll();
+            this.alignment1.Add(this.notebook2);
+            this.Add(this.alignment1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }

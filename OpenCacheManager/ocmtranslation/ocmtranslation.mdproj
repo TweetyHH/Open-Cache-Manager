@@ -5,11 +5,6 @@
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{DAB79A8E-F214-406E-82AD-DBE14B95E9F8}</ProjectGuid>
-    <translations>
-      <translations xmlns="">
-        <Translation isoCode="en" />
-      </translations>
-    </translations>
     <packageName>i8n1</packageName>
     <outputType>RelativeToOutput</outputType>
     <relPath>locale</relPath>

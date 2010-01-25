@@ -44,17 +44,29 @@ public partial class MainWindow {
     
     private Gtk.Action openAction1;
     
+    private Gtk.ToggleAction ShowUnavailableCachesAction;
+    
+    private Gtk.ToggleAction ShowArchivedCachesAction;
+    
+    private Gtk.ToggleAction ShowCachesPlacedByMeAction;
+    
+    private Gtk.Action ClearAllFiltersAction;
+    
+    private Gtk.Action FilterAction;
+    
+    private Gtk.ToggleAction ShowFoundCachesAction;
+    
     private Gtk.VBox vbox1;
     
     private Gtk.MenuBar mainmenubar;
     
     private Gtk.Toolbar toolbar1;
     
-    private Gtk.HPaned hpaned1;
+    private Gtk.HPaned hSplitPane;
     
-    private ocmgtk.CacheList cachelist1;
+    private ocmgtk.CacheList cacheList;
     
-    private ocmgtk.GeoCachePane geocachepane1;
+    private ocmgtk.GeoCachePane cachePane;
     
     private Gtk.Statusbar statusbar1;
     
@@ -102,6 +114,28 @@ public partial class MainWindow {
         w1.Add(this.convertAction, null);
         this.openAction1 = new Gtk.Action("openAction1", null, null, "gtk-open");
         w1.Add(this.openAction1, null);
+        this.ShowUnavailableCachesAction = new Gtk.ToggleAction("ShowUnavailableCachesAction", Mono.Unix.Catalog.GetString("Show Unavailable Caches"), null, null);
+        this.ShowUnavailableCachesAction.Active = true;
+        this.ShowUnavailableCachesAction.ShortLabel = Mono.Unix.Catalog.GetString("Show Unavailable Caches");
+        w1.Add(this.ShowUnavailableCachesAction, null);
+        this.ShowArchivedCachesAction = new Gtk.ToggleAction("ShowArchivedCachesAction", Mono.Unix.Catalog.GetString("Show Archived Caches"), null, null);
+        this.ShowArchivedCachesAction.Active = true;
+        this.ShowArchivedCachesAction.ShortLabel = Mono.Unix.Catalog.GetString("Show Archived Caches");
+        w1.Add(this.ShowArchivedCachesAction, null);
+        this.ShowCachesPlacedByMeAction = new Gtk.ToggleAction("ShowCachesPlacedByMeAction", Mono.Unix.Catalog.GetString("Show Caches Placed by Me"), null, null);
+        this.ShowCachesPlacedByMeAction.Active = true;
+        this.ShowCachesPlacedByMeAction.ShortLabel = Mono.Unix.Catalog.GetString("Show Caches Placed by Me");
+        w1.Add(this.ShowCachesPlacedByMeAction, null);
+        this.ClearAllFiltersAction = new Gtk.Action("ClearAllFiltersAction", Mono.Unix.Catalog.GetString("Clear All Filters"), null, null);
+        this.ClearAllFiltersAction.ShortLabel = Mono.Unix.Catalog.GetString("Clear All Filters");
+        w1.Add(this.ClearAllFiltersAction, null);
+        this.FilterAction = new Gtk.Action("FilterAction", Mono.Unix.Catalog.GetString("Filter..."), null, null);
+        this.FilterAction.ShortLabel = Mono.Unix.Catalog.GetString("Filter...");
+        w1.Add(this.FilterAction, null);
+        this.ShowFoundCachesAction = new Gtk.ToggleAction("ShowFoundCachesAction", Mono.Unix.Catalog.GetString("Show Found Caches"), null, null);
+        this.ShowFoundCachesAction.Active = true;
+        this.ShowFoundCachesAction.ShortLabel = Mono.Unix.Catalog.GetString("Show Found Caches");
+        w1.Add(this.ShowFoundCachesAction, null);
         this.UIManager.InsertActionGroup(w1, 0);
         this.AddAccelGroup(this.UIManager.AccelGroup);
         this.Name = "MainWindow";
@@ -112,7 +146,7 @@ public partial class MainWindow {
         this.vbox1 = new Gtk.VBox();
         this.vbox1.Name = "vbox1";
         // Container child vbox1.Gtk.Box+BoxChild
-        this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='OpenAction' action='OpenAction'/><menuitem name='ExportAction' action='ExportAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'/><menu name='ViewAction' action='ViewAction'/><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
+        this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='OpenAction' action='OpenAction'/><menuitem name='ExportAction' action='ExportAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'/><menu name='ViewAction' action='ViewAction'><menuitem name='ShowFoundCachesAction' action='ShowFoundCachesAction'/><menuitem name='ShowUnavailableCachesAction' action='ShowUnavailableCachesAction'/><menuitem name='ShowArchivedCachesAction' action='ShowArchivedCachesAction'/><menuitem name='ShowCachesPlacedByMeAction' action='ShowCachesPlacedByMeAction'/><separator/><menuitem name='FilterAction' action='FilterAction'/><menuitem name='ClearAllFiltersAction' action='ClearAllFiltersAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
         this.mainmenubar = ((Gtk.MenuBar)(this.UIManager.GetWidget("/mainmenubar")));
         this.mainmenubar.Name = "mainmenubar";
         this.vbox1.Add(this.mainmenubar);
@@ -133,28 +167,25 @@ public partial class MainWindow {
         w3.Expand = false;
         w3.Fill = false;
         // Container child vbox1.Gtk.Box+BoxChild
-        this.hpaned1 = new Gtk.HPaned();
-        this.hpaned1.CanFocus = true;
-        this.hpaned1.Name = "hpaned1";
-        this.hpaned1.Position = 227;
-        this.hpaned1.BorderWidth = ((uint)(1));
-        // Container child hpaned1.Gtk.Paned+PanedChild
-        this.cachelist1 = new ocmgtk.CacheList();
-        this.cachelist1.Events = ((Gdk.EventMask)(256));
-        this.cachelist1.Name = "cachelist1";
-        this.hpaned1.Add(this.cachelist1);
-        Gtk.Paned.PanedChild w4 = ((Gtk.Paned.PanedChild)(this.hpaned1[this.cachelist1]));
+        this.hSplitPane = new Gtk.HPaned();
+        this.hSplitPane.CanFocus = true;
+        this.hSplitPane.Name = "hSplitPane";
+        this.hSplitPane.Position = 398;
+        // Container child hSplitPane.Gtk.Paned+PanedChild
+        this.cacheList = new ocmgtk.CacheList();
+        this.cacheList.Events = ((Gdk.EventMask)(256));
+        this.cacheList.Name = "cacheList";
+        this.hSplitPane.Add(this.cacheList);
+        Gtk.Paned.PanedChild w4 = ((Gtk.Paned.PanedChild)(this.hSplitPane[this.cacheList]));
         w4.Resize = false;
-        // Container child hpaned1.Gtk.Paned+PanedChild
-        this.geocachepane1 = new ocmgtk.GeoCachePane();
-        this.geocachepane1.Events = ((Gdk.EventMask)(256));
-        this.geocachepane1.Name = "geocachepane1";
-        this.hpaned1.Add(this.geocachepane1);
-        this.vbox1.Add(this.hpaned1);
-        Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.vbox1[this.hpaned1]));
+        // Container child hSplitPane.Gtk.Paned+PanedChild
+        this.cachePane = new ocmgtk.GeoCachePane();
+        this.cachePane.Events = ((Gdk.EventMask)(256));
+        this.cachePane.Name = "cachePane";
+        this.hSplitPane.Add(this.cachePane);
+        this.vbox1.Add(this.hSplitPane);
+        Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.vbox1[this.hSplitPane]));
         w6.Position = 2;
-        w6.Expand = false;
-        w6.Fill = false;
         // Container child vbox1.Gtk.Box+BoxChild
         this.statusbar1 = new Gtk.Statusbar();
         this.statusbar1.Name = "statusbar1";
@@ -169,11 +200,15 @@ public partial class MainWindow {
         if ((this.Child != null)) {
             this.Child.ShowAll();
         }
-        this.DefaultWidth = 842;
-        this.DefaultHeight = 874;
+        this.DefaultWidth = 1073;
+        this.DefaultHeight = 988;
         this.Show();
         this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
         this.QuitAction.Activated += new System.EventHandler(this.OnQuit);
         this.AboutAction.Activated += new System.EventHandler(this.doAbout);
+        this.ShowUnavailableCachesAction.Toggled += new System.EventHandler(this.OnToggleUnavailable);
+        this.ShowArchivedCachesAction.Toggled += new System.EventHandler(this.OnToggleArchive);
+        this.ShowCachesPlacedByMeAction.Toggled += new System.EventHandler(this.OnToggleMine);
+        this.ShowFoundCachesAction.Toggled += new System.EventHandler(this.OnToggleFound);
     }
 }

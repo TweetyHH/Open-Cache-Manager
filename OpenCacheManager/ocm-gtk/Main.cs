@@ -20,6 +20,7 @@ namespace ocmgtk
 		public static void Main (string[] args)
 		{
 			Application.Init ();
+			Mono.Unix.Catalog.Init("i8n1", "./locale");
 			MainWindow win = new MainWindow ();
 			win.Show ();
 			Application.Run ();
