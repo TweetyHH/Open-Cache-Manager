@@ -249,6 +249,18 @@ namespace ocmengine
 				cache.TypeOfCache = Geocache.CacheType.WHERIGO;
 			else if (type == "Webcam Cache")
 				cache.TypeOfCache = Geocache.CacheType.WEBCAM;
+			else if (type == "Cache In Trash Out Event")
+				cache.TypeOfCache = Geocache.CacheType.CITO;
+			else if (type == "GPS Adventures Exhibit")
+				cache.TypeOfCache = Geocache.CacheType.MAZE;
+			else if (type == "Mega-Event Cache")
+				cache.TypeOfCache = Geocache.CacheType.MEGAEVENT;
+			else if (type == "Event Cache")
+				cache.TypeOfCache = Geocache.CacheType.EVENT;
+			else if (type == "Virtual Cache")
+			    cache.TypeOfCache = Geocache.CacheType.VIRTUAL;
+			else if (type == "Project APE Cache")
+				cache.TypeOfCache = Geocache.CacheType.APE;
 			else
 				cache.TypeOfCache = Geocache.CacheType.OTHER;
 				

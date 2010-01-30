@@ -33,5 +33,11 @@ namespace ocmengine.test
 		{
 			Assert.AreEqual(new DegreeMinutes(-45, 25.44702) , Utilities.convertDDtoDM(-45.424117));
 		}
+		
+		[Test]
+		public void TestBearing()
+		{
+			Assert.AreEqual(127, Utilities.calculateBearing(53.14722, 52.204444, -1.84944, 0.140556));
+		}
 	}
 }

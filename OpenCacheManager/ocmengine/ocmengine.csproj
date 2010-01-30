@@ -46,6 +46,7 @@
     <Compile Include="Geocache.cs" />
     <Compile Include="CacheStore.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="OLMarkerGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

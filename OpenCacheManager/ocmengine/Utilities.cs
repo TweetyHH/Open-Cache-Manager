@@ -29,9 +29,7 @@ namespace ocmengine
 			if (dd_coordinate > 0)
 			{
 				degrees = Math.Floor(dd_coordinate);
-				System.Console.WriteLine(degrees);
 				decimal_minutes = dd_coordinate - degrees;
-				System.Console.WriteLine(decimal_minutes);
 			}
 			else
 			{
@@ -43,9 +41,27 @@ namespace ocmengine
 		}
 		
 		
-		public static double calculateDisatnce(double lat1, double lat2, double lon1, double lon2)
+		/// <summary>
+		/// See http://www.movable-type.co.uk/scripts/latlong.html
+		/// </summary>
+		/// <param name="lat1">
+		/// A <see cref="System.Double"/>
+		/// </param>
+		/// <param name="lat2">
+		/// A <see cref="System.Double"/>
+		/// </param>
+		/// <param name="lon1">
+		/// A <see cref="System.Double"/>
+		/// </param>
+		/// <param name="lon2">
+		/// A <see cref="System.Double"/>
+		/// </param>
+		/// <returns>
+		/// A <see cref="System.Double"/>
+		/// </returns>
+		public static double calculateDistance(double lat1, double lat2, double lon1, double lon2)
 		{
-			int R = 6371; // km
+			int R = 6371;
 			lat1 = toRad(lat1);
 			lat2 = toRad(lat2);
 			lon1 = toRad(lon1);
@@ -55,10 +71,46 @@ namespace ocmengine
 			Math.Cos(lat1)*Math.Cos(lat2) *Math.Cos(lon2-lon1)) * R;
 			return d;
 		}
+		
+		/// <summary>
+		/// See http://www.movable-type.co.uk/scripts/latlong.html
+		/// </summary>
+		/// <param name="lat1">
+		/// A <see cref="System.Double"/>
+		/// </param>
+		/// <param name="lat2">
+		/// A <see cref="System.Double"/>
+		/// </param>
+		/// <param name="lon1">
+		/// A <see cref="System.Double"/>
+		/// </param>
+		/// <param name="lon2">
+		/// A <see cref="System.Double"/>
+		/// </param>
+		/// <returns>
+		/// A <see cref="System.Double"/>
+		/// </returns>
+		public static int calculateBearing(double lat1, double lat2, double lon1, double lon2)
+		{
+			lat1 = toRad(lat1);
+			lat2 = toRad(lat2);
+			lon1 = toRad(lon1);
+			lon2 = toRad(lon2);
+			double dLon = lon2-lon1;
+			double y = Math.Sin(dLon) * Math.Cos(lat2);
+			double x = Math.Cos(lat1)*Math.Sin(lat2) - Math.Sin(lat1)*Math.Cos(lat2)*Math.Cos(dLon);	
+			double b = Math.Atan2(y, x);
+			return (int) (toDegrees(b) + 360) % 360;
+		}
 				
 		public static double toRad(double degrees)
 		{
 			return degrees * (Math.PI/180);
+		}
+		
+		public static double toDegrees(double radians)
+		{
+			return radians * (180/Math.PI);
 		}
 	}
 }

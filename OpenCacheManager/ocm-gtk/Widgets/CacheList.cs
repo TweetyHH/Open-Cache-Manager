@@ -21,27 +21,23 @@ namespace ocmgtk
 		private TreeModelFilter m_QuickFilter;
 		private TreeModelSort m_ListSort;
 		private ListStore m_cacheModel;
-		private Menu filterPopup;
+
 		private bool m_showUnavailble = true;
 		private bool m_showArchived = true;
 		private bool m_showMine = true;
 		private bool m_showFound = true;
+		private UIMonitor m_monitor;
 
 		public CacheList()
 		{
 			this.Build();
-			PopulateList();
-			CreateFilterPopup();
+			BuildList();
+			m_monitor = UIMonitor.getInstance();
+			m_monitor.CacheListPane = this;
 		}
 		
-		private void CreateFilterPopup()
-		{
-			filterPopup = new Menu();
-			CheckMenuItem showFoundItem = new CheckMenuItem("Found Caches");
-			filterPopup.Add(showFoundItem);
-		}
-		
-		private void PopulateList()
+
+		private void BuildList()
 		{
 			m_cacheModel = new ListStore(typeof (Geocache));
 			filterEntry.Changed += OnFilterChange;
@@ -50,10 +46,10 @@ namespace ocmgtk
 			CellRendererText geotitle_cell = new CellRendererText();
 			CellRendererText geodistance_cell = new CellRendererText();
 			CellRendererPixbuf geoicon_cell = new CellRendererPixbuf();
-			TreeViewColumn geocache_icon = new TreeViewColumn(Catalog.GetString("Type"), geoicon_cell, "text", 0);
-			TreeViewColumn geocache_code = new TreeViewColumn(Catalog.GetString("Code"), geocode_cell, "text", 1);
-			TreeViewColumn geocache_distance = new TreeViewColumn(Catalog.GetString("Km"), geodistance_cell, "text", 2);
-			TreeViewColumn geocache_title = new TreeViewColumn(Catalog.GetString("Title"), geotitle_cell, "text", 3);
+			TreeViewColumn geocache_icon = new TreeViewColumn(Catalog.GetString("Type"), geoicon_cell);
+			TreeViewColumn geocache_code = new TreeViewColumn(Catalog.GetString("Code"), geocode_cell);
+			TreeViewColumn geocache_distance = new TreeViewColumn(Catalog.GetString("Km"), geodistance_cell);
+			TreeViewColumn geocache_title = new TreeViewColumn(Catalog.GetString("Title"), geotitle_cell);
 			
 			treeview1.AppendColumn(geocache_icon);
 			treeview1.AppendColumn(geocache_code);
@@ -79,14 +75,18 @@ namespace ocmgtk
 			m_ListSort.SetSortFunc(1, DistanceCompare);
 			m_ListSort.SetSortFunc(2, SymbolCompare);
 			treeview1.Model = m_ListSort;
+			treeview1.Selection.Changed += OnSelectionChanged;
 			
+		}
+		
+		public void PopulateList()
+		{
+			m_cacheModel.Clear();
 			IEnumerator<Geocache> cache_enum =  Engine.getInstance().getCacheEnumerator();
 			while (cache_enum.MoveNext())
 			{
 				m_cacheModel.AppendValues(cache_enum.Current);
 			}
-			
-			treeview1.Selection.Changed += OnSelectionChanged;		
 			this.ShowAll();
 		}
 		
@@ -106,12 +106,13 @@ namespace ocmgtk
 		{
 			Geocache cache = (Geocache) model.GetValue (iter, 0);
 			CellRendererText text = cell as CellRendererText;
+			
 			if (!cache.Available && ! cache.Archived)
 				text.Markup = unavailText(cache.CacheName);
 			else if (cache.Archived)
 				text.Markup = archiveText(cache.CacheName);
 			else 
-				text.Markup = cache.CacheName;
+				text.Markup = GLib.Markup.EscapeText(cache.CacheName);
 		}
 		
 		private void RenderCacheIcon (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
@@ -130,7 +131,7 @@ namespace ocmgtk
 			CellRendererText text = cell as CellRendererText;
 			try
 			{
-				double dist = Utilities.calculateDisatnce(UIMonitor.getInstance().HomeLat, cache.Lat, UIMonitor.getInstance().HomeLon, cache.Lon);
+				double dist = Utilities.calculateDistance(m_monitor.HomeLat, cache.Lat, m_monitor.HomeLon, cache.Lon);
 				text.Text = dist.ToString("0.00");
 			}
 			catch (Exception e)
@@ -150,7 +151,7 @@ namespace ocmgtk
 
 					Geocache val = (Geocache) model.GetValue (iter, 0);
 					if (val != null)
-                      		UIMonitor.getInstance().setSelectedCache(val);
+                      		m_monitor.setSelectedCache(val);
 				}
                 
 		}
@@ -203,16 +204,6 @@ namespace ocmgtk
 			return String.Compare(cacheA.TypeOfCache.ToString(), cacheB.TypeOfCache.ToString());
 		}
 		
-		/*private bool SortCaches(int column, TreeItr itr)
-		{
-			ts.SetSortFunc (0, col0_compare, IntPtr.Zero, null); // use col0_compare to sort
-		}
-		
-		public int col0_compare (TreeModel model, TreeIter tia, TreeIter tib)	{
-		return String.Compare ((string) model.GetValue (tia, 0),
-				(string) model.GetValue (tib, 0));
-		}*/
-
 		
 		private bool QuickFilter(TreeModel model, TreeIter itr)
 		{
@@ -267,7 +258,7 @@ namespace ocmgtk
 		
 		public double getDistanceFromHome(Geocache cache)
 		{
-			return Utilities.calculateDisatnce(UIMonitor.getInstance().HomeLat, cache.Lat, UIMonitor.getInstance().HomeLon, cache.Lon);
+			return Utilities.calculateDistance(m_monitor.HomeLat, cache.Lat, m_monitor.HomeLon, cache.Lon);
 		}
 		
 		
@@ -275,7 +266,7 @@ namespace ocmgtk
 		public void UpdateCountStatus()
 		{
 			int totalCaches = 0;
-			UIMonitor.getInstance().setCacheCountStatus(totalCaches);
+			m_monitor.setCacheCountStatus(totalCaches);
 		}
 
 		protected virtual void OnFilterButtonClick (object sender, System.EventArgs e)

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0" creator="Groundspeak, Inc. All Rights Reserved. http://www.groundspeak.com" xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd http://www.groundspeak.com/cache/1/0 http://www.groundspeak.com/cache/1/0/cache.xsd" xmlns="http://www.topografix.com/GPX/1/0">
+  <name>Cache Listing Generated from Geocaching.com</name>
+  <desc>This is an individual cache generated from Geocaching.com</desc>
+  <author>Account "projectAPE" From Geocaching.com</author>
+  <email>contact@geocaching.com</email>
+  <url>http://www.geocaching.com</url>
+  <urlname>Geocaching - High Tech Treasure Hunting</urlname>
+  <time>2010-01-25T22:49:04.5761965Z</time>
+  <keywords>cache, geocache</keywords>
+  <bounds minlat="37.845983" minlon="-121.934017" maxlat="37.845983" maxlon="-121.934017" />
+  <wpt lat="37.845983" lon="-121.934017">
+    <time>2001-05-24T07:00:00Z</time>
+    <name>GCA4B</name>
+    <desc>Mission 1: Devil's Spoon by Project APE, Project APE Cache (2/2)</desc>
+    <url>http://www.geocaching.com/seek/cache_details.aspx?guid=f9f64937-d969-4c90-a167-52d30026b6d9</url>
+    <urlname>Mission 1: Devil's Spoon</urlname>
+    <sym>Geocache</sym>
+    <type>Geocache|Project APE Cache</type>
+    <groundspeak:cache id="2635" available="False" archived="True" xmlns:groundspeak="http://www.groundspeak.com/cache/1/0">
+      <groundspeak:name>Mission 1: Devil's Spoon</groundspeak:name>
+      <groundspeak:placed_by>Project APE</groundspeak:placed_by>
+      <groundspeak:owner id="9326">projectAPE</groundspeak:owner>
+      <groundspeak:type>Project APE Cache</groundspeak:type>
+      <groundspeak:container>Large</groundspeak:container>
+      <groundspeak:difficulty>2</groundspeak:difficulty>
+      <groundspeak:terrain>2</groundspeak:terrain>
+      <groundspeak:country>United States</groundspeak:country>
+      <groundspeak:state>California</groundspeak:state>
+      <groundspeak:short_description html="True">Elevation:  1,625 ft.</groundspeak:short_description>
+      <groundspeak:long_description html="True">The race is on and it starts now.  The coordinates for mission 1 have been released and it's up to you to reach the cache before the authorities get there and conceal the truth.  Our associate who planted the cache has written a brief description about where he has hidden the cache.
+&lt;p&gt;
+"This cache is in Northern California and could be a bit of a challenge.  I'm not going to give away the park that it's in but I will say that once you reach the correct park you'll be looking for 'Rock City' and the 'Uplands Picnic Area.'  Start the hike from right there. 
+&lt;p&gt;
+The hike itself should take you about a half an hour from the time you get out of your car.  The path is clearly marked but has some pretty steep inclines that will get your heart rate going.  The cache is placed in a thicket just off the trail but may be a little difficult to locate, as there is some heavy brush in the area. If (when) you find the cache, be sure to read our note for instructions." </groundspeak:long_description>
+      <groundspeak:encoded_hints>
+      </groundspeak:encoded_hints>
+      <groundspeak:logs>
+        <groundspeak:log id="18493867">
+          <groundspeak:date>2006-08-29T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Write note</groundspeak:type>
+          <groundspeak:finder id="398769">TeamNulti2003</groundspeak:finder>
+          <groundspeak:text encoded="False">Adding picture of spoon</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="39839">
+          <groundspeak:date>2001-07-02T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Write note</groundspeak:type>
+          <groundspeak:finder id="14983">jbmccarthy69</groundspeak:finder>
+          <groundspeak:text encoded="False">Buxley, Can you post a picture of the spoon?</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="24983">
+          <groundspeak:date>2001-07-02T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Write note</groundspeak:type>
+          <groundspeak:finder id="9326">projectAPE</groundspeak:finder>
+          <groundspeak:text encoded="False">Mission 1 Alert: The first breech of a Project APE cache has occurred.  During a routine recon operation our informants in the Bay Area were unable to relocate the cache.  It seems that the authorities must have finally traced the cache and removed it.  They probably have it in the forensic labs right now doing the routine analysis run down.  They of course will find nothing.  However, because the site location was compromised we have deemed the area unstable for future Project APE activity. We would like to thank all of those field agents from the Bay Area whose efforts made Mission One a success.  We must also point out that now, more than ever, it is essential that the utmost caution be used in future missions.  Always make sure to cover your tracks and always watch your back. Be safe and be strong.  Thank you.  
+</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="24344">
+          <groundspeak:date>2001-07-01T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Didn't find it</groundspeak:type>
+          <groundspeak:finder id="12383">czechcachers</groundspeak:finder>
+          <groundspeak:text encoded="False">Fun hike, but no success finding the cache. We searched with a party of 9 for about 30 minutes with no luck. Is this one gone?
+</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="24188">
+          <groundspeak:date>2001-06-30T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Didn't find it</groundspeak:type>
+          <groundspeak:finder id="7717">kimbo</groundspeak:finder>
+          <groundspeak:text encoded="False">Couldn't find the cache!  Searched the area of the coordinates for over an hour and came up empty.  Is the cache that well hidden?</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="18896">
+          <groundspeak:date>2001-06-11T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="8628">dmasiel</groundspeak:finder>
+          <groundspeak:text encoded="False">Strange simian vision...late last night....driven to search...visions of silver....coins?  In Semos We Believe.   They were there... there is still evidence... I have in my possession 100 sisterces.  They will not find me... I will be free.  DM</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="18051">
+          <groundspeak:date>2001-06-09T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="2289">justincredible76</groundspeak:finder>
+          <groundspeak:text encoded="False">SUCCESS!!  My friend actually found it (accidentally) while I was following my GPS.  The cache was out in the open, not hidden at all.  Not sure if it was in the original hiding place.  My GPS pointed 0.01 miles in one direction and the cache was actually 0.01 miles behind me.   Oh well.  Took nothing, left nothing.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="30681">
+          <groundspeak:date>2001-06-03T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1672">cdy</groundspeak:finder>
+          <groundspeak:text encoded="False">Hi!  Found this (empty :( ) cache with bang.  Just logging the visit for myself.  :-)</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="17016">
+          <groundspeak:date>2001-06-03T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1664">bang</groundspeak:finder>
+          <groundspeak:text encoded="False">Nice location. Nice view. You can see a large chunk of the valley from up there. We found the cache, as others said, it was pretty empty. Nothing to mark it as being special apart from the logo on the lid. Unlikely to attract thousands with an empty box. If you go to this one, be happy with the view. Oh, and we took pictures with our own camera.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="15640">
+          <groundspeak:date>2001-05-29T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Write note</groundspeak:type>
+          <groundspeak:finder id="9669">IcedOut</groundspeak:finder>
+          <groundspeak:text encoded="False">im soo confused..any help?</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="15081">
+          <groundspeak:date>2001-05-27T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="4021">Ranger</groundspeak:finder>
+          <groundspeak:text encoded="False">I had a great time looking for this cache!  I kept looking over my shoulder.  I had to jump in the brush once when a chopper flew past me very low.  Lucky for me I was unseen.
+
+Not much in the cache so I took nothing but my photo and left behind a Lotto scratcher.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="14593">
+          <groundspeak:date>2001-05-25T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="2468">Ron Streeter</groundspeak:finder>
+          <groundspeak:text encoded="False">Eureka ! Well, half a eureka anyway ! I had been at the scene for about 30 minutes looking (in vain) for the cache when Buxley and Julie arrived. I was 20 feet downhill from them and when I got up to and introduced myself to Julie, Buxley called out that he had found the cache ! It was 5 feet away from Julie and I, and the really irritating thing is that I had stood on that very spot three times taking readings. Had I looked down and to my right I would have seen it (maybe !). Anyway, I'll have to settle for #2 on this one. Kudos to Buxley and Julie. The Devil's Spoon was in the cache with an authentication certificate, but I was surprised to find that aside from the log book and camera and explanation sheet, there was nothing else there. I owned a video store from 1982 to 1988 (before the big boys came to town) and I was inundated with movie trailers, key chains, notepads, etc. I would have thought 20th Century Fox would have put in a few more goodies. Anyway, Buxley left his usual Altoids which I took and I left a couple of small toys. Come on 20th Century Fox...can we expect more goodies in the future missions ? I see that 12 people are watching this cache.... as of 6 p.m. on 5/25...it's just a regular cache now...no movie goodies left. 
+</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="14575">
+          <groundspeak:date>2001-05-25T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="3282">Julie</groundspeak:finder>
+          <groundspeak:text encoded="False">The truth was out there, and I was a witness!  To quote the Tick... 'SPOON!'  </groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="14565">
+          <groundspeak:date>2001-05-25T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1801">Buxley</groundspeak:finder>
+          <groundspeak:text encoded="False">We recovered the item successfully before the authorities were able to stop us. Took the first two photos on the camera and re-deployed it with the cache. As we were about to leave, we spotted several camouflaged HumVees topping a ridge to the north and headed our way. We were able to make our escape and file this report. Be right back, someone's banging on the door...</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="14556">
+          <groundspeak:date>2001-05-25T07:00:00Z</groundspeak:date>
+          <groundspeak:type>Didn't find it</groundspeak:type>
+          <groundspeak:finder id="9356">dlking74</groundspeak:finder>
+          <groundspeak:text encoded="False">still trying to get there...</groundspeak:text>
+        </groundspeak:log>
+      </groundspeak:logs>
+      <groundspeak:travelbugs />
+    </groundspeak:cache>
+  </wpt>
+</gpx>

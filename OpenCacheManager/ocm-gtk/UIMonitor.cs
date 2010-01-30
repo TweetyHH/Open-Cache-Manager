@@ -28,20 +28,41 @@ namespace ocmgtk
 		private static UIMonitor m_instance = null;
 		private GeoCachePane m_pane = null;
 		private Statusbar m_statusbar = null;
-		private static Pixbuf TRADICON = new Pixbuf("../icons/scalable/hicolor/traditional.svg", 24, 24);
-		private static Pixbuf LETTERICON = new Pixbuf("../icons/scalable/hicolor/letterbox.svg", 24, 24);
-		private static Pixbuf MULTIICON = new Pixbuf("../icons/scalable/hicolor/multi.svg", 24, 24);
-		private static Pixbuf MYSTERYICON = new Pixbuf("../icons/scalable/hicolor/unknown.svg", 24, 24);
-		private static Pixbuf OTHERICON = new Pixbuf("../icons/scalable/hicolor/other.svg", 24, 24);
-		private static Pixbuf FOUNDICON = new Pixbuf("../icons/scalable/hicolor/found.svg", 24, 24);
-		private static Pixbuf EARTHICON = new Pixbuf("../icons/scalable/hicolor/earth.svg", 24, 24);
+		private static Pixbuf TRADICON_S = new Pixbuf("../icons/scalable/hicolor/traditional.svg", 24, 24);
+		private static Pixbuf LETTERICON_S = new Pixbuf("../icons/scalable/hicolor/letterbox.svg", 24, 24);
+		private static Pixbuf MULTIICON_S = new Pixbuf("../icons/scalable/hicolor/multi.svg", 24, 24);
+		private static Pixbuf MYSTERYICON_S = new Pixbuf("../icons/scalable/hicolor/unknown.svg", 24, 24);
+		private static Pixbuf OTHERICON_S = new Pixbuf("../icons/scalable/hicolor/other.svg", 24, 24);
+		private static Pixbuf FOUNDICON_S = new Pixbuf("../icons/scalable/hicolor/found.svg", 24, 24);
+		private static Pixbuf EARTHICON_S = new Pixbuf("../icons/scalable/hicolor/earth.svg", 24, 24);
+		private static Pixbuf CITOICON_S = new Pixbuf("../icons/scalable/hicolor/cito.svg", 24, 24);
 		private double m_home_lat = 45.37598;
 		private double m_home_lon = -75.64923;
+		private CacheList m_cachelist;
+		private Geocache m_selectedCache;
+		private MainWindow m_mainWin;
 	
 		public GeoCachePane GeoPane
 		{
 			get { return m_pane;}
 			set { m_pane = value;}
+		}
+		
+		public Geocache SelectedCache
+		{
+			get { return m_selectedCache;}
+		}
+		
+		public MainWindow Main
+		{
+			get { return m_mainWin;}
+			set {m_mainWin = value;}
+		}
+		
+		public CacheList CacheListPane
+		{
+			get { return m_cachelist;}
+			set { m_cachelist = value;}
 		}
 		
 		public Statusbar StatusBar
@@ -75,9 +96,16 @@ namespace ocmgtk
 			}
 		}
 		
+		public void updateCaches()
+		{
+			m_cachelist.PopulateList();
+		}
+		
 		public void setSelectedCache(Geocache cache)
 		{
-			m_pane.setCache(cache);
+			m_selectedCache = cache;
+			m_pane.SetCacheSelected();
+			m_mainWin.SetCacheSelected();
 		}
 		
 		public void setCacheCountStatus(int shown)
@@ -93,19 +121,21 @@ namespace ocmgtk
 			switch (type)
 			{
 				case Geocache.CacheType.FOUND:
-					return UIMonitor.FOUNDICON;
+					return UIMonitor.FOUNDICON_S;
 				case Geocache.CacheType.TRADITIONAL:
-					return UIMonitor.TRADICON;
+					return UIMonitor.TRADICON_S;
 				case Geocache.CacheType.MYSTERY:
-					return UIMonitor.MYSTERYICON;
+					return UIMonitor.MYSTERYICON_S;
 				case Geocache.CacheType.MULTI:
-					return UIMonitor.MULTIICON;
+					return UIMonitor.MULTIICON_S;
 				case Geocache.CacheType.LETTERBOX:
-					return UIMonitor.LETTERICON;
+					return UIMonitor.LETTERICON_S;
 				case Geocache.CacheType.EARTH:
-					return UIMonitor.EARTHICON;
+					return UIMonitor.EARTHICON_S;
+				case Geocache.CacheType.CITO:
+					return UIMonitor.CITOICON_S;
 				default:
-					return UIMonitor.OTHERICON;
+					return UIMonitor.OTHERICON_S;
 			}
 		}
 		

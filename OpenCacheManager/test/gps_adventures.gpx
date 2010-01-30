@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.topografix.com/GPX/1/0" version="1.0" creator="Groundspeak, Inc. All Rights Reserved. http://www.groundspeak.com" xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd http://www.groundspeak.com/cache/1/0 http://www.groundspeak.com/cache/1/0/cache.xsd">
+  <name>Cache Listing Generated from Geocaching.com</name>
+  <desc>This is an individual cache generated from Geocaching.com</desc>
+  <author>Account "Groundspeak" From Geocaching.com</author>
+  <email>contact@geocaching.com</email>
+  <url>http://www.geocaching.com</url>
+  <urlname>Geocaching - High Tech Treasure Hunting</urlname>
+  <time>2010-01-25T22:45:09.8414918Z</time>
+  <keywords>cache, geocache</keywords>
+  <bounds minlat="39.281183" minlon="-76.6115" maxlat="39.281183" maxlon="-76.6115"/>
+  <wpt lat="39.281183" lon="-76.6115">
+    <time>2010-02-20T08:00:00Z</time>
+    <name>GC222MV</name>
+    <desc>GPS Adventures Maze Exhibit - Maryland Science Ctr by Groundspeak, GPS Adventures Exhibit (1/1)</desc>
+    <url>http://www.geocaching.com/seek/cache_details.aspx?guid=ee3b6a6e-ae93-469c-a777-358ce645cba8</url>
+    <urlname>GPS Adventures Maze Exhibit - Maryland Science Ctr</urlname>
+    <sym>Geocache</sym>
+    <type>Geocache|GPS Adventures Exhibit</type>
+    <groundspeak:cache xmlns:groundspeak="http://www.groundspeak.com/cache/1/0" id="1498072" available="True" archived="False">
+      <groundspeak:name>GPS Adventures Maze Exhibit - Maryland Science Ctr</groundspeak:name>
+      <groundspeak:placed_by>Groundspeak</groundspeak:placed_by>
+      <groundspeak:owner id="41118">Groundspeak</groundspeak:owner>
+      <groundspeak:type>GPS Adventures Exhibit</groundspeak:type>
+      <groundspeak:container>Not chosen</groundspeak:container>
+      <groundspeak:difficulty>1</groundspeak:difficulty>
+      <groundspeak:terrain>1</groundspeak:terrain>
+      <groundspeak:country>United States</groundspeak:country>
+      <groundspeak:state>Maryland</groundspeak:state>
+      <groundspeak:short_description html="True">
+      </groundspeak:short_description>
+      <groundspeak:long_description html="True">&lt;img src="http://img.geocaching.com/cache/885bfae5-ad65-48ba-9b44-381980a83e99.jpg"
+     alt="" border="0" /&gt; 
+&lt;p align="left"&gt;&lt;font color="#006600" size="3"&gt;&lt;b&gt;About Exhibit
+Events&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;
+A GPS Adventures Exhibit Event cache represents attendance and/or
+participation at the GPS Adventures Maze Exhibit. Created by
+Groundspeak and Minotaur Mazes and made possible by Development
+Sponsor Trimble Navigation, the GPS Adventures Maze is a traveling
+educational exhibit developed to teach people of all ages about
+navigation, GPS technology and geocaching. A hands-on experience
+that features GPS technology (its history, current uses and future
+possibilities), it simulates geocaching by leading visitors through
+a 2,500 square foot maze rich with interactive science experiences.
+&lt;br /&gt;
+&lt;p align="left"&gt;&lt;font color="#006600" size="3"&gt;&lt;b&gt;Want To
+Attend?&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;
+The Maryland Science Center will host this exhibit from
+&lt;b&gt;&lt;font color="#006600"&gt;February 20 through April 18,&lt;br /&gt;
+2010&lt;/font&gt;&lt;/b&gt;. Located at Baltimore's inner harbor, the Maryland
+Science Center offers three levels of permanent and changing
+exhibits, dynamic public programs, a Planetarium, and a 3D IMAX
+Theater. &lt;a rel="nofollow" href="http://www.mdsci.org/"
+target="_blank"&gt;Learn more about the Maryland Science
+Center.&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;b&gt;Maryland Science Center Details:&lt;/b&gt;&lt;br /&gt;
+Hours of Operation: Tuesday-Thursday: 10 am – 5 pm; Friday: 10 am –
+8 pm; Saturday: 10 am – 6 pm; Sunday 11 am – 5 pm; Closed
+Monday.&lt;br /&gt;
+&lt;p align="left"&gt;&lt;font color="#006600" size="3"&gt;&lt;b&gt;Already
+Attended?&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;
+Thank you for visiting the GPS Adventures Maze Exhibit at the
+Maryland Science Center! We hope you enjoyed the experience and
+learned something new about navigation, GPS technology and
+geocaching. New to geocaching and want to log your exhibit
+experience? Sign up for a &lt;a rel="nofollow"
+href="https://www.geocaching.com/membership/Default.aspx"
+target="_blank"&gt;Geocaching.com account&lt;/a&gt; and then return to this
+event page to share your comments with other geocachers. &lt;br /&gt;
+&lt;br /&gt;
+Already a geocacher? Share your event exhibit experience with an
+"attended" log and note the unique icon for this unique cache type.
+In your log, it would be interesting to learn where you are
+from.&lt;br /&gt;
+&lt;p&gt;&lt;b&gt;&lt;font color="#006600"&gt;For more information or to request the
+maze in your area, visit &lt;a rel="nofollow"
+href="http://www.gpsmaze.com"
+target="_blank"&gt;GPSMaze.com&lt;/a&gt;.&lt;br /&gt;
+Thank you for your continued support and contribution to the
+geocaching community!&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;</groundspeak:long_description>
+      <groundspeak:encoded_hints>
+      </groundspeak:encoded_hints>
+      <groundspeak:logs>
+        <groundspeak:log id="95969922">
+          <groundspeak:date>2010-01-24T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="2787936">HomeStyle</groundspeak:finder>
+          <groundspeak:text encoded="False">The four of us will be there...  It will be a first for us so we're looking forward to it!</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="95938257">
+          <groundspeak:date>2010-01-24T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="363023">MR / MRS WATERRAT</groundspeak:finder>
+          <groundspeak:text encoded="False">Looking forward to this</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="95937045">
+          <groundspeak:date>2010-01-24T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Write note</groundspeak:type>
+          <groundspeak:finder id="1053985">RCA777</groundspeak:finder>
+          <groundspeak:text encoded="False">Dropping off the COG GPS Maze Geocoin at the GPS Maze!</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="95680126">
+          <groundspeak:date>2010-01-21T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="572187">JasonAndCarol</groundspeak:finder>
+          <groundspeak:text encoded="False">I'm hoping I can make it.
+
+Jason of
+JasonAndCarol</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="95588466">
+          <groundspeak:date>2010-01-19T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="994461">hzoi</groundspeak:finder>
+          <groundspeak:text encoded="False">Don't know when we'll get there, but we'll be there!!!</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="95572155">
+          <groundspeak:date>2010-01-19T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="600496">Spring1</groundspeak:finder>
+          <groundspeak:text encoded="False">Looking forward to this exhibit.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="95316966">
+          <groundspeak:date>2010-01-16T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="364135">Millennium Mom</groundspeak:finder>
+          <groundspeak:text encoded="False">Adding this to the calendar-put us down for two.  Signing up just in case it gets overbooked!
+Looks like a fun day/weekend.  See you there.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="95197492">
+          <groundspeak:date>2010-01-15T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="190581">Elmbaek</groundspeak:finder>
+          <groundspeak:text encoded="False">I'll take the long flight from Copenhagen (Denmark) to Dulles only to attend this AME. Looking forward to it :-)
+
+Dropping my personal coin here also.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="95156490">
+          <groundspeak:date>2010-01-14T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="954149">mlscls</groundspeak:finder>
+          <groundspeak:text encoded="False">Sounds like fun!!  We are looking forward to it!!</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="95066152">
+          <groundspeak:date>2010-01-11T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="1048994">k-lord</groundspeak:finder>
+          <groundspeak:text encoded="False">I will try to attend this event. :-)</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="95044864">
+          <groundspeak:date>2010-01-11T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="1097482">hatterasbeaches</groundspeak:finder>
+          <groundspeak:text encoded="False">I'm psyched! Definitely worth the drive up from Chesapeake, VA. Especially if we cache along the way!</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="95038417">
+          <groundspeak:date>2010-01-11T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="295996">stellarscapes</groundspeak:finder>
+          <groundspeak:text encoded="False">Stellar Jr and I will be coming down from Pennsylvania to the exhibit.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="94834539">
+          <groundspeak:date>2010-01-08T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="1550420">marylandramblers</groundspeak:finder>
+          <groundspeak:text encoded="False">The marylandramblers have this on the calendar and are very much looking forward to attending... hope to meet fellow cachers!</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="94657618">
+          <groundspeak:date>2010-01-05T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="178295">Legendpilot</groundspeak:finder>
+          <groundspeak:text encoded="False">Looks like fun, we're in for three!</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="94146863">
+          <groundspeak:date>2010-01-01T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="2060961">tarniel009</groundspeak:finder>
+          <groundspeak:text encoded="False">Will be there</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="94145377">
+          <groundspeak:date>2010-01-01T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="585231">The8Searchers</groundspeak:finder>
+          <groundspeak:text encoded="False">All 8 of us will attend!</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="93814206">
+          <groundspeak:date>2009-12-28T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Write note</groundspeak:type>
+          <groundspeak:finder id="1942067">Odie442</groundspeak:finder>
+          <groundspeak:text encoded="False">This one, I may be able to attend, and may bring a few vehile loads with from the Hershey, Pa area.
+
+Odie</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="93812268">
+          <groundspeak:date>2009-12-28T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Write note</groundspeak:type>
+          <groundspeak:finder id="2876">THE DAM TROLLS</groundspeak:finder>
+          <groundspeak:text encoded="False">Can't wait to experience the maze(some call it corn)[;)]
+
+THE DAM TROLLS</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="93757182">
+          <groundspeak:date>2009-12-28T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="1415108">Three'sCompany</groundspeak:finder>
+          <groundspeak:text encoded="False">We have slowed down caching considerably of late but this will be a good catalyst! Looking forward to it.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="93404929">
+          <groundspeak:date>2009-12-24T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Will Attend</groundspeak:type>
+          <groundspeak:finder id="96095">theGuentherGang</groundspeak:finder>
+          <groundspeak:text encoded="False">
+Oh, we'll be here alright!</groundspeak:text>
+        </groundspeak:log>
+      </groundspeak:logs>
+      <groundspeak:travelbugs>
+        <groundspeak:travelbug id="475675" ref="TBYQR9">
+          <groundspeak:name>##Goin' to Uranus and Huntin' for Kling-ons##</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="966041" ref="TB1F71H">
+          <groundspeak:name>Community Travel Bug - Going to Uranus and Searching for Klingons - Georeynozos</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="111595" ref="TBHGXR">
+          <groundspeak:name>CyberBug - The VISIBLE Kling-On</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="1231314" ref="TB1R42Q">
+          <groundspeak:name>Hop On the Bus, Cassady</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="1245897" ref="TB1RK85">
+          <groundspeak:name>I Caught a Cold Bug</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="188165" ref="TBM3JR">
+          <groundspeak:name>I'm Stuck On You....</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="656194" ref="TB14TKF">
+          <groundspeak:name>jackrock's Tag-Along</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="480579" ref="TBYXWF">
+          <groundspeak:name>JOYROSE AND HUBBY BULL's Pathtag Travel Bug</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="1245839" ref="TB1RK69">
+          <groundspeak:name>Just Taggin' Along</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="3176" ref="TBC68">
+          <groundspeak:name>Muddy Buddies Travelling PathTag</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="1223103" ref="TB1QVGW">
+          <groundspeak:name>Not just another magnet</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="496086" ref="TBZE0P">
+          <groundspeak:name>OHL Hockey Guy's Pathtag Travel Bug</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="966055" ref="TB1F720">
+          <groundspeak:name>Popeteer Kiddos TB</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="283162" ref="TBQ9E6">
+          <groundspeak:name>The Borg</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="1230914" ref="TB1R3MV">
+          <groundspeak:name>Travel Bug Dog Tag</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="781606" ref="TB19141">
+          <groundspeak:name>True Brit Spit</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="497367" ref="TBZFB1">
+          <groundspeak:name>Two Dog Knight TB</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="1228803" ref="TB1R1EQ">
+          <groundspeak:name>Zephyr's Hitchin a ride on Snoogan's Frig Door TB</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="330936" ref="TBRX59">
+          <groundspeak:name>KAPLA!! Geoaddict's Repurposed Traveling Trackable</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="361855" ref="TBTYAN">
+          <groundspeak:name>Ms. Froggy's 2006 CITO Geocoin</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="414562" ref="TBWP5X">
+          <groundspeak:name># I Love Toto, Too! #</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="448564" ref="TBXVHQ">
+          <groundspeak:name>Fairyhoney's Irishluck</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="744220" ref="TB17R71">
+          <groundspeak:name>Signal Geocoin - Sept 06</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="1202835" ref="TB1Q5E2">
+          <groundspeak:name>Sluggo the Homeless Kling-On Travel Coin Ambassador</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="1138307" ref="TB1N09G">
+          <groundspeak:name>Scooby, Shaggy &amp;amp; Velma Geocoin</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="1171036" ref="TB1P3B9">
+          <groundspeak:name>Speeding Element is a Groovy Teacher</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="1293904" ref="TB1V76R">
+          <groundspeak:name>Swedish Geocoin 2007</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="1705983" ref="TB2920M">
+          <groundspeak:name>Cacher Geocoin Snoogan's Tagalong</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="2062795" ref="TB2N19P">
+          <groundspeak:name>MaxB's Token traveling with Snoogans Fridge Door</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="2200910" ref="TB2TN11">
+          <groundspeak:name>[RCA777's] YES! This geocoin is in the box at the GPS Maze! Look UNDER the shelf for tracking code!</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="2261053" ref="TB2WNK4">
+          <groundspeak:name>Elmbaek Personal 315 Geocoin</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="2309680" ref="TB2YA6Q">
+          <groundspeak:name>Todie's Wild Ride: Traveling on Snoogans' Fridge Door</groundspeak:name>
+        </groundspeak:travelbug>
+      </groundspeak:travelbugs>
+    </groundspeak:cache>
+  </wpt>
+</gpx>

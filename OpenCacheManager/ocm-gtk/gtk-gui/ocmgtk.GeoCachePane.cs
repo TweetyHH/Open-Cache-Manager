@@ -19,7 +19,7 @@ namespace ocmgtk {
         
         private ocmgtk.GeocacheInfoPanel cacheInfo;
         
-        private Gtk.Label label4;
+        private Gtk.Label label6;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -40,11 +40,11 @@ namespace ocmgtk {
             this.cacheInfo.Name = "cacheInfo";
             this.notebook2.Add(this.cacheInfo);
             // Notebook tab
-            this.label4 = new Gtk.Label();
-            this.label4.Name = "label4";
-            this.label4.LabelProp = Mono.Unix.Catalog.GetString("INFO");
-            this.notebook2.SetTabLabel(this.cacheInfo, this.label4);
-            this.label4.ShowAll();
+            this.label6 = new Gtk.Label();
+            this.label6.Name = "label6";
+            this.label6.LabelProp = Mono.Unix.Catalog.GetString("INFO");
+            this.notebook2.SetTabLabel(this.cacheInfo, this.label6);
+            this.label6.ShowAll();
             this.alignment1.Add(this.notebook2);
             this.Add(this.alignment1);
             if ((this.Child != null)) {

@@ -56,6 +56,30 @@ public partial class MainWindow {
     
     private Gtk.ToggleAction ShowFoundCachesAction;
     
+    private Gtk.Action saveAsAction1;
+    
+    private Gtk.Action printAction;
+    
+    private Gtk.Action findAction;
+    
+    private Gtk.Action SearchAction;
+    
+    private Gtk.Action printPreviewAction;
+    
+    private Gtk.Action preferencesAction;
+    
+    private Gtk.Action MapAction;
+    
+    private Gtk.Action MapAction1;
+    
+    private Gtk.Action GPSAction;
+    
+    private Gtk.Action CacheAction;
+    
+    private Gtk.Action ViewOnlineAction;
+    
+    private Gtk.Action DeleteAction;
+    
     private Gtk.VBox vbox1;
     
     private Gtk.MenuBar mainmenubar;
@@ -136,6 +160,39 @@ public partial class MainWindow {
         this.ShowFoundCachesAction.Active = true;
         this.ShowFoundCachesAction.ShortLabel = Mono.Unix.Catalog.GetString("Show Found Caches");
         w1.Add(this.ShowFoundCachesAction, null);
+        this.saveAsAction1 = new Gtk.Action("saveAsAction1", null, null, "gtk-save-as");
+        w1.Add(this.saveAsAction1, null);
+        this.printAction = new Gtk.Action("printAction", null, null, "gtk-print");
+        w1.Add(this.printAction, null);
+        this.findAction = new Gtk.Action("findAction", null, null, "gtk-find");
+        w1.Add(this.findAction, null);
+        this.SearchAction = new Gtk.Action("SearchAction", Mono.Unix.Catalog.GetString("Search"), null, null);
+        this.SearchAction.ShortLabel = Mono.Unix.Catalog.GetString("Search");
+        w1.Add(this.SearchAction, null);
+        this.printPreviewAction = new Gtk.Action("printPreviewAction", null, null, "gtk-print-preview");
+        w1.Add(this.printPreviewAction, null);
+        this.preferencesAction = new Gtk.Action("preferencesAction", null, null, "gtk-preferences");
+        w1.Add(this.preferencesAction, null);
+        this.MapAction = new Gtk.Action("MapAction", Mono.Unix.Catalog.GetString("_Map"), null, "map");
+        this.MapAction.ShortLabel = Mono.Unix.Catalog.GetString("_Map");
+        w1.Add(this.MapAction, null);
+        this.MapAction1 = new Gtk.Action("MapAction1", Mono.Unix.Catalog.GetString("_Map"), null, "map");
+        this.MapAction1.ShortLabel = Mono.Unix.Catalog.GetString("_Map");
+        w1.Add(this.MapAction1, null);
+        this.GPSAction = new Gtk.Action("GPSAction", Mono.Unix.Catalog.GetString("GPS"), null, null);
+        this.GPSAction.Sensitive = false;
+        this.GPSAction.ShortLabel = Mono.Unix.Catalog.GetString("GPS");
+        w1.Add(this.GPSAction, null);
+        this.CacheAction = new Gtk.Action("CacheAction", Mono.Unix.Catalog.GetString("Cache"), null, null);
+        this.CacheAction.Sensitive = false;
+        this.CacheAction.ShortLabel = Mono.Unix.Catalog.GetString("Cache");
+        w1.Add(this.CacheAction, null);
+        this.ViewOnlineAction = new Gtk.Action("ViewOnlineAction", Mono.Unix.Catalog.GetString("_View Online"), null, "gtk-info");
+        this.ViewOnlineAction.ShortLabel = Mono.Unix.Catalog.GetString("_View Online");
+        w1.Add(this.ViewOnlineAction, null);
+        this.DeleteAction = new Gtk.Action("DeleteAction", Mono.Unix.Catalog.GetString("_Delete"), null, "gtk-delete");
+        this.DeleteAction.ShortLabel = Mono.Unix.Catalog.GetString("_Delete");
+        w1.Add(this.DeleteAction, null);
         this.UIManager.InsertActionGroup(w1, 0);
         this.AddAccelGroup(this.UIManager.AccelGroup);
         this.Name = "MainWindow";
@@ -146,7 +203,7 @@ public partial class MainWindow {
         this.vbox1 = new Gtk.VBox();
         this.vbox1.Name = "vbox1";
         // Container child vbox1.Gtk.Box+BoxChild
-        this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='OpenAction' action='OpenAction'/><menuitem name='ExportAction' action='ExportAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'/><menu name='ViewAction' action='ViewAction'><menuitem name='ShowFoundCachesAction' action='ShowFoundCachesAction'/><menuitem name='ShowUnavailableCachesAction' action='ShowUnavailableCachesAction'/><menuitem name='ShowArchivedCachesAction' action='ShowArchivedCachesAction'/><menuitem name='ShowCachesPlacedByMeAction' action='ShowCachesPlacedByMeAction'/><separator/><menuitem name='FilterAction' action='FilterAction'/><menuitem name='ClearAllFiltersAction' action='ClearAllFiltersAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
+        this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='OpenAction' action='OpenAction'/><menuitem name='ExportAction' action='ExportAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'/><menu name='ViewAction' action='ViewAction'><menuitem name='ShowFoundCachesAction' action='ShowFoundCachesAction'/><menuitem name='ShowUnavailableCachesAction' action='ShowUnavailableCachesAction'/><menuitem name='ShowArchivedCachesAction' action='ShowArchivedCachesAction'/><menuitem name='ShowCachesPlacedByMeAction' action='ShowCachesPlacedByMeAction'/><separator/><menuitem name='FilterAction' action='FilterAction'/><menuitem name='ClearAllFiltersAction' action='ClearAllFiltersAction'/></menu><menu name='SearchAction' action='SearchAction'/><menu name='CacheAction' action='CacheAction'><menuitem name='ViewOnlineAction' action='ViewOnlineAction'/><separator/><menuitem name='DeleteAction' action='DeleteAction'/></menu><menu name='GPSAction' action='GPSAction'/><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
         this.mainmenubar = ((Gtk.MenuBar)(this.UIManager.GetWidget("/mainmenubar")));
         this.mainmenubar.Name = "mainmenubar";
         this.vbox1.Add(this.mainmenubar);
@@ -155,11 +212,11 @@ public partial class MainWindow {
         w2.Expand = false;
         w2.Fill = false;
         // Container child vbox1.Gtk.Box+BoxChild
-        this.UIManager.AddUiFromString("<ui><toolbar name='toolbar1'><toolitem name='openAction1' action='openAction1'/></toolbar></ui>");
+        this.UIManager.AddUiFromString("<ui><toolbar name='toolbar1'><toolitem name='openAction1' action='openAction1'/><toolitem name='saveAsAction1' action='saveAsAction1'/><separator/><toolitem name='preferencesAction' action='preferencesAction'/><separator/><toolitem name='printPreviewAction' action='printPreviewAction'/><toolitem name='printAction' action='printAction'/><separator/><toolitem name='findAction' action='findAction'/><toolitem name='MapAction1' action='MapAction1'/></toolbar></ui>");
         this.toolbar1 = ((Gtk.Toolbar)(this.UIManager.GetWidget("/toolbar1")));
         this.toolbar1.Name = "toolbar1";
         this.toolbar1.ShowArrow = false;
-        this.toolbar1.ToolbarStyle = ((Gtk.ToolbarStyle)(0));
+        this.toolbar1.ToolbarStyle = ((Gtk.ToolbarStyle)(2));
         this.toolbar1.IconSize = ((Gtk.IconSize)(3));
         this.vbox1.Add(this.toolbar1);
         Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.vbox1[this.toolbar1]));
@@ -206,9 +263,12 @@ public partial class MainWindow {
         this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
         this.QuitAction.Activated += new System.EventHandler(this.OnQuit);
         this.AboutAction.Activated += new System.EventHandler(this.doAbout);
+        this.openAction1.Activated += new System.EventHandler(this.OnOpenClicked);
         this.ShowUnavailableCachesAction.Toggled += new System.EventHandler(this.OnToggleUnavailable);
         this.ShowArchivedCachesAction.Toggled += new System.EventHandler(this.OnToggleArchive);
         this.ShowCachesPlacedByMeAction.Toggled += new System.EventHandler(this.OnToggleMine);
         this.ShowFoundCachesAction.Toggled += new System.EventHandler(this.OnToggleFound);
+        this.MapAction1.Activated += new System.EventHandler(this.OnMapClick);
+        this.ViewOnlineAction.Activated += new System.EventHandler(this.OnViewOnline);
     }
 }

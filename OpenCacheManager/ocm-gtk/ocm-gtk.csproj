@@ -40,6 +40,7 @@
     <Reference Include="webkit-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745">
       <Package>webkit-sharp-1.0</Package>
     </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -67,9 +68,14 @@
     <Compile Include="Widgets\GeoCachePane.cs" />
     <Compile Include="Dialogs\OCMAboutDialog.cs" />
     <Compile Include="UIMonitor.cs" />
+    <Compile Include="Dialogs\InternalBrowser.cs" />
+    <Compile Include="gtk-gui\ocmgtk.InternalBrowser.cs" />
+    <Compile Include="Dialogs\MapBrowser.cs" />
+    <Compile Include="gtk-gui\ocmgtk.MapBrowser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.desktop" />
+    <Content Include="map.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -81,5 +87,8 @@
   <ItemGroup>
     <Folder Include="Dialogs\" />
     <Folder Include="Widgets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ocm-gtk-config.config" />
   </ItemGroup>
 </Project>

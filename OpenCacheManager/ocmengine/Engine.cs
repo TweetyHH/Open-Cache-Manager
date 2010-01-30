@@ -25,14 +25,19 @@ namespace ocmengine
 	{
 		private CacheStore m_store;
 		private static Engine m_instance = null;
+		private static int m_Owner = -1;
+		GPXParser m_parser = null;
 		
 		private Engine()
 		{
-			//TEMP: Cachestore is a based on hardcoded GPX
 			m_store = new CacheStore();
-			FileStream fs = new FileStream("../test/caches.gpx", FileMode.Open);
-			GPXParser parser = new GPXParser();
-			parser.parseGPXFile(fs, m_store);
+			m_parser = new GPXParser();
+		}
+		
+		public void ReadGPX(FileStream fs)
+		{
+			m_parser.parseGPXFile(fs, m_store);
+			OLMarkerGenerator.GenerateCaceMarkerLayer(this);
 		}
 		
 		public static Engine getInstance()

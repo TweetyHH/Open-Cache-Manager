@@ -19,9 +19,9 @@ namespace ocmgtk
 			this.Build();
 		}
 		
-		public void setCache(Geocache cache)
+		public void SetCacheSelected()
 		{
-			cacheInfo.setCacheInfo(cache);
+			cacheInfo.updateCacheInfo();
 		}
 	}
 }

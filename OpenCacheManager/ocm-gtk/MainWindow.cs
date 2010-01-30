@@ -11,19 +11,23 @@
  implied. See the License for the specific language governing permissions and limitations under the License. 
 */
 using System;
+using System.Diagnostics;
 using Gtk;
+using Mono.Unix;
 using ocmgtk;
 using ocmengine;
 
 public partial class MainWindow: Gtk.Window
 {
+	UIMonitor m_monitor;
 	
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
-		UIMonitor mon = UIMonitor.getInstance();
-	   	mon.GeoPane = cachePane;
-		mon.StatusBar = statusbar1;		
+		m_monitor = UIMonitor.getInstance();
+	   	m_monitor.GeoPane = cachePane;
+		m_monitor.StatusBar = statusbar1;	
+		m_monitor.Main = this;
 		cacheList.UpdateCountStatus();
 	}
 	
@@ -63,4 +67,69 @@ public partial class MainWindow: Gtk.Window
 	{
 		cacheList.ToggleFoundCaches();
 	}
+
+	protected virtual void OnOpenClicked (object o, System.EventArgs args)
+	{
+		FileChooserDialog dlg = new FileChooserDialog(Catalog.GetString("Open GPX/LOC File"), 
+		                                              this, FileChooserAction.Open, 
+		                                              Catalog.GetString("Cancel"), ResponseType.Cancel, 
+		                                              Catalog.GetString("Open"), ResponseType.Accept);
+		FileFilter filter = new FileFilter();
+		filter.Name = "GPX Files";
+		filter.AddMimeType("text/xml");
+		filter.AddMimeType("application/xml");
+		filter.AddPattern("*.gpx");
+		dlg.AddFilter(filter);
+		
+		if (dlg.Run() == (int) ResponseType.Accept)
+		{
+			System.IO.FileStream fs = System.IO.File.Open(dlg.Filename, System.IO.FileMode.Open);
+
+
+			Engine.getInstance().ReadGPX(fs);
+			m_monitor.updateCaches();
+			fs.Close();
+		}
+		dlg.Destroy();
+		this.ShowAll();
+	}
+	
+	public void SetCacheSelected()
+	{
+		this.CacheAction.Sensitive = true;
+		this.ShowAll();
+	}
+
+	protected virtual void OnViewOnline (object sender, System.EventArgs e)
+	{
+		Process.Start(m_monitor.SelectedCache.URL.ToString());
+	}
+
+	protected virtual void OnMapClick (object sender, System.EventArgs e)
+	{
+		String url = "file://" + System.Environment.CurrentDirectory + "/../web/yahoo_viewer.html";
+		System.Console.WriteLine(url);
+		InternalBrowser browser = new InternalBrowser(url);
+		browser.Show();
+	}
+	
+	/*
+	 * protected virtual void OnBtnLoadFileClicked(object sender, System.EventArgs e)
+	{
+		Gtk.FileChooserDialog fc=
+		new Gtk.FileChooserDialog("Choose the file to open",
+		                            this,
+		                            FileChooserAction.Open,
+		                            "Cancel",ResponseType.Cancel,
+		                            "Open",ResponseType.Accept);
+
+		if (fc.Run() == (int)ResponseType.Accept) 
+		{
+			System.IO.FileStream file=System.IO.File.OpenRead(fc.Filename);
+			file.Close();
+		}
+		//Don't forget to call Destroy() or the FileChooserDialog window won't get closed.
+		fc.Destroy();
+	}*/
+  
 }
