@@ -6,13 +6,13 @@ EXTRA_DIST =
 if ENABLE_DEBUG
 ASSEMBLY_COMPILER_COMMAND = gmcs
 ASSEMBLY_COMPILER_FLAGS =  -noconfig -codepage:utf8 -warn:3 -optimize- -debug "-define:DEBUG"
-ASSEMBLY = ../../../bind/ocmengine.dll
+ASSEMBLY = bin/Debug/ocmengine.dll
 ASSEMBLY_MDB = $(ASSEMBLY).mdb
 COMPILE_TARGET = library
 PROJECT_REFERENCES = 
-BUILD_DIR = ../../../bind
+BUILD_DIR = bin/Debug
 
-OCMENGINE_DLL_MDB_SOURCE=../../../bind/ocmengine.dll.mdb
+OCMENGINE_DLL_MDB_SOURCE=bin/Debug/ocmengine.dll.mdb
 OCMENGINE_DLL_MDB=$(BUILD_DIR)/ocmengine.dll.mdb
 
 endif
@@ -20,11 +20,11 @@ endif
 if ENABLE_RELEASE
 ASSEMBLY_COMPILER_COMMAND = gmcs
 ASSEMBLY_COMPILER_FLAGS =  -noconfig -codepage:utf8 -warn:4 -optimize-
-ASSEMBLY = bin/Release/ocmengine.dll
+ASSEMBLY = bin/Debug/ocmengine.dll
 ASSEMBLY_MDB = 
 COMPILE_TARGET = library
 PROJECT_REFERENCES = 
-BUILD_DIR = bin/Release
+BUILD_DIR = bin/Debug
 
 OCMENGINE_DLL_MDB=
 
@@ -45,11 +45,16 @@ RESGEN=resgen2
 all: $(ASSEMBLY) $(PROGRAMFILES) $(LINUX_PKGCONFIG) 
 
 FILES = \
-	Geocache.cs \
 	AssemblyInfo.cs \
 	CacheLog.cs \
 	Waypoint.cs \
-	GPXParser.cs 
+	GPXParser.cs \
+	Utilities.cs \
+	DegreeMinutes.cs \
+	Geocache.cs \
+	CacheStore.cs \
+	Engine.cs \
+	OLMarkerGenerator.cs 
 
 DATA_FILES = 
 
@@ -61,7 +66,7 @@ EXTRAS = \
 REFERENCES =  \
 	System \
 	System.Xml \
-	$(NUNIT_24_LIBS)
+	Mono.Posix
 
 DLL_REFERENCES = 
 

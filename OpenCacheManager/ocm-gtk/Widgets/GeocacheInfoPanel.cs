@@ -16,7 +16,6 @@ using System.Collections;
 using Gtk;
 using Gdk;
 using Mono.Unix;
-using WebKit;
 using ocmengine;
 namespace ocmgtk
 {
@@ -26,38 +25,42 @@ namespace ocmgtk
 		static string START_BIG = "<span font='bold 14'>";
 		static string END_BIG = "</span>";
 		
-		static Pixbuf STAR_ICON = new Pixbuf("../icons/scalable/hicolor/star.svg",16,16);
-		static Pixbuf ESTAR_ICON = new Pixbuf("../icons/scalable/hicolor/star_empty.svg", 16, 16);
-		static Pixbuf HSTAR_ICON = new Pixbuf("../icons/scalable/hicolor/halfstar.svg",16,16);
-		private static Pixbuf TRADICON = new Pixbuf("../icons/scalable/hicolor/traditional.svg", 96, 96);
-		private static Pixbuf LETTERICON = new Pixbuf("../icons/scalable/hicolor/letterbox.svg", 96, 96);
-		private static Pixbuf MULTIICON = new Pixbuf("../icons/scalable/hicolor/multi.svg", 96, 96);
-		private static Pixbuf MYSTERYICON = new Pixbuf("../icons/scalable/hicolor/unknown.svg", 96, 96);
-		private static Pixbuf OTHERICON = new Pixbuf("../icons/scalable/hicolor/other.svg", 96, 96);
-		private static Pixbuf EARTHICON = new Pixbuf("../icons/scalable/hicolor/earth.svg", 96, 96);
-		private static Pixbuf CITOICON = new Pixbuf("../icons/scalable/hicolor/cito.svg", 96, 96);
+		static Pixbuf STAR_ICON = new Pixbuf("./icons/scalable/star.svg",16,16);
+		static Pixbuf ESTAR_ICON = new Pixbuf("./icons/scalable/star_empty.svg", 16, 16);
+		static Pixbuf HSTAR_ICON = new Pixbuf("./icons/scalable/halfstar.svg",16,16);
+		private static Pixbuf TRADICON = new Pixbuf("./icons/scalable/traditional.svg", 96, 96);
+		private static Pixbuf LETTERICON = new Pixbuf("./icons/scalable/letterbox.svg", 96, 96);
+		private static Pixbuf MULTIICON = new Pixbuf("./icons/scalable/multi.svg", 96, 96);
+		private static Pixbuf MYSTERYICON = new Pixbuf("./icons/scalable/unknown.svg", 96, 96);
+		private static Pixbuf OTHERICON = new Pixbuf("./icons/scalable/other.svg", 96, 96);
+		private static Pixbuf EARTHICON = new Pixbuf("./icons/scalable/earth.svg", 96, 96);
+		private static Pixbuf CITOICON = new Pixbuf("./icons/scalable/cito.svg", 96, 96);
 		
 		UIMonitor m_monitor;	
-		WebView descriptionWidget;
+		HTMLWidget descriptionWidget;
 		public GeocacheInfoPanel()
 		{
 			this.Build();
 			m_monitor = UIMonitor.getInstance();
 			setDifficulty(0);
 			setTerrain(0);
+			descriptionWidget = new HTMLWidget();
+			descScroll.Add(descriptionWidget);
+			this.ShowAll();
 		}
 		
 		public void updateCacheInfo()
 		{
+			try
+			{
 			Geocache cache = m_monitor.SelectedCache;
 			if (descriptionWidget == null)
 			{
-				descriptionWidget = new WebView();
-				longDescriptionScroll.Add(descriptionWidget);
+				descriptionWidget = new HTMLWidget();
 			}
 			cacheCodeLabel.Markup = START_BIG + cache.Name + END_BIG;
 			cacheNameLabel.Markup = START_BIG + GLib.Markup.EscapeText(cache.CacheName) + END_BIG;
-			descriptionWidget.LoadHtmlString(cache.LongDesc,"http://www.geocaching.com");
+			descriptionWidget.HTML = cache.LongDesc;
 			setDifficulty(cache.Difficulty);
 			setTerrain(cache.Terrain);
 			setCacheIcon(cache.TypeOfCache);
@@ -68,6 +71,11 @@ namespace ocmgtk
 			cacheSizeLabel.Text = cache.Container;
 			setCoordinate(cache);
 			this.ShowAll();
+			}
+			catch (Exception e)
+			{
+				System.Console.WriteLine("Exception caught!");
+			}
 		}
 		
 		public void setDifficulty(double diff)
@@ -165,30 +173,14 @@ namespace ocmgtk
 		
 		public void setCoordinate(Geocache cache)
 		{
-			DegreeMinutes lat = Utilities.convertDDtoDM(cache.Lat);
-			DegreeMinutes lon = Utilities.convertDDtoDM(cache.Lon);
-			
-			String co_ordinate = "";
-			
-			if (lat.Degrees > 0)
-				co_ordinate += Catalog.GetString(String.Format("N {0}° {1}", lat.Degrees,lat.Minutes.ToString("0.000")));
-			else
-				co_ordinate += Catalog.GetString(String.Format("S {0}° {1}", lat.Degrees * -1,  lat.Minutes.ToString("0.000")));
-			
-			if (lon.Degrees > 0)
-				co_ordinate += Catalog.GetString(String.Format("  E {0}° {1}", lon.Degrees, lon.Minutes.ToString("#.000")));
-			else
-				co_ordinate += Catalog.GetString(String.Format("  W {0}° {1}", lon.Degrees *-1 , lon.Minutes.ToString("#.000")));
-			
-			
-			coordinateLabel.Markup = "<span font='bold 10'>" + co_ordinate + "</span>";
+						
+			coordinateLabel.Markup = "<span font='bold 10'>" + Utilities.getCoordString(cache.Lat, cache.Lon) + "</span>";
 			
 			
 			double distance = Utilities.calculateDistance(m_monitor.HomeLat, cache.Lat, m_monitor.HomeLon, cache.Lon);
 			double bearing = Utilities.calculateBearing(m_monitor.HomeLat, cache.Lat, m_monitor.HomeLon, cache.Lon);
 			
 			string bmarker = "N";
-			System.Console.WriteLine(bearing);
 			if (bearing > 22.5 && bearing <= 67.5)
 				bmarker = "NE";
 			else if (bearing > 67.5 && bearing <= 112.5)

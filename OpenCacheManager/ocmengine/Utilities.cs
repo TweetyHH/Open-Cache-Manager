@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using Mono.Unix;
 
 namespace ocmengine
 {
@@ -21,25 +22,7 @@ namespace ocmengine
 	
 	public class Utilities
 	{
-		
-		public static DegreeMinutes convertDDtoDM(double dd_coordinate)
-		{
-			double degrees;
-			double decimal_minutes;
-			if (dd_coordinate > 0)
-			{
-				degrees = Math.Floor(dd_coordinate);
-				decimal_minutes = dd_coordinate - degrees;
-			}
-			else
-			{
-				degrees = Math.Ceiling(dd_coordinate);
-				decimal_minutes = (dd_coordinate - degrees) * -1;
-			}
-			decimal_minutes = decimal_minutes * 60;
-			return new DegreeMinutes((int) degrees, decimal_minutes);		
-		}
-		
+				
 		
 		/// <summary>
 		/// See http://www.movable-type.co.uk/scripts/latlong.html
@@ -111,6 +94,41 @@ namespace ocmengine
 		public static double toDegrees(double radians)
 		{
 			return radians * (180/Math.PI);
+		}
+		
+		public static string getCoordString(double lat, double lon)
+		{
+			return getCoordString(new DegreeMinutes(lat), new DegreeMinutes(lon));
+		}
+		
+		public static string getCoordString(DegreeMinutes lat, DegreeMinutes lon)
+		{
+			return getLatString(lat) + " " + getLonString(lon);
+		}
+		
+		public static string getLatString(DegreeMinutes lat)
+		{
+				
+			String co_ordinate = "";
+			
+			if (lat.Degrees > 0)
+				co_ordinate += Catalog.GetString(String.Format("N {0}° {1}", lat.Degrees,lat.Minutes.ToString("0.000")));
+			else
+				co_ordinate += Catalog.GetString(String.Format("S {0}° {1}", lat.Degrees * -1,  lat.Minutes.ToString("0.000")));
+				
+			return co_ordinate;
+		}
+		
+		public static string getLonString(DegreeMinutes lon)
+		{
+			String co_ordinate = "";
+			
+			if (lon.Degrees > 0)
+				co_ordinate += Catalog.GetString(String.Format("  E {0}° {1}", lon.Degrees, lon.Minutes.ToString("#.000")));
+			else
+				co_ordinate += Catalog.GetString(String.Format("  W {0}° {1}", lon.Degrees *-1 , lon.Minutes.ToString("#.000")));
+		
+			return co_ordinate;
 		}
 	}
 }

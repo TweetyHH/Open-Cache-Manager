@@ -54,9 +54,10 @@ fi
 
 
 dnl package checks, common for all configs
-PKG_CHECK_MODULES([NUNIT_24], [nunit-2.4])
 PKG_CHECK_MODULES([GTK_SHARP_20], [gtk-sharp-2.0])
 PKG_CHECK_MODULES([WEBKIT_SHARP_10], [webkit-sharp-1.0])
+PKG_CHECK_MODULES([GECKO_SHARP_20], [gecko-sharp-2.0])
+PKG_CHECK_MODULES([GTKHTML_SHARP_314], [gtkhtml-sharp-3.14])
 
 dnl package checks, per config
 
@@ -66,8 +67,6 @@ ocmengine/ocmengine.pc
 ocmengine/Makefile
 ocm-gtk/ocm-gtk
 ocm-gtk/Makefile
-ocmengine.test/ocmengine.test.pc
-ocmengine.test/Makefile
 Makefile
 
 ])

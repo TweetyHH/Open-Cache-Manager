@@ -1,13 +1,13 @@
 
-EXTRA_DIST =  expansions.m4 ../../../../../usr/lib/monodevelop/AddIns/MonoDevelop.GtkCore/libstetic.dll
+EXTRA_DIST =  expansions.m4
 
 #Warning: This is an automatically generated file, do not edit!
 if ENABLE_DEBUG
- SUBDIRS =  ocmengine ocm-gtk ocmengine.test
+ SUBDIRS =  ocmengine ocm-gtk
 endif
 if ENABLE_RELEASE
- SUBDIRS =  ocmengine ocm-gtk ocmengine.test
+ SUBDIRS =  ocmengine ocm-gtk
 endif
 if ENABLE_DEFAULT
- SUBDIRS =  ocmengine.test
+ SUBDIRS = 
 endif

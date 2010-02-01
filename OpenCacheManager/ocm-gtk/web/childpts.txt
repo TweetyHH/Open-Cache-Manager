@@ -1,0 +1,3 @@
+﻿lat	lon	title	description	icon	iconSize	iconOffset
+45.36513	-75.63202	GC11Y1D	GAG10 - Convergence	../icons/32x32/unknown.png	24,24	-12,-12
+45.37307	-75.6377	FL11Y1D	Convergence-FINAL	../icons/24x24/waypoint-flag-red.png	24,24	-12,-12

@@ -55,6 +55,25 @@ namespace ocmengine
 			}
 			return false;
 		}
+		
+		public DegreeMinutes (double dd_coordinate)
+		{		
+			double degrees;
+			double decimal_minutes;
+			if (dd_coordinate > 0)
+			{
+				degrees = Math.Floor(dd_coordinate);
+				decimal_minutes = dd_coordinate - degrees;
+			}
+			else
+			{
+				degrees = Math.Ceiling(dd_coordinate);
+				decimal_minutes = (dd_coordinate - degrees) * -1;
+			}
+			decimal_minutes = decimal_minutes * 60;
+			m_degrees = (int) degrees;
+			m_minutes = decimal_minutes;
+		}
 
 
 	}

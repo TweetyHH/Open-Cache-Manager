@@ -13,6 +13,7 @@
 using System;
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
 using System.Xml;
 using ocmengine;
 
@@ -22,11 +23,7 @@ namespace ocmengine
 	
 	public class GPXParser
 	{
-		
-		public GPXParser()
-		{
-		}
-		
+				
 		public void parseGPXFile(FileStream fs, CacheStore store)
 		{			
 			XmlReader reader = XmlReader.Create(fs);
@@ -46,6 +43,19 @@ namespace ocmengine
 				}
 			}
 			
+			MapChildren(store);			
+		}
+		
+		
+		private void MapChildren(CacheStore store)
+		{
+			IEnumerator<Waypoint> wpts =  store.getWPTEnumerator();
+			while (wpts.MoveNext())
+			{
+				Waypoint pt = wpts.Current;
+				//TODO: Simply replace wpt name with GC Code
+				pt.Parent = "GC" +  pt.Name.Substring(2);
+			}
 		}
 		
 		private Waypoint processWaypoint(XmlReader reader)
@@ -215,7 +225,7 @@ namespace ocmengine
 				}
 				else if (reader.LocalName == "type")
 				{
-					log.LogStatus = CacheLog.Status.OTHER;
+					log.LogStatus = reader.ReadElementContentAsString();
 				}
 				else if (reader.LocalName == "finder")
 				{
@@ -265,7 +275,5 @@ namespace ocmengine
 				cache.TypeOfCache = Geocache.CacheType.OTHER;
 				
 		}
-		
-		
 	}
 }

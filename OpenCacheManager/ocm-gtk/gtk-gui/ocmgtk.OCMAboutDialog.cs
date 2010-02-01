@@ -48,7 +48,6 @@ namespace ocmgtk {
             this.image1.Name = "image1";
             this.image1.Xpad = 5;
             this.image1.Ypad = 5;
-            this.image1.Pixbuf = Gdk.Pixbuf.LoadFromResource("traditional.svg");
             this.hbox4.Add(this.image1);
             Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.hbox4[this.image1]));
             w2.Position = 0;
@@ -103,8 +102,8 @@ namespace ocmgtk {
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 400;
-            this.DefaultHeight = 169;
+            this.DefaultWidth = 706;
+            this.DefaultHeight = 570;
             this.Show();
             this.buttonCancel.Clicked += new System.EventHandler(this.doClose);
         }

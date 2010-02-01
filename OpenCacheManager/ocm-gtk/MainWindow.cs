@@ -107,10 +107,15 @@ public partial class MainWindow: Gtk.Window
 
 	protected virtual void OnMapClick (object sender, System.EventArgs e)
 	{
-		String url = "file://" + System.Environment.CurrentDirectory + "/../web/yahoo_viewer.html";
-		System.Console.WriteLine(url);
-		InternalBrowser browser = new InternalBrowser(url);
-		browser.Show();
+		
+	}
+
+	protected virtual void OnRefresh (object sender, System.EventArgs e)
+	{
+	}
+
+	protected virtual void OnStopActionActivated (object sender, System.EventArgs e)
+	{
 	}
 	
 	/*

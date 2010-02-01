@@ -14,7 +14,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin</OutputPath>
+    <OutputPath>bind</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
@@ -22,34 +22,29 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin</OutputPath>
+    <OutputPath>bin</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="libstetic, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\usr\lib\monodevelop\AddIns\MonoDevelop.GtkCore\libstetic.dll</HintPath>
-    </Reference>
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Posix" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="webkit-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745">
       <Package>webkit-sharp-1.0</Package>
     </Reference>
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gecko-sharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ccf7d78a55e9f021">
+      <Package>gecko-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="gtkhtml-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\..\..\osma\map.svg" />
-    <EmbeddedResource Include="..\icons\scalable\hicolor\traditional.svg" />
-    <EmbeddedResource Include="..\icons\scalable\hicolor\multi.svg" />
-    <EmbeddedResource Include="..\icons\scalable\hicolor\waypoint-flag-red.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -61,21 +56,20 @@
     <Compile Include="gtk-gui\ocmgtk.GeoCachePane.cs" />
     <Compile Include="gtk-gui\ocmgtk.CacheList.cs" />
     <Compile Include="gtk-gui\ocmgtk.OCMAboutDialog.cs" />
-    <Compile Include="gtk-gui\ocmgtk.MapWidget.cs" />
     <Compile Include="Widgets\CacheList.cs" />
-    <Compile Include="Widgets\MapWidget.cs" />
     <Compile Include="Widgets\GeocacheInfoPanel.cs" />
     <Compile Include="Widgets\GeoCachePane.cs" />
     <Compile Include="Dialogs\OCMAboutDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.WaypointWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.LogViewerWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.BrowserWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.WaypointDialog.cs" />
+    <Compile Include="Widgets\WaypointWidget.cs" />
+    <Compile Include="Widgets\BrowserWidget.cs" />
+    <Compile Include="Widgets\LogViewerWidget.cs" />
+    <Compile Include="Dialogs\WaypointDialog.cs" />
+    <Compile Include="Widgets\HTMLWidget.cs" />
     <Compile Include="UIMonitor.cs" />
-    <Compile Include="Dialogs\InternalBrowser.cs" />
-    <Compile Include="gtk-gui\ocmgtk.InternalBrowser.cs" />
-    <Compile Include="Dialogs\MapBrowser.cs" />
-    <Compile Include="gtk-gui\ocmgtk.MapBrowser.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="app.desktop" />
-    <Content Include="map.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -87,8 +81,68 @@
   <ItemGroup>
     <Folder Include="Dialogs\" />
     <Folder Include="Widgets\" />
+    <Folder Include="web\" />
+    <Folder Include="icons\" />
+    <Folder Include="icons\scalable\" />
+    <Folder Include="icons\24x24\" />
   </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am" SyncReferences="true" IsAutotoolsProject="true" RelativeConfigureInPath="..">
+          <BuildFilesVar Sync="true" Name="FILES" />
+          <DeployFilesVar Sync="true" Name="PROGRAMFILES" />
+          <ResourcesVar Sync="true" Name="RESOURCES" />
+          <OthersVar />
+          <GacRefVar Sync="true" Name="REFERENCES" />
+          <AsmRefVar Sync="true" Name="REFERENCES" />
+          <ProjectRefVar Sync="true" Name="REFERENCES" />
+        </MonoDevelop.Autotools.MakefileInfo>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
   <ItemGroup>
-    <None Include="ocm-gtk-config.config" />
+    <Resource Include="icons\scalable\cito.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\earth.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\found.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\halfstar.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\letterbox.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\multi.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\other.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\star.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\star_empty.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\traditional.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\unknown.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\waypoint-flag-red.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\24x24\waypoint-flag-red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="web\wpt_viewer.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 </Project>

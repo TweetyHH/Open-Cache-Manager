@@ -21,6 +21,16 @@ namespace ocmgtk {
         
         private Gtk.Label label6;
         
+        private Gtk.Alignment alignment3;
+        
+        private Gtk.Label logTab;
+        
+        private Gtk.Alignment alignment4;
+        
+        private ocmgtk.WaypointWidget waypointView;
+        
+        private Gtk.Label mapTab;
+        
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget ocmgtk.GeoCachePane
@@ -33,7 +43,7 @@ namespace ocmgtk {
             this.notebook2 = new Gtk.Notebook();
             this.notebook2.CanFocus = true;
             this.notebook2.Name = "notebook2";
-            this.notebook2.CurrentPage = 0;
+            this.notebook2.CurrentPage = 2;
             // Container child notebook2.Gtk.Notebook+NotebookChild
             this.cacheInfo = new ocmgtk.GeocacheInfoPanel();
             this.cacheInfo.Events = ((Gdk.EventMask)(256));
@@ -42,9 +52,38 @@ namespace ocmgtk {
             // Notebook tab
             this.label6 = new Gtk.Label();
             this.label6.Name = "label6";
-            this.label6.LabelProp = Mono.Unix.Catalog.GetString("INFO");
+            this.label6.LabelProp = Mono.Unix.Catalog.GetString("Description");
             this.notebook2.SetTabLabel(this.cacheInfo, this.label6);
             this.label6.ShowAll();
+            // Container child notebook2.Gtk.Notebook+NotebookChild
+            this.alignment3 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment3.Name = "alignment3";
+            this.notebook2.Add(this.alignment3);
+            Gtk.Notebook.NotebookChild w2 = ((Gtk.Notebook.NotebookChild)(this.notebook2[this.alignment3]));
+            w2.Position = 1;
+            // Notebook tab
+            this.logTab = new Gtk.Label();
+            this.logTab.Name = "logTab";
+            this.logTab.LabelProp = Mono.Unix.Catalog.GetString("Logs");
+            this.notebook2.SetTabLabel(this.alignment3, this.logTab);
+            this.logTab.ShowAll();
+            // Container child notebook2.Gtk.Notebook+NotebookChild
+            this.alignment4 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment4.Name = "alignment4";
+            // Container child alignment4.Gtk.Container+ContainerChild
+            this.waypointView = new ocmgtk.WaypointWidget();
+            this.waypointView.Events = ((Gdk.EventMask)(256));
+            this.waypointView.Name = "waypointView";
+            this.alignment4.Add(this.waypointView);
+            this.notebook2.Add(this.alignment4);
+            Gtk.Notebook.NotebookChild w4 = ((Gtk.Notebook.NotebookChild)(this.notebook2[this.alignment4]));
+            w4.Position = 2;
+            // Notebook tab
+            this.mapTab = new Gtk.Label();
+            this.mapTab.Name = "mapTab";
+            this.mapTab.LabelProp = Mono.Unix.Catalog.GetString("Waypoints");
+            this.notebook2.SetTabLabel(this.alignment4, this.mapTab);
+            this.mapTab.ShowAll();
             this.alignment1.Add(this.notebook2);
             this.Add(this.alignment1);
             if ((this.Child != null)) {

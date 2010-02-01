@@ -50,9 +50,15 @@ namespace ocmengine
 		private string m_longdesc;
 		private string m_hint;
 		private List<CacheLog> m_logs;
+		private List<Waypoint> m_children;
 		private string m_container;
 		private bool m_available;
 		private bool m_archived;
+		
+		public List<Waypoint> Children
+		{
+			get {return m_children;}
+		}
 		
 		public string CacheName
 		{
@@ -143,6 +149,11 @@ namespace ocmengine
 			get {return m_available;}
 			set {m_available = value;}
 		}
+		
+		public bool Found
+		{
+			get { return  this.Symbol.Equals("Geocache Found");}
+		}
 				
 		
 		/// <summary>
@@ -164,6 +175,7 @@ namespace ocmengine
 			cache.URL = original.URL;
 			cache.URLName = original.URLName;
 			cache.Type = original.Type;
+			cache.m_children = new List<Waypoint>();
 			return cache;
 		}
 		

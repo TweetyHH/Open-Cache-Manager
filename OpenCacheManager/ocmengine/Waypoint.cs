@@ -27,7 +27,7 @@ namespace ocmengine
 		private string m_urlname = "";
 		private string m_symbol = "";
 		private string m_type = "UNDEFINED";
-		private bool m_isChild = false;
+		private string m_parent = null;
 		
 		public string Name
 		{
@@ -84,9 +84,16 @@ namespace ocmengine
 			set { m_type = value;}
 		}
 		
+		public string Parent
+		{
+			get {return m_parent;}
+			set {m_parent = value;}
+		}
+		
 		
 		public Waypoint()
 		{
+			
 		}
 		
 		public override string ToString ()

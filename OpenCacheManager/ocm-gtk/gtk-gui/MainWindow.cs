@@ -90,7 +90,11 @@ public partial class MainWindow {
     
     private ocmgtk.CacheList cacheList;
     
+    private Gtk.VPaned vpaned1;
+    
     private ocmgtk.GeoCachePane cachePane;
+    
+    private ocmgtk.BrowserWidget browserwidget1;
     
     private Gtk.Statusbar statusbar1;
     
@@ -177,6 +181,7 @@ public partial class MainWindow {
         this.MapAction.ShortLabel = Mono.Unix.Catalog.GetString("_Map");
         w1.Add(this.MapAction, null);
         this.MapAction1 = new Gtk.Action("MapAction1", Mono.Unix.Catalog.GetString("_Map"), null, "map");
+        this.MapAction1.Sensitive = false;
         this.MapAction1.ShortLabel = Mono.Unix.Catalog.GetString("_Map");
         w1.Add(this.MapAction1, null);
         this.GPSAction = new Gtk.Action("GPSAction", Mono.Unix.Catalog.GetString("GPS"), null, null);
@@ -197,7 +202,6 @@ public partial class MainWindow {
         this.AddAccelGroup(this.UIManager.AccelGroup);
         this.Name = "MainWindow";
         this.Title = Mono.Unix.Catalog.GetString("Open Cache Manager");
-        this.Icon = Gdk.Pixbuf.LoadFromResource("traditional.svg");
         this.WindowPosition = ((Gtk.WindowPosition)(1));
         // Container child MainWindow.Gtk.Container+ContainerChild
         this.vbox1 = new Gtk.VBox();
@@ -212,7 +216,7 @@ public partial class MainWindow {
         w2.Expand = false;
         w2.Fill = false;
         // Container child vbox1.Gtk.Box+BoxChild
-        this.UIManager.AddUiFromString("<ui><toolbar name='toolbar1'><toolitem name='openAction1' action='openAction1'/><toolitem name='saveAsAction1' action='saveAsAction1'/><separator/><toolitem name='preferencesAction' action='preferencesAction'/><separator/><toolitem name='printPreviewAction' action='printPreviewAction'/><toolitem name='printAction' action='printAction'/><separator/><toolitem name='findAction' action='findAction'/><toolitem name='MapAction1' action='MapAction1'/></toolbar></ui>");
+        this.UIManager.AddUiFromString("<ui><toolbar name='toolbar1'><toolitem name='openAction1' action='openAction1'/><toolitem name='saveAsAction1' action='saveAsAction1'/><separator/><toolitem name='preferencesAction' action='preferencesAction'/><separator/><toolitem name='findAction' action='findAction'/></toolbar></ui>");
         this.toolbar1 = ((Gtk.Toolbar)(this.UIManager.GetWidget("/toolbar1")));
         this.toolbar1.Name = "toolbar1";
         this.toolbar1.ShowArrow = false;
@@ -236,29 +240,42 @@ public partial class MainWindow {
         Gtk.Paned.PanedChild w4 = ((Gtk.Paned.PanedChild)(this.hSplitPane[this.cacheList]));
         w4.Resize = false;
         // Container child hSplitPane.Gtk.Paned+PanedChild
+        this.vpaned1 = new Gtk.VPaned();
+        this.vpaned1.CanFocus = true;
+        this.vpaned1.Name = "vpaned1";
+        this.vpaned1.Position = 441;
+        // Container child vpaned1.Gtk.Paned+PanedChild
         this.cachePane = new ocmgtk.GeoCachePane();
         this.cachePane.Events = ((Gdk.EventMask)(256));
         this.cachePane.Name = "cachePane";
-        this.hSplitPane.Add(this.cachePane);
+        this.vpaned1.Add(this.cachePane);
+        Gtk.Paned.PanedChild w5 = ((Gtk.Paned.PanedChild)(this.vpaned1[this.cachePane]));
+        w5.Resize = false;
+        // Container child vpaned1.Gtk.Paned+PanedChild
+        this.browserwidget1 = new ocmgtk.BrowserWidget();
+        this.browserwidget1.Events = ((Gdk.EventMask)(256));
+        this.browserwidget1.Name = "browserwidget1";
+        this.vpaned1.Add(this.browserwidget1);
+        this.hSplitPane.Add(this.vpaned1);
         this.vbox1.Add(this.hSplitPane);
-        Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.vbox1[this.hSplitPane]));
-        w6.Position = 2;
+        Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.vbox1[this.hSplitPane]));
+        w8.Position = 2;
         // Container child vbox1.Gtk.Box+BoxChild
         this.statusbar1 = new Gtk.Statusbar();
         this.statusbar1.Name = "statusbar1";
         this.statusbar1.Spacing = 6;
         this.vbox1.Add(this.statusbar1);
-        Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox1[this.statusbar1]));
-        w7.PackType = ((Gtk.PackType)(1));
-        w7.Position = 3;
-        w7.Expand = false;
-        w7.Fill = false;
+        Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.vbox1[this.statusbar1]));
+        w9.PackType = ((Gtk.PackType)(1));
+        w9.Position = 3;
+        w9.Expand = false;
+        w9.Fill = false;
         this.Add(this.vbox1);
         if ((this.Child != null)) {
             this.Child.ShowAll();
         }
         this.DefaultWidth = 1073;
-        this.DefaultHeight = 988;
+        this.DefaultHeight = 1201;
         this.Show();
         this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
         this.QuitAction.Activated += new System.EventHandler(this.OnQuit);

@@ -89,11 +89,19 @@ namespace ocmgtk {
         
         private Gtk.Label GtkLabel21;
         
-        private Gtk.VBox vbox1;
+        private Gtk.Expander expander2;
+        
+        private Gtk.ScrolledWindow scrolledwindow1;
+        
+        private Gtk.TreeView treeview2;
+        
+        private Gtk.Label GtkLabel;
+        
+        private Gtk.VBox descriptionBox;
         
         private Gtk.Label label18;
         
-        private Gtk.ScrolledWindow longDescriptionScroll;
+        private Gtk.ScrolledWindow descScroll;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -451,10 +459,35 @@ namespace ocmgtk {
             w36.Expand = false;
             w36.Fill = false;
             // Container child infoPanelVBOX.Gtk.Box+BoxChild
-            this.vbox1 = new Gtk.VBox();
-            this.vbox1.Name = "vbox1";
-            this.vbox1.Spacing = 6;
-            // Container child vbox1.Gtk.Box+BoxChild
+            this.expander2 = new Gtk.Expander(null);
+            this.expander2.CanFocus = true;
+            this.expander2.Name = "expander2";
+            // Container child expander2.Gtk.Container+ContainerChild
+            this.scrolledwindow1 = new Gtk.ScrolledWindow();
+            this.scrolledwindow1.CanFocus = true;
+            this.scrolledwindow1.Name = "scrolledwindow1";
+            this.scrolledwindow1.ShadowType = ((Gtk.ShadowType)(1));
+            // Container child scrolledwindow1.Gtk.Container+ContainerChild
+            this.treeview2 = new Gtk.TreeView();
+            this.treeview2.CanFocus = true;
+            this.treeview2.Name = "treeview2";
+            this.scrolledwindow1.Add(this.treeview2);
+            this.expander2.Add(this.scrolledwindow1);
+            this.GtkLabel = new Gtk.Label();
+            this.GtkLabel.Name = "GtkLabel";
+            this.GtkLabel.LabelProp = Mono.Unix.Catalog.GetString("<b>Travel Bugs</b>");
+            this.GtkLabel.UseMarkup = true;
+            this.GtkLabel.UseUnderline = true;
+            this.expander2.LabelWidget = this.GtkLabel;
+            this.infoPanelVBOX.Add(this.expander2);
+            Gtk.Box.BoxChild w39 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.expander2]));
+            w39.Position = 8;
+            w39.Expand = false;
+            // Container child infoPanelVBOX.Gtk.Box+BoxChild
+            this.descriptionBox = new Gtk.VBox();
+            this.descriptionBox.Name = "descriptionBox";
+            this.descriptionBox.Spacing = 6;
+            // Container child descriptionBox.Gtk.Box+BoxChild
             this.label18 = new Gtk.Label();
             this.label18.Name = "label18";
             this.label18.Xpad = 5;
@@ -462,24 +495,22 @@ namespace ocmgtk {
             this.label18.Xalign = 0F;
             this.label18.LabelProp = Mono.Unix.Catalog.GetString("<b>Description</b>");
             this.label18.UseMarkup = true;
-            this.vbox1.Add(this.label18);
-            Gtk.Box.BoxChild w37 = ((Gtk.Box.BoxChild)(this.vbox1[this.label18]));
-            w37.Position = 0;
-            w37.Expand = false;
-            w37.Fill = false;
-            // Container child vbox1.Gtk.Box+BoxChild
-            this.longDescriptionScroll = new Gtk.ScrolledWindow();
-            this.longDescriptionScroll.HeightRequest = 450;
-            this.longDescriptionScroll.CanFocus = true;
-            this.longDescriptionScroll.Name = "longDescriptionScroll";
-            this.longDescriptionScroll.ShadowType = ((Gtk.ShadowType)(1));
-            this.vbox1.Add(this.longDescriptionScroll);
-            Gtk.Box.BoxChild w38 = ((Gtk.Box.BoxChild)(this.vbox1[this.longDescriptionScroll]));
-            w38.PackType = ((Gtk.PackType)(1));
-            w38.Position = 1;
-            this.infoPanelVBOX.Add(this.vbox1);
-            Gtk.Box.BoxChild w39 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.vbox1]));
-            w39.Position = 8;
+            this.descriptionBox.Add(this.label18);
+            Gtk.Box.BoxChild w40 = ((Gtk.Box.BoxChild)(this.descriptionBox[this.label18]));
+            w40.Position = 0;
+            w40.Expand = false;
+            w40.Fill = false;
+            // Container child descriptionBox.Gtk.Box+BoxChild
+            this.descScroll = new Gtk.ScrolledWindow();
+            this.descScroll.CanFocus = true;
+            this.descScroll.Name = "descScroll";
+            this.descScroll.ShadowType = ((Gtk.ShadowType)(1));
+            this.descriptionBox.Add(this.descScroll);
+            Gtk.Box.BoxChild w41 = ((Gtk.Box.BoxChild)(this.descriptionBox[this.descScroll]));
+            w41.Position = 1;
+            this.infoPanelVBOX.Add(this.descriptionBox);
+            Gtk.Box.BoxChild w42 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.descriptionBox]));
+            w42.Position = 9;
             this.Add(this.infoPanelVBOX);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

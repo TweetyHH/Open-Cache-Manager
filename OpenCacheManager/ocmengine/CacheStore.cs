@@ -69,5 +69,26 @@ namespace ocmengine
 		{
 			return m_caches.Values.GetEnumerator();
 		}
+		
+		public IEnumerator<Waypoint> getWPTEnumerator()
+		{
+			return m_waypoint.Values.GetEnumerator();
+		}
+		
+		public List<Waypoint> GetChildren(String cachecode)
+		{
+			//TODO: TEMPORARY IMPLEMENTATION
+			List<Waypoint> pts = new List<Waypoint>();
+			pts.Add(m_caches[cachecode]);
+			IEnumerator<Waypoint> allpoints = m_waypoint.Values.GetEnumerator();
+			while (allpoints.MoveNext())
+			{
+				if (allpoints.Current.Parent == cachecode)
+				{
+					pts.Add(allpoints.Current);
+				}
+			}
+			return pts;
+		}
 	}		
 }

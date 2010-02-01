@@ -18,12 +18,10 @@ namespace ocmengine
 	
 	public class CacheLog
 	{
-		public enum Status{FOUND_IT, DID_NOT_FIND, NOTE, NEEDS_MAINT, NEEDS_ARCHIVE, PUBLISHED, OTHER};
-		
 		DateTime m_logdate;
 		string m_logged_by;
 		string m_logmessage;
-		CacheLog.Status m_status;
+		string m_status;
 		
 		public DateTime LogDate
 		{
@@ -43,7 +41,7 @@ namespace ocmengine
 			set { m_logmessage = value;}
 		}
 		
-		public CacheLog.Status LogStatus
+		public string  LogStatus
 		{
 			 get { return m_status;}
 			 set { m_status = value;}
@@ -58,9 +56,9 @@ namespace ocmengine
 		{
 			string logHTML = "<hr/><b>Date:</b> ";
 			logHTML += m_logdate.ToLongDateString();
-			logHTML += "<br/>";
+			logHTML += "<br/><b>";
 			logHTML += m_status;
-			logHTML += "<br/>";
+			logHTML += "</b><br/>";
 			logHTML += "<b>Logged By:</b> ";
 			logHTML += m_logged_by;
 			logHTML += "<hr/>";

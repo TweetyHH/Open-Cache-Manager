@@ -119,7 +119,7 @@ namespace ocmgtk
 		{
 			Geocache cache = (Geocache) model.GetValue (iter, 0);
 			CellRendererPixbuf icon = cell as CellRendererPixbuf;
-			if (cache.Symbol == "Geocache Found")
+			if (cache.Found)
 				icon.Pixbuf = UIMonitor.getSmallCacheIcon(Geocache.CacheType.FOUND);
 			else
 				icon.Pixbuf = UIMonitor.getSmallCacheIcon(cache.TypeOfCache);

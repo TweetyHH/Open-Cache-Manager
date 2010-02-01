@@ -25,7 +25,7 @@ namespace ocmengine
 	{
 		private CacheStore m_store;
 		private static Engine m_instance = null;
-		private static int m_Owner = -1;
+		private static string m_OwnerID = null;
 		GPXParser m_parser = null;
 		
 		private Engine()
@@ -37,7 +37,7 @@ namespace ocmengine
 		public void ReadGPX(FileStream fs)
 		{
 			m_parser.parseGPXFile(fs, m_store);
-			OLMarkerGenerator.GenerateCaceMarkerLayer(this);
+			OLMarkerGenerator.GenerateUnfoundCacheMarkerLayer(this);
 		}
 		
 		public static Engine getInstance()
@@ -60,6 +60,13 @@ namespace ocmengine
 		public int CacheCount
 		{
 			get {return m_store.CacheCount;}
+		}
+		
+		public IEnumerator<Waypoint> GetChildWaypoints(string code)
+		{
+			IEnumerator<Waypoint> pts =  m_store.GetChildren(code).GetEnumerator();
+			OLMarkerGenerator.GenerateChildPointLayer(pts);
+			return m_store.GetChildren(code).GetEnumerator();
 		}
 		
 	}
