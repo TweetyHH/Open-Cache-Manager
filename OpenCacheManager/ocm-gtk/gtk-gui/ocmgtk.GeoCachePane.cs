@@ -45,7 +45,9 @@ namespace ocmgtk {
             this.notebook2.Name = "notebook2";
             this.notebook2.CurrentPage = 2;
             // Container child notebook2.Gtk.Notebook+NotebookChild
-            this.cacheInfo = null;
+            this.cacheInfo = new ocmgtk.GeocacheInfoPanel();
+            this.cacheInfo.Events = ((Gdk.EventMask)(256));
+            this.cacheInfo.Name = "cacheInfo";
             this.notebook2.Add(this.cacheInfo);
             // Notebook tab
             this.label6 = new Gtk.Label();
@@ -69,7 +71,9 @@ namespace ocmgtk {
             this.alignment4 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment4.Name = "alignment4";
             // Container child alignment4.Gtk.Container+ContainerChild
-            this.waypointView = null;
+            this.waypointView = new ocmgtk.WaypointWidget();
+            this.waypointView.Events = ((Gdk.EventMask)(256));
+            this.waypointView.Name = "waypointView";
             this.alignment4.Add(this.waypointView);
             this.notebook2.Add(this.alignment4);
             Gtk.Notebook.NotebookChild w4 = ((Gtk.Notebook.NotebookChild)(this.notebook2[this.alignment4]));

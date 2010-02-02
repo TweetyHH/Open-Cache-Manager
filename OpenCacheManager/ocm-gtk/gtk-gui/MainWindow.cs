@@ -233,7 +233,9 @@ public partial class MainWindow {
         this.hSplitPane.Name = "hSplitPane";
         this.hSplitPane.Position = 398;
         // Container child hSplitPane.Gtk.Paned+PanedChild
-        this.cacheList = null;
+        this.cacheList = new ocmgtk.CacheList();
+        this.cacheList.Events = ((Gdk.EventMask)(256));
+        this.cacheList.Name = "cacheList";
         this.hSplitPane.Add(this.cacheList);
         Gtk.Paned.PanedChild w4 = ((Gtk.Paned.PanedChild)(this.hSplitPane[this.cacheList]));
         w4.Resize = false;
@@ -243,12 +245,16 @@ public partial class MainWindow {
         this.vpaned1.Name = "vpaned1";
         this.vpaned1.Position = 441;
         // Container child vpaned1.Gtk.Paned+PanedChild
-        this.cachePane = null;
+        this.cachePane = new ocmgtk.GeoCachePane();
+        this.cachePane.Events = ((Gdk.EventMask)(256));
+        this.cachePane.Name = "cachePane";
         this.vpaned1.Add(this.cachePane);
         Gtk.Paned.PanedChild w5 = ((Gtk.Paned.PanedChild)(this.vpaned1[this.cachePane]));
         w5.Resize = false;
         // Container child vpaned1.Gtk.Paned+PanedChild
-        this.browserwidget1 = null;
+        this.browserwidget1 = new ocmgtk.BrowserWidget();
+        this.browserwidget1.Events = ((Gdk.EventMask)(256));
+        this.browserwidget1.Name = "browserwidget1";
         this.vpaned1.Add(this.browserwidget1);
         this.hSplitPane.Add(this.vpaned1);
         this.vbox1.Add(this.hSplitPane);

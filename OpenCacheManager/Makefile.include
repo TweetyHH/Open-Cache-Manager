@@ -67,8 +67,14 @@ bin_SCRIPTS = $(BINARIES)
 
 programfilesdir = @libdir@/@PACKAGE@
 programfiles_DATA = $(PROGRAMFILES)
+programfilesicons24x24dir = @libdir@/@PACKAGE@/icons/24x24
+programfilesicons24x24_DATA = $(PROGRAMFILES_ICONS_24X24)
 linuxpkgconfigdir = @libdir@/pkgconfig
 linuxpkgconfig_DATA = $(LINUX_PKGCONFIG)
+programfilesiconsscalabledir = @libdir@/@PACKAGE@/icons/scalable
+programfilesiconsscalable_DATA = $(PROGRAMFILES_ICONS_SCALABLE)
+programfileswebdir = @libdir@/@PACKAGE@/web
+programfilesweb_DATA = $(PROGRAMFILES_WEB)
 
 
 # macros

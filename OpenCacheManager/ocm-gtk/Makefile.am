@@ -88,10 +88,10 @@ PROGRAMFILES_ICONS_24X24 = \
 PROGRAMFILES_WEB = \
 	$(WPT_VIEWER_HTML)  
 
-PROGRAMFILES = \
+PROGRAMFILES =  \
+	$(OCM_GTK_EXE_MDB) \
 	$(OCMENGINE_DLL) \
-	$(OCMENGINE_DLL_MDB) \
-	$(OCM_GTK_EXE_MDB)  
+	$(OCMENGINE_DLL_MDB)  
 
 BINARIES = \
 	$(OCM_GTK)  
@@ -101,35 +101,34 @@ RESGEN=resgen2
 	
 all: $(ASSEMBLY) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_WEB) $(PROGRAMFILES) $(BINARIES) 
 
-FILES = \
-	gtk-gui/generated.cs \
-	MainWindow.cs \
-	gtk-gui/MainWindow.cs \
-	Main.cs \
+FILES =  \
 	AssemblyInfo.cs \
+	Dialogs/OCMAboutDialog.cs \
+	Dialogs/WaypointDialog.cs \
+	gtk-gui/generated.cs \
+	gtk-gui/MainWindow.cs \
+	gtk-gui/ocmgtk.BrowserWidget.cs \
+	gtk-gui/ocmgtk.CacheList.cs \
 	gtk-gui/ocmgtk.GeocacheInfoPanel.cs \
 	gtk-gui/ocmgtk.GeoCachePane.cs \
-	gtk-gui/ocmgtk.CacheList.cs \
+	gtk-gui/ocmgtk.LogViewerWidget.cs \
 	gtk-gui/ocmgtk.OCMAboutDialog.cs \
+	gtk-gui/ocmgtk.WaypointDialog.cs \
+	gtk-gui/ocmgtk.WaypointWidget.cs \
+	Main.cs \
+	MainWindow.cs \
+	UIMonitor.cs \
+	Widgets/BrowserWidget.cs \
 	Widgets/CacheList.cs \
 	Widgets/GeocacheInfoPanel.cs \
 	Widgets/GeoCachePane.cs \
-	Dialogs/OCMAboutDialog.cs \
-	gtk-gui/ocmgtk.WaypointWidget.cs \
-	gtk-gui/ocmgtk.LogViewerWidget.cs \
-	gtk-gui/ocmgtk.BrowserWidget.cs \
-	gtk-gui/ocmgtk.WaypointDialog.cs \
-	Widgets/WaypointWidget.cs \
-	Widgets/BrowserWidget.cs \
-	Widgets/LogViewerWidget.cs \
-	Dialogs/WaypointDialog.cs \
 	Widgets/HTMLWidget.cs \
-	UIMonitor.cs 
+	Widgets/LogViewerWidget.cs \
+	Widgets/WaypointWidget.cs 
 
 DATA_FILES = 
 
-RESOURCES = \
-	gtk-gui/gui.stetic 
+RESOURCES = gtk-gui/gui.stetic 
 
 EXTRAS = \
 	Dialogs \
@@ -141,12 +140,13 @@ EXTRAS = \
 	ocm-gtk.in 
 
 REFERENCES =  \
-	System \
-	$(GTK_SHARP_20_LIBS) \
+	../ocmengine/bin/Debug/ocmengine.dll \
 	Mono.Posix \
-	$(WEBKIT_SHARP_10_LIBS) \
-	$(GECKO_SHARP_20_LIBS) \
-	$(GTKHTML_SHARP_314_LIBS)
+	-pkg:gecko-sharp-2.0 \
+	-pkg:gtkhtml-sharp-3.14 \
+	-pkg:gtk-sharp-2.0 \
+	-pkg:webkit-sharp-1.0 \
+	System
 
 DLL_REFERENCES = 
 
