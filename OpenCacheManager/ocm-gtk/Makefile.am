@@ -13,6 +13,20 @@ PROJECT_REFERENCES =  \
 	../ocmengine/bin/Debug/ocmengine.dll
 BUILD_DIR = bind
 
+CITO_SVG_SOURCE=icons/scalable/cito.svg
+EARTH_SVG_SOURCE=icons/scalable/earth.svg
+FOUND_SVG_SOURCE=icons/scalable/found.svg
+HALFSTAR_SVG_SOURCE=icons/scalable/halfstar.svg
+LETTERBOX_SVG_SOURCE=icons/scalable/letterbox.svg
+MULTI_SVG_SOURCE=icons/scalable/multi.svg
+OTHER_SVG_SOURCE=icons/scalable/other.svg
+STAR_SVG_SOURCE=icons/scalable/star.svg
+STAR_EMPTY_SVG_SOURCE=icons/scalable/star_empty.svg
+TRADITIONAL_SVG_SOURCE=icons/scalable/traditional.svg
+UNKNOWN_SVG_SOURCE=icons/scalable/unknown.svg
+WAYPOINT_FLAG_RED_SVG_SOURCE=icons/scalable/waypoint-flag-red.svg
+WAYPOINT_FLAG_RED_PNG_SOURCE=icons/24x24/waypoint-flag-red.png
+WPT_VIEWER_HTML_SOURCE=web/wpt_viewer.html
 OCMENGINE_DLL_SOURCE=../ocmengine/bin/Debug/ocmengine.dll
 OCMENGINE_DLL_MDB_SOURCE=../ocmengine/bin/Debug/ocmengine.dll.mdb
 OCMENGINE_DLL_MDB=$(BUILD_DIR)/ocmengine.dll.mdb
@@ -31,6 +45,20 @@ PROJECT_REFERENCES =  \
 	../ocmengine/bin/Debug/ocmengine.dll
 BUILD_DIR = bin
 
+CITO_SVG_SOURCE=icons/scalable/cito.svg
+EARTH_SVG_SOURCE=icons/scalable/earth.svg
+FOUND_SVG_SOURCE=icons/scalable/found.svg
+HALFSTAR_SVG_SOURCE=icons/scalable/halfstar.svg
+LETTERBOX_SVG_SOURCE=icons/scalable/letterbox.svg
+MULTI_SVG_SOURCE=icons/scalable/multi.svg
+OTHER_SVG_SOURCE=icons/scalable/other.svg
+STAR_SVG_SOURCE=icons/scalable/star.svg
+STAR_EMPTY_SVG_SOURCE=icons/scalable/star_empty.svg
+TRADITIONAL_SVG_SOURCE=icons/scalable/traditional.svg
+UNKNOWN_SVG_SOURCE=icons/scalable/unknown.svg
+WAYPOINT_FLAG_RED_SVG_SOURCE=icons/scalable/waypoint-flag-red.svg
+WAYPOINT_FLAG_RED_PNG_SOURCE=icons/24x24/waypoint-flag-red.png
+WPT_VIEWER_HTML_SOURCE=web/wpt_viewer.html
 OCMENGINE_DLL_SOURCE=../ocmengine/bin/Debug/ocmengine.dll
 OCMENGINE_DLL_MDB=
 OCM_GTK_EXE_MDB=
@@ -40,10 +68,30 @@ endif
 AL=al2
 SATELLITE_ASSEMBLY_NAME=$(notdir $(basename $(ASSEMBLY))).resources.dll
 
-PROGRAMFILES =  \
-	$(OCM_GTK_EXE_MDB) \
+PROGRAMFILES_ICONS_SCALABLE = \
+	$(CITO_SVG) \
+	$(EARTH_SVG) \
+	$(FOUND_SVG) \
+	$(HALFSTAR_SVG) \
+	$(LETTERBOX_SVG) \
+	$(MULTI_SVG) \
+	$(OTHER_SVG) \
+	$(STAR_SVG) \
+	$(STAR_EMPTY_SVG) \
+	$(TRADITIONAL_SVG) \
+	$(UNKNOWN_SVG) \
+	$(WAYPOINT_FLAG_RED_SVG)  
+
+PROGRAMFILES_ICONS_24X24 = \
+	$(WAYPOINT_FLAG_RED_PNG)  
+
+PROGRAMFILES_WEB = \
+	$(WPT_VIEWER_HTML)  
+
+PROGRAMFILES = \
 	$(OCMENGINE_DLL) \
-	$(OCMENGINE_DLL_MDB)  
+	$(OCMENGINE_DLL_MDB) \
+	$(OCM_GTK_EXE_MDB)  
 
 BINARIES = \
 	$(OCM_GTK)  
@@ -51,36 +99,37 @@ BINARIES = \
 
 RESGEN=resgen2
 	
-all: $(ASSEMBLY) $(PROGRAMFILES) $(BINARIES) 
+all: $(ASSEMBLY) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_WEB) $(PROGRAMFILES) $(BINARIES) 
 
-FILES =  \
-	AssemblyInfo.cs \
-	Dialogs/OCMAboutDialog.cs \
-	Dialogs/WaypointDialog.cs \
+FILES = \
 	gtk-gui/generated.cs \
+	MainWindow.cs \
 	gtk-gui/MainWindow.cs \
-	gtk-gui/ocmgtk.BrowserWidget.cs \
-	gtk-gui/ocmgtk.CacheList.cs \
+	Main.cs \
+	AssemblyInfo.cs \
 	gtk-gui/ocmgtk.GeocacheInfoPanel.cs \
 	gtk-gui/ocmgtk.GeoCachePane.cs \
-	gtk-gui/ocmgtk.LogViewerWidget.cs \
+	gtk-gui/ocmgtk.CacheList.cs \
 	gtk-gui/ocmgtk.OCMAboutDialog.cs \
-	gtk-gui/ocmgtk.WaypointDialog.cs \
-	gtk-gui/ocmgtk.WaypointWidget.cs \
-	Main.cs \
-	MainWindow.cs \
-	UIMonitor.cs \
-	Widgets/BrowserWidget.cs \
 	Widgets/CacheList.cs \
 	Widgets/GeocacheInfoPanel.cs \
 	Widgets/GeoCachePane.cs \
-	Widgets/HTMLWidget.cs \
+	Dialogs/OCMAboutDialog.cs \
+	gtk-gui/ocmgtk.WaypointWidget.cs \
+	gtk-gui/ocmgtk.LogViewerWidget.cs \
+	gtk-gui/ocmgtk.BrowserWidget.cs \
+	gtk-gui/ocmgtk.WaypointDialog.cs \
+	Widgets/WaypointWidget.cs \
+	Widgets/BrowserWidget.cs \
 	Widgets/LogViewerWidget.cs \
-	Widgets/WaypointWidget.cs 
+	Dialogs/WaypointDialog.cs \
+	Widgets/HTMLWidget.cs \
+	UIMonitor.cs 
 
 DATA_FILES = 
 
-RESOURCES = gtk-gui/gui.stetic 
+RESOURCES = \
+	gtk-gui/gui.stetic 
 
 EXTRAS = \
 	Dialogs \
@@ -89,41 +138,53 @@ EXTRAS = \
 	icons \
 	icons/scalable \
 	icons/24x24 \
-	ocm-gtk-config.config \
-	icons/scalable/cito.svg \
-	icons/scalable/earth.svg \
-	icons/scalable/found.svg \
-	icons/scalable/halfstar.svg \
-	icons/scalable/letterbox.svg \
-	icons/scalable/multi.svg \
-	icons/scalable/other.svg \
-	icons/scalable/star.svg \
-	icons/scalable/star_empty.svg \
-	icons/scalable/traditional.svg \
-	icons/scalable/unknown.svg \
-	icons/scalable/waypoint-flag-red.svg \
-	icons/24x24/waypoint-flag-red.png \
-	web/wpt_viewer.html \
 	ocm-gtk.in 
 
 REFERENCES =  \
-	../ocmengine/bin/Debug/ocmengine.dll \
+	System \
+	$(GTK_SHARP_20_LIBS) \
 	Mono.Posix \
-	-pkg:gecko-sharp-2.0 \
-	-pkg:gtkhtml-sharp-3.14 \
-	-pkg:gtk-sharp-2.0 \
-	-pkg:webkit-sharp-1.0 \
-	System
+	$(WEBKIT_SHARP_10_LIBS) \
+	$(GECKO_SHARP_20_LIBS) \
+	$(GTKHTML_SHARP_314_LIBS)
 
 DLL_REFERENCES = 
 
-CLEANFILES = $(PROGRAMFILES) $(BINARIES) 
+CLEANFILES = $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_WEB) $(PROGRAMFILES) $(BINARIES) 
 
 include $(top_srcdir)/Makefile.include
 
+CITO_SVG = $(BUILD_DIR)/icons/scalable/cito.svg
+EARTH_SVG = $(BUILD_DIR)/icons/scalable/earth.svg
+FOUND_SVG = $(BUILD_DIR)/icons/scalable/found.svg
+HALFSTAR_SVG = $(BUILD_DIR)/icons/scalable/halfstar.svg
+LETTERBOX_SVG = $(BUILD_DIR)/icons/scalable/letterbox.svg
+MULTI_SVG = $(BUILD_DIR)/icons/scalable/multi.svg
+OTHER_SVG = $(BUILD_DIR)/icons/scalable/other.svg
+STAR_SVG = $(BUILD_DIR)/icons/scalable/star.svg
+STAR_EMPTY_SVG = $(BUILD_DIR)/icons/scalable/star_empty.svg
+TRADITIONAL_SVG = $(BUILD_DIR)/icons/scalable/traditional.svg
+UNKNOWN_SVG = $(BUILD_DIR)/icons/scalable/unknown.svg
+WAYPOINT_FLAG_RED_SVG = $(BUILD_DIR)/icons/scalable/waypoint-flag-red.svg
+WAYPOINT_FLAG_RED_PNG = $(BUILD_DIR)/icons/24x24/waypoint-flag-red.png
+WPT_VIEWER_HTML = $(BUILD_DIR)/web/wpt_viewer.html
 OCMENGINE_DLL = $(BUILD_DIR)/ocmengine.dll
 OCM_GTK = $(BUILD_DIR)/ocm-gtk
 
+$(eval $(call emit-deploy-target,CITO_SVG))
+$(eval $(call emit-deploy-target,EARTH_SVG))
+$(eval $(call emit-deploy-target,FOUND_SVG))
+$(eval $(call emit-deploy-target,HALFSTAR_SVG))
+$(eval $(call emit-deploy-target,LETTERBOX_SVG))
+$(eval $(call emit-deploy-target,MULTI_SVG))
+$(eval $(call emit-deploy-target,OTHER_SVG))
+$(eval $(call emit-deploy-target,STAR_SVG))
+$(eval $(call emit-deploy-target,STAR_EMPTY_SVG))
+$(eval $(call emit-deploy-target,TRADITIONAL_SVG))
+$(eval $(call emit-deploy-target,UNKNOWN_SVG))
+$(eval $(call emit-deploy-target,WAYPOINT_FLAG_RED_SVG))
+$(eval $(call emit-deploy-target,WAYPOINT_FLAG_RED_PNG))
+$(eval $(call emit-deploy-target,WPT_VIEWER_HTML))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL_MDB))
 $(eval $(call emit-deploy-wrapper,OCM_GTK,ocm-gtk,x))
