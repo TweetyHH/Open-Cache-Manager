@@ -11,6 +11,7 @@
  implied. See the License for the specific language governing permissions and limitations under the License. 
 */
 using System;
+using System.Xml;
 
 namespace ocmengine
 {
@@ -94,6 +95,28 @@ namespace ocmengine
 		public Waypoint()
 		{
 			
+		}
+		
+		public void WriteToGPX(XmlWriter writer)
+		{
+			writer.WriteStartElement("wpt", GPXWriter.NS_GPX);
+			WriteWPTDetails(writer);
+			writer.WriteEndElement();
+		}
+		
+		internal virtual void WriteWPTDetails(XmlWriter writer)
+		{
+			writer.WriteAttributeString("lat", this.Lat.ToString());
+			writer.WriteAttributeString("lon", this.Lon.ToString());
+			writer.WriteElementString("time", this.Time.ToString("o"));
+			writer.WriteElementString("name", this.Name);
+			writer.WriteElementString("desc", this.Desc);
+			if (this.URL != null)
+				writer.WriteElementString("url", this.URL.ToString());
+			if (!String.IsNullOrEmpty(this.URLName))
+				writer.WriteElementString("urlname", this.URLName);
+			writer.WriteElementString("sym", this.Symbol);
+			writer.WriteElementString("type", this.Type);
 		}
 		
 		public override string ToString ()

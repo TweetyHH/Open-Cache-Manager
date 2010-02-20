@@ -14,31 +14,42 @@
 //    limitations under the License.
 
 using System;
-using Gtk;
+using System.Collections.Generic;
+using System.Data;
 
-namespace ocmgtk
+namespace ocmengine
 {
 
 
-	[System.ComponentModel.ToolboxItem(true)]
-	public partial class HTMLWidget : Gtk.Bin
+	public class WaypointEnumerator : IEnumerator<Waypoint>
 	{
-		WebKit.WebView m_view;
-		
-		public HTMLWidget ()
+		Waypoint m_current;
+		IDataReader m_reader;
+		IDbConnection conn;
+		public Waypoint Current
 		{
-			this.Build ();
-			m_view = new WebKit.WebView();
-			ScrolledWindow win = new ScrolledWindow();
-			win.Add(m_view);
-			this.Add(win);
-			this.ShowAll();
+			get { return m_current;}
 		}
 		
-		public string HTML
+		public WaypointEnumerator(IDbConnection conn)
 		{
-			//set { int i=1;}
-			set { m_view.LoadHtmlString(value, "http://www.geocaching.com");}
 		}
+		
+		public bool MoveNext()
+		{
+			return false;
+		}
+		
+		public void Reset()
+		{
+			
+		}
+		
+		public void Dispose()
+		{
+			
+		}
+		
+		
 	}
 }

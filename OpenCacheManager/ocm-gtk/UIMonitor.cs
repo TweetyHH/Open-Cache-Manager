@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using Gdk;
 using Mono.Unix;
 using Gtk;
@@ -36,11 +37,12 @@ namespace ocmgtk
 		private static Pixbuf FOUNDICON_S = new Pixbuf("./icons/scalable/found.svg", 24, 24);
 		private static Pixbuf EARTHICON_S = new Pixbuf("./icons/scalable/earth.svg", 24, 24);
 		private static Pixbuf CITOICON_S = new Pixbuf("./icons/scalable/cito.svg", 24, 24);
-		private double m_home_lat = 45.37598;
-		private double m_home_lon = -75.64923;
+		private double m_home_lat = 46.49;
+		private double m_home_lon = -81.01;
 		private CacheList m_cachelist;
 		private Geocache m_selectedCache;
 		private MainWindow m_mainWin;
+		private BrowserWidget m_map;
 	
 		public GeoCachePane GeoPane
 		{
@@ -71,6 +73,13 @@ namespace ocmgtk
 			set {m_statusbar = value;}
 		}
 		
+		public BrowserWidget Map
+		{
+			get {return m_map;}
+			set {m_map = value;}
+		}
+		
+		
 		public double HomeLat
 		{
 			get {return m_home_lat;}
@@ -99,6 +108,7 @@ namespace ocmgtk
 		public void updateCaches()
 		{
 			m_cachelist.PopulateList();
+			UpdateCacheCountStatus();
 		}
 		
 		public void setSelectedCache(Geocache cache)
@@ -106,14 +116,21 @@ namespace ocmgtk
 			m_selectedCache = cache;
 			m_pane.SetCacheSelected();
 			m_mainWin.SetCacheSelected();
+			m_map.LoadScript("loadMarkers(" + cache.Lat + ","  + cache.Lon + ")");
 		}
 		
-		public void setCacheCountStatus(int shown)
+		public void ZoomToPoint(double lat, double lon)
 		{
-			Engine eng = Engine.getInstance();
+			m_map.LoadScript("zoomToPoint(" + lat + ","  + lon + ")");
+		}
+		
+		public void UpdateCacheCountStatus()
+		{
+			int visible = m_cachelist.getVisibleCaches().Count;
+			int total = Engine.getInstance().CacheCount;			
 			m_statusbar.Push(m_statusbar.GetContextId("count"), 
 			                                          String.Format(Catalog.GetString("Showing {0} of {1} caches"),
-			                                          shown, eng.CacheCount));
+			                                          visible, total));
 		}
 		
 		public static Pixbuf getSmallCacheIcon(Geocache.CacheType type)
@@ -137,6 +154,11 @@ namespace ocmgtk
 				default:
 					return UIMonitor.OTHERICON_S;
 			}
+		}
+		
+		public List<Geocache> GetVisibleCacheList()
+		{
+			return m_cachelist.getVisibleCaches();
 		}
 		
 	}

@@ -135,6 +135,7 @@ namespace ocmengine
 				{
 					cache.Available = Boolean.Parse(reader.GetAttribute("available"));
 					cache.Archived = Boolean.Parse(reader.GetAttribute("archived"));
+					cache.CacheID = reader.GetAttribute("id");
 				}
 				if (reader.LocalName == "name")
 				{
@@ -146,7 +147,8 @@ namespace ocmengine
 				}
 				else if (reader.LocalName == "owner")
 				{
-					cache.CacheOwner = reader.ReadElementContentAsString();
+					cache.OwnerID = reader.GetAttribute("id");
+					cache.CacheOwner = reader.ReadElementContentAsString();					
 				}
 				else if (reader.LocalName == "type")
 				{
@@ -184,16 +186,32 @@ namespace ocmengine
 				{
 					parseTravelBug(ref cache, reader);
 				}
+				else if (reader.LocalName == "country")
+				{
+					cache.Country = reader.ReadElementContentAsString();
+				}
+				else if (reader.LocalName == "state")
+				{
+					cache.State = reader.ReadElementContentAsString();
+				}
 			}
 		}
 		
 		private void parseTravelBug(ref Geocache cache, XmlReader reader)
 		{
+			TravelBug bug = new TravelBug();
+			bug.ID = reader.GetAttribute("id");
+			bug.Ref = reader.GetAttribute("ref");
 			while (reader.Read())
 			{
 				if (reader.LocalName == "travelbug")
 				{
-					return;
+						cache.TravelBugs.Add(bug);
+						return;
+				}
+				if (reader.LocalName == "name")
+				{
+				bug.Name = reader.ReadElementContentAsString();
 				}
 			}
 		}
@@ -229,10 +247,12 @@ namespace ocmengine
 				}
 				else if (reader.LocalName == "finder")
 				{
+					log.FinderID = reader.GetAttribute("id");
 					log.LoggedBy = reader.ReadElementContentAsString();
 				}
 				else if (reader.LocalName == "text")
 				{
+					log.Encoded = Boolean.Parse(reader.GetAttribute("encoded"));
 					log.LogMessage = reader.ReadElementContentAsString();
 				}
 				else if (reader.LocalName == "log")

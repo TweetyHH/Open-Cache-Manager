@@ -15,7 +15,7 @@
 
 using System;
 using Mono.Unix;
-using Gecko;
+using WebKit;
 
 namespace ocmgtk
 {
@@ -24,60 +24,58 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class BrowserWidget : Gtk.Bin
 	{
-		WebControl m_browser;
+		WebView m_browser;
 		
 		public BrowserWidget()
 		{
 			this.Build();
-			m_browser = new WebControl();
+			m_browser = new WebView();
+			m_browser.NavigationRequested += HandleM_browserNavigationRequested;
+			m_browser.LoadStarted += HandleM_browserLoadStarted;
+			m_browser.LoadProgressChanged += HandleM_browserLoadProgressChanged;
+			m_browser.LoadFinished += HandleM_browserLoadFinished;
 			browserPlace.Add(m_browser);
-			m_browser.NetStart += HandleNetStart;
-			m_browser.NetStop += HandleNetStop;
-			m_browser.NetState += HandleNetState;
-			m_browser.OpenUri += HandleOpenUri;
-			m_browser.ProgressAll += HandleProgressAll;
 			this.ShowAll();
 		}
 
-		void HandleProgressAll(object o, ProgressAllArgs args)
+		void HandleM_browserLoadFinished (object o, LoadFinishedArgs args)
 		{
-			String progress = string.Format(Catalog.GetString("Progress {0} of {1}"), args.Curprogress, args.Maxprogress);
-			browsestatusBar.Push(browsestatusBar.GetContextId("nav"), progress);
+			browsestatusBar.Push(browsestatusBar.GetContextId("load"), Catalog.GetString("Done"));
 		}
 
-		void HandleOpenUri(object o, OpenUriArgs args)
+		void HandleM_browserLoadProgressChanged (object o, LoadProgressChangedArgs args)
 		{
-			browsestatusBar.Push(browsestatusBar.GetContextId("nav"), Catalog.GetString("Opening"));
+			browsestatusBar.Push(browsestatusBar.GetContextId("load"), args.Progress.ToString());		
 		}
 
-		void HandleNetState(object o, NetStateArgs args)
+		void HandleM_browserLoadStarted (object o, LoadStartedArgs args)
 		{
-			
+			browsestatusBar.Push(browsestatusBar.GetContextId("load"), "Loading " + args.Frame.Uri);
 		}
 
-		void HandleNetStop(object sender, EventArgs e)
+		void HandleM_browserNavigationRequested (object o, NavigationRequestedArgs args)
 		{
-			browsestatusBar.Push(browsestatusBar.GetContextId("nav"), Catalog.GetString("Done"));
-		}
-
-		void HandleNetStart(object sender, EventArgs e)
-		{
-			browsestatusBar.Push(browsestatusBar.GetContextId("nav"), Catalog.GetString("Loading"));
+			browsestatusBar.Push(browsestatusBar.GetContextId("nav"), "Opening" + args.Request.Uri);
 		}
 		
 		public void LoadUrl(String target)
 		{
-			m_browser.LoadUrl(target);
+			m_browser.Open(target);
+		}
+		
+		public void LoadScript(String script)
+		{
+			m_browser.ExecuteScript(script);
 		}
 
 		protected virtual void OnRefresh (object sender, System.EventArgs e)
 		{
-			m_browser.Reload((int) Gecko.ReloadFlags.Reloadbypasscache);
+			
 		}
 
 		protected virtual void OnStopActionActivated (object sender, System.EventArgs e)
 		{
-			m_browser.StopLoad();
+			
 		}
 	}
 }

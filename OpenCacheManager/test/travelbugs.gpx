@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0" creator="Groundspeak, Inc. All Rights Reserved. http://www.groundspeak.com" xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd http://www.groundspeak.com/cache/1/0 http://www.groundspeak.com/cache/1/0/cache.xsd" xmlns="http://www.topografix.com/GPX/1/0">
+  <name>Cache Listing Generated from Geocaching.com</name>
+  <desc>This is an individual cache generated from Geocaching.com</desc>
+  <author>Account "The-Goat" From Geocaching.com</author>
+  <email>contact@geocaching.com</email>
+  <url>http://www.geocaching.com</url>
+  <urlname>Geocaching - High Tech Treasure Hunting mod</urlname>
+  <time>2010-02-14T01:23:06.2441418Z</time>
+  <keywords>cache, geocache</keywords>
+  <bounds minlat="45.37035" minlon="-75.671533" maxlat="45.37035" maxlon="-75.671533" />
+  <wpt lat="45.37035" lon="-75.671533">
+    <time>2006-10-20T07:00:00Z</time>
+    <name>GCYWFC</name>
+    <desc>GAG9 - The Big 'O' by The-Goat, Traditional Cache (1/3) mod</desc>
+    <url>http://www.geocaching.com/seek/cache_details.aspx?guid=d3003340-b69b-4994-a81a-a6059181a859</url>
+    <urlname>GAG9 - The Big 'O'</urlname>
+    <sym>Geocache Found</sym>
+    <type>Geocache|Traditional Cache</type>
+    <groundspeak:cache id="479243" available="True" archived="False" xmlns:groundspeak="http://www.groundspeak.com/cache/1/0">
+      <groundspeak:name>GAG9 - The Big 'O'</groundspeak:name>
+      <groundspeak:placed_by>The-Goat</groundspeak:placed_by>
+      <groundspeak:owner id="2219">The-Goat</groundspeak:owner>
+      <groundspeak:type>Traditional Cache</groundspeak:type>
+      <groundspeak:container>Large</groundspeak:container>
+      <groundspeak:difficulty>1</groundspeak:difficulty>
+      <groundspeak:terrain>3</groundspeak:terrain>
+      <groundspeak:country>Canada</groundspeak:country>
+      <groundspeak:state>Ontario</groundspeak:state>
+      <groundspeak:short_description html="True">
+      </groundspeak:short_description>
+      <groundspeak:long_description html="True">&lt;div class="Section1"&gt;
+&lt;p&gt;&lt;span style='font-family:"Comic Sans MS"'&gt;This cache has been
+originally set out for GAG9 (&lt;a rel="nofollow" href=
+"http://www.geocaching.com/seek/cache_details.aspx?guid=210b9b9d-6cda-470a-81e6-ddf83bc62509&amp;amp;log=y&amp;amp;decrypt="&gt;
+GCYFTG&lt;/a&gt;).&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style='font-family:"Comic Sans MS"'&gt;As such please seek it
+after 6 PM Friday 20th October 2006.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style='font-family:"Comic Sans MS"'&gt;This cache is designed
+to hold BIG stuff.&lt;span style='mso-spacerun:yes'&gt;&amp;nbsp;&lt;/span&gt; It’s
+a 5 gallon plastic container that could swallow 500 micros for
+lunch.&lt;span style='mso-spacerun:yes'&gt;&amp;nbsp;&lt;/span&gt; Although the
+container is pretty full (see the picture of its original
+contents), I'm sure a few other monster cache items would fit with
+a bit of care.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style='font-family:"Comic Sans MS"'&gt;I set it out by bike
+but you can park on Cromwell instead and there is an access point
+at N45 22.163 W75 40.345.&lt;span style=
+'mso-spacerun:yes'&gt;&amp;nbsp;&lt;/span&gt; Beware though that the traffic can
+be very bad sometimes and an alternate (longer) approach route can
+be had from Walkley (between the Transitway and the Parkway). I
+would not recommend parking on the parkway as its probably not
+allowed.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style='font-family:"Comic Sans MS"'&gt;It could be done as a
+night cache but don't fall into the river or get run over getting
+there!&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style='font-family:"Comic Sans MS"'&gt;Please snap the lid
+back on tightly (its very tight) to keep out water and double bag
+everything as it was originally.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style='font-family:"Comic Sans MS"'&gt;Have fun and remember
+to swap BIG!&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</groundspeak:long_description>
+      <groundspeak:encoded_hints>Its too big for a hint.</groundspeak:encoded_hints>
+      <groundspeak:logs>
+        <groundspeak:log id="96576982">
+          <groundspeak:date>2010-02-03T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="738812">kcote</groundspeak:finder>
+          <groundspeak:text encoded="False">#1502
+We visited the Big 'O' today.  We noticed the blender (hard not to!) but hadn't read the logs and didn't realize that there was supposed to be a GC stuck to it.  We don't know if it's there or not.  We also did not see the TB that is supposed to be there (unless it's way down in the bottom).
+TNLNSL
+Thanks!</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="90848720">
+          <groundspeak:date>2009-11-19T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1761120">elyob</groundspeak:finder>
+          <groundspeak:text encoded="False">The plan was to move along geocaching's ugliest trackable, the Blender.  However, I failed to see the attached geocoin.  Please contact me if you see the relevant geocoin and I'll head back there.  TFTH!</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="90654180">
+          <groundspeak:date>2009-11-16T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1243262">portera</groundspeak:finder>
+          <groundspeak:text encoded="False">I have driven by this cache about 1.3 million times. Today I took a nice fall walk, and found it. Bit steep and slippery. The cache contained a blender base, and I only now realize it was a TB. I thought it may be the worst piece of swag I've ever seen. Now I only think it's the worst TB I've ever seen [:)]
+
+Took and left nothing, signed the log.
+Thanks for the cache!</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="90550125">
+          <groundspeak:date>2009-11-15T21:07:58Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1636648">yvestourigny</groundspeak:finder>
+          <groundspeak:text encoded="False">Grabbed it with my boys on a warm, rainy November day hike.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="88974142">
+          <groundspeak:date>2009-10-30T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1803333">Duffy73</groundspeak:finder>
+          <groundspeak:text encoded="False">Nice big cache.  Tough scramble down.  TFTC</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="88957642">
+          <groundspeak:date>2009-10-30T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="2025004">P Roman</groundspeak:finder>
+          <groundspeak:text encoded="False">Grabbed this cache with Duffy73 this morning.  Rather tricky to get to as we parked in a residential area and made our way  across the parkway and bushwacked our way there.  Once at GZ, it was an easy find.  TFTC!  </groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="79037014">
+          <groundspeak:date>2009-07-30T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="211481">JohnMc</groundspeak:finder>
+          <groundspeak:text encoded="False">I made a short dash across the parkway at rush hour and as I got to within 30m of the cache I came across a large recent mudslide which has eroded the hillside. I thought the cache would have been swept away but it has been spared by a few meters. I have had a large traveller to drop off for a couple of months now and the size of this container was perfect. With the popularity of micro containers these days, this was a refreshing find. Thanks!!</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="77898635">
+          <groundspeak:date>2009-07-21T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1918539">maddy82</groundspeak:finder>
+          <groundspeak:text encoded="False">I decided to get this cache with my husband today, during his lunch hour. It turned out to be quite the bushwhack, complete with steep slippery terrain and spiky weeds. Got to a steep drop off and decided to go down the hill on my butt; it turned out to be the wrong way down, so we had to climb back up the slippery slope. Made our way down an easier slope and saw the cache from about 15m away. Took a TB and signed the log. Both of us left with muddy bums. Good thing he was working from home today, as he couldn't go into work looking like that. [:D] TFTC and the little lunch-time adventure!
+</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="75449627">
+          <groundspeak:date>2009-06-28T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="2308722">badminton1597</groundspeak:finder>
+          <groundspeak:text encoded="False">Nice big container.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="74741727">
+          <groundspeak:date>2009-06-20T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1289340">Weathervane</groundspeak:finder>
+          <groundspeak:text encoded="False">Parked on the side of the road as the cache did not appear to be very far in the vegetation. As I was walking towards GZ, I came across a very steep hole, no doubt the inspiration for the cache name. I would not recommend finding this cache at night for this reason. I walked along the edge and after slipping and sliding down the slope, I met the cache head on. This is another cache that is unlikely to be muggled. TNLN TFTCSL </groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="74124105">
+          <groundspeak:date>2009-06-14T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="2399864">IndianaJenn</groundspeak:finder>
+          <groundspeak:text encoded="False">Lots of bushwhacking for this one!
+huge container.
+T-Darth Vader Pez
+L- musical spinny wheel</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="72659431">
+          <groundspeak:date>2009-05-31T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="360092">3-Bearss</groundspeak:finder>
+          <groundspeak:text encoded="False">This is one Big O cache ... TFTF [:)]</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="69838016">
+          <groundspeak:date>2009-05-03T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1831986">guydes</groundspeak:finder>
+          <groundspeak:text encoded="False">No 1058  2/16  Trouvé en solo</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="68707206">
+          <groundspeak:date>2009-04-23T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1041312">GeoAventuriers</groundspeak:finder>
+          <groundspeak:text encoded="False">Found it today....the hardest part of doing this cache was trying to cross the parkway!!!
+
+TNLNSL
+
+TFTC!!!</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="68037663">
+          <groundspeak:date>2009-04-13T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1803627">teamsuper</groundspeak:finder>
+          <groundspeak:text encoded="False">TFTC</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="67288080">
+          <groundspeak:date>2009-04-11T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1391641">cambold</groundspeak:finder>
+          <groundspeak:text encoded="False">We found the cache without too much difficult although the trail followed from Cromwell St. was a little slimy and muddy in places. It was fun finding a large cache for a change. The cache was in good shape with the lid on tight. We left it the same way.
+T   Milenium keepsake
+L   Baseball glove
+TFTC</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="67210023">
+          <groundspeak:date>2009-04-08T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Write note</groundspeak:type>
+          <groundspeak:finder id="646682">Falach-fead</groundspeak:finder>
+          <groundspeak:text encoded="False">Stopped to have a llok for this while night caching and sppoked a deer.  Wandered into the woods and stumble around but didn't get within 100 ft of the cache before deciding that daylight would work better.  Saw lots of beaver cuttings in the area too.</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="66392193">
+          <groundspeak:date>2009-04-03T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1053346">Route Explorers</groundspeak:finder>
+          <groundspeak:text encoded="False">A quick find @0740 (#230) en route to work this morning. My 60 CSx took longer than usual to track the satellites while I stood beside the Parkway - I would have been standing there all day with old Etrex Legend! [;)] The lid of the container was not fully closed, the handle to the bucket on the ground next to it. (Surprisingly, there was still a fair bit of snow on the banks of Sawmill Creek.) There was no water in the cache, but it did smell musty. I left a new Canada Post stamp kit in a Ziploc bag - I took nothing. As I logged my find, I saw the first mosquito of the season [:O] - damn! I CITO'd a chip bag that was lying next to the container and I placed some natural camo around and on top  of the container so it didn't look so obvious. 
+
+Route Explorers</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="56645128">
+          <groundspeak:date>2008-11-06T20:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1954381">amywill</groundspeak:finder>
+          <groundspeak:text encoded="False">Great cache. I had a great time entertaining passing cars during rush hour! :) But next time I won't wear black lululemon pants.
+
+Left a Stuffed Tiger
+
+Amy &amp; Will</groundspeak:text>
+        </groundspeak:log>
+        <groundspeak:log id="55958929">
+          <groundspeak:date>2008-10-24T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Found it</groundspeak:type>
+          <groundspeak:finder id="1168278">TomT5454</groundspeak:finder>
+          <groundspeak:text encoded="False">Needed a big cache to hold the travel bug I planted -- it came with a plaster plaque. Picked it up in Ireland, carried it to China, home to Ottawa, to Geneva, and back to Ottawa because I didn't make it to the one large cache I know in Geneva.
+
+Looked for the UK tb but didn't find it.
+
+Quite the little ravine! The 3 rating for terrain is understandable once you get there.</groundspeak:text>
+        </groundspeak:log>
+      </groundspeak:logs>
+      <groundspeak:travelbugs>
+        <groundspeak:travelbug id="59466" ref="TBE84A">
+          <groundspeak:name>UK - Maggie</groundspeak:name>
+        </groundspeak:travelbug>
+        <groundspeak:travelbug id="922739" ref="TB1DQZP">
+          <groundspeak:name>Blender Goodies</groundspeak:name>
+        </groundspeak:travelbug>
+      </groundspeak:travelbugs>
+    </groundspeak:cache>
+  </wpt>
+</gpx>

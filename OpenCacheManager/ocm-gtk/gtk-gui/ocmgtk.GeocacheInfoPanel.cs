@@ -85,7 +85,9 @@ namespace ocmgtk {
         
         private Gtk.Expander hintExpander;
         
-        private Gtk.Label hintLabel;
+        private Gtk.ScrolledWindow GtkScrolledWindow;
+        
+        private Gtk.TextView hintField;
         
         private Gtk.Label GtkLabel21;
         
@@ -441,12 +443,18 @@ namespace ocmgtk {
             this.hintExpander.CanFocus = true;
             this.hintExpander.Name = "hintExpander";
             // Container child hintExpander.Gtk.Container+ContainerChild
-            this.hintLabel = new Gtk.Label();
-            this.hintLabel.Name = "hintLabel";
-            this.hintLabel.Xpad = 5;
-            this.hintLabel.Ypad = 5;
-            this.hintLabel.Xalign = 0F;
-            this.hintExpander.Add(this.hintLabel);
+            this.GtkScrolledWindow = new Gtk.ScrolledWindow();
+            this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+            this.GtkScrolledWindow.ShadowType = ((Gtk.ShadowType)(1));
+            // Container child GtkScrolledWindow.Gtk.Container+ContainerChild
+            this.hintField = new Gtk.TextView();
+            this.hintField.CanFocus = true;
+            this.hintField.Name = "hintField";
+            this.hintField.Editable = false;
+            this.hintField.CursorVisible = false;
+            this.hintField.AcceptsTab = false;
+            this.GtkScrolledWindow.Add(this.hintField);
+            this.hintExpander.Add(this.GtkScrolledWindow);
             this.GtkLabel21 = new Gtk.Label();
             this.GtkLabel21.Name = "GtkLabel21";
             this.GtkLabel21.LabelProp = Mono.Unix.Catalog.GetString("<b>Hint</b>");
@@ -454,10 +462,9 @@ namespace ocmgtk {
             this.GtkLabel21.UseUnderline = true;
             this.hintExpander.LabelWidget = this.GtkLabel21;
             this.infoPanelVBOX.Add(this.hintExpander);
-            Gtk.Box.BoxChild w36 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.hintExpander]));
-            w36.Position = 7;
-            w36.Expand = false;
-            w36.Fill = false;
+            Gtk.Box.BoxChild w37 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.hintExpander]));
+            w37.Position = 7;
+            w37.Expand = false;
             // Container child infoPanelVBOX.Gtk.Box+BoxChild
             this.expander2 = new Gtk.Expander(null);
             this.expander2.CanFocus = true;
@@ -480,9 +487,9 @@ namespace ocmgtk {
             this.GtkLabel.UseUnderline = true;
             this.expander2.LabelWidget = this.GtkLabel;
             this.infoPanelVBOX.Add(this.expander2);
-            Gtk.Box.BoxChild w39 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.expander2]));
-            w39.Position = 8;
-            w39.Expand = false;
+            Gtk.Box.BoxChild w40 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.expander2]));
+            w40.Position = 8;
+            w40.Expand = false;
             // Container child infoPanelVBOX.Gtk.Box+BoxChild
             this.descriptionBox = new Gtk.VBox();
             this.descriptionBox.Name = "descriptionBox";
@@ -496,21 +503,21 @@ namespace ocmgtk {
             this.label18.LabelProp = Mono.Unix.Catalog.GetString("<b>Description</b>");
             this.label18.UseMarkup = true;
             this.descriptionBox.Add(this.label18);
-            Gtk.Box.BoxChild w40 = ((Gtk.Box.BoxChild)(this.descriptionBox[this.label18]));
-            w40.Position = 0;
-            w40.Expand = false;
-            w40.Fill = false;
+            Gtk.Box.BoxChild w41 = ((Gtk.Box.BoxChild)(this.descriptionBox[this.label18]));
+            w41.Position = 0;
+            w41.Expand = false;
+            w41.Fill = false;
             // Container child descriptionBox.Gtk.Box+BoxChild
             this.descScroll = new Gtk.ScrolledWindow();
             this.descScroll.CanFocus = true;
             this.descScroll.Name = "descScroll";
             this.descScroll.ShadowType = ((Gtk.ShadowType)(1));
             this.descriptionBox.Add(this.descScroll);
-            Gtk.Box.BoxChild w41 = ((Gtk.Box.BoxChild)(this.descriptionBox[this.descScroll]));
-            w41.Position = 1;
+            Gtk.Box.BoxChild w42 = ((Gtk.Box.BoxChild)(this.descriptionBox[this.descScroll]));
+            w42.Position = 1;
             this.infoPanelVBOX.Add(this.descriptionBox);
-            Gtk.Box.BoxChild w42 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.descriptionBox]));
-            w42.Position = 9;
+            Gtk.Box.BoxChild w43 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.descriptionBox]));
+            w43.Position = 9;
             this.Add(this.infoPanelVBOX);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

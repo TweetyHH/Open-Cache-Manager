@@ -33,6 +33,8 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="Mono.Posix" />
+    <Reference Include="System.Data" />
+    <Reference Include="Mono.Data.SqliteClient" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -45,6 +47,9 @@
     <Compile Include="CacheStore.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="OLMarkerGenerator.cs" />
+    <Compile Include="GPXWriter.cs" />
+    <Compile Include="TravelBug.cs" />
+    <Compile Include="WaypointEnumerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -54,7 +54,7 @@ namespace ocmengine
 				builder.Append("-12,-12");			
 				builder.Append("\n");
 			}
-			FileStream markerFile = new FileStream("../web/markers.txt", FileMode.Create);
+			FileStream markerFile = new FileStream("./web/markers.txt", FileMode.Create);
 			StreamWriter writer = new StreamWriter(markerFile, Encoding.UTF8);
 			writer.Write(builder.ToString());
 			writer.Close();			
@@ -87,7 +87,7 @@ namespace ocmengine
 				builder.Append("-12,-12");			
 				builder.Append("\n");
 			}
-			FileStream markerFile = new FileStream("../web/childpts.txt", FileMode.Create);
+			FileStream markerFile = new FileStream("./web/childpts.txt", FileMode.Create);
 			StreamWriter writer = new StreamWriter(markerFile, Encoding.UTF8);
 			writer.Write(builder.ToString());
 			writer.Close();			
@@ -98,19 +98,19 @@ namespace ocmengine
 			switch (type)
 			{
 				case Geocache.CacheType.TRADITIONAL:
-					return "../icons/32x32/traditional.png";
+					return "./icons/24x24/traditional.png";
 				case Geocache.CacheType.MYSTERY:
-					return "../icons/32x32/unknown.png";
+					return "./icons/24x24/unknown.png";
 				case Geocache.CacheType.MULTI:
-					return "../icons/32x32/multi.png";
+					return "./icons/24x24/multi.png";
 				case Geocache.CacheType.LETTERBOX:
-					return "../icons/32x32/letterbox.png";
+					return "./icons/24x24/letterbox.png";
 				case Geocache.CacheType.EARTH:
-					return "../icons/32x32/earth.png";
+					return "./icons/24x24/earth.png";
 				case Geocache.CacheType.CITO:
-					return "../icons/32x32/cito.png";
+					return "./icons/24x24/cito.png";
 				default:
-					return "../icons/32x32/unknown.png";
+					return "./icons/24x24/unknown.png";
 			}
 		}
 		

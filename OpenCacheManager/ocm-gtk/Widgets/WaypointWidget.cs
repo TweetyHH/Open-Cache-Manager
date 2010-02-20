@@ -16,7 +16,6 @@
 using System;
 using System.Collections.Generic;
 using Gtk;
-using Gecko;
 using ocmengine;
 using Mono.Unix;
 
@@ -37,11 +36,6 @@ namespace ocmgtk
 			BuildWPTList();
 			m_mon = UIMonitor.getInstance();
 			this.ShowAll();
-		}
-		
-		public void InitMap()
-		{
-			//m_map.LoadUrl("file://" + System.Environment.CurrentDirectory + "/../web/wpt_viewer.html");
 		}
 		
 		public void BuildWPTList()
@@ -65,7 +59,7 @@ namespace ocmgtk
 			wpt_Lat.SetCellDataFunc(coord_cell, new TreeCellDataFunc(RenderCoord));
 			
 			wptView.Model = m_childPoints;
-			//wptView.Selection.Changed += OnSelectionChanged;
+			wptView.Selection.Changed += OnSelectionChanged;
 			
 			this.ShowAll();
 					
@@ -74,7 +68,7 @@ namespace ocmgtk
 				
 		private void OnSelectionChanged(object sender, EventArgs e) 
 		{
-				/*TreeIter iter;
+				TreeIter iter;
                 TreeModel model;
  
 			    if (((TreeSelection)sender).GetSelected (out model, out iter))
@@ -82,8 +76,8 @@ namespace ocmgtk
 
 					Waypoint val = (Waypoint) model.GetValue (iter, 0);
 					if (val != null)
-                      		m_map.LoadUrl("javascript:zoomToPoint(" + val.Lat + "," + val.Lon + ")");
-				}*/
+                      		m_mon.ZoomToPoint(val.Lat, val.Lon);
+				}
                 
 		}
 		

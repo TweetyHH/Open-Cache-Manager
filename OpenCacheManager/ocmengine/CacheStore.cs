@@ -14,6 +14,8 @@
 //    limitations under the License.
 
 using System;
+using System.Data;
+using Mono.Data.SqliteClient;
 using System.Collections.Generic;
 
 namespace ocmengine
@@ -22,7 +24,11 @@ namespace ocmengine
 	
 	public class CacheStore
 	{
+		const string SQL_CONNECT = "URI=file:/home/campbelk/.ocm/data.db,version=3";
+		const string INSERT_WPT = "REPLACE INTO WAYPOINT (name,lat,lon,url,urlname,desc,symbol,type,time) VALUES (" +
+							"'{0}',{1},{2},'{3}','{4}','{5}','{6}','{7}','{8}')";
 		
+		const string GET_WPTS = "SELECT FROM WAYPOINT name, lat, lon, url, urlname, desc, symbol, type, time";
 		Dictionary<string, Geocache> m_caches; // TEMPORARY STORAGE
 		Dictionary<string, Waypoint> m_waypoint;
 		
@@ -53,6 +59,7 @@ namespace ocmengine
 				AddCache(point as Geocache);
 			else
 				m_waypoint.Add(point.Name, point);
+			SaveWaypointToDB(point);
 		}
 		
 		public Geocache getCache(string name)
@@ -60,10 +67,6 @@ namespace ocmengine
 			return m_caches[name];
 		}
 		
-		public Waypoint getWayoint(string name)
-		{
-			return m_waypoint[name];
-		}
 		
 		public IEnumerator<Geocache> getCacheEnumerator()
 		{
@@ -89,6 +92,22 @@ namespace ocmengine
 				}
 			}
 			return pts;
+		}
+		
+		private void SaveWaypointToDB(Waypoint pt)
+		{
+			IDbConnection conn = (IDbConnection) new SqliteConnection(SQL_CONNECT);
+			conn.Open();
+			IDbCommand cmd = conn.CreateCommand();
+			cmd.CommandText = String.Format(INSERT_WPT, SQLEscape(pt.Name), pt.Lat, pt.Lon, pt.URL, SQLEscape(pt.URLName), SQLEscape(pt.Desc), pt.Symbol, pt.Type, pt.Time.ToString("o"));
+			System.Console.WriteLine(cmd.CommandText);
+			cmd.ExecuteNonQuery();
+			conn.Close();
+		}
+		
+		private static String SQLEscape(String unescapedString)
+		{
+			return unescapedString.Replace("'", "''");
 		}
 	}		
 }

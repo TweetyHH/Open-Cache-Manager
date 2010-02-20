@@ -28,7 +28,9 @@ public partial class MainWindow: Gtk.Window
 	   	m_monitor.GeoPane = cachePane;
 		m_monitor.StatusBar = statusbar1;	
 		m_monitor.Main = this;
-		cacheList.UpdateCountStatus();
+		m_monitor.Map = mapwidget;
+		mapwidget.LoadUrl("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html");
+		m_monitor.UpdateCacheCountStatus();
 	}
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -116,6 +118,29 @@ public partial class MainWindow: Gtk.Window
 
 	protected virtual void OnStopActionActivated (object sender, System.EventArgs e)
 	{
+	}
+
+	protected virtual void OnSave (object sender, System.EventArgs e)
+	{
+		
+		FileChooserDialog dlg = new FileChooserDialog(Catalog.GetString("Save GPX File"), 
+		                                              this, FileChooserAction.Save, 
+		                                              Catalog.GetString("Cancel"), ResponseType.Cancel, 
+		                                              Catalog.GetString("Open"), ResponseType.Accept);
+		FileFilter filter = new FileFilter();
+		filter.Name = "GPX Files";
+		filter.AddMimeType("text/xml");
+		filter.AddMimeType("application/xml");
+		filter.AddPattern("*.gpx");
+		dlg.AddFilter(filter);
+		
+		if (dlg.Run() == (int) ResponseType.Accept)
+		{
+			GPXWriter writer = new GPXWriter();
+			writer.WriteGPXFile(dlg.Filename, m_monitor.GetVisibleCacheList());
+		}
+		dlg.Destroy();
+		this.ShowAll();
 	}
 	
 	/*

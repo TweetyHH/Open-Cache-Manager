@@ -14,31 +14,43 @@
 //    limitations under the License.
 
 using System;
-using Gtk;
+using System.Xml;
 
-namespace ocmgtk
+namespace ocmengine
 {
 
 
-	[System.ComponentModel.ToolboxItem(true)]
-	public partial class HTMLWidget : Gtk.Bin
+	public class TravelBug
 	{
-		WebKit.WebView m_view;
+		private string m_id;
+		private string m_ref;
+		private string m_name;
 		
-		public HTMLWidget ()
+		public String ID
 		{
-			this.Build ();
-			m_view = new WebKit.WebView();
-			ScrolledWindow win = new ScrolledWindow();
-			win.Add(m_view);
-			this.Add(win);
-			this.ShowAll();
+			get { return m_id;}
+			set { m_id = value;}
 		}
 		
-		public string HTML
+		public String Ref
 		{
-			//set { int i=1;}
-			set { m_view.LoadHtmlString(value, "http://www.geocaching.com");}
+			get { return m_ref;}
+			set { m_ref = value;}
+		}
+		
+		public String Name
+		{
+			get { return m_name;}
+			set { m_name = value;}
+		}
+		
+		public void WriteToGPX(XmlWriter writer)
+		{
+			writer.WriteStartElement("travelbug");
+			writer.WriteAttributeString("id", ID);
+			writer.WriteAttributeString("ref", Ref);
+			writer.WriteElementString("name", Name);
+			writer.WriteEndElement();
 		}
 	}
 }

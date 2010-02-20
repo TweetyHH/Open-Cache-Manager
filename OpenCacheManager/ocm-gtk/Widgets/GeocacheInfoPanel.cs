@@ -35,6 +35,7 @@ namespace ocmgtk
 		private static Pixbuf OTHERICON = new Pixbuf("./icons/scalable/other.svg", 96, 96);
 		private static Pixbuf EARTHICON = new Pixbuf("./icons/scalable/earth.svg", 96, 96);
 		private static Pixbuf CITOICON = new Pixbuf("./icons/scalable/cito.svg", 96, 96);
+		private ListStore m_travelbugs = new ListStore(typeof(string), typeof(string));
 		
 		UIMonitor m_monitor;	
 		HTMLWidget descriptionWidget;
@@ -47,6 +48,15 @@ namespace ocmgtk
 			descriptionWidget = new HTMLWidget();
 			descScroll.Add(descriptionWidget);
 			this.ShowAll();
+		}
+		
+		private void PopulateTBList(Geocache cache)
+		{
+			m_travelbugs.Clear();
+			foreach(TravelBug bug in cache.TravelBugs)
+			{
+				
+			}
 		}
 		
 		public void updateCacheInfo()
@@ -65,7 +75,17 @@ namespace ocmgtk
 			setTerrain(cache.Terrain);
 			setCacheIcon(cache.TypeOfCache);
 			dateLabel.Text = cache.Time.ToShortDateString();
-			hintLabel.Text = cache.Hint;
+			if (String.IsNullOrEmpty(cache.Hint))
+			{
+				hintExpander.Sensitive = false;
+				hintExpander.Expanded = false;
+			}
+			else
+			{                          
+				hintField.Buffer.Text = cache.Hint;
+				hintExpander.Sensitive = true;
+				hintExpander.Expanded = false;
+			}
 			setCacheType(cache.TypeOfCache);
 			placedByLabel.Text = cache.PlacedBy;
 			cacheSizeLabel.Text = cache.Container;

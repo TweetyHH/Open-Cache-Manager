@@ -11,6 +11,7 @@
  implied. See the License for the specific language governing permissions and limitations under the License. 
 */
 using System;
+using System.Xml;
 
 namespace ocmengine
 {
@@ -22,6 +23,8 @@ namespace ocmengine
 		string m_logged_by;
 		string m_logmessage;
 		string m_status;
+		string m_finder_id;
+		bool m_encoded;
 		
 		public DateTime LogDate
 		{
@@ -35,6 +38,8 @@ namespace ocmengine
 			set { m_logged_by = value;}
 		}
 		
+		
+		
 		public string LogMessage
 		{
 			get { return m_logmessage;}
@@ -45,6 +50,18 @@ namespace ocmengine
 		{
 			 get { return m_status;}
 			 set { m_status = value;}
+		}
+		
+		public string FinderID
+		{
+			get { return m_finder_id;}
+			set { m_finder_id = value;}
+		}
+		
+		public bool Encoded
+		{
+			get { return m_encoded;}
+			set { m_encoded = value;}
 		}
 				
 		
@@ -65,6 +82,22 @@ namespace ocmengine
 			logHTML += m_logmessage;
 			logHTML += "<br/><br/>";
 			return logHTML;
+		}
+		
+		public void WriteToGPX(XmlWriter writer)
+		{
+			writer.WriteStartElement("log");
+			writer.WriteElementString("date", this.LogDate.ToString("o"));
+			writer.WriteElementString("type", this.LogStatus);
+			writer.WriteStartElement("finder");
+			writer.WriteAttributeString("id", FinderID);
+			writer.WriteString(LoggedBy);
+			writer.WriteEndElement();
+			writer.WriteStartElement("text");
+			writer.WriteAttributeString("encoded", Encoded.ToString());
+			writer.WriteString(LogMessage);
+			writer.WriteEndElement();			
+			writer.WriteEndElement();
 		}
 	}
 }

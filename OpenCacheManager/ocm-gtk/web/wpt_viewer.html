@@ -44,8 +44,10 @@ body {
  
             var layerTah = new OpenLayers.Layer.OSM.Osmarender("Tiles@Home");
 
+	    var caches = new OpenLayers.Layer.Text("All Caches", { location: "markers.txt", projection: map.displayProjection});
+
  
-            map.addLayers([layerMapnik,layerTah]);
+            map.addLayers([layerMapnik,layerTah, caches]);
             map.addControl(new OpenLayers.Control.LayerSwitcher());
  
             var lonLat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
@@ -54,11 +56,10 @@ body {
 
 	function loadMarkers(lat, lon)
 	{
-		
 	    if (pois)	    
 		pois.destroy();    
 	    pois = new OpenLayers.Layer.Text( "Waypoints",
-                    { location:"./childpts.txt",
+                    { location:"childpts.txt",
                       projection: map.displayProjection
                     });
             map.addLayer(pois);

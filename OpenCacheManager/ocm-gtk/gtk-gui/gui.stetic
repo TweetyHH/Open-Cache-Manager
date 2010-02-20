@@ -6,7 +6,6 @@
   </configuration>
   <import>
     <widget-library name="webkit-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
-    <widget-library name="gecko-sharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ccf7d78a55e9f021" />
     <widget-library name="gtkhtml-sharp, Version=3.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bind/ocm-gtk.exe" internal="true" />
   </import>
@@ -39,11 +38,6 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Help</property>
         <property name="ShortLabel" translatable="yes">Help</property>
-      </action>
-      <action id="missingImageAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes" />
-        <property name="StockId">gtk-missing-image</property>
       </action>
       <action id="openAction">
         <property name="Type">Action</property>
@@ -135,11 +129,6 @@
         <property name="Active">True</property>
         <signal name="Toggled" handler="OnToggleFound" />
       </action>
-      <action id="saveAsAction1">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes" />
-        <property name="StockId">gtk-save-as</property>
-      </action>
       <action id="printAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
@@ -204,6 +193,12 @@
         <property name="ShortLabel" translatable="yes">_Delete</property>
         <property name="StockId">gtk-delete</property>
       </action>
+      <action id="saveAsAction1">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-save-as</property>
+        <signal name="Activated" handler="OnSave" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">Open Cache Manager</property>
@@ -218,7 +213,6 @@
             <node name="mainmenubar" type="Menubar">
               <node type="Menu" action="FileAction">
                 <node type="Menuitem" action="OpenAction" />
-                <node type="Menuitem" action="ExportAction" />
                 <node type="Separator" />
                 <node type="Menuitem" action="QuitAction" />
               </node>
@@ -277,7 +271,7 @@
           <widget class="Gtk.HPaned" id="hSplitPane">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="Position">398</property>
+            <property name="Position">400</property>
             <child>
               <widget class="ocmgtk.CacheList" id="cacheList">
                 <property name="MemberName" />
@@ -291,7 +285,7 @@
               <widget class="Gtk.VPaned" id="vpaned1">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Position">441</property>
+                <property name="Position">600</property>
                 <child>
                   <widget class="ocmgtk.GeoCachePane" id="cachePane">
                     <property name="MemberName" />
@@ -302,7 +296,7 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="ocmgtk.BrowserWidget" id="browserwidget1">
+                  <widget class="ocmgtk.BrowserWidget" id="mapwidget">
                     <property name="MemberName" />
                     <property name="Events">ButtonPressMask</property>
                   </widget>
@@ -777,11 +771,20 @@
             <property name="MemberName" />
             <property name="CanFocus">True</property>
             <child>
-              <widget class="Gtk.Label" id="hintLabel">
+              <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
                 <property name="MemberName" />
-                <property name="Xpad">5</property>
-                <property name="Ypad">5</property>
-                <property name="Xalign">0</property>
+                <property name="ShadowType">In</property>
+                <child>
+                  <widget class="Gtk.TextView" id="hintField">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="ShowScrollbars">True</property>
+                    <property name="Editable">False</property>
+                    <property name="CursorVisible">False</property>
+                    <property name="AcceptsTab">False</property>
+                    <property name="Text" translatable="yes" />
+                  </widget>
+                </child>
               </widget>
             </child>
             <child>
@@ -798,9 +801,8 @@
           </widget>
           <packing>
             <property name="Position">7</property>
-            <property name="AutoSize">True</property>
+            <property name="AutoSize">False</property>
             <property name="Expand">False</property>
-            <property name="Fill">False</property>
           </packing>
         </child>
         <child>
@@ -966,7 +968,6 @@
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
-    <property name="HasSeparator">False</property>
     <child internal-child="VBox">
       <widget class="Gtk.VBox" id="dialog1_VBox">
         <property name="MemberName" />
@@ -1328,7 +1329,6 @@
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
-    <property name="HasSeparator">False</property>
     <child internal-child="VBox">
       <widget class="Gtk.VBox" id="dialog1_VBox">
         <property name="MemberName" />
@@ -1379,6 +1379,13 @@
           </packing>
         </child>
       </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Bin" id="ocmgtk.HTMLWidget" design-size="300 300">
+    <property name="MemberName" />
+    <property name="Visible">False</property>
+    <child>
+      <placeholder />
     </child>
   </widget>
 </stetic-interface>

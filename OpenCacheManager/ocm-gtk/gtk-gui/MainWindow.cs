@@ -24,8 +24,6 @@ public partial class MainWindow {
     
     private Gtk.Action HelpAction;
     
-    private Gtk.Action missingImageAction;
-    
     private Gtk.Action openAction;
     
     private Gtk.Action saveAction;
@@ -56,8 +54,6 @@ public partial class MainWindow {
     
     private Gtk.ToggleAction ShowFoundCachesAction;
     
-    private Gtk.Action saveAsAction1;
-    
     private Gtk.Action printAction;
     
     private Gtk.Action findAction;
@@ -80,6 +76,8 @@ public partial class MainWindow {
     
     private Gtk.Action DeleteAction;
     
+    private Gtk.Action saveAsAction1;
+    
     private Gtk.VBox vbox1;
     
     private Gtk.MenuBar mainmenubar;
@@ -94,7 +92,7 @@ public partial class MainWindow {
     
     private ocmgtk.GeoCachePane cachePane;
     
-    private ocmgtk.BrowserWidget browserwidget1;
+    private ocmgtk.BrowserWidget mapwidget;
     
     private Gtk.Statusbar statusbar1;
     
@@ -118,8 +116,6 @@ public partial class MainWindow {
         this.HelpAction = new Gtk.Action("HelpAction", Mono.Unix.Catalog.GetString("Help"), null, null);
         this.HelpAction.ShortLabel = Mono.Unix.Catalog.GetString("Help");
         w1.Add(this.HelpAction, null);
-        this.missingImageAction = new Gtk.Action("missingImageAction", null, null, "gtk-missing-image");
-        w1.Add(this.missingImageAction, null);
         this.openAction = new Gtk.Action("openAction", null, null, "gtk-open");
         w1.Add(this.openAction, null);
         this.saveAction = new Gtk.Action("saveAction", null, null, "gtk-save");
@@ -164,8 +160,6 @@ public partial class MainWindow {
         this.ShowFoundCachesAction.Active = true;
         this.ShowFoundCachesAction.ShortLabel = Mono.Unix.Catalog.GetString("Show Found Caches");
         w1.Add(this.ShowFoundCachesAction, null);
-        this.saveAsAction1 = new Gtk.Action("saveAsAction1", null, null, "gtk-save-as");
-        w1.Add(this.saveAsAction1, null);
         this.printAction = new Gtk.Action("printAction", null, null, "gtk-print");
         w1.Add(this.printAction, null);
         this.findAction = new Gtk.Action("findAction", null, null, "gtk-find");
@@ -198,6 +192,8 @@ public partial class MainWindow {
         this.DeleteAction = new Gtk.Action("DeleteAction", Mono.Unix.Catalog.GetString("_Delete"), null, "gtk-delete");
         this.DeleteAction.ShortLabel = Mono.Unix.Catalog.GetString("_Delete");
         w1.Add(this.DeleteAction, null);
+        this.saveAsAction1 = new Gtk.Action("saveAsAction1", null, null, "gtk-save-as");
+        w1.Add(this.saveAsAction1, null);
         this.UIManager.InsertActionGroup(w1, 0);
         this.AddAccelGroup(this.UIManager.AccelGroup);
         this.Name = "MainWindow";
@@ -207,7 +203,7 @@ public partial class MainWindow {
         this.vbox1 = new Gtk.VBox();
         this.vbox1.Name = "vbox1";
         // Container child vbox1.Gtk.Box+BoxChild
-        this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='OpenAction' action='OpenAction'/><menuitem name='ExportAction' action='ExportAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'/><menu name='ViewAction' action='ViewAction'><menuitem name='ShowFoundCachesAction' action='ShowFoundCachesAction'/><menuitem name='ShowUnavailableCachesAction' action='ShowUnavailableCachesAction'/><menuitem name='ShowArchivedCachesAction' action='ShowArchivedCachesAction'/><menuitem name='ShowCachesPlacedByMeAction' action='ShowCachesPlacedByMeAction'/><separator/><menuitem name='FilterAction' action='FilterAction'/><menuitem name='ClearAllFiltersAction' action='ClearAllFiltersAction'/></menu><menu name='SearchAction' action='SearchAction'/><menu name='CacheAction' action='CacheAction'><menuitem name='ViewOnlineAction' action='ViewOnlineAction'/><separator/><menuitem name='DeleteAction' action='DeleteAction'/></menu><menu name='GPSAction' action='GPSAction'/><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
+        this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='OpenAction' action='OpenAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'/><menu name='ViewAction' action='ViewAction'><menuitem name='ShowFoundCachesAction' action='ShowFoundCachesAction'/><menuitem name='ShowUnavailableCachesAction' action='ShowUnavailableCachesAction'/><menuitem name='ShowArchivedCachesAction' action='ShowArchivedCachesAction'/><menuitem name='ShowCachesPlacedByMeAction' action='ShowCachesPlacedByMeAction'/><separator/><menuitem name='FilterAction' action='FilterAction'/><menuitem name='ClearAllFiltersAction' action='ClearAllFiltersAction'/></menu><menu name='SearchAction' action='SearchAction'/><menu name='CacheAction' action='CacheAction'><menuitem name='ViewOnlineAction' action='ViewOnlineAction'/><separator/><menuitem name='DeleteAction' action='DeleteAction'/></menu><menu name='GPSAction' action='GPSAction'/><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
         this.mainmenubar = ((Gtk.MenuBar)(this.UIManager.GetWidget("/mainmenubar")));
         this.mainmenubar.Name = "mainmenubar";
         this.vbox1.Add(this.mainmenubar);
@@ -231,11 +227,9 @@ public partial class MainWindow {
         this.hSplitPane = new Gtk.HPaned();
         this.hSplitPane.CanFocus = true;
         this.hSplitPane.Name = "hSplitPane";
-        this.hSplitPane.Position = 398;
+        this.hSplitPane.Position = 400;
         // Container child hSplitPane.Gtk.Paned+PanedChild
-        this.cacheList = new ocmgtk.CacheList();
-        this.cacheList.Events = ((Gdk.EventMask)(256));
-        this.cacheList.Name = "cacheList";
+        this.cacheList = null;
         this.hSplitPane.Add(this.cacheList);
         Gtk.Paned.PanedChild w4 = ((Gtk.Paned.PanedChild)(this.hSplitPane[this.cacheList]));
         w4.Resize = false;
@@ -243,19 +237,15 @@ public partial class MainWindow {
         this.vpaned1 = new Gtk.VPaned();
         this.vpaned1.CanFocus = true;
         this.vpaned1.Name = "vpaned1";
-        this.vpaned1.Position = 441;
+        this.vpaned1.Position = 600;
         // Container child vpaned1.Gtk.Paned+PanedChild
-        this.cachePane = new ocmgtk.GeoCachePane();
-        this.cachePane.Events = ((Gdk.EventMask)(256));
-        this.cachePane.Name = "cachePane";
+        this.cachePane = null;
         this.vpaned1.Add(this.cachePane);
         Gtk.Paned.PanedChild w5 = ((Gtk.Paned.PanedChild)(this.vpaned1[this.cachePane]));
         w5.Resize = false;
         // Container child vpaned1.Gtk.Paned+PanedChild
-        this.browserwidget1 = new ocmgtk.BrowserWidget();
-        this.browserwidget1.Events = ((Gdk.EventMask)(256));
-        this.browserwidget1.Name = "browserwidget1";
-        this.vpaned1.Add(this.browserwidget1);
+        this.mapwidget = null;
+        this.vpaned1.Add(this.mapwidget);
         this.hSplitPane.Add(this.vpaned1);
         this.vbox1.Add(this.hSplitPane);
         Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.vbox1[this.hSplitPane]));
@@ -287,5 +277,6 @@ public partial class MainWindow {
         this.ShowFoundCachesAction.Toggled += new System.EventHandler(this.OnToggleFound);
         this.MapAction1.Activated += new System.EventHandler(this.OnMapClick);
         this.ViewOnlineAction.Activated += new System.EventHandler(this.OnViewOnline);
+        this.saveAsAction1.Activated += new System.EventHandler(this.OnSave);
     }
 }

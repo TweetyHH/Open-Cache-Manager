@@ -30,7 +30,6 @@ namespace ocmgtk {
             // Widget ocmgtk.OCMAboutDialog
             this.Name = "ocmgtk.OCMAboutDialog";
             this.WindowPosition = ((Gtk.WindowPosition)(4));
-            this.HasSeparator = false;
             // Internal child ocmgtk.OCMAboutDialog.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";

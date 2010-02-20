@@ -79,6 +79,19 @@ namespace ocmgtk
 			
 		}
 		
+		public List<Geocache> getVisibleCaches()
+		{
+			List<Geocache> caches = new List<Geocache>();
+			TreeIter itr = new TreeIter();
+			m_ListSort.GetIterFirst(out itr);
+			do
+			{
+				caches.Add((Geocache) m_ListSort.GetValue (itr, 0));
+			}
+			while (m_ListSort.IterNext(ref itr));
+			return caches;
+		}
+		
 		public void PopulateList()
 		{
 			m_cacheModel.Clear();
@@ -174,7 +187,7 @@ namespace ocmgtk
 		protected virtual void OnFilterChange (object o, EventArgs args)
 		{
 			m_QuickFilter.Refilter();
-			UpdateCountStatus();
+			m_monitor.UpdateCacheCountStatus();
 		}
 		
 		private int TitleCompare(TreeModel model, TreeIter tia, TreeIter tib)
@@ -242,18 +255,21 @@ namespace ocmgtk
 		{
 			m_showArchived = !m_showArchived;
 			m_QuickFilter.Refilter();
+			m_monitor.UpdateCacheCountStatus();
 		}
 		
 		public void ToggleUnavailableCaches()
 		{
 			m_showUnavailble = !m_showUnavailble;
 			m_QuickFilter.Refilter();
+			m_monitor.UpdateCacheCountStatus();
 		}
 		
 		public void ToggleFoundCaches()
 		{
 			m_showFound = !m_showFound;
 			m_QuickFilter.Refilter();
+			m_monitor.UpdateCacheCountStatus();
 		}
 		
 		public double getDistanceFromHome(Geocache cache)
@@ -261,13 +277,6 @@ namespace ocmgtk
 			return Utilities.calculateDistance(m_monitor.HomeLat, cache.Lat, m_monitor.HomeLon, cache.Lon);
 		}
 		
-		
-		
-		public void UpdateCountStatus()
-		{
-			int totalCaches = 0;
-			m_monitor.setCacheCountStatus(totalCaches);
-		}
 
 		protected virtual void OnFilterButtonClick (object sender, System.EventArgs e)
 		{

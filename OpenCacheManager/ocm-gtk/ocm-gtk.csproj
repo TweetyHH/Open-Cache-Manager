@@ -9,6 +9,7 @@
     <OutputType>Exe</OutputType>
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
+    <RootNamespace>ocmgtk</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,11 +36,11 @@
     <Reference Include="webkit-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745">
       <Package>webkit-sharp-1.0</Package>
     </Reference>
-    <Reference Include="gecko-sharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ccf7d78a55e9f021">
-      <Package>gecko-sharp-2.0</Package>
-    </Reference>
-    <Reference Include="gtkhtml-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gtkhtml-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtkhtml-sharp-3.14</Package>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -70,6 +71,7 @@
     <Compile Include="Dialogs\WaypointDialog.cs" />
     <Compile Include="Widgets\HTMLWidget.cs" />
     <Compile Include="UIMonitor.cs" />
+    <Compile Include="gtk-gui\ocmgtk.HTMLWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
