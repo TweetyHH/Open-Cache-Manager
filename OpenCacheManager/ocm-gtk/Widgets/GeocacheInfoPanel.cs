@@ -24,81 +24,78 @@ namespace ocmgtk
 	{
 		static string START_BIG = "<span font='bold 14'>";
 		static string END_BIG = "</span>";
-		
-		static Pixbuf STAR_ICON = new Pixbuf("./icons/scalable/star.svg",16,16);
-		static Pixbuf ESTAR_ICON = new Pixbuf("./icons/scalable/star_empty.svg", 16, 16);
-		static Pixbuf HSTAR_ICON = new Pixbuf("./icons/scalable/halfstar.svg",16,16);
-		private static Pixbuf TRADICON = new Pixbuf("./icons/scalable/traditional.svg", 96, 96);
-		private static Pixbuf LETTERICON = new Pixbuf("./icons/scalable/letterbox.svg", 96, 96);
-		private static Pixbuf MULTIICON = new Pixbuf("./icons/scalable/multi.svg", 96, 96);
-		private static Pixbuf MYSTERYICON = new Pixbuf("./icons/scalable/unknown.svg", 96, 96);
-		private static Pixbuf OTHERICON = new Pixbuf("./icons/scalable/other.svg", 96, 96);
-		private static Pixbuf EARTHICON = new Pixbuf("./icons/scalable/earth.svg", 96, 96);
-		private static Pixbuf CITOICON = new Pixbuf("./icons/scalable/cito.svg", 96, 96);
-		private ListStore m_travelbugs = new ListStore(typeof(string), typeof(string));
-		
-		UIMonitor m_monitor;	
+
+		static Pixbuf STAR_ICON = new Pixbuf ("./icons/scalable/star.svg", 16, 16);
+		static Pixbuf ESTAR_ICON = new Pixbuf ("./icons/scalable/star_empty.svg", 16, 16);
+		static Pixbuf HSTAR_ICON = new Pixbuf ("./icons/scalable/halfstar.svg", 16, 16);
+		private static Pixbuf TRADICON = new Pixbuf ("./icons/scalable/traditional.svg", 96, 96);
+		private static Pixbuf LETTERICON = new Pixbuf ("./icons/scalable/letterbox.svg", 96, 96);
+		private static Pixbuf MULTIICON = new Pixbuf ("./icons/scalable/multi.svg", 96, 96);
+		private static Pixbuf MYSTERYICON = new Pixbuf ("./icons/scalable/unknown.svg", 96, 96);
+		private static Pixbuf OTHERICON = new Pixbuf ("./icons/scalable/other.svg", 96, 96);
+		private static Pixbuf EARTHICON = new Pixbuf ("./icons/scalable/earth.svg", 96, 96);
+		private static Pixbuf CITOICON = new Pixbuf ("./icons/scalable/cito.svg", 96, 96);
+		private static Pixbuf MEGAEVENT = new Pixbuf ("./icons/scalable/mega.svg", 96, 96);
+		private static Pixbuf EVENT = new Pixbuf ("./icons/scalable/event.svg", 96, 96);
+		private static Pixbuf WEBCAM = new Pixbuf ("./icons/scalable/webcam.svg", 96, 96);
+		private static Pixbuf WHERIGO = new Pixbuf ("./icons/scalable/wherigo.svg", 96, 96);
+		private static Pixbuf VIRTUAL = new Pixbuf ("./icons/scalable/virtual.svg", 96, 96);
+		private ListStore m_travelbugs = new ListStore (typeof(string), typeof(string));
+
+		UIMonitor m_monitor;
 		HTMLWidget descriptionWidget;
-		public GeocacheInfoPanel()
+		public GeocacheInfoPanel ()
 		{
-			this.Build();
-			m_monitor = UIMonitor.getInstance();
-			setDifficulty(0);
-			setTerrain(0);
-			descriptionWidget = new HTMLWidget();
-			descScroll.Add(descriptionWidget);
-			this.ShowAll();
+			this.Build ();
+			m_monitor = UIMonitor.getInstance ();
+			setDifficulty (0);
+			setTerrain (0);
+			descriptionWidget = new HTMLWidget ();
+			descScroll.Add (descriptionWidget);
+			this.ShowAll ();
 		}
-		
-		private void PopulateTBList(Geocache cache)
+
+		private void PopulateTBList (Geocache cache)
 		{
-			m_travelbugs.Clear();
-			foreach(TravelBug bug in cache.TravelBugs)
-			{
+			m_travelbugs.Clear ();
+			foreach (TravelBug bug in cache.TravelBugs) {
 				
 			}
 		}
-		
-		public void updateCacheInfo()
+
+		public void updateCacheInfo ()
 		{
-			try
-			{
-			Geocache cache = m_monitor.SelectedCache;
-			if (descriptionWidget == null)
-			{
-				descriptionWidget = new HTMLWidget();
-			}
-			cacheCodeLabel.Markup = START_BIG + cache.Name + END_BIG;
-			cacheNameLabel.Markup = START_BIG + GLib.Markup.EscapeText(cache.CacheName) + END_BIG;
-			descriptionWidget.HTML = cache.LongDesc;
-			setDifficulty(cache.Difficulty);
-			setTerrain(cache.Terrain);
-			setCacheIcon(cache.TypeOfCache);
-			dateLabel.Text = cache.Time.ToShortDateString();
-			if (String.IsNullOrEmpty(cache.Hint))
-			{
-				hintExpander.Sensitive = false;
-				hintExpander.Expanded = false;
-			}
-			else
-			{                          
-				hintField.Buffer.Text = cache.Hint;
-				hintExpander.Sensitive = true;
-				hintExpander.Expanded = false;
-			}
-			setCacheType(cache.TypeOfCache);
-			placedByLabel.Text = cache.PlacedBy;
-			cacheSizeLabel.Text = cache.Container;
-			setCoordinate(cache);
-			this.ShowAll();
-			}
-			catch (Exception e)
-			{
-				System.Console.WriteLine("Exception caught!");
+			try {
+				Geocache cache = m_monitor.SelectedCache;
+				if (descriptionWidget == null) {
+					descriptionWidget = new HTMLWidget ();
+				}
+				cacheCodeLabel.Markup = START_BIG + cache.Name + END_BIG;
+				cacheNameLabel.Markup = START_BIG + GLib.Markup.EscapeText (cache.CacheName) + END_BIG;
+				descriptionWidget.HTML = cache.LongDesc;
+				setDifficulty (cache.Difficulty);
+				setTerrain (cache.Terrain);
+				setCacheIcon (cache.TypeOfCache);
+				dateLabel.Text = cache.Time.ToShortDateString ();
+				if (String.IsNullOrEmpty (cache.Hint)) {
+					hintExpander.Sensitive = false;
+					hintExpander.Expanded = false;
+				} else {
+					hintField.Buffer.Text = cache.Hint;
+					hintExpander.Sensitive = true;
+					hintExpander.Expanded = false;
+				}
+				setCacheType (cache.TypeOfCache);
+				placedByLabel.Text = cache.PlacedBy;
+				cacheSizeLabel.Text = cache.Container;
+				setCoordinate (cache);
+				this.ShowAll ();
+			} catch (Exception e) {
+				System.Console.WriteLine ("Exception caught!");
 			}
 		}
-		
-		public void setDifficulty(double diff)
+
+		public void setDifficulty (double diff)
 		{
 			
 			diff_i1.Pixbuf = ESTAR_ICON;
@@ -127,10 +124,10 @@ namespace ocmgtk
 				diff_i5.Pixbuf = HSTAR_ICON;
 			if (diff >= 5)
 				diff_i5.Pixbuf = STAR_ICON;
-			this.ShowAll();
+			this.ShowAll ();
 		}
-		
-		public void setTerrain(double diff)
+
+		public void setTerrain (double diff)
 		{
 			
 			terr_i1.Pixbuf = ESTAR_ICON;
@@ -159,120 +156,127 @@ namespace ocmgtk
 				terr_i5.Pixbuf = HSTAR_ICON;
 			if (diff >= 5)
 				terr_i5.Pixbuf = STAR_ICON;
-			this.ShowAll();
+			this.ShowAll ();
 		}
-		
-		
-		public void setCacheIcon(Geocache.CacheType type)
+
+
+		public void setCacheIcon (Geocache.CacheType type)
 		{
-			switch (type)
-			{
-				case Geocache.CacheType.TRADITIONAL:
-					cacheIcon.Pixbuf = TRADICON;
-					break;
-				case Geocache.CacheType.MYSTERY:
-					cacheIcon.Pixbuf = MYSTERYICON;
-					break;
-				case Geocache.CacheType.MULTI:
-					cacheIcon.Pixbuf = MULTIICON;
-					break;
-				case Geocache.CacheType.LETTERBOX:
-					cacheIcon.Pixbuf = LETTERICON;
-					break;
-				case Geocache.CacheType.EARTH:
-					cacheIcon.Pixbuf = EARTHICON;
-					break;
-				case Geocache.CacheType.CITO:
-					cacheIcon.Pixbuf = CITOICON;
-					break;
-				default:
-					cacheIcon.Pixbuf = OTHERICON;
-					break;
+			switch (type) {
+			case Geocache.CacheType.TRADITIONAL:
+				cacheIcon.Pixbuf = TRADICON;
+				break;
+			case Geocache.CacheType.MYSTERY:
+				cacheIcon.Pixbuf = MYSTERYICON;
+				break;
+			case Geocache.CacheType.MULTI:
+				cacheIcon.Pixbuf = MULTIICON;
+				break;
+			case Geocache.CacheType.LETTERBOX:
+				cacheIcon.Pixbuf = LETTERICON;
+				break;
+			case Geocache.CacheType.EARTH:
+				cacheIcon.Pixbuf = EARTHICON;
+				break;
+			case Geocache.CacheType.CITO:
+				cacheIcon.Pixbuf = CITOICON;
+				break;
+			case Geocache.CacheType.EVENT:
+				cacheIcon.Pixbuf = EVENT;
+				break;
+			case Geocache.CacheType.MEGAEVENT:
+				cacheIcon.Pixbuf = MEGAEVENT;
+				break;
+			case Geocache.CacheType.VIRTUAL:
+				cacheIcon.Pixbuf = VIRTUAL;
+				break;
+			case Geocache.CacheType.WEBCAM:
+				cacheIcon.Pixbuf = WEBCAM;
+				break;
+			case Geocache.CacheType.WHERIGO:
+				cacheIcon.Pixbuf = WHERIGO;
+				break;
+			default:
+				cacheIcon.Pixbuf = OTHERICON;
+				break;
 			}
 		}
-		
-		public void setCoordinate(Geocache cache)
+
+		public void setCoordinate (Geocache cache)
 		{
-						
-			coordinateLabel.Markup = "<span font='bold 10'>" + Utilities.getCoordString(cache.Lat, cache.Lon) + "</span>";
+			
+			coordinateLabel.Markup = "<span font='bold 10'>" + Utilities.getCoordString (cache.Lat, cache.Lon) + "</span>";
 			
 			
-			double distance = Utilities.calculateDistance(m_monitor.HomeLat, cache.Lat, m_monitor.HomeLon, cache.Lon);
-			double bearing = Utilities.calculateBearing(m_monitor.HomeLat, cache.Lat, m_monitor.HomeLon, cache.Lon);
+			double distance = Utilities.calculateDistance (m_monitor.HomeLat, cache.Lat, m_monitor.HomeLon, cache.Lon);
+			double bearing = Utilities.calculateBearing (m_monitor.HomeLat, cache.Lat, m_monitor.HomeLon, cache.Lon);
 			
 			string bmarker = "N";
 			if (bearing > 22.5 && bearing <= 67.5)
-				bmarker = "NE";
-			else if (bearing > 67.5 && bearing <= 112.5)
-				bmarker = "E";
-			else if (bearing > 112.5 && bearing <= 157.5)
-				bmarker = "SE";
-			else if (bearing > 157.5 && bearing <= 202.5)
-				bmarker = "S";
-			else if (bearing > 202.5 && bearing <= 247.5)
-				bmarker= "SW";
-			else if (bearing > 247.5 && bearing <= 292.5)
-				bmarker = "W";
-			else if (bearing > 292.5 && bearing <= 337.5)
+				bmarker = "NE"; else if (bearing > 67.5 && bearing <= 112.5)
+				bmarker = "E"; else if (bearing > 112.5 && bearing <= 157.5)
+				bmarker = "SE"; else if (bearing > 157.5 && bearing <= 202.5)
+				bmarker = "S"; else if (bearing > 202.5 && bearing <= 247.5)
+				bmarker = "SW"; else if (bearing > 247.5 && bearing <= 292.5)
+				bmarker = "W"; else if (bearing > 292.5 && bearing <= 337.5)
 				bmarker = "NW";
-				
 			
-			distance_label.Markup = Catalog.GetString(String.Format("<span font='bold italic 10'>({0} km {1} from your home coordinates)</span>", distance.ToString("0.00"), bmarker));
-				
+			
+			distance_label.Markup = Catalog.GetString (String.Format ("<span font='bold italic 10'>({0} km {1} from your home coordinates)</span>", distance.ToString ("0.00"), bmarker));
+			
 		}
-		
-		private void setCacheType(Geocache.CacheType ctype)
+
+		private void setCacheType (Geocache.CacheType ctype)
 		{
-			switch (ctype)
-			{
-				case Geocache.CacheType.APE:
-					cacheTypeLabel.Text =  Catalog.GetString("Project A.P.E");
-					break;
-				case Geocache.CacheType.CITO:
-					cacheTypeLabel.Text =  Catalog.GetString("Cache In Trash Out Event");
-					break;
-				case Geocache.CacheType.EARTH:
-					cacheTypeLabel.Text =  Catalog.GetString("Earth Cache");
-					break;
-				case Geocache.CacheType.EVENT:
-					cacheTypeLabel.Text =  Catalog.GetString("Event Cache");
-					break;
-				case Geocache.CacheType.LETTERBOX:
-					cacheTypeLabel.Text =  Catalog.GetString("Letterbox Hybrid");
-					break;
-				case Geocache.CacheType.MAZE:
-					cacheTypeLabel.Text =  Catalog.GetString("Geo Adventures Maze");
-					break;
-				case Geocache.CacheType.MEGAEVENT:
-					cacheTypeLabel.Text =  Catalog.GetString("Mega Event");
-					break;
-				case Geocache.CacheType.MULTI:
-					cacheTypeLabel.Text =  Catalog.GetString("Multi Cache");
-					break;
-				case Geocache.CacheType.MYSTERY:
-					cacheTypeLabel.Text =  Catalog.GetString("Unknown Cache");
-					break;
-				case Geocache.CacheType.OTHER:
-					cacheTypeLabel.Text =  Catalog.GetString("Undefined Cache Type");
-					break;
-				case Geocache.CacheType.REVERSE:
-					cacheTypeLabel.Text =  Catalog.GetString("Locationless Cache");
-					break;
-				case Geocache.CacheType.TRADITIONAL:
-					cacheTypeLabel.Text =  Catalog.GetString("Traditional Cache");
-					break;
-				case Geocache.CacheType.VIRTUAL:
-					cacheTypeLabel.Text =  Catalog.GetString("Virtual Cache");
-					break;
-				case Geocache.CacheType.WEBCAM:
-					cacheTypeLabel.Text =  Catalog.GetString("Webcam Cache");
-					break;
-				case Geocache.CacheType.WHERIGO:
-					cacheTypeLabel.Text =  Catalog.GetString("Wherigo Cache");
-					break;
-				default:
-					cacheTypeLabel.Text = "NOT_DEFINED";
-					break;
+			switch (ctype) {
+			case Geocache.CacheType.APE:
+				cacheTypeLabel.Text = Catalog.GetString ("Project A.P.E");
+				break;
+			case Geocache.CacheType.CITO:
+				cacheTypeLabel.Text = Catalog.GetString ("Cache In Trash Out Event");
+				break;
+			case Geocache.CacheType.EARTH:
+				cacheTypeLabel.Text = Catalog.GetString ("Earth Cache");
+				break;
+			case Geocache.CacheType.EVENT:
+				cacheTypeLabel.Text = Catalog.GetString ("Event Cache");
+				break;
+			case Geocache.CacheType.LETTERBOX:
+				cacheTypeLabel.Text = Catalog.GetString ("Letterbox Hybrid");
+				break;
+			case Geocache.CacheType.MAZE:
+				cacheTypeLabel.Text = Catalog.GetString ("Geo Adventures Maze");
+				break;
+			case Geocache.CacheType.MEGAEVENT:
+				cacheTypeLabel.Text = Catalog.GetString ("Mega Event");
+				break;
+			case Geocache.CacheType.MULTI:
+				cacheTypeLabel.Text = Catalog.GetString ("Multi Cache");
+				break;
+			case Geocache.CacheType.MYSTERY:
+				cacheTypeLabel.Text = Catalog.GetString ("Unknown Cache");
+				break;
+			case Geocache.CacheType.OTHER:
+				cacheTypeLabel.Text = Catalog.GetString ("Undefined Cache Type");
+				break;
+			case Geocache.CacheType.REVERSE:
+				cacheTypeLabel.Text = Catalog.GetString ("Locationless Cache");
+				break;
+			case Geocache.CacheType.TRADITIONAL:
+				cacheTypeLabel.Text = Catalog.GetString ("Traditional Cache");
+				break;
+			case Geocache.CacheType.VIRTUAL:
+				cacheTypeLabel.Text = Catalog.GetString ("Virtual Cache");
+				break;
+			case Geocache.CacheType.WEBCAM:
+				cacheTypeLabel.Text = Catalog.GetString ("Webcam Cache");
+				break;
+			case Geocache.CacheType.WHERIGO:
+				cacheTypeLabel.Text = Catalog.GetString ("Wherigo Cache");
+				break;
+			default:
+				cacheTypeLabel.Text = "NOT_DEFINED";
+				break;
 			}
 		}
 	}

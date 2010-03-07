@@ -40,7 +40,7 @@ namespace ocmgtk
 			StringBuilder builder = new StringBuilder();
 			builder.Append("<HTML><BODY>");
 			Geocache cache = m_mon.SelectedCache;
-			IEnumerator<CacheLog> logenum =  cache.CacheLogs.GetEnumerator();
+			IEnumerator<CacheLog> logenum =  Engine.getInstance().GetLogs(cache.Name);
 			while (logenum.MoveNext())
 			{
 				builder.Append(logenum.Current.toHTML());

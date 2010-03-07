@@ -45,7 +45,7 @@ namespace ocmgtk
 
 		void HandleM_browserLoadProgressChanged (object o, LoadProgressChangedArgs args)
 		{
-			browsestatusBar.Push(browsestatusBar.GetContextId("load"), args.Progress.ToString());		
+			browsestatusBar.Push(browsestatusBar.GetContextId("load"), String.Format("Loading {0}%....",args.Progress.ToString()));		
 		}
 
 		void HandleM_browserLoadStarted (object o, LoadStartedArgs args)

@@ -72,6 +72,10 @@
     <Compile Include="Widgets\HTMLWidget.cs" />
     <Compile Include="UIMonitor.cs" />
     <Compile Include="gtk-gui\ocmgtk.HTMLWidget.cs" />
+    <Compile Include="Dialogs\ProgressDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.ProgressDialog.cs" />
+    <Compile Include="Dialogs\Preferences.cs" />
+    <Compile Include="gtk-gui\ocmgtk.Preferences.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -145,6 +149,21 @@
     </Resource>
     <Resource Include="web\wpt_viewer.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\event.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\mega.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\virtual.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\webcam.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\wherigo.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 </Project>

@@ -49,7 +49,6 @@ namespace ocmengine
 		private string m_shortdesc;
 		private string m_longdesc;
 		private string m_hint;
-		private List<CacheLog> m_logs;
 		private List<TravelBug> m_travelbugs;
 		private string m_container;
 		private bool m_available;
@@ -129,12 +128,6 @@ namespace ocmengine
 			set {m_container = value;}
 		}
 		
-		public List<CacheLog> CacheLogs
-		{
-			get {return m_logs;}
-			set {m_logs = value;}
-		}
-		
 		public bool Archived
 		{
 			get {return m_archived;}
@@ -204,14 +197,6 @@ namespace ocmengine
 			return val;
 		}
 		
-		public void AddLog(CacheLog log)
-		{
-			if (m_logs == null)
-			{
-				m_logs = new List<CacheLog>();
-			}
-			m_logs.Add(log);
-		}
 		
 		internal override void WriteWPTDetails (XmlWriter writer)
 		{
@@ -236,10 +221,10 @@ namespace ocmengine
 			writer.WriteElementString("long_description", LongDesc);
 			writer.WriteElementString("encoded_hints", Hint);
 			writer.WriteStartElement("logs");
-			foreach(CacheLog log in m_logs)
+			/*foreach(CacheLog log in m_logs)
 			{
 				log.WriteToGPX(writer);
-			}
+			}*/
 			writer.WriteEndElement();
 			writer.WriteStartElement("travelbugs");
 			foreach(TravelBug bug in m_travelbugs)

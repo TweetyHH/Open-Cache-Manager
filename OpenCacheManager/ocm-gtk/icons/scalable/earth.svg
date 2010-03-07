@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -12,10 +13,8 @@
    height="496.5"
    id="svg7088"
    version="1.1"
-   inkscape:version="0.46"
-   sodipodi:docname="earth.svg"
-   sodipodi:version="0.32"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+   inkscape:version="0.47pre4 r22446"
+   sodipodi:docname="earth.svg">
   <defs
      id="defs7090">
     <inkscape:perspective
@@ -55,10 +54,10 @@
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1024"
-     inkscape:window-height="710"
+     inkscape:window-width="1920"
+     inkscape:window-height="1122"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="25"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7093">

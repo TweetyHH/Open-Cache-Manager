@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -12,10 +13,8 @@
    height="496.5"
    id="svg6509"
    version="1.1"
-   inkscape:version="0.46"
-   sodipodi:docname="letterbox.svg"
-   sodipodi:version="0.32"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+   inkscape:version="0.47pre4 r22446"
+   sodipodi:docname="letterbox.svg">
   <defs
      id="defs6511">
     <inkscape:perspective
@@ -40,9 +39,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="246.88743"
-     inkscape:cy="248.86381"
+     inkscape:zoom="1.7421954"
+     inkscape:cx="258.25"
+     inkscape:cy="248.25"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -51,9 +50,9 @@
      inkscape:snap-global="true"
      inkscape:snap-grids="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1153"
+     inkscape:window-height="1122"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="25"
      inkscape:window-maximized="1">
     <sodipodi:guide
        orientation="-0.5,0.8660254"
@@ -105,15 +104,15 @@
      id="layer1"
      transform="translate(-91.713295,-272.23724)">
     <path
-       style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ffffff;stroke:#000000;stroke-width:2.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1"
        d="m 214.28571,457.6662 0,269.92917 271.42858,-156.70937 0,-269.92882 -271.42858,156.70902 z"
        id="path6559" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1.50000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1"
        d="M 214.28571,727.59537 356.85507,480.65799 485.71429,570.886 214.28571,727.59537 z"
        id="path7073" />
     <path
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="M 214.28571,457.6662 356.8553,524.14749 485.71429,300.95718 214.28571,457.6662 z"
        id="path7071" />
   </g>

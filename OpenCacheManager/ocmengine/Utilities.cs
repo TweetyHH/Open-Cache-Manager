@@ -130,5 +130,11 @@ namespace ocmengine
 		
 			return co_ordinate;
 		}
+		
+		public float[] ParseCoordString(String val)
+		{
+			float[] vals = new float[2];
+			return vals;
+		}
 	}
 }

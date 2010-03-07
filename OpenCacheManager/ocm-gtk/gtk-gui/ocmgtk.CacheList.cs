@@ -68,6 +68,7 @@ namespace ocmgtk {
             this.treeview1 = new Gtk.TreeView();
             this.treeview1.CanFocus = true;
             this.treeview1.Name = "treeview1";
+            this.treeview1.Reorderable = true;
             this.GtkScrolledWindow.Add(this.treeview1);
             this.vbox2.Add(this.GtkScrolledWindow);
             Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.vbox2[this.GtkScrolledWindow]));
@@ -78,6 +79,7 @@ namespace ocmgtk {
             }
             w1.SetUiManager(UIManager);
             this.Hide();
+            this.treeview1.ButtonPressEvent += new Gtk.ButtonPressEventHandler(this.DoButtonPress);
         }
     }
 }

@@ -19,13 +19,35 @@ using ocmengine;
 
 namespace ocmengine
 {
-	
+	public class ParseEventArgs:EventArgs
+	{
+		private string m_message;
+		
+		public string Message
+		{
+			get { return m_message;}
+		}
+		
+		public ParseEventArgs(String message):base()
+		{
+			m_message = message;
+		}
+	}
 	
 	public class GPXParser
 	{
+		private CacheStore m_store = null;
+		public delegate void ParseEventHandler(object sender, EventArgs args);
+		public event ParseEventHandler ParseWaypoint;
+		public event ParseEventHandler ParseLog;
+		public event ParseEventHandler ParseTravelbug;
+		public event ParseEventHandler Complete;
+		
 				
 		public void parseGPXFile(FileStream fs, CacheStore store)
 		{			
+			m_store = store;
+			m_store.StartUpdate();
 			XmlReader reader = XmlReader.Create(fs);
 			while (reader.Read())
 			{
@@ -35,28 +57,18 @@ namespace ocmengine
 						if (reader.Name == "wpt")
 						{
 							Waypoint pt = processWaypoint(reader);
-							store.AddWaypoint(pt);							
+							m_store.AddWaypoint(pt);							
 						}
 						break;
 					case XmlNodeType.EndElement:
 						break;
 				}
 			}
-			
-			MapChildren(store);			
+			m_store.EndUpdate();
+			this.Complete(this, EventArgs.Empty);
 		}
 		
 		
-		private void MapChildren(CacheStore store)
-		{
-			IEnumerator<Waypoint> wpts =  store.getWPTEnumerator();
-			while (wpts.MoveNext())
-			{
-				Waypoint pt = wpts.Current;
-				//TODO: Simply replace wpt name with GC Code
-				pt.Parent = "GC" +  pt.Name.Substring(2);
-			}
-		}
 		
 		private Waypoint processWaypoint(XmlReader reader)
 		{
@@ -91,6 +103,8 @@ namespace ocmengine
 			if (reader.Name == "name")
 			{
 				pt.Name = reader.ReadElementContentAsString();
+				this.ParseWaypoint(this, new ParseEventArgs(String.Format("Processing Waypoint {0}", pt.Name)));
+				pt.Parent = "GC" +  pt.Name.Substring(2);
 			}
 			else if (reader.Name == "url")
 			{
@@ -129,6 +143,7 @@ namespace ocmengine
 		private void parseGeocacheElement(ref Waypoint pt, XmlReader reader)
 		{
 			Geocache cache = pt as Geocache;
+			m_store.ClearTBs(pt.Name);
 			if (reader.NamespaceURI.StartsWith("http://www.groundspeak.com/cache"))
 			{
 				if (reader.LocalName == "cache")
@@ -206,18 +221,19 @@ namespace ocmengine
 			{
 				if (reader.LocalName == "travelbug")
 				{
-						cache.TravelBugs.Add(bug);
+						m_store.AddTB(cache.Name, bug);
 						return;
 				}
 				if (reader.LocalName == "name")
 				{
 				bug.Name = reader.ReadElementContentAsString();
 				}
-			}
+			}			
 		}
 		
 		private void parseCacheLogs(ref Geocache cache, XmlReader reader)
 		{
+			m_store.ClearLogs(cache.Name);
 			while (reader.Read())
 			{
 				if (reader.LocalName == "log")
@@ -260,7 +276,7 @@ namespace ocmengine
 					breakLoop = true;
 				}
 			}
-			cache.AddLog(log);			
+			m_store.AddLog(cache.Name, log);			
 		}
 		
 		private void ParseCacheType(String type, ref Geocache cache)

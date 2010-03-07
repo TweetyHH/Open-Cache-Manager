@@ -12,6 +12,7 @@
 */
 using System;
 using System.Diagnostics;
+using System.Threading;
 using Gtk;
 using Mono.Unix;
 using ocmgtk;
@@ -30,7 +31,8 @@ public partial class MainWindow: Gtk.Window
 		m_monitor.Main = this;
 		m_monitor.Map = mapwidget;
 		mapwidget.LoadUrl("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html");
-		m_monitor.UpdateCacheCountStatus();
+		m_monitor.updateCaches();
+		this.Maximize();
 	}
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -86,9 +88,14 @@ public partial class MainWindow: Gtk.Window
 		if (dlg.Run() == (int) ResponseType.Accept)
 		{
 			System.IO.FileStream fs = System.IO.File.Open(dlg.Filename, System.IO.FileMode.Open);
-
-
-			Engine.getInstance().ReadGPX(fs);
+			dlg.Hide();
+			GPXParser parser = Engine.getInstance().Parser;
+			CacheStore store = Engine.getInstance().Store;
+			ProgressDialog pdlg = new ProgressDialog(parser);
+			//pdlg.Run();
+			pdlg.Modal = true;
+			pdlg.Start(fs, store);
+			//parser.parseGPXFile(fs, store);
 			m_monitor.updateCaches();
 			fs.Close();
 		}
