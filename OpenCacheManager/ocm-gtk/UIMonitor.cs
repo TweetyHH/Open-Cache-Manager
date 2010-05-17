@@ -42,9 +42,28 @@ namespace ocmgtk
 		private static Pixbuf WEBCAM_S = new Pixbuf ("./icons/scalable/webcam.svg", 24, 24);
 		private static Pixbuf WHERIGO_S = new Pixbuf ("./icons/scalable/wherigo.svg", 24, 24);
 		private static Pixbuf VIRTUAL_S = new Pixbuf ("./icons/scalable/virtual.svg", 24, 24);
+		private static Pixbuf OWNED_S = new Pixbuf ("./icons/scalable/star.svg", 24, 24);
 
+		private static string TRAD_MI = "traditional.png";
+		private static string CITO_MI = "cito.png";
+		private static string EARH_MI = "earth.png";
+		private static string LETTRBOX_MI = "letterbox.png";
+		private static string EVENT_MI = "mega.png";
+		private static string MEGA_MI = "mega.png";
+		private static string MULTI_MI = "multi.png";
+		private static string OTHER_MI = "other.png";
+		private static string OWNED_MI = "owned.png";
+		private static string UNKNOWN_MI = "unknown.png";
+		private static string VIRTUAL_MI = "virtual.png";
+		private static string WAYPOINT_MI = "waypoint-flag-red.png";
+		private static string WEBCAM_MI = "webcam.png";
+		private static string WHERIGO_MI = "wherigo.png";
+		
+		
+		
 		private double m_home_lat = 46.49;
 		private double m_home_lon = -81.01;
+		private String m_ownerid = "1918539";
 		private CacheList m_cachelist;
 		private Geocache m_selectedCache;
 		private MainWindow m_mainWin;
@@ -53,6 +72,12 @@ namespace ocmgtk
 		public GeoCachePane GeoPane {
 			get { return m_pane; }
 			set { m_pane = value; }
+		}
+		
+		public String OwnerID
+		{
+			get {return m_ownerid;}
+			set { m_ownerid=value;}
 		}
 
 		public Geocache SelectedCache {
@@ -115,19 +140,37 @@ namespace ocmgtk
 			m_selectedCache = cache;
 			m_pane.SetCacheSelected ();
 			m_mainWin.SetCacheSelected ();
-			m_map.LoadScript ("loadMarkers(" + cache.Lat + "," + cache.Lon + ")");
+		}
+		
+		public void ClearMarkers()
+		{
+			m_map.LoadScript("clearMarkers()");
 		}
 
 		public void ZoomToPoint (double lat, double lon)
 		{
 			m_map.LoadScript ("zoomToPoint(" + lat + "," + lon + ")");
 		}
+		
+		public void AddMapWayPoint (Waypoint pt)
+		{
+			m_map.LoadScript ("addMarker(" + pt.Lat + "," + pt.Lon + ",'../icons/24x24/" + getMapIcon(pt.Symbol) + "')");
+		}
+		
+		public void AddMapCache(Geocache cache)
+		{
+			m_map.LoadScript ("addMarker(" + cache.Lat + "," + cache.Lon + ",'../icons/24x24/" + getMapIcon(cache.TypeOfCache) + "')");
+		}
 
 		public void UpdateCacheCountStatus ()
 		{
+			Engine engine = Engine.getInstance();
 			int visible = m_cachelist.getVisibleCaches ().Count;
-			int total = Engine.getInstance ().CacheCount;
-			m_statusbar.Push (m_statusbar.GetContextId ("count"), String.Format (Catalog.GetString ("Showing {0} of {1} caches"), visible, total));
+			int total = engine.Store.CacheCount;
+			int found = m_cachelist.GetVisibleFoundCacheCount();
+			int inactive = m_cachelist.GetVisibleInactiveCacheCount();
+			int mine = m_cachelist.GetOwnedCount();
+			m_statusbar.Push (m_statusbar.GetContextId ("count"), String.Format (Catalog.GetString ("Showing {0} of {1} caches, {2} found, {3} not available, {4} placed by me"), visible, total, found, inactive, mine));
 		}
 
 		public static Pixbuf getSmallCacheIcon (Geocache.CacheType type)
@@ -157,9 +200,48 @@ namespace ocmgtk
 				return UIMonitor.WEBCAM_S;
 			case Geocache.CacheType.WHERIGO:
 				return UIMonitor.WHERIGO_S;
+			case Geocache.CacheType.MINE:
+				return UIMonitor.OWNED_S;
 			default:
 				return UIMonitor.OTHERICON_S;
 			}
+		}
+		
+		public static string getMapIcon (Geocache.CacheType type)
+		{
+			switch (type) {
+			/*case Geocache.CacheType.FOUND:
+				return UIMonitor.FOUNDICON_S;*/
+			case Geocache.CacheType.TRADITIONAL:
+				return UIMonitor.TRAD_MI;
+			case Geocache.CacheType.MYSTERY:
+				return UIMonitor.UNKNOWN_MI;
+			case Geocache.CacheType.MULTI:
+				return UIMonitor.MULTI_MI;
+			case Geocache.CacheType.LETTERBOX:
+				return UIMonitor.LETTRBOX_MI;
+			case Geocache.CacheType.EARTH:
+				return UIMonitor.EARH_MI;
+			case Geocache.CacheType.CITO:
+				return UIMonitor.CITO_MI;
+			case Geocache.CacheType.VIRTUAL:
+				return UIMonitor.VIRTUAL_MI;
+			case Geocache.CacheType.MEGAEVENT:
+				return UIMonitor.MEGA_MI;
+			case Geocache.CacheType.EVENT:
+				return UIMonitor.EVENT_MI;
+			case Geocache.CacheType.WEBCAM:
+				return UIMonitor.WEBCAM_MI;
+			case Geocache.CacheType.WHERIGO:
+				return UIMonitor.WHERIGO_MI;
+			default:
+				return UIMonitor.OTHER_MI;
+			}
+		}
+		
+		public static string getMapIcon (String symbol)
+		{
+			return "waypoint-flag-red.png";
 		}
 
 		public List<Geocache> GetVisibleCacheList ()

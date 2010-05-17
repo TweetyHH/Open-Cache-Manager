@@ -32,6 +32,7 @@ namespace ocmgtk
 		public CacheList ()
 		{
 			this.Build ();
+			//filterEntry.
 			BuildList ();
 			m_monitor = UIMonitor.getInstance ();
 			m_monitor.CacheListPane = this;
@@ -83,12 +84,59 @@ namespace ocmgtk
 		public List<Geocache> getVisibleCaches ()
 		{
 			List<Geocache> caches = new List<Geocache> ();
-			TreeIter itr = new TreeIter ();
+			TreeIter itr;
 			m_ListSort.GetIterFirst (out itr);
+			if (!m_ListSort.IterIsValid(itr))
+				return caches;
 			do {
 				caches.Add ((Geocache)m_ListSort.GetValue (itr, 0));
 			} while (m_ListSort.IterNext (ref itr));
 			return caches;
+		}
+		
+		public int GetVisibleFoundCacheCount ()
+		{
+			int count=0;
+			TreeIter itr;
+			m_ListSort.GetIterFirst (out itr);
+			if (!m_ListSort.IterIsValid(itr))
+				return 0;
+			do {
+					Geocache cache = (Geocache)m_ListSort.GetValue (itr, 0);
+				if (cache.Symbol.Equals("Geocache Found"))
+					count++;
+			} while (m_ListSort.IterNext (ref itr));
+			return count;
+		}
+		
+		public int GetVisibleInactiveCacheCount ()
+		{
+			int count=0;
+			TreeIter itr;
+			m_ListSort.GetIterFirst (out itr);
+			if (!m_ListSort.IterIsValid(itr))
+				return 0;
+			do {
+				Geocache cache = (Geocache)m_ListSort.GetValue (itr, 0);
+				if (cache.Available ==false)
+					count++;
+			} while (m_ListSort.IterNext (ref itr));
+			return count;
+		}
+		
+		public int GetOwnedCount ()
+		{
+			int count=0;
+			TreeIter itr;
+			m_ListSort.GetIterFirst (out itr);
+			if (!m_ListSort.IterIsValid(itr))
+				return 0;
+			do {
+				Geocache cache = (Geocache)m_ListSort.GetValue (itr, 0);
+				if (cache.OwnerID ==m_monitor.OwnerID)
+					count++;
+			} while (m_ListSort.IterNext (ref itr));
+			return count;
 		}
 
 		public void PopulateList ()
@@ -130,6 +178,8 @@ namespace ocmgtk
 			CellRendererPixbuf icon = cell as CellRendererPixbuf;
 			if (cache.Found)
 				icon.Pixbuf = UIMonitor.getSmallCacheIcon (Geocache.CacheType.FOUND);
+			else if (cache.OwnerID == m_monitor.OwnerID)
+				icon.Pixbuf = UIMonitor.getSmallCacheIcon (Geocache.CacheType.MINE);
 			else
 				icon.Pixbuf = UIMonitor.getSmallCacheIcon (cache.TypeOfCache);
 		}

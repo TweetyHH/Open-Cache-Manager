@@ -29,6 +29,7 @@ body {
 	var lon = -75.63399;
 	var zoom = 14;
 	var pois;
+	var notify;
  
         function init(){
             map = new OpenLayers.Map('map',
@@ -44,33 +45,47 @@ body {
  
             var layerTah = new OpenLayers.Layer.OSM.Osmarender("Tiles@Home");
 
-	    var caches = new OpenLayers.Layer.Text("All Caches", { location: "markers.txt", projection: map.displayProjection});
-
- 
-            map.addLayers([layerMapnik,layerTah, caches]);
+	  
+            map.addLayers([layerMapnik,layerTah]);
             map.addControl(new OpenLayers.Control.LayerSwitcher());
  
             var lonLat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
             if (!map.getCenter()) map.setCenter (lonLat, zoom);
+            clearMarkers();
         }
+        
+    function clearMarkers()
+    {
+    	if (pois)	    
+			pois.destroy();  
+		if (notify)	    
+			notify.destroy();
+    	pois = new OpenLayers.Layer.Markers( "Waypoints" );
+    	map.addLayer(pois);
+    }
 
-	function loadMarkers(lat, lon)
+	function addMarker(lat, lon, icon)
 	{
-	    if (pois)	    
-		pois.destroy();    
-	    pois = new OpenLayers.Layer.Text( "Waypoints",
-                    { location:"childpts.txt",
-                      projection: map.displayProjection
-                    });
-            map.addLayer(pois);
-	    var lonLat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
-	    map.setCenter (lonLat, 14)
+		var size = new OpenLayers.Size(24,24);
+		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+		var icon = new OpenLayers.Icon(icon,size,offset);
+		var lonlat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
+		pois.addMarker(new OpenLayers.Marker(lonlat,icon));
+	    map.setCenter (lonlat, 14);
 	}
 
 
 	function zoomToPoint(lat, lon)
 	{
-		var lonLat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);		
+		var lonLat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);	
+		if (notify)	    
+			notify.destroy();
+		notify = new OpenLayers.Layer.Markers( "Notify" );
+		var size = new OpenLayers.Size(48,48);
+		var offset = new OpenLayers.Pixel(-(size.w/2), -(size.h/1.33));
+		var icon = new OpenLayers.Icon("../icons/48x48/circle.png",size,offset);
+		notify.addMarker(new OpenLayers.Marker(lonLat,icon));  	
+		map.addLayer(notify);
 		map.panTo(lonLat);
 	}
         // -->

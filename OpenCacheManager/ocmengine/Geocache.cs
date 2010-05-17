@@ -35,6 +35,7 @@ namespace ocmengine
 			WEBCAM,
 			REVERSE,
 			FOUND,
+			MINE,
 			OTHER};
 		
 		
@@ -221,10 +222,11 @@ namespace ocmengine
 			writer.WriteElementString("long_description", LongDesc);
 			writer.WriteElementString("encoded_hints", Hint);
 			writer.WriteStartElement("logs");
-			/*foreach(CacheLog log in m_logs)
+			IEnumerator<CacheLog> itr = Engine.getInstance().GetLogs(this.Name);
+			while (itr.MoveNext())
 			{
-				log.WriteToGPX(writer);
-			}*/
+				itr.Current.WriteToGPX(writer);
+			}
 			writer.WriteEndElement();
 			writer.WriteStartElement("travelbugs");
 			foreach(TravelBug bug in m_travelbugs)

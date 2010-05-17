@@ -76,7 +76,6 @@ namespace ocmengine
 		public IEnumerator<Waypoint> GetChildWaypoints(string code)
 		{
 			IEnumerator<Waypoint> pts =  m_store.GetChildren(code).GetEnumerator();
-			OLMarkerGenerator.GenerateChildPointLayer(pts);
 			return m_store.GetChildren(code).GetEnumerator();
 		}
 		

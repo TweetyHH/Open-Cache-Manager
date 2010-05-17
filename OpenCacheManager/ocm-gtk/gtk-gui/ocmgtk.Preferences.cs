@@ -17,9 +17,19 @@ namespace ocmgtk {
         
         private Gtk.HBox hbox1;
         
-        private Gtk.Entry entry1;
+        private Gtk.VBox vbox2;
         
-        private Gtk.Button coordchooser;
+        private Gtk.HBox hbox2;
+        
+        private Gtk.ComboBox nsBox;
+        
+        private Gtk.Entry latEntry;
+        
+        private Gtk.HBox hbox3;
+        
+        private Gtk.ComboBox ewBox;
+        
+        private Gtk.Entry lonEntry;
         
         private Gtk.Label label1;
         
@@ -48,51 +58,94 @@ namespace ocmgtk {
             this.hbox1.Name = "hbox1";
             this.hbox1.Spacing = 6;
             // Container child hbox1.Gtk.Box+BoxChild
-            this.entry1 = new Gtk.Entry();
-            this.entry1.TooltipMarkup = "Enter a coordinate, such as \"N 45° 22.486 W 075° 39.092\" or \"N 45.374767  W 075.651533\"";
-            this.entry1.CanFocus = true;
-            this.entry1.Name = "entry1";
-            this.entry1.IsEditable = true;
-            this.entry1.InvisibleChar = '•';
-            this.hbox1.Add(this.entry1);
-            Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.hbox1[this.entry1]));
+            this.vbox2 = new Gtk.VBox();
+            this.vbox2.Name = "vbox2";
+            this.vbox2.Spacing = 6;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.hbox2 = new Gtk.HBox();
+            this.hbox2.Name = "hbox2";
+            this.hbox2.Spacing = 6;
+            // Container child hbox2.Gtk.Box+BoxChild
+            this.nsBox = Gtk.ComboBox.NewText();
+            this.nsBox.AppendText(Mono.Unix.Catalog.GetString("N"));
+            this.nsBox.AppendText(Mono.Unix.Catalog.GetString("S"));
+            this.nsBox.Name = "nsBox";
+            this.nsBox.Active = 0;
+            this.hbox2.Add(this.nsBox);
+            Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.hbox2[this.nsBox]));
             w2.Position = 0;
-            // Container child hbox1.Gtk.Box+BoxChild
-            this.coordchooser = new Gtk.Button();
-            this.coordchooser.Sensitive = false;
-            this.coordchooser.CanFocus = true;
-            this.coordchooser.Name = "coordchooser";
-            this.coordchooser.UseUnderline = true;
-            this.coordchooser.Label = Mono.Unix.Catalog.GetString("...");
-            this.hbox1.Add(this.coordchooser);
-            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.hbox1[this.coordchooser]));
+            w2.Expand = false;
+            w2.Fill = false;
+            // Container child hbox2.Gtk.Box+BoxChild
+            this.latEntry = new Gtk.Entry();
+            this.latEntry.CanFocus = true;
+            this.latEntry.Name = "latEntry";
+            this.latEntry.IsEditable = true;
+            this.latEntry.InvisibleChar = '•';
+            this.hbox2.Add(this.latEntry);
+            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.hbox2[this.latEntry]));
             w3.Position = 1;
-            w3.Expand = false;
-            w3.Fill = false;
+            this.vbox2.Add(this.hbox2);
+            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.vbox2[this.hbox2]));
+            w4.Position = 0;
+            w4.Expand = false;
+            w4.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.hbox3 = new Gtk.HBox();
+            this.hbox3.Name = "hbox3";
+            this.hbox3.Spacing = 6;
+            // Container child hbox3.Gtk.Box+BoxChild
+            this.ewBox = Gtk.ComboBox.NewText();
+            this.ewBox.AppendText(Mono.Unix.Catalog.GetString("E"));
+            this.ewBox.AppendText(Mono.Unix.Catalog.GetString("W"));
+            this.ewBox.Name = "ewBox";
+            this.ewBox.Active = 1;
+            this.hbox3.Add(this.ewBox);
+            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.hbox3[this.ewBox]));
+            w5.Position = 0;
+            w5.Expand = false;
+            w5.Fill = false;
+            // Container child hbox3.Gtk.Box+BoxChild
+            this.lonEntry = new Gtk.Entry();
+            this.lonEntry.CanFocus = true;
+            this.lonEntry.Name = "lonEntry";
+            this.lonEntry.IsEditable = true;
+            this.lonEntry.InvisibleChar = '•';
+            this.hbox3.Add(this.lonEntry);
+            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.hbox3[this.lonEntry]));
+            w6.Position = 1;
+            this.vbox2.Add(this.hbox3);
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox2[this.hbox3]));
+            w7.Position = 1;
+            w7.Expand = false;
+            w7.Fill = false;
+            this.hbox1.Add(this.vbox2);
+            Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.hbox1[this.vbox2]));
+            w8.Position = 0;
             this.table1.Add(this.hbox1);
-            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table1[this.hbox1]));
-            w4.LeftAttach = ((uint)(1));
-            w4.RightAttach = ((uint)(2));
-            w4.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table1[this.hbox1]));
+            w9.LeftAttach = ((uint)(1));
+            w9.RightAttach = ((uint)(2));
+            w9.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.label1 = new Gtk.Label();
             this.label1.Name = "label1";
             this.label1.LabelProp = Mono.Unix.Catalog.GetString("Home Coordinates:");
             this.table1.Add(this.label1);
-            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table1[this.label1]));
-            w5.XOptions = ((Gtk.AttachOptions)(4));
-            w5.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.table1[this.label1]));
+            w10.XOptions = ((Gtk.AttachOptions)(4));
+            w10.YOptions = ((Gtk.AttachOptions)(4));
             w1.Add(this.table1);
-            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(w1[this.table1]));
-            w6.Position = 0;
-            w6.Expand = false;
-            w6.Fill = false;
+            Gtk.Box.BoxChild w11 = ((Gtk.Box.BoxChild)(w1[this.table1]));
+            w11.Position = 0;
+            w11.Expand = false;
+            w11.Fill = false;
             // Internal child ocmgtk.Preferences.ActionArea
-            Gtk.HButtonBox w7 = this.ActionArea;
-            w7.Name = "dialog1_ActionArea";
-            w7.Spacing = 10;
-            w7.BorderWidth = ((uint)(5));
-            w7.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            Gtk.HButtonBox w12 = this.ActionArea;
+            w12.Name = "dialog1_ActionArea";
+            w12.Spacing = 10;
+            w12.BorderWidth = ((uint)(5));
+            w12.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -102,9 +155,9 @@ namespace ocmgtk {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w8 = ((Gtk.ButtonBox.ButtonBoxChild)(w7[this.buttonCancel]));
-            w8.Expand = false;
-            w8.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w13 = ((Gtk.ButtonBox.ButtonBoxChild)(w12[this.buttonCancel]));
+            w13.Expand = false;
+            w13.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -114,16 +167,17 @@ namespace ocmgtk {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w9 = ((Gtk.ButtonBox.ButtonBoxChild)(w7[this.buttonOk]));
-            w9.Position = 1;
-            w9.Expand = false;
-            w9.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w14 = ((Gtk.ButtonBox.ButtonBoxChild)(w12[this.buttonOk]));
+            w14.Position = 1;
+            w14.Expand = false;
+            w14.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 496;
-            this.DefaultHeight = 191;
+            this.DefaultHeight = 161;
             this.Show();
+            this.buttonOk.Clicked += new System.EventHandler(this.OnButtonOkClicked);
         }
     }
 }

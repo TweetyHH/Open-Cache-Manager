@@ -72,7 +72,7 @@ namespace ocmgtk
 				}
 				cacheCodeLabel.Markup = START_BIG + cache.Name + END_BIG;
 				cacheNameLabel.Markup = START_BIG + GLib.Markup.EscapeText (cache.CacheName) + END_BIG;
-				descriptionWidget.HTML = cache.LongDesc;
+				descriptionWidget.HTML = cache.ShortDesc + "<br><br>" +cache.LongDesc;
 				setDifficulty (cache.Difficulty);
 				setTerrain (cache.Terrain);
 				setCacheIcon (cache.TypeOfCache);
@@ -279,5 +279,17 @@ namespace ocmgtk
 				break;
 			}
 		}
+		protected virtual void OnClickView (object sender, System.EventArgs e)
+		{
+			System.Diagnostics.Process.Start(m_monitor.SelectedCache.URL.ToString());
+		}
+		
+		protected virtual void OnClickLog (object sender, System.EventArgs e)
+		{
+			System.Diagnostics.Process.Start("http://www.geocaching.com/seek/log.aspx?ID=" + m_monitor.SelectedCache.CacheID);
+		}
+		
+		
+		
 	}
 }

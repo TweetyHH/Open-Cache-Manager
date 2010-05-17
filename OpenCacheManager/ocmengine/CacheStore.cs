@@ -15,6 +15,7 @@
 
 using System;
 using System.Data;
+using System.IO;
 using Mono.Data.SqliteClient;
 using System.Collections.Generic;
 
@@ -25,8 +26,8 @@ namespace ocmengine
 	public class CacheStore
 	{
 		const string SQL_CONNECT = "URI=file:/home/campbelk/.ocm/data.db,version=3";
-		const string INSERT_WPT = "REPLACE INTO WAYPOINT (name,lat,lon,url,urlname,desc,symbol,type,time, parent) VALUES (" +
-							"'{0}',{1},{2},'{3}','{4}','{5}','{6}','{7}','{8}','{9}')";
+		const string INSERT_WPT = "REPLACE INTO WAYPOINT (name,lat,lon,url,urlname,desc,symbol,type,time, parent, lastUpdate) VALUES (" +
+							"'{0}',{1},{2},'{3}','{4}','{5}','{6}','{7}','{8}','{9}', '{10}')";
 	
 		const string GET_WPTS = "SELECT name, lat, lon, url, urlname, desc, symbol, type, time, parent FROM WAYPOINT";
 		const string DELETE_LOGS = "DELETE FROM LOGS where cache='{0}'";
@@ -43,7 +44,10 @@ namespace ocmengine
 				" FROM WAYPOINT, GEOCACHE WHERE WAYPOINT.name = GEOCACHE.name";
 		const string COUNT_GC = "SELECT COUNT(name) from GEOCACHE";
 		const string COUNT_WPT = "SELECT COUNT(name) from WAYPOINT";
-		const string DELETE_WPT = "DELETE FROM WAYPOINT WHERE name='{0}' or parent='{0}'";
+		const string FOUND=" WHERE SYMBOL='Geocache Found'";
+		const string INACTIVE=" WHERE AVAILABLE='False'";
+		const string DELETE_WPT = "DELETE FROM WAYPOINT WHERE name='{0}'";
+		//consor parent='{0}'";
 		const string DELETE_GC = "DELETE FROM GEOCACHE WHERE name='{0}'";
 	   	
 		
@@ -56,6 +60,34 @@ namespace ocmengine
 				conn.Open();
 				IDbCommand command = conn.CreateCommand();
 				command.CommandText = COUNT_GC;
+				object val = command.ExecuteScalar();
+				int count = int.Parse(val.ToString());
+				conn.Close();
+				return count;
+			}
+		}
+		
+		public int FoundCount
+		{
+			get { 	
+				IDbConnection conn = (IDbConnection) new SqliteConnection(SQL_CONNECT);
+				conn.Open();
+				IDbCommand command = conn.CreateCommand();
+				command.CommandText = COUNT_GC + FOUND;
+				object val = command.ExecuteScalar();
+				int count = int.Parse(val.ToString());
+				conn.Close();
+				return count;
+			}
+		}
+		
+		public int InactiveCount
+		{
+			get { 	
+				IDbConnection conn = (IDbConnection) new SqliteConnection(SQL_CONNECT);
+				conn.Open();
+				IDbCommand command = conn.CreateCommand();
+				command.CommandText = COUNT_GC + INACTIVE;
 				object val = command.ExecuteScalar();
 				int count = int.Parse(val.ToString());
 				conn.Close();
@@ -110,7 +142,16 @@ namespace ocmengine
 			IDbCommand cmd = m_conn.CreateCommand();
 			cmd.CommandText = String.Format(INSERT_WPT, SQLEscape(pt.Name), pt.Lat, pt.Lon, pt.URL, 
 			                                SQLEscape(pt.URLName), SQLEscape(pt.Desc), pt.Symbol, pt.Type,
-			                                pt.Time.ToString("o"), pt.Parent);
+			                                pt.Time.ToString("o"), pt.Parent, pt.Updated.ToString("o"));
+			cmd.ExecuteNonQuery();
+		}
+		
+		public void DeleteWaypoint(Waypoint pt)
+		{
+			if (m_conn == null)
+				throw new Exception("DB NOT OPEN");
+			IDbCommand cmd = m_conn.CreateCommand();
+			cmd.CommandText = String.Format(DELETE_WPT, SQLEscape(pt.Name));
 			cmd.ExecuteNonQuery();
 		}
 		
@@ -126,7 +167,12 @@ namespace ocmengine
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
 			                                cache.Available.ToString());
-			System.Console.WriteLine(cmd.CommandText);
+			
+			/*FileStream fs = new FileStream("log.txt", FileMode.Append);
+			StreamWriter writer = new StreamWriter(fs);
+			writer.WriteLine(cmd.CommandText);
+			writer.WriteLine("-------------------------------------------------------------------------------");
+			writer.Close();*/
 			cmd.ExecuteNonQuery();
 		}
 		
@@ -187,6 +233,7 @@ namespace ocmengine
 			pt.Type = reader.GetString(7);
 			pt.Time = DateTime.Parse(reader.GetString(8));
 			pt.Parent = reader.GetString(9);
+			pt.Updated = DateTime.Parse(reader.GetString(10));
 			return pt;
 		}
 		

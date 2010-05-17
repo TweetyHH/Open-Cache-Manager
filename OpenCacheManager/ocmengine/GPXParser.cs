@@ -43,6 +43,8 @@ namespace ocmengine
 		public event ParseEventHandler ParseTravelbug;
 		public event ParseEventHandler Complete;
 		
+		private DateTime gpx_date;
+		
 				
 		public void parseGPXFile(FileStream fs, CacheStore store)
 		{			
@@ -54,9 +56,12 @@ namespace ocmengine
 				switch (reader.NodeType)
 				{
 					case XmlNodeType.Element:
+						if (reader.Name == "time")
+							gpx_date = reader.ReadElementContentAsDateTime();
 						if (reader.Name == "wpt")
 						{
 							Waypoint pt = processWaypoint(reader);
+							pt.Updated = gpx_date;
 							m_store.AddWaypoint(pt);							
 						}
 						break;
@@ -193,11 +198,11 @@ namespace ocmengine
 				{
 					cache.Container = reader.ReadElementContentAsString();
 				}
-				else if (reader.LocalName == "logs")
+				else if (reader.LocalName == "logs" && !reader.IsEmptyElement)
 				{
 					parseCacheLogs(ref cache, reader);
 				}
-				else if (reader.LocalName == "travelbug")
+				else if (reader.LocalName == "travelbug" && !reader.IsEmptyElement)
 				{
 					parseTravelBug(ref cache, reader);
 				}

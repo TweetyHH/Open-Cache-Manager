@@ -68,17 +68,30 @@ namespace ocmgtk
 				
 		private void OnSelectionChanged(object sender, EventArgs e) 
 		{
-				TreeIter iter;
-                TreeModel model;
+			TreeIter iter;
+            TreeModel model;
  
-			    if (((TreeSelection)sender).GetSelected (out model, out iter))
-                {
-
-					Waypoint val = (Waypoint) model.GetValue (iter, 0);
-					if (val != null)
-                      		m_mon.ZoomToPoint(val.Lat, val.Lon);
+		    if (((TreeSelection)sender).GetSelected (out model, out iter))
+            {
+				Waypoint val = (Waypoint) model.GetValue (iter, 0);
+				if (val != null)
+                  		m_mon.ZoomToPoint(val.Lat, val.Lon);
+				if (val is Geocache)
+				{
+					editButton.Sensitive = false;
+					deleteButton.Sensitive = false;	
 				}
-                
+				else
+				{
+					editButton.Sensitive = true;
+					deleteButton.Sensitive = true;	
+				}
+			}
+			else
+			{
+				editButton.Sensitive = false;
+				deleteButton.Sensitive = false;				
+			}
 		}
 		
 		public void UpdateCacheInfo()
@@ -86,11 +99,14 @@ namespace ocmgtk
 			Geocache cache = m_mon.SelectedCache;
 			m_childPoints.Clear();
 			IEnumerator<Waypoint> wptenum = Engine.getInstance().GetChildWaypoints(cache.Name);
+			m_mon.ClearMarkers();
+			m_childPoints.AppendValues(cache);
+			m_mon.AddMapCache(cache);
 			while (wptenum.MoveNext())
 			{
 				m_childPoints.AppendValues(wptenum.Current);
-			}
-			//m_map.LoadUrl("javascript:loadMarkers("+ cache.Lat + "," + cache.Lon  + ")");
+				m_mon.AddMapWayPoint(wptenum.Current);
+			}			
 			this.ShowAll();
 		}
 		
@@ -116,6 +132,78 @@ namespace ocmgtk
 			text.Text = Utilities.getCoordString(wpt.Lat, wpt.Lon);
 		}
 	
+		protected virtual void doProperties (object sender, System.EventArgs e)
+		{
+			WaypointDialog dlg = new WaypointDialog();
+			Gtk.TreeIter itr;
+			Gtk.TreeModel model;
+			if (wptView.Selection.GetSelected(out model, out itr))
+			{
+				Waypoint wpt = (Waypoint) model.GetValue (itr, 0);
+				dlg.SetPoint(wpt);
+				if ((int)ResponseType.Ok == dlg.Run())
+				{
+					wpt = dlg.GetPoint();
+					Engine.getInstance().Store.UpdateWaypoint(wpt);
+					dlg.Dispose();
+					UpdateCacheInfo();
+				}
+			}
+			dlg.Run();
+		}
+		
+		protected virtual void doAdd (object sender, System.EventArgs e)
+		{
+			Waypoint newPoint = new Waypoint();
+			Geocache parent = m_mon.SelectedCache;
+			newPoint.Symbol = "Final Location";
+			newPoint.Parent = parent.Name;
+			newPoint.Lat = parent.Lat;
+			newPoint.Lon = parent.Lon;
+			newPoint.Name = "FL" + parent.Name.Substring(2);
+			WaypointDialog dlg = new WaypointDialog();
+			dlg.SetPoint(newPoint);
+			if ((int)ResponseType.Ok == dlg.Run())
+			{
+				newPoint = dlg.GetPoint();
+				Engine.getInstance().Store.AddWaypoint(newPoint);
+				dlg.Dispose();
+				UpdateCacheInfo();
+			}
+		}
+		
+		protected virtual void doRemove (object sender, System.EventArgs e)
+		{
+			Waypoint toDelete = GetSelectedWaypoint ();
+			
+			MessageDialog md = new MessageDialog ( null, 
+                                      DialogFlags.DestroyWithParent,
+	                              	MessageType.Info, 
+                                      ButtonsType.YesNo, "Are you sure you wish to delete " 
+			                                      + toDelete.Name);
+			if ((int)ResponseType.Yes == md.Run())
+			{
+				Engine.getInstance().Store.DeleteWaypoint(toDelete);
+				UpdateCacheInfo();
+			}
+			md.Hide();
+			md.Dispose();
+		}
+		
+		private Waypoint GetSelectedWaypoint ()
+		{
+			Gtk.TreeIter itr;
+			Gtk.TreeModel model;
+			if (wptView.Selection.GetSelected(out model, out itr))
+			{
+				return  (Waypoint) model.GetValue (itr, 0);
+			}
+			return null;
+		}
+		
+		
+		
+		
 		
 	}
 }

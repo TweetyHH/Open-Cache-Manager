@@ -74,6 +74,18 @@ namespace ocmengine
 			m_degrees = (int) degrees;
 			m_minutes = decimal_minutes;
 		}
+		
+		public double GetDecimalDegrees()
+		{
+			if (m_degrees >= 0)
+				return m_degrees + (m_minutes/60);
+			else
+			{
+				int deg = m_degrees * -1;
+				double val = deg + (m_minutes/60);
+				return val * -1;
+			}
+		}
 
 
 	}

@@ -30,6 +30,7 @@ public partial class MainWindow: Gtk.Window
 		m_monitor.StatusBar = statusbar1;	
 		m_monitor.Main = this;
 		m_monitor.Map = mapwidget;
+		loadConfig();
 		mapwidget.LoadUrl("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html");
 		m_monitor.updateCaches();
 		this.Maximize();
@@ -149,6 +150,51 @@ public partial class MainWindow: Gtk.Window
 		dlg.Destroy();
 		this.ShowAll();
 	}
+	
+	protected virtual void OnPreferences (object sender, System.EventArgs e)
+	{
+		Preferences dlg = new Preferences();
+		dlg.SetLat(m_monitor.HomeLat);
+		dlg.SetLon(m_monitor.HomeLon);
+		if ((int) ResponseType.Ok == dlg.Run())
+		{
+			setHome(dlg.Lat, dlg.Lon);
+		}
+	}
+	
+	protected void loadConfig()
+	{
+		GConf.Client client = new GConf.Client();
+		string home_lat = "0";
+		string home_lon = "0";
+		
+		try
+		{
+			m_monitor.HomeLat = (double)client.Get("/apps/monoapps/ocm/homelat");
+			m_monitor.HomeLon = (double)client.Get("/apps/monoapps/ocm/homelon");
+		}
+		catch (GConf.NoSuchKeyException)
+		{
+			// Do nothing
+		}
+	}
+	
+	protected void setHome(double lat, double lon)
+	{
+		GConf.Client client = new GConf.Client();		
+		try
+		{
+			client.Set("/apps/monoapps/ocm/homelat", lat);
+			client.Set("/apps/monoapps/ocm/homelon", lon);
+			m_monitor.HomeLat = lat;
+			m_monitor.HomeLon = lon;
+		}
+		catch (GConf.NoSuchKeyException)
+		{
+			// Do nothing
+		}
+	}
+	
 	
 	/*
 	 * protected virtual void OnBtnLoadFileClicked(object sender, System.EventArgs e)

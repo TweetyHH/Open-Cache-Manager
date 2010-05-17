@@ -281,6 +281,7 @@ public partial class MainWindow {
         this.ShowArchivedCachesAction.Toggled += new System.EventHandler(this.OnToggleArchive);
         this.ShowCachesPlacedByMeAction.Toggled += new System.EventHandler(this.OnToggleMine);
         this.ShowFoundCachesAction.Toggled += new System.EventHandler(this.OnToggleFound);
+        this.preferencesAction.Activated += new System.EventHandler(this.OnPreferences);
         this.MapAction1.Activated += new System.EventHandler(this.OnMapClick);
         this.ViewOnlineAction.Activated += new System.EventHandler(this.OnViewOnline);
         this.saveAsAction1.Activated += new System.EventHandler(this.OnSave);

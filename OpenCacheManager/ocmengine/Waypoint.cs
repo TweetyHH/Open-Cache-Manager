@@ -12,6 +12,7 @@
 */
 using System;
 using System.Xml;
+using System.Collections.Generic;
 
 namespace ocmengine
 {
@@ -24,11 +25,12 @@ namespace ocmengine
 		private DateTime m_time = DateTime.Now;
 		private string m_name = "";
 		private string m_desc = "";
-		private Uri m_uri = new Uri("http://nowhere.com");
+		private Uri m_uri = null;
 		private string m_urlname = "";
 		private string m_symbol = "";
-		private string m_type = "UNDEFINED";
+		private string m_type = "Waypoint";
 		private string m_parent = null;
+		private DateTime m_updated = DateTime.MinValue;
 		
 		public string Name
 		{
@@ -78,6 +80,12 @@ namespace ocmengine
 			set {m_time = value;}
 		}
 		
+		public DateTime Updated
+		{
+			get {return m_updated;}
+			set {m_updated = value;}
+		}
+		
 		
 		public string Type
 		{
@@ -102,6 +110,11 @@ namespace ocmengine
 			writer.WriteStartElement("wpt", GPXWriter.NS_GPX);
 			WriteWPTDetails(writer);
 			writer.WriteEndElement();
+			IEnumerator<Waypoint> itr = Engine.getInstance().GetChildWaypoints(this.Name);
+			while (itr.MoveNext())
+			{
+				itr.Current.WriteToGPX(writer);
+			}                          
 		}
 		
 		internal virtual void WriteWPTDetails(XmlWriter writer)

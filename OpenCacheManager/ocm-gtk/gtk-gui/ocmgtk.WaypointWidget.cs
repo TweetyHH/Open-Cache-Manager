@@ -29,9 +29,9 @@ namespace ocmgtk {
         
         private Gtk.Button addButton;
         
-        private Gtk.Button button37;
+        private Gtk.Button editButton;
         
-        private Gtk.Button button2;
+        private Gtk.Button deleteButton;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -65,6 +65,7 @@ namespace ocmgtk {
             // Container child hbox1.Gtk.Box+BoxChild
             this.vbuttonbox1 = new Gtk.VButtonBox();
             this.vbuttonbox1.Name = "vbuttonbox1";
+            this.vbuttonbox1.Spacing = 6;
             this.vbuttonbox1.LayoutStyle = ((Gtk.ButtonBoxStyle)(3));
             // Container child vbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
             this.addButton = new Gtk.Button();
@@ -78,26 +79,28 @@ namespace ocmgtk {
             w5.Expand = false;
             w5.Fill = false;
             // Container child vbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-            this.button37 = new Gtk.Button();
-            this.button37.CanFocus = true;
-            this.button37.Name = "button37";
-            this.button37.UseStock = true;
-            this.button37.UseUnderline = true;
-            this.button37.Label = "gtk-properties";
-            this.vbuttonbox1.Add(this.button37);
-            Gtk.ButtonBox.ButtonBoxChild w6 = ((Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox1[this.button37]));
+            this.editButton = new Gtk.Button();
+            this.editButton.Sensitive = false;
+            this.editButton.CanFocus = true;
+            this.editButton.Name = "editButton";
+            this.editButton.UseStock = true;
+            this.editButton.UseUnderline = true;
+            this.editButton.Label = "gtk-edit";
+            this.vbuttonbox1.Add(this.editButton);
+            Gtk.ButtonBox.ButtonBoxChild w6 = ((Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox1[this.editButton]));
             w6.Position = 1;
             w6.Expand = false;
             w6.Fill = false;
             // Container child vbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-            this.button2 = new Gtk.Button();
-            this.button2.CanFocus = true;
-            this.button2.Name = "button2";
-            this.button2.UseStock = true;
-            this.button2.UseUnderline = true;
-            this.button2.Label = "gtk-remove";
-            this.vbuttonbox1.Add(this.button2);
-            Gtk.ButtonBox.ButtonBoxChild w7 = ((Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox1[this.button2]));
+            this.deleteButton = new Gtk.Button();
+            this.deleteButton.Sensitive = false;
+            this.deleteButton.CanFocus = true;
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.UseStock = true;
+            this.deleteButton.UseUnderline = true;
+            this.deleteButton.Label = "gtk-delete";
+            this.vbuttonbox1.Add(this.deleteButton);
+            Gtk.ButtonBox.ButtonBoxChild w7 = ((Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox1[this.deleteButton]));
             w7.Position = 2;
             w7.Expand = false;
             w7.Fill = false;
@@ -106,6 +109,7 @@ namespace ocmgtk {
             w8.Position = 1;
             w8.Expand = false;
             w8.Fill = false;
+            w8.Padding = ((uint)(12));
             this.widgetBox.Add(this.hbox1);
             Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.widgetBox[this.hbox1]));
             w9.Position = 0;
@@ -115,6 +119,9 @@ namespace ocmgtk {
             }
             w1.SetUiManager(UIManager);
             this.Hide();
+            this.addButton.Clicked += new System.EventHandler(this.doAdd);
+            this.editButton.Clicked += new System.EventHandler(this.doProperties);
+            this.deleteButton.Clicked += new System.EventHandler(this.doRemove);
         }
     }
 }

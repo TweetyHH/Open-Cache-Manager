@@ -25,7 +25,7 @@ namespace ocmgtk
 	{
 
 		private GPXParser m_parser;
-		
+		int processCount=0;
 		public ProgressDialog (GPXParser parser)
 		{
 			this.Build ();
@@ -51,6 +51,8 @@ namespace ocmgtk
 		{
 			this.progressbar6.Text = (args as ParseEventArgs).Message;
 			this.progressbar6.Pulse();
+			processCount++;
+			this.label1.Text = "Processed: " + processCount;
 			while (Gtk.Application.EventsPending())
                  Gtk.Application.RunIteration(false);
 		}
