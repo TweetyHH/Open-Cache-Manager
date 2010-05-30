@@ -106,7 +106,10 @@ namespace ocmgtk
 			{
 				m_childPoints.AppendValues(wptenum.Current);
 				m_mon.AddMapWayPoint(wptenum.Current);
-			}			
+				
+			}	
+		
+			m_mon.ZoomToPoint(cache.Lat, cache.Lon);
 			this.ShowAll();
 		}
 		
@@ -200,6 +203,16 @@ namespace ocmgtk
 			}
 			return null;
 		}
+		
+		protected virtual void OnRefresh (object sender, System.EventArgs e)
+		{
+		}
+		
+		protected virtual void OnStopActionActivated (object sender, System.EventArgs e)
+		{
+		}
+		
+		
 		
 		
 		

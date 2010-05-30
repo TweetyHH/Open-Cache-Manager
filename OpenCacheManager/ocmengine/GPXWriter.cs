@@ -20,6 +20,20 @@ using System.IO;
 
 namespace ocmengine
 {
+	public class WriteEventArgs:EventArgs
+	{
+		private string m_message;
+		
+		public string Message
+		{
+			get { return m_message;}
+		}
+		
+		public WriteEventArgs(String message):base()
+		{
+			m_message = message;
+		}
+	}
 	
 	public class GPXWriter
 	{
@@ -27,31 +41,41 @@ namespace ocmengine
 		public const string NS_CACHE = "http://www.groundspeak.com/cache/1/0";
 		public const string XSD_DT = "yyyy-MM-ddTHH:mm:ss.fffzzz";
 		
-		public GPXWriter()
+		public event WriteEventHandler WriteWaypoint;
+		public event WriteEventHandler Complete;
+		public delegate void WriteEventHandler(object sender, EventArgs args);
+
+		public GPXWriter ()
 		{
 		}
-		
-		public void WriteGPXFile(String name, List<Geocache> caches)
+
+		public void WriteGPXFile (String name, List<Geocache> caches)
 		{
-			XmlWriter writer = new XmlTextWriter(name, System.Text.Encoding.UTF8);
-			writer.WriteStartElement("gpx", NS_GPX);
-			writer.WriteElementString("name", NS_GPX, "Cache Listing from OCM");
-			writer.WriteElementString("desc", NS_GPX, "Cache Listing from OCM");
-			writer.WriteElementString("author", NS_GPX, "Kyle Campbell");
-			writer.WriteElementString("email", NS_GPX, "kmcamp_ott@yahoo.com");
-			writer.WriteElementString("url", NS_GPX, "http://sourceforge.net/projects/opencachemanage/");
-			writer.WriteElementString("urlname", NS_GPX, "Sourceforge Link");
-			writer.WriteElementString("time", NS_GPX, System.DateTime.Now.ToString(XSD_DT));
-			foreach (Geocache cache in caches)
-			{
-				cache.WriteToGPX(writer);
+			XmlWriter writer = new XmlTextWriter (name, System.Text.Encoding.UTF8);
+			try {
+				writer.WriteStartElement ("gpx", NS_GPX);
+				writer.WriteElementString ("name", NS_GPX, "Cache Listing from OCM");
+				writer.WriteElementString ("desc", NS_GPX, "Cache Listing from OCM");
+				writer.WriteElementString ("author", NS_GPX, "Kyle Campbell");
+				writer.WriteElementString ("email", NS_GPX, "kmcamp_ott@yahoo.com");
+				writer.WriteElementString ("url", NS_GPX, "http://sourceforge.net/projects/opencachemanage/");
+				writer.WriteElementString ("urlname", NS_GPX, "Sourceforge Link");
+				writer.WriteElementString ("time", NS_GPX, System.DateTime.Now.ToString (XSD_DT));
+				foreach (Geocache cache in caches) {
+					this.WriteWaypoint(this, new WriteEventArgs(String.Format("Writing {0}", cache.Name)));
+					cache.WriteToGPX (writer);
+				}
+				writer.WriteEndElement ();
+				this.Complete(this, new WriteEventArgs("Done"));
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				writer.Flush ();
+				writer.Close ();
 			}
-			writer.WriteEndElement();
-			writer.Flush();
-			writer.Close();
 		}
-		
-		public void toGPX(Waypoint pt)
+
+		public void toGPX (Waypoint pt)
 		{
 			
 		}

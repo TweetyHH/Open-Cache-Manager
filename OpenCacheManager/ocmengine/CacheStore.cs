@@ -16,48 +16,25 @@
 using System;
 using System.Data;
 using System.IO;
-using Mono.Data.SqliteClient;
+using Mono.Data.Sqlite;
 using System.Collections.Generic;
 
 namespace ocmengine
 {
 	
 	
-	public class CacheStore
+	public partial class CacheStore
 	{
-		const string SQL_CONNECT = "URI=file:/home/campbelk/.ocm/data.db,version=3";
-		const string INSERT_WPT = "REPLACE INTO WAYPOINT (name,lat,lon,url,urlname,desc,symbol,type,time, parent, lastUpdate) VALUES (" +
-							"'{0}',{1},{2},'{3}','{4}','{5}','{6}','{7}','{8}','{9}', '{10}')";
-	
-		const string GET_WPTS = "SELECT name, lat, lon, url, urlname, desc, symbol, type, time, parent FROM WAYPOINT";
-		const string DELETE_LOGS = "DELETE FROM LOGS where cache='{0}'";
-		const string DELETE_TBS = "DELETE FROM TBUGS where cache='{0}'";
-		const string ADD_LOG = "INSERT INTO LOGS (cache, date, loggedby, message, status, finderID, encoded) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')";
-		const string ADD_TB = "INSERT INTO TBUGS(cache, id, ref, name) VALUES('{0}','{1}','{2}','{3}')";
-		const string WHERE_PARENT =" WHERE parent='{0}'";
-		const string GET_LOGS = "SELECT date, loggedby, message, status, finderID, encoded FROM LOGS WHERE cache='{0}' ORDER BY date DESC";
-		const string INSERT_GC = "REPLACE INTO GEOCACHE (name, fullname, id, owner, ownerID, placedby, difficulty, terrain, country, state, type, shortdesc, longdesc, hint, container, archived, available)"
-			+ " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}')";
-		const string GET_GC = "SELECT  WAYPOINT.name, WAYPOINT.lat, WAYPOINT.lon, WAYPOINT.url, WAYPOINT.urlname, WAYPOINT.desc, WAYPOINT.symbol, WAYPOINT.type, WAYPOINT.time,"
-			+ "GEOCACHE.fullname, GEOCACHE.id, GEOCACHE.owner, GEOCACHE.ownerID, GEOCACHE.placedby, GEOCACHE.difficulty, GEOCACHE.terrain, GEOCACHE.country, GEOCACHE.state," +
-				"GEOCACHE.type, GEOCACHE.shortdesc, GEOCACHE.longdesc, GEOCACHE.hint, GEOCACHE.container, GEOCACHE.archived, GEOCACHE.available" +
-				" FROM WAYPOINT, GEOCACHE WHERE WAYPOINT.name = GEOCACHE.name";
-		const string COUNT_GC = "SELECT COUNT(name) from GEOCACHE";
-		const string COUNT_WPT = "SELECT COUNT(name) from WAYPOINT";
-		const string FOUND=" WHERE SYMBOL='Geocache Found'";
-		const string INACTIVE=" WHERE AVAILABLE='False'";
-		const string DELETE_WPT = "DELETE FROM WAYPOINT WHERE name='{0}'";
-		//consor parent='{0}'";
-		const string DELETE_GC = "DELETE FROM GEOCACHE WHERE name='{0}'";
-	   	
+		
+#region Properties
 		
 		private IDbConnection m_conn = null;
+		private String m_dbFile = null;
 		
 		public int CacheCount
 		{
 			get { 	
-				IDbConnection conn = (IDbConnection) new SqliteConnection(SQL_CONNECT);
-				conn.Open();
+				IDbConnection conn =  OpenConnection ();
 				IDbCommand command = conn.CreateCommand();
 				command.CommandText = COUNT_GC;
 				object val = command.ExecuteScalar();
@@ -70,8 +47,7 @@ namespace ocmengine
 		public int FoundCount
 		{
 			get { 	
-				IDbConnection conn = (IDbConnection) new SqliteConnection(SQL_CONNECT);
-				conn.Open();
+				IDbConnection conn =  OpenConnection ();
 				IDbCommand command = conn.CreateCommand();
 				command.CommandText = COUNT_GC + FOUND;
 				object val = command.ExecuteScalar();
@@ -84,8 +60,7 @@ namespace ocmengine
 		public int InactiveCount
 		{
 			get { 	
-				IDbConnection conn = (IDbConnection) new SqliteConnection(SQL_CONNECT);
-				conn.Open();
+				IDbConnection conn =  OpenConnection ();
 				IDbCommand command = conn.CreateCommand();
 				command.CommandText = COUNT_GC + INACTIVE;
 				object val = command.ExecuteScalar();
@@ -98,8 +73,7 @@ namespace ocmengine
 		public int WaypointCount
 		{
 			get { 	
-				IDbConnection conn = (IDbConnection) new SqliteConnection(SQL_CONNECT);
-				conn.Open();
+				IDbConnection conn =  OpenConnection ();
 				IDbCommand command = conn.CreateCommand();
 				command.CommandText = COUNT_WPT;
 				int count = (int) command.ExecuteScalar();
@@ -107,6 +81,8 @@ namespace ocmengine
 				return count;
 			}
 		}
+		
+#endregion
 		
 		public CacheStore()
 		{
@@ -160,6 +136,7 @@ namespace ocmengine
 			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
 			IDbCommand cmd = m_conn.CreateCommand();
+			System.Console.Write("Updateing" + cache.Name);
 			cmd.CommandText = String.Format(INSERT_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
 			                                cache.Difficulty, cache.Terrain, SQLEscape(cache.Country), 
@@ -167,20 +144,13 @@ namespace ocmengine
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
 			                                cache.Available.ToString());
-			
-			/*FileStream fs = new FileStream("log.txt", FileMode.Append);
-			StreamWriter writer = new StreamWriter(fs);
-			writer.WriteLine(cmd.CommandText);
-			writer.WriteLine("-------------------------------------------------------------------------------");
-			writer.Close();*/
 			cmd.ExecuteNonQuery();
 		}
 		
 		private List<Waypoint> GetWayPointList(String sql)
 		{
 			List<Waypoint> pts = new List<Waypoint>();
-			IDbConnection conn = (IDbConnection) new SqliteConnection(SQL_CONNECT);
-			conn.Open();
+			IDbConnection conn =  OpenConnection ();
 			IDbCommand command = conn.CreateCommand();
 			command.CommandText = sql;
 			IDataReader reader = command.ExecuteReader();
@@ -195,8 +165,7 @@ namespace ocmengine
 		private List<Geocache> GetCacheList(String sql)
 		{
 			List<Geocache> pts = new List<Geocache>();
-			IDbConnection conn = (IDbConnection) new SqliteConnection(SQL_CONNECT);
-			conn.Open();
+			IDbConnection conn =  OpenConnection ();
 			IDbCommand command = conn.CreateCommand();
 			command.CommandText = sql;
 			IDataReader reader = command.ExecuteReader();
@@ -225,7 +194,7 @@ namespace ocmengine
 			pt.Lat = reader.GetFloat(1);
 			pt.Lon = reader.GetFloat(2);
 			string url = reader.GetString(3);
-			if (null != url)
+			if (!String.IsNullOrEmpty(url))
 				pt.URL = new Uri(url);
 			pt.URLName = reader.GetString(4);
 			pt.Desc = reader.GetString(5);
@@ -250,7 +219,8 @@ namespace ocmengine
 			cache.Desc = reader.GetString(5);
 			cache.Symbol = reader.GetString(6);
 			cache.Type = reader.GetString(7);
-			cache.Time = reader.GetDateTime(8);	
+			String time = reader.GetString(8);
+			cache.Time = DateTime.Parse(time);	
 			cache.CacheName = reader.GetString(9);
 			cache.CacheID = reader.GetString(10);
 			cache.CacheOwner = reader.GetString(11);
@@ -265,8 +235,11 @@ namespace ocmengine
 			cache.LongDesc = reader.GetString(20);
 			cache.Hint = reader.GetString(21);
 			cache.Container = reader.GetString(22);
-			cache.Archived = reader.GetBoolean(23);
-			cache.Available = reader.GetBoolean(24);
+			String archived = reader.GetString(23);
+			cache.Archived = Boolean.Parse(archived);
+			String available = reader.GetString(24);
+			cache.Available = Boolean.Parse(available);
+			cache.Updated = DateTime.Parse(reader.GetString(25));
 			return cache;
 			
 		}
@@ -311,8 +284,7 @@ namespace ocmengine
 		{
 			if (m_conn == null)
 			{
-				m_conn = (IDbConnection) new SqliteConnection(SQL_CONNECT);
-				m_conn.Open();
+				m_conn = OpenConnection();
 			}
 		}
 		
@@ -337,15 +309,65 @@ namespace ocmengine
 				log.LogMessage = rdr.GetString(2);
 				log.LogStatus = rdr.GetString(3);
 				log.FinderID = rdr.GetString(4);
-				log.Encoded = rdr.GetBoolean(5);
+				String encoded = rdr.GetString(5);
+				log.Encoded = Boolean.Parse(encoded);
 				logs.Add(log);
 			}
 			return logs;			
+		}
+		
+			
+		public List<TravelBug> GetTravelBugs(String cachename)
+		{
+			List<TravelBug> bugs = new List<TravelBug>();
+			StartUpdate();
+			IDbCommand cmd =  m_conn.CreateCommand();
+			cmd.CommandText = String.Format(GET_TB, cachename);
+			IDataReader rdr = cmd.ExecuteReader();
+			while (rdr.Read())
+			{
+				TravelBug bug = new TravelBug();
+				bug.ID = rdr.GetString(0);
+				bug.Ref = rdr.GetString(1);
+				bug.Name = rdr.GetString(2);
+				bug.Cache = cachename;
+				bugs.Add(bug);
+			}
+			return bugs;			
 		}
 		
 		private static String SQLEscape(String unescapedString)
 		{
 			return unescapedString.Replace("'", "''");
 		}
+		
+		private IDbConnection OpenConnection ()
+		{
+			IDbConnection conn = (IDbConnection) new SqliteConnection(SQL_CONNECT + m_dbFile);
+			conn.Open();
+			return conn;
+		}
+		
+		public void SetDB(String filePath)
+		{
+			m_dbFile = filePath;
+		}
+		
+		public void CreateDB(String filePath)
+		{
+			m_dbFile = filePath;
+			IDbConnection conn = OpenConnection();
+			IDbCommand cmd = conn.CreateCommand();
+			cmd.CommandText = CREATE_CACHE_TABLE;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = CREATE_LOGS_TABLE;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = CREATE_TABLE_TBUGS;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = CREATE_TABLE_WPTS;
+			cmd.ExecuteNonQuery();
+			cmd.Dispose();
+			conn.Close();
+		}	
 	}		
 }

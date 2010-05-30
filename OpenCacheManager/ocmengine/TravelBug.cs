@@ -25,6 +25,14 @@ namespace ocmengine
 		private string m_id;
 		private string m_ref;
 		private string m_name;
+		private string m_cache;
+		const string TBUG_PREFIX="groundspeak";
+		
+		public String Cache
+		{
+			get { return m_cache;}
+			set { m_cache = value;}
+		}
 		
 		public String ID
 		{
@@ -46,10 +54,10 @@ namespace ocmengine
 		
 		public void WriteToGPX(XmlWriter writer)
 		{
-			writer.WriteStartElement("travelbug");
+			writer.WriteStartElement(TBUG_PREFIX, "travelbug", GPXWriter.NS_CACHE);
 			writer.WriteAttributeString("id", ID);
 			writer.WriteAttributeString("ref", Ref);
-			writer.WriteElementString("name", Name);
+			writer.WriteElementString(TBUG_PREFIX, "name", GPXWriter.NS_CACHE, Name);
 			writer.WriteEndElement();
 		}
 	}

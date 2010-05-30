@@ -21,9 +21,9 @@ namespace ocmgtk {
         
         private Gtk.VBox widgetBox;
         
-        private Gtk.Toolbar toolbar2;
+        private Gtk.Frame browserFrame;
         
-        private Gtk.Alignment browserPlace;
+        private Gtk.Alignment browserAlign;
         
         private Gtk.Statusbar browsestatusBar;
         
@@ -43,30 +43,24 @@ namespace ocmgtk {
             this.widgetBox = new Gtk.VBox();
             this.widgetBox.Name = "widgetBox";
             // Container child widgetBox.Gtk.Box+BoxChild
-            this.UIManager.AddUiFromString("<ui><toolbar name='toolbar2'><toolitem name='refreshAction' action='refreshAction'/><toolitem name='stopAction' action='stopAction'/></toolbar></ui>");
-            this.toolbar2 = ((Gtk.Toolbar)(this.UIManager.GetWidget("/toolbar2")));
-            this.toolbar2.Name = "toolbar2";
-            this.toolbar2.ShowArrow = false;
-            this.toolbar2.ToolbarStyle = ((Gtk.ToolbarStyle)(0));
-            this.toolbar2.IconSize = ((Gtk.IconSize)(2));
-            this.widgetBox.Add(this.toolbar2);
-            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.widgetBox[this.toolbar2]));
-            w3.Position = 0;
-            w3.Expand = false;
-            w3.Fill = false;
-            // Container child widgetBox.Gtk.Box+BoxChild
-            this.browserPlace = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-            this.browserPlace.Name = "browserPlace";
-            this.widgetBox.Add(this.browserPlace);
-            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.widgetBox[this.browserPlace]));
-            w4.Position = 1;
+            this.browserFrame = new Gtk.Frame();
+            this.browserFrame.Name = "browserFrame";
+            this.browserFrame.LabelYalign = 0F;
+            // Container child browserFrame.Gtk.Container+ContainerChild
+            this.browserAlign = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.browserAlign.Name = "browserAlign";
+            this.browserFrame.Add(this.browserAlign);
+            this.widgetBox.Add(this.browserFrame);
+            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.widgetBox[this.browserFrame]));
+            w4.Position = 0;
             // Container child widgetBox.Gtk.Box+BoxChild
             this.browsestatusBar = new Gtk.Statusbar();
             this.browsestatusBar.Name = "browsestatusBar";
             this.browsestatusBar.Spacing = 6;
+            this.browsestatusBar.HasResizeGrip = false;
             this.widgetBox.Add(this.browsestatusBar);
             Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.widgetBox[this.browsestatusBar]));
-            w5.Position = 2;
+            w5.Position = 1;
             w5.Expand = false;
             w5.Fill = false;
             this.Add(this.widgetBox);

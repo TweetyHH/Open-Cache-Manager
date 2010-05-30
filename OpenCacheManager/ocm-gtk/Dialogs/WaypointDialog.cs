@@ -35,9 +35,9 @@ namespace ocmgtk
 		public void SetPoint(ocmengine.Waypoint pnt)
 		{
 			m_point = pnt;
-			nameEntry.Text = pnt.Name;
 			descriptionEntry.Buffer.Text = pnt.Desc;
 			flagEntry.Active = GetPTTypeCode(pnt.Symbol);
+			nameEntry.Text = pnt.Name;
 			latEntry.SetCoordinate(pnt.Lat, true);
 			longEntry.SetCoordinate(pnt.Lon, false);
 		}

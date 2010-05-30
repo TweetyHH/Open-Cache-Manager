@@ -20,6 +20,7 @@ namespace ocmengine
 	public class CacheLog
 	{
 		DateTime m_logdate;
+		const string LOG_PREFIX="groundspeak";
 		string m_logged_by;
 		string m_logmessage;
 		string m_status;
@@ -86,14 +87,14 @@ namespace ocmengine
 		
 		public void WriteToGPX(XmlWriter writer)
 		{
-			writer.WriteStartElement("log");
-			writer.WriteElementString("date", this.LogDate.ToString("o"));
-			writer.WriteElementString("type", this.LogStatus);
-			writer.WriteStartElement("finder");
+			writer.WriteStartElement(LOG_PREFIX,"log", GPXWriter.NS_CACHE);
+			writer.WriteElementString(LOG_PREFIX,"date", GPXWriter.NS_CACHE, this.LogDate.ToString("o"));
+			writer.WriteElementString(LOG_PREFIX,"type", GPXWriter.NS_CACHE, this.LogStatus);
+			writer.WriteStartElement(LOG_PREFIX,"finder", GPXWriter.NS_CACHE);
 			writer.WriteAttributeString("id", FinderID);
 			writer.WriteString(LoggedBy);
 			writer.WriteEndElement();
-			writer.WriteStartElement("text");
+			writer.WriteStartElement(LOG_PREFIX,"text", GPXWriter.NS_CACHE);
 			writer.WriteAttributeString("encoded", Encoded.ToString());
 			writer.WriteString(LogMessage);
 			writer.WriteEndElement();			

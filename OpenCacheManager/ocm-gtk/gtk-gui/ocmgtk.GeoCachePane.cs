@@ -15,21 +15,27 @@ namespace ocmgtk {
         
         private Gtk.Alignment alignment1;
         
+        private Gtk.VPaned vpaned1;
+        
         private Gtk.Notebook notebook2;
         
         private ocmgtk.GeocacheInfoPanel cacheInfo;
         
+        private Gtk.Label label7;
+        
+        private ocmgtk.DescriptionWidget descWidget;
+        
         private Gtk.Label label6;
         
-        private Gtk.Alignment alignment3;
+        private ocmgtk.LogViewerWidget logView;
         
-        private Gtk.Label logTab;
-        
-        private Gtk.Alignment alignment4;
+        private Gtk.Label label8;
         
         private ocmgtk.WaypointWidget waypointView;
         
-        private Gtk.Label mapTab;
+        private Gtk.Label label9;
+        
+        private ocmgtk.BrowserWidget mapWidget1;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -40,51 +46,76 @@ namespace ocmgtk {
             this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment1.Name = "alignment1";
             // Container child alignment1.Gtk.Container+ContainerChild
+            this.vpaned1 = new Gtk.VPaned();
+            this.vpaned1.CanFocus = true;
+            this.vpaned1.Name = "vpaned1";
+            this.vpaned1.Position = 300;
+            // Container child vpaned1.Gtk.Paned+PanedChild
             this.notebook2 = new Gtk.Notebook();
             this.notebook2.CanFocus = true;
             this.notebook2.Name = "notebook2";
-            this.notebook2.CurrentPage = 2;
+            this.notebook2.CurrentPage = 0;
             // Container child notebook2.Gtk.Notebook+NotebookChild
             this.cacheInfo = new ocmgtk.GeocacheInfoPanel();
             this.cacheInfo.Events = ((Gdk.EventMask)(256));
             this.cacheInfo.Name = "cacheInfo";
             this.notebook2.Add(this.cacheInfo);
             // Notebook tab
+            this.label7 = new Gtk.Label();
+            this.label7.Name = "label7";
+            this.label7.LabelProp = Mono.Unix.Catalog.GetString("Quick Info");
+            this.notebook2.SetTabLabel(this.cacheInfo, this.label7);
+            this.label7.ShowAll();
+            // Container child notebook2.Gtk.Notebook+NotebookChild
+            this.descWidget = new ocmgtk.DescriptionWidget();
+            this.descWidget.Events = ((Gdk.EventMask)(256));
+            this.descWidget.Name = "descWidget";
+            this.notebook2.Add(this.descWidget);
+            Gtk.Notebook.NotebookChild w2 = ((Gtk.Notebook.NotebookChild)(this.notebook2[this.descWidget]));
+            w2.Position = 1;
+            // Notebook tab
             this.label6 = new Gtk.Label();
             this.label6.Name = "label6";
             this.label6.LabelProp = Mono.Unix.Catalog.GetString("Description");
-            this.notebook2.SetTabLabel(this.cacheInfo, this.label6);
+            this.notebook2.SetTabLabel(this.descWidget, this.label6);
             this.label6.ShowAll();
             // Container child notebook2.Gtk.Notebook+NotebookChild
-            this.alignment3 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-            this.alignment3.Name = "alignment3";
-            this.notebook2.Add(this.alignment3);
-            Gtk.Notebook.NotebookChild w2 = ((Gtk.Notebook.NotebookChild)(this.notebook2[this.alignment3]));
-            w2.Position = 1;
+            this.logView = new ocmgtk.LogViewerWidget();
+            this.logView.Events = ((Gdk.EventMask)(256));
+            this.logView.Name = "logView";
+            this.notebook2.Add(this.logView);
+            Gtk.Notebook.NotebookChild w3 = ((Gtk.Notebook.NotebookChild)(this.notebook2[this.logView]));
+            w3.Position = 2;
             // Notebook tab
-            this.logTab = new Gtk.Label();
-            this.logTab.Name = "logTab";
-            this.logTab.LabelProp = Mono.Unix.Catalog.GetString("Logs");
-            this.notebook2.SetTabLabel(this.alignment3, this.logTab);
-            this.logTab.ShowAll();
+            this.label8 = new Gtk.Label();
+            this.label8.Name = "label8";
+            this.label8.LabelProp = Mono.Unix.Catalog.GetString("Logs");
+            this.notebook2.SetTabLabel(this.logView, this.label8);
+            this.label8.ShowAll();
             // Container child notebook2.Gtk.Notebook+NotebookChild
-            this.alignment4 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-            this.alignment4.Name = "alignment4";
-            // Container child alignment4.Gtk.Container+ContainerChild
             this.waypointView = new ocmgtk.WaypointWidget();
             this.waypointView.Events = ((Gdk.EventMask)(256));
             this.waypointView.Name = "waypointView";
-            this.alignment4.Add(this.waypointView);
-            this.notebook2.Add(this.alignment4);
-            Gtk.Notebook.NotebookChild w4 = ((Gtk.Notebook.NotebookChild)(this.notebook2[this.alignment4]));
-            w4.Position = 2;
+            this.notebook2.Add(this.waypointView);
+            Gtk.Notebook.NotebookChild w4 = ((Gtk.Notebook.NotebookChild)(this.notebook2[this.waypointView]));
+            w4.Position = 3;
             // Notebook tab
-            this.mapTab = new Gtk.Label();
-            this.mapTab.Name = "mapTab";
-            this.mapTab.LabelProp = Mono.Unix.Catalog.GetString("Waypoints");
-            this.notebook2.SetTabLabel(this.alignment4, this.mapTab);
-            this.mapTab.ShowAll();
-            this.alignment1.Add(this.notebook2);
+            this.label9 = new Gtk.Label();
+            this.label9.Name = "label9";
+            this.label9.LabelProp = Mono.Unix.Catalog.GetString("Waypoints");
+            this.notebook2.SetTabLabel(this.waypointView, this.label9);
+            this.label9.ShowAll();
+            this.vpaned1.Add(this.notebook2);
+            Gtk.Paned.PanedChild w5 = ((Gtk.Paned.PanedChild)(this.vpaned1[this.notebook2]));
+            w5.Resize = false;
+            // Container child vpaned1.Gtk.Paned+PanedChild
+            this.mapWidget1 = new ocmgtk.BrowserWidget();
+            this.mapWidget1.WidthRequest = 300;
+            this.mapWidget1.HeightRequest = 150;
+            this.mapWidget1.Events = ((Gdk.EventMask)(256));
+            this.mapWidget1.Name = "mapWidget1";
+            this.vpaned1.Add(this.mapWidget1);
+            this.alignment1.Add(this.vpaned1);
             this.Add(this.alignment1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

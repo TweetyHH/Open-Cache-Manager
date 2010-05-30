@@ -50,6 +50,7 @@ namespace ocmgtk {
             this.hbox1 = new Gtk.HBox();
             this.hbox1.Name = "hbox1";
             this.hbox1.Spacing = 6;
+            this.hbox1.BorderWidth = ((uint)(6));
             // Container child hbox1.Gtk.Box+BoxChild
             this.GtkScrolledWindow = new Gtk.ScrolledWindow();
             this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -109,7 +110,6 @@ namespace ocmgtk {
             w8.Position = 1;
             w8.Expand = false;
             w8.Fill = false;
-            w8.Padding = ((uint)(12));
             this.widgetBox.Add(this.hbox1);
             Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.widgetBox[this.hbox1]));
             w9.Position = 0;

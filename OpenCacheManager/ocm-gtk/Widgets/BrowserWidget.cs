@@ -34,7 +34,7 @@ namespace ocmgtk
 			m_browser.LoadStarted += HandleM_browserLoadStarted;
 			m_browser.LoadProgressChanged += HandleM_browserLoadProgressChanged;
 			m_browser.LoadFinished += HandleM_browserLoadFinished;
-			browserPlace.Add(m_browser);
+			browserAlign.Add(m_browser);
 			this.ShowAll();
 		}
 

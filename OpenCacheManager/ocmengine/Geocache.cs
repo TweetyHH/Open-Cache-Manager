@@ -38,6 +38,7 @@ namespace ocmengine
 			MINE,
 			OTHER};
 		
+		const string CACHE_PREFIX="groundspeak";
 		
 		private string m_cacheName;
 		private string m_cacheOwner;
@@ -184,6 +185,7 @@ namespace ocmengine
 			cache.URL = original.URL;
 			cache.URLName = original.URLName;
 			cache.Type = original.Type;
+			cache.Updated = original.Updated;
 			return cache;
 		}
 		
@@ -202,36 +204,37 @@ namespace ocmengine
 		internal override void WriteWPTDetails (XmlWriter writer)
 		{
 			base.WriteWPTDetails (writer);
-			writer.WriteStartElement("cache", GPXWriter.NS_CACHE);
+			writer.WriteStartElement(CACHE_PREFIX, "cache", GPXWriter.NS_CACHE);
 			writer.WriteAttributeString("id", CacheID);
 			writer.WriteAttributeString("available", Available.ToString());
 			writer.WriteAttributeString("archived", Archived.ToString());
-			writer.WriteElementString("name", CacheName);
-			writer.WriteElementString("placed_by", PlacedBy);
-			writer.WriteStartElement("owner");
+			writer.WriteElementString(CACHE_PREFIX,"name", GPXWriter.NS_CACHE, CacheName);
+			writer.WriteElementString(CACHE_PREFIX,"placed_by", GPXWriter.NS_CACHE,  PlacedBy);
+			writer.WriteStartElement(CACHE_PREFIX,"owner", GPXWriter.NS_CACHE);
 			writer.WriteAttributeString("id", OwnerID);
 			writer.WriteString(CacheOwner);
 			writer.WriteEndElement();
-			writer.WriteElementString("type", GetCTypeString(TypeOfCache));
-			writer.WriteElementString("container", Container);
-			writer.WriteElementString("difficulty", Difficulty.ToString("0.0"));
-			writer.WriteElementString("terrain", Difficulty.ToString("0.0"));
-			writer.WriteElementString("country", Country);
-			writer.WriteElementString("state", State);
-			writer.WriteElementString("short_description", ShortDesc);
-			writer.WriteElementString("long_description", LongDesc);
-			writer.WriteElementString("encoded_hints", Hint);
-			writer.WriteStartElement("logs");
+			writer.WriteElementString(CACHE_PREFIX,"type", GPXWriter.NS_CACHE, GetCTypeString(TypeOfCache));
+			writer.WriteElementString(CACHE_PREFIX,"container", GPXWriter.NS_CACHE, Container);
+			writer.WriteElementString(CACHE_PREFIX,"difficulty", GPXWriter.NS_CACHE, Difficulty.ToString("0.#"));
+			writer.WriteElementString(CACHE_PREFIX,"terrain", GPXWriter.NS_CACHE, Terrain.ToString("0.#"));
+			writer.WriteElementString(CACHE_PREFIX,"country", GPXWriter.NS_CACHE,  Country);
+			writer.WriteElementString(CACHE_PREFIX,"state", GPXWriter.NS_CACHE,  State);
+			writer.WriteElementString(CACHE_PREFIX,"short_description", GPXWriter.NS_CACHE,  ShortDesc);
+			writer.WriteElementString(CACHE_PREFIX,"long_description", GPXWriter.NS_CACHE,  LongDesc);
+			writer.WriteElementString(CACHE_PREFIX,"encoded_hints", GPXWriter.NS_CACHE,  Hint);
+			writer.WriteStartElement(CACHE_PREFIX,"logs", GPXWriter.NS_CACHE);
 			IEnumerator<CacheLog> itr = Engine.getInstance().GetLogs(this.Name);
 			while (itr.MoveNext())
 			{
 				itr.Current.WriteToGPX(writer);
 			}
 			writer.WriteEndElement();
-			writer.WriteStartElement("travelbugs");
-			foreach(TravelBug bug in m_travelbugs)
+			writer.WriteStartElement(CACHE_PREFIX,"travelbugs", GPXWriter.NS_CACHE);
+			IEnumerator<TravelBug> bugs = Engine.getInstance().Store.GetTravelBugs(this.Name).GetEnumerator();
+			while (bugs.MoveNext())
 			{
-				bug.WriteToGPX(writer);
+				bugs.Current.WriteToGPX(writer);
 			}
 			writer.WriteEndElement();
 			writer.WriteEndElement();

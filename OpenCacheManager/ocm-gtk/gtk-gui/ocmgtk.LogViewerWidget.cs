@@ -26,6 +26,7 @@ namespace ocmgtk {
             this.logBox = new Gtk.VBox();
             this.logBox.Name = "logBox";
             this.logBox.Spacing = 6;
+            this.logBox.BorderWidth = ((uint)(6));
             // Container child logBox.Gtk.Box+BoxChild
             this.logScroll = new Gtk.ScrolledWindow();
             this.logScroll.CanFocus = true;
@@ -33,7 +34,7 @@ namespace ocmgtk {
             this.logScroll.ShadowType = ((Gtk.ShadowType)(1));
             this.logBox.Add(this.logScroll);
             Gtk.Box.BoxChild w1 = ((Gtk.Box.BoxChild)(this.logBox[this.logScroll]));
-            w1.Position = 1;
+            w1.Position = 0;
             this.Add(this.logBox);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

@@ -34,7 +34,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="Mono.Posix" />
     <Reference Include="System.Data" />
-    <Reference Include="Mono.Data.SqliteClient" />
+    <Reference Include="Mono.Data.Sqlite" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -50,6 +50,7 @@
     <Compile Include="GPXWriter.cs" />
     <Compile Include="TravelBug.cs" />
     <Compile Include="WaypointEnumerator.cs" />
+    <Compile Include="CacheStoreDefs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

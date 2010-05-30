@@ -45,10 +45,19 @@
       <SpecificVersion>False</SpecificVersion>
       <Package>gconf-sharp-2.0</Package>
     </Reference>
+    <Reference Include="NDesk.DBus, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f6716e4f9b2ed099">
+      <Package>ndesk-dbus-1.0</Package>
+    </Reference>
+    <Reference Include="NDesk.DBus.GLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f6716e4f9b2ed099">
+      <Package>ndesk-dbus-glib-1.0</Package>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="icons\scalable\OCMLogo.svg">
+      <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +91,20 @@
     <Compile Include="gtk-gui\ocmgtk.Preferences.cs" />
     <Compile Include="Widgets\CoordinateWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.CoordinateWidget.cs" />
+    <Compile Include="Widgets\SetupAssistantPage1.cs" />
+    <Compile Include="gtk-gui\ocmgtk.SetupAssistantPage1.cs" />
+    <Compile Include="Dialogs\SetupAssistant.cs" />
+    <Compile Include="gtk-gui\ocmgtk.SetupAssistant.cs" />
+    <Compile Include="IDBusComm.cs" />
+    <Compile Include="DBusComm.cs" />
+    <Compile Include="Widgets\SetupAssistantPage2.cs" />
+    <Compile Include="gtk-gui\ocmgtk.SetupAssistantPage2.cs" />
+    <Compile Include="Widgets\SetupAssistantPage3.cs" />
+    <Compile Include="gtk-gui\ocmgtk.SetupAssistantPage3.cs" />
+    <Compile Include="Dialogs\ExportProgressDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.ExportProgressDialog.cs" />
+    <Compile Include="Widgets\DescriptionWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.DescriptionWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -139,9 +162,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\scalable\star_empty.svg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="icons\scalable\traditional.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\scalable\unknown.svg">
@@ -210,14 +230,17 @@
     <Resource Include="icons\24x24\wherigo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\48x48\circle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="OCM.desktop">
       <DeployService-Deploy>true</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\48x48\circle.png" />
+    <Content Include="icons\scalable\traditional.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

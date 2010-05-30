@@ -14,6 +14,8 @@
 //    limitations under the License.
 
 using System;
+using System.IO;
+using ocmengine;
 
 namespace ocmgtk
 {
@@ -22,24 +24,60 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class SetupAssistant : Gtk.Assistant
 	{
+		SetupAssistantPage1 page1 = new SetupAssistantPage1 ();
+		SetupAssistantPage2 page2 = new SetupAssistantPage2 ();
+		SetupAssistantPage3 page3 = new SetupAssistantPage3 ();
 
 		public SetupAssistant ()
 		{
 			this.Build ();
-			SetupAssistantPage1 page1 = new SetupAssistantPage1();
-			AppendPage(page1);
+			this.Parent = UIMonitor.getInstance ().Main;
+			
+			AppendPage (page1);
+			AppendPage (page2);
+			AppendPage (page3);
 			Title = "Setup Assistant";
-			SetPageTitle(page1, "Welcome");
-			SetPageComplete(page1, true);
+			SetPageTitle (page1, "Welcome");
+			SetPageComplete (page1, true);
+			SetPageType (page1, Gtk.AssistantPageType.Intro);
+			SetPageTitle (page2, "Setup a Database");
+			SetPageComplete (page2, true);
+			SetPageTitle (page3, "User Details");
+			SetPageType (page3, Gtk.AssistantPageType.Summary);
 			WidthRequest = 600;
-			HeightRequest= 400;
+			HeightRequest = 400;
 			this.Cancel += HandleHandleCancel;
-			ShowAll();
+			this.Apply += HandleHandleApply;
+			this.Close += HandleHandleClose;
+		}
+
+		void HandleHandleClose (object sender, EventArgs e)
+		{
+			this.Hide ();
+			this.Dispose ();
+			
+			if (!File.Exists(page2.DBFile))
+				Engine.getInstance().Store.CreateDB(page2.DBFile);	
+			
+			GConf.Client client = new GConf.Client();
+			client.Set("/apps/ocm/currentdb", page2.DBFile);
+			client.Set("/apps/ocm/homelat", page3.HomeLat);
+			client.Set("/apps/ocm/homelon", page3.HomeLon);
+			client.Set("/apps/ocm/memberid", page3.MemberID);
+			client.Set("/apps/ocm/wizardone", "true");			
+			
+			MainWindow win = new MainWindow ();
+			win.Show ();
+		}
+
+		void HandleHandleApply (object sender, EventArgs e)
+		{
+			
 		}
 
 		void HandleHandleCancel (object sender, EventArgs e)
 		{
-			this.Hide();
+			this.Hide ();
 		}
 	}
 }

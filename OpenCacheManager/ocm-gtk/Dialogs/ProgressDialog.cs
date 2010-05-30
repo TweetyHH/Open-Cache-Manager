@@ -25,36 +25,54 @@ namespace ocmgtk
 	{
 
 		private GPXParser m_parser;
-		int processCount=0;
+		int processCount = 0;
 		public ProgressDialog (GPXParser parser)
 		{
 			this.Build ();
 			parser.ParseWaypoint += HandleParserParseWaypoint;
 			parser.Complete += HandleParserComplete;
 			m_parser = parser;
-			this.ShowAll();
+			this.ShowAll ();
 		}
 
 		void HandleParserComplete (object sender, EventArgs args)
 		{
-			this.Hide();
-			this.Dispose();
+			String message = String.Format("Updated {0} records in the database", processCount);
+			Gtk.MessageDialog dlg = new Gtk.MessageDialog(this, Gtk.DialogFlags.Modal, 
+			                                              Gtk.MessageType.Info, Gtk.ButtonsType.Ok, message);
+			dlg.Run();
+			dlg.Hide();
+			dlg.Dispose();
+			dlg.Destroy();
+			this.Hide ();
+			this.Dispose ();
+			this.Destroy();
 		}
-		
-		public void Start(FileStream fs, CacheStore store)
+			
+
+		public void Start (FileStream fs, CacheStore store)
 		{
-			this.Show();
-			m_parser.parseGPXFile(fs, store);
+			this.Show ();
+			try {
+				processCount = 0;
+				m_parser.parseGPXFile (fs, store);
+			} catch (Exception e) {
+				Gtk.MessageDialog error = new Gtk.MessageDialog (this, Gtk.DialogFlags.DestroyWithParent, Gtk.MessageType.Error, Gtk.ButtonsType.Ok, e.Message);
+				error.Run();
+				error.Hide();
+				this.Hide();
+				this.Dispose();
+			}
 		}
 
 		void HandleParserParseWaypoint (object sender, EventArgs args)
 		{
 			this.progressbar6.Text = (args as ParseEventArgs).Message;
-			this.progressbar6.Pulse();
+			this.progressbar6.Pulse ();
 			processCount++;
 			this.label1.Text = "Processed: " + processCount;
-			while (Gtk.Application.EventsPending())
-                 Gtk.Application.RunIteration(false);
+			while (Gtk.Application.EventsPending ())
+				Gtk.Application.RunIteration (false);
 		}
 	}
 }

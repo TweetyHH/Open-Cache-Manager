@@ -13,6 +13,7 @@
 using System;
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
 using Gtk;
 using Gdk;
 using Mono.Unix;
@@ -22,69 +23,59 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class GeocacheInfoPanel : Gtk.Bin
 	{
-		static string START_BIG = "<span font='bold 14'>";
+		static string START_BIG = "<span font='bold 12'>";
 		static string END_BIG = "</span>";
+
+		static string FOUND = "<span font='bold italic 12'>You have already found this cache</span>";
+		static string UNAVAILABLE = "<span font='bold italic 12'>This cache is temporarily unavailable, check the logs for more information.</span>";
+		static string ARCHIVED = "<span font='bold italic 12'>This cache has been archived, check the logs for more information.</span>";
+
 
 		static Pixbuf STAR_ICON = new Pixbuf ("./icons/scalable/star.svg", 16, 16);
 		static Pixbuf ESTAR_ICON = new Pixbuf ("./icons/scalable/star_empty.svg", 16, 16);
 		static Pixbuf HSTAR_ICON = new Pixbuf ("./icons/scalable/halfstar.svg", 16, 16);
-		private static Pixbuf TRADICON = new Pixbuf ("./icons/scalable/traditional.svg", 96, 96);
-		private static Pixbuf LETTERICON = new Pixbuf ("./icons/scalable/letterbox.svg", 96, 96);
-		private static Pixbuf MULTIICON = new Pixbuf ("./icons/scalable/multi.svg", 96, 96);
-		private static Pixbuf MYSTERYICON = new Pixbuf ("./icons/scalable/unknown.svg", 96, 96);
-		private static Pixbuf OTHERICON = new Pixbuf ("./icons/scalable/other.svg", 96, 96);
-		private static Pixbuf EARTHICON = new Pixbuf ("./icons/scalable/earth.svg", 96, 96);
-		private static Pixbuf CITOICON = new Pixbuf ("./icons/scalable/cito.svg", 96, 96);
-		private static Pixbuf MEGAEVENT = new Pixbuf ("./icons/scalable/mega.svg", 96, 96);
-		private static Pixbuf EVENT = new Pixbuf ("./icons/scalable/event.svg", 96, 96);
-		private static Pixbuf WEBCAM = new Pixbuf ("./icons/scalable/webcam.svg", 96, 96);
-		private static Pixbuf WHERIGO = new Pixbuf ("./icons/scalable/wherigo.svg", 96, 96);
-		private static Pixbuf VIRTUAL = new Pixbuf ("./icons/scalable/virtual.svg", 96, 96);
-		private ListStore m_travelbugs = new ListStore (typeof(string), typeof(string));
+		private static Pixbuf TRADICON = new Pixbuf ("./icons/scalable/traditional.svg", 64, 64);
+		private static Pixbuf LETTERICON = new Pixbuf ("./icons/scalable/letterbox.svg", 64, 64);
+		private static Pixbuf MULTIICON = new Pixbuf ("./icons/scalable/multi.svg", 64, 64);
+		private static Pixbuf MYSTERYICON = new Pixbuf ("./icons/scalable/unknown.svg", 64, 64);
+		private static Pixbuf OTHERICON = new Pixbuf ("./icons/scalable/other.svg", 64, 64);
+		private static Pixbuf EARTHICON = new Pixbuf ("./icons/scalable/earth.svg", 64, 64);
+		private static Pixbuf CITOICON = new Pixbuf ("./icons/scalable/cito.svg", 64, 64);
+		private static Pixbuf MEGAEVENT = new Pixbuf ("./icons/scalable/mega.svg", 64, 64);
+		private static Pixbuf EVENT = new Pixbuf ("./icons/scalable/event.svg", 64, 64);
+		private static Pixbuf WEBCAM = new Pixbuf ("./icons/scalable/webcam.svg", 64, 64);
+		private static Pixbuf WHERIGO = new Pixbuf ("./icons/scalable/wherigo.svg", 64, 64);
+		private static Pixbuf VIRTUAL = new Pixbuf ("./icons/scalable/virtual.svg", 64, 64);
 
 		UIMonitor m_monitor;
-		HTMLWidget descriptionWidget;
+		ListStore tbStore;
 		public GeocacheInfoPanel ()
 		{
 			this.Build ();
 			m_monitor = UIMonitor.getInstance ();
 			setDifficulty (0);
 			setTerrain (0);
-			descriptionWidget = new HTMLWidget ();
-			descScroll.Add (descriptionWidget);
 			this.ShowAll ();
-		}
-
-		private void PopulateTBList (Geocache cache)
-		{
-			m_travelbugs.Clear ();
-			foreach (TravelBug bug in cache.TravelBugs) {
-				
-			}
 		}
 
 		public void updateCacheInfo ()
 		{
 			try {
 				Geocache cache = m_monitor.SelectedCache;
-				if (descriptionWidget == null) {
-					descriptionWidget = new HTMLWidget ();
-				}
 				cacheCodeLabel.Markup = START_BIG + cache.Name + END_BIG;
 				cacheNameLabel.Markup = START_BIG + GLib.Markup.EscapeText (cache.CacheName) + END_BIG;
-				descriptionWidget.HTML = cache.ShortDesc + "<br><br>" +cache.LongDesc;
 				setDifficulty (cache.Difficulty);
 				setTerrain (cache.Terrain);
 				setCacheIcon (cache.TypeOfCache);
 				dateLabel.Text = cache.Time.ToShortDateString ();
-				if (String.IsNullOrEmpty (cache.Hint)) {
-					hintExpander.Sensitive = false;
-					hintExpander.Expanded = false;
-				} else {
-					hintField.Buffer.Text = cache.Hint;
-					hintExpander.Sensitive = true;
-					hintExpander.Expanded = false;
-				}
+				infoDateLabel.Text = cache.Updated.ToShortDateString ();
+				
+				if (cache.Found)
+					statusLabel.Markup = FOUND; else if (cache.Archived)
+					statusLabel.Markup = ARCHIVED; else if (!cache.Available)
+					statusLabel.Markup = UNAVAILABLE;
+				else
+					statusLabel.Markup = String.Empty;
 				setCacheType (cache.TypeOfCache);
 				placedByLabel.Text = cache.PlacedBy;
 				cacheSizeLabel.Text = cache.Container;
@@ -159,7 +150,6 @@ namespace ocmgtk
 			this.ShowAll ();
 		}
 
-
 		public void setCacheIcon (Geocache.CacheType type)
 		{
 			switch (type) {
@@ -208,8 +198,8 @@ namespace ocmgtk
 			coordinateLabel.Markup = "<span font='bold 10'>" + Utilities.getCoordString (cache.Lat, cache.Lon) + "</span>";
 			
 			
-			double distance = Utilities.calculateDistance (m_monitor.HomeLat, cache.Lat, m_monitor.HomeLon, cache.Lon);
-			double bearing = Utilities.calculateBearing (m_monitor.HomeLat, cache.Lat, m_monitor.HomeLon, cache.Lon);
+			double distance = Utilities.calculateDistance (m_monitor.CentreLat, cache.Lat, m_monitor.CentreLon, cache.Lon);
+			double bearing = Utilities.calculateBearing (m_monitor.CentreLat, cache.Lat, m_monitor.CentreLon, cache.Lon);
 			
 			string bmarker = "N";
 			if (bearing > 22.5 && bearing <= 67.5)
@@ -281,12 +271,12 @@ namespace ocmgtk
 		}
 		protected virtual void OnClickView (object sender, System.EventArgs e)
 		{
-			System.Diagnostics.Process.Start(m_monitor.SelectedCache.URL.ToString());
+			System.Diagnostics.Process.Start (m_monitor.SelectedCache.URL.ToString ());
 		}
-		
+
 		protected virtual void OnClickLog (object sender, System.EventArgs e)
 		{
-			System.Diagnostics.Process.Start("http://www.geocaching.com/seek/log.aspx?ID=" + m_monitor.SelectedCache.CacheID);
+			UIMonitor.getInstance().LogFind();
 		}
 		
 		

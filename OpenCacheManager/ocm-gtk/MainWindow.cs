@@ -12,30 +12,29 @@
 */
 using System;
 using System.Diagnostics;
+using System.Reflection;
 using System.Threading;
 using Gtk;
 using Mono.Unix;
 using ocmgtk;
 using ocmengine;
 
-public partial class MainWindow: Gtk.Window
+public partial class MainWindow : Gtk.Window
 {
 	UIMonitor m_monitor;
 	
-	public MainWindow (): base (Gtk.WindowType.Toplevel)
-	{
+	public MainWindow () : base(Gtk.WindowType.Toplevel)
+	{	
 		Build ();
-		m_monitor = UIMonitor.getInstance();
-	   	m_monitor.GeoPane = cachePane;
-		m_monitor.StatusBar = statusbar1;	
+		m_monitor = UIMonitor.getInstance ();
 		m_monitor.Main = this;
-		m_monitor.Map = mapwidget;
-		loadConfig();
-		mapwidget.LoadUrl("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html");
-		m_monitor.updateCaches();
-		this.Maximize();
+		m_monitor.GeoPane = cachePane;
+		m_monitor.StatusBar = statusbar1;
+		m_monitor.Main = this;
+		m_monitor.LoadConfig();
+		this.Resize(1024,575);
 	}
-	
+
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
 		Application.Quit ();
@@ -44,23 +43,39 @@ public partial class MainWindow: Gtk.Window
 
 	protected virtual void OnQuit (object sender, System.EventArgs e)
 	{
-		Application.Quit();
+		Application.Quit ();
 	}
 
-	protected virtual void doAbout(object sender, System.EventArgs e)
+	protected virtual void doAbout (object sender, System.EventArgs e)
 	{
-		ocmgtk.OCMAboutDialog dlg = new ocmgtk.OCMAboutDialog();
-		dlg.Show();
+		AboutDialog dialog = new AboutDialog ();
+		Assembly asm = Assembly.GetExecutingAssembly ();
+		
+		dialog.ProgramName = "Open Cache Manager";
+		
+		dialog.Version = "ALPHA 0.10";
+		
+		//dialog.Comments = (asm.GetCustomAttributes (typeof(AssemblyDescriptionAttribute), false)[0] as AssemblyDescriptionAttribute).Description;
+		
+		dialog.Copyright = "Copyright Kyle Campbell (c) 2010";
+		
+		dialog.License = "Apache Licence 2.0";
+		
+		dialog.Authors = new String[] { "Kyle Campbell" };
+		
+		dialog.Run ();
+		dialog.Hide();
+		
 	}
 
 	protected virtual void OnToggleArchive (object sender, System.EventArgs e)
 	{
-		cacheList.ToggleArchivedCaches();
+		cacheList.ToggleArchivedCaches ();
 	}
 
 	protected virtual void OnToggleUnavailable (object sender, System.EventArgs e)
 	{
-		cacheList.ToggleUnavailableCaches();
+		cacheList.ToggleUnavailableCaches ();
 	}
 
 	protected virtual void OnToggleMine (object sender, System.EventArgs e)
@@ -70,49 +85,49 @@ public partial class MainWindow: Gtk.Window
 
 	protected virtual void OnToggleFound (object sender, System.EventArgs e)
 	{
-		cacheList.ToggleFoundCaches();
+		cacheList.ToggleFoundCaches ();
 	}
 
-	protected virtual void OnOpenClicked (object o, System.EventArgs args)
+	protected virtual void OnOpenDatabaseClicked (object o, System.EventArgs args)
 	{
-		FileChooserDialog dlg = new FileChooserDialog(Catalog.GetString("Open GPX/LOC File"), 
-		                                              this, FileChooserAction.Open, 
-		                                              Catalog.GetString("Cancel"), ResponseType.Cancel, 
-		                                              Catalog.GetString("Open"), ResponseType.Accept);
-		FileFilter filter = new FileFilter();
-		filter.Name = "GPX Files";
-		filter.AddMimeType("text/xml");
-		filter.AddMimeType("application/xml");
-		filter.AddPattern("*.gpx");
-		dlg.AddFilter(filter);
-		
-		if (dlg.Run() == (int) ResponseType.Accept)
-		{
-			System.IO.FileStream fs = System.IO.File.Open(dlg.Filename, System.IO.FileMode.Open);
-			dlg.Hide();
-			GPXParser parser = Engine.getInstance().Parser;
-			CacheStore store = Engine.getInstance().Store;
-			ProgressDialog pdlg = new ProgressDialog(parser);
-			//pdlg.Run();
-			pdlg.Modal = true;
-			pdlg.Start(fs, store);
-			//parser.parseGPXFile(fs, store);
-			m_monitor.updateCaches();
-			fs.Close();
-		}
-		dlg.Destroy();
-		this.ShowAll();
+		m_monitor.OpenDB();
 	}
-	
-	public void SetCacheSelected()
+
+	protected virtual void OnImportClicked (object o, System.EventArgs args)
+	{
+		FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Import GPX File"), this, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Import"), ResponseType.Accept);
+		dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
+		FileFilter filter = new FileFilter ();
+		filter.Name = "GPX Files";
+		filter.AddMimeType ("text/xml");
+		filter.AddMimeType ("application/xml");
+		filter.AddPattern ("*.gpx");
+		dlg.AddFilter (filter);
+		
+		if (dlg.Run () == (int)ResponseType.Accept) {
+			System.IO.FileStream fs = System.IO.File.Open (dlg.Filename, System.IO.FileMode.Open);
+			dlg.Hide ();
+			GPXParser parser = new GPXParser();
+			CacheStore store = Engine.getInstance ().Store;
+			ProgressDialog pdlg = new ProgressDialog (parser);
+			pdlg.Modal = true;
+			pdlg.Start (fs, store);
+			m_monitor.RefreshCaches ();
+			fs.Close ();
+		}
+		dlg.Destroy ();
+		this.ShowAll ();
+	}
+
+	public void SetCacheSelected ()
 	{
 		this.CacheAction.Sensitive = true;
-		this.ShowAll();
+		this.ShowAll ();
 	}
 
 	protected virtual void OnViewOnline (object sender, System.EventArgs e)
 	{
-		Process.Start(m_monitor.SelectedCache.URL.ToString());
+		Process.Start (m_monitor.SelectedCache.URL.ToString ());
 	}
 
 	protected virtual void OnMapClick (object sender, System.EventArgs e)
@@ -128,91 +143,88 @@ public partial class MainWindow: Gtk.Window
 	{
 	}
 
-	protected virtual void OnSave (object sender, System.EventArgs e)
+	protected virtual void OnExportClicked (object sender, System.EventArgs e)
 	{
-		
-		FileChooserDialog dlg = new FileChooserDialog(Catalog.GetString("Save GPX File"), 
-		                                              this, FileChooserAction.Save, 
-		                                              Catalog.GetString("Cancel"), ResponseType.Cancel, 
-		                                              Catalog.GetString("Open"), ResponseType.Accept);
-		FileFilter filter = new FileFilter();
-		filter.Name = "GPX Files";
-		filter.AddMimeType("text/xml");
-		filter.AddMimeType("application/xml");
-		filter.AddPattern("*.gpx");
-		dlg.AddFilter(filter);
-		
-		if (dlg.Run() == (int) ResponseType.Accept)
-		{
-			GPXWriter writer = new GPXWriter();
-			writer.WriteGPXFile(dlg.Filename, m_monitor.GetVisibleCacheList());
-		}
-		dlg.Destroy();
-		this.ShowAll();
+		m_monitor.ExportGPX();		
 	}
-	
+
 	protected virtual void OnPreferences (object sender, System.EventArgs e)
 	{
-		Preferences dlg = new Preferences();
-		dlg.SetLat(m_monitor.HomeLat);
-		dlg.SetLon(m_monitor.HomeLon);
-		if ((int) ResponseType.Ok == dlg.Run())
-		{
-			setHome(dlg.Lat, dlg.Lon);
+		Preferences dlg = new Preferences ();
+		dlg.SetLat (m_monitor.CentreLat);
+		dlg.SetLon (m_monitor.CentreLon);
+		if ((int)ResponseType.Ok == dlg.Run ()) {
+			setHome (dlg.Lat, dlg.Lon);
 		}
 	}
-	
-	protected void loadConfig()
-	{
-		GConf.Client client = new GConf.Client();
-		string home_lat = "0";
-		string home_lon = "0";
-		
-		try
-		{
-			m_monitor.HomeLat = (double)client.Get("/apps/monoapps/ocm/homelat");
-			m_monitor.HomeLon = (double)client.Get("/apps/monoapps/ocm/homelon");
-		}
-		catch (GConf.NoSuchKeyException)
-		{
-			// Do nothing
-		}
-	}
-	
-	protected void setHome(double lat, double lon)
-	{
-		GConf.Client client = new GConf.Client();		
-		try
-		{
-			client.Set("/apps/monoapps/ocm/homelat", lat);
-			client.Set("/apps/monoapps/ocm/homelon", lon);
-			m_monitor.HomeLat = lat;
-			m_monitor.HomeLon = lon;
-		}
-		catch (GConf.NoSuchKeyException)
-		{
-			// Do nothing
-		}
-	}
-	
-	
-	/*
-	 * protected virtual void OnBtnLoadFileClicked(object sender, System.EventArgs e)
-	{
-		Gtk.FileChooserDialog fc=
-		new Gtk.FileChooserDialog("Choose the file to open",
-		                            this,
-		                            FileChooserAction.Open,
-		                            "Cancel",ResponseType.Cancel,
-		                            "Open",ResponseType.Accept);
 
-		if (fc.Run() == (int)ResponseType.Accept) 
-		{
-			System.IO.FileStream file=System.IO.File.OpenRead(fc.Filename);
-			file.Close();
+	protected void setHome (double lat, double lon)
+	{
+		GConf.Client client = new GConf.Client ();
+		try {
+			client.Set ("/apps/monoapps/ocm/homelat", lat);
+			client.Set ("/apps/monoapps/ocm/homelon", lon);
+			m_monitor.CentreLat = lat;
+			m_monitor.CentreLon = lon;
+		} catch (GConf.NoSuchKeyException) {
+			// Do nothing
 		}
-		//Don't forget to call Destroy() or the FileChooserDialog window won't get closed.
-		fc.Destroy();
-	}*/
-  
+	}
+
+	protected virtual void OnNewActionActivated (object sender, System.EventArgs e)
+	{
+		m_monitor.CreateDB ();
+	}
+	protected virtual void OnHomePageActivate (object sender, System.EventArgs e)
+	{
+		UIMonitor.ViewHomePage ();
+	}
+
+
+
+	protected virtual void OnViewProfileActivate (object sender, System.EventArgs e)
+	{
+		UIMonitor.ViewProfile ();
+	}
+
+
+
+	protected virtual void OnPocketQueryActivate (object sender, System.EventArgs e)
+	{
+		UIMonitor.ViewPocketQueries ();
+	}
+
+
+	protected virtual void OnFindOnlineActivate (object sender, System.EventArgs e)
+	{
+		UIMonitor.FindCacheOnline ();
+	}
+
+
+
+	protected virtual void OnViewOnlineActivate (object sender, System.EventArgs e)
+	{
+	}
+
+	protected virtual void OnLogActivate (object sender, System.EventArgs e)
+	{
+	}
+
+	protected virtual void OnAccountActivated (object sender, System.EventArgs e)
+	{
+		UIMonitor.ViewAccountDetails ();
+	}
+		
+	protected virtual void OnClickLog (object sender, System.EventArgs e)
+	{
+		UIMonitor.getInstance().LogFind();
+	}
+	
+	protected virtual void OnClickMarkUnfound (object sender, System.EventArgs e)
+	{
+		UIMonitor.getInstance().MarkCacheUnfound();
+	}
+	
+	
+	
 }

@@ -202,9 +202,9 @@ namespace ocmengine
 				{
 					parseCacheLogs(ref cache, reader);
 				}
-				else if (reader.LocalName == "travelbug" && !reader.IsEmptyElement)
+				else if (reader.LocalName == "travelbugs" && !reader.IsEmptyElement)
 				{
-					parseTravelBug(ref cache, reader);
+					ParseTravelBugs(ref cache, reader);
 				}
 				else if (reader.LocalName == "country")
 				{
@@ -216,6 +216,19 @@ namespace ocmengine
 				}
 			}
 		}
+		
+		private void ParseTravelBugs(ref Geocache cache, XmlReader reader)
+		{
+			m_store.ClearTBs(cache.Name);
+			while (reader.Read())
+			{
+				if (reader.LocalName == "travelbug")
+					parseTravelBug(ref cache, reader);
+				if (reader.LocalName == "travelbugs")
+					return;
+			}
+		}
+	
 		
 		private void parseTravelBug(ref Geocache cache, XmlReader reader)
 		{
@@ -231,7 +244,7 @@ namespace ocmengine
 				}
 				if (reader.LocalName == "name")
 				{
-				bug.Name = reader.ReadElementContentAsString();
+					bug.Name = reader.ReadElementContentAsString();
 				}
 			}			
 		}
