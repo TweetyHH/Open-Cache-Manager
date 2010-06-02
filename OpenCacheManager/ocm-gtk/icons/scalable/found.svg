@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -13,12 +14,24 @@
    height="496.5"
    id="svg2"
    version="1.1"
-   inkscape:version="0.46"
+   inkscape:version="0.47pre4 r22446"
    sodipodi:docname="found.svg"
    sodipodi:version="0.32"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <defs
      id="defs4">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4472">
+      <stop
+         style="stop-color:#fffcd7;stop-opacity:1"
+         offset="0"
+         id="stop4474" />
+      <stop
+         style="stop-color:#e8e805;stop-opacity:1"
+         offset="1"
+         id="stop4476" />
+    </linearGradient>
     <linearGradient
        id="linearGradient3680">
       <stop
@@ -55,6 +68,17 @@
        x2="303.5455"
        y2="385.42096"
        gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4472"
+       id="radialGradient4480"
+       cx="285.81094"
+       cy="213.81497"
+       fx="285.81094"
+       fy="213.81497"
+       r="201"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-1.1392707,0.31031105,-0.32295725,-1.1856998,754.66911,266.33009)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -64,17 +88,17 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.5"
-     inkscape:cx="-192.37795"
+     inkscape:cx="-34"
      inkscape:cy="244.72778"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      showguides="false"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1920"
-     inkscape:window-height="1128"
+     inkscape:window-width="1280"
+     inkscape:window-height="948"
      inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-y="24"
      inkscape:window-maximized="1"
      inkscape:snap-to-guides="true"
      inkscape:snap-grids="false"
@@ -180,13 +204,13 @@
      transform="translate(-146.75,-73.112183)">
     <path
        sodipodi:type="arc"
-       style="opacity:1;fill:#e9dc20;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:url(#radialGradient4480);fill-opacity:1;stroke:#000000;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path3213"
        sodipodi:cx="274"
        sodipodi:cy="253.5"
        sodipodi:rx="199"
        sodipodi:ry="199"
-       d="M 473,253.5 A 199,199 0 1 1 75,253.5 A 199,199 0 1 1 473,253.5 z"
+       d="m 473,253.5 c 0,109.90467 -89.09533,199 -199,199 -109.90467,0 -199,-89.09533 -199,-199 0,-109.90467 89.09533,-199 199,-199 109.90467,0 199,89.09533 199,199 z"
        transform="translate(134.75,71.112183)" />
     <path
        sodipodi:type="arc"
@@ -196,7 +220,7 @@
        sodipodi:cy="181"
        sodipodi:rx="24.5"
        sodipodi:ry="24.5"
-       d="M 219,181 A 24.5,24.5 0 1 1 170,181 A 24.5,24.5 0 1 1 219,181 z"
+       d="m 219,181 c 0,13.53098 -10.96902,24.5 -24.5,24.5 -13.53098,0 -24.5,-10.96902 -24.5,-24.5 0,-13.53098 10.96902,-24.5 24.5,-24.5 13.53098,0 24.5,10.96902 24.5,24.5 z"
        transform="translate(146.75,73.112183)" />
     <path
        sodipodi:type="arc"
@@ -206,7 +230,7 @@
        sodipodi:cy="181"
        sodipodi:rx="24.5"
        sodipodi:ry="24.5"
-       d="M 219,181 A 24.5,24.5 0 1 1 170,181 A 24.5,24.5 0 1 1 219,181 z"
+       d="m 219,181 c 0,13.53098 -10.96902,24.5 -24.5,24.5 -13.53098,0 -24.5,-10.96902 -24.5,-24.5 0,-13.53098 10.96902,-24.5 24.5,-24.5 13.53098,0 24.5,10.96902 24.5,24.5 z"
        transform="translate(265.25,73.612182)" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"

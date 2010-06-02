@@ -54,7 +54,11 @@ FILES = \
 	Geocache.cs \
 	CacheStore.cs \
 	Engine.cs \
-	OLMarkerGenerator.cs 
+	OLMarkerGenerator.cs \
+	GPXWriter.cs \
+	TravelBug.cs \
+	WaypointEnumerator.cs \
+	CacheStoreDefs.cs 
 
 DATA_FILES = 
 
@@ -66,7 +70,9 @@ EXTRAS = \
 REFERENCES =  \
 	System \
 	System.Xml \
-	Mono.Posix
+	Mono.Posix \
+	System.Data \
+	Mono.Data.Sqlite
 
 DLL_REFERENCES = 
 
@@ -83,6 +89,8 @@ $(eval $(call emit_resgen_targets))
 $(build_xamlg_list): %.xaml.g.cs: %.xaml
 	xamlg '$<'
 
-$(ASSEMBLY) $(ASSEMBLY_MDB): $(build_sources) $(build_resources) $(build_datafiles) $(DLL_REFERENCES) $(PROJECT_REFERENCES) $(build_xamlg_list) $(build_satellite_assembly_list)
+$(ASSEMBLY_MDB): $(ASSEMBLY)
+
+$(ASSEMBLY): $(build_sources) $(build_resources) $(build_datafiles) $(DLL_REFERENCES) $(PROJECT_REFERENCES) $(build_xamlg_list) $(build_satellite_assembly_list)
 	mkdir -p $(shell dirname $(ASSEMBLY))
 	$(ASSEMBLY_COMPILER_COMMAND) $(ASSEMBLY_COMPILER_FLAGS) -out:$(ASSEMBLY) -target:$(COMPILE_TARGET) $(build_sources_embed) $(build_resources_embed) $(build_references_ref)

@@ -53,13 +53,17 @@ public partial class MainWindow : Gtk.Window
 		
 		dialog.ProgramName = "Open Cache Manager";
 		
-		dialog.Version = "ALPHA 0.10";
+		dialog.Version = "ALPHA 0.11";
 		
 		//dialog.Comments = (asm.GetCustomAttributes (typeof(AssemblyDescriptionAttribute), false)[0] as AssemblyDescriptionAttribute).Description;
 		
 		dialog.Copyright = "Copyright Kyle Campbell (c) 2010";
 		
-		dialog.License = "Apache Licence 2.0";
+		System.IO.StreamReader reader = new System.IO.StreamReader(new System.IO.FileStream("licence/Licence.txt",System.IO.FileMode.Open,System.IO.FileAccess.Read));
+		
+		dialog.License = reader.ReadToEnd();
+		
+		reader.Close();
 		
 		dialog.Authors = new String[] { "Kyle Campbell" };
 		
@@ -105,7 +109,7 @@ public partial class MainWindow : Gtk.Window
 		dlg.AddFilter (filter);
 		
 		if (dlg.Run () == (int)ResponseType.Accept) {
-			System.IO.FileStream fs = System.IO.File.Open (dlg.Filename, System.IO.FileMode.Open);
+			System.IO.FileStream fs = System.IO.File.OpenRead (dlg.Filename);
 			dlg.Hide ();
 			GPXParser parser = new GPXParser();
 			CacheStore store = Engine.getInstance ().Store;

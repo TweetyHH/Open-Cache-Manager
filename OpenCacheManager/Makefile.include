@@ -65,6 +65,12 @@ DISTCLEANFILES = $(GENERATED_FILES) $(pc_files) $(BUILD_DIR)/*
 pkglib_SCRIPTS = $(ASSEMBLY)
 bin_SCRIPTS = $(BINARIES)
 
+linuxdesktopapplicationsdir = @datadir@/applications
+linuxdesktopapplications_DATA = $(LINUX_DESKTOPAPPLICATIONS)
+programfileslicencedir = @libdir@/@PACKAGE@/licence
+programfileslicence_DATA = $(PROGRAMFILES_LICENCE)
+programfilesicons48x48dir = @libdir@/@PACKAGE@/icons/48x48
+programfilesicons48x48_DATA = $(PROGRAMFILES_ICONS_48X48)
 programfilesdir = @libdir@/@PACKAGE@
 programfiles_DATA = $(PROGRAMFILES)
 programfilesicons24x24dir = @libdir@/@PACKAGE@/icons/24x24

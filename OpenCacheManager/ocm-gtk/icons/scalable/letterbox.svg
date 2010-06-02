@@ -40,7 +40,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.7421954"
-     inkscape:cx="258.25"
+     inkscape:cx="162.96792"
      inkscape:cy="248.25"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -49,10 +49,10 @@
      inkscape:guide-bbox="true"
      inkscape:snap-global="true"
      inkscape:snap-grids="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1122"
+     inkscape:window-width="1280"
+     inkscape:window-height="948"
      inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-y="24"
      inkscape:window-maximized="1">
     <sodipodi:guide
        orientation="-0.5,0.8660254"
@@ -104,15 +104,15 @@
      id="layer1"
      transform="translate(-91.713295,-272.23724)">
     <path
-       style="fill:#ffffff;stroke:#000000;stroke-width:2.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1"
+       style="fill:#ffffff;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1"
        d="m 214.28571,457.6662 0,269.92917 271.42858,-156.70937 0,-269.92882 -271.42858,156.70902 z"
        id="path6559" />
     <path
-       style="fill:#ffffff;stroke:#000000;stroke-width:1.50000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1"
+       style="fill:#ffffff;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1"
        d="M 214.28571,727.59537 356.85507,480.65799 485.71429,570.886 214.28571,727.59537 z"
        id="path7073" />
     <path
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="M 214.28571,457.6662 356.8553,524.14749 485.71429,300.95718 214.28571,457.6662 z"
        id="path7071" />
   </g>

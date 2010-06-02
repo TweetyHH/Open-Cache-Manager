@@ -26,9 +26,10 @@ namespace ocmgtk
 		static string START_BIG = "<span font='bold 12'>";
 		static string END_BIG = "</span>";
 
-		static string FOUND = "<span font='bold italic 12'>You have already found this cache</span>";
-		static string UNAVAILABLE = "<span font='bold italic 12'>This cache is temporarily unavailable, check the logs for more information.</span>";
-		static string ARCHIVED = "<span font='bold italic 12'>This cache has been archived, check the logs for more information.</span>";
+		static string FOUND = "<span font='bold italic 10' fgcolor='darkgreen'>You have already found this cache</span>";
+		static string MINE = "<span font='bold italic 10' fgcolor='darkgreen'>You own this cache</span>";
+		static string UNAVAILABLE = "<span font='bold italic 10' fgcolor='red'>This cache is temporarily unavailable, check the logs for more information.</span>";
+		static string ARCHIVED = "<span font='bold italic 10' fgcolor='red'>This cache has been archived, check the logs for more information.</span>";
 
 
 		static Pixbuf STAR_ICON = new Pixbuf ("./icons/scalable/star.svg", 16, 16);
@@ -71,9 +72,13 @@ namespace ocmgtk
 				infoDateLabel.Text = cache.Updated.ToShortDateString ();
 				
 				if (cache.Found)
-					statusLabel.Markup = FOUND; else if (cache.Archived)
-					statusLabel.Markup = ARCHIVED; else if (!cache.Available)
+					statusLabel.Markup = FOUND; 
+				else if (cache.Archived)
+					statusLabel.Markup = ARCHIVED; 
+				else if (!cache.Available)
 					statusLabel.Markup = UNAVAILABLE;
+				else if (cache.OwnerID == m_monitor.OwnerID)
+					statusLabel.Markup = MINE;
 				else
 					statusLabel.Markup = String.Empty;
 				setCacheType (cache.TypeOfCache);

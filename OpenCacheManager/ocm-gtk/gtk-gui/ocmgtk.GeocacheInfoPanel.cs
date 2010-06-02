@@ -103,7 +103,6 @@ namespace ocmgtk {
             this.statusLabel = new Gtk.Label();
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.UseMarkup = true;
-            this.statusLabel.Wrap = true;
             this.statusLabel.Justify = ((Gtk.Justification)(2));
             this.infoPanelVBOX.Add(this.statusLabel);
             Gtk.Box.BoxChild w1 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.statusLabel]));

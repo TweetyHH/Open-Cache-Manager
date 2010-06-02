@@ -5,6 +5,7 @@ using System.Diagnostics;
 using Gtk;
 using ocmengine;
 using Mono.Unix;
+using System.Timers;
 
 namespace ocmgtk
 {
@@ -30,6 +31,8 @@ namespace ocmgtk
 		private bool m_showNotFound = true;
 		private UIMonitor m_monitor;
 		private double m_maxDistance = -1;
+		
+		private Timer refreshTimer;
 
 		public CacheList ()
 		{
@@ -37,6 +40,14 @@ namespace ocmgtk
 			BuildList ();
 			m_monitor = UIMonitor.getInstance ();
 			m_monitor.CacheListPane = this;
+			refreshTimer = new Timer();
+			refreshTimer.AutoReset = false;
+			refreshTimer.Elapsed += HandleRefreshTimerElapsed;
+		}
+
+		void HandleRefreshTimerElapsed (object sender, ElapsedEventArgs e)
+		{
+			Application.Invoke(delegate{RefilterList();});
 		}
 
 
@@ -230,7 +241,14 @@ namespace ocmgtk
 
 		protected virtual void OnFilterChange (object o, EventArgs args)
 		{
-			RefilterList ();
+			StartRefilterList();
+		}
+		
+		private void StartRefilterList()
+		{
+			refreshTimer.Interval = 300;
+			if (!refreshTimer.Enabled)
+				refreshTimer.Enabled = true;
 		}
 		
 		private void RefilterList ()
@@ -463,7 +481,7 @@ namespace ocmgtk
 			{
 				m_maxDistance = -1;
 			}
-			RefilterList();
+			StartRefilterList();
 		}
 		
 		protected virtual void OnClearDistance (object sender, System.EventArgs e)
@@ -476,6 +494,12 @@ namespace ocmgtk
 		{
 			ToggleUnFoundCaches();
 		}
+		
+		protected virtual void OnEditingDone (object sender, System.EventArgs e)
+		{
+			RefilterList();
+		}
+		
 		
 		
 		

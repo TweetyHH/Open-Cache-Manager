@@ -425,7 +425,6 @@
           <widget class="Gtk.Label" id="statusLabel">
             <property name="MemberName" />
             <property name="UseMarkup">True</property>
-            <property name="Wrap">True</property>
             <property name="Justify">Center</property>
           </widget>
           <packing>

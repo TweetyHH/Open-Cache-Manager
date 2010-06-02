@@ -1,7 +1,7 @@
 dnl Warning: This is an automatically generated file, do not edit!
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.54])
-AC_INIT([OpenCacheManager], [0.1])
+AC_INIT([OpenCacheManager], [0.11])
 AM_INIT_AUTOMAKE([foreign])
 AM_MAINTAINER_MODE
 
@@ -56,8 +56,10 @@ fi
 dnl package checks, common for all configs
 PKG_CHECK_MODULES([GTK_SHARP_20], [gtk-sharp-2.0])
 PKG_CHECK_MODULES([WEBKIT_SHARP_10], [webkit-sharp-1.0])
-PKG_CHECK_MODULES([GECKO_SHARP_20], [gecko-sharp-2.0])
 PKG_CHECK_MODULES([GTKHTML_SHARP_314], [gtkhtml-sharp-3.14])
+PKG_CHECK_MODULES([GCONF_SHARP_20], [gconf-sharp-2.0])
+PKG_CHECK_MODULES([NDESK_DBUS_10], [ndesk-dbus-1.0])
+PKG_CHECK_MODULES([NDESK_DBUS_GLIB_10], [ndesk-dbus-glib-1.0])
 
 dnl package checks, per config
 

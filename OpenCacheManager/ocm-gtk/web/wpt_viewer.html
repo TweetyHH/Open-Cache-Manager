@@ -17,6 +17,7 @@ body {
     </style>
     <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
     <script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
+    <script src="http://api.maps.yahoo.com/ajaxymap?v=3.0&appid=oWet3MfV34GPEQAvAw8iyLR3nVYLYDv_nnanofrm1I74CvY6PdqPl.Q8ayihhE39iQ--"></script>
 
     <script type="text/javascript">
         <!--
@@ -41,12 +42,25 @@ body {
                       displayProjection: new OpenLayers.Projection("EPSG:4326")
                     });
  
-            var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Mapnik");
+            var yahoo = new OpenLayers.Layer.Yahoo(
+                "Yahoo Street Map",
+                {'sphericalMercator': true}
+            );
+            var yahoosat = new OpenLayers.Layer.Yahoo(
+                "Yahoo Satellite",
+                {'type': YAHOO_MAP_SAT, 'sphericalMercator': true}
+            );
+            var yahoohyb = new OpenLayers.Layer.Yahoo(
+                "Yahoo Hybrid",
+                {'type': YAHOO_MAP_HYB, 'sphericalMercator': true}
+            );
+
+
+	   	    var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Open StreetMap");
  
-            var layerTah = new OpenLayers.Layer.OSM.Osmarender("Tiles@Home");
 
 	  
-            map.addLayers([layerMapnik,layerTah]);
+            map.addLayers([layerMapnik, yahoo, yahoohyb,yahoosat]);
             map.addControl(new OpenLayers.Control.LayerSwitcher());
  
             var lonLat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);

@@ -386,7 +386,7 @@ namespace ocmgtk
 		private static string GetMapIcon (String symbol)
 		{
 			//TODO: MORE ICONS NEEDED
-			return "waypoint-flag-red.png";
+			return "pushpin.png";
 		}
 
 		/// <summary>
@@ -544,7 +544,7 @@ namespace ocmgtk
 
 		public void ImportGPXFile (String filename)
 		{
-			System.IO.FileStream fs = System.IO.File.Open (filename, System.IO.FileMode.Open);
+			System.IO.FileStream fs = System.IO.File.OpenRead (filename);
 			GPXParser parser = new GPXParser ();
 			CacheStore store = Engine.getInstance ().Store;
 			ProgressDialog pdlg = new ProgressDialog (parser);
