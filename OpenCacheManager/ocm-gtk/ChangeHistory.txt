@@ -1,0 +1,8 @@
+Version 0.11
+
+- Delay on filtering when typing
+- Add Yahoo Maps (street, sattelite, and hybrid maps) support
+- Fix crash on opening read-only GPX
+- Fix status label in cache info pane so that it only takes up one line
+- Add licence file
+- Update icons to be easier to see

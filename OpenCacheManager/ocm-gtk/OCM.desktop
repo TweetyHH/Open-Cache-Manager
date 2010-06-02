@@ -1,0 +1,12 @@
+
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Open Cache Manager
+Exec=ocm-gtk
+Terminal=false
+GenericName=Open Cache Manager
+Icon=/usr/local/lib/opencachemanager/icons/scalable/traditional.svg
+Categories=Network;
+Path=/usr/local/lib/opencachemanager
+MimeType=application/xml;
