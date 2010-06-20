@@ -31,6 +31,13 @@ namespace ocmengine
 		private IDbConnection m_conn = null;
 		private String m_dbFile = null;
 		
+		private FilterList m_filter = null;		
+		public FilterList Filter
+		{
+			get { return m_filter;}
+			set { m_filter = value;}
+		}
+		
 		public int CacheCount
 		{
 			get { 	
@@ -89,7 +96,14 @@ namespace ocmengine
 		}
 		
 		
-		public void AddWaypoint(Waypoint point)
+		public void AddWaypointAtomic(Waypoint point)
+		{
+			IDbTransaction trans = StartUpdate();
+			AddWaypoint(point);
+			EndUpdate(trans);			
+		}
+		
+		internal void AddWaypoint(Waypoint point)
 		{
 			if (point is Geocache)
 				UpdateCache(point as Geocache);
@@ -100,7 +114,10 @@ namespace ocmengine
 		
 		public IEnumerator<Geocache> getCacheEnumerator()
 		{
-			List<Geocache> caches =  GetCacheList(GET_GC);
+			String sql = GET_GC;
+			if (null != m_filter)
+				sql += m_filter.BuildWhereClause();
+			List<Geocache> caches =  GetCacheList(sql);
 			return caches.GetEnumerator();
 		}
 		
@@ -111,24 +128,51 @@ namespace ocmengine
 			return GetWayPointList(GET_WPTS + whereClause);
 		}
 		
-		public void UpdateWaypoint(Waypoint pt)
+		public void UpdateWaypointAtomic(Waypoint pt)
+		{
+			IDbTransaction trans = StartUpdate();
+			UpdateWaypoint(pt);
+			EndUpdate(trans);
+		}
+		
+		internal void UpdateWaypoint(Waypoint pt)
 		{
 			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
-			IDbCommand cmd = m_conn.CreateCommand();
-			cmd.CommandText = String.Format(INSERT_WPT, SQLEscape(pt.Name), pt.Lat, pt.Lon, pt.URL, 
+			IDbCommand cmd = m_conn.CreateCommand();			
+			string insert = String.Format(INSERT_WPT, SQLEscape(pt.Name), pt.Lat, pt.Lon, pt.URL, 
 			                                SQLEscape(pt.URLName), SQLEscape(pt.Desc), pt.Symbol, pt.Type,
 			                                pt.Time.ToString("o"), pt.Parent, pt.Updated.ToString("o"));
-			cmd.ExecuteNonQuery();
+			string update = String.Format(UPDATE_WPT, SQLEscape(pt.Name), pt.Lat, pt.Lon, pt.URL, 
+			                                SQLEscape(pt.URLName), SQLEscape(pt.Desc), pt.Symbol, pt.Type,
+			                                pt.Time.ToString("o"), pt.Parent, pt.Updated.ToString("o"));			
+			InsertOrUpdate (update, insert, cmd);
 		}
 		
 		public void DeleteWaypoint(Waypoint pt)
 		{
+			IDbTransaction trans = StartUpdate();
 			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
 			IDbCommand cmd = m_conn.CreateCommand();
 			cmd.CommandText = String.Format(DELETE_WPT, SQLEscape(pt.Name));
 			cmd.ExecuteNonQuery();
+			EndUpdate(trans);
+		}
+		
+		public void DeleteGeocache(Geocache cache)
+		{
+			IDbTransaction trans = StartUpdate();
+			String deleteGC = String.Format(DELETE_GC, SQLEscape(cache.Name));
+			String deleteTBS = String.Format(DELETE_TBS, SQLEscape(cache.Name));
+			String deleteLogs = String.Format(DELETE_LOGS, SQLEscape(cache.Name));
+			String deleteWpt = String.Format(DELETE_WPT + OR_PARENT, SQLEscape(cache.Name));
+			if (m_conn == null)
+				throw new Exception("DB NOT OPEN");
+			IDbCommand cmd = m_conn.CreateCommand();
+			cmd.CommandText = deleteGC + SEPERATOR + deleteLogs + SEPERATOR + deleteTBS + SEPERATOR + deleteWpt; 
+			cmd.ExecuteNonQuery();		
+			EndUpdate(trans);
 		}
 		
 		public void UpdateCache(Geocache cache)
@@ -136,15 +180,34 @@ namespace ocmengine
 			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
 			IDbCommand cmd = m_conn.CreateCommand();
-			System.Console.Write("Updateing" + cache.Name);
-			cmd.CommandText = String.Format(INSERT_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
+			string insert = String.Format(INSERT_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
 			                                cache.Difficulty, cache.Terrain, SQLEscape(cache.Country), 
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
 			                                cache.Available.ToString());
-			cmd.ExecuteNonQuery();
+			string update = String.Format(UPDATE_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
+			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
+			                                cache.Difficulty, cache.Terrain, SQLEscape(cache.Country), 
+			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
+			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
+			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
+			                                cache.Available.ToString());;
+			InsertOrUpdate (update, insert, cmd);
+		}
+		
+		private static void InsertOrUpdate (string update, string insert, IDbCommand cmd)
+		{
+			cmd.CommandText = update;
+			int changed = cmd.ExecuteNonQuery();
+			if (0 == changed)
+			{
+				cmd.CommandText = insert;
+				cmd.ExecuteNonQuery();
+			}
+			cmd.Dispose();
+			cmd = null;
 		}
 		
 		private List<Waypoint> GetWayPointList(String sql)
@@ -253,7 +316,14 @@ namespace ocmengine
 			cmd = null;
 		}
 		
-		public void AddLog(String cachename, CacheLog log)
+		public void AddLogAtomic(String cachename, CacheLog log)
+		{
+			IDbTransaction trans = StartUpdate();
+			AddLog(cachename, log);
+			EndUpdate(trans);
+		}
+		
+		internal void AddLog(String cachename, CacheLog log)
 		{
 			IDbCommand cmd = m_conn.CreateCommand();
 			cmd.CommandText = String.Format(ADD_LOG, cachename, log.LogDate.ToString("o"), SQLEscape(log.LoggedBy), SQLEscape(log.LogMessage), SQLEscape(log.LogStatus), log.FinderID, log.Encoded.ToString());
@@ -280,16 +350,27 @@ namespace ocmengine
 			cmd = null;
 		}
 		
-		public void StartUpdate()
+		public IDbTransaction StartUpdate()
 		{
 			if (m_conn == null)
 			{
 				m_conn = OpenConnection();
 			}
+			return m_conn.BeginTransaction();
 		}
 		
-		public void EndUpdate()
+		public void EndUpdate(IDbTransaction trans)
 		{
+			trans.Commit();
+			trans.Dispose();
+			m_conn.Close();
+			m_conn = null;
+		}
+		
+		public void CancelUpdate(IDbTransaction trans)
+		{
+			trans.Rollback();
+			trans.Dispose();
 			m_conn.Close();
 			m_conn = null;
 		}
@@ -297,8 +378,8 @@ namespace ocmengine
 		public List<CacheLog> GetCacheLogs(String cachename)
 		{
 			List<CacheLog> logs = new List<CacheLog>();
-			StartUpdate();
-			IDbCommand cmd =  m_conn.CreateCommand();
+			IDbConnection conn = OpenConnection();
+			IDbCommand cmd =  conn.CreateCommand();
 			cmd.CommandText = String.Format(GET_LOGS, cachename);
 			IDataReader rdr = cmd.ExecuteReader();
 			while (rdr.Read())
@@ -313,6 +394,7 @@ namespace ocmengine
 				log.Encoded = Boolean.Parse(encoded);
 				logs.Add(log);
 			}
+			CloseConnection(ref rdr, ref cmd, ref conn);
 			return logs;			
 		}
 		
@@ -320,8 +402,8 @@ namespace ocmengine
 		public List<TravelBug> GetTravelBugs(String cachename)
 		{
 			List<TravelBug> bugs = new List<TravelBug>();
-			StartUpdate();
-			IDbCommand cmd =  m_conn.CreateCommand();
+			IDbConnection conn = OpenConnection();
+			IDbCommand cmd =  conn.CreateCommand();
 			cmd.CommandText = String.Format(GET_TB, cachename);
 			IDataReader rdr = cmd.ExecuteReader();
 			while (rdr.Read())
@@ -333,6 +415,7 @@ namespace ocmengine
 				bug.Cache = cachename;
 				bugs.Add(bug);
 			}
+			CloseConnection(ref rdr, ref cmd, ref conn);
 			return bugs;			
 		}
 		
@@ -368,6 +451,6 @@ namespace ocmengine
 			cmd.ExecuteNonQuery();
 			cmd.Dispose();
 			conn.Close();
-		}	
+		}		
 	}		
 }

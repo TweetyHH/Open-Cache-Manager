@@ -39,20 +39,42 @@ namespace ocmengine
 		private CacheStore m_store = null;
 		public delegate void ParseEventHandler(object sender, EventArgs args);
 		public event ParseEventHandler ParseWaypoint;
-		public event ParseEventHandler ParseLog;
-		public event ParseEventHandler ParseTravelbug;
 		public event ParseEventHandler Complete;
 		
 		private DateTime gpx_date;
 		
+		private Boolean m_cancel = false;
+		public bool Cancel
+		{
+			set { m_cancel = true;}
+		}
+		
+		
+		public int preParse(FileStream fs)
+		{
+			XmlReader rdr = XmlReader.Create(fs);
+			int count = 0;
+			while (rdr.Read())
+			{
+				if (rdr.Name == "wpt" && rdr.IsStartElement())
+					count++;
+			}
+			rdr.Close();
+			return count;
+		}
 				
 		public void parseGPXFile(FileStream fs, CacheStore store)
 		{			
 			m_store = store;
-			m_store.StartUpdate();
+		 	System.Data.IDbTransaction trans =m_store.StartUpdate();
 			XmlReader reader = XmlReader.Create(fs);
 			while (reader.Read())
 			{
+				if (m_cancel)
+				{
+					m_store.CancelUpdate(trans);
+					return;
+				}
 				switch (reader.NodeType)
 				{
 					case XmlNodeType.Element:
@@ -69,7 +91,8 @@ namespace ocmengine
 						break;
 				}
 			}
-			m_store.EndUpdate();
+			reader.Close();
+			m_store.EndUpdate(trans);
 			this.Complete(this, EventArgs.Empty);
 		}
 		
@@ -325,6 +348,8 @@ namespace ocmengine
 			    cache.TypeOfCache = Geocache.CacheType.VIRTUAL;
 			else if (type == "Project APE Cache")
 				cache.TypeOfCache = Geocache.CacheType.APE;
+			else if (type == "Lost and Found Event Cache")
+				cache.TypeOfCache = Geocache.CacheType.EVENT;
 			else
 				cache.TypeOfCache = Geocache.CacheType.OTHER;
 				

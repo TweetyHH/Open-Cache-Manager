@@ -30,17 +30,10 @@ namespace ocmengine
 		}
 		
 		private static Engine m_instance = null;
-		private static string m_OwnerID = null;
-		GPXParser m_parser = null;
-		public GPXParser Parser
-		{
-			get{ return m_parser;}
-		}
-		
+
 		private Engine()
 		{
 			m_store = new CacheStore();
-			m_parser = new GPXParser();
 		}
 		
 		
@@ -75,7 +68,6 @@ namespace ocmengine
 		
 		public IEnumerator<Waypoint> GetChildWaypoints(string code)
 		{
-			IEnumerator<Waypoint> pts =  m_store.GetChildren(code).GetEnumerator();
 			return m_store.GetChildren(code).GetEnumerator();
 		}
 		

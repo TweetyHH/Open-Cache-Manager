@@ -44,26 +44,46 @@ namespace ocmengine
 		public event WriteEventHandler WriteWaypoint;
 		public event WriteEventHandler Complete;
 		public delegate void WriteEventHandler(object sender, EventArgs args);
-
-		public GPXWriter ()
+		
+		bool m_cancel = false;
+		public bool Cancel
 		{
+			set {m_cancel = true;}
 		}
+		
+		private int m_Limit = -1;
+		public int Limit
+		{
+			set { m_Limit = value;}
+		}
+		
+		private bool m_isFullInfo = true;
+		public bool IncludeGroundSpeakExtensions
+		{
+			set { m_isFullInfo = value;}
+		}
+		
+		private int m_Count = 0;
 
 		public void WriteGPXFile (String name, List<Geocache> caches)
 		{
-			XmlWriter writer = new XmlTextWriter (name, System.Text.Encoding.UTF8);
+			FileStream stream = new System.IO.FileStream(name, FileMode.Create, FileAccess.Write, FileShare.Write, 655356);
+			XmlWriter writer = new XmlTextWriter (stream, System.Text.Encoding.UTF8);
 			try {
 				writer.WriteStartElement ("gpx", NS_GPX);
 				writer.WriteElementString ("name", NS_GPX, "Cache Listing from OCM");
 				writer.WriteElementString ("desc", NS_GPX, "Cache Listing from OCM");
-				writer.WriteElementString ("author", NS_GPX, "Kyle Campbell");
+				writer.WriteElementString ("author", NS_GPX, "Open Cache Manager");
 				writer.WriteElementString ("email", NS_GPX, "kmcamp_ott@yahoo.com");
 				writer.WriteElementString ("url", NS_GPX, "http://sourceforge.net/projects/opencachemanage/");
 				writer.WriteElementString ("urlname", NS_GPX, "Sourceforge Link");
 				writer.WriteElementString ("time", NS_GPX, System.DateTime.Now.ToString (XSD_DT));
 				foreach (Geocache cache in caches) {
+					if (m_cancel || ((m_Count >= m_Limit) && (m_Limit != -1)))
+						return;
+					m_Count++;
 					this.WriteWaypoint(this, new WriteEventArgs(String.Format("Writing {0}", cache.Name)));
-					cache.WriteToGPX (writer);
+					cache.WriteToGPX (writer, m_isFullInfo);
 				}
 				writer.WriteEndElement ();
 				this.Complete(this, new WriteEventArgs("Done"));
@@ -73,11 +93,6 @@ namespace ocmengine
 				writer.Flush ();
 				writer.Close ();
 			}
-		}
-
-		public void toGPX (Waypoint pt)
-		{
-			
 		}
 	}
 }

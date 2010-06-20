@@ -10,7 +10,7 @@
     <AssemblyName>ocmengine</AssemblyName>
     <Description>The library provides the geocache library management</Description>
     <RootNamespace>ocmengine</RootNamespace>
-    <ReleaseVersion>0.11</ReleaseVersion>
+    <ReleaseVersion>0.14</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,6 +62,8 @@
     <Compile Include="TravelBug.cs" />
     <Compile Include="WaypointEnumerator.cs" />
     <Compile Include="CacheStoreDefs.cs" />
+    <Compile Include="FilterList.cs" />
+    <Compile Include="GPSBabelWriter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

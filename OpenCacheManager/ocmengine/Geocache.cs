@@ -201,9 +201,11 @@ namespace ocmengine
 		}
 		
 		
-		internal override void WriteWPTDetails (XmlWriter writer)
+		internal override void WriteWPTDetails (XmlWriter writer, bool isFullInfo)
 		{
-			base.WriteWPTDetails (writer);
+			base.WriteWPTDetails (writer, isFullInfo);
+			if (!isFullInfo)
+				return;
 			writer.WriteStartElement(CACHE_PREFIX, "cache", GPXWriter.NS_CACHE);
 			writer.WriteAttributeString("id", CacheID);
 			writer.WriteAttributeString("available", Available.ToString());
@@ -277,5 +279,7 @@ namespace ocmengine
 				throw new Exception("UNHANDLED CACHE TYPE");
 			}
 		}
+		
+		
 	}
 }

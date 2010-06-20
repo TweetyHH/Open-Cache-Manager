@@ -72,7 +72,7 @@ namespace ocmengine
 		
 		public String toHTML()
 		{
-			string logHTML = "<hr/><b>Date:</b> ";
+			string logHTML = "<div style='font-family:sans-serif;font-size:10pt'><hr/><b>Date:</b> ";
 			logHTML += m_logdate.ToLongDateString();
 			logHTML += "<br/><b>";
 			logHTML += m_status;
@@ -81,7 +81,7 @@ namespace ocmengine
 			logHTML += m_logged_by;
 			logHTML += "<hr/>";
 			logHTML += m_logmessage;
-			logHTML += "<br/><br/>";
+			logHTML += "<br/><br/></div>";
 			return logHTML;
 		}
 		

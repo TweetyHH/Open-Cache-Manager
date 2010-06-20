@@ -20,8 +20,8 @@ namespace ocmengine
 	
 	public class Waypoint
 	{
-		private float m_lat = 0;
-		private float m_lon = 0;
+		private double m_lat = 0;
+		private double m_lon = 0;
 		private DateTime m_time = DateTime.Now;
 		private string m_name = "";
 		private string m_desc = "";
@@ -38,13 +38,13 @@ namespace ocmengine
 			set { m_name = value;}
 		}
 		
-		public float Lat
+		public double Lat
 		{
 			get { return m_lat;}
 			set {m_lat = value;}
 		}
 		
-		public float Lon
+		public double Lon
 		{
 			get { return m_lon;}
 			set { m_lon = value;}
@@ -105,19 +105,19 @@ namespace ocmengine
 			
 		}
 		
-		public void WriteToGPX(XmlWriter writer)
+		public void WriteToGPX(XmlWriter writer, bool isFullInfo)
 		{
 			writer.WriteStartElement("wpt", GPXWriter.NS_GPX);
-			WriteWPTDetails(writer);
+			WriteWPTDetails(writer, isFullInfo);
 			writer.WriteEndElement();
 			IEnumerator<Waypoint> itr = Engine.getInstance().GetChildWaypoints(this.Name);
 			while (itr.MoveNext())
 			{
-				itr.Current.WriteToGPX(writer);
+				itr.Current.WriteToGPX(writer, isFullInfo);
 			}                          
 		}
 		
-		internal virtual void WriteWPTDetails(XmlWriter writer)
+		internal virtual void WriteWPTDetails(XmlWriter writer, bool isFullInfo)
 		{
 			writer.WriteAttributeString("lat", this.Lat.ToString());
 			writer.WriteAttributeString("lon", this.Lon.ToString());
