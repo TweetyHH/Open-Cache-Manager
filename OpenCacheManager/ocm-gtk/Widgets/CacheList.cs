@@ -25,13 +25,14 @@ namespace ocmgtk
 		private ListStore m_cacheModel;
 
 		private bool m_showUnavailble = true;
+		private bool m_showAvailable = true;
 		private bool m_showArchived = true;
 		private bool m_showMine = true;
 		private bool m_showFound = true;
 		private bool m_showNotFound = true;
 		private UIMonitor m_monitor;
 		private double m_maxDistance = -1;
-		
+
 		private Timer refreshTimer;
 
 		public CacheList ()
@@ -40,14 +41,14 @@ namespace ocmgtk
 			BuildList ();
 			m_monitor = UIMonitor.getInstance ();
 			m_monitor.CacheListPane = this;
-			refreshTimer = new Timer();
+			refreshTimer = new Timer ();
 			refreshTimer.AutoReset = false;
 			refreshTimer.Elapsed += HandleRefreshTimerElapsed;
 		}
 
 		void HandleRefreshTimerElapsed (object sender, ElapsedEventArgs e)
 		{
-			Application.Invoke(delegate{RefilterList();});
+			Application.Invoke (delegate { RefilterList (); });
 		}
 
 
@@ -160,7 +161,6 @@ namespace ocmgtk
 				m_cacheModel.AppendValues (cache_enum.Current);
 			}
 			m_ListSort.SetSortColumnId (2, SortType.Ascending);
-			this.ShowAll ();
 		}
 
 		private void RenderCacheCode (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
@@ -218,44 +218,39 @@ namespace ocmgtk
 			if (((TreeSelection)sender).GetSelected (out model, out iter)) {
 				
 				Geocache val = (Geocache)model.GetValue (iter, 0);
-				if (val != null)
-					m_monitor.SetSelectedCache (val);
+				m_monitor.SetSelectedCache (val);
 			}
-			
+			else
+				m_monitor.SetSelectedCache(null);
 		}
 
 		private string unavailText (string text)
 		{
-			return START_UNAVAIL + text + END_SPAN;
+			return START_UNAVAIL + GLib.Markup.EscapeText (text) + END_SPAN;
 		}
 
 		private string archiveText (string text)
 		{
-			return START_ARCHIVE + text + END_SPAN;
-		}
-
-		private string foundText (string text)
-		{
-			return START_FOUND + text + END_SPAN;
+			return START_ARCHIVE + GLib.Markup.EscapeText (text) + END_SPAN;
 		}
 
 		protected virtual void OnFilterChange (object o, EventArgs args)
 		{
-			StartRefilterList();
+			StartRefilterList ();
 		}
-		
-		private void StartRefilterList()
+
+		private void StartRefilterList ()
 		{
 			refreshTimer.Interval = 300;
 			if (!refreshTimer.Enabled)
 				refreshTimer.Enabled = true;
 		}
-		
+
 		private void RefilterList ()
 		{
-			m_monitor.StartFiltering();
+			m_monitor.StartFiltering ();
 			m_QuickFilter.Refilter ();
-			m_monitor.UpdateCacheCountStatus ();
+			m_monitor.UpdateStatusBar ();
 		}
 
 		private int TitleCompare (TreeModel model, TreeIter tia, TreeIter tib)
@@ -292,23 +287,34 @@ namespace ocmgtk
 				return false;
 			String filterVal = filterEntry.Text.ToLower ();
 			
+			//TODO : PUSH THESE STATUS FLAGS TO DATABASE TO IMPROVE
+			// PERFORMANCE
 			if (!m_showArchived && cache.Archived)
 				return false;
 			
 			if (!m_showMine && (cache.OwnerID == m_monitor.OwnerID))
 				return false;
 			
-			if (!m_showNotFound && cache.Symbol != FOUND_CACHE)
-				return false;
+			if (!m_showNotFound && cache.Symbol != FOUND_CACHE )
+				if (m_showMine && (cache.OwnerID == m_monitor.OwnerID))
+					return true;
+				else
+					return false;
 			
 			if (!m_showUnavailble && !cache.Available && !cache.Archived)
 				return false;
 			
 			if (!m_showFound && cache.Symbol == FOUND_CACHE)
+				if (m_showMine && (cache.OwnerID == m_monitor.OwnerID))
+					return true;
+				else
+					return false;
+			
+			if (!m_showAvailable && cache.Available)
 				return false;
 			
 			if (m_maxDistance > 0)
-				if (getDistanceFromHome(cache) > m_maxDistance)
+				if (getDistanceFromHome (cache) > m_maxDistance)
 					return false;
 			
 			
@@ -326,31 +332,31 @@ namespace ocmgtk
 		public void ToggleArchivedCaches ()
 		{
 			m_showArchived = !m_showArchived;
-			RefilterList();
+			RefilterList ();
 		}
 
 		public void ToggleUnavailableCaches ()
 		{
 			m_showUnavailble = !m_showUnavailble;
-			RefilterList();
+			RefilterList ();
 		}
 
 		public void ToggleFoundCaches ()
 		{
 			m_showFound = !m_showFound;
-			RefilterList();
+			RefilterList ();
 		}
-		
+
 		public void ToggleUnFoundCaches ()
 		{
 			m_showNotFound = !m_showNotFound;
-			RefilterList();
+			RefilterList ();
 		}
-		
-		public void ToggleMyCaches()
+
+		public void ToggleMyCaches ()
 		{
 			m_showMine = !m_showMine;
-			RefilterList();
+			RefilterList ();
 		}
 
 		public double getDistanceFromHome (Geocache cache)
@@ -362,19 +368,8 @@ namespace ocmgtk
 		protected virtual void DoButtonPress (object o, Gtk.ButtonPressEventArgs args)
 		{
 			if (args.Event.Button == 3) {
-				GetSelectedCache (args);
 				CreatePopup ();
 			}
-		}
-
-		private void GetSelectedCache (ButtonPressEventArgs args)
-		{
-			TreeIter iter;
-			TreePath path;
-			treeview1.GetPathAtPos ((int)args.Event.X, (int)args.Event.Y, out path);
-			if (!m_ListSort.GetIter (out iter, path))
-				return;
-			Geocache cache = (Geocache)m_ListSort.GetValue (iter, 0);
 		}
 
 		private void CreatePopup ()
@@ -407,16 +402,13 @@ namespace ocmgtk
 			if (cache == null)
 				return;
 			GConf.Client client = new GConf.Client ();
-			string home_lat = "0";
-			string home_lon = "0";
-			
 			try {
-				m_monitor.CentreLat = (double)client.Get ("/apps/monoapps/ocm/homelat");
-				m_monitor.CentreLon = (double)client.Get ("/apps/monoapps/ocm/homelon");
+				m_monitor.CentreLat = (double)client.Get ("/apps/ocm/homelat");
+				m_monitor.CentreLon = (double)client.Get ("/apps/ocm/homelon");
 			} catch (GConf.NoSuchKeyException) {
 				// Do nothing
 			}
-			PopulateList ();
+			m_monitor.RefreshCaches ();
 		}
 
 		void HandleDeleteItemActivated (object sender, EventArgs e)
@@ -443,66 +435,95 @@ namespace ocmgtk
 				return;
 			m_monitor.CentreLat = cache.Lat;
 			m_monitor.CentreLon = cache.Lon;
-			PopulateList ();
-		}	
+			m_monitor.CenterName = cache.Name;
+			m_monitor.RefreshCaches ();
+		}
 		protected virtual void OnFoundButtonToggled (object sender, System.EventArgs e)
 		{
-			ToggleFoundCaches();
+			ToggleFoundCaches ();
 		}
-		
+
 		protected virtual void OnMineToggled (object sender, System.EventArgs e)
 		{
-			ToggleMyCaches();
+			ToggleMyCaches ();
 		}
-		
+
 		protected virtual void OnArchivedButtonToggled (object sender, System.EventArgs e)
 		{
-			ToggleArchivedCaches();
+			ToggleArchivedCaches ();
 		}
-		
-		
+
+
 		protected virtual void OnUnavailableToggled (object sender, System.EventArgs e)
 		{
-			ToggleUnavailableCaches();
-		}		
-		
+			ToggleUnavailableCaches ();
+		}
+
 		protected virtual void OnClearClicked (object sender, System.EventArgs e)
 		{
 			filterEntry.Text = String.Empty;
 		}
-		
+
 		protected virtual void onEditDone (object sender, System.EventArgs e)
 		{
-			try
-			{
-				m_maxDistance = double.Parse(distanceEntry.Text);
-			}
-			catch (Exception e1)
-			{
+			try {
+				m_maxDistance = double.Parse (distanceEntry.Text);
+			} catch (Exception) {
 				m_maxDistance = -1;
 			}
-			StartRefilterList();
+			StartRefilterList ();
 		}
-		
+
 		protected virtual void OnClearDistance (object sender, System.EventArgs e)
 		{
 			distanceEntry.Text = String.Empty;
 			m_maxDistance = -1;
 		}
-		
+
 		protected virtual void OnNotFoundToggled (object sender, System.EventArgs e)
 		{
-			ToggleUnFoundCaches();
+			ToggleUnFoundCaches ();
 		}
-		
+
 		protected virtual void OnEditingDone (object sender, System.EventArgs e)
 		{
-			RefilterList();
+			RefilterList ();
+		}
+
+		public void SelectCache (string code)
+		{
+			TreeIter itr;
+			TreeModel model = treeview1.Model;
+			treeview1.Model.GetIterFirst(out itr);
+			do
+			{
+				Geocache cache = (Geocache)model.GetValue (itr, 0);
+				System.Console.WriteLine(cache.Name);
+				if (cache.Name == code)
+				{
+					treeview1.Selection.SelectIter(itr);
+					TreePath path = treeview1.Model.GetPath(itr);
+					treeview1.ScrollToCell(path, treeview1.Columns[0], true, 0, 0);
+					return;
+				}
+			}
+			while (model.IterNext(ref itr));
 		}
 		
+		public void ScrollToSelected()
+		{
+			TreeIter itr;
+			if (! treeview1.Selection.GetSelected(out itr))
+				return;
+			TreePath path = treeview1.Model.GetPath(itr);
+			treeview1.ScrollToCell(path, treeview1.Columns[0], true, 0, 0);
+		}
 		
-		
-		
+		protected virtual void OnAvailableToggle (object sender, System.EventArgs e)
+		{
+			m_showAvailable = !m_showAvailable;
+			RefilterList();
+		}
 		
 		
 	}

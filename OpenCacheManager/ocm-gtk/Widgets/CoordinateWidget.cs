@@ -22,14 +22,13 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class CoordinateWidget : Gtk.Bin
 	{
-		bool m_IsLat = false;
 		
 		public CoordinateWidget ()
 		{
 			this.Build ();
 		}
 		
-		public void SetCoordinate(float coord, bool isLat)
+		public void SetCoordinate(double coord, bool isLat)
 		{
 			System.Console.WriteLine("Coord in" + coord);
 			ocmengine.DegreeMinutes conv = new ocmengine.DegreeMinutes(coord);
@@ -48,7 +47,7 @@ namespace ocmgtk
 			minuteEntry.Text = conv.Minutes.ToString("0.000");
 		}
 		
-		public float getCoordinate()
+		public double getCoordinate()
 		{
 			int degrees = int.Parse(degreeEntry.Text);
 			if (directionCombo.Active == 1)
@@ -56,12 +55,11 @@ namespace ocmgtk
 			double minutes = double.Parse(minuteEntry.Text);
 			ocmengine.DegreeMinutes conv = new ocmengine.DegreeMinutes(degrees, minutes);	
 			System.Console.WriteLine("Coord out" + conv.GetDecimalDegrees());
-			return (float) conv.GetDecimalDegrees();
+			return conv.GetDecimalDegrees();
 		}
 		
 		private void SetLatBox(bool lat)
 		{
-			m_IsLat = false;
 			if (lat)
 			{
 				directionCombo.AppendText("N");
@@ -69,8 +67,8 @@ namespace ocmgtk
 			}
 			else
 			{
-				directionCombo.AppendText(Mono.Posix.Catalog.GetString("E"));
-				directionCombo.AppendText(Mono.Posix.Catalog.GetString("W"));
+				directionCombo.AppendText(Mono.Unix.Catalog.GetString("E"));
+				directionCombo.AppendText(Mono.Unix.Catalog.GetString("W"));
 			}
 		}
 		
@@ -85,7 +83,7 @@ namespace ocmgtk
 					throw new Exception();
 				return true;
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				Gtk.MessageDialog dlg = new Gtk.MessageDialog(null, Gtk.DialogFlags.DestroyWithParent,
 				                                              Gtk.MessageType.Error, Gtk.ButtonsType.Ok,

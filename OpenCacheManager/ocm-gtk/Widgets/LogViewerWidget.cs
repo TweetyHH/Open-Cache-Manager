@@ -20,33 +20,39 @@ using ocmengine;
 
 namespace ocmgtk
 {
-	
+
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class LogViewerWidget : Gtk.Bin
 	{
 		HTMLWidget m_logPane;
 		UIMonitor m_mon;
-		
-		public LogViewerWidget()
+
+		public LogViewerWidget ()
 		{
-			this.Build();
-			m_logPane = new HTMLWidget();
-			logScroll.Add(m_logPane);
-			m_mon = UIMonitor.getInstance();
+			this.Build ();
+			m_logPane = new HTMLWidget ();
+			logScroll.Add (m_logPane);
+			m_mon = UIMonitor.getInstance ();
 		}
-		
-		public void updateCacheInfo()
+
+		public void updateCacheInfo ()
 		{
-			StringBuilder builder = new StringBuilder();
-			builder.Append("<HTML><BODY>");
+			StringBuilder builder = new StringBuilder ();
+			builder.Append ("<HTML><BODY>");
 			Geocache cache = m_mon.SelectedCache;
-			IEnumerator<CacheLog> logenum =  Engine.getInstance().GetLogs(cache.Name);
-			while (logenum.MoveNext())
-			{
-				builder.Append(logenum.Current.toHTML());
+			if (cache != null) {
+				IEnumerator<CacheLog> logenum = Engine.getInstance ().GetLogs (cache.Name);
+				while (logenum.MoveNext ()) {
+					builder.Append (logenum.Current.toHTML ());
+				}
+				
 			}
-			builder.Append("</BODY></HTML>");
-			m_logPane.HTML = builder.ToString();			
+			else
+			{
+				builder.Append(Mono.Unix.Catalog.GetString("NO CACHE SELECTED"));
+			}
+			builder.Append ("</BODY></HTML>");
+			m_logPane.HTML = builder.ToString ();
 		}
 	}
 }

@@ -15,7 +15,7 @@
 
 using System;
 using Gtk;
-using Mono.Posix;
+using Mono.Unix;
 
 namespace ocmgtk
 {

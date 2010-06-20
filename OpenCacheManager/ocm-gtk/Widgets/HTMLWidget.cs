@@ -23,7 +23,8 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class HTMLWidget : Gtk.Bin
 	{
-		WebKit.WebView m_view;
+		protected WebKit.WebView m_view;
+		bool contentLoaded = false;
 		
 		public HTMLWidget ()
 		{
@@ -31,14 +32,33 @@ namespace ocmgtk
 			m_view = new WebKit.WebView();
 			ScrolledWindow win = new ScrolledWindow();
 			win.Add(m_view);
+			m_view.LoadFinished += HandleM_viewLoadFinished;
+			m_view.NavigationRequested += HandleM_viewNavigationRequested;
 			this.Add(win);
 			this.ShowAll();
+		}
+
+		void HandleM_viewLoadFinished (object o, WebKit.LoadFinishedArgs args)
+		{
+			contentLoaded = true;
+		}
+
+		void HandleM_viewNavigationRequested (object o, WebKit.NavigationRequestedArgs args)
+		{
+			if (contentLoaded)
+			{
+				m_view.StopLoading();
+				System.Diagnostics.Process.Start(args.Request.Uri);
+			}
 		}
 		
 		public string HTML
 		{
 			//set { int i=1;}
-			set { m_view.LoadHtmlString(value, "http://www.geocaching.com");}
+			set {
+				contentLoaded = false;
+				m_view.LoadHtmlString(value, "http://www.geocaching.com");
+			}
 		}
 	}
 }

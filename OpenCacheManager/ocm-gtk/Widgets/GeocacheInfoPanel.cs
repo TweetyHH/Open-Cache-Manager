@@ -49,7 +49,6 @@ namespace ocmgtk
 		private static Pixbuf VIRTUAL = new Pixbuf ("./icons/scalable/virtual.svg", 64, 64);
 
 		UIMonitor m_monitor;
-		ListStore tbStore;
 		public GeocacheInfoPanel ()
 		{
 			this.Build ();
@@ -63,6 +62,24 @@ namespace ocmgtk
 		{
 			try {
 				Geocache cache = m_monitor.SelectedCache;
+				if (cache == null)
+				{
+					this.Sensitive = false;
+					cacheCodeLabel.Markup = START_BIG + "NO CACHE SELECTED" + END_BIG;
+					cacheNameLabel.Markup = String.Empty;
+					setDifficulty(0);
+					setTerrain(0);
+					dateLabel.Text = String.Empty;
+					infoDateLabel.Text = string.Empty;
+					statusLabel.Markup = String.Empty;
+					placedByLabel.Text = String.Empty;
+					cacheSizeLabel.Text = String.Empty;
+					coordinateLabel.Text = String.Empty;
+					distance_label.Text = String.Empty;
+					cacheTypeLabel.Text = String.Empty;
+					return;
+				}
+				this.Sensitive = true;
 				cacheCodeLabel.Markup = START_BIG + cache.Name + END_BIG;
 				cacheNameLabel.Markup = START_BIG + GLib.Markup.EscapeText (cache.CacheName) + END_BIG;
 				setDifficulty (cache.Difficulty);
@@ -85,8 +102,7 @@ namespace ocmgtk
 				placedByLabel.Text = cache.PlacedBy;
 				cacheSizeLabel.Text = cache.Container;
 				setCoordinate (cache);
-				this.ShowAll ();
-			} catch (Exception e) {
+			} catch (Exception) {
 				System.Console.WriteLine ("Exception caught!");
 			}
 		}

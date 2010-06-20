@@ -40,9 +40,14 @@ namespace ocmgtk
 		public void UpdateCacheInfo ()
 		{
 			Geocache cache = UIMonitor.getInstance ().SelectedCache;
+			if (cache == null)
+			{
+				descWidget.HTML = "<b>NO CACHE SELECTED</b>";
+				return;
+			}
 			SetDescription (cache);
 			SetTravelBugs (Engine.getInstance ().Store.GetTravelBugs (cache.Name));
-			if (String.IsNullOrEmpty (cache.Hint)) {
+			if (String.IsNullOrEmpty (cache.Hint) || String.IsNullOrEmpty(cache.Hint.Trim())) {
 				hintExpander.Sensitive = false;
 				hintExpander.Expanded = false;
 			} else {
@@ -97,7 +102,8 @@ namespace ocmgtk
 
 		public void SetDescription (Geocache cache)
 		{
-			descWidget.HTML = cache.ShortDesc + "\n\n" + cache.LongDesc;
+			descWidget.HTML = "<div style='font-family:sans-serif;font-size:10pt; background-color:#FFFFFF'>" + cache.ShortDesc + "\n\n" 
+				+ cache.LongDesc + "</div>";
 		}
 	}
 }
