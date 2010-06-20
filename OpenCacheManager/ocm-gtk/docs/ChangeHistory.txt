@@ -1,0 +1,70 @@
+Version 0.14
+---------------
+- Add integration with GPS Babel for full GPS support. This requires
+GPS Babel to be installed
+- Implement GPS menu
+- Fixed bug where some coordinates has a small error
+- Recently opened GPX/Databases now show up in the recent file list
+- Preliminary support for registering GPX and OCM files. You will need to call
+  update-mime-database /usr/local/share/mime to complete the registration
+- Add "Available" option to the quick filter list
+- Fix issue where OCM would crash on opening a GPX on startup
+- Grey out the cache info area if no cache selected
+- Update icon set after discussion with GroundSpeak
+- Clicking on links in the description pane now opens them in a seperate window
+- Add Preferences dialogs to alter settings after initial setup
+- Fixup menu items names, add keyboard shortcuts
+- Fix right-click and delete in cache list
+- Move Reset Center to Home to the Map menu
+- Refresh single cache on log found/mark unfound to improve performance
+  
+
+Version 0.13
+---------------
+
+- Major changes to map:
+	- Replace Yahoo maps with Google maps
+	- Add popup bubbles to display geocache/waypoint info when clicked
+	- Introduce new "Map" menu
+	- Add new "show nearby caches" feature to map, which displays the 50 nearest caches
+	  (that match current filter criteria) on the map. Users can use the info bubble of the
+	  nearby cache to select it
+	- Add ability to pan to currently selected cache or predefined home point from map menu
+
+- Only enable hint area if it has content
+- Reduce font size of description and log areas
+- Fix description area so that background images don't make text unreadable
+- When filters change, keep currently selected cache visible in cache list pane
+- Replace seperate map area status bar with a progress bar on the main status bar
+- Adjust icon sizes
+- Add parking, trailhead, and final icons
+
+
+
+Version 0.12
+- Fix issue with Lost and Found Event caches
+- Fix slow performance on GPX import
+- Add support to delete caches from database
+- Add splash screen
+- Add ability to filter on cache type, container, difficulty, terrain,
+  and placed by via "Additonal Filters" in View menu
+- Fix database update issue causing missing updates
+- Fix lost actions while Map loading
+- Fix cancelling import
+- Fix cancelling export
+- Improve import/export dialogs
+- Fix wrong icon for event caches on map
+- Center map on home coordinates on startup
+- Fix display bug with cache names that start with a number and are archived
+- Rerrange hint and travelbug display, hints now wordwrap
+
+  
+
+Version 0.11
+
+- Delay on filtering when typing
+- Add Yahoo Maps (street, sattelite, and hybrid maps) support
+- Fix crash on opening read-only GPX
+- Fix status label in cache info pane so that it only takes up one line
+- Add licence file
+- Update icons to be easier to see
