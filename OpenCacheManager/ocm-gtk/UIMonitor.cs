@@ -221,7 +221,8 @@ namespace ocmgtk
 				CentreLon = (double)client.Get ("/apps/ocm/homelon");
 				OwnerID = (string)client.Get ("/apps/ocm/memberid");
 				String dbName = (string)client.Get ("/apps/ocm/currentdb");
-				SetCurrentDB (dbName, false);
+				SetCurrentDB (dbName, true);
+				m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html");
 				SetSelectedCache(null);
 				GoHome ();
 			} catch (GConf.NoSuchKeyException) {
@@ -233,7 +234,7 @@ namespace ocmgtk
 		{
 			String[] dbSplit = dbName.Split ('/');
 			String dBShort = dbSplit[dbSplit.Length - 1];
-			m_mainWin.Title = dBShort + " - OpenCacheManager";
+			m_mainWin.Title = dBShort + " - OCM";
 			m_conf.Set ("/apps/ocm/currentdb", dbName);
 			Engine.getInstance ().Store.SetDB (dbName);
 			if (loadNow)
@@ -308,6 +309,27 @@ namespace ocmgtk
 			m_mapLat = m_selectedCache.Lat;
 			m_mapLat = m_selectedCache.Lon;
 			m_map.LoadScript ("zoomToPoint(" + m_selectedCache.Lat + "," +  m_selectedCache.Lon + ")");
+		}
+		
+		public void ResetCenterToHome()
+		{
+			CentreLat = (double)m_conf.Get ("/apps/ocm/homelat");
+			CentreLon = (double)m_conf.Get ("/apps/ocm/homelon");
+			Geocache selected = m_selectedCache;
+			m_centreName = "Home";
+			RefreshCaches();
+			SelectCache(selected.Name);
+		}
+		
+		public void SetSelectedAsCentre()
+		{
+			m_home_lat = m_selectedCache.Lat;
+			m_home_lon = m_selectedCache.Lon;
+			Geocache selected = m_selectedCache;
+			m_centreName = selected.Name;
+			m_mainWin.EnableResetCentre();
+			RefreshCaches();
+			SelectCache(selected.Name);
 		}
 
 
@@ -502,7 +524,7 @@ namespace ocmgtk
 			dlg.CurrentName = "newdb.ocm";
 			FileFilter filter = new FileFilter ();
 			filter.Name = "OCM Databases";
-			filter.AddMimeType ("application/x-sqlite3");
+		//	filter.AddMimeType ("application/x-sqlite3");
 			filter.AddPattern ("*.ocm");
 			dlg.AddFilter (filter);
 			
@@ -530,7 +552,7 @@ namespace ocmgtk
 				dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
 				FileFilter filter = new FileFilter ();
 				filter.Name = "OCM Databases";
-				filter.AddMimeType ("application/x-ocm");
+			//	filter.AddMimeType ("application/x-ocm");
 				filter.AddPattern ("*.ocm");
 				dlg.AddFilter (filter);
 				
@@ -559,7 +581,7 @@ namespace ocmgtk
 				dlg.CurrentName = "export.gpx";
 				FileFilter filter = new FileFilter ();
 				filter.Name = "GPX Files";
-				filter.AddMimeType ("application/x-gpx");
+			//	filter.AddMimeType ("application/x-gpx");
 				filter.AddPattern ("*.gpx");
 				
 				dlg.AddFilter (filter);
@@ -641,7 +663,7 @@ namespace ocmgtk
 			dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
 			FileFilter filter = new FileFilter ();
 			filter.Name = "GPS Exchange Files";
-			filter.AddMimeType ("application/x-gpx");
+		//	filter.AddMimeType ("application/x-gpx");
 			filter.AddPattern ("*.gpx");
 			dlg.AddFilter (filter);
 			
@@ -671,11 +693,12 @@ namespace ocmgtk
 		public void LogFind ()
 		{
 			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, "Do you wish to mark this cache as found in the database?");
-			if ((int)ResponseType.Yes == dlg.Run ()) {
+			if ((int)ResponseType.Yes == dlg.Run ()) 
+			{
 				MarkCacheFound ();
-				RefreshCaches ();
+				dlg.Hide();
 			}
-			dlg.Hide ();
+			dlg.Hide();
 			System.Diagnostics.Process.Start ("http://www.geocaching.com/seek/log.aspx?ID=" + m_selectedCache.CacheID);
 		}
 
@@ -690,6 +713,7 @@ namespace ocmgtk
 			log.LogMessage = "AUTO LOG: OCM";
 			Engine.getInstance ().Store.UpdateWaypointAtomic (m_selectedCache);
 			Engine.getInstance ().Store.AddLogAtomic (m_selectedCache.Name, log);
+			SetSelectedCache(m_selectedCache);
 		}
 
 		public void MarkCacheUnfound ()
@@ -698,6 +722,7 @@ namespace ocmgtk
 			if ((int)ResponseType.Yes == dlg.Run ()) {
 				m_selectedCache.Symbol = "Geocache";
 				Engine.getInstance ().Store.UpdateWaypointAtomic (m_selectedCache);
+				SetSelectedCache(m_selectedCache);
 			}
 			dlg.Hide ();
 		}

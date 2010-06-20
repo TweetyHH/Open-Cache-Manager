@@ -34,9 +34,6 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.CacheListPane = cacheList;
 		m_monitor.CentreLabel = coordLabel;
 		m_monitor.Map = cachePane.CacheMap;
-		cachePane.CacheMap.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html");
-
-		m_monitor.LoadConfig();
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -109,6 +106,7 @@ public partial class MainWindow : Gtk.Window
 	{
 		this.CacheAction.Sensitive = true;
 		this.ZoomToSelectedCacheAction.Sensitive = true;
+		this.SetSelectedCacheAsCentreAction.Sensitive = true;
 	}
 
 	protected virtual void OnViewOnline (object sender, System.EventArgs e)
@@ -242,4 +240,30 @@ public partial class MainWindow : Gtk.Window
 	{
 		m_monitor.ShowPreferences();
 	}
+	protected virtual void OnChangeHistoryClick (object sender, System.EventArgs e)
+	{
+		ChangeHistory dlg = new ChangeHistory();
+		dlg.Parent = this;
+		dlg.Icon = this.Icon;
+		dlg.Show();
+	}	
+	
+	public void EnableResetCentre()
+	{
+		ResetCentreToHomeAction.Sensitive = true;
+	}
+	
+	protected virtual void OnSetCentre (object sender, System.EventArgs e)
+	{
+		m_monitor.SetSelectedAsCentre();		
+	}
+	
+	protected virtual void OnResetCentre (object sender, System.EventArgs e)
+	{
+		m_monitor.ResetCenterToHome();
+		ResetCentreToHomeAction.Sensitive = false;
+	}
+	
+	
+	
 }

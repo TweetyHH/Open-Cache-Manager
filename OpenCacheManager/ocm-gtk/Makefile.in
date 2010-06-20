@@ -66,16 +66,22 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" \
+	"$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" \
+	"$(DESTDIR)$(linuxdesktopapplicationsdir)" \
 	"$(DESTDIR)$(linuxpkgconfigdir)" \
 	"$(DESTDIR)$(programfilesdir)" \
+	"$(DESTDIR)$(programfilesdocsdir)" \
 	"$(DESTDIR)$(programfilesicons24x24dir)" \
+	"$(DESTDIR)$(programfilesicons48x48dir)" \
 	"$(DESTDIR)$(programfilesiconsscalabledir)" \
 	"$(DESTDIR)$(programfileswebdir)"
 SCRIPTS = $(bin_SCRIPTS) $(pkglib_SCRIPTS)
 SOURCES =
 DIST_SOURCES =
-DATA = $(linuxpkgconfig_DATA) $(programfiles_DATA) \
-	$(programfilesicons24x24_DATA) \
+DATA = $(commonapplicationdatarootmimepackages_DATA) \
+	$(linuxdesktopapplications_DATA) $(linuxpkgconfig_DATA) \
+	$(programfiles_DATA) $(programfilesdocs_DATA) \
+	$(programfilesicons24x24_DATA) $(programfilesicons48x48_DATA) \
 	$(programfilesiconsscalable_DATA) $(programfilesweb_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -89,8 +95,10 @@ DEFS = @DEFS@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
-GECKO_SHARP_20_CFLAGS = @GECKO_SHARP_20_CFLAGS@
-GECKO_SHARP_20_LIBS = @GECKO_SHARP_20_LIBS@
+GCONF_SHARP_20_CFLAGS = @GCONF_SHARP_20_CFLAGS@
+GCONF_SHARP_20_LIBS = @GCONF_SHARP_20_LIBS@
+GLIB_SHARP_20_CFLAGS = @GLIB_SHARP_20_CFLAGS@
+GLIB_SHARP_20_LIBS = @GLIB_SHARP_20_LIBS@
 GMCS = @GMCS@
 GTKHTML_SHARP_314_CFLAGS = @GTKHTML_SHARP_314_CFLAGS@
 GTKHTML_SHARP_314_LIBS = @GTKHTML_SHARP_314_LIBS@
@@ -107,6 +115,10 @@ LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
+NDESK_DBUS_10_CFLAGS = @NDESK_DBUS_10_CFLAGS@
+NDESK_DBUS_10_LIBS = @NDESK_DBUS_10_LIBS@
+NDESK_DBUS_GLIB_10_CFLAGS = @NDESK_DBUS_GLIB_10_CFLAGS@
+NDESK_DBUS_GLIB_10_LIBS = @NDESK_DBUS_GLIB_10_LIBS@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
@@ -172,7 +184,7 @@ EXTRA_DIST = $(build_sources) $(build_resx_files) \
 @ENABLE_DEBUG_TRUE@ASSEMBLY_COMPILER_COMMAND = gmcs
 @ENABLE_RELEASE_TRUE@ASSEMBLY_COMPILER_COMMAND = gmcs
 @ENABLE_DEBUG_TRUE@ASSEMBLY_COMPILER_FLAGS = -noconfig -codepage:utf8 -warn:3 -optimize- -debug "-define:DEBUG"
-@ENABLE_RELEASE_TRUE@ASSEMBLY_COMPILER_FLAGS = -noconfig -codepage:utf8 -warn:4 -optimize-
+@ENABLE_RELEASE_TRUE@ASSEMBLY_COMPILER_FLAGS = -noconfig -codepage:utf8 -warn:3 -optimize-
 @ENABLE_DEBUG_TRUE@ASSEMBLY = bind/ocm-gtk.exe
 @ENABLE_RELEASE_TRUE@ASSEMBLY = bin/ocm-gtk.exe
 @ENABLE_DEBUG_TRUE@ASSEMBLY_MDB = $(ASSEMBLY).mdb
@@ -187,6 +199,14 @@ EXTRA_DIST = $(build_sources) $(build_resx_files) \
 
 @ENABLE_DEBUG_TRUE@BUILD_DIR = bind
 @ENABLE_RELEASE_TRUE@BUILD_DIR = bin
+@ENABLE_DEBUG_TRUE@OCM_DESKTOP_SOURCE = OCM.desktop
+@ENABLE_RELEASE_TRUE@OCM_DESKTOP_SOURCE = OCM.desktop
+@ENABLE_DEBUG_TRUE@X_GPX_XML_SOURCE = x-gpx.xml
+@ENABLE_RELEASE_TRUE@X_GPX_XML_SOURCE = x-gpx.xml
+@ENABLE_DEBUG_TRUE@X_OCM_XML_SOURCE = x-ocm.xml
+@ENABLE_RELEASE_TRUE@X_OCM_XML_SOURCE = x-ocm.xml
+@ENABLE_DEBUG_TRUE@OCMLOGO_SVG_SOURCE = icons/scalable/OCMLogo.svg
+@ENABLE_RELEASE_TRUE@OCMLOGO_SVG_SOURCE = icons/scalable/OCMLogo.svg
 @ENABLE_DEBUG_TRUE@CITO_SVG_SOURCE = icons/scalable/cito.svg
 @ENABLE_RELEASE_TRUE@CITO_SVG_SOURCE = icons/scalable/cito.svg
 @ENABLE_DEBUG_TRUE@EARTH_SVG_SOURCE = icons/scalable/earth.svg
@@ -205,16 +225,74 @@ EXTRA_DIST = $(build_sources) $(build_resx_files) \
 @ENABLE_RELEASE_TRUE@STAR_SVG_SOURCE = icons/scalable/star.svg
 @ENABLE_DEBUG_TRUE@STAR_EMPTY_SVG_SOURCE = icons/scalable/star_empty.svg
 @ENABLE_RELEASE_TRUE@STAR_EMPTY_SVG_SOURCE = icons/scalable/star_empty.svg
-@ENABLE_DEBUG_TRUE@TRADITIONAL_SVG_SOURCE = icons/scalable/traditional.svg
-@ENABLE_RELEASE_TRUE@TRADITIONAL_SVG_SOURCE = icons/scalable/traditional.svg
 @ENABLE_DEBUG_TRUE@UNKNOWN_SVG_SOURCE = icons/scalable/unknown.svg
 @ENABLE_RELEASE_TRUE@UNKNOWN_SVG_SOURCE = icons/scalable/unknown.svg
 @ENABLE_DEBUG_TRUE@WAYPOINT_FLAG_RED_SVG_SOURCE = icons/scalable/waypoint-flag-red.svg
 @ENABLE_RELEASE_TRUE@WAYPOINT_FLAG_RED_SVG_SOURCE = icons/scalable/waypoint-flag-red.svg
-@ENABLE_DEBUG_TRUE@WAYPOINT_FLAG_RED_PNG_SOURCE = icons/24x24/waypoint-flag-red.png
-@ENABLE_RELEASE_TRUE@WAYPOINT_FLAG_RED_PNG_SOURCE = icons/24x24/waypoint-flag-red.png
 @ENABLE_DEBUG_TRUE@WPT_VIEWER_HTML_SOURCE = web/wpt_viewer.html
 @ENABLE_RELEASE_TRUE@WPT_VIEWER_HTML_SOURCE = web/wpt_viewer.html
+@ENABLE_DEBUG_TRUE@EVENT_SVG_SOURCE = icons/scalable/event.svg
+@ENABLE_RELEASE_TRUE@EVENT_SVG_SOURCE = icons/scalable/event.svg
+@ENABLE_DEBUG_TRUE@MEGA_SVG_SOURCE = icons/scalable/mega.svg
+@ENABLE_RELEASE_TRUE@MEGA_SVG_SOURCE = icons/scalable/mega.svg
+@ENABLE_DEBUG_TRUE@VIRTUAL_SVG_SOURCE = icons/scalable/virtual.svg
+@ENABLE_RELEASE_TRUE@VIRTUAL_SVG_SOURCE = icons/scalable/virtual.svg
+@ENABLE_DEBUG_TRUE@WEBCAM_SVG_SOURCE = icons/scalable/webcam.svg
+@ENABLE_RELEASE_TRUE@WEBCAM_SVG_SOURCE = icons/scalable/webcam.svg
+@ENABLE_DEBUG_TRUE@WHERIGO_SVG_SOURCE = icons/scalable/wherigo.svg
+@ENABLE_RELEASE_TRUE@WHERIGO_SVG_SOURCE = icons/scalable/wherigo.svg
+@ENABLE_DEBUG_TRUE@CITO_PNG_SOURCE = icons/24x24/cito.png
+@ENABLE_RELEASE_TRUE@CITO_PNG_SOURCE = icons/24x24/cito.png
+@ENABLE_DEBUG_TRUE@EARTH_PNG_SOURCE = icons/24x24/earth.png
+@ENABLE_RELEASE_TRUE@EARTH_PNG_SOURCE = icons/24x24/earth.png
+@ENABLE_DEBUG_TRUE@EVENT_PNG_SOURCE = icons/24x24/event.png
+@ENABLE_RELEASE_TRUE@EVENT_PNG_SOURCE = icons/24x24/event.png
+@ENABLE_DEBUG_TRUE@LETTERBOX_PNG_SOURCE = icons/24x24/letterbox.png
+@ENABLE_RELEASE_TRUE@LETTERBOX_PNG_SOURCE = icons/24x24/letterbox.png
+@ENABLE_DEBUG_TRUE@MEGA_PNG_SOURCE = icons/24x24/mega.png
+@ENABLE_RELEASE_TRUE@MEGA_PNG_SOURCE = icons/24x24/mega.png
+@ENABLE_DEBUG_TRUE@MULTI_PNG_SOURCE = icons/24x24/multi.png
+@ENABLE_RELEASE_TRUE@MULTI_PNG_SOURCE = icons/24x24/multi.png
+@ENABLE_DEBUG_TRUE@OTHER_PNG_SOURCE = icons/24x24/other.png
+@ENABLE_RELEASE_TRUE@OTHER_PNG_SOURCE = icons/24x24/other.png
+@ENABLE_DEBUG_TRUE@OWNED_PNG_SOURCE = icons/24x24/owned.png
+@ENABLE_RELEASE_TRUE@OWNED_PNG_SOURCE = icons/24x24/owned.png
+@ENABLE_DEBUG_TRUE@TRADITIONAL_PNG_SOURCE = icons/24x24/traditional.png
+@ENABLE_RELEASE_TRUE@TRADITIONAL_PNG_SOURCE = icons/24x24/traditional.png
+@ENABLE_DEBUG_TRUE@UNKNOWN_PNG_SOURCE = icons/24x24/unknown.png
+@ENABLE_RELEASE_TRUE@UNKNOWN_PNG_SOURCE = icons/24x24/unknown.png
+@ENABLE_DEBUG_TRUE@VIRTUAL_PNG_SOURCE = icons/24x24/virtual.png
+@ENABLE_RELEASE_TRUE@VIRTUAL_PNG_SOURCE = icons/24x24/virtual.png
+@ENABLE_DEBUG_TRUE@WEBCAM_PNG_SOURCE = icons/24x24/webcam.png
+@ENABLE_RELEASE_TRUE@WEBCAM_PNG_SOURCE = icons/24x24/webcam.png
+@ENABLE_DEBUG_TRUE@WHERIGO_PNG_SOURCE = icons/24x24/wherigo.png
+@ENABLE_RELEASE_TRUE@WHERIGO_PNG_SOURCE = icons/24x24/wherigo.png
+@ENABLE_DEBUG_TRUE@CIRCLE_PNG_SOURCE = icons/48x48/circle.png
+@ENABLE_RELEASE_TRUE@CIRCLE_PNG_SOURCE = icons/48x48/circle.png
+@ENABLE_DEBUG_TRUE@PUSHPIN_PNG_SOURCE = icons/24x24/pushpin.png
+@ENABLE_RELEASE_TRUE@PUSHPIN_PNG_SOURCE = icons/24x24/pushpin.png
+@ENABLE_DEBUG_TRUE@FOUND_PNG_SOURCE = icons/24x24/found.png
+@ENABLE_RELEASE_TRUE@FOUND_PNG_SOURCE = icons/24x24/found.png
+@ENABLE_DEBUG_TRUE@TRADITIONAL_SVG_SOURCE = icons/scalable/traditional.svg
+@ENABLE_RELEASE_TRUE@TRADITIONAL_SVG_SOURCE = icons/scalable/traditional.svg
+@ENABLE_DEBUG_TRUE@BLUEPIN_PNG_SOURCE = icons/24x24/bluepin.png
+@ENABLE_RELEASE_TRUE@BLUEPIN_PNG_SOURCE = icons/24x24/bluepin.png
+@ENABLE_DEBUG_TRUE@PARKING_PNG_SOURCE = icons/24x24/parking.png
+@ENABLE_RELEASE_TRUE@PARKING_PNG_SOURCE = icons/24x24/parking.png
+@ENABLE_DEBUG_TRUE@TRAILHEAD_PNG_SOURCE = icons/24x24/trailhead.png
+@ENABLE_RELEASE_TRUE@TRAILHEAD_PNG_SOURCE = icons/24x24/trailhead.png
+@ENABLE_DEBUG_TRUE@BLUEPIN_SVG_SOURCE = icons/scalable/bluepin.svg
+@ENABLE_RELEASE_TRUE@BLUEPIN_SVG_SOURCE = icons/scalable/bluepin.svg
+@ENABLE_DEBUG_TRUE@PARKING_SVG_SOURCE = icons/scalable/parking.svg
+@ENABLE_RELEASE_TRUE@PARKING_SVG_SOURCE = icons/scalable/parking.svg
+@ENABLE_DEBUG_TRUE@TRAILHEAD_SVG_SOURCE = icons/scalable/trailhead.svg
+@ENABLE_RELEASE_TRUE@TRAILHEAD_SVG_SOURCE = icons/scalable/trailhead.svg
+@ENABLE_DEBUG_TRUE@LICENCE_TXT_SOURCE = docs/Licence.txt
+@ENABLE_RELEASE_TRUE@LICENCE_TXT_SOURCE = docs/Licence.txt
+@ENABLE_DEBUG_TRUE@CHANGEHISTORY_TXT_SOURCE = docs/ChangeHistory.txt
+@ENABLE_RELEASE_TRUE@CHANGEHISTORY_TXT_SOURCE = docs/ChangeHistory.txt
+@ENABLE_DEBUG_TRUE@README_TXT_SOURCE = docs/README.txt
+@ENABLE_RELEASE_TRUE@README_TXT_SOURCE = docs/README.txt
 @ENABLE_DEBUG_TRUE@OCMENGINE_DLL_SOURCE = ../ocmengine/bin/Debug/ocmengine.dll
 @ENABLE_RELEASE_TRUE@OCMENGINE_DLL_SOURCE = ../ocmengine/bin/Debug/ocmengine.dll
 @ENABLE_DEBUG_TRUE@OCMENGINE_DLL_MDB_SOURCE = ../ocmengine/bin/Debug/ocmengine.dll.mdb
@@ -225,7 +303,15 @@ EXTRA_DIST = $(build_sources) $(build_resx_files) \
 @ENABLE_RELEASE_TRUE@OCM_GTK_EXE_MDB = 
 AL = al2
 SATELLITE_ASSEMBLY_NAME = $(notdir $(basename $(ASSEMBLY))).resources.dll
+LINUX_DESKTOPAPPLICATIONS = \
+	$(OCM_DESKTOP)  
+
+COMMONAPPLICATIONDATAROOT_MIME_PACKAGES = \
+	$(X_GPX_XML) \
+	$(X_OCM_XML)  
+
 PROGRAMFILES_ICONS_SCALABLE = \
+	$(OCMLOGO_SVG) \
 	$(CITO_SVG) \
 	$(EARTH_SVG) \
 	$(FOUND_SVG) \
@@ -235,52 +321,132 @@ PROGRAMFILES_ICONS_SCALABLE = \
 	$(OTHER_SVG) \
 	$(STAR_SVG) \
 	$(STAR_EMPTY_SVG) \
-	$(TRADITIONAL_SVG) \
 	$(UNKNOWN_SVG) \
-	$(WAYPOINT_FLAG_RED_SVG)  
-
-PROGRAMFILES_ICONS_24X24 = \
-	$(WAYPOINT_FLAG_RED_PNG)  
+	$(WAYPOINT_FLAG_RED_SVG) \
+	$(EVENT_SVG) \
+	$(MEGA_SVG) \
+	$(VIRTUAL_SVG) \
+	$(WEBCAM_SVG) \
+	$(WHERIGO_SVG) \
+	$(TRADITIONAL_SVG) \
+	$(BLUEPIN_SVG) \
+	$(PARKING_SVG) \
+	$(TRAILHEAD_SVG)  
 
 PROGRAMFILES_WEB = \
 	$(WPT_VIEWER_HTML)  
 
+PROGRAMFILES_ICONS_24X24 = \
+	$(CITO_PNG) \
+	$(EARTH_PNG) \
+	$(EVENT_PNG) \
+	$(LETTERBOX_PNG) \
+	$(MEGA_PNG) \
+	$(MULTI_PNG) \
+	$(OTHER_PNG) \
+	$(OWNED_PNG) \
+	$(TRADITIONAL_PNG) \
+	$(UNKNOWN_PNG) \
+	$(VIRTUAL_PNG) \
+	$(WEBCAM_PNG) \
+	$(WHERIGO_PNG) \
+	$(PUSHPIN_PNG) \
+	$(FOUND_PNG) \
+	$(BLUEPIN_PNG) \
+	$(PARKING_PNG) \
+	$(TRAILHEAD_PNG)  
+
+PROGRAMFILES_ICONS_48X48 = \
+	$(CIRCLE_PNG)  
+
+PROGRAMFILES_DOCS = \
+	$(LICENCE_TXT) \
+	$(CHANGEHISTORY_TXT) \
+	$(README_TXT)  
+
 PROGRAMFILES = \
-	$(OCM_GTK_EXE_MDB) \
 	$(OCMENGINE_DLL) \
-	$(OCMENGINE_DLL_MDB)  
+	$(OCMENGINE_DLL_MDB) \
+	$(OCM_GTK_EXE_MDB)  
 
 BINARIES = \
 	$(OCM_GTK)  
 
 RESGEN = resgen2
 FILES = \
-	AssemblyInfo.cs \
-	Dialogs/OCMAboutDialog.cs \
-	Dialogs/WaypointDialog.cs \
 	gtk-gui/generated.cs \
+	MainWindow.cs \
 	gtk-gui/MainWindow.cs \
-	gtk-gui/ocmgtk.BrowserWidget.cs \
-	gtk-gui/ocmgtk.CacheList.cs \
+	Main.cs \
+	AssemblyInfo.cs \
 	gtk-gui/ocmgtk.GeocacheInfoPanel.cs \
 	gtk-gui/ocmgtk.GeoCachePane.cs \
-	gtk-gui/ocmgtk.LogViewerWidget.cs \
-	gtk-gui/ocmgtk.OCMAboutDialog.cs \
-	gtk-gui/ocmgtk.WaypointDialog.cs \
-	gtk-gui/ocmgtk.WaypointWidget.cs \
-	Main.cs \
-	MainWindow.cs \
-	UIMonitor.cs \
-	Widgets/BrowserWidget.cs \
+	gtk-gui/ocmgtk.CacheList.cs \
 	Widgets/CacheList.cs \
 	Widgets/GeocacheInfoPanel.cs \
 	Widgets/GeoCachePane.cs \
-	Widgets/HTMLWidget.cs \
+	gtk-gui/ocmgtk.WaypointWidget.cs \
+	gtk-gui/ocmgtk.LogViewerWidget.cs \
+	gtk-gui/ocmgtk.BrowserWidget.cs \
+	gtk-gui/ocmgtk.WaypointDialog.cs \
+	Widgets/WaypointWidget.cs \
+	Widgets/BrowserWidget.cs \
 	Widgets/LogViewerWidget.cs \
-	Widgets/WaypointWidget.cs 
+	Dialogs/WaypointDialog.cs \
+	Widgets/HTMLWidget.cs \
+	UIMonitor.cs \
+	gtk-gui/ocmgtk.HTMLWidget.cs \
+	Dialogs/ProgressDialog.cs \
+	gtk-gui/ocmgtk.ProgressDialog.cs \
+	Dialogs/Preferences.cs \
+	gtk-gui/ocmgtk.Preferences.cs \
+	Widgets/CoordinateWidget.cs \
+	gtk-gui/ocmgtk.CoordinateWidget.cs \
+	Widgets/SetupAssistantPage1.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage1.cs \
+	Dialogs/SetupAssistant.cs \
+	gtk-gui/ocmgtk.SetupAssistant.cs \
+	IDBusComm.cs \
+	DBusComm.cs \
+	Widgets/SetupAssistantPage2.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage2.cs \
+	Widgets/SetupAssistantPage3.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage3.cs \
+	Dialogs/ExportProgressDialog.cs \
+	gtk-gui/ocmgtk.ExportProgressDialog.cs \
+	Widgets/DescriptionWidget.cs \
+	gtk-gui/ocmgtk.DescriptionWidget.cs \
+	Widgets/OCMQueryPage1.cs \
+	gtk-gui/ocmgtk.OCMQueryPage1.cs \
+	Dialogs/OCMSplash.cs \
+	gtk-gui/ocmgtk.OCMSplash.cs \
+	Dialogs/FilterDialog.cs \
+	gtk-gui/ocmgtk.FilterDialog.cs \
+	Widgets/OCMQueryPage2.cs \
+	gtk-gui/ocmgtk.OCMQueryPage2.cs \
+	Widgets/OCMWebView.cs \
+	Dialogs/GPSConfiguration.cs \
+	gtk-gui/ocmgtk.GPSConfiguration.cs \
+	Widgets/GPXWidget.cs \
+	gtk-gui/ocmgtk.GPXWidget.cs \
+	gtk-gui/ocmgtk.GarminUSBWidget.cs \
+	Widgets/GarminUSBWidget.cs \
+	Widgets/IGPSConfig.cs \
+	Dialogs/SendWaypointsDialog.cs \
+	gtk-gui/ocmgtk.SendWaypointsDialog.cs \
+	SavedGPSConf.cs \
+	Widgets/MagellanExploristWidget.cs \
+	gtk-gui/ocmgtk.MagellanExploristWidget.cs \
+	Widgets/GenericGPSWidget.cs \
+	gtk-gui/ocmgtk.GenericGPSWidget.cs \
+	Widgets/OCMQueryPage3.cs \
+	gtk-gui/ocmgtk.OCMQueryPage3.cs 
 
 DATA_FILES = 
-RESOURCES = gtk-gui/gui.stetic 
+RESOURCES = \
+	gtk-gui/gui.stetic \
+	icons/scalable/OCMLogo.svg,ocmgtk.icons.scalable.OCMLogo.svg 
+
 EXTRAS = \
 	Dialogs \
 	Widgets \
@@ -288,22 +454,30 @@ EXTRAS = \
 	icons \
 	icons/scalable \
 	icons/24x24 \
+	docs \
+	OCM.desktop \
+	x-gpx.xml \
+	x-ocm.xml \
 	ocm-gtk.in 
 
 REFERENCES = \
-	../ocmengine/bin/Debug/ocmengine.dll \
+	System \
+	$(GTK_SHARP_20_LIBS) \
 	Mono.Posix \
-	-pkg:gecko-sharp-2.0 \
-	-pkg:gtkhtml-sharp-3.14 \
-	-pkg:gtk-sharp-2.0 \
-	-pkg:webkit-sharp-1.0 \
-	System
+	$(WEBKIT_SHARP_10_LIBS) \
+	$(GTKHTML_SHARP_314_LIBS) \
+	$(GCONF_SHARP_20_LIBS) \
+	$(NDESK_DBUS_10_LIBS) \
+	$(NDESK_DBUS_GLIB_10_LIBS) \
+	$(GLIB_SHARP_20_LIBS)
 
 DLL_REFERENCES = 
-CLEANFILES = $(PROGRAMFILES_ICONS_SCALABLE) \
-	$(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_WEB) \
-	$(PROGRAMFILES) $(BINARIES) $(ASSEMBLY) $(ASSEMBLY).mdb \
-	$(BINARIES) $(build_resx_resources) \
+CLEANFILES = $(LINUX_DESKTOPAPPLICATIONS) \
+	$(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) \
+	$(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) \
+	$(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) \
+	$(PROGRAMFILES_DOCS) $(PROGRAMFILES) $(BINARIES) $(ASSEMBLY) \
+	$(ASSEMBLY).mdb $(BINARIES) $(build_resx_resources) \
 	$(build_satellite_assembly_list)
 VALID_CULTURES = ar bg ca zh-CHS cs da de el en es fi fr he hu is it ja ko nl no pl pt ro ru hr sk sq sv th tr id uk be sl et lv lt fa vi hy eu mk af fo hi sw gu ta te kn mr gl kok ar-SA bg-BG ca-ES zh-TW cs-CZ da-DK de-DE el-GR en-US fi-FI fr-FR he-IL hu-HU is-IS it-IT ja-JP ko-KR nl-NL nb-NO pl-PL pt-BR ro-RO ru-RU hr-HR sk-SK sq-AL sv-SE th-TH tr-TR id-ID uk-UA be-BY sl-SI et-EE lv-LV lt-LT fa-IR vi-VN hy-AM eu-ES mk-MK af-ZA fo-FO hi-IN sw-KE gu-IN ta-IN te-IN kn-IN mr-IN gl-ES kok-IN ar-IQ zh-CN de-CH en-GB es-MX fr-BE it-CH nl-BE nn-NO pt-PT sv-FI ar-EG zh-HK de-AT en-AU es-ES fr-CA ar-LY zh-SG de-LU en-CA es-GT fr-CH ar-DZ zh-MO en-NZ es-CR fr-LU ar-MA en-IE es-PA ar-TN en-ZA es-DO ar-OM es-VE ar-YE es-CO ar-SY es-PE ar-JO en-TT es-AR ar-LB en-ZW es-EC ar-KW en-PH es-CL ar-AE es-UY ar-BH es-PY ar-QA es-BO es-SV es-HN es-NI es-PR zh-CHT
 s2q = $(subst \ ,?,$1)
@@ -360,14 +534,22 @@ rm = $(call rm_actual,$(call s2q2s,$1),$(call s2q2s,$2)/$(shell basename '$(call
 DISTCLEANFILES = $(GENERATED_FILES) $(pc_files) $(BUILD_DIR)/*
 pkglib_SCRIPTS = $(ASSEMBLY)
 bin_SCRIPTS = $(BINARIES)
-programfilesdir = @libdir@/@PACKAGE@
-programfiles_DATA = $(PROGRAMFILES)
-programfilesicons24x24dir = @libdir@/@PACKAGE@/icons/24x24
-programfilesicons24x24_DATA = $(PROGRAMFILES_ICONS_24X24)
 linuxpkgconfigdir = @libdir@/pkgconfig
 linuxpkgconfig_DATA = $(LINUX_PKGCONFIG)
+programfilesicons24x24dir = @libdir@/@PACKAGE@/icons/24x24
+programfilesicons24x24_DATA = $(PROGRAMFILES_ICONS_24X24)
 programfilesiconsscalabledir = @libdir@/@PACKAGE@/icons/scalable
 programfilesiconsscalable_DATA = $(PROGRAMFILES_ICONS_SCALABLE)
+commonapplicationdatarootmimepackagesdir = @datadir@/mime/packages
+commonapplicationdatarootmimepackages_DATA = $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES)
+programfilesdocsdir = @libdir@/@PACKAGE@/docs
+programfilesdocs_DATA = $(PROGRAMFILES_DOCS)
+programfilesdir = @libdir@/@PACKAGE@
+programfiles_DATA = $(PROGRAMFILES)
+programfilesicons48x48dir = @libdir@/@PACKAGE@/icons/48x48
+programfilesicons48x48_DATA = $(PROGRAMFILES_ICONS_48X48)
+linuxdesktopapplicationsdir = @datadir@/applications
+linuxdesktopapplications_DATA = $(LINUX_DESKTOPAPPLICATIONS)
 programfileswebdir = @libdir@/@PACKAGE@/web
 programfilesweb_DATA = $(PROGRAMFILES_WEB)
 
@@ -379,6 +561,10 @@ culture_resource_commandlines = $(call unesc2,cmd_line_satellite_$1 += '/embed:$
 build_satellite_assembly_list = $(call q2s,$(cultures:%=$(BUILD_DIR)/%/$(SATELLITE_ASSEMBLY_NAME)))
 build_culture_res_files = $(call q2s,$(foreach res, $(culture_resources),$(call get_resource_name,$(res))))
 install_satellite_assembly_list = $(subst $(BUILD_DIR),$(DESTDIR)$(libdir)/$(PACKAGE),$(build_satellite_assembly_list))
+OCM_DESKTOP = $(BUILD_DIR)/OCM.desktop
+X_GPX_XML = $(BUILD_DIR)/mime/packages/x-gpx.xml
+X_OCM_XML = $(BUILD_DIR)/mime/packages/x-ocm.xml
+OCMLOGO_SVG = $(BUILD_DIR)/icons/scalable/OCMLogo.svg
 CITO_SVG = $(BUILD_DIR)/icons/scalable/cito.svg
 EARTH_SVG = $(BUILD_DIR)/icons/scalable/earth.svg
 FOUND_SVG = $(BUILD_DIR)/icons/scalable/found.svg
@@ -388,11 +574,40 @@ MULTI_SVG = $(BUILD_DIR)/icons/scalable/multi.svg
 OTHER_SVG = $(BUILD_DIR)/icons/scalable/other.svg
 STAR_SVG = $(BUILD_DIR)/icons/scalable/star.svg
 STAR_EMPTY_SVG = $(BUILD_DIR)/icons/scalable/star_empty.svg
-TRADITIONAL_SVG = $(BUILD_DIR)/icons/scalable/traditional.svg
 UNKNOWN_SVG = $(BUILD_DIR)/icons/scalable/unknown.svg
 WAYPOINT_FLAG_RED_SVG = $(BUILD_DIR)/icons/scalable/waypoint-flag-red.svg
-WAYPOINT_FLAG_RED_PNG = $(BUILD_DIR)/icons/24x24/waypoint-flag-red.png
 WPT_VIEWER_HTML = $(BUILD_DIR)/web/wpt_viewer.html
+EVENT_SVG = $(BUILD_DIR)/icons/scalable/event.svg
+MEGA_SVG = $(BUILD_DIR)/icons/scalable/mega.svg
+VIRTUAL_SVG = $(BUILD_DIR)/icons/scalable/virtual.svg
+WEBCAM_SVG = $(BUILD_DIR)/icons/scalable/webcam.svg
+WHERIGO_SVG = $(BUILD_DIR)/icons/scalable/wherigo.svg
+CITO_PNG = $(BUILD_DIR)/icons/24x24/cito.png
+EARTH_PNG = $(BUILD_DIR)/icons/24x24/earth.png
+EVENT_PNG = $(BUILD_DIR)/icons/24x24/event.png
+LETTERBOX_PNG = $(BUILD_DIR)/icons/24x24/letterbox.png
+MEGA_PNG = $(BUILD_DIR)/icons/24x24/mega.png
+MULTI_PNG = $(BUILD_DIR)/icons/24x24/multi.png
+OTHER_PNG = $(BUILD_DIR)/icons/24x24/other.png
+OWNED_PNG = $(BUILD_DIR)/icons/24x24/owned.png
+TRADITIONAL_PNG = $(BUILD_DIR)/icons/24x24/traditional.png
+UNKNOWN_PNG = $(BUILD_DIR)/icons/24x24/unknown.png
+VIRTUAL_PNG = $(BUILD_DIR)/icons/24x24/virtual.png
+WEBCAM_PNG = $(BUILD_DIR)/icons/24x24/webcam.png
+WHERIGO_PNG = $(BUILD_DIR)/icons/24x24/wherigo.png
+CIRCLE_PNG = $(BUILD_DIR)/icons/48x48/circle.png
+PUSHPIN_PNG = $(BUILD_DIR)/icons/24x24/pushpin.png
+FOUND_PNG = $(BUILD_DIR)/icons/24x24/found.png
+TRADITIONAL_SVG = $(BUILD_DIR)/icons/scalable/traditional.svg
+BLUEPIN_PNG = $(BUILD_DIR)/icons/24x24/bluepin.png
+PARKING_PNG = $(BUILD_DIR)/icons/24x24/parking.png
+TRAILHEAD_PNG = $(BUILD_DIR)/icons/24x24/trailhead.png
+BLUEPIN_SVG = $(BUILD_DIR)/icons/scalable/bluepin.svg
+PARKING_SVG = $(BUILD_DIR)/icons/scalable/parking.svg
+TRAILHEAD_SVG = $(BUILD_DIR)/icons/scalable/trailhead.svg
+LICENCE_TXT = $(BUILD_DIR)/docs/Licence.txt
+CHANGEHISTORY_TXT = $(BUILD_DIR)/docs/ChangeHistory.txt
+README_TXT = $(BUILD_DIR)/docs/README.txt
 OCMENGINE_DLL = $(BUILD_DIR)/ocmengine.dll
 OCM_GTK = $(BUILD_DIR)/ocm-gtk
 all: all-am
@@ -498,6 +713,46 @@ uninstall-pkglibSCRIPTS:
 	test -n "$$list" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(pkglibdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(pkglibdir)" && rm -f $$files
+install-commonapplicationdatarootmimepackagesDATA: $(commonapplicationdatarootmimepackages_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(commonapplicationdatarootmimepackagesdir)" || $(MKDIR_P) "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)"
+	@list='$(commonapplicationdatarootmimepackages_DATA)'; test -n "$(commonapplicationdatarootmimepackagesdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" || exit $$?; \
+	done
+
+uninstall-commonapplicationdatarootmimepackagesDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(commonapplicationdatarootmimepackages_DATA)'; test -n "$(commonapplicationdatarootmimepackagesdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" && rm -f $$files
+install-linuxdesktopapplicationsDATA: $(linuxdesktopapplications_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(linuxdesktopapplicationsdir)" || $(MKDIR_P) "$(DESTDIR)$(linuxdesktopapplicationsdir)"
+	@list='$(linuxdesktopapplications_DATA)'; test -n "$(linuxdesktopapplicationsdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(linuxdesktopapplicationsdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(linuxdesktopapplicationsdir)" || exit $$?; \
+	done
+
+uninstall-linuxdesktopapplicationsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(linuxdesktopapplications_DATA)'; test -n "$(linuxdesktopapplicationsdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(linuxdesktopapplicationsdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(linuxdesktopapplicationsdir)" && rm -f $$files
 install-linuxpkgconfigDATA: $(linuxpkgconfig_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(linuxpkgconfigdir)" || $(MKDIR_P) "$(DESTDIR)$(linuxpkgconfigdir)"
@@ -538,6 +793,26 @@ uninstall-programfilesDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(programfilesdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(programfilesdir)" && rm -f $$files
+install-programfilesdocsDATA: $(programfilesdocs_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(programfilesdocsdir)" || $(MKDIR_P) "$(DESTDIR)$(programfilesdocsdir)"
+	@list='$(programfilesdocs_DATA)'; test -n "$(programfilesdocsdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(programfilesdocsdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(programfilesdocsdir)" || exit $$?; \
+	done
+
+uninstall-programfilesdocsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(programfilesdocs_DATA)'; test -n "$(programfilesdocsdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(programfilesdocsdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(programfilesdocsdir)" && rm -f $$files
 install-programfilesicons24x24DATA: $(programfilesicons24x24_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(programfilesicons24x24dir)" || $(MKDIR_P) "$(DESTDIR)$(programfilesicons24x24dir)"
@@ -558,6 +833,26 @@ uninstall-programfilesicons24x24DATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(programfilesicons24x24dir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(programfilesicons24x24dir)" && rm -f $$files
+install-programfilesicons48x48DATA: $(programfilesicons48x48_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(programfilesicons48x48dir)" || $(MKDIR_P) "$(DESTDIR)$(programfilesicons48x48dir)"
+	@list='$(programfilesicons48x48_DATA)'; test -n "$(programfilesicons48x48dir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(programfilesicons48x48dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(programfilesicons48x48dir)" || exit $$?; \
+	done
+
+uninstall-programfilesicons48x48DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(programfilesicons48x48_DATA)'; test -n "$(programfilesicons48x48dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(programfilesicons48x48dir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(programfilesicons48x48dir)" && rm -f $$files
 install-programfilesiconsscalableDATA: $(programfilesiconsscalable_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(programfilesiconsscalabledir)" || $(MKDIR_P) "$(DESTDIR)$(programfilesiconsscalabledir)"
@@ -639,7 +934,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(SCRIPTS) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(linuxpkgconfigdir)" "$(DESTDIR)$(programfilesdir)" "$(DESTDIR)$(programfilesicons24x24dir)" "$(DESTDIR)$(programfilesiconsscalabledir)" "$(DESTDIR)$(programfileswebdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" "$(DESTDIR)$(linuxdesktopapplicationsdir)" "$(DESTDIR)$(linuxpkgconfigdir)" "$(DESTDIR)$(programfilesdir)" "$(DESTDIR)$(programfilesdocsdir)" "$(DESTDIR)$(programfilesicons24x24dir)" "$(DESTDIR)$(programfilesicons48x48dir)" "$(DESTDIR)$(programfilesiconsscalabledir)" "$(DESTDIR)$(programfileswebdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -689,8 +984,12 @@ info: info-am
 
 info-am:
 
-install-data-am: install-linuxpkgconfigDATA install-programfilesDATA \
+install-data-am: install-commonapplicationdatarootmimepackagesDATA \
+	install-linuxdesktopapplicationsDATA \
+	install-linuxpkgconfigDATA install-programfilesDATA \
+	install-programfilesdocsDATA \
 	install-programfilesicons24x24DATA \
+	install-programfilesicons48x48DATA \
 	install-programfilesiconsscalableDATA \
 	install-programfileswebDATA
 
@@ -736,9 +1035,13 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-binSCRIPTS uninstall-linuxpkgconfigDATA \
-	uninstall-pkglibSCRIPTS uninstall-programfilesDATA \
+uninstall-am: uninstall-binSCRIPTS \
+	uninstall-commonapplicationdatarootmimepackagesDATA \
+	uninstall-linuxdesktopapplicationsDATA \
+	uninstall-linuxpkgconfigDATA uninstall-pkglibSCRIPTS \
+	uninstall-programfilesDATA uninstall-programfilesdocsDATA \
 	uninstall-programfilesicons24x24DATA \
+	uninstall-programfilesicons48x48DATA \
 	uninstall-programfilesiconsscalableDATA \
 	uninstall-programfileswebDATA
 
@@ -746,25 +1049,33 @@ uninstall-am: uninstall-binSCRIPTS uninstall-linuxpkgconfigDATA \
 
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am html html-am info info-am \
-	install install-am install-binSCRIPTS install-data \
+	install install-am install-binSCRIPTS \
+	install-commonapplicationdatarootmimepackagesDATA install-data \
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am install-info \
-	install-info-am install-linuxpkgconfigDATA install-man \
-	install-pdf install-pdf-am install-pkglibSCRIPTS \
-	install-programfilesDATA install-programfilesicons24x24DATA \
+	install-info-am install-linuxdesktopapplicationsDATA \
+	install-linuxpkgconfigDATA install-man install-pdf \
+	install-pdf-am install-pkglibSCRIPTS install-programfilesDATA \
+	install-programfilesdocsDATA \
+	install-programfilesicons24x24DATA \
+	install-programfilesicons48x48DATA \
 	install-programfilesiconsscalableDATA \
 	install-programfileswebDATA install-ps install-ps-am \
 	install-strip installcheck installcheck-am installdirs \
 	maintainer-clean maintainer-clean-generic mostlyclean \
 	mostlyclean-generic pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-binSCRIPTS uninstall-linuxpkgconfigDATA \
-	uninstall-pkglibSCRIPTS uninstall-programfilesDATA \
+	uninstall-binSCRIPTS \
+	uninstall-commonapplicationdatarootmimepackagesDATA \
+	uninstall-linuxdesktopapplicationsDATA \
+	uninstall-linuxpkgconfigDATA uninstall-pkglibSCRIPTS \
+	uninstall-programfilesDATA uninstall-programfilesdocsDATA \
 	uninstall-programfilesicons24x24DATA \
+	uninstall-programfilesicons48x48DATA \
 	uninstall-programfilesiconsscalableDATA \
 	uninstall-programfileswebDATA
 
 
-all: $(ASSEMBLY) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_WEB) $(PROGRAMFILES) $(BINARIES) 
+all: $(ASSEMBLY) $(LINUX_DESKTOPAPPLICATIONS) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES) $(BINARIES) 
 
 # macros
 
@@ -802,6 +1113,10 @@ install-satellite-assemblies: $(install_satellite_assembly_list)
 uninstall-satellite-assemblies:
 	rm -rf $(install_satellite_assembly_list)
 
+$(eval $(call emit-deploy-target,OCM_DESKTOP))
+$(eval $(call emit-deploy-target,X_GPX_XML))
+$(eval $(call emit-deploy-target,X_OCM_XML))
+$(eval $(call emit-deploy-target,OCMLOGO_SVG))
 $(eval $(call emit-deploy-target,CITO_SVG))
 $(eval $(call emit-deploy-target,EARTH_SVG))
 $(eval $(call emit-deploy-target,FOUND_SVG))
@@ -811,11 +1126,40 @@ $(eval $(call emit-deploy-target,MULTI_SVG))
 $(eval $(call emit-deploy-target,OTHER_SVG))
 $(eval $(call emit-deploy-target,STAR_SVG))
 $(eval $(call emit-deploy-target,STAR_EMPTY_SVG))
-$(eval $(call emit-deploy-target,TRADITIONAL_SVG))
 $(eval $(call emit-deploy-target,UNKNOWN_SVG))
 $(eval $(call emit-deploy-target,WAYPOINT_FLAG_RED_SVG))
-$(eval $(call emit-deploy-target,WAYPOINT_FLAG_RED_PNG))
 $(eval $(call emit-deploy-target,WPT_VIEWER_HTML))
+$(eval $(call emit-deploy-target,EVENT_SVG))
+$(eval $(call emit-deploy-target,MEGA_SVG))
+$(eval $(call emit-deploy-target,VIRTUAL_SVG))
+$(eval $(call emit-deploy-target,WEBCAM_SVG))
+$(eval $(call emit-deploy-target,WHERIGO_SVG))
+$(eval $(call emit-deploy-target,CITO_PNG))
+$(eval $(call emit-deploy-target,EARTH_PNG))
+$(eval $(call emit-deploy-target,EVENT_PNG))
+$(eval $(call emit-deploy-target,LETTERBOX_PNG))
+$(eval $(call emit-deploy-target,MEGA_PNG))
+$(eval $(call emit-deploy-target,MULTI_PNG))
+$(eval $(call emit-deploy-target,OTHER_PNG))
+$(eval $(call emit-deploy-target,OWNED_PNG))
+$(eval $(call emit-deploy-target,TRADITIONAL_PNG))
+$(eval $(call emit-deploy-target,UNKNOWN_PNG))
+$(eval $(call emit-deploy-target,VIRTUAL_PNG))
+$(eval $(call emit-deploy-target,WEBCAM_PNG))
+$(eval $(call emit-deploy-target,WHERIGO_PNG))
+$(eval $(call emit-deploy-target,CIRCLE_PNG))
+$(eval $(call emit-deploy-target,PUSHPIN_PNG))
+$(eval $(call emit-deploy-target,FOUND_PNG))
+$(eval $(call emit-deploy-target,TRADITIONAL_SVG))
+$(eval $(call emit-deploy-target,BLUEPIN_PNG))
+$(eval $(call emit-deploy-target,PARKING_PNG))
+$(eval $(call emit-deploy-target,TRAILHEAD_PNG))
+$(eval $(call emit-deploy-target,BLUEPIN_SVG))
+$(eval $(call emit-deploy-target,PARKING_SVG))
+$(eval $(call emit-deploy-target,TRAILHEAD_SVG))
+$(eval $(call emit-deploy-target,LICENCE_TXT))
+$(eval $(call emit-deploy-target,CHANGEHISTORY_TXT))
+$(eval $(call emit-deploy-target,README_TXT))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL_MDB))
 $(eval $(call emit-deploy-wrapper,OCM_GTK,ocm-gtk,x))
@@ -824,7 +1168,9 @@ $(eval $(call emit_resgen_targets))
 $(build_xamlg_list): %.xaml.g.cs: %.xaml
 	xamlg '$<'
 
-$(ASSEMBLY) $(ASSEMBLY_MDB): $(build_sources) $(build_resources) $(build_datafiles) $(DLL_REFERENCES) $(PROJECT_REFERENCES) $(build_xamlg_list) $(build_satellite_assembly_list)
+$(ASSEMBLY_MDB): $(ASSEMBLY)
+
+$(ASSEMBLY): $(build_sources) $(build_resources) $(build_datafiles) $(DLL_REFERENCES) $(PROJECT_REFERENCES) $(build_xamlg_list) $(build_satellite_assembly_list)
 	mkdir -p $(shell dirname $(ASSEMBLY))
 	$(ASSEMBLY_COMPILER_COMMAND) $(ASSEMBLY_COMPILER_FLAGS) -out:$(ASSEMBLY) -target:$(COMPILE_TARGET) $(build_sources_embed) $(build_resources_embed) $(build_references_ref)
 

@@ -77,6 +77,7 @@
       <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="icons\scalable\OCMLogoSmall.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -146,6 +147,8 @@
     <Compile Include="gtk-gui\ocmgtk.GenericGPSWidget.cs" />
     <Compile Include="Widgets\OCMQueryPage3.cs" />
     <Compile Include="gtk-gui\ocmgtk.OCMQueryPage3.cs" />
+    <Compile Include="Dialogs\ChangeHistory.cs" />
+    <Compile Include="gtk-gui\ocmgtk.ChangeHistory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -162,6 +165,7 @@
     <Folder Include="icons\scalable\" />
     <Folder Include="icons\24x24\" />
     <Folder Include="docs\" />
+    <Folder Include="licence\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
@@ -299,13 +303,13 @@
     <Resource Include="icons\scalable\trailhead.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="docs\Licence.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="docs\ChangeHistory.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="docs\README.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="licence\Licence.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
@@ -326,5 +330,6 @@
       <DeployService-RelativeDeployPath>mime/packages/x-ocm.xml</DeployService-RelativeDeployPath>
       <DeployService-TargetDirectoryId>CommonApplicationDataRoot</DeployService-TargetDirectoryId>
     </None>
+    <None Include="ocm-gtk" />
   </ItemGroup>
 </Project>
