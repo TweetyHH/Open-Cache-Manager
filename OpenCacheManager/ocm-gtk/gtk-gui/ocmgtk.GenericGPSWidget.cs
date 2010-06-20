@@ -144,7 +144,7 @@ namespace ocmgtk {
             this.fileEntry = new Gtk.Entry();
             this.fileEntry.CanFocus = true;
             this.fileEntry.Name = "fileEntry";
-            this.fileEntry.Text = Mono.Unix.Catalog.GetString("~/caches.loc");
+            this.fileEntry.Text = Mono.Unix.Catalog.GetString("caches.loc");
             this.fileEntry.IsEditable = true;
             this.fileEntry.InvisibleChar = '•';
             this.hbox4.Add(this.fileEntry);
@@ -175,6 +175,7 @@ namespace ocmgtk {
                 this.Child.ShowAll();
             }
             this.Hide();
+            this.limitCheck.Toggled += new System.EventHandler(this.OnLimitCheckToggled);
             this.hotPlugButton.Clicked += new System.EventHandler(this.OnInfoClick);
             this.fileButton.Clicked += new System.EventHandler(this.OnFileClick);
         }

@@ -50,10 +50,11 @@ namespace ocmgtk {
             w1.Position = 0;
             w1.Expand = false;
             w1.Fill = false;
+            w1.Padding = ((uint)(6));
             // Container child hbox1.Gtk.Box+BoxChild
             this.label1 = new Gtk.Label();
             this.label1.Name = "label1";
-            this.label1.LabelProp = Mono.Unix.Catalog.GetString("<big>Open Cache Manager</big>");
+            this.label1.LabelProp = Mono.Unix.Catalog.GetString("<span font='24'><b>Open Cache Manager</b></span>");
             this.label1.UseMarkup = true;
             this.hbox1.Add(this.label1);
             Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.hbox1[this.label1]));
@@ -77,8 +78,8 @@ namespace ocmgtk {
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 344;
-            this.DefaultHeight = 129;
+            this.DefaultWidth = 443;
+            this.DefaultHeight = 185;
             this.Show();
         }
     }

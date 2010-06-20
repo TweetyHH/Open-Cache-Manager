@@ -134,6 +134,12 @@ public partial class MainWindow {
     
     private Gtk.Action SendCachesAction;
     
+    private Gtk.Action ChangeHistoryAction;
+    
+    private Gtk.Action SetSelectedCacheAsCentreAction;
+    
+    private Gtk.Action ResetCentreToHomeAction;
+    
     private Gtk.VBox vbox1;
     
     private Gtk.MenuBar mainmenubar;
@@ -337,19 +343,31 @@ public partial class MainWindow {
         this.SendCachesAction = new Gtk.Action("SendCachesAction", Mono.Unix.Catalog.GetString("_Send Caches..."), null, null);
         this.SendCachesAction.ShortLabel = Mono.Unix.Catalog.GetString("Send Caches...");
         w1.Add(this.SendCachesAction, "<Control><Alt><Mod2>c");
+        this.ChangeHistoryAction = new Gtk.Action("ChangeHistoryAction", Mono.Unix.Catalog.GetString("Change History..."), null, null);
+        this.ChangeHistoryAction.ShortLabel = Mono.Unix.Catalog.GetString("Change History...");
+        w1.Add(this.ChangeHistoryAction, null);
+        this.SetSelectedCacheAsCentreAction = new Gtk.Action("SetSelectedCacheAsCentreAction", Mono.Unix.Catalog.GetString("Set Selected Cache As Centre"), null, null);
+        this.SetSelectedCacheAsCentreAction.Sensitive = false;
+        this.SetSelectedCacheAsCentreAction.ShortLabel = Mono.Unix.Catalog.GetString("Set Selected Cache As Centre");
+        w1.Add(this.SetSelectedCacheAsCentreAction, null);
+        this.ResetCentreToHomeAction = new Gtk.Action("ResetCentreToHomeAction", Mono.Unix.Catalog.GetString("Reset Centre to Home"), null, null);
+        this.ResetCentreToHomeAction.Sensitive = false;
+        this.ResetCentreToHomeAction.ShortLabel = Mono.Unix.Catalog.GetString("Reset Centre to Home");
+        w1.Add(this.ResetCentreToHomeAction, null);
         this.UIManager.InsertActionGroup(w1, 0);
         this.AddAccelGroup(this.UIManager.AccelGroup);
         this.Name = "MainWindow";
-        this.Title = Mono.Unix.Catalog.GetString("Open Cache Manager");
-        this.Icon = Gdk.Pixbuf.LoadFromResource("ocmgtk.icons.scalable.OCMLogo.svg");
+        this.Title = Mono.Unix.Catalog.GetString("OCM");
+        this.Icon = Gdk.Pixbuf.LoadFromResource("ocmgtk.icons.scalable.OCMLogoSmall.svg");
         this.WindowPosition = ((Gtk.WindowPosition)(1));
+        this.AllowShrink = true;
         this.DefaultWidth = 1024;
-        this.DefaultHeight = 550;
+        this.DefaultHeight = 768;
         // Container child MainWindow.Gtk.Container+ContainerChild
         this.vbox1 = new Gtk.VBox();
         this.vbox1.Name = "vbox1";
         // Container child vbox1.Gtk.Box+BoxChild
-        this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='newAction1' action='newAction1'/><menuitem name='openAction2' action='openAction2'/><separator/><menuitem name='goDownAction1' action='goDownAction1'/><menuitem name='goUpAction1' action='goUpAction1'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'><menuitem name='PreferencesAction1' action='PreferencesAction1'/></menu><menu name='FilterAction1' action='FilterAction1'><menuitem name='AdditonalFiltersAction' action='AdditonalFiltersAction'/><separator/><menuitem name='ClearAdditonalFiltersAction' action='ClearAdditonalFiltersAction'/></menu><menu name='CacheAction' action='CacheAction'><menuitem name='ViewOnlineAction' action='ViewOnlineAction'/><menuitem name='LogFindAction' action='LogFindAction'/><menuitem name='MarkUnfoundAction' action='MarkUnfoundAction'/><separator/><menuitem name='DeleteCacheAction' action='DeleteCacheAction'/></menu><menu name='GeocachingComAction' action='GeocachingComAction'><menuitem name='HomePageAction' action='HomePageAction'/><menuitem name='ViewMyProfileAction' action='ViewMyProfileAction'/><menuitem name='MyAccountDetailsAction' action='MyAccountDetailsAction'/><menuitem name='CreatePocketQueriesAction' action='CreatePocketQueriesAction'/><separator/><menuitem name='FindACacheAction' action='FindACacheAction'/><menuitem name='ViewCacheOnlineAction' action='ViewCacheOnlineAction'/><menuitem name='LogCacheAction' action='LogCacheAction'/></menu><menu name='MapAction2' action='MapAction2'><menuitem name='ShowNearbyCachesAction' action='ShowNearbyCachesAction'/><separator/><menuitem name='ZoomToCentreAction' action='ZoomToCentreAction'/><menuitem name='ZoomToSelectedCacheAction' action='ZoomToSelectedCacheAction'/></menu><menu name='GPSAction' action='GPSAction'><menuitem name='ConfigureGPSAction' action='ConfigureGPSAction'/><separator/><menuitem name='SendCachesAction' action='SendCachesAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
+        this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='newAction1' action='newAction1'/><menuitem name='openAction2' action='openAction2'/><separator/><menuitem name='goDownAction1' action='goDownAction1'/><menuitem name='goUpAction1' action='goUpAction1'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'><menuitem name='PreferencesAction1' action='PreferencesAction1'/></menu><menu name='FilterAction1' action='FilterAction1'><menuitem name='AdditonalFiltersAction' action='AdditonalFiltersAction'/><separator/><menuitem name='ClearAdditonalFiltersAction' action='ClearAdditonalFiltersAction'/></menu><menu name='CacheAction' action='CacheAction'><menuitem name='ViewOnlineAction' action='ViewOnlineAction'/><menuitem name='LogFindAction' action='LogFindAction'/><menuitem name='MarkUnfoundAction' action='MarkUnfoundAction'/><separator/><menuitem name='DeleteCacheAction' action='DeleteCacheAction'/></menu><menu name='GeocachingComAction' action='GeocachingComAction'><menuitem name='HomePageAction' action='HomePageAction'/><menuitem name='ViewMyProfileAction' action='ViewMyProfileAction'/><menuitem name='MyAccountDetailsAction' action='MyAccountDetailsAction'/><menuitem name='CreatePocketQueriesAction' action='CreatePocketQueriesAction'/><separator/><menuitem name='FindACacheAction' action='FindACacheAction'/><menuitem name='ViewCacheOnlineAction' action='ViewCacheOnlineAction'/><menuitem name='LogCacheAction' action='LogCacheAction'/></menu><menu name='MapAction2' action='MapAction2'><menuitem name='ShowNearbyCachesAction' action='ShowNearbyCachesAction'/><separator/><menuitem name='ZoomToCentreAction' action='ZoomToCentreAction'/><menuitem name='ZoomToSelectedCacheAction' action='ZoomToSelectedCacheAction'/><menuitem name='SetSelectedCacheAsCentreAction' action='SetSelectedCacheAsCentreAction'/><menuitem name='ResetCentreToHomeAction' action='ResetCentreToHomeAction'/></menu><menu name='GPSAction' action='GPSAction'><menuitem name='ConfigureGPSAction' action='ConfigureGPSAction'/><separator/><menuitem name='SendCachesAction' action='SendCachesAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/><menuitem name='ChangeHistoryAction' action='ChangeHistoryAction'/></menu></menubar></ui>");
         this.mainmenubar = ((Gtk.MenuBar)(this.UIManager.GetWidget("/mainmenubar")));
         this.mainmenubar.Name = "mainmenubar";
         this.vbox1.Add(this.mainmenubar);
@@ -451,5 +469,8 @@ public partial class MainWindow {
         this.ZoomToSelectedCacheAction.Activated += new System.EventHandler(this.OnZoomSelected);
         this.ConfigureGPSAction.Activated += new System.EventHandler(this.OnConfigure);
         this.SendCachesAction.Activated += new System.EventHandler(this.OnSendCachesActionActivated);
+        this.ChangeHistoryAction.Activated += new System.EventHandler(this.OnChangeHistoryClick);
+        this.SetSelectedCacheAsCentreAction.Activated += new System.EventHandler(this.OnSetCentre);
+        this.ResetCentreToHomeAction.Activated += new System.EventHandler(this.OnResetCentre);
     }
 }

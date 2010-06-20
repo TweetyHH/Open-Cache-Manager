@@ -383,13 +383,34 @@
         <property name="ShortLabel" translatable="yes">Send Caches...</property>
         <signal name="Activated" handler="OnSendCachesActionActivated" />
       </action>
+      <action id="ChangeHistoryAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Change History...</property>
+        <property name="ShortLabel" translatable="yes">Change History...</property>
+        <signal name="Activated" handler="OnChangeHistoryClick" />
+      </action>
+      <action id="SetSelectedCacheAsCentreAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Set Selected Cache As Centre</property>
+        <property name="Sensitive">False</property>
+        <property name="ShortLabel" translatable="yes">Set Selected Cache As Centre</property>
+        <signal name="Activated" handler="OnSetCentre" />
+      </action>
+      <action id="ResetCentreToHomeAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Reset Centre to Home</property>
+        <property name="Sensitive">False</property>
+        <property name="ShortLabel" translatable="yes">Reset Centre to Home</property>
+        <signal name="Activated" handler="OnResetCentre" />
+      </action>
     </action-group>
     <property name="MemberName" />
-    <property name="Title" translatable="yes">Open Cache Manager</property>
-    <property name="Icon">resource:ocmgtk.icons.scalable.OCMLogo.svg</property>
+    <property name="Title" translatable="yes">OCM</property>
+    <property name="Icon">resource:ocmgtk.icons.scalable.OCMLogoSmall.svg</property>
     <property name="WindowPosition">Center</property>
+    <property name="AllowShrink">True</property>
     <property name="DefaultWidth">1024</property>
-    <property name="DefaultHeight">550</property>
+    <property name="DefaultHeight">768</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox1">
@@ -437,6 +458,8 @@
                 <node type="Separator" />
                 <node type="Menuitem" action="ZoomToCentreAction" />
                 <node type="Menuitem" action="ZoomToSelectedCacheAction" />
+                <node type="Menuitem" action="SetSelectedCacheAsCentreAction" />
+                <node type="Menuitem" action="ResetCentreToHomeAction" />
               </node>
               <node type="Menu" action="GPSAction">
                 <node type="Menuitem" action="ConfigureGPSAction" />
@@ -445,6 +468,7 @@
               </node>
               <node type="Menu" action="HelpAction">
                 <node type="Menuitem" action="AboutAction" />
+                <node type="Menuitem" action="ChangeHistoryAction" />
               </node>
             </node>
           </widget>
@@ -2835,6 +2859,7 @@ home and know which caches are yours.</property>
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Label" translatable="yes">All Cache Types</property>
+                <property name="Active">True</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
@@ -3422,7 +3447,7 @@ Less Than</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="ocmgtk.OCMSplash" design-size="344 129">
+  <widget class="Gtk.Window" id="ocmgtk.OCMSplash" design-size="443 185">
     <property name="MemberName" />
     <property name="Title" translatable="yes">OCMSplash</property>
     <property name="TypeHint">Splashscreen</property>
@@ -3448,12 +3473,13 @@ Less Than</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
+                <property name="Padding">6</property>
               </packing>
             </child>
             <child>
               <widget class="Gtk.Label" id="label1">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">&lt;big&gt;Open Cache Manager&lt;/big&gt;</property>
+                <property name="LabelProp" translatable="yes">&lt;span font='24'&gt;&lt;b&gt;Open Cache Manager&lt;/b&gt;&lt;/span&gt;</property>
                 <property name="UseMarkup">True</property>
               </widget>
               <packing>
@@ -4032,6 +4058,7 @@ Less Than</property>
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Label" translatable="yes">Garmin Colorado/Oregon/Dakota/Nuvi</property>
+                <property name="Active">True</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
@@ -4668,6 +4695,7 @@ USB to allow OCM to write to your Garmin Device. See:
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
+                <signal name="Toggled" handler="OnLimitCheckToggled" />
               </widget>
               <packing>
                 <property name="Position">0</property>
@@ -4777,7 +4805,7 @@ USB to allow OCM to write to your Garmin Device. See:
               <widget class="Gtk.Entry" id="fileEntry">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Text" translatable="yes">~/caches.loc</property>
+                <property name="Text" translatable="yes">caches.loc</property>
                 <property name="IsEditable">True</property>
                 <property name="InvisibleChar">•</property>
               </widget>
@@ -5034,6 +5062,66 @@ USB to allow OCM to write to your Garmin Device. See:
             <property name="YExpand">False</property>
             <property name="YFill">True</property>
             <property name="YShrink">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="ocmgtk.ChangeHistory" design-size="400 300">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">Change History...</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="DefaultWidth">500</property>
+    <property name="DefaultHeight">400</property>
+    <property name="Buttons">1</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="ShadowType">In</property>
+            <child>
+              <widget class="Gtk.TextView" id="textView">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Editable">False</property>
+                <property name="Text" translatable="yes" />
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">1</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-ok</property>
+            <property name="ResponseId">-5</property>
+            <signal name="Clicked" handler="OnButtonOkClicked" />
+            <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
           </packing>
         </child>
       </widget>
