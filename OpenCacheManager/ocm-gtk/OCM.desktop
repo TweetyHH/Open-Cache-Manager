@@ -2,11 +2,11 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Name=Open Cache Manager
+Name=OCM Geocache Manager
 Exec=ocm-gtk
 Terminal=false
-GenericName=Open Cache Manager
+GenericName=OCM Geocache Manager
 Icon=/usr/local/lib/opencachemanager/icons/scalable/traditional.svg
 Categories=Network;
 Path=/usr/local/lib/opencachemanager
-MimeType=application/xml;
+MimeType=application/x-gpx;

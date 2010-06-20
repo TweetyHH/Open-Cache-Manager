@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.11</ReleaseVersion>
+    <ReleaseVersion>0.14</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -67,6 +67,7 @@
       <Package>ndesk-dbus-glib-1.0</Package>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -74,6 +75,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="icons\scalable\OCMLogo.svg">
       <DeployService-UseProjectRelativePath>true</DeployService-UseProjectRelativePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -85,11 +87,9 @@
     <Compile Include="gtk-gui\ocmgtk.GeocacheInfoPanel.cs" />
     <Compile Include="gtk-gui\ocmgtk.GeoCachePane.cs" />
     <Compile Include="gtk-gui\ocmgtk.CacheList.cs" />
-    <Compile Include="gtk-gui\ocmgtk.OCMAboutDialog.cs" />
     <Compile Include="Widgets\CacheList.cs" />
     <Compile Include="Widgets\GeocacheInfoPanel.cs" />
     <Compile Include="Widgets\GeoCachePane.cs" />
-    <Compile Include="Dialogs\OCMAboutDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.WaypointWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.LogViewerWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.BrowserWidget.cs" />
@@ -121,6 +121,31 @@
     <Compile Include="gtk-gui\ocmgtk.ExportProgressDialog.cs" />
     <Compile Include="Widgets\DescriptionWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.DescriptionWidget.cs" />
+    <Compile Include="Widgets\OCMQueryPage1.cs" />
+    <Compile Include="gtk-gui\ocmgtk.OCMQueryPage1.cs" />
+    <Compile Include="Dialogs\OCMSplash.cs" />
+    <Compile Include="gtk-gui\ocmgtk.OCMSplash.cs" />
+    <Compile Include="Dialogs\FilterDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.FilterDialog.cs" />
+    <Compile Include="Widgets\OCMQueryPage2.cs" />
+    <Compile Include="gtk-gui\ocmgtk.OCMQueryPage2.cs" />
+    <Compile Include="Widgets\OCMWebView.cs" />
+    <Compile Include="Dialogs\GPSConfiguration.cs" />
+    <Compile Include="gtk-gui\ocmgtk.GPSConfiguration.cs" />
+    <Compile Include="Widgets\GPXWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.GPXWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.GarminUSBWidget.cs" />
+    <Compile Include="Widgets\GarminUSBWidget.cs" />
+    <Compile Include="Widgets\IGPSConfig.cs" />
+    <Compile Include="Dialogs\SendWaypointsDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.SendWaypointsDialog.cs" />
+    <Compile Include="SavedGPSConf.cs" />
+    <Compile Include="Widgets\MagellanExploristWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.MagellanExploristWidget.cs" />
+    <Compile Include="Widgets\GenericGPSWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.GenericGPSWidget.cs" />
+    <Compile Include="Widgets\OCMQueryPage3.cs" />
+    <Compile Include="gtk-gui\ocmgtk.OCMQueryPage3.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -136,7 +161,7 @@
     <Folder Include="icons\" />
     <Folder Include="icons\scalable\" />
     <Folder Include="icons\24x24\" />
-    <Folder Include="licence\" />
+    <Folder Include="docs\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
@@ -247,10 +272,40 @@
     <Resource Include="icons\48x48\circle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="licence\Licence.txt">
+    <Resource Include="icons\24x24\pushpin.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\24x24\pushpin.png">
+    <Resource Include="icons\24x24\found.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\traditional.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\24x24\bluepin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\24x24\parking.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\24x24\trailhead.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\bluepin.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\parking.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\trailhead.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="docs\Licence.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="docs\ChangeHistory.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="docs\README.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
@@ -259,11 +314,17 @@
       <DeployService-Deploy>true</DeployService-Deploy>
       <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
     </Content>
-    <Content Include="icons\scalable\traditional.svg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ChangeHistory.txt" />
+    <None Include="x-gpx.xml">
+      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-RelativeDeployPath>mime/packages/x-gpx.xml</DeployService-RelativeDeployPath>
+      <DeployService-TargetDirectoryId>CommonApplicationDataRoot</DeployService-TargetDirectoryId>
+    </None>
+    <None Include="x-ocm.xml">
+      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-RelativeDeployPath>mime/packages/x-ocm.xml</DeployService-RelativeDeployPath>
+      <DeployService-TargetDirectoryId>CommonApplicationDataRoot</DeployService-TargetDirectoryId>
+    </None>
   </ItemGroup>
 </Project>

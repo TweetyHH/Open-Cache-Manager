@@ -28,11 +28,15 @@ public partial class MainWindow : Gtk.Window
 		Build ();
 		m_monitor = UIMonitor.getInstance ();
 		m_monitor.Main = this;
+		m_monitor.StatusProgress = statProgBar;
 		m_monitor.GeoPane = cachePane;
 		m_monitor.StatusBar = statusbar1;
-		m_monitor.Main = this;
+		m_monitor.CacheListPane = cacheList;
+		m_monitor.CentreLabel = coordLabel;
+		m_monitor.Map = cachePane.CacheMap;
+		cachePane.CacheMap.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html");
+
 		m_monitor.LoadConfig();
-		this.Resize(1024,575);
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -49,11 +53,10 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void doAbout (object sender, System.EventArgs e)
 	{
 		AboutDialog dialog = new AboutDialog ();
-		Assembly asm = Assembly.GetExecutingAssembly ();
 		
 		dialog.ProgramName = "Open Cache Manager";
 		
-		dialog.Version = "ALPHA 0.11";
+		dialog.Version = "ALPHA 0.14";
 		
 		//dialog.Comments = (asm.GetCustomAttributes (typeof(AssemblyDescriptionAttribute), false)[0] as AssemblyDescriptionAttribute).Description;
 		
@@ -99,34 +102,13 @@ public partial class MainWindow : Gtk.Window
 
 	protected virtual void OnImportClicked (object o, System.EventArgs args)
 	{
-		FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Import GPX File"), this, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Import"), ResponseType.Accept);
-		dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
-		FileFilter filter = new FileFilter ();
-		filter.Name = "GPX Files";
-		filter.AddMimeType ("text/xml");
-		filter.AddMimeType ("application/xml");
-		filter.AddPattern ("*.gpx");
-		dlg.AddFilter (filter);
-		
-		if (dlg.Run () == (int)ResponseType.Accept) {
-			System.IO.FileStream fs = System.IO.File.OpenRead (dlg.Filename);
-			dlg.Hide ();
-			GPXParser parser = new GPXParser();
-			CacheStore store = Engine.getInstance ().Store;
-			ProgressDialog pdlg = new ProgressDialog (parser);
-			pdlg.Modal = true;
-			pdlg.Start (fs, store);
-			m_monitor.RefreshCaches ();
-			fs.Close ();
-		}
-		dlg.Destroy ();
-		this.ShowAll ();
+		m_monitor.ImportGPX();
 	}
 
 	public void SetCacheSelected ()
 	{
 		this.CacheAction.Sensitive = true;
-		this.ShowAll ();
+		this.ZoomToSelectedCacheAction.Sensitive = true;
 	}
 
 	protected virtual void OnViewOnline (object sender, System.EventArgs e)
@@ -154,26 +136,8 @@ public partial class MainWindow : Gtk.Window
 
 	protected virtual void OnPreferences (object sender, System.EventArgs e)
 	{
-		Preferences dlg = new Preferences ();
-		dlg.SetLat (m_monitor.CentreLat);
-		dlg.SetLon (m_monitor.CentreLon);
-		if ((int)ResponseType.Ok == dlg.Run ()) {
-			setHome (dlg.Lat, dlg.Lon);
-		}
 	}
 
-	protected void setHome (double lat, double lon)
-	{
-		GConf.Client client = new GConf.Client ();
-		try {
-			client.Set ("/apps/monoapps/ocm/homelat", lat);
-			client.Set ("/apps/monoapps/ocm/homelon", lon);
-			m_monitor.CentreLat = lat;
-			m_monitor.CentreLon = lon;
-		} catch (GConf.NoSuchKeyException) {
-			// Do nothing
-		}
-	}
 
 	protected virtual void OnNewActionActivated (object sender, System.EventArgs e)
 	{
@@ -221,14 +185,61 @@ public partial class MainWindow : Gtk.Window
 		
 	protected virtual void OnClickLog (object sender, System.EventArgs e)
 	{
-		UIMonitor.getInstance().LogFind();
+		m_monitor.LogFind();
 	}
 	
 	protected virtual void OnClickMarkUnfound (object sender, System.EventArgs e)
 	{
-		UIMonitor.getInstance().MarkCacheUnfound();
+		m_monitor.MarkCacheUnfound();
 	}
 	
+	protected virtual void OnDelete (object sender, System.EventArgs e)
+	{
+		m_monitor.DeleteCache();
+	}
 	
+	protected virtual void OnFilterClick (object sender, System.EventArgs e)
+	{
+		m_monitor.SetAdditonalFilters();
+	}
 	
+	protected virtual void OnClickClearFilters (object sender, System.EventArgs e)
+	{
+		m_monitor.ClearFilters();
+	}
+	
+	public void SetAllowClearFilter(bool allow)
+	{
+		ClearAdditonalFiltersAction.Sensitive = allow;
+	}
+	
+	protected virtual void OnShowAllToggle (object sender, System.EventArgs e)
+	{
+		m_monitor.ShowNearby = ShowNearbyCachesAction.Active;
+	}
+	
+	protected virtual void OnZoomHome (object sender, System.EventArgs e)
+	{
+		m_monitor.GoHome();
+	}
+	
+	protected virtual void OnZoomSelected (object sender, System.EventArgs e)
+	{
+		m_monitor.ZoomToSelected();
+	}
+	
+	protected virtual void OnConfigure (object sender, System.EventArgs e)
+	{
+		m_monitor.ConfigureGPS();
+	}
+	
+	protected virtual void OnSendCachesActionActivated (object sender, System.EventArgs e)
+	{
+		m_monitor.SendToGPS();
+	}
+	
+	protected virtual void OnPrefsClicked (object sender, System.EventArgs e)
+	{
+		m_monitor.ShowPreferences();
+	}
 }

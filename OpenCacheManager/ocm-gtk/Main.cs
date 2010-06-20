@@ -20,7 +20,6 @@ namespace ocmgtk
 {
 	class MainClass
 	{
-		static MainWindow win = null;
 
 		public static void Main (string[] args)
 		{
@@ -41,17 +40,24 @@ namespace ocmgtk
 			}
 			
 			Mono.Unix.Catalog.Init ("i8n1", "./locale");
+			bool runWizard = false;
 			try {
 				GConf.Client client = new GConf.Client ();
 				client.Get ("/apps/ocm/wizardone");
-				MainWindow win = new MainWindow ();
-				win.Show ();
+				runWizard = false;
+			} catch (GConf.NoSuchKeyException) {
+				runWizard = true;
+			}
+			
+			if (runWizard) {
+				UIMonitor.getInstance ().RunSetupAssistant ();
+			} else {
+				OCMSplash splash = new OCMSplash ();
 				if (args != null)
 					if (args.Length > 0)
-						UIMonitor.getInstance ().ImportGPXFile (args[0]);
-			} catch (Exception e) {
-				UIMonitor.getInstance ().RunSetupAssistant ();
-			}
+						splash.OpenFile(args[0]);
+				splash.Show ();
+			}			
 			
 			Application.Run ();
 			
