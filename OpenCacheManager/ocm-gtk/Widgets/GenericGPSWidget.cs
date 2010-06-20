@@ -14,6 +14,8 @@
 //    limitations under the License.
 
 using System;
+using Gtk;
+using Mono.Unix;
 
 namespace ocmgtk
 {
@@ -77,7 +79,26 @@ namespace ocmgtk
 		
 		protected virtual void OnFileClick (object sender, System.EventArgs e)
 		{
+			
+			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Select File location"), null, FileChooserAction.Save, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Select"), ResponseType.Accept);
+			dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
+			dlg.CurrentName = "caches.loc";
+			FileFilter filter = new FileFilter ();
+			filter.Name = "All Files";
+			filter.AddMimeType ("*/*");
+			dlg.AddFilter (filter);
+			
+			if (dlg.Run () == (int)ResponseType.Accept) {
+				fileEntry.Text = dlg.Filename;
+			}
+			dlg.Destroy ();
 		}
+		
+		protected virtual void OnLimitCheckToggled (object sender, System.EventArgs e)
+		{
+			this.limitEntry.Sensitive = limitCheck.Active;;
+		}
+		
 		
 		
 		

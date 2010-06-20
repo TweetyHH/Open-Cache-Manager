@@ -35,7 +35,6 @@ namespace ocmgtk
 			this.Build ();
 			BuildWPTList ();
 			m_mon = UIMonitor.getInstance ();
-			this.ShowAll ();
 		}
 
 		public void BuildWPTList ()
@@ -60,9 +59,6 @@ namespace ocmgtk
 			
 			wptView.Model = m_childPoints;
 			wptView.Selection.Changed += OnSelectionChanged;
-			
-			this.ShowAll ();
-			
 		}
 
 
@@ -105,7 +101,6 @@ namespace ocmgtk
 			}
 			
 			m_mon.ZoomToPoint (cache.Lat, cache.Lon);
-			this.ShowAll ();
 		}
 
 

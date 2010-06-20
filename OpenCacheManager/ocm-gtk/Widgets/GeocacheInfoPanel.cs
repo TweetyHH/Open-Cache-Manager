@@ -55,7 +55,6 @@ namespace ocmgtk
 			m_monitor = UIMonitor.getInstance ();
 			setDifficulty (0);
 			setTerrain (0);
-			this.ShowAll ();
 		}
 
 		public void updateCacheInfo ()
@@ -136,7 +135,6 @@ namespace ocmgtk
 				diff_i5.Pixbuf = HSTAR_ICON;
 			if (diff >= 5)
 				diff_i5.Pixbuf = STAR_ICON;
-			this.ShowAll ();
 		}
 
 		public void setTerrain (double diff)
@@ -168,7 +166,6 @@ namespace ocmgtk
 				terr_i5.Pixbuf = HSTAR_ICON;
 			if (diff >= 5)
 				terr_i5.Pixbuf = STAR_ICON;
-			this.ShowAll ();
 		}
 
 		public void setCacheIcon (Geocache.CacheType type)

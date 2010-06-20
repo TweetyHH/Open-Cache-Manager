@@ -69,7 +69,6 @@ namespace ocmgtk
 			tbugView.AppendColumn (tbref_col);
 			tbugView.AppendColumn (tbname_col);
 			tbugView.Model = tbStore;
-			tbugView.ShowAll ();
 		}
 
 		private void RenderRefCell (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)

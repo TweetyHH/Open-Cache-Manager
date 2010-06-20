@@ -35,7 +35,6 @@ namespace ocmgtk
 			m_view.LoadFinished += HandleM_viewLoadFinished;
 			m_view.NavigationRequested += HandleM_viewNavigationRequested;
 			this.Add(win);
-			this.ShowAll();
 		}
 
 		void HandleM_viewLoadFinished (object o, WebKit.LoadFinishedArgs args)

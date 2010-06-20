@@ -375,18 +375,15 @@ namespace ocmgtk
 		private void CreatePopup ()
 		{
 			Menu popup = new Menu ();
-			MenuItem setCenterItem = new MenuItem ("Set As Centre");
-			MenuItem setHomeItem = new MenuItem ("Reset Centre to Home");
+			MenuItem setCenterItem = new MenuItem ("Set As Map Centre");
 			MenuItem showOnline = new MenuItem ("View Cache Online");
 			MenuItem deleteItem = new MenuItem ("Delete...");
 			
 			setCenterItem.Activated += HandleSetCenterItemActivated;
 			showOnline.Activated += HandleShowOnlineActivated;
 			deleteItem.Activated += HandleDeleteItemActivated;
-			setHomeItem.Activated += HandleSetHomeItemActivated;
 			
 			popup.Add (setCenterItem);
-			popup.Add (setHomeItem);
 			popup.Add (showOnline);
 			popup.Add (deleteItem);
 			popup.ShowAll ();
@@ -413,7 +410,7 @@ namespace ocmgtk
 
 		void HandleDeleteItemActivated (object sender, EventArgs e)
 		{
-			
+			m_monitor.DeleteCache();
 		}
 
 		void HandleShowOnlineActivated (object sender, EventArgs e)
@@ -423,20 +420,7 @@ namespace ocmgtk
 
 		void HandleSetCenterItemActivated (object sender, EventArgs e)
 		{
-			// Clear any sorting and filtering
-			int sortCol;
-			SortType sortType;
-			m_ListSort.GetSortColumnId (out sortCol, out sortType);
-			m_ListSort.SetSortColumnId (-1, SortType.Ascending);
-			
-			
-			Geocache cache = m_monitor.SelectedCache;
-			if (cache == null)
-				return;
-			m_monitor.CentreLat = cache.Lat;
-			m_monitor.CentreLon = cache.Lon;
-			m_monitor.CenterName = cache.Name;
-			m_monitor.RefreshCaches ();
+			m_monitor.SetSelectedAsCentre();
 		}
 		protected virtual void OnFoundButtonToggled (object sender, System.EventArgs e)
 		{
