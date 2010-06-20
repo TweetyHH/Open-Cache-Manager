@@ -24,12 +24,12 @@ namespace ocmgtk
 
 	public partial class OCMSplash : Gtk.Window
 	{
-		private static Pixbuf TRADICON = new Pixbuf ("./icons/scalable/traditional.svg", 64, 64);
+		private static Pixbuf LOGO = new Pixbuf ("./icons/scalable/OCMLogo.svg", 96, 96);
 		private static string m_file = null;
 		public OCMSplash () : base(Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
-			this.image16.Pixbuf = TRADICON;
+			this.image16.Pixbuf = LOGO;
 			Timer splashtime = new Timer();
 			splashtime.AutoReset = false;
 			splashtime.Elapsed += HandleSplashtimeElapsed;
@@ -46,11 +46,10 @@ namespace ocmgtk
 		{
 			Application.Invoke(delegate{this.Hide();
 			MainWindow win = new MainWindow();
-			win.Maximize();
+			UIMonitor.getInstance().LoadConfig();
 			if (m_file != null)
 					UIMonitor.getInstance().ImportGPXFile(m_file);
-			else
-				UIMonitor.getInstance().RefreshCaches();});
+			});
 		}
 	}
 }

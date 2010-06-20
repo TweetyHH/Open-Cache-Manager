@@ -43,6 +43,8 @@ namespace ocmgtk
 			get {
 				if (gusbRadio.Active)
 					return gusbwidet;
+				else if (otherRadio.Active)
+					return gpswidget;
 				else
 					return gpxwidget;
 			}
@@ -59,11 +61,19 @@ namespace ocmgtk
 					gusbRadio.Active = true;
 					gusbwidet.SetCacheLimit(saved.GetCacheLimit());
 				}
-				else
+				else if (saved.GetBabelFormat()== "OCM_GPX")
 				{
 					gpxRadio.Active = true;
 					gpxwidget.SetCacheLimit(saved.GetCacheLimit());
 					gpxwidget.SetOutputFile(saved.GetOutputFile());
+				}
+				else
+				{
+					otherRadio.Active = true;
+					
+					gpswidget.SetCacheLimit(saved.GetCacheLimit());
+					gpswidget.SetOutputFile(saved.GetOutputFile());
+					gpswidget.SetBabelFormat(saved.GetBabelFormat());
 				}
 			}
 			catch (GConf.NoSuchKeyException)

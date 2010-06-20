@@ -67,8 +67,8 @@ namespace ocmgtk
 			client.Set("/apps/ocm/wizardone", "true");			
 			
 			MainWindow win = new MainWindow ();
-			win.Show ();
-			win.Maximize();
+			win.Show();
+			UIMonitor.getInstance().LoadConfig();;
 		}
 
 		void HandleHandleApply (object sender, EventArgs e)
