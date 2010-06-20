@@ -16,6 +16,7 @@
 using System;
 using System.Collections.Generic;
 using ocmengine;
+using Gtk;
 
 namespace ocmgtk
 {
@@ -51,10 +52,39 @@ namespace ocmgtk
 		void HandleWriterWriteWaypoint (object sender, EventArgs args)
 		{
 			count++;
-			writeProgress.Fraction = count/total;
+			double fraction = count/total;
+			writeProgress.Fraction = fraction;
+			writeProgress.Text = fraction.ToString("0%");
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (false);
 			
+		}
+		
+		protected virtual void OnCancel (object sender, System.EventArgs e)
+		{
+			DoCancel();
+		}
+		
+		public void DoCancel()
+		{
+			Gtk.MessageDialog qdlg = new Gtk.MessageDialog (this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning,
+			                                               Gtk.ButtonsType.YesNo, "Cancelling an export will result in an invalid GPX file.\nAre you sure?");
+			if ((int) ResponseType.Yes == qdlg.Run())
+			{
+				qdlg.Hide();
+				qdlg.Dispose();
+				this.Hide();
+				this.Dispose();
+				m_writer.Cancel = true;
+				return;
+			}
+			qdlg.Hide();
+			this.ShowNow();
+		}		
+		
+		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
+		{
+			DoCancel();
 		}
 	}
 }

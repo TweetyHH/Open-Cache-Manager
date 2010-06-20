@@ -30,49 +30,43 @@ namespace ocmgtk
 
 		public double Lat {
 			get {
-				double val = Double.Parse (latEntry.Text);
-				if (nsBox.Active == 1)
-					return val * -1;
-				else
-					return val;
+				return latControl.getCoordinate();
+			}
+			set
+			{
+				latControl.SetCoordinate(value, true);
 			}
 		}
 
 		public double Lon {
 			get {
-				double val = Double.Parse (lonEntry.Text);
-				if (ewBox.Active == 1)
-					return val * -1;
-				else
-					return val;
+				return lonControl.getCoordinate();
+			}
+			set
+			{
+				lonControl.SetCoordinate(value, false);
 			}
 		}
-
-		public void SetLat (double lat)
+		
+		public string MemberID
 		{
-			if (lat > 0) {
-				nsBox.Active = 0;
-				latEntry.Text = lat.ToString ("0.000");
-			} else {
-				nsBox.Active = 1;
-				latEntry.Text = (lat * -1).ToString ("0.000");
+			get
+			{
+				return memberId.Text;
+			}
+			set
+			{
+				memberId.Text = value;
 			}
 		}
-
-		public void SetLon (double lon)
-		{
-			if (lon > 0) {
-				ewBox.Active = 0;
-				lonEntry.Text = lon.ToString ("0.000");
-			} else {
-				ewBox.Active = 1;
-				lonEntry.Text = (lon * -1).ToString ("0.000");
-			}
-		}
+		
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
 			this.Hide();
-			this.Dispose();
+		}
+		protected virtual void OnCancelClicked (object sender, System.EventArgs e)
+		{
+			this.Hide();
 		}
 		
 		

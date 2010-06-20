@@ -25,54 +25,78 @@ namespace ocmgtk
 	{
 
 		private GPXParser m_parser;
-		int processCount = 0;
-		public ProgressDialog (GPXParser parser)
+		double m_total = 0;
+		double m_progress = 0;
+		public ProgressDialog (GPXParser parser, int total)
 		{
 			this.Build ();
 			parser.ParseWaypoint += HandleParserParseWaypoint;
 			parser.Complete += HandleParserComplete;
 			m_parser = parser;
-			this.ShowAll ();
+			m_total = total;
 		}
 
 		void HandleParserComplete (object sender, EventArgs args)
 		{
-			String message = String.Format("Updated {0} records in the database", processCount);
-			Gtk.MessageDialog dlg = new Gtk.MessageDialog(this, Gtk.DialogFlags.Modal, 
-			                                              Gtk.MessageType.Info, Gtk.ButtonsType.Ok, message);
-			dlg.Run();
-			dlg.Hide();
-			dlg.Dispose();
-			dlg.Destroy();
 			this.Hide ();
+			String message = String.Format ("Import complete, {0} waypoints processed", m_progress);
+			Gtk.MessageDialog dlg = new Gtk.MessageDialog (this, Gtk.DialogFlags.Modal, Gtk.MessageType.Info, Gtk.ButtonsType.Ok, message);
+			dlg.Run ();
+			dlg.Hide ();
+			dlg.Dispose ();
+			dlg.Destroy ();
 			this.Dispose ();
-			this.Destroy();
+			this.Destroy ();
 		}
-			
+
 
 		public void Start (FileStream fs, CacheStore store)
 		{
 			this.Show ();
 			try {
-				processCount = 0;
+				m_progress = 0;
 				m_parser.parseGPXFile (fs, store);
 			} catch (Exception e) {
+				this.Hide ();
 				Gtk.MessageDialog error = new Gtk.MessageDialog (this, Gtk.DialogFlags.DestroyWithParent, Gtk.MessageType.Error, Gtk.ButtonsType.Ok, e.Message);
-				error.Run();
-				error.Hide();
-				this.Hide();
-				this.Dispose();
+				error.Run ();
+				error.Hide ();
+				error.Dispose ();
+				this.Dispose ();
 			}
 		}
 
 		void HandleParserParseWaypoint (object sender, EventArgs args)
 		{
-			this.progressbar6.Text = (args as ParseEventArgs).Message;
-			this.progressbar6.Pulse ();
-			processCount++;
-			this.label1.Text = "Processed: " + processCount;
+			m_progress++;
+			double fraction = (double)(m_progress / m_total);
+			this.progressbar6.Text = (fraction).ToString ("0%");
+			progressbar6.Fraction = fraction;
+			this.waypointName.Text = "Waypoint: " + (args as ParseEventArgs).Message;
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (false);
 		}
+
+		protected virtual void OnCancel (object sender, System.EventArgs e)
+		{
+			DoCancel ();
+		}
+
+		private void DoCancel ()
+		{
+			m_parser.Cancel = true;
+			this.Hide ();
+			String message = String.Format ("Import cancelled, all changes reverted.", m_progress);
+			Gtk.MessageDialog dlg = new Gtk.MessageDialog (this, Gtk.DialogFlags.Modal, Gtk.MessageType.Info, Gtk.ButtonsType.Ok, message);
+			dlg.Run ();
+			dlg.Hide ();
+			dlg.Dispose ();
+		}
+		protected virtual void OnCancel (object o, Gtk.DeleteEventArgs args)
+		{
+			DoCancel ();
+		}
+		
+		
 	}
 }

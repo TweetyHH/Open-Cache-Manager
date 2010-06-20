@@ -68,6 +68,7 @@ namespace ocmgtk
 			
 			MainWindow win = new MainWindow ();
 			win.Show ();
+			win.Maximize();
 		}
 
 		void HandleHandleApply (object sender, EventArgs e)
