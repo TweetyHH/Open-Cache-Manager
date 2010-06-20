@@ -58,7 +58,9 @@ FILES = \
 	GPXWriter.cs \
 	TravelBug.cs \
 	WaypointEnumerator.cs \
-	CacheStoreDefs.cs 
+	CacheStoreDefs.cs \
+	FilterList.cs \
+	GPSBabelWriter.cs 
 
 DATA_FILES = 
 

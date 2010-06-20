@@ -66,16 +66,22 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" \
+	"$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" \
+	"$(DESTDIR)$(linuxdesktopapplicationsdir)" \
 	"$(DESTDIR)$(linuxpkgconfigdir)" \
 	"$(DESTDIR)$(programfilesdir)" \
+	"$(DESTDIR)$(programfilesdocsdir)" \
 	"$(DESTDIR)$(programfilesicons24x24dir)" \
+	"$(DESTDIR)$(programfilesicons48x48dir)" \
 	"$(DESTDIR)$(programfilesiconsscalabledir)" \
 	"$(DESTDIR)$(programfileswebdir)"
 SCRIPTS = $(bin_SCRIPTS) $(pkglib_SCRIPTS)
 SOURCES =
 DIST_SOURCES =
-DATA = $(linuxpkgconfig_DATA) $(programfiles_DATA) \
-	$(programfilesicons24x24_DATA) \
+DATA = $(commonapplicationdatarootmimepackages_DATA) \
+	$(linuxdesktopapplications_DATA) $(linuxpkgconfig_DATA) \
+	$(programfiles_DATA) $(programfilesdocs_DATA) \
+	$(programfilesicons24x24_DATA) $(programfilesicons48x48_DATA) \
 	$(programfilesiconsscalable_DATA) $(programfilesweb_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -89,8 +95,10 @@ DEFS = @DEFS@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
-GECKO_SHARP_20_CFLAGS = @GECKO_SHARP_20_CFLAGS@
-GECKO_SHARP_20_LIBS = @GECKO_SHARP_20_LIBS@
+GCONF_SHARP_20_CFLAGS = @GCONF_SHARP_20_CFLAGS@
+GCONF_SHARP_20_LIBS = @GCONF_SHARP_20_LIBS@
+GLIB_SHARP_20_CFLAGS = @GLIB_SHARP_20_CFLAGS@
+GLIB_SHARP_20_LIBS = @GLIB_SHARP_20_LIBS@
 GMCS = @GMCS@
 GTKHTML_SHARP_314_CFLAGS = @GTKHTML_SHARP_314_CFLAGS@
 GTKHTML_SHARP_314_LIBS = @GTKHTML_SHARP_314_LIBS@
@@ -107,6 +115,10 @@ LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
+NDESK_DBUS_10_CFLAGS = @NDESK_DBUS_10_CFLAGS@
+NDESK_DBUS_10_LIBS = @NDESK_DBUS_10_LIBS@
+NDESK_DBUS_GLIB_10_CFLAGS = @NDESK_DBUS_GLIB_10_CFLAGS@
+NDESK_DBUS_GLIB_10_LIBS = @NDESK_DBUS_GLIB_10_LIBS@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
@@ -205,7 +217,13 @@ FILES = \
 	Geocache.cs \
 	CacheStore.cs \
 	Engine.cs \
-	OLMarkerGenerator.cs 
+	OLMarkerGenerator.cs \
+	GPXWriter.cs \
+	TravelBug.cs \
+	WaypointEnumerator.cs \
+	CacheStoreDefs.cs \
+	FilterList.cs \
+	GPSBabelWriter.cs 
 
 DATA_FILES = 
 RESOURCES = 
@@ -215,7 +233,9 @@ EXTRAS = \
 REFERENCES = \
 	System \
 	System.Xml \
-	Mono.Posix
+	Mono.Posix \
+	System.Data \
+	Mono.Data.Sqlite
 
 DLL_REFERENCES = 
 CLEANFILES = $(PROGRAMFILES) $(LINUX_PKGCONFIG) $(ASSEMBLY) \
@@ -276,14 +296,22 @@ rm = $(call rm_actual,$(call s2q2s,$1),$(call s2q2s,$2)/$(shell basename '$(call
 DISTCLEANFILES = $(GENERATED_FILES) $(pc_files) $(BUILD_DIR)/*
 pkglib_SCRIPTS = $(ASSEMBLY)
 bin_SCRIPTS = $(BINARIES)
-programfilesdir = @libdir@/@PACKAGE@
-programfiles_DATA = $(PROGRAMFILES)
-programfilesicons24x24dir = @libdir@/@PACKAGE@/icons/24x24
-programfilesicons24x24_DATA = $(PROGRAMFILES_ICONS_24X24)
 linuxpkgconfigdir = @libdir@/pkgconfig
 linuxpkgconfig_DATA = $(LINUX_PKGCONFIG)
+programfilesicons24x24dir = @libdir@/@PACKAGE@/icons/24x24
+programfilesicons24x24_DATA = $(PROGRAMFILES_ICONS_24X24)
 programfilesiconsscalabledir = @libdir@/@PACKAGE@/icons/scalable
 programfilesiconsscalable_DATA = $(PROGRAMFILES_ICONS_SCALABLE)
+commonapplicationdatarootmimepackagesdir = @datadir@/mime/packages
+commonapplicationdatarootmimepackages_DATA = $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES)
+programfilesdocsdir = @libdir@/@PACKAGE@/docs
+programfilesdocs_DATA = $(PROGRAMFILES_DOCS)
+programfilesdir = @libdir@/@PACKAGE@
+programfiles_DATA = $(PROGRAMFILES)
+programfilesicons48x48dir = @libdir@/@PACKAGE@/icons/48x48
+programfilesicons48x48_DATA = $(PROGRAMFILES_ICONS_48X48)
+linuxdesktopapplicationsdir = @datadir@/applications
+linuxdesktopapplications_DATA = $(LINUX_DESKTOPAPPLICATIONS)
 programfileswebdir = @libdir@/@PACKAGE@/web
 programfilesweb_DATA = $(PROGRAMFILES_WEB)
 
@@ -399,6 +427,46 @@ uninstall-pkglibSCRIPTS:
 	test -n "$$list" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(pkglibdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(pkglibdir)" && rm -f $$files
+install-commonapplicationdatarootmimepackagesDATA: $(commonapplicationdatarootmimepackages_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(commonapplicationdatarootmimepackagesdir)" || $(MKDIR_P) "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)"
+	@list='$(commonapplicationdatarootmimepackages_DATA)'; test -n "$(commonapplicationdatarootmimepackagesdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" || exit $$?; \
+	done
+
+uninstall-commonapplicationdatarootmimepackagesDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(commonapplicationdatarootmimepackages_DATA)'; test -n "$(commonapplicationdatarootmimepackagesdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" && rm -f $$files
+install-linuxdesktopapplicationsDATA: $(linuxdesktopapplications_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(linuxdesktopapplicationsdir)" || $(MKDIR_P) "$(DESTDIR)$(linuxdesktopapplicationsdir)"
+	@list='$(linuxdesktopapplications_DATA)'; test -n "$(linuxdesktopapplicationsdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(linuxdesktopapplicationsdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(linuxdesktopapplicationsdir)" || exit $$?; \
+	done
+
+uninstall-linuxdesktopapplicationsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(linuxdesktopapplications_DATA)'; test -n "$(linuxdesktopapplicationsdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(linuxdesktopapplicationsdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(linuxdesktopapplicationsdir)" && rm -f $$files
 install-linuxpkgconfigDATA: $(linuxpkgconfig_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(linuxpkgconfigdir)" || $(MKDIR_P) "$(DESTDIR)$(linuxpkgconfigdir)"
@@ -439,6 +507,26 @@ uninstall-programfilesDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(programfilesdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(programfilesdir)" && rm -f $$files
+install-programfilesdocsDATA: $(programfilesdocs_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(programfilesdocsdir)" || $(MKDIR_P) "$(DESTDIR)$(programfilesdocsdir)"
+	@list='$(programfilesdocs_DATA)'; test -n "$(programfilesdocsdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(programfilesdocsdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(programfilesdocsdir)" || exit $$?; \
+	done
+
+uninstall-programfilesdocsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(programfilesdocs_DATA)'; test -n "$(programfilesdocsdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(programfilesdocsdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(programfilesdocsdir)" && rm -f $$files
 install-programfilesicons24x24DATA: $(programfilesicons24x24_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(programfilesicons24x24dir)" || $(MKDIR_P) "$(DESTDIR)$(programfilesicons24x24dir)"
@@ -459,6 +547,26 @@ uninstall-programfilesicons24x24DATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(programfilesicons24x24dir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(programfilesicons24x24dir)" && rm -f $$files
+install-programfilesicons48x48DATA: $(programfilesicons48x48_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(programfilesicons48x48dir)" || $(MKDIR_P) "$(DESTDIR)$(programfilesicons48x48dir)"
+	@list='$(programfilesicons48x48_DATA)'; test -n "$(programfilesicons48x48dir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(programfilesicons48x48dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(programfilesicons48x48dir)" || exit $$?; \
+	done
+
+uninstall-programfilesicons48x48DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(programfilesicons48x48_DATA)'; test -n "$(programfilesicons48x48dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(programfilesicons48x48dir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(programfilesicons48x48dir)" && rm -f $$files
 install-programfilesiconsscalableDATA: $(programfilesiconsscalable_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(programfilesiconsscalabledir)" || $(MKDIR_P) "$(DESTDIR)$(programfilesiconsscalabledir)"
@@ -540,7 +648,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(SCRIPTS) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(linuxpkgconfigdir)" "$(DESTDIR)$(programfilesdir)" "$(DESTDIR)$(programfilesicons24x24dir)" "$(DESTDIR)$(programfilesiconsscalabledir)" "$(DESTDIR)$(programfileswebdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" "$(DESTDIR)$(linuxdesktopapplicationsdir)" "$(DESTDIR)$(linuxpkgconfigdir)" "$(DESTDIR)$(programfilesdir)" "$(DESTDIR)$(programfilesdocsdir)" "$(DESTDIR)$(programfilesicons24x24dir)" "$(DESTDIR)$(programfilesicons48x48dir)" "$(DESTDIR)$(programfilesiconsscalabledir)" "$(DESTDIR)$(programfileswebdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -590,8 +698,12 @@ info: info-am
 
 info-am:
 
-install-data-am: install-linuxpkgconfigDATA install-programfilesDATA \
+install-data-am: install-commonapplicationdatarootmimepackagesDATA \
+	install-linuxdesktopapplicationsDATA \
+	install-linuxpkgconfigDATA install-programfilesDATA \
+	install-programfilesdocsDATA \
 	install-programfilesicons24x24DATA \
+	install-programfilesicons48x48DATA \
 	install-programfilesiconsscalableDATA \
 	install-programfileswebDATA
 
@@ -637,9 +749,13 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-binSCRIPTS uninstall-linuxpkgconfigDATA \
-	uninstall-pkglibSCRIPTS uninstall-programfilesDATA \
+uninstall-am: uninstall-binSCRIPTS \
+	uninstall-commonapplicationdatarootmimepackagesDATA \
+	uninstall-linuxdesktopapplicationsDATA \
+	uninstall-linuxpkgconfigDATA uninstall-pkglibSCRIPTS \
+	uninstall-programfilesDATA uninstall-programfilesdocsDATA \
 	uninstall-programfilesicons24x24DATA \
+	uninstall-programfilesicons48x48DATA \
 	uninstall-programfilesiconsscalableDATA \
 	uninstall-programfileswebDATA
 
@@ -647,20 +763,28 @@ uninstall-am: uninstall-binSCRIPTS uninstall-linuxpkgconfigDATA \
 
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am html html-am info info-am \
-	install install-am install-binSCRIPTS install-data \
+	install install-am install-binSCRIPTS \
+	install-commonapplicationdatarootmimepackagesDATA install-data \
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am install-info \
-	install-info-am install-linuxpkgconfigDATA install-man \
-	install-pdf install-pdf-am install-pkglibSCRIPTS \
-	install-programfilesDATA install-programfilesicons24x24DATA \
+	install-info-am install-linuxdesktopapplicationsDATA \
+	install-linuxpkgconfigDATA install-man install-pdf \
+	install-pdf-am install-pkglibSCRIPTS install-programfilesDATA \
+	install-programfilesdocsDATA \
+	install-programfilesicons24x24DATA \
+	install-programfilesicons48x48DATA \
 	install-programfilesiconsscalableDATA \
 	install-programfileswebDATA install-ps install-ps-am \
 	install-strip installcheck installcheck-am installdirs \
 	maintainer-clean maintainer-clean-generic mostlyclean \
 	mostlyclean-generic pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-binSCRIPTS uninstall-linuxpkgconfigDATA \
-	uninstall-pkglibSCRIPTS uninstall-programfilesDATA \
+	uninstall-binSCRIPTS \
+	uninstall-commonapplicationdatarootmimepackagesDATA \
+	uninstall-linuxdesktopapplicationsDATA \
+	uninstall-linuxpkgconfigDATA uninstall-pkglibSCRIPTS \
+	uninstall-programfilesDATA uninstall-programfilesdocsDATA \
 	uninstall-programfilesicons24x24DATA \
+	uninstall-programfilesicons48x48DATA \
 	uninstall-programfilesiconsscalableDATA \
 	uninstall-programfileswebDATA
 
@@ -709,7 +833,9 @@ $(eval $(call emit_resgen_targets))
 $(build_xamlg_list): %.xaml.g.cs: %.xaml
 	xamlg '$<'
 
-$(ASSEMBLY) $(ASSEMBLY_MDB): $(build_sources) $(build_resources) $(build_datafiles) $(DLL_REFERENCES) $(PROJECT_REFERENCES) $(build_xamlg_list) $(build_satellite_assembly_list)
+$(ASSEMBLY_MDB): $(ASSEMBLY)
+
+$(ASSEMBLY): $(build_sources) $(build_resources) $(build_datafiles) $(DLL_REFERENCES) $(PROJECT_REFERENCES) $(build_xamlg_list) $(build_satellite_assembly_list)
 	mkdir -p $(shell dirname $(ASSEMBLY))
 	$(ASSEMBLY_COMPILER_COMMAND) $(ASSEMBLY_COMPILER_FLAGS) -out:$(ASSEMBLY) -target:$(COMPILE_TARGET) $(build_sources_embed) $(build_resources_embed) $(build_references_ref)
 
