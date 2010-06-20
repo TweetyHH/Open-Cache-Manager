@@ -16,8 +16,11 @@ body {
      }
     </style>
     <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
-    <script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
+   <!-- <script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>-->
     <script src="http://api.maps.yahoo.com/ajaxymap?v=3.0&appid=oWet3MfV34GPEQAvAw8iyLR3nVYLYDv_nnanofrm1I74CvY6PdqPl.Q8ayihhE39iQ--"></script>
+ <script src='http://maps.google.com/maps?file=api&amp;v=3'></script>
+
+
 
     <script type="text/javascript">
         <!--
@@ -29,8 +32,9 @@ body {
 	var lat = 45.39271;
 	var lon = -75.63399;
 	var zoom = 14;
-	var pois;
+	var pois,extra;
 	var notify;
+	var currentPopup;
  
         function init(){
             map = new OpenLayers.Map('map',
@@ -41,8 +45,26 @@ body {
                       projection: new OpenLayers.Projection("EPSG:900913"),
                       displayProjection: new OpenLayers.Projection("EPSG:4326")
                     });
- 
-            var yahoo = new OpenLayers.Layer.Yahoo(
+
+            var osm = new OpenLayers.Layer.OSM( "Open Street Map");
+
+	    var gmap = new OpenLayers.Layer.Google(
+                    "Google Street Map",
+                {'sphericalMercator': true}
+	    );
+
+	    var ghyb = new OpenLayers.Layer.Google(
+                "Google Hybrid",
+                {'type': G_HYBRID_MAP, 'numZoomLevels':20, 'sphericalMercator': true}
+            );
+
+	    var gphy = new OpenLayers.Layer.Google(
+                "Google Terrain",
+                {'type': G_PHYSICAL_MAP, 'sphericalMercator': true}
+            );
+
+
+            /*var yahoo = new OpenLayers.Layer.Yahoo(
                 "Yahoo Street Map",
                 {'sphericalMercator': true}
             );
@@ -53,19 +75,20 @@ body {
             var yahoohyb = new OpenLayers.Layer.Yahoo(
                 "Yahoo Hybrid",
                 {'type': YAHOO_MAP_HYB, 'sphericalMercator': true}
-            );
+            );*/
 
 
-	   	    var layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Open StreetMap");
+	    extra = new OpenLayers.Layer.Markers("Other Geocaches");
  
 
 	  
-            map.addLayers([layerMapnik, yahoo, yahoohyb,yahoosat]);
+            map.addLayers([osm, ghyb,gmap,gphy, extra]);
             map.addControl(new OpenLayers.Control.LayerSwitcher());
  
             var lonLat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
             if (!map.getCenter()) map.setCenter (lonLat, zoom);
             clearMarkers();
+            map.events.register('moveend', null, mapMoved)
         }
         
     function clearMarkers()
@@ -78,14 +101,65 @@ body {
     	map.addLayer(pois);
     }
 
-	function addMarker(lat, lon, icon)
+	function addMarker(lat, lon, icon, wptName, wptDescription)
 	{
 		var size = new OpenLayers.Size(24,24);
 		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
 		var icon = new OpenLayers.Icon(icon,size,offset);
 		var lonlat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
-		pois.addMarker(new OpenLayers.Marker(lonlat,icon));
-	    map.setCenter (lonlat, 14);
+		var feature = new OpenLayers.Feature(pois, lonlat);
+		feature.popupClass = OpenLayers.Class(OpenLayers.Popup.FramedCloud, {'autoSize': true,  'maxSize': new OpenLayers.Size(300,300)});
+		feature.data.popupContentHTML ="<div><span style='font-face:sans-serif; font-weight:bolder; font-size:12pt'>" + wptName + "</span><hr noshade>" + wptDescription + "</div>";
+		feature.data.icon = icon;
+		var marker = feature.createMarker();
+		//marker.icon = icon;
+		marker.events.register('mousedown',feature,mousedown);
+		pois.addMarker(marker);
+	   	map.setCenter (lonlat, 14);
+	}
+	
+	function addExtraMarker(lat, lon, icon, wptName, wptDescription)
+	{
+		var size = new OpenLayers.Size(18,18);
+		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+		var icon = new OpenLayers.Icon(icon,size,offset);
+		var lonlat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
+		var feature = new OpenLayers.Feature(extra, lonlat);
+		feature.popupClass = OpenLayers.Class(OpenLayers.Popup.FramedCloud, {'autoSize': true, 'minSize': new OpenLayers.Size(300,200), 'maxSize': new OpenLayers.Size(500,300)});
+		feature.data.popupContentHTML ="<div><span style='font-face:sans-serif; font-weight:bolder; font-size:12pt'>" + wptName + "</span><hr noshade>" + wptDescription + "<hr noshade><a href='javascript:doSelectCache(\"" + wptName + "\")'>[Select this cache]</a></div>";
+		feature.data.icon = icon;
+		var marker = feature.createMarker();
+		marker.setOpacity(0.65);
+		marker.events.register('mousedown',feature,mousedown);
+		extra.addMarker(marker);
+	}
+
+	function mousedown(evt)
+	{
+	  		if (currentPopup != null)
+	  		{
+	  			currentPopup.hide();
+	  		}
+	  		
+	  		if (this.popup == null) {
+                    this.popup = this.createPopup(true);
+                    map.addPopup(this.popup);
+             }
+             this.popup.show();
+            currentPopup= this.popup;             
+            OpenLayers.Event.stop(evt);
+	}
+	
+	function goHome(lat, lon)
+	{
+		var lonLat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
+		map.panTo(lonLat);
+	}
+	
+	function doSelectCache(wpt)
+	{
+		currentPopup.hide();
+		hidden.location.href = "ocm://select/" + wpt;	
 	}
 
 
@@ -100,12 +174,34 @@ body {
 		var icon = new OpenLayers.Icon("../icons/48x48/circle.png",size,offset);
 		notify.addMarker(new OpenLayers.Marker(lonLat,icon));  	
 		map.addLayer(notify);
+		map.raiseLayer(notify, -1)
 		map.panTo(lonLat);
 	}
+	
+	function clearExtraMarkers()
+	{
+		if (extra != null)
+			extra.destroy();
+		extra = new OpenLayers.Layer.Markers("Other Geocaches");
+		map.addLayer(extra);
+	}
+	
+	function mapMoved(evt)
+	{
+		setTimeout('doMapMove()', 300);
+	}
+	
+	function doMapMove()
+	{
+		var lonlat = map.getCenter().transform(map.projection, map.displayProjection);
+		hidden.location.href = "ocm://mapmoved/" + lonlat.lat + "/" + lonlat.lon;
+	}
+	
         // -->
     </script>
   </head>
   <body onload="init()">
     <div id="map"></div>
+    <iframe id="hidden" style='visibility:hidden' src="about:blank"/>
   </body>
 </html>

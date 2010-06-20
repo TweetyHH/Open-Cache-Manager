@@ -1,2 +1,0 @@
-﻿lat	lon	title	description	icon	iconSize	iconOffset
-45.40015	-75.69307	GC1JE7M	<div style='border: 1px dashed black; font: 10pt Arial'><a href="javascript:doSomething()>The Glebe: The Great Gospel Tour</a><br/>Difficulty: 2.0/5  Terrain: 1.5/5</div>	./icons/32x32/multi.png	24,24	-12,-12
