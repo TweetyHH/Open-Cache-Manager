@@ -65,6 +65,7 @@ namespace ocmgtk {
             this.hintField.Editable = false;
             this.hintField.CursorVisible = false;
             this.hintField.AcceptsTab = false;
+            this.hintField.WrapMode = ((Gtk.WrapMode)(2));
             this.GtkScrolledWindow.Add(this.hintField);
             this.hintExpander.Add(this.GtkScrolledWindow);
             this.GtkLabel21 = new Gtk.Label();
@@ -76,7 +77,11 @@ namespace ocmgtk {
             this.hbox1.Add(this.hintExpander);
             Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.hbox1[this.hintExpander]));
             w3.Position = 0;
-            // Container child hbox1.Gtk.Box+BoxChild
+            this.vbox2.Add(this.hbox1);
+            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.vbox2[this.hbox1]));
+            w4.Position = 0;
+            w4.Expand = false;
+            // Container child vbox2.Gtk.Box+BoxChild
             this.tbugExpander = new Gtk.Expander(null);
             this.tbugExpander.CanFocus = true;
             this.tbugExpander.Name = "tbugExpander";
@@ -98,12 +103,9 @@ namespace ocmgtk {
             this.GtkLabel2.UseMarkup = true;
             this.GtkLabel2.UseUnderline = true;
             this.tbugExpander.LabelWidget = this.GtkLabel2;
-            this.hbox1.Add(this.tbugExpander);
-            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.hbox1[this.tbugExpander]));
-            w6.Position = 1;
-            this.vbox2.Add(this.hbox1);
-            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox2[this.hbox1]));
-            w7.Position = 0;
+            this.vbox2.Add(this.tbugExpander);
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox2[this.tbugExpander]));
+            w7.Position = 1;
             w7.Expand = false;
             // Container child vbox2.Gtk.Box+BoxChild
             this.descScroll = new Gtk.ScrolledWindow();
@@ -112,7 +114,7 @@ namespace ocmgtk {
             this.descScroll.ShadowType = ((Gtk.ShadowType)(1));
             this.vbox2.Add(this.descScroll);
             Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.vbox2[this.descScroll]));
-            w8.Position = 1;
+            w8.Position = 2;
             this.Add(this.vbox2);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

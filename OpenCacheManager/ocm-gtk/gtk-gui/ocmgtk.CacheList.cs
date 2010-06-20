@@ -41,17 +41,19 @@ namespace ocmgtk {
         
         private Gtk.Image image16;
         
-        private Gtk.HBox hbox1;
+        private Gtk.Table table1;
         
-        private Gtk.CheckButton FoundButton;
+        private Gtk.CheckButton ArchivedButton;
         
         private Gtk.CheckButton checkbutton1;
+        
+        private Gtk.CheckButton checkbutton2;
+        
+        private Gtk.CheckButton FoundButton;
         
         private Gtk.CheckButton MineButton;
         
         private Gtk.CheckButton UnavailableButton;
-        
-        private Gtk.CheckButton ArchivedButton;
         
         private Gtk.ScrolledWindow GtkScrolledWindow;
         
@@ -168,54 +170,11 @@ namespace ocmgtk {
             w13.Expand = false;
             w13.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
-            this.hbox1 = new Gtk.HBox();
-            this.hbox1.Name = "hbox1";
-            this.hbox1.Spacing = 6;
-            // Container child hbox1.Gtk.Box+BoxChild
-            this.FoundButton = new Gtk.CheckButton();
-            this.FoundButton.CanFocus = true;
-            this.FoundButton.Name = "FoundButton";
-            this.FoundButton.Label = Mono.Unix.Catalog.GetString("Found");
-            this.FoundButton.Active = true;
-            this.FoundButton.DrawIndicator = true;
-            this.FoundButton.UseUnderline = true;
-            this.hbox1.Add(this.FoundButton);
-            Gtk.Box.BoxChild w14 = ((Gtk.Box.BoxChild)(this.hbox1[this.FoundButton]));
-            w14.Position = 0;
-            // Container child hbox1.Gtk.Box+BoxChild
-            this.checkbutton1 = new Gtk.CheckButton();
-            this.checkbutton1.CanFocus = true;
-            this.checkbutton1.Name = "checkbutton1";
-            this.checkbutton1.Label = Mono.Unix.Catalog.GetString("Not Found");
-            this.checkbutton1.Active = true;
-            this.checkbutton1.DrawIndicator = true;
-            this.checkbutton1.UseUnderline = true;
-            this.hbox1.Add(this.checkbutton1);
-            Gtk.Box.BoxChild w15 = ((Gtk.Box.BoxChild)(this.hbox1[this.checkbutton1]));
-            w15.Position = 1;
-            // Container child hbox1.Gtk.Box+BoxChild
-            this.MineButton = new Gtk.CheckButton();
-            this.MineButton.CanFocus = true;
-            this.MineButton.Name = "MineButton";
-            this.MineButton.Label = Mono.Unix.Catalog.GetString("Mine");
-            this.MineButton.Active = true;
-            this.MineButton.DrawIndicator = true;
-            this.MineButton.UseUnderline = true;
-            this.hbox1.Add(this.MineButton);
-            Gtk.Box.BoxChild w16 = ((Gtk.Box.BoxChild)(this.hbox1[this.MineButton]));
-            w16.Position = 2;
-            // Container child hbox1.Gtk.Box+BoxChild
-            this.UnavailableButton = new Gtk.CheckButton();
-            this.UnavailableButton.CanFocus = true;
-            this.UnavailableButton.Name = "UnavailableButton";
-            this.UnavailableButton.Label = Mono.Unix.Catalog.GetString("Unavailable");
-            this.UnavailableButton.Active = true;
-            this.UnavailableButton.DrawIndicator = true;
-            this.UnavailableButton.UseUnderline = true;
-            this.hbox1.Add(this.UnavailableButton);
-            Gtk.Box.BoxChild w17 = ((Gtk.Box.BoxChild)(this.hbox1[this.UnavailableButton]));
-            w17.Position = 3;
-            // Container child hbox1.Gtk.Box+BoxChild
+            this.table1 = new Gtk.Table(((uint)(2)), ((uint)(3)), false);
+            this.table1.Name = "table1";
+            this.table1.RowSpacing = ((uint)(6));
+            this.table1.ColumnSpacing = ((uint)(6));
+            // Container child table1.Gtk.Table+TableChild
             this.ArchivedButton = new Gtk.CheckButton();
             this.ArchivedButton.CanFocus = true;
             this.ArchivedButton.Name = "ArchivedButton";
@@ -223,14 +182,83 @@ namespace ocmgtk {
             this.ArchivedButton.Active = true;
             this.ArchivedButton.DrawIndicator = true;
             this.ArchivedButton.UseUnderline = true;
-            this.hbox1.Add(this.ArchivedButton);
-            Gtk.Box.BoxChild w18 = ((Gtk.Box.BoxChild)(this.hbox1[this.ArchivedButton]));
-            w18.Position = 4;
-            this.vbox2.Add(this.hbox1);
-            Gtk.Box.BoxChild w19 = ((Gtk.Box.BoxChild)(this.vbox2[this.hbox1]));
-            w19.Position = 2;
-            w19.Expand = false;
-            w19.Fill = false;
+            this.table1.Add(this.ArchivedButton);
+            Gtk.Table.TableChild w14 = ((Gtk.Table.TableChild)(this.table1[this.ArchivedButton]));
+            w14.TopAttach = ((uint)(1));
+            w14.BottomAttach = ((uint)(2));
+            w14.LeftAttach = ((uint)(2));
+            w14.RightAttach = ((uint)(3));
+            w14.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.checkbutton1 = new Gtk.CheckButton();
+            this.checkbutton1.CanFocus = true;
+            this.checkbutton1.Name = "checkbutton1";
+            this.checkbutton1.Label = Mono.Unix.Catalog.GetString("Not Found");
+            this.checkbutton1.Active = true;
+            this.checkbutton1.DrawIndicator = true;
+            this.checkbutton1.UseUnderline = true;
+            this.table1.Add(this.checkbutton1);
+            Gtk.Table.TableChild w15 = ((Gtk.Table.TableChild)(this.table1[this.checkbutton1]));
+            w15.LeftAttach = ((uint)(1));
+            w15.RightAttach = ((uint)(2));
+            w15.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.checkbutton2 = new Gtk.CheckButton();
+            this.checkbutton2.CanFocus = true;
+            this.checkbutton2.Name = "checkbutton2";
+            this.checkbutton2.Label = Mono.Unix.Catalog.GetString("Available");
+            this.checkbutton2.Active = true;
+            this.checkbutton2.DrawIndicator = true;
+            this.checkbutton2.UseUnderline = true;
+            this.table1.Add(this.checkbutton2);
+            Gtk.Table.TableChild w16 = ((Gtk.Table.TableChild)(this.table1[this.checkbutton2]));
+            w16.TopAttach = ((uint)(1));
+            w16.BottomAttach = ((uint)(2));
+            w16.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.FoundButton = new Gtk.CheckButton();
+            this.FoundButton.CanFocus = true;
+            this.FoundButton.Name = "FoundButton";
+            this.FoundButton.Label = Mono.Unix.Catalog.GetString("Found");
+            this.FoundButton.Active = true;
+            this.FoundButton.DrawIndicator = true;
+            this.FoundButton.UseUnderline = true;
+            this.table1.Add(this.FoundButton);
+            Gtk.Table.TableChild w17 = ((Gtk.Table.TableChild)(this.table1[this.FoundButton]));
+            w17.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.MineButton = new Gtk.CheckButton();
+            this.MineButton.CanFocus = true;
+            this.MineButton.Name = "MineButton";
+            this.MineButton.Label = Mono.Unix.Catalog.GetString("Mine");
+            this.MineButton.Active = true;
+            this.MineButton.DrawIndicator = true;
+            this.MineButton.UseUnderline = true;
+            this.table1.Add(this.MineButton);
+            Gtk.Table.TableChild w18 = ((Gtk.Table.TableChild)(this.table1[this.MineButton]));
+            w18.LeftAttach = ((uint)(2));
+            w18.RightAttach = ((uint)(3));
+            w18.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.UnavailableButton = new Gtk.CheckButton();
+            this.UnavailableButton.CanFocus = true;
+            this.UnavailableButton.Name = "UnavailableButton";
+            this.UnavailableButton.Label = Mono.Unix.Catalog.GetString("Disabled");
+            this.UnavailableButton.Active = true;
+            this.UnavailableButton.DrawIndicator = true;
+            this.UnavailableButton.UseUnderline = true;
+            this.table1.Add(this.UnavailableButton);
+            Gtk.Table.TableChild w19 = ((Gtk.Table.TableChild)(this.table1[this.UnavailableButton]));
+            w19.TopAttach = ((uint)(1));
+            w19.BottomAttach = ((uint)(2));
+            w19.LeftAttach = ((uint)(1));
+            w19.RightAttach = ((uint)(2));
+            w19.YOptions = ((Gtk.AttachOptions)(4));
+            this.vbox2.Add(this.table1);
+            Gtk.Box.BoxChild w20 = ((Gtk.Box.BoxChild)(this.vbox2[this.table1]));
+            w20.Position = 2;
+            w20.Expand = false;
+            w20.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
             this.GtkScrolledWindow = new Gtk.ScrolledWindow();
             this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -242,8 +270,8 @@ namespace ocmgtk {
             this.treeview1.Reorderable = true;
             this.GtkScrolledWindow.Add(this.treeview1);
             this.vbox2.Add(this.GtkScrolledWindow);
-            Gtk.Box.BoxChild w21 = ((Gtk.Box.BoxChild)(this.vbox2[this.GtkScrolledWindow]));
-            w21.Position = 3;
+            Gtk.Box.BoxChild w22 = ((Gtk.Box.BoxChild)(this.vbox2[this.GtkScrolledWindow]));
+            w22.Position = 3;
             this.Add(this.vbox2);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
@@ -252,10 +280,11 @@ namespace ocmgtk {
             this.Hide();
             this.button154.Clicked += new System.EventHandler(this.OnClearClicked);
             this.button136.Clicked += new System.EventHandler(this.OnClearDistance);
-            this.FoundButton.Toggled += new System.EventHandler(this.OnFoundButtonToggled);
-            this.checkbutton1.Toggled += new System.EventHandler(this.OnNotFoundToggled);
-            this.MineButton.Toggled += new System.EventHandler(this.OnMineToggled);
             this.UnavailableButton.Toggled += new System.EventHandler(this.OnUnavailableToggled);
+            this.MineButton.Toggled += new System.EventHandler(this.OnMineToggled);
+            this.FoundButton.Toggled += new System.EventHandler(this.OnFoundButtonToggled);
+            this.checkbutton2.Toggled += new System.EventHandler(this.OnAvailableToggle);
+            this.checkbutton1.Toggled += new System.EventHandler(this.OnNotFoundToggled);
             this.ArchivedButton.Toggled += new System.EventHandler(this.OnArchivedButtonToggled);
             this.treeview1.ButtonPressEvent += new Gtk.ButtonPressEventHandler(this.DoButtonPress);
         }

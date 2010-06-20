@@ -11,19 +11,19 @@
 namespace ocmgtk {
     
     
-    public partial class Preferences {
+    public partial class GPSConfiguration {
         
         private Gtk.Table table1;
         
+        private Gtk.RadioButton gpxRadio;
+        
+        private ocmgtk.GPXWidget gpxwidget;
+        
+        private Gtk.RadioButton gusbRadio;
+        
         private Gtk.Label label1;
         
-        private Gtk.Label label2;
-        
-        private ocmgtk.CoordinateWidget latControl;
-        
-        private ocmgtk.CoordinateWidget lonControl;
-        
-        private Gtk.Entry memberId;
+        private Gtk.RadioButton otherRadio;
         
         private Gtk.Button buttonCancel;
         
@@ -31,72 +31,85 @@ namespace ocmgtk {
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
-            // Widget ocmgtk.Preferences
-            this.Name = "ocmgtk.Preferences";
-            this.Title = Mono.Unix.Catalog.GetString("Preferences...");
+            // Widget ocmgtk.GPSConfiguration
+            this.WidthRequest = 500;
+            this.HeightRequest = 350;
+            this.Name = "ocmgtk.GPSConfiguration";
+            this.Title = Mono.Unix.Catalog.GetString("GPS Configuration...");
+            this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.Modal = true;
             this.BorderWidth = ((uint)(6));
             this.Resizable = false;
             this.AllowGrow = false;
-            // Internal child ocmgtk.Preferences.VBox
+            this.SkipPagerHint = true;
+            this.SkipTaskbarHint = true;
+            // Internal child ocmgtk.GPSConfiguration.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";
             w1.BorderWidth = ((uint)(2));
             // Container child dialog1_VBox.Gtk.Box+BoxChild
-            this.table1 = new Gtk.Table(((uint)(3)), ((uint)(2)), false);
+            this.table1 = new Gtk.Table(((uint)(4)), ((uint)(2)), false);
             this.table1.Name = "table1";
             this.table1.RowSpacing = ((uint)(6));
             this.table1.ColumnSpacing = ((uint)(6));
+            this.table1.BorderWidth = ((uint)(6));
             // Container child table1.Gtk.Table+TableChild
-            this.label1 = new Gtk.Label();
-            this.label1.Name = "label1";
-            this.label1.Xalign = 0F;
-            this.label1.LabelProp = Mono.Unix.Catalog.GetString("Home Coordinates:");
-            this.table1.Add(this.label1);
-            Gtk.Table.TableChild w2 = ((Gtk.Table.TableChild)(this.table1[this.label1]));
-            w2.XOptions = ((Gtk.AttachOptions)(4));
+            this.gpxRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Garmin Colorado/Oregon/Dakota/Nuvi"));
+            this.gpxRadio.CanFocus = true;
+            this.gpxRadio.Name = "gpxRadio";
+            this.gpxRadio.Active = true;
+            this.gpxRadio.DrawIndicator = true;
+            this.gpxRadio.UseUnderline = true;
+            this.gpxRadio.Group = new GLib.SList(System.IntPtr.Zero);
+            this.table1.Add(this.gpxRadio);
+            Gtk.Table.TableChild w2 = ((Gtk.Table.TableChild)(this.table1[this.gpxRadio]));
+            w2.LeftAttach = ((uint)(1));
+            w2.RightAttach = ((uint)(2));
             w2.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
-            this.label2 = new Gtk.Label();
-            this.label2.Name = "label2";
-            this.label2.LabelProp = Mono.Unix.Catalog.GetString("Geocaching.com Member ID:");
-            this.table1.Add(this.label2);
-            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table1[this.label2]));
-            w3.TopAttach = ((uint)(2));
-            w3.BottomAttach = ((uint)(3));
+            this.gpxwidget = new ocmgtk.GPXWidget();
+            this.gpxwidget.Events = ((Gdk.EventMask)(256));
+            this.gpxwidget.Name = "gpxwidget";
+            this.table1.Add(this.gpxwidget);
+            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table1[this.gpxwidget]));
+            w3.TopAttach = ((uint)(3));
+            w3.BottomAttach = ((uint)(4));
+            w3.RightAttach = ((uint)(2));
             w3.XOptions = ((Gtk.AttachOptions)(4));
             w3.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
-            this.latControl = new ocmgtk.CoordinateWidget();
-            this.latControl.Events = ((Gdk.EventMask)(256));
-            this.latControl.Name = "latControl";
-            this.table1.Add(this.latControl);
-            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table1[this.latControl]));
+            this.gusbRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Garmin eTrex/GPSMap/Street Pilot"));
+            this.gusbRadio.CanFocus = true;
+            this.gusbRadio.Name = "gusbRadio";
+            this.gusbRadio.DrawIndicator = true;
+            this.gusbRadio.UseUnderline = true;
+            this.gusbRadio.Group = this.gpxRadio.Group;
+            this.table1.Add(this.gusbRadio);
+            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table1[this.gusbRadio]));
+            w4.TopAttach = ((uint)(1));
+            w4.BottomAttach = ((uint)(2));
             w4.LeftAttach = ((uint)(1));
             w4.RightAttach = ((uint)(2));
             w4.XOptions = ((Gtk.AttachOptions)(4));
             w4.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
-            this.lonControl = new ocmgtk.CoordinateWidget();
-            this.lonControl.Events = ((Gdk.EventMask)(256));
-            this.lonControl.Name = "lonControl";
-            this.table1.Add(this.lonControl);
-            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table1[this.lonControl]));
-            w5.TopAttach = ((uint)(1));
-            w5.BottomAttach = ((uint)(2));
-            w5.LeftAttach = ((uint)(1));
-            w5.RightAttach = ((uint)(2));
+            this.label1 = new Gtk.Label();
+            this.label1.Name = "label1";
+            this.label1.LabelProp = Mono.Unix.Catalog.GetString("Select a GPS Type:");
+            this.table1.Add(this.label1);
+            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table1[this.label1]));
             w5.XOptions = ((Gtk.AttachOptions)(4));
             w5.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
-            this.memberId = new Gtk.Entry();
-            this.memberId.CanFocus = true;
-            this.memberId.Name = "memberId";
-            this.memberId.IsEditable = true;
-            this.memberId.InvisibleChar = '•';
-            this.table1.Add(this.memberId);
-            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table1[this.memberId]));
+            this.otherRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Other"));
+            this.otherRadio.CanFocus = true;
+            this.otherRadio.Name = "otherRadio";
+            this.otherRadio.DrawIndicator = true;
+            this.otherRadio.UseUnderline = true;
+            this.otherRadio.Group = this.gpxRadio.Group;
+            this.table1.Add(this.otherRadio);
+            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table1[this.otherRadio]));
             w6.TopAttach = ((uint)(2));
             w6.BottomAttach = ((uint)(3));
             w6.LeftAttach = ((uint)(1));
@@ -108,7 +121,7 @@ namespace ocmgtk {
             w7.Position = 0;
             w7.Expand = false;
             w7.Fill = false;
-            // Internal child ocmgtk.Preferences.ActionArea
+            // Internal child ocmgtk.GPSConfiguration.ActionArea
             Gtk.HButtonBox w8 = this.ActionArea;
             w8.Name = "dialog1_ActionArea";
             w8.Spacing = 10;
@@ -142,11 +155,14 @@ namespace ocmgtk {
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 446;
-            this.DefaultHeight = 204;
+            this.DefaultWidth = 502;
+            this.DefaultHeight = 379;
             this.Show();
-            this.buttonCancel.Clicked += new System.EventHandler(this.OnCancelClicked);
-            this.buttonOk.Clicked += new System.EventHandler(this.OnButtonOkClicked);
+            this.otherRadio.Toggled += new System.EventHandler(this.OnOtherToggle);
+            this.gusbRadio.Toggled += new System.EventHandler(this.OnGUSBToggle);
+            this.gpxRadio.Toggled += new System.EventHandler(this.OnGPXToggled);
+            this.buttonCancel.Clicked += new System.EventHandler(this.OnButtonClick);
+            this.buttonOk.Clicked += new System.EventHandler(this.OnButtonClick);
         }
     }
 }

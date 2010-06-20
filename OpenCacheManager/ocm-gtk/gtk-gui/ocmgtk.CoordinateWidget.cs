@@ -34,12 +34,12 @@ namespace ocmgtk {
             this.hbox5.Spacing = 6;
             // Container child hbox5.Gtk.Box+BoxChild
             this.directionCombo = Gtk.ComboBox.NewText();
+            this.directionCombo.WidthRequest = 50;
             this.directionCombo.Name = "directionCombo";
             this.hbox5.Add(this.directionCombo);
             Gtk.Box.BoxChild w1 = ((Gtk.Box.BoxChild)(this.hbox5[this.directionCombo]));
             w1.Position = 0;
             w1.Expand = false;
-            w1.Fill = false;
             // Container child hbox5.Gtk.Box+BoxChild
             this.degreeEntry = new Gtk.Entry();
             this.degreeEntry.CanFocus = true;

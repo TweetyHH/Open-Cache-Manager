@@ -15,17 +15,11 @@ namespace ocmgtk {
         
         private Gtk.UIManager UIManager;
         
-        private Gtk.Action refreshAction;
-        
-        private Gtk.Action stopAction;
-        
         private Gtk.VBox widgetBox;
         
         private Gtk.Frame browserFrame;
         
         private Gtk.Alignment browserAlign;
-        
-        private Gtk.Statusbar browsestatusBar;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -33,10 +27,6 @@ namespace ocmgtk {
             Stetic.BinContainer w1 = Stetic.BinContainer.Attach(this);
             this.UIManager = new Gtk.UIManager();
             Gtk.ActionGroup w2 = new Gtk.ActionGroup("Default");
-            this.refreshAction = new Gtk.Action("refreshAction", null, null, "gtk-refresh");
-            w2.Add(this.refreshAction, null);
-            this.stopAction = new Gtk.Action("stopAction", null, null, "gtk-stop");
-            w2.Add(this.stopAction, null);
             this.UIManager.InsertActionGroup(w2, 0);
             this.Name = "ocmgtk.BrowserWidget";
             // Container child ocmgtk.BrowserWidget.Gtk.Container+ContainerChild
@@ -45,6 +35,7 @@ namespace ocmgtk {
             // Container child widgetBox.Gtk.Box+BoxChild
             this.browserFrame = new Gtk.Frame();
             this.browserFrame.Name = "browserFrame";
+            this.browserFrame.ShadowType = ((Gtk.ShadowType)(1));
             this.browserFrame.LabelYalign = 0F;
             // Container child browserFrame.Gtk.Container+ContainerChild
             this.browserAlign = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
@@ -53,24 +44,12 @@ namespace ocmgtk {
             this.widgetBox.Add(this.browserFrame);
             Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.widgetBox[this.browserFrame]));
             w4.Position = 0;
-            // Container child widgetBox.Gtk.Box+BoxChild
-            this.browsestatusBar = new Gtk.Statusbar();
-            this.browsestatusBar.Name = "browsestatusBar";
-            this.browsestatusBar.Spacing = 6;
-            this.browsestatusBar.HasResizeGrip = false;
-            this.widgetBox.Add(this.browsestatusBar);
-            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.widgetBox[this.browsestatusBar]));
-            w5.Position = 1;
-            w5.Expand = false;
-            w5.Fill = false;
             this.Add(this.widgetBox);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             w1.SetUiManager(UIManager);
             this.Hide();
-            this.refreshAction.Activated += new System.EventHandler(this.OnRefresh);
-            this.stopAction.Activated += new System.EventHandler(this.OnStopActionActivated);
         }
     }
 }
