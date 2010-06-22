@@ -26,7 +26,7 @@ namespace ocmengine
 		private string m_name = "";
 		private string m_desc = "";
 		private Uri m_uri = null;
-		private string m_urlname = "";
+		private string m_urlname = "http://google.ca";
 		private string m_symbol = "";
 		private string m_type = "Waypoint";
 		private string m_parent = null;

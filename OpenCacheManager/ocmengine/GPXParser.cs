@@ -40,6 +40,12 @@ namespace ocmengine
 		public delegate void ParseEventHandler(object sender, EventArgs args);
 		public event ParseEventHandler ParseWaypoint;
 		public event ParseEventHandler Complete;
+
+		public string m_ownid = "";
+		public string CacheOwner
+		{
+			set {m_ownid = value;}
+		}
 		
 		private DateTime gpx_date;
 		
@@ -148,6 +154,11 @@ namespace ocmengine
 			{
 				pt.Time = reader.ReadElementContentAsDateTime();
 			}
+			else if (reader.Name == "link")
+			{
+				pt.URL = new Uri(reader.GetAttribute("href"));
+				//pt.URLName = reader.ReadElementContentAsString();
+			}
 			else if (reader.Name == "urlname")
 			{
 				pt.URLName = reader.ReadElementContentAsString();
@@ -159,7 +170,7 @@ namespace ocmengine
 			else if (reader.Name == "type")
 			{
 				pt.Type = reader.ReadElementContentAsString();
-				if (pt.Type.StartsWith("Geocache"))
+				if (pt.Type.StartsWith("Geocache") || pt.Type.StartsWith("TerraCache"))
 				    pt = Geocache.convertFromWaypoint(pt);
 			}
 			else if (pt is Geocache)
@@ -174,13 +185,108 @@ namespace ocmengine
 			m_store.ClearTBs(pt.Name);
 			if (reader.NamespaceURI.StartsWith("http://www.groundspeak.com/cache"))
 			{
-				if (reader.LocalName == "cache")
+				cache = ParseGroundSpeakCache (reader, ref cache);
+			}
+			else if (reader.NamespaceURI.StartsWith("http://www.TerraCaching.com"))
+			{
+				if (reader.LocalName == "terracache")
+				{
+					cache.CacheID = reader.GetAttribute("id");
+					cache.Available = true;
+					cache.Archived = false;
+				}
+				else if (reader.LocalName == "name")
+				{
+					cache.CacheName = reader.ReadElementContentAsString();
+				}
+				else if (reader.LocalName == "description")
+				{
+					cache.LongDesc = reader.ReadElementContentAsString();
+				}
+				else if (reader.LocalName == "style")
+				{
+					ParseCacheType(reader.ReadElementContentAsString(), ref cache);
+				}
+				else if (reader.LocalName == "owner")
+				{
+					cache.OwnerID = reader.GetAttribute("id");
+					cache.PlacedBy = reader.ReadElementContentAsString();
+				}
+				else if (reader.LocalName == "hint")
+				{
+					cache.Hint = reader.ReadElementContentAsString();
+					cache.Hint = cache.Hint.Replace("&gt;", ">");
+					cache.Hint = cache.Hint.Replace("&lt;", "<");
+					cache.Hint = cache.Hint.Replace("&amp;", "&");
+				}
+				else if (reader.LocalName == "tps_points")
+				{
+					cache.ShortDesc += "<b>TPS Points: </b>";
+					cache.ShortDesc += reader.ReadElementContentAsString();
+					cache.ShortDesc += "<br>";
+				}
+				else if (reader.LocalName == "mce_score")
+				{
+					cache.ShortDesc += "<b>MCE Score: </b>";
+					cache.ShortDesc += reader.ReadElementContentAsString();
+					cache.ShortDesc += "<br>";
+				}
+				else if (reader.LocalName == "physical_challenge")
+				{
+					cache.ShortDesc += "<b>Physical Challenge: </b>";
+					cache.ShortDesc += reader.ReadElementContentAsString();
+					cache.ShortDesc += "<br>";
+				}
+				else if (reader.LocalName == "mental_challenge")
+				{
+					cache.ShortDesc += "<b>Mental Challenge: </b>";
+					cache.ShortDesc += reader.ReadElementContentAsString();
+					cache.ShortDesc += "<br>";
+				}
+				else if (reader.LocalName == "camo_challenge")
+				{
+					cache.ShortDesc += "<b>Cammo Challenge: </b>";
+					cache.ShortDesc += reader.ReadElementContentAsString();
+					cache.ShortDesc += "<hr noshade>";
+				}
+				else if (reader.LocalName == "size")
+				{
+					int size = reader.ReadElementContentAsInt();
+					switch(size)
+					{
+						case 1:
+							cache.Container = "Large";
+							break;
+						case 2:
+							cache.Container = "Regular";
+							break;
+						case 3:
+							cache.Container = "Small";
+							break;
+						case 4:
+							cache.Container = "Micro";
+							break;
+						case 5: 
+							cache.Container = "Micro";
+							break;
+					}
+				}
+				else if (reader.LocalName == "logs" && !reader.IsEmptyElement)
+				{
+					parseVCacheLogs(ref cache, reader);
+				}
+			}
+		}
+		
+		private Geocache ParseGroundSpeakCache (XmlReader reader, ref Geocache cache)
+		{
+			if (reader.LocalName == "cache")
 				{
 					cache.Available = Boolean.Parse(reader.GetAttribute("available"));
 					cache.Archived = Boolean.Parse(reader.GetAttribute("archived"));
 					cache.CacheID = reader.GetAttribute("id");
 				}
-				if (reader.LocalName == "name")
+				else if (reader.LocalName == "name")
 				{
 					cache.CacheName = reader.ReadElementContentAsString();
 				}
@@ -237,7 +343,7 @@ namespace ocmengine
 				{
 					cache.State = reader.ReadElementContentAsString();
 				}
-			}
+			return cache;
 		}
 		
 		private void ParseTravelBugs(ref Geocache cache, XmlReader reader)
@@ -320,13 +426,70 @@ namespace ocmengine
 			m_store.AddLog(cache.Name, log);			
 		}
 		
+		private void parseVCacheLogs(ref Geocache cache, XmlReader reader)
+		{
+			m_store.ClearLogs(cache.Name);
+			while (reader.Read())
+			{
+				if (reader.LocalName == "log")
+				{
+					parseVCacheLog(ref cache, reader);
+				}
+				if (reader.LocalName == "logs")
+				{
+					return;
+				}
+			}
+		}
+		
+		
+		private void parseVCacheLog(ref Geocache cache, XmlReader reader)
+		{
+			CacheLog log = new CacheLog();
+			bool breakLoop = false;
+			while (reader.Read() && !breakLoop)
+			{
+				if (reader.LocalName == "date")
+				{
+					log.LogDate = reader.ReadElementContentAsDateTime();
+				}
+				else if (reader.LocalName == "type")
+				{
+					log.LogStatus = reader.ReadElementContentAsString();
+				}
+				else if (reader.LocalName == "user")
+				{
+					log.FinderID = reader.GetAttribute("id");
+					log.LoggedBy = reader.ReadElementContentAsString();
+					if (log.FinderID == m_ownid && log.LogStatus == "find")
+					{
+						cache.Symbol = "Geocache Found";
+					}
+				}
+				else if (reader.LocalName == "entry")
+				{
+					log.Encoded = false;
+					log.LogMessage = reader.ReadElementContentAsString();
+					log.LogMessage = log.LogMessage.Replace("&gt;", ">");
+					log.LogMessage = log.LogMessage.Replace("&lt;", "<");
+					log.LogMessage = log.LogMessage.Replace("&amp;", "&");
+				}
+				else if (reader.LocalName == "log")
+				{
+					breakLoop = true;
+				}
+			}
+			m_store.AddLog(cache.Name, log);			
+		}
+		
+		
 		private void ParseCacheType(String type, ref Geocache cache)
 		{
-			if (type == "Unknown Cache")
+			if ((type == "Unknown Cache") || (type == "Other"))
 				cache.TypeOfCache = Geocache.CacheType.MYSTERY;
-			else if (type == "Traditional Cache")
+			else if ((type == "Traditional Cache") || (type == "Classic"))
 				cache.TypeOfCache = Geocache.CacheType.TRADITIONAL;
-			else if (type == "Multi-cache")
+			else if ((type == "Multi-cache") || (type == "Offset"))
 				cache.TypeOfCache = Geocache.CacheType.MULTI;
 			else if (type == "Letterbox Hybrid")
 				cache.TypeOfCache = Geocache.CacheType.LETTERBOX;
@@ -342,9 +505,9 @@ namespace ocmengine
 				cache.TypeOfCache = Geocache.CacheType.MAZE;
 			else if (type == "Mega-Event Cache")
 				cache.TypeOfCache = Geocache.CacheType.MEGAEVENT;
-			else if (type == "Event Cache")
+			else if ((type == "Event Cache") || (type == "Event"))
 				cache.TypeOfCache = Geocache.CacheType.EVENT;
-			else if (type == "Virtual Cache")
+			else if ((type == "Virtual Cache") || (type == "Virtual"))
 			    cache.TypeOfCache = Geocache.CacheType.VIRTUAL;
 			else if (type == "Project APE Cache")
 				cache.TypeOfCache = Geocache.CacheType.APE;

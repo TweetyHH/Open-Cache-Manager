@@ -40,23 +40,23 @@ namespace ocmengine
 		
 		const string CACHE_PREFIX="groundspeak";
 		
-		private string m_cacheName;
-		private string m_cacheOwner;
-		private string m_placedBy;
-		private float m_difficulty;
-		private float m_terrain;
-		private string m_country;
-		private string m_state;
-		private CacheType m_cachetype;
-		private string m_shortdesc;
-		private string m_longdesc;
-		private string m_hint;
-		private List<TravelBug> m_travelbugs;
-		private string m_container;
-		private bool m_available;
-		private bool m_archived;
-		private string m_cacheID;
-		private string m_ownerID;
+		private string m_cacheName = "";
+		private string m_cacheOwner = "";
+		private string m_placedBy = "";
+		private float m_difficulty = 0;
+		private float m_terrain= 0;
+		private string m_country = "";
+		private string m_state = "";
+		private CacheType m_cachetype = Geocache.CacheType.OTHER;
+		private string m_shortdesc = "";
+		private string m_longdesc = "";
+		private string m_hint= "";
+		private List<TravelBug> m_travelbugs = new List<TravelBug>();
+		private string m_container = "";
+		private bool m_available= false;
+		private bool m_archived=false;
+		private string m_cacheID = "";
+		private string m_ownerID = "";
 		
 		public string CacheName
 		{
