@@ -2726,23 +2726,9 @@ home and know which caches are yours.</property>
               <widget class="Gtk.Expander" id="hintExpander">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
+                <property name="Expanded">True</property>
                 <child>
-                  <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
-                    <property name="MemberName" />
-                    <property name="ShadowType">In</property>
-                    <child>
-                      <widget class="Gtk.TextView" id="hintField">
-                        <property name="MemberName" />
-                        <property name="CanFocus">True</property>
-                        <property name="ShowScrollbars">True</property>
-                        <property name="Editable">False</property>
-                        <property name="CursorVisible">False</property>
-                        <property name="AcceptsTab">False</property>
-                        <property name="Text" translatable="yes" />
-                        <property name="WrapMode">Word</property>
-                      </widget>
-                    </child>
-                  </widget>
+                  <placeholder />
                 </child>
                 <child>
                   <widget class="Gtk.Label" id="GtkLabel21">
@@ -2789,7 +2775,7 @@ home and know which caches are yours.</property>
               <widget class="Gtk.Label" id="GtkLabel2">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">&lt;b&gt;Travel Bugs&lt;/b&gt;</property>
+                <property name="LabelProp" translatable="yes">&lt;b&gt;Trackables&lt;/b&gt;</property>
                 <property name="UseMarkup">True</property>
                 <property name="UseUnderline">True</property>
               </widget>
@@ -3498,7 +3484,7 @@ Less Than</property>
         <child>
           <widget class="Gtk.Label" id="label2">
             <property name="MemberName" />
-            <property name="LabelProp" translatable="yes">Version 0.14 Alpha</property>
+            <property name="LabelProp" translatable="yes">Version 0.15 Alpha</property>
           </widget>
           <packing>
             <property name="PackType">End</property>

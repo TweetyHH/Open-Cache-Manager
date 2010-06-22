@@ -67,7 +67,7 @@ namespace ocmgtk {
             // Container child vbox2.Gtk.Box+BoxChild
             this.label2 = new Gtk.Label();
             this.label2.Name = "label2";
-            this.label2.LabelProp = Mono.Unix.Catalog.GetString("Version 0.14 Alpha");
+            this.label2.LabelProp = Mono.Unix.Catalog.GetString("Version 0.15 Alpha");
             this.vbox2.Add(this.label2);
             Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.vbox2[this.label2]));
             w4.PackType = ((Gtk.PackType)(1));
