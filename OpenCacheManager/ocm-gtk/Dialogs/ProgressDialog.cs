@@ -58,10 +58,7 @@ namespace ocmgtk
 				m_parser.parseGPXFile (fs, store);
 			} catch (Exception e) {
 				this.Hide ();
-				Gtk.MessageDialog error = new Gtk.MessageDialog (this, Gtk.DialogFlags.DestroyWithParent, Gtk.MessageType.Error, Gtk.ButtonsType.Ok, e.Message);
-				error.Run ();
-				error.Hide ();
-				error.Dispose ();
+				UIMonitor.ShowException(e);
 				this.Dispose ();
 			}
 		}
