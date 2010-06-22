@@ -53,7 +53,7 @@ public partial class MainWindow : Gtk.Window
 		
 		dialog.ProgramName = "Open Cache Manager";
 		
-		dialog.Version = "ALPHA 0.14";
+		dialog.Version = "ALPHA 0.15";
 		
 		//dialog.Comments = (asm.GetCustomAttributes (typeof(AssemblyDescriptionAttribute), false)[0] as AssemblyDescriptionAttribute).Description;
 		

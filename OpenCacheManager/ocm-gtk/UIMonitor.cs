@@ -648,6 +648,7 @@ namespace ocmgtk
 			MessageDialog errorDialog = new MessageDialog (null, DialogFlags.Modal, MessageType.Error, ButtonsType.Ok, e.Message);
 			errorDialog.Run ();
 			errorDialog.Hide ();
+			System.Console.WriteLine(e.StackTrace);
 		}
 
 		public void RunSetupAssistant ()
@@ -680,6 +681,7 @@ namespace ocmgtk
 		{
 			System.IO.FileStream fs = System.IO.File.OpenRead (filename);
 			GPXParser parser = new GPXParser ();
+			parser.CacheOwner = OwnerID;
 			int total = parser.preParse (fs);
 			fs = System.IO.File.OpenRead (filename);
 			CacheStore store = Engine.getInstance ().Store;
