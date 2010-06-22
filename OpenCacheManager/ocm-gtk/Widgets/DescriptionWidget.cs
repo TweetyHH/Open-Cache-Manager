@@ -26,14 +26,16 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class DescriptionWidget : Gtk.Bin
 	{
-		HTMLWidget descWidget;
+		HTMLWidget descWidget, hintWidget;
 		ListStore tbStore;
 
 		public DescriptionWidget ()
 		{
 			this.Build ();
 			descWidget = new HTMLWidget ();
+			hintWidget = new HTMLWidget();
 			descScroll.Add (descWidget);
+			hintExpander.Add(hintWidget);			
 			SetupTBList ();
 		}
 
@@ -51,7 +53,7 @@ namespace ocmgtk
 				hintExpander.Sensitive = false;
 				hintExpander.Expanded = false;
 			} else {
-				hintField.Buffer.Text = cache.Hint;
+				hintWidget.HTML = "<div style='font-family:sans-serif;font-size:10pt; background-color:#FFFFFF'>" + cache.Hint  + "</div>";
 				hintExpander.Sensitive = true;
 				hintExpander.Expanded = false;
 			}
