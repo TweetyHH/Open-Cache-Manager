@@ -19,12 +19,12 @@ namespace ocmengine
 
 	public partial class CacheStore
 	{
-		const string CREATE_CACHE_TABLE = "CREATE TABLE GEOCACHE (available TEXT, archived TEXT, container TEXT, hint TEXT, longdesc TEXT, shortdesc TEXT, type TEXT, state TEXT, country TEXT, terrain NUMERIC, difficulty NUMERIC, placedby TEXT, name TEXT PRIMARY KEY, fullname TEXT, id TEXT, owner TEXT, ownerID TEXT)";
+		const string CREATE_CACHE_TABLE = "CREATE TABLE GEOCACHE (available TEXT, archived TEXT, container TEXT, hint TEXT, longdesc TEXT, shortdesc TEXT, type TEXT, state TEXT, country TEXT, terrain TEXT, difficulty TEXT, placedby TEXT, name TEXT PRIMARY KEY, fullname TEXT, id TEXT, owner TEXT, ownerID TEXT)";
 		const string CREATE_LOGS_TABLE = "CREATE TABLE LOGS(cache TEXT, date text, loggedby TEXT, message TEXT, status TEXT, finderID TEXT, encoded TEXT)";
 		const string CREATE_TABLE_TBUGS = "CREATE TABLE TBUGS (cache TEXT, id TEXT, ref TEXT, name TEXT)";
-		const string CREATE_TABLE_WPTS = "CREATE TABLE WAYPOINT (lastUpdate TEXT, parent TEXT, symbol TEXT, time TEXT, type TEXT, desc TEXT, urlname TEXT, url TEXT, lon NUMERIC, lat NUMERIC, name TEXT PRIMARY KEY)";
+		const string CREATE_TABLE_WPTS = "CREATE TABLE WAYPOINT (lastUpdate TEXT, parent TEXT, symbol TEXT, time TEXT, type TEXT, desc TEXT, urlname TEXT, url TEXT, lon TEXT, lat TEXT, name TEXT PRIMARY KEY)";
 		const string SQL_CONNECT = "Data Source=";
-		const string INSERT_WPT = "INSERT INTO WAYPOINT (name,lat,lon,url,urlname,desc,symbol,type,time, parent, lastUpdate) VALUES ('{0}',{1},{2},'{3}','{4}','{5}','{6}','{7}','{8}','{9}', '{10}')";
+		const string INSERT_WPT = "INSERT INTO WAYPOINT (name,lat,lon,url,urlname,desc,symbol,type,time, parent, lastUpdate) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}', '{10}')";
 		const string UPDATE_WPT = "UPDATE WAYPOINT SET lat='{1}', lon='{2}',url='{3}', urlname='{4}', desc='{5}', symbol='{6}', type='{7}', time='{8}', parent='{9}', lastUpdate='{10}' WHERE name='{0}'";
 		const string WPT_EXISTS_CHECK = "SELECT * FROM WAYPOINT WHERE name='{0}'";
 		const string GET_WPTS = "SELECT name, lat, lon, url, urlname, desc, symbol, type, time, parent, lastUpdate FROM WAYPOINT";

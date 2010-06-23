@@ -14,6 +14,7 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Xml;
 using ocmengine;
 
@@ -111,8 +112,8 @@ namespace ocmengine
 			String lat = reader.GetAttribute("lat");
 			String lon = reader.GetAttribute("lon");
 			
-			newPoint.Lat = float.Parse(lat);
-			newPoint.Lon = float.Parse(lon);
+			newPoint.Lat = float.Parse(lat, CultureInfo.InvariantCulture);
+			newPoint.Lon = float.Parse(lon, CultureInfo.InvariantCulture);
 			
 			bool breakLoop = false;
 			

@@ -18,6 +18,7 @@ using System.Data;
 using System.IO;
 using Mono.Data.Sqlite;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace ocmengine
 {
@@ -140,12 +141,13 @@ namespace ocmengine
 			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
 			IDbCommand cmd = m_conn.CreateCommand();			
-			string insert = String.Format(INSERT_WPT, SQLEscape(pt.Name), pt.Lat, pt.Lon, pt.URL, 
+			string insert = String.Format(INSERT_WPT, SQLEscape(pt.Name), pt.Lat.ToString(CultureInfo.InvariantCulture), pt.Lon.ToString(CultureInfo.InvariantCulture), pt.URL, 
 			                                SQLEscape(pt.URLName), SQLEscape(pt.Desc), pt.Symbol, pt.Type,
 			                                pt.Time.ToString("o"), pt.Parent, pt.Updated.ToString("o"));
-			string update = String.Format(UPDATE_WPT, SQLEscape(pt.Name), pt.Lat, pt.Lon, pt.URL, 
+			string update = String.Format(UPDATE_WPT, SQLEscape(pt.Name), pt.Lat.ToString(CultureInfo.InvariantCulture), pt.Lon.ToString(CultureInfo.InvariantCulture), pt.URL, 
 			                                SQLEscape(pt.URLName), SQLEscape(pt.Desc), pt.Symbol, pt.Type,
 			                                pt.Time.ToString("o"), pt.Parent, pt.Updated.ToString("o"));			
+			System.Console.WriteLine(insert);
 			InsertOrUpdate (update, insert, cmd);
 		}
 		
@@ -254,8 +256,8 @@ namespace ocmengine
 		{
 			Waypoint pt = new Waypoint();
 			pt.Name = reader.GetString(0);
-			pt.Lat = reader.GetFloat(1);
-			pt.Lon = reader.GetFloat(2);
+			pt.Lat = double.Parse(reader.GetString(1), CultureInfo.InvariantCulture);
+			pt.Lon = double.Parse(reader.GetString(2), CultureInfo.InvariantCulture);
 			string url = reader.GetString(3);
 			if (!String.IsNullOrEmpty(url))
 				pt.URL = new Uri(url);
@@ -273,8 +275,8 @@ namespace ocmengine
 		{
 			Geocache cache = new Geocache();
 			cache.Name = reader.GetString(0);
-			cache.Lat = reader.GetFloat(1);
-			cache.Lon = reader.GetFloat(2);
+			cache.Lat = double.Parse(reader.GetString(1), CultureInfo.InvariantCulture);
+			cache.Lon = double.Parse(reader.GetString(2), CultureInfo.InvariantCulture);
 			String url = reader.GetString(3);
 			if (url != null)
 				cache.URL = new Uri(url);
@@ -289,8 +291,8 @@ namespace ocmengine
 			cache.CacheOwner = reader.GetString(11);
 			cache.OwnerID = reader.GetString(12);
 			cache.PlacedBy = reader.GetString(13);
-			cache.Difficulty = reader.GetFloat(14);
-			cache.Terrain = reader.GetFloat(15);
+			cache.Difficulty = float.Parse(reader.GetString(14), CultureInfo.InvariantCulture);
+			cache.Terrain = float.Parse(reader.GetString(15), CultureInfo.InvariantCulture);
 			cache.Country = reader.GetString(16);
 			cache.State = reader.GetString(17);
 			cache.TypeOfCache = (Geocache.CacheType) Enum.Parse(typeof (Geocache.CacheType), reader.GetString(18));

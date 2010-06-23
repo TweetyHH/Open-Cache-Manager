@@ -73,7 +73,7 @@ namespace ocmgtk
 				}
 				else if (request[0].Equals("mapmoved"))
 				{
-					m_monitor.GetNearByCaches(double.Parse(request[1]), double.Parse(request[2]));
+					m_monitor.GetNearByCaches(double.Parse(request[1], System.Globalization.CultureInfo.InvariantCulture), double.Parse(request[2], System.Globalization.CultureInfo.InvariantCulture));
 				}
 				args.Frame.StopLoading();
 			}
@@ -89,7 +89,6 @@ namespace ocmgtk
 			if (loaded)
 				m_view.ExecuteScript(script);
 			else
-				pending_actions.Add(script);
-		}
+				pending_actions.Add(script);		}
 	}
 }

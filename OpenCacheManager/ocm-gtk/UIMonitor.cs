@@ -20,6 +20,7 @@ using Mono.Unix;
 using Gtk;
 using ocmengine;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace ocmgtk
 {
@@ -292,14 +293,14 @@ namespace ocmgtk
 		/// </param>
 		public void ZoomToPoint (double lat, double lon)
 		{
-			m_map.LoadScript ("zoomToPoint(" + lat + "," + lon + ")");
+			m_map.LoadScript ("zoomToPoint(" + lat.ToString(CultureInfo.InvariantCulture) + "," + lon.ToString(CultureInfo.InvariantCulture) + ")");
 		}
 
 		public void GoHome ()
 		{
 			m_mapLat = CentreLat;
 			m_mapLat = CentreLon;
-			m_map.LoadScript ("goHome(" + CentreLat + "," + CentreLon + ")");
+			m_map.LoadScript ("goHome(" + CentreLat.ToString(CultureInfo.InvariantCulture) + "," + CentreLon.ToString(CultureInfo.InvariantCulture) + ")");
 		}
 		
 		public void ZoomToSelected ()
@@ -308,7 +309,7 @@ namespace ocmgtk
 				return;
 			m_mapLat = m_selectedCache.Lat;
 			m_mapLat = m_selectedCache.Lon;
-			m_map.LoadScript ("zoomToPoint(" + m_selectedCache.Lat + "," +  m_selectedCache.Lon + ")");
+			m_map.LoadScript ("zoomToPoint(" + m_selectedCache.Lat.ToString(CultureInfo.InvariantCulture) + "," +  m_selectedCache.Lon.ToString(CultureInfo.InvariantCulture) + ")");
 		}
 		
 		public void ResetCenterToHome()
@@ -341,7 +342,7 @@ namespace ocmgtk
 		/// </param>
 		public void AddMapWayPoint (Waypoint pt)
 		{
-			m_map.LoadScript ("addMarker(" + pt.Lat + "," + pt.Lon + ",'../icons/24x24/" + GetMapIcon (pt.Symbol) + "',\"" + pt.Name + "\",\"" + pt.Desc.Replace("\"","''") + "\")");
+			m_map.LoadScript ("addMarker(" + pt.Lat.ToString(CultureInfo.InvariantCulture) + "," + pt.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" + GetMapIcon (pt.Symbol) + "',\"" + pt.Name + "\",\"" + pt.Desc.Replace("\"","''") + "\")");
 		}
 
 		/// <summary>
@@ -352,13 +353,13 @@ namespace ocmgtk
 		/// </param>
 		public void AddMapCache (Geocache cache)
 		{
-			string script = "addMarker(" + cache.Lat + "," + cache.Lon + ",'../icons/24x24/" + GetMapIcon (cache) + "',\"" + cache.Name + "\",\"" + cache.Desc.Replace("\"","''") + "\")";
+			string script = "addMarker(" + cache.Lat.ToString(CultureInfo.InvariantCulture) + "," + cache.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" + GetMapIcon (cache) + "',\"" + cache.Name + "\",\"" + cache.Desc.Replace("\"","''") + "\")";
 			m_map.LoadScript (script);
 		}
 
 		public void AddOtherCacheToMap (Geocache cache)
 		{
-			m_map.LoadScript ("addExtraMarker(" + cache.Lat + "," + cache.Lon + ",'../icons/24x24/" + GetMapIcon (cache) + "',\"" + cache.Name.Replace("\"","'") + "\",\"" + cache.Desc.Replace("\"","''") + "\")");
+			m_map.LoadScript ("addExtraMarker(" + cache.Lat.ToString(CultureInfo.InvariantCulture) + "," + cache.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" + GetMapIcon (cache) + "',\"" + cache.Name.Replace("\"","'") + "\",\"" + cache.Desc.Replace("\"","''") + "\")");
 		}
 
 		/*public void AddMapOtherCache (Geocache cache)

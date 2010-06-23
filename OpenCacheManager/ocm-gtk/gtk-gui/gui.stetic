@@ -4392,7 +4392,6 @@ Less Than</property>
             <child>
               <widget class="Gtk.Image" id="image2">
                 <property name="MemberName" />
-                <property name="Yalign">0.25</property>
                 <property name="Pixbuf">stock:gtk-dialog-warning Menu</property>
               </widget>
               <packing>

@@ -79,7 +79,6 @@ namespace ocmgtk {
             // Container child hbox2.Gtk.Box+BoxChild
             this.image2 = new Gtk.Image();
             this.image2.Name = "image2";
-            this.image2.Yalign = 0.25F;
             this.image2.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-dialog-warning", Gtk.IconSize.Menu, 16);
             this.hbox2.Add(this.image2);
             Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.hbox2[this.image2]));
