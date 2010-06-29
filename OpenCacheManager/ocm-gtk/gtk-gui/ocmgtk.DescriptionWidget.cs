@@ -29,7 +29,7 @@ namespace ocmgtk {
         
         private Gtk.Label GtkLabel2;
         
-        private Gtk.ScrolledWindow descScroll;
+        private Gtk.Alignment descAlign;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -91,12 +91,10 @@ namespace ocmgtk {
             w5.Position = 1;
             w5.Expand = false;
             // Container child vbox2.Gtk.Box+BoxChild
-            this.descScroll = new Gtk.ScrolledWindow();
-            this.descScroll.CanFocus = true;
-            this.descScroll.Name = "descScroll";
-            this.descScroll.ShadowType = ((Gtk.ShadowType)(1));
-            this.vbox2.Add(this.descScroll);
-            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.vbox2[this.descScroll]));
+            this.descAlign = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.descAlign.Name = "descAlign";
+            this.vbox2.Add(this.descAlign);
+            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.vbox2[this.descAlign]));
             w6.Position = 2;
             this.Add(this.vbox2);
             if ((this.Child != null)) {

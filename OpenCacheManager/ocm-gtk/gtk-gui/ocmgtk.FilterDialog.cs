@@ -23,6 +23,10 @@ namespace ocmgtk {
         
         private Gtk.Label page2;
         
+        private ocmgtk.OCMQueryPage3 ocmquerypage31;
+        
+        private Gtk.Label label1;
+        
         private Gtk.Button buttonCancel;
         
         private Gtk.Button buttonOk;
@@ -41,7 +45,7 @@ namespace ocmgtk {
             this.notebook1 = new Gtk.Notebook();
             this.notebook1.CanFocus = true;
             this.notebook1.Name = "notebook1";
-            this.notebook1.CurrentPage = 1;
+            this.notebook1.CurrentPage = 2;
             // Container child notebook1.Gtk.Notebook+NotebookChild
             this.page1 = new ocmgtk.OCMQueryPage1();
             this.page1.Events = ((Gdk.EventMask)(256));
@@ -67,15 +71,28 @@ namespace ocmgtk {
             this.page2.LabelProp = Mono.Unix.Catalog.GetString("Container/Description/Placed By");
             this.notebook1.SetTabLabel(this.contPage, this.page2);
             this.page2.ShowAll();
+            // Container child notebook1.Gtk.Notebook+NotebookChild
+            this.ocmquerypage31 = new ocmgtk.OCMQueryPage3();
+            this.ocmquerypage31.Events = ((Gdk.EventMask)(256));
+            this.ocmquerypage31.Name = "ocmquerypage31";
+            this.notebook1.Add(this.ocmquerypage31);
+            Gtk.Notebook.NotebookChild w4 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.ocmquerypage31]));
+            w4.Position = 2;
+            // Notebook tab
+            this.label1 = new Gtk.Label();
+            this.label1.Name = "label1";
+            this.label1.LabelProp = Mono.Unix.Catalog.GetString("Limits/Placed Date");
+            this.notebook1.SetTabLabel(this.ocmquerypage31, this.label1);
+            this.label1.ShowAll();
             w1.Add(this.notebook1);
-            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(w1[this.notebook1]));
-            w4.Position = 0;
+            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(w1[this.notebook1]));
+            w5.Position = 0;
             // Internal child ocmgtk.FilterDialog.ActionArea
-            Gtk.HButtonBox w5 = this.ActionArea;
-            w5.Name = "dialog1_ActionArea";
-            w5.Spacing = 10;
-            w5.BorderWidth = ((uint)(5));
-            w5.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            Gtk.HButtonBox w6 = this.ActionArea;
+            w6.Name = "dialog1_ActionArea";
+            w6.Spacing = 10;
+            w6.BorderWidth = ((uint)(5));
+            w6.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -85,9 +102,9 @@ namespace ocmgtk {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w6 = ((Gtk.ButtonBox.ButtonBoxChild)(w5[this.buttonCancel]));
-            w6.Expand = false;
-            w6.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w7 = ((Gtk.ButtonBox.ButtonBoxChild)(w6[this.buttonCancel]));
+            w7.Expand = false;
+            w7.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -97,15 +114,16 @@ namespace ocmgtk {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w7 = ((Gtk.ButtonBox.ButtonBoxChild)(w5[this.buttonOk]));
-            w7.Position = 1;
-            w7.Expand = false;
-            w7.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w8 = ((Gtk.ButtonBox.ButtonBoxChild)(w6[this.buttonOk]));
+            w8.Position = 1;
+            w8.Expand = false;
+            w8.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 460;
             this.DefaultHeight = 430;
+            this.buttonOk.HasDefault = true;
             this.Show();
             this.buttonCancel.Clicked += new System.EventHandler(this.OnCancel);
             this.buttonOk.Clicked += new System.EventHandler(this.OnOKClicked);

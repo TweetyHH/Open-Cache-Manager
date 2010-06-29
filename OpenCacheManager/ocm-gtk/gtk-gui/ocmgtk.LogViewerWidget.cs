@@ -15,7 +15,7 @@ namespace ocmgtk {
         
         private Gtk.VBox logBox;
         
-        private Gtk.ScrolledWindow logScroll;
+        private Gtk.Alignment logAlign;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -28,12 +28,10 @@ namespace ocmgtk {
             this.logBox.Spacing = 6;
             this.logBox.BorderWidth = ((uint)(6));
             // Container child logBox.Gtk.Box+BoxChild
-            this.logScroll = new Gtk.ScrolledWindow();
-            this.logScroll.CanFocus = true;
-            this.logScroll.Name = "logScroll";
-            this.logScroll.ShadowType = ((Gtk.ShadowType)(1));
-            this.logBox.Add(this.logScroll);
-            Gtk.Box.BoxChild w1 = ((Gtk.Box.BoxChild)(this.logBox[this.logScroll]));
+            this.logAlign = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.logAlign.Name = "logAlign";
+            this.logBox.Add(this.logAlign);
+            Gtk.Box.BoxChild w1 = ((Gtk.Box.BoxChild)(this.logBox[this.logAlign]));
             w1.Position = 0;
             this.Add(this.logBox);
             if ((this.Child != null)) {

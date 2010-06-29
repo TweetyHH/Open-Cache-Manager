@@ -58,7 +58,6 @@ namespace ocmgtk {
             this.gpxRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Garmin Colorado/Oregon/Dakota/Nuvi"));
             this.gpxRadio.CanFocus = true;
             this.gpxRadio.Name = "gpxRadio";
-            this.gpxRadio.Active = true;
             this.gpxRadio.DrawIndicator = true;
             this.gpxRadio.UseUnderline = true;
             this.gpxRadio.Group = new GLib.SList(System.IntPtr.Zero);
@@ -157,6 +156,7 @@ namespace ocmgtk {
             }
             this.DefaultWidth = 502;
             this.DefaultHeight = 379;
+            this.buttonOk.HasDefault = true;
             this.Show();
             this.otherRadio.Toggled += new System.EventHandler(this.OnOtherToggle);
             this.gusbRadio.Toggled += new System.EventHandler(this.OnGUSBToggle);

@@ -17,25 +17,15 @@ namespace ocmgtk {
         
         private Gtk.CheckButton checkbutton2;
         
-        private Gtk.Frame frame1;
+        private Gtk.CheckButton checkbutton3;
         
-        private Gtk.Alignment GtkAlignment;
+        private Gtk.Entry entry1;
         
-        private Gtk.Table table3;
-        
-        private Gtk.CheckButton archivedCheck;
-        
-        private Gtk.CheckButton availableCheck;
-        
-        private Gtk.CheckButton foundCheck;
-        
-        private Gtk.CheckButton notfoundCheck;
-        
-        private Gtk.CheckButton unavailableCheck;
-        
-        private Gtk.Label GtkLabel4;
+        private Gtk.Entry entry2;
         
         private Gtk.Entry limitEntry;
+        
+        private Gtk.CheckButton placedSince;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -43,7 +33,7 @@ namespace ocmgtk {
             Stetic.BinContainer.Attach(this);
             this.Name = "ocmgtk.OCMQueryPage3";
             // Container child ocmgtk.OCMQueryPage3.Gtk.Container+ContainerChild
-            this.table2 = new Gtk.Table(((uint)(2)), ((uint)(2)), false);
+            this.table2 = new Gtk.Table(((uint)(5)), ((uint)(2)), false);
             this.table2.Name = "table2";
             this.table2.RowSpacing = ((uint)(6));
             this.table2.ColumnSpacing = ((uint)(6));
@@ -57,99 +47,49 @@ namespace ocmgtk {
             this.checkbutton2.UseUnderline = true;
             this.table2.Add(this.checkbutton2);
             Gtk.Table.TableChild w1 = ((Gtk.Table.TableChild)(this.table2[this.checkbutton2]));
-            w1.XOptions = ((Gtk.AttachOptions)(4));
             w1.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
-            this.frame1 = new Gtk.Frame();
-            this.frame1.Name = "frame1";
-            this.frame1.ShadowType = ((Gtk.ShadowType)(1));
-            // Container child frame1.Gtk.Container+ContainerChild
-            this.GtkAlignment = new Gtk.Alignment(0F, 0F, 1F, 1F);
-            this.GtkAlignment.Name = "GtkAlignment";
-            this.GtkAlignment.LeftPadding = ((uint)(12));
-            // Container child GtkAlignment.Gtk.Container+ContainerChild
-            this.table3 = new Gtk.Table(((uint)(3)), ((uint)(2)), false);
-            this.table3.Name = "table3";
-            this.table3.RowSpacing = ((uint)(6));
-            this.table3.ColumnSpacing = ((uint)(6));
-            // Container child table3.Gtk.Table+TableChild
-            this.archivedCheck = new Gtk.CheckButton();
-            this.archivedCheck.CanFocus = true;
-            this.archivedCheck.Name = "archivedCheck";
-            this.archivedCheck.Label = Mono.Unix.Catalog.GetString("Are Archived");
-            this.archivedCheck.Active = true;
-            this.archivedCheck.DrawIndicator = true;
-            this.archivedCheck.UseUnderline = true;
-            this.table3.Add(this.archivedCheck);
-            Gtk.Table.TableChild w2 = ((Gtk.Table.TableChild)(this.table3[this.archivedCheck]));
+            this.checkbutton3 = new Gtk.CheckButton();
+            this.checkbutton3.CanFocus = true;
+            this.checkbutton3.Name = "checkbutton3";
+            this.checkbutton3.Label = Mono.Unix.Catalog.GetString("Placed Before:");
+            this.checkbutton3.DrawIndicator = true;
+            this.checkbutton3.UseUnderline = true;
+            this.table2.Add(this.checkbutton3);
+            Gtk.Table.TableChild w2 = ((Gtk.Table.TableChild)(this.table2[this.checkbutton3]));
             w2.TopAttach = ((uint)(2));
             w2.BottomAttach = ((uint)(3));
             w2.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table3.Gtk.Table+TableChild
-            this.availableCheck = new Gtk.CheckButton();
-            this.availableCheck.CanFocus = true;
-            this.availableCheck.Name = "availableCheck";
-            this.availableCheck.Label = Mono.Unix.Catalog.GetString("Are Available");
-            this.availableCheck.Active = true;
-            this.availableCheck.DrawIndicator = true;
-            this.availableCheck.UseUnderline = true;
-            this.table3.Add(this.availableCheck);
-            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table3[this.availableCheck]));
+            // Container child table2.Gtk.Table+TableChild
+            this.entry1 = new Gtk.Entry();
+            this.entry1.TooltipMarkup = "M/D/YYYY";
+            this.entry1.CanFocus = true;
+            this.entry1.Name = "entry1";
+            this.entry1.Text = Mono.Unix.Catalog.GetString("1/1/2001");
+            this.entry1.IsEditable = true;
+            this.entry1.InvisibleChar = '•';
+            this.table2.Add(this.entry1);
+            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table2[this.entry1]));
             w3.TopAttach = ((uint)(1));
             w3.BottomAttach = ((uint)(2));
+            w3.LeftAttach = ((uint)(1));
+            w3.RightAttach = ((uint)(2));
             w3.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table3.Gtk.Table+TableChild
-            this.foundCheck = new Gtk.CheckButton();
-            this.foundCheck.CanFocus = true;
-            this.foundCheck.Name = "foundCheck";
-            this.foundCheck.Label = Mono.Unix.Catalog.GetString("I have found");
-            this.foundCheck.Active = true;
-            this.foundCheck.DrawIndicator = true;
-            this.foundCheck.UseUnderline = true;
-            this.table3.Add(this.foundCheck);
-            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table3[this.foundCheck]));
+            // Container child table2.Gtk.Table+TableChild
+            this.entry2 = new Gtk.Entry();
+            this.entry2.TooltipMarkup = "M/D/YYYY";
+            this.entry2.CanFocus = true;
+            this.entry2.Name = "entry2";
+            this.entry2.Text = Mono.Unix.Catalog.GetString("1/1/2001");
+            this.entry2.IsEditable = true;
+            this.entry2.InvisibleChar = '•';
+            this.table2.Add(this.entry2);
+            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table2[this.entry2]));
+            w4.TopAttach = ((uint)(2));
+            w4.BottomAttach = ((uint)(3));
             w4.LeftAttach = ((uint)(1));
             w4.RightAttach = ((uint)(2));
             w4.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table3.Gtk.Table+TableChild
-            this.notfoundCheck = new Gtk.CheckButton();
-            this.notfoundCheck.CanFocus = true;
-            this.notfoundCheck.Name = "notfoundCheck";
-            this.notfoundCheck.Label = Mono.Unix.Catalog.GetString("I have not found");
-            this.notfoundCheck.Active = true;
-            this.notfoundCheck.DrawIndicator = true;
-            this.notfoundCheck.UseUnderline = true;
-            this.table3.Add(this.notfoundCheck);
-            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table3[this.notfoundCheck]));
-            w5.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table3.Gtk.Table+TableChild
-            this.unavailableCheck = new Gtk.CheckButton();
-            this.unavailableCheck.CanFocus = true;
-            this.unavailableCheck.Name = "unavailableCheck";
-            this.unavailableCheck.Label = Mono.Unix.Catalog.GetString("Are Temporarily Unavailble");
-            this.unavailableCheck.Active = true;
-            this.unavailableCheck.DrawIndicator = true;
-            this.unavailableCheck.UseUnderline = true;
-            this.table3.Add(this.unavailableCheck);
-            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table3[this.unavailableCheck]));
-            w6.TopAttach = ((uint)(1));
-            w6.BottomAttach = ((uint)(2));
-            w6.LeftAttach = ((uint)(1));
-            w6.RightAttach = ((uint)(2));
-            w6.YOptions = ((Gtk.AttachOptions)(4));
-            this.GtkAlignment.Add(this.table3);
-            this.frame1.Add(this.GtkAlignment);
-            this.GtkLabel4 = new Gtk.Label();
-            this.GtkLabel4.Name = "GtkLabel4";
-            this.GtkLabel4.LabelProp = Mono.Unix.Catalog.GetString("<b>Cache Status</b>");
-            this.GtkLabel4.UseMarkup = true;
-            this.frame1.LabelWidget = this.GtkLabel4;
-            this.table2.Add(this.frame1);
-            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table2[this.frame1]));
-            w9.TopAttach = ((uint)(1));
-            w9.BottomAttach = ((uint)(2));
-            w9.RightAttach = ((uint)(2));
-            w9.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.limitEntry = new Gtk.Entry();
             this.limitEntry.Sensitive = false;
@@ -159,11 +99,22 @@ namespace ocmgtk {
             this.limitEntry.IsEditable = true;
             this.limitEntry.InvisibleChar = '•';
             this.table2.Add(this.limitEntry);
-            Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.table2[this.limitEntry]));
-            w10.LeftAttach = ((uint)(1));
-            w10.RightAttach = ((uint)(2));
-            w10.XOptions = ((Gtk.AttachOptions)(4));
-            w10.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table2[this.limitEntry]));
+            w5.LeftAttach = ((uint)(1));
+            w5.RightAttach = ((uint)(2));
+            w5.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.placedSince = new Gtk.CheckButton();
+            this.placedSince.CanFocus = true;
+            this.placedSince.Name = "placedSince";
+            this.placedSince.Label = Mono.Unix.Catalog.GetString("Placed After:");
+            this.placedSince.DrawIndicator = true;
+            this.placedSince.UseUnderline = true;
+            this.table2.Add(this.placedSince);
+            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table2[this.placedSince]));
+            w6.TopAttach = ((uint)(1));
+            w6.BottomAttach = ((uint)(2));
+            w6.YOptions = ((Gtk.AttachOptions)(4));
             this.Add(this.table2);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

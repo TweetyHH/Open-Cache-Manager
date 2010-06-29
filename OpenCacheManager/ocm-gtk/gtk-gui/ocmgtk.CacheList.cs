@@ -35,7 +35,7 @@ namespace ocmgtk {
         
         private Gtk.Entry distanceEntry;
         
-        private Gtk.Label label1;
+        private Gtk.Label distLabel;
         
         private Gtk.Button button136;
         
@@ -90,6 +90,7 @@ namespace ocmgtk {
             w3.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.filterEntry = new Gtk.Entry();
+            this.filterEntry.TooltipMarkup = "Type here to filter on cache name or code";
             this.filterEntry.CanFocus = true;
             this.filterEntry.Name = "filterEntry";
             this.filterEntry.IsEditable = true;
@@ -132,6 +133,7 @@ namespace ocmgtk {
             w8.Fill = false;
             // Container child hbox2.Gtk.Box+BoxChild
             this.distanceEntry = new Gtk.Entry();
+            this.distanceEntry.TooltipMarkup = "Type here to limit the cache list to a certain distance from your current center point";
             this.distanceEntry.CanFocus = true;
             this.distanceEntry.Name = "distanceEntry";
             this.distanceEntry.IsEditable = true;
@@ -141,11 +143,11 @@ namespace ocmgtk {
             Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.hbox2[this.distanceEntry]));
             w9.Position = 1;
             // Container child hbox2.Gtk.Box+BoxChild
-            this.label1 = new Gtk.Label();
-            this.label1.Name = "label1";
-            this.label1.LabelProp = Mono.Unix.Catalog.GetString("km");
-            this.hbox2.Add(this.label1);
-            Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.hbox2[this.label1]));
+            this.distLabel = new Gtk.Label();
+            this.distLabel.Name = "distLabel";
+            this.distLabel.LabelProp = Mono.Unix.Catalog.GetString("km");
+            this.hbox2.Add(this.distLabel);
+            Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.hbox2[this.distLabel]));
             w10.Position = 2;
             w10.Expand = false;
             w10.Fill = false;
