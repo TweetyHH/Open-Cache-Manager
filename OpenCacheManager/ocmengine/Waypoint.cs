@@ -13,6 +13,7 @@
 using System;
 using System.Xml;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace ocmengine
 {
@@ -105,22 +106,22 @@ namespace ocmengine
 			
 		}
 		
-		public void WriteToGPX(XmlWriter writer, bool isFullInfo)
+		public void WriteToGPX(XmlWriter writer, GPXWriter gpx)
 		{
 			writer.WriteStartElement("wpt", GPXWriter.NS_GPX);
-			WriteWPTDetails(writer, isFullInfo);
+			WriteWPTDetails(writer, gpx);
 			writer.WriteEndElement();
 			IEnumerator<Waypoint> itr = Engine.getInstance().GetChildWaypoints(this.Name);
 			while (itr.MoveNext())
 			{
-				itr.Current.WriteToGPX(writer, isFullInfo);
+				itr.Current.WriteToGPX(writer, gpx);
 			}                          
 		}
 		
-		internal virtual void WriteWPTDetails(XmlWriter writer, bool isFullInfo)
+		internal virtual void WriteWPTDetails(XmlWriter writer, GPXWriter gpx)
 		{
-			writer.WriteAttributeString("lat", this.Lat.ToString());
-			writer.WriteAttributeString("lon", this.Lon.ToString());
+			writer.WriteAttributeString("lat", this.Lat.ToString(CultureInfo.InvariantCulture));
+			writer.WriteAttributeString("lon", this.Lon.ToString(CultureInfo.InvariantCulture));
 			writer.WriteElementString("time", this.Time.ToString("o"));
 			writer.WriteElementString("name", this.Name);
 			writer.WriteElementString("desc", this.Desc);

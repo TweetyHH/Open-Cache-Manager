@@ -158,7 +158,7 @@ namespace ocmengine
 			else if (reader.Name == "link")
 			{
 				pt.URL = new Uri(reader.GetAttribute("href"));
-				//pt.URLName = reader.ReadElementContentAsString();
+				pt.URLName = pt.Name;
 			}
 			else if (reader.Name == "urlname")
 			{
@@ -190,93 +190,114 @@ namespace ocmengine
 			}
 			else if (reader.NamespaceURI.StartsWith("http://www.TerraCaching.com"))
 			{
-				if (reader.LocalName == "terracache")
+				cache = ParseTerraCache (reader, ref cache);
+			}
+		}
+		
+		private Geocache ParseTerraCache (XmlReader reader, ref Geocache cache)
+		{
+			if (reader.LocalName == "terracache")
+			{
+				cache.CacheID = reader.GetAttribute("id");
+				cache.Available = true;
+				cache.Archived = false;
+			}
+			else if (reader.LocalName == "name")
+			{
+				cache.CacheName = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "description")
+			{
+				cache.LongDesc = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "style")
+			{
+				ParseCacheType(reader.ReadElementContentAsString(), ref cache);
+			}
+			else if (reader.LocalName == "owner")
+			{
+				cache.OwnerID = reader.GetAttribute("id");
+				cache.PlacedBy = reader.ReadElementContentAsString();
+				cache.CacheOwner = cache.PlacedBy;
+			}
+			else if (reader.LocalName == "hint")
+			{
+				cache.Hint = reader.ReadElementContentAsString();
+				cache.Hint = cache.Hint.Replace("&gt;", ">");
+				cache.Hint = cache.Hint.Replace("&lt;", "<");
+				cache.Hint = cache.Hint.Replace("&amp;", "&");
+			}
+			else if (reader.LocalName == "tps_points")
+			{
+				cache.ShortDesc += "<b>TPS Points: </b>";
+				cache.ShortDesc += reader.ReadElementContentAsString();
+				cache.ShortDesc += "<br>";
+			}
+			else if (reader.LocalName == "country")
+			{
+			 	cache.Country = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "state")
+			{
+				cache.State = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "mce_score")
+			{
+				cache.ShortDesc += "<b>MCE Score: </b>";
+				cache.ShortDesc += reader.ReadElementContentAsString();
+				cache.ShortDesc += "<br>";
+			}
+			else if (reader.LocalName == "physical_challenge")
+			{
+				cache.ShortDesc += "<b>Physical Challenge: </b>";
+				cache.ShortDesc += reader.ReadElementContentAsString();
+				cache.ShortDesc += "<br>";
+			}
+			else if (reader.LocalName == "mental_challenge")
+			{
+				cache.ShortDesc += "<b>Mental Challenge: </b>";
+				cache.ShortDesc += reader.ReadElementContentAsString();
+				cache.ShortDesc += "<br>";
+			}
+			else if (reader.LocalName == "camo_challenge")
+			{
+				cache.ShortDesc += "<b>Cammo Challenge: </b>";
+				cache.ShortDesc += reader.ReadElementContentAsString();
+				cache.ShortDesc += "<hr noshade>";
+			}
+			else if (reader.LocalName == "size")
+			{
+				string sizeVal = reader.ReadElementContentAsString();
+				if (String.IsNullOrEmpty(sizeVal))
+					cache.Container = "Not chosen";
+				int size = int.Parse(sizeVal);
+				switch(size)
 				{
-					cache.CacheID = reader.GetAttribute("id");
-					cache.Available = true;
-					cache.Archived = false;
-				}
-				else if (reader.LocalName == "name")
-				{
-					cache.CacheName = reader.ReadElementContentAsString();
-				}
-				else if (reader.LocalName == "description")
-				{
-					cache.LongDesc = reader.ReadElementContentAsString();
-				}
-				else if (reader.LocalName == "style")
-				{
-					ParseCacheType(reader.ReadElementContentAsString(), ref cache);
-				}
-				else if (reader.LocalName == "owner")
-				{
-					cache.OwnerID = reader.GetAttribute("id");
-					cache.PlacedBy = reader.ReadElementContentAsString();
-				}
-				else if (reader.LocalName == "hint")
-				{
-					cache.Hint = reader.ReadElementContentAsString();
-					cache.Hint = cache.Hint.Replace("&gt;", ">");
-					cache.Hint = cache.Hint.Replace("&lt;", "<");
-					cache.Hint = cache.Hint.Replace("&amp;", "&");
-				}
-				else if (reader.LocalName == "tps_points")
-				{
-					cache.ShortDesc += "<b>TPS Points: </b>";
-					cache.ShortDesc += reader.ReadElementContentAsString();
-					cache.ShortDesc += "<br>";
-				}
-				else if (reader.LocalName == "mce_score")
-				{
-					cache.ShortDesc += "<b>MCE Score: </b>";
-					cache.ShortDesc += reader.ReadElementContentAsString();
-					cache.ShortDesc += "<br>";
-				}
-				else if (reader.LocalName == "physical_challenge")
-				{
-					cache.ShortDesc += "<b>Physical Challenge: </b>";
-					cache.ShortDesc += reader.ReadElementContentAsString();
-					cache.ShortDesc += "<br>";
-				}
-				else if (reader.LocalName == "mental_challenge")
-				{
-					cache.ShortDesc += "<b>Mental Challenge: </b>";
-					cache.ShortDesc += reader.ReadElementContentAsString();
-					cache.ShortDesc += "<br>";
-				}
-				else if (reader.LocalName == "camo_challenge")
-				{
-					cache.ShortDesc += "<b>Cammo Challenge: </b>";
-					cache.ShortDesc += reader.ReadElementContentAsString();
-					cache.ShortDesc += "<hr noshade>";
-				}
-				else if (reader.LocalName == "size")
-				{
-					int size = reader.ReadElementContentAsInt();
-					switch(size)
-					{
-						case 1:
-							cache.Container = "Large";
-							break;
-						case 2:
-							cache.Container = "Regular";
-							break;
-						case 3:
-							cache.Container = "Small";
-							break;
-						case 4:
-							cache.Container = "Micro";
-							break;
-						case 5: 
-							cache.Container = "Micro";
-							break;
-					}
-				}
-				else if (reader.LocalName == "logs" && !reader.IsEmptyElement)
-				{
-					parseVCacheLogs(ref cache, reader);
+					case 1:
+						cache.Container = "Large";
+						break;
+					case 2:
+						cache.Container = "Regular";
+						break;
+					case 3:
+						cache.Container = "Small";
+						break;
+					case 4:
+						cache.Container = "Micro";
+						break;
+					case 5: 
+						cache.Container = "Micro";
+						break;
 				}
 			}
+			else if (reader.LocalName == "logs" && !reader.IsEmptyElement)
+			{
+				parseVCacheLogs(ref cache, reader);
+			}
+			//TEMP FIX THIS
+			cache.Difficulty = 1;
+			cache.Terrain = 1;
+			return cache;
 		}
 		
 		private Geocache ParseGroundSpeakCache (XmlReader reader, ref Geocache cache)
@@ -306,11 +327,13 @@ namespace ocmengine
 				}
 				else if (reader.LocalName == "difficulty")
 				{
-					cache.Difficulty = reader.ReadElementContentAsFloat();
+					string diff = reader.ReadElementContentAsString();
+					cache.Difficulty = float.Parse(diff, CultureInfo.InvariantCulture);
 				}
 				else if (reader.LocalName == "terrain")
 				{
-					cache.Terrain = reader.ReadElementContentAsFloat();
+					string terr = reader.ReadElementContentAsString();
+					cache.Terrain = float.Parse(terr, CultureInfo.InvariantCulture);
 				}
 				else if (reader.LocalName == "short_description")
 				{

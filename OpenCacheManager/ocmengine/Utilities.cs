@@ -136,5 +136,15 @@ namespace ocmengine
 			float[] vals = new float[2];
 			return vals;
 		}
+		
+		public static double KmToMiles(double km)
+		{
+			return km * 0.6214;
+		}
+		
+		public static double MilesToKm(double mi)
+		{
+			return mi / 0.6214;
+		}
 	}
 }

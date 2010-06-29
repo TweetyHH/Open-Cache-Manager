@@ -45,6 +45,13 @@ namespace ocmengine
 		public event WriteEventHandler Complete;
 		public delegate void WriteEventHandler(object sender, EventArgs args);
 		
+		public int guidStart = 9000000;
+		
+		public int GetNextGUID()
+		{
+			return guidStart++;
+		}
+		
 		bool m_cancel = false;
 		public bool Cancel
 		{
@@ -61,6 +68,7 @@ namespace ocmengine
 		public bool IncludeGroundSpeakExtensions
 		{
 			set { m_isFullInfo = value;}
+			get { return m_isFullInfo;}
 		}
 		
 		private int m_Count = 0;
@@ -68,9 +76,15 @@ namespace ocmengine
 		public void WriteGPXFile (String name, List<Geocache> caches)
 		{
 			FileStream stream = new System.IO.FileStream(name, FileMode.Create, FileAccess.Write, FileShare.Write, 655356);
-			XmlWriter writer = new XmlTextWriter (stream, System.Text.Encoding.UTF8);
+			XmlTextWriter writer = new XmlTextWriter (stream, System.Text.Encoding.UTF8);
+			//Pretty-print the document
+			writer.Formatting = Formatting.Indented;
+			writer.Indentation = 1;
+			writer.IndentChar = '\t';
+			
 			try {
 				writer.WriteStartElement ("gpx", NS_GPX);
+				writer.WriteAttributeString("creator", "OCM");
 				writer.WriteElementString ("name", NS_GPX, "Cache Listing from OCM");
 				writer.WriteElementString ("desc", NS_GPX, "Cache Listing from OCM");
 				writer.WriteElementString ("author", NS_GPX, "Open Cache Manager");
@@ -83,7 +97,7 @@ namespace ocmengine
 						return;
 					m_Count++;
 					this.WriteWaypoint(this, new WriteEventArgs(String.Format("Writing {0}", cache.Name)));
-					cache.WriteToGPX (writer, m_isFullInfo);
+					cache.WriteToGPX (writer, this);
 				}
 				writer.WriteEndElement ();
 				this.Complete(this, new WriteEventArgs("Done"));

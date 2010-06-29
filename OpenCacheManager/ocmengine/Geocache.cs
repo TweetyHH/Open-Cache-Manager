@@ -13,6 +13,7 @@
 using System;
 using System.Xml;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace ocmengine
 {
@@ -36,7 +37,8 @@ namespace ocmengine
 			REVERSE,
 			FOUND,
 			MINE,
-			OTHER};
+			OTHER,
+			GENERIC};
 		
 		const string CACHE_PREFIX="groundspeak";
 		
@@ -47,7 +49,7 @@ namespace ocmengine
 		private float m_terrain= 0;
 		private string m_country = "";
 		private string m_state = "";
-		private CacheType m_cachetype = Geocache.CacheType.OTHER;
+		private CacheType m_cachetype = Geocache.CacheType.GENERIC;
 		private string m_shortdesc = "";
 		private string m_longdesc = "";
 		private string m_hint= "";
@@ -186,6 +188,12 @@ namespace ocmengine
 			cache.URLName = original.URLName;
 			cache.Type = original.Type;
 			cache.Updated = original.Updated;
+			cache.CacheName = original.Desc;
+			cache.Available = true;
+			cache.Archived = false;
+			cache.TypeOfCache = Geocache.CacheType.GENERIC;
+			cache.ShortDesc = "";
+			cache.LongDesc = "<a href=\"" + cache.URL.ToString() + "\">View Online</a>";
 			return cache;
 		}
 		
@@ -201,13 +209,16 @@ namespace ocmengine
 		}
 		
 		
-		internal override void WriteWPTDetails (XmlWriter writer, bool isFullInfo)
+		internal override void WriteWPTDetails (XmlWriter writer, GPXWriter gpx)
 		{
-			base.WriteWPTDetails (writer, isFullInfo);
-			if (!isFullInfo)
+			base.WriteWPTDetails (writer,gpx);
+			if (!gpx.IncludeGroundSpeakExtensions)
 				return;
 			writer.WriteStartElement(CACHE_PREFIX, "cache", GPXWriter.NS_CACHE);
-			writer.WriteAttributeString("id", CacheID);
+			if (Symbol == "TerraCache" || Symbol == "Default")
+				writer.WriteAttributeString("id", gpx.GetNextGUID().ToString());
+			else
+				writer.WriteAttributeString("id", CacheID);
 			writer.WriteAttributeString("available", Available.ToString());
 			writer.WriteAttributeString("archived", Archived.ToString());
 			writer.WriteElementString(CACHE_PREFIX,"name", GPXWriter.NS_CACHE, CacheName);
@@ -218,8 +229,8 @@ namespace ocmengine
 			writer.WriteEndElement();
 			writer.WriteElementString(CACHE_PREFIX,"type", GPXWriter.NS_CACHE, GetCTypeString(TypeOfCache));
 			writer.WriteElementString(CACHE_PREFIX,"container", GPXWriter.NS_CACHE, Container);
-			writer.WriteElementString(CACHE_PREFIX,"difficulty", GPXWriter.NS_CACHE, Difficulty.ToString("0.#"));
-			writer.WriteElementString(CACHE_PREFIX,"terrain", GPXWriter.NS_CACHE, Terrain.ToString("0.#"));
+			writer.WriteElementString(CACHE_PREFIX,"difficulty", GPXWriter.NS_CACHE, Difficulty.ToString("0.#", CultureInfo.InvariantCulture));
+			writer.WriteElementString(CACHE_PREFIX,"terrain", GPXWriter.NS_CACHE, Terrain.ToString("0.#", CultureInfo.InvariantCulture));
 			writer.WriteElementString(CACHE_PREFIX,"country", GPXWriter.NS_CACHE,  Country);
 			writer.WriteElementString(CACHE_PREFIX,"state", GPXWriter.NS_CACHE,  State);
 			writer.WriteElementString(CACHE_PREFIX,"short_description", GPXWriter.NS_CACHE,  ShortDesc);
@@ -275,6 +286,8 @@ namespace ocmengine
 				return "Webcam Cache";
 			case CacheType.WHERIGO:
 				return "Wherigo Cache";
+			case CacheType.GENERIC:
+				return "Geocache";
 			default:
 				throw new Exception("UNHANDLED CACHE TYPE");
 			}
