@@ -38,15 +38,13 @@ namespace ocmgtk
 
 		void HandleParserComplete (object sender, EventArgs args)
 		{
-			this.Hide ();
-			String message = String.Format ("Import complete, {0} waypoints processed", m_progress);
-			Gtk.MessageDialog dlg = new Gtk.MessageDialog (this, Gtk.DialogFlags.Modal, Gtk.MessageType.Info, Gtk.ButtonsType.Ok, message);
-			dlg.Run ();
-			dlg.Hide ();
-			dlg.Dispose ();
-			dlg.Destroy ();
-			this.Dispose ();
-			this.Destroy ();
+			progressbar6.Text = "Complete";
+			waypointName.Markup =  String.Format ("<i>Import complete, {0} waypoints processed</i>", m_progress);
+			okButton.Sensitive = true;
+			okButton.Show();
+			buttonCancel.Hide();
+			buttonCancel.Sensitive = false;
+			okButton.GrabDefault();
 		}
 
 
@@ -93,6 +91,13 @@ namespace ocmgtk
 		{
 			DoCancel ();
 		}
+		
+		protected virtual void OnButton179Clicked (object sender, System.EventArgs e)
+		{
+			this.Hide();
+			this.Dispose();
+		}
+		
 		
 		
 	}

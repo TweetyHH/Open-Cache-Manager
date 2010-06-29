@@ -45,8 +45,13 @@ namespace ocmgtk
 
 		void HandleWriterComplete (object sender, EventArgs args)
 		{
-			this.Hide();
-			this.Dispose();
+			okButton.Sensitive = true;
+			buttonCancel.Sensitive = false;
+			infoLabel.Markup = String.Format("<i>{0} Geocaches exported.</i>", count);
+			writeProgress.Text = "Complete";
+			okButton.Show();
+			buttonCancel.Hide();
+			okButton.GrabDefault();
 		}
 
 		void HandleWriterWriteWaypoint (object sender, EventArgs args)
@@ -55,6 +60,7 @@ namespace ocmgtk
 			double fraction = count/total;
 			writeProgress.Fraction = fraction;
 			writeProgress.Text = fraction.ToString("0%");
+			this.infoLabel.Markup = "<i>" + (args as WriteEventArgs).Message + "</i>";
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (false);
 			
@@ -86,5 +92,12 @@ namespace ocmgtk
 		{
 			DoCancel();
 		}
+		protected virtual void OnOKClicked (object sender, System.EventArgs e)
+		{
+			this.Hide();
+			this.Dispose();
+		}
+		
+		
 	}
 }

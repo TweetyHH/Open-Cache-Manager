@@ -60,6 +60,23 @@ namespace ocmgtk
 			}
 		}
 		
+		public bool ImperialUnits
+		{
+			get { 
+				if (unitsCombo.Active == 1)
+					return true;
+				else
+					return false;
+			}
+			set
+			{
+				if (value)
+					unitsCombo.Active = 1;
+				else
+					unitsCombo.Active = 0;
+			}				
+		}
+		
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
 			this.Hide();

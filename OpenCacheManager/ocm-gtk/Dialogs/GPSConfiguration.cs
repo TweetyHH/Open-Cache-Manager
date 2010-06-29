@@ -50,7 +50,7 @@ namespace ocmgtk
 			}
 		}
 
-		public GPSConfiguration (GConf.Client config)
+		public GPSConfiguration (Config config)
 		{
 			this.Build ();
 			try
