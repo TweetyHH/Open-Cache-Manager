@@ -32,6 +32,7 @@ namespace ocmgtk
 		private bool m_showNotFound = true;
 		private UIMonitor m_monitor;
 		private double m_maxDistance = -1;
+		TreeViewColumn m_distanceCol;
 
 		private Timer refreshTimer;
 
@@ -64,23 +65,22 @@ namespace ocmgtk
 			CellRendererPixbuf geoicon_cell = new CellRendererPixbuf ();
 			TreeViewColumn geocache_icon = new TreeViewColumn (Catalog.GetString ("Type"), geoicon_cell);
 			TreeViewColumn geocache_code = new TreeViewColumn (Catalog.GetString ("Code"), geocode_cell);
-			TreeViewColumn geocache_distance = new TreeViewColumn (Catalog.GetString ("Km"), geodistance_cell);
+			m_distanceCol = new TreeViewColumn (Catalog.GetString ("Km"), geodistance_cell);
 			TreeViewColumn geocache_title = new TreeViewColumn (Catalog.GetString ("Title"), geotitle_cell);
 			
 			treeview1.AppendColumn (geocache_icon);
 			treeview1.AppendColumn (geocache_code);
-			treeview1.AppendColumn (geocache_distance);
+			treeview1.AppendColumn (m_distanceCol);
 			treeview1.AppendColumn (geocache_title);
-			
-			
+				
 			geocache_code.SetCellDataFunc (geocode_cell, new TreeCellDataFunc (RenderCacheCode));
 			geocache_code.SortColumnId = 1;
 			geocache_title.SetCellDataFunc (geotitle_cell, new TreeCellDataFunc (RenderCacheTitle));
 			geocache_title.SortColumnId = 3;
 			geocache_icon.SetCellDataFunc (geoicon_cell, new TreeCellDataFunc (RenderCacheIcon));
 			geocache_icon.SortColumnId = 0;
-			geocache_distance.SetCellDataFunc (geodistance_cell, new TreeCellDataFunc (RenderCacheDistance));
-			geocache_distance.SortColumnId = 2;
+			m_distanceCol.SetCellDataFunc (geodistance_cell, new TreeCellDataFunc (RenderCacheDistance));
+			m_distanceCol.SortColumnId = 2;
 			
 			
 			m_QuickFilter = new TreeModelFilter (m_cacheModel, null);
@@ -105,6 +105,18 @@ namespace ocmgtk
 				caches.Add ((Geocache)m_ListSort.GetValue (itr, 0));
 			} while (m_ListSort.IterNext (ref itr));
 			return caches;
+		}
+		
+		public void SetImperial()
+		{
+			m_distanceCol.Title = Catalog.GetString("Mi");
+			distLabel.Text = Catalog.GetString("Miles");
+		}
+		
+		public void SetMetric()
+		{
+			m_distanceCol.Title = Catalog.GetString("Km");
+			distLabel.Text = Catalog.GetString("Km");
 		}
 
 		public int GetVisibleFoundCacheCount ()
@@ -203,6 +215,8 @@ namespace ocmgtk
 			CellRendererText text = cell as CellRendererText;
 			try {
 				double dist = Utilities.calculateDistance (m_monitor.CentreLat, cache.Lat, m_monitor.CentreLon, cache.Lon);
+				if (m_monitor.UseImperial)
+					dist = Utilities.KmToMiles(dist);
 				text.Text = dist.ToString ("0.00");
 			} catch (Exception e) {
 				text.Text = "?";
@@ -452,6 +466,8 @@ namespace ocmgtk
 		{
 			try {
 				m_maxDistance = double.Parse (distanceEntry.Text);
+				if (m_monitor.UseImperial)
+					m_maxDistance = Utilities.MilesToKm(m_maxDistance);
 			} catch (Exception) {
 				m_maxDistance = -1;
 			}

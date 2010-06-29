@@ -34,7 +34,7 @@ namespace ocmgtk
 			this.Build ();
 			descWidget = new HTMLWidget ();
 			hintWidget = new HTMLWidget();
-			descScroll.Add (descWidget);
+			descAlign.Add(descWidget);
 			hintExpander.Add(hintWidget);			
 			SetupTBList ();
 		}

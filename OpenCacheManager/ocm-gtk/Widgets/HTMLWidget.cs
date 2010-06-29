@@ -30,11 +30,9 @@ namespace ocmgtk
 		{
 			this.Build ();
 			m_view = new WebKit.WebView();
-			ScrolledWindow win = new ScrolledWindow();
-			win.Add(m_view);
+			htmlAlign.Add(m_view);
 			m_view.LoadFinished += HandleM_viewLoadFinished;
 			m_view.NavigationRequested += HandleM_viewNavigationRequested;
-			this.Add(win);
 		}
 
 		void HandleM_viewLoadFinished (object o, WebKit.LoadFinishedArgs args)

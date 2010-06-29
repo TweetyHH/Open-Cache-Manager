@@ -47,6 +47,7 @@ namespace ocmgtk
 		private static Pixbuf WEBCAM = new Pixbuf ("./icons/scalable/webcam.svg", 64, 64);
 		private static Pixbuf WHERIGO = new Pixbuf ("./icons/scalable/wherigo.svg", 64, 64);
 		private static Pixbuf VIRTUAL = new Pixbuf ("./icons/scalable/virtual.svg", 64, 64);
+		private static Pixbuf GENERIC = new Pixbuf ("./icons/scalable/treasure.svg", 64, 64);
 
 		UIMonitor m_monitor;
 		public GeocacheInfoPanel ()
@@ -171,42 +172,45 @@ namespace ocmgtk
 		public void setCacheIcon (Geocache.CacheType type)
 		{
 			switch (type) {
-			case Geocache.CacheType.TRADITIONAL:
-				cacheIcon.Pixbuf = TRADICON;
-				break;
-			case Geocache.CacheType.MYSTERY:
-				cacheIcon.Pixbuf = MYSTERYICON;
-				break;
-			case Geocache.CacheType.MULTI:
-				cacheIcon.Pixbuf = MULTIICON;
-				break;
-			case Geocache.CacheType.LETTERBOX:
-				cacheIcon.Pixbuf = LETTERICON;
-				break;
-			case Geocache.CacheType.EARTH:
-				cacheIcon.Pixbuf = EARTHICON;
-				break;
-			case Geocache.CacheType.CITO:
-				cacheIcon.Pixbuf = CITOICON;
-				break;
-			case Geocache.CacheType.EVENT:
-				cacheIcon.Pixbuf = EVENT;
-				break;
-			case Geocache.CacheType.MEGAEVENT:
-				cacheIcon.Pixbuf = MEGAEVENT;
-				break;
-			case Geocache.CacheType.VIRTUAL:
-				cacheIcon.Pixbuf = VIRTUAL;
-				break;
-			case Geocache.CacheType.WEBCAM:
-				cacheIcon.Pixbuf = WEBCAM;
-				break;
-			case Geocache.CacheType.WHERIGO:
-				cacheIcon.Pixbuf = WHERIGO;
-				break;
-			default:
-				cacheIcon.Pixbuf = OTHERICON;
-				break;
+				case Geocache.CacheType.TRADITIONAL:
+					cacheIcon.Pixbuf = TRADICON;
+					break;
+				case Geocache.CacheType.MYSTERY:
+					cacheIcon.Pixbuf = MYSTERYICON;
+					break;
+				case Geocache.CacheType.MULTI:
+					cacheIcon.Pixbuf = MULTIICON;
+					break;
+				case Geocache.CacheType.LETTERBOX:
+					cacheIcon.Pixbuf = LETTERICON;
+					break;
+				case Geocache.CacheType.EARTH:
+					cacheIcon.Pixbuf = EARTHICON;
+					break;
+				case Geocache.CacheType.CITO:
+					cacheIcon.Pixbuf = CITOICON;
+					break;
+				case Geocache.CacheType.EVENT:
+					cacheIcon.Pixbuf = EVENT;
+					break;
+				case Geocache.CacheType.MEGAEVENT:
+					cacheIcon.Pixbuf = MEGAEVENT;
+					break;
+				case Geocache.CacheType.VIRTUAL:
+					cacheIcon.Pixbuf = VIRTUAL;
+					break;
+				case Geocache.CacheType.WEBCAM:
+					cacheIcon.Pixbuf = WEBCAM;
+					break;
+				case Geocache.CacheType.WHERIGO:
+					cacheIcon.Pixbuf = WHERIGO;
+					break;
+				case Geocache.CacheType.GENERIC:
+					cacheIcon.Pixbuf = GENERIC;
+					break;
+				default:
+					cacheIcon.Pixbuf = OTHERICON;
+					break;
 			}
 		}
 
@@ -230,61 +234,71 @@ namespace ocmgtk
 				bmarker = "NW";
 			
 			
-			distance_label.Markup = Catalog.GetString (String.Format ("<span font='bold italic 10'>({0} km {1} from your home coordinates)</span>", distance.ToString ("0.00"), bmarker));
-			
+			if (m_monitor.UseImperial)
+			{
+				distance = Utilities.KmToMiles(distance);
+				distance_label.Markup = Catalog.GetString (String.Format ("<span font='bold italic 10'>({0} miles {1} from your home coordinates)</span>", distance.ToString ("0.00"), bmarker));
+			}
+			else
+			{
+				distance_label.Markup = Catalog.GetString (String.Format ("<span font='bold italic 10'>({0} km {1} from your home coordinates)</span>", distance.ToString ("0.00"), bmarker));
+			}
 		}
 
 		private void setCacheType (Geocache.CacheType ctype)
 		{
 			switch (ctype) {
-			case Geocache.CacheType.APE:
-				cacheTypeLabel.Text = Catalog.GetString ("Project A.P.E");
-				break;
-			case Geocache.CacheType.CITO:
-				cacheTypeLabel.Text = Catalog.GetString ("Cache In Trash Out Event");
-				break;
-			case Geocache.CacheType.EARTH:
-				cacheTypeLabel.Text = Catalog.GetString ("Earth Cache");
-				break;
-			case Geocache.CacheType.EVENT:
-				cacheTypeLabel.Text = Catalog.GetString ("Event Cache");
-				break;
-			case Geocache.CacheType.LETTERBOX:
-				cacheTypeLabel.Text = Catalog.GetString ("Letterbox Hybrid");
-				break;
-			case Geocache.CacheType.MAZE:
-				cacheTypeLabel.Text = Catalog.GetString ("Geo Adventures Maze");
-				break;
-			case Geocache.CacheType.MEGAEVENT:
-				cacheTypeLabel.Text = Catalog.GetString ("Mega Event");
-				break;
-			case Geocache.CacheType.MULTI:
-				cacheTypeLabel.Text = Catalog.GetString ("Multi Cache");
-				break;
-			case Geocache.CacheType.MYSTERY:
-				cacheTypeLabel.Text = Catalog.GetString ("Unknown Cache");
-				break;
-			case Geocache.CacheType.OTHER:
-				cacheTypeLabel.Text = Catalog.GetString ("Undefined Cache Type");
-				break;
-			case Geocache.CacheType.REVERSE:
-				cacheTypeLabel.Text = Catalog.GetString ("Locationless Cache");
-				break;
-			case Geocache.CacheType.TRADITIONAL:
-				cacheTypeLabel.Text = Catalog.GetString ("Traditional Cache");
-				break;
-			case Geocache.CacheType.VIRTUAL:
-				cacheTypeLabel.Text = Catalog.GetString ("Virtual Cache");
-				break;
-			case Geocache.CacheType.WEBCAM:
-				cacheTypeLabel.Text = Catalog.GetString ("Webcam Cache");
-				break;
-			case Geocache.CacheType.WHERIGO:
-				cacheTypeLabel.Text = Catalog.GetString ("Wherigo Cache");
-				break;
-			default:
-				cacheTypeLabel.Text = "NOT_DEFINED";
-				break;
+				case Geocache.CacheType.APE:
+					cacheTypeLabel.Text = Catalog.GetString ("Project A.P.E");
+					break;
+				case Geocache.CacheType.CITO:
+					cacheTypeLabel.Text = Catalog.GetString ("Cache In Trash Out Event");
+					break;
+				case Geocache.CacheType.EARTH:
+					cacheTypeLabel.Text = Catalog.GetString ("Earth Cache");
+					break;
+				case Geocache.CacheType.EVENT:
+					cacheTypeLabel.Text = Catalog.GetString ("Event Cache");
+					break;
+				case Geocache.CacheType.LETTERBOX:
+					cacheTypeLabel.Text = Catalog.GetString ("Letterbox Hybrid");
+					break;
+				case Geocache.CacheType.MAZE:
+					cacheTypeLabel.Text = Catalog.GetString ("Geo Adventures Maze");
+					break;
+				case Geocache.CacheType.MEGAEVENT:
+					cacheTypeLabel.Text = Catalog.GetString ("Mega Event");
+					break;
+				case Geocache.CacheType.MULTI:
+					cacheTypeLabel.Text = Catalog.GetString ("Multi Cache");
+					break;
+				case Geocache.CacheType.MYSTERY:
+					cacheTypeLabel.Text = Catalog.GetString ("Unknown Cache");
+					break;
+				case Geocache.CacheType.OTHER:
+					cacheTypeLabel.Text = Catalog.GetString ("Undefined Cache Type");
+					break;
+				case Geocache.CacheType.REVERSE:
+					cacheTypeLabel.Text = Catalog.GetString ("Locationless Cache");
+					break;
+				case Geocache.CacheType.TRADITIONAL:
+					cacheTypeLabel.Text = Catalog.GetString ("Traditional Cache");
+					break;
+				case Geocache.CacheType.VIRTUAL:
+					cacheTypeLabel.Text = Catalog.GetString ("Virtual Cache");
+					break;
+				case Geocache.CacheType.WEBCAM:
+					cacheTypeLabel.Text = Catalog.GetString ("Webcam Cache");
+					break;
+				case Geocache.CacheType.WHERIGO:
+					cacheTypeLabel.Text = Catalog.GetString ("Wherigo Cache");
+					break;
+				case Geocache.CacheType.GENERIC:
+					cacheTypeLabel.Text = Catalog.GetString("Geocache");
+					break;
+				default:
+					cacheTypeLabel.Text = "NOT_DEFINED";
+					break;
 			}
 		}
 		protected virtual void OnClickView (object sender, System.EventArgs e)

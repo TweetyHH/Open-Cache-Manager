@@ -27,30 +27,5 @@ namespace ocmgtk
 		{
 			this.Build ();
 		}
-		
-		public bool IncludeFound
-		{
-			get { return foundCheck.Active;}
-		}
-		
-		public bool IncludeNotFound
-		{
-			get {return notfoundCheck.Active; }
-		}
-		
-		public bool IncludeAvailable
-		{
-			get { return availableCheck.Active;}
-		}
-		
-		public bool IncludeUnavailable
-		{
-			get {return unavailableCheck.Active;}
-		}
-		
-		public bool IncludeArchived
-		{
-			get {return archivedCheck.Active;}
-		}
 	}
 }

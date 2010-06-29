@@ -31,7 +31,7 @@ namespace ocmgtk
 		{
 			this.Build ();
 			m_logPane = new HTMLWidget ();
-			logScroll.Add (m_logPane);
+			logAlign.Add(m_logPane);
 			m_mon = UIMonitor.getInstance ();
 		}
 
