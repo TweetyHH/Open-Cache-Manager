@@ -14,36 +14,37 @@
 //    limitations under the License.
 
 using System;
+using GConf;
 
 namespace ocmgtk
 {
 
 
-	public class SavedGPSConf : IGPSConfig
+	public class Config
 	{
-		string m_Format = null;
-		public string GetBabelFormat ()
+		private GConf.Client m_client;
+
+		public Config ()
 		{
-			return m_Format;
+			m_client = new Client();
 		}
 		
-		int m_Limit = -1;
-		public int GetCacheLimit ()
+		public object Get(String key, Object def)
 		{
-			return m_Limit;
+			try
+			{
+				return m_client.Get(key);
+			}
+			catch
+			{
+				return def;
+			}
 		}
-
-		string m_File = null;
-		public string GetOutputFile ()
+		
+		public void Set(String key, Object val)
 		{
-			return m_File;
+			m_client.Set(key, val);
 		}
-
-		public SavedGPSConf(Config client)
-		{
-			m_Format = client.Get("/apps/ocm/gps/type", "OCM_GPX") as String;
-			m_Limit = (int) client.Get("/apps/ocm/gps/limit", -1);
-			m_File = client.Get("/apps/ocm/gps/file", "geocaches.gpx") as String;
-		}
+		
 	}
 }

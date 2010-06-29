@@ -50,6 +50,7 @@ namespace ocmgtk
 		private static Pixbuf WHERIGO_S = new Pixbuf ("./icons/scalable/wherigo.svg", 24, 24);
 		private static Pixbuf VIRTUAL_S = new Pixbuf ("./icons/scalable/virtual.svg", 24, 24);
 		private static Pixbuf OWNED_S = new Pixbuf ("./icons/scalable/star.svg", 24, 24);
+		private static Pixbuf GENERIC_S = new Pixbuf ("./icons/scalable/treasure.svg", 24, 24);
 
 		private static string TRAD_MI = "traditional.png";
 		private static string CITO_MI = "cito.png";
@@ -65,6 +66,7 @@ namespace ocmgtk
 		private static string VIRTUAL_MI = "virtual.png";
 		private static string WEBCAM_MI = "webcam.png";
 		private static string WHERIGO_MI = "wherigo.png";
+		private static string GENERIC_MI = "treasure.png";
 
 
 
@@ -77,10 +79,11 @@ namespace ocmgtk
 		private Geocache m_selectedCache;
 		private MainWindow m_mainWin;
 		private BrowserWidget m_map;
-		private GConf.Client m_conf;
+		private Config m_conf;
 		private Label m_centreLabel;
 		private ProgressBar m_progress;
 		private bool m_showNearby;
+		private bool m_useImperial;
 		#endregion
 
 		#region Properties
@@ -170,6 +173,8 @@ namespace ocmgtk
 		public ProgressBar StatusProgress {
 			set { m_progress = value; }
 		}
+		
+		
 
 		public Boolean ShowNearby {
 			set { m_showNearby = value; 
@@ -183,6 +188,11 @@ namespace ocmgtk
 				}
 			}
 		}
+		
+		public Boolean UseImperial
+		{
+			get { return m_useImperial; } 
+		}
 
 		#endregion
 
@@ -192,7 +202,7 @@ namespace ocmgtk
 		/// </summary>
 		private UIMonitor ()
 		{
-			m_conf = new GConf.Client ();
+			m_conf = new Config();
 		}
 
 		/// <summary>
@@ -215,20 +225,18 @@ namespace ocmgtk
 		/// </summary>
 		public void LoadConfig ()
 		{
-			GConf.Client client = new GConf.Client ();
 			
-			try {
-				CentreLat = (double)client.Get ("/apps/ocm/homelat");
-				CentreLon = (double)client.Get ("/apps/ocm/homelon");
-				OwnerID = (string)client.Get ("/apps/ocm/memberid");
-				String dbName = (string)client.Get ("/apps/ocm/currentdb");
-				SetCurrentDB (dbName, true);
-				m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html");
-				SetSelectedCache(null);
-				GoHome ();
-			} catch (GConf.NoSuchKeyException) {
-				// Do nothing
-			}
+			CentreLat = (double) m_conf.Get ("/apps/ocm/homelat", 0.0);
+			CentreLon = (double)m_conf.Get ("/apps/ocm/homelon", 0.0);
+			OwnerID = (string)m_conf.Get ("/apps/ocm/memberid", String.Empty);
+			m_useImperial = (Boolean) m_conf.Get("/apps/ocm/imperial", false);
+			String dbName = (string)m_conf.Get ("/apps/ocm/currentdb", String.Empty);
+			SetCurrentDB (dbName, true);
+			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html");
+			SetSelectedCache(null);
+			if (m_useImperial)
+				m_cachelist.SetImperial();
+			GoHome ();
 		}
 
 		private void SetCurrentDB (string dbName, bool loadNow)
@@ -314,8 +322,8 @@ namespace ocmgtk
 		
 		public void ResetCenterToHome()
 		{
-			CentreLat = (double)m_conf.Get ("/apps/ocm/homelat");
-			CentreLon = (double)m_conf.Get ("/apps/ocm/homelon");
+			CentreLat = (double)m_conf.Get ("/apps/ocm/homelat", 0.0);
+			CentreLon = (double)m_conf.Get ("/apps/ocm/homelon", 0.0);
 			Geocache selected = m_selectedCache;
 			m_centreName = "Home";
 			RefreshCaches();
@@ -438,6 +446,8 @@ namespace ocmgtk
 				return UIMonitor.WHERIGO_S;
 			case Geocache.CacheType.MINE:
 				return UIMonitor.OWNED_S;
+			case Geocache.CacheType.GENERIC:
+				return UIMonitor.GENERIC_S;
 			default:
 				return UIMonitor.OTHERICON_S;
 			}
@@ -459,30 +469,32 @@ namespace ocmgtk
 			if (cache.OwnerID == m_instance.OwnerID)
 				return OWNED_MI;
 			switch (cache.TypeOfCache) {
-			case Geocache.CacheType.TRADITIONAL:
-				return UIMonitor.TRAD_MI;
-			case Geocache.CacheType.MYSTERY:
-				return UIMonitor.UNKNOWN_MI;
-			case Geocache.CacheType.MULTI:
-				return UIMonitor.MULTI_MI;
-			case Geocache.CacheType.LETTERBOX:
-				return UIMonitor.LETTRBOX_MI;
-			case Geocache.CacheType.EARTH:
-				return UIMonitor.EARH_MI;
-			case Geocache.CacheType.CITO:
-				return UIMonitor.CITO_MI;
-			case Geocache.CacheType.VIRTUAL:
-				return UIMonitor.VIRTUAL_MI;
-			case Geocache.CacheType.MEGAEVENT:
-				return UIMonitor.MEGA_MI;
-			case Geocache.CacheType.EVENT:
-				return UIMonitor.EVENT_MI;
-			case Geocache.CacheType.WEBCAM:
-				return UIMonitor.WEBCAM_MI;
-			case Geocache.CacheType.WHERIGO:
-				return UIMonitor.WHERIGO_MI;
-			default:
-				return UIMonitor.OTHER_MI;
+				case Geocache.CacheType.TRADITIONAL:
+					return UIMonitor.TRAD_MI;
+				case Geocache.CacheType.MYSTERY:
+					return UIMonitor.UNKNOWN_MI;
+				case Geocache.CacheType.MULTI:
+					return UIMonitor.MULTI_MI;
+				case Geocache.CacheType.LETTERBOX:
+					return UIMonitor.LETTRBOX_MI;
+				case Geocache.CacheType.EARTH:
+					return UIMonitor.EARH_MI;
+				case Geocache.CacheType.CITO:
+					return UIMonitor.CITO_MI;
+				case Geocache.CacheType.VIRTUAL:
+					return UIMonitor.VIRTUAL_MI;
+				case Geocache.CacheType.MEGAEVENT:
+					return UIMonitor.MEGA_MI;
+				case Geocache.CacheType.EVENT:
+					return UIMonitor.EVENT_MI;
+				case Geocache.CacheType.WEBCAM:
+					return UIMonitor.WEBCAM_MI;
+				case Geocache.CacheType.WHERIGO:
+					return UIMonitor.WHERIGO_MI;
+				case Geocache.CacheType.GENERIC:
+					return UIMonitor.GENERIC_MI;
+				default:
+					return UIMonitor.OTHER_MI;
 			}
 		}
 
@@ -574,7 +586,6 @@ namespace ocmgtk
 		public void ExportGPX ()
 		{
 			ExportProgressDialog edlg = new ExportProgressDialog (new GPXWriter ());
-			;
 			
 			try {
 				FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Save GPX File"), m_mainWin, FileChooserAction.Save, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Export"), ResponseType.Accept);
@@ -589,14 +600,11 @@ namespace ocmgtk
 				
 				if (dlg.Run () == (int)ResponseType.Accept) {
 					dlg.Hide ();
+					edlg.Icon = m_mainWin.Icon;
 					edlg.Start (dlg.Filename, GetVisibleCacheList ());
-					MessageDialog msg = new MessageDialog (m_mainWin, DialogFlags.DestroyWithParent, MessageType.Info, ButtonsType.Ok, "Export Complete!");
-					msg.Run ();
-					msg.Hide ();
 					RecentManager manager = RecentManager.Default;
 					manager.AddItem("file://" + dlg.Filename);
 				}
-				edlg.Destroy();
 				dlg.Destroy ();
 			} catch (Exception e) {
 				ShowException (e);
@@ -871,14 +879,29 @@ namespace ocmgtk
 		public void ShowPreferences()
 		{
 			Preferences dlg = new Preferences();
-			dlg.MemberID = (String) m_conf.Get ("/apps/ocm/memberid");
-			dlg.Lat = (Double) m_conf.Get ("/apps/ocm/homelat");
-			dlg.Lon = (Double) m_conf.Get ("/apps/ocm/homelon");
+			dlg.MemberID = (String) m_conf.Get ("/apps/ocm/memberid", String.Empty);
+			dlg.Lat = (Double) m_conf.Get ("/apps/ocm/homelat", 0.0);
+			dlg.Lon = (Double) m_conf.Get ("/apps/ocm/homelon", 0.0);
+			dlg.ImperialUnits = (Boolean) m_conf.Get("/apps/ocm/imperial", false);
+			dlg.Icon = m_mainWin.Icon;
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
 				m_conf.Set ("/apps/ocm/memberid", dlg.MemberID);
 				m_conf.Set ("/apps/ocm/homelat", dlg.Lat);
 				m_conf.Set ("/apps/ocm/homelon", dlg.Lon);
+				m_conf.Set ("/apps/ocm/imperial", dlg.ImperialUnits);
+				m_home_lat = dlg.Lat;
+				m_home_lon = dlg.Lon;
+				m_centreLabel.Text = Catalog.GetString("Home");
+				m_useImperial = dlg.ImperialUnits;
+				if (dlg.ImperialUnits)
+				{
+					m_cachelist.SetImperial();
+				}
+				else
+				{
+					m_cachelist.SetMetric();
+				}
 				RefreshCaches();
 			}
 			dlg.Dispose();
