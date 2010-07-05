@@ -208,7 +208,7 @@ public partial class MainWindow : Gtk.Window
 	
 	public void SetAllowClearFilter(bool allow)
 	{
-		ClearAdditonalFiltersAction.Sensitive = allow;
+		ClearAdvancedFiltersAction.Sensitive = allow;
 	}
 	
 	protected virtual void OnShowAllToggle (object sender, System.EventArgs e)
@@ -263,6 +263,36 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.ResetCenterToHome();
 		ResetCentreToHomeAction.Sensitive = false;
 	}
+	
+	protected virtual void OnTerraHome (object sender, System.EventArgs e)
+	{
+		UIMonitor.TerraHome();
+	}
+	
+	protected virtual void OnTerraTodo (object sender, System.EventArgs e)
+	{
+		UIMonitor.TerraTodo();
+	}
+	
+	protected virtual void OnTerraLocationless (object sender, System.EventArgs e)
+	{
+		UIMonitor.TerraLocTodo();
+	}
+	
+	protected virtual void OnNaviHome (object sender, System.EventArgs e)
+	{
+		UIMonitor.NaviHome();
+	}
+	
+	protected virtual void OnMyNavi (object sender, System.EventArgs e)
+	{
+		UIMonitor.MyNavi();
+	}
+	
+	
+	
+	
+	
 	
 	
 	

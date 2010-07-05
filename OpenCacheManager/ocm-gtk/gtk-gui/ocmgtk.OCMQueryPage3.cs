@@ -15,17 +15,21 @@ namespace ocmgtk {
         
         private Gtk.Table table2;
         
-        private Gtk.CheckButton checkbutton2;
+        private Gtk.CheckButton infoAfterCheck;
         
-        private Gtk.CheckButton checkbutton3;
+        private ocmgtk.DateWidget infoAfterEntry1;
         
-        private Gtk.Entry entry1;
+        private Gtk.CheckButton infoBeforeCheck;
         
-        private Gtk.Entry entry2;
+        private ocmgtk.DateWidget infoBeforeEntry;
         
-        private Gtk.Entry limitEntry;
+        private Gtk.CheckButton placeAfterCheck;
         
-        private Gtk.CheckButton placedSince;
+        private ocmgtk.DateWidget placeAfterEntry;
+        
+        private Gtk.CheckButton placeBeforeCheck;
+        
+        private ocmgtk.DateWidget placeBeforeEntry;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -39,87 +43,114 @@ namespace ocmgtk {
             this.table2.ColumnSpacing = ((uint)(6));
             this.table2.BorderWidth = ((uint)(6));
             // Container child table2.Gtk.Table+TableChild
-            this.checkbutton2 = new Gtk.CheckButton();
-            this.checkbutton2.CanFocus = true;
-            this.checkbutton2.Name = "checkbutton2";
-            this.checkbutton2.Label = Mono.Unix.Catalog.GetString("Limit Number of Caches");
-            this.checkbutton2.DrawIndicator = true;
-            this.checkbutton2.UseUnderline = true;
-            this.table2.Add(this.checkbutton2);
-            Gtk.Table.TableChild w1 = ((Gtk.Table.TableChild)(this.table2[this.checkbutton2]));
+            this.infoAfterCheck = new Gtk.CheckButton();
+            this.infoAfterCheck.CanFocus = true;
+            this.infoAfterCheck.Name = "infoAfterCheck";
+            this.infoAfterCheck.Label = Mono.Unix.Catalog.GetString("Last updated on or after:");
+            this.infoAfterCheck.DrawIndicator = true;
+            this.infoAfterCheck.UseUnderline = true;
+            this.table2.Add(this.infoAfterCheck);
+            Gtk.Table.TableChild w1 = ((Gtk.Table.TableChild)(this.table2[this.infoAfterCheck]));
+            w1.TopAttach = ((uint)(2));
+            w1.BottomAttach = ((uint)(3));
             w1.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
-            this.checkbutton3 = new Gtk.CheckButton();
-            this.checkbutton3.CanFocus = true;
-            this.checkbutton3.Name = "checkbutton3";
-            this.checkbutton3.Label = Mono.Unix.Catalog.GetString("Placed Before:");
-            this.checkbutton3.DrawIndicator = true;
-            this.checkbutton3.UseUnderline = true;
-            this.table2.Add(this.checkbutton3);
-            Gtk.Table.TableChild w2 = ((Gtk.Table.TableChild)(this.table2[this.checkbutton3]));
+            this.infoAfterEntry1 = new ocmgtk.DateWidget();
+            this.infoAfterEntry1.Sensitive = false;
+            this.infoAfterEntry1.Events = ((Gdk.EventMask)(256));
+            this.infoAfterEntry1.Name = "infoAfterEntry1";
+            this.infoAfterEntry1.Date = new System.DateTime(0);
+            this.table2.Add(this.infoAfterEntry1);
+            Gtk.Table.TableChild w2 = ((Gtk.Table.TableChild)(this.table2[this.infoAfterEntry1]));
             w2.TopAttach = ((uint)(2));
             w2.BottomAttach = ((uint)(3));
+            w2.LeftAttach = ((uint)(1));
+            w2.RightAttach = ((uint)(2));
+            w2.XOptions = ((Gtk.AttachOptions)(4));
             w2.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
-            this.entry1 = new Gtk.Entry();
-            this.entry1.TooltipMarkup = "M/D/YYYY";
-            this.entry1.CanFocus = true;
-            this.entry1.Name = "entry1";
-            this.entry1.Text = Mono.Unix.Catalog.GetString("1/1/2001");
-            this.entry1.IsEditable = true;
-            this.entry1.InvisibleChar = '•';
-            this.table2.Add(this.entry1);
-            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table2[this.entry1]));
-            w3.TopAttach = ((uint)(1));
-            w3.BottomAttach = ((uint)(2));
-            w3.LeftAttach = ((uint)(1));
-            w3.RightAttach = ((uint)(2));
+            this.infoBeforeCheck = new Gtk.CheckButton();
+            this.infoBeforeCheck.CanFocus = true;
+            this.infoBeforeCheck.Name = "infoBeforeCheck";
+            this.infoBeforeCheck.Label = Mono.Unix.Catalog.GetString("Last updated on or before:");
+            this.infoBeforeCheck.DrawIndicator = true;
+            this.infoBeforeCheck.UseUnderline = true;
+            this.table2.Add(this.infoBeforeCheck);
+            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table2[this.infoBeforeCheck]));
+            w3.TopAttach = ((uint)(3));
+            w3.BottomAttach = ((uint)(4));
             w3.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
-            this.entry2 = new Gtk.Entry();
-            this.entry2.TooltipMarkup = "M/D/YYYY";
-            this.entry2.CanFocus = true;
-            this.entry2.Name = "entry2";
-            this.entry2.Text = Mono.Unix.Catalog.GetString("1/1/2001");
-            this.entry2.IsEditable = true;
-            this.entry2.InvisibleChar = '•';
-            this.table2.Add(this.entry2);
-            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table2[this.entry2]));
-            w4.TopAttach = ((uint)(2));
-            w4.BottomAttach = ((uint)(3));
+            this.infoBeforeEntry = new ocmgtk.DateWidget();
+            this.infoBeforeEntry.Sensitive = false;
+            this.infoBeforeEntry.Events = ((Gdk.EventMask)(256));
+            this.infoBeforeEntry.Name = "infoBeforeEntry";
+            this.infoBeforeEntry.Date = new System.DateTime(0);
+            this.table2.Add(this.infoBeforeEntry);
+            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table2[this.infoBeforeEntry]));
+            w4.TopAttach = ((uint)(3));
+            w4.BottomAttach = ((uint)(4));
             w4.LeftAttach = ((uint)(1));
             w4.RightAttach = ((uint)(2));
+            w4.XOptions = ((Gtk.AttachOptions)(4));
             w4.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
-            this.limitEntry = new Gtk.Entry();
-            this.limitEntry.Sensitive = false;
-            this.limitEntry.CanFocus = true;
-            this.limitEntry.Name = "limitEntry";
-            this.limitEntry.Text = Mono.Unix.Catalog.GetString("1000");
-            this.limitEntry.IsEditable = true;
-            this.limitEntry.InvisibleChar = '•';
-            this.table2.Add(this.limitEntry);
-            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table2[this.limitEntry]));
-            w5.LeftAttach = ((uint)(1));
-            w5.RightAttach = ((uint)(2));
+            this.placeAfterCheck = new Gtk.CheckButton();
+            this.placeAfterCheck.CanFocus = true;
+            this.placeAfterCheck.Name = "placeAfterCheck";
+            this.placeAfterCheck.Label = Mono.Unix.Catalog.GetString("Placed on or after:");
+            this.placeAfterCheck.DrawIndicator = true;
+            this.placeAfterCheck.UseUnderline = true;
+            this.table2.Add(this.placeAfterCheck);
+            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table2[this.placeAfterCheck]));
             w5.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
-            this.placedSince = new Gtk.CheckButton();
-            this.placedSince.CanFocus = true;
-            this.placedSince.Name = "placedSince";
-            this.placedSince.Label = Mono.Unix.Catalog.GetString("Placed After:");
-            this.placedSince.DrawIndicator = true;
-            this.placedSince.UseUnderline = true;
-            this.table2.Add(this.placedSince);
-            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table2[this.placedSince]));
-            w6.TopAttach = ((uint)(1));
-            w6.BottomAttach = ((uint)(2));
+            this.placeAfterEntry = new ocmgtk.DateWidget();
+            this.placeAfterEntry.Sensitive = false;
+            this.placeAfterEntry.Events = ((Gdk.EventMask)(256));
+            this.placeAfterEntry.Name = "placeAfterEntry";
+            this.placeAfterEntry.Date = new System.DateTime(0);
+            this.table2.Add(this.placeAfterEntry);
+            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table2[this.placeAfterEntry]));
+            w6.LeftAttach = ((uint)(1));
+            w6.RightAttach = ((uint)(2));
+            w6.XOptions = ((Gtk.AttachOptions)(4));
             w6.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.placeBeforeCheck = new Gtk.CheckButton();
+            this.placeBeforeCheck.CanFocus = true;
+            this.placeBeforeCheck.Name = "placeBeforeCheck";
+            this.placeBeforeCheck.Label = Mono.Unix.Catalog.GetString("Placed on or before:");
+            this.placeBeforeCheck.DrawIndicator = true;
+            this.placeBeforeCheck.UseUnderline = true;
+            this.table2.Add(this.placeBeforeCheck);
+            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table2[this.placeBeforeCheck]));
+            w7.TopAttach = ((uint)(1));
+            w7.BottomAttach = ((uint)(2));
+            w7.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.placeBeforeEntry = new ocmgtk.DateWidget();
+            this.placeBeforeEntry.Sensitive = false;
+            this.placeBeforeEntry.Events = ((Gdk.EventMask)(256));
+            this.placeBeforeEntry.Name = "placeBeforeEntry";
+            this.placeBeforeEntry.Date = new System.DateTime(0);
+            this.table2.Add(this.placeBeforeEntry);
+            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table2[this.placeBeforeEntry]));
+            w8.TopAttach = ((uint)(1));
+            w8.BottomAttach = ((uint)(2));
+            w8.LeftAttach = ((uint)(1));
+            w8.RightAttach = ((uint)(2));
+            w8.XOptions = ((Gtk.AttachOptions)(4));
+            w8.YOptions = ((Gtk.AttachOptions)(4));
             this.Add(this.table2);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.Hide();
+            this.placeBeforeCheck.Toggled += new System.EventHandler(this.OnPlaceBeforeTogg);
+            this.placeAfterCheck.Toggled += new System.EventHandler(this.OnPlaceAfterCheck);
+            this.infoBeforeCheck.Toggled += new System.EventHandler(this.OnInfoBeforeTog);
+            this.infoAfterCheck.Toggled += new System.EventHandler(this.OnInfoAfterTog);
         }
     }
 }

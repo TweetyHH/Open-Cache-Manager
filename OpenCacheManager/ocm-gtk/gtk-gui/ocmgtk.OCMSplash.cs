@@ -54,7 +54,7 @@ namespace ocmgtk {
             // Container child hbox1.Gtk.Box+BoxChild
             this.label1 = new Gtk.Label();
             this.label1.Name = "label1";
-            this.label1.LabelProp = Mono.Unix.Catalog.GetString("<span font='24'><b>Open Cache Manager</b></span>");
+            this.label1.LabelProp = "<span font='24'><b>Open Cache Manager</b></span>";
             this.label1.UseMarkup = true;
             this.hbox1.Add(this.label1);
             Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.hbox1[this.label1]));
@@ -67,7 +67,7 @@ namespace ocmgtk {
             // Container child vbox2.Gtk.Box+BoxChild
             this.label2 = new Gtk.Label();
             this.label2.Name = "label2";
-            this.label2.LabelProp = Mono.Unix.Catalog.GetString("Version 0.15 Alpha");
+            this.label2.LabelProp = "Version 0.15 Alpha";
             this.vbox2.Add(this.label2);
             Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.vbox2[this.label2]));
             w4.PackType = ((Gtk.PackType)(1));

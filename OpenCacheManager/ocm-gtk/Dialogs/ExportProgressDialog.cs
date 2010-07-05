@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using ocmengine;
 using Gtk;
+using Mono.Unix;
 
 namespace ocmgtk
 {
@@ -39,16 +40,16 @@ namespace ocmgtk
 		public void Start(String filename, List<Geocache> list)
 		{
 			total = list.Count;
+			fileLabel.Markup = Catalog.GetString("<b>File: </b>") + filename;
 			m_writer.WriteGPXFile(filename, list);
-			this.Show();
 		}
 
 		void HandleWriterComplete (object sender, EventArgs args)
 		{
 			okButton.Sensitive = true;
 			buttonCancel.Sensitive = false;
-			infoLabel.Markup = String.Format("<i>{0} Geocaches exported.</i>", count);
-			writeProgress.Text = "Complete";
+			infoLabel.Markup = String.Format(Catalog.GetString("<i>{0} Geocaches exported.</i>"), count);
+			writeProgress.Text = Catalog.GetString("Complete");
 			okButton.Show();
 			buttonCancel.Hide();
 			okButton.GrabDefault();
@@ -74,7 +75,7 @@ namespace ocmgtk
 		public void DoCancel()
 		{
 			Gtk.MessageDialog qdlg = new Gtk.MessageDialog (this, Gtk.DialogFlags.Modal, Gtk.MessageType.Warning,
-			                                               Gtk.ButtonsType.YesNo, "Cancelling an export will result in an invalid GPX file.\nAre you sure?");
+			                                               Gtk.ButtonsType.YesNo, Catalog.GetString("Cancelling an export will result in an invalid GPX file.\nAre you sure?"));
 			if ((int) ResponseType.Yes == qdlg.Run())
 			{
 				qdlg.Hide();

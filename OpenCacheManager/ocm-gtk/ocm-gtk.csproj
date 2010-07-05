@@ -51,10 +51,6 @@
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="gtkhtml-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtkhtml-sharp-3.14</Package>
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="gconf-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
       <Package>gconf-sharp-2.0</Package>
@@ -150,6 +146,10 @@
     <Compile Include="Dialogs\ChangeHistory.cs" />
     <Compile Include="gtk-gui\ocmgtk.ChangeHistory.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="Widgets\DateWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.DateWidget.cs" />
+    <Compile Include="Dialogs\CalendarWindow.cs" />
+    <Compile Include="gtk-gui\ocmgtk.CalendarWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

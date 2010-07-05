@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using Mono.Unix;
 
 namespace ocmgtk
 {
@@ -30,7 +31,6 @@ namespace ocmgtk
 		
 		public void SetCoordinate(double coord, bool isLat)
 		{
-			System.Console.WriteLine("Coord in" + coord);
 			ocmengine.DegreeMinutes conv = new ocmengine.DegreeMinutes(coord);
 			SetLatBox(isLat);
 			if (conv.Degrees < 0)
@@ -54,7 +54,6 @@ namespace ocmgtk
 				degrees = degrees *-1;
 			double minutes = double.Parse(minuteEntry.Text);
 			ocmengine.DegreeMinutes conv = new ocmengine.DegreeMinutes(degrees, minutes);	
-			System.Console.WriteLine("Coord out" + conv.GetDecimalDegrees());
 			return conv.GetDecimalDegrees();
 		}
 		
@@ -62,8 +61,8 @@ namespace ocmgtk
 		{
 			if (lat)
 			{
-				directionCombo.AppendText("N");
-				directionCombo.AppendText("S");
+				directionCombo.AppendText(Catalog.GetString("N"));
+				directionCombo.AppendText(Catalog.GetString("S"));
 			}
 			else
 			{
@@ -87,7 +86,7 @@ namespace ocmgtk
 			{
 				Gtk.MessageDialog dlg = new Gtk.MessageDialog(null, Gtk.DialogFlags.DestroyWithParent,
 				                                              Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-				                                              "Invalid Coordinate");
+				                                              Catalog.GetString("Invalid Coordinate"));
 				dlg.Run();
 				dlg.Hide();
 				dlg.Dispose();

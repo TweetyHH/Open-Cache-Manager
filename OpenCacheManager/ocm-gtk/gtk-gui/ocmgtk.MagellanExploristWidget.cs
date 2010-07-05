@@ -61,7 +61,7 @@ namespace ocmgtk {
             this.limitEntry.Sensitive = false;
             this.limitEntry.CanFocus = true;
             this.limitEntry.Name = "limitEntry";
-            this.limitEntry.Text = Mono.Unix.Catalog.GetString("1000");
+            this.limitEntry.Text = "1000";
             this.limitEntry.IsEditable = true;
             this.limitEntry.InvisibleChar = '•';
             this.hbox3.Add(this.limitEntry);
@@ -89,7 +89,7 @@ namespace ocmgtk {
             this.fileEntry = new Gtk.Entry();
             this.fileEntry.CanFocus = true;
             this.fileEntry.Name = "fileEntry";
-            this.fileEntry.Text = Mono.Unix.Catalog.GetString("/dev/ttyS0");
+            this.fileEntry.Text = "/dev/ttyS0";
             this.fileEntry.IsEditable = true;
             this.fileEntry.InvisibleChar = '•';
             this.hbox4.Add(this.fileEntry);

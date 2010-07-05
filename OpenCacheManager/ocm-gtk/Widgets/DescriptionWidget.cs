@@ -44,7 +44,7 @@ namespace ocmgtk
 			Geocache cache = UIMonitor.getInstance ().SelectedCache;
 			if (cache == null)
 			{
-				descWidget.HTML = "<b>NO CACHE SELECTED</b>";
+				descWidget.HTML = Catalog.GetString("<b>NO CACHE SELECTED</b>");
 				return;
 			}
 			SetDescription (cache);

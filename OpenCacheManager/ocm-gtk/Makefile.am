@@ -57,9 +57,11 @@ TRAILHEAD_PNG_SOURCE=icons/24x24/trailhead.png
 BLUEPIN_SVG_SOURCE=icons/scalable/bluepin.svg
 PARKING_SVG_SOURCE=icons/scalable/parking.svg
 TRAILHEAD_SVG_SOURCE=icons/scalable/trailhead.svg
-LICENCE_TXT_SOURCE=docs/Licence.txt
 CHANGEHISTORY_TXT_SOURCE=docs/ChangeHistory.txt
 README_TXT_SOURCE=docs/README.txt
+LICENCE_TXT_SOURCE=licence/Licence.txt
+TREASURE_SVG_SOURCE=icons/scalable/treasure.svg
+TREASURE_PNG_SOURCE=icons/24x24/treasure.png
 OCMENGINE_DLL_SOURCE=../ocmengine/bin/Debug/ocmengine.dll
 OCMENGINE_DLL_MDB_SOURCE=../ocmengine/bin/Debug/ocmengine.dll.mdb
 OCMENGINE_DLL_MDB=$(BUILD_DIR)/ocmengine.dll.mdb
@@ -122,9 +124,11 @@ TRAILHEAD_PNG_SOURCE=icons/24x24/trailhead.png
 BLUEPIN_SVG_SOURCE=icons/scalable/bluepin.svg
 PARKING_SVG_SOURCE=icons/scalable/parking.svg
 TRAILHEAD_SVG_SOURCE=icons/scalable/trailhead.svg
-LICENCE_TXT_SOURCE=docs/Licence.txt
 CHANGEHISTORY_TXT_SOURCE=docs/ChangeHistory.txt
 README_TXT_SOURCE=docs/README.txt
+LICENCE_TXT_SOURCE=licence/Licence.txt
+TREASURE_SVG_SOURCE=icons/scalable/treasure.svg
+TREASURE_PNG_SOURCE=icons/24x24/treasure.png
 OCMENGINE_DLL_SOURCE=../ocmengine/bin/Debug/ocmengine.dll
 OCMENGINE_DLL_MDB=
 OCM_GTK_EXE_MDB=
@@ -162,7 +166,8 @@ PROGRAMFILES_ICONS_SCALABLE = \
 	$(TRADITIONAL_SVG) \
 	$(BLUEPIN_SVG) \
 	$(PARKING_SVG) \
-	$(TRAILHEAD_SVG)  
+	$(TRAILHEAD_SVG) \
+	$(TREASURE_SVG)  
 
 PROGRAMFILES_WEB = \
 	$(WPT_VIEWER_HTML)  
@@ -185,15 +190,18 @@ PROGRAMFILES_ICONS_24X24 = \
 	$(FOUND_PNG) \
 	$(BLUEPIN_PNG) \
 	$(PARKING_PNG) \
-	$(TRAILHEAD_PNG)  
+	$(TRAILHEAD_PNG) \
+	$(TREASURE_PNG)  
 
 PROGRAMFILES_ICONS_48X48 = \
 	$(CIRCLE_PNG)  
 
 PROGRAMFILES_DOCS = \
-	$(LICENCE_TXT) \
 	$(CHANGEHISTORY_TXT) \
 	$(README_TXT)  
+
+PROGRAMFILES_LICENCE = \
+	$(LICENCE_TXT)  
 
 PROGRAMFILES = \
 	$(OCMENGINE_DLL) \
@@ -206,7 +214,7 @@ BINARIES = \
 
 RESGEN=resgen2
 	
-all: $(ASSEMBLY) $(LINUX_DESKTOPAPPLICATIONS) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES) $(BINARIES) 
+all: $(ASSEMBLY) $(LINUX_DESKTOPAPPLICATIONS) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES) $(BINARIES) 
 
 FILES = \
 	gtk-gui/generated.cs \
@@ -275,13 +283,21 @@ FILES = \
 	Widgets/GenericGPSWidget.cs \
 	gtk-gui/ocmgtk.GenericGPSWidget.cs \
 	Widgets/OCMQueryPage3.cs \
-	gtk-gui/ocmgtk.OCMQueryPage3.cs 
+	gtk-gui/ocmgtk.OCMQueryPage3.cs \
+	Dialogs/ChangeHistory.cs \
+	gtk-gui/ocmgtk.ChangeHistory.cs \
+	Config.cs \
+	Widgets/DateWidget.cs \
+	gtk-gui/ocmgtk.DateWidget.cs \
+	Dialogs/CalendarWindow.cs \
+	gtk-gui/ocmgtk.CalendarWindow.cs 
 
 DATA_FILES = 
 
 RESOURCES = \
 	gtk-gui/gui.stetic \
-	icons/scalable/OCMLogo.svg,ocmgtk.icons.scalable.OCMLogo.svg 
+	icons/scalable/OCMLogo.svg,ocmgtk.icons.scalable.OCMLogo.svg \
+	icons/scalable/OCMLogoSmall.svg,ocmgtk.icons.scalable.OCMLogoSmall.svg 
 
 EXTRAS = \
 	Dialogs \
@@ -291,9 +307,11 @@ EXTRAS = \
 	icons/scalable \
 	icons/24x24 \
 	docs \
+	licence \
 	OCM.desktop \
 	x-gpx.xml \
 	x-ocm.xml \
+	ocm-gtk \
 	ocm-gtk.in 
 
 REFERENCES =  \
@@ -309,7 +327,7 @@ REFERENCES =  \
 
 DLL_REFERENCES = 
 
-CLEANFILES = $(LINUX_DESKTOPAPPLICATIONS) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES) $(BINARIES) 
+CLEANFILES = $(LINUX_DESKTOPAPPLICATIONS) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES) $(BINARIES) 
 
 include $(top_srcdir)/Makefile.include
 
@@ -357,9 +375,11 @@ TRAILHEAD_PNG = $(BUILD_DIR)/icons/24x24/trailhead.png
 BLUEPIN_SVG = $(BUILD_DIR)/icons/scalable/bluepin.svg
 PARKING_SVG = $(BUILD_DIR)/icons/scalable/parking.svg
 TRAILHEAD_SVG = $(BUILD_DIR)/icons/scalable/trailhead.svg
-LICENCE_TXT = $(BUILD_DIR)/docs/Licence.txt
 CHANGEHISTORY_TXT = $(BUILD_DIR)/docs/ChangeHistory.txt
 README_TXT = $(BUILD_DIR)/docs/README.txt
+LICENCE_TXT = $(BUILD_DIR)/licence/Licence.txt
+TREASURE_SVG = $(BUILD_DIR)/icons/scalable/treasure.svg
+TREASURE_PNG = $(BUILD_DIR)/icons/24x24/treasure.png
 OCMENGINE_DLL = $(BUILD_DIR)/ocmengine.dll
 OCM_GTK = $(BUILD_DIR)/ocm-gtk
 
@@ -407,9 +427,11 @@ $(eval $(call emit-deploy-target,TRAILHEAD_PNG))
 $(eval $(call emit-deploy-target,BLUEPIN_SVG))
 $(eval $(call emit-deploy-target,PARKING_SVG))
 $(eval $(call emit-deploy-target,TRAILHEAD_SVG))
-$(eval $(call emit-deploy-target,LICENCE_TXT))
 $(eval $(call emit-deploy-target,CHANGEHISTORY_TXT))
 $(eval $(call emit-deploy-target,README_TXT))
+$(eval $(call emit-deploy-target,LICENCE_TXT))
+$(eval $(call emit-deploy-target,TREASURE_SVG))
+$(eval $(call emit-deploy-target,TREASURE_PNG))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL_MDB))
 $(eval $(call emit-deploy-wrapper,OCM_GTK,ocm-gtk,x))

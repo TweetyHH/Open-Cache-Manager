@@ -35,30 +35,46 @@ body {
 	var pois,extra;
 	var notify;
 	var currentPopup;
+	var gmap;
+	var ghyb;
+	var gphy;
+	var osm;
+	
+	function getParm( name )
+	{
+	  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	  var regexS = "[\\?&]"+name+"=([^&#]*)";
+	  var regex = new RegExp( regexS );
+	  var results = regex.exec( window.location.href );
+	  if( results == null )
+	    return "";
+	  else
+	    return results[1];
+	}
  
-        function init(){
-            map = new OpenLayers.Map('map',
-                    { maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
-                      numZoomLevels: 19,
-                      maxResolution: 156543.0399,
-                      units: 'm',
-                      projection: new OpenLayers.Projection("EPSG:900913"),
-                      displayProjection: new OpenLayers.Projection("EPSG:4326")
-                    });
+    function init(){
+        map = new OpenLayers.Map('map',
+                { maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
+                  numZoomLevels: 19,
+                  maxResolution: 156543.0399,
+                  units: 'm',
+                  projection: new OpenLayers.Projection("EPSG:900913"),
+                  displayProjection: new OpenLayers.Projection("EPSG:4326")
+                });
 
-            var osm = new OpenLayers.Layer.OSM( "Open Street Map");
+        osm = new OpenLayers.Layer.OSM( "Open Street Map");
 
-	    var gmap = new OpenLayers.Layer.Google(
+	    gmap = new OpenLayers.Layer.Google(
                     "Google Street Map",
                 {'sphericalMercator': true}
 	    );
 
-	    var ghyb = new OpenLayers.Layer.Google(
+	    ghyb = new OpenLayers.Layer.Google(
                 "Google Hybrid",
                 {'type': G_HYBRID_MAP, 'numZoomLevels':20, 'sphericalMercator': true}
             );
 
-	    var gphy = new OpenLayers.Layer.Google(
+	    gphy = new OpenLayers.Layer.Google(
                 "Google Terrain",
                 {'type': G_PHYSICAL_MAP, 'sphericalMercator': true}
             );
@@ -79,17 +95,32 @@ body {
 
 
 	    extra = new OpenLayers.Layer.Markers("Other Geocaches");
- 
-
-	  
-            map.addLayers([osm, ghyb,gmap,gphy, extra]);
-            map.addControl(new OpenLayers.Control.LayerSwitcher());
- 
-            var lonLat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
-            if (!map.getCenter()) map.setCenter (lonLat, zoom);
-            clearMarkers();
-            map.events.register('moveend', null, mapMoved)
+        map.addLayers([osm, ghyb,gmap,gphy, extra]);
+        map.addControl(new OpenLayers.Control.LayerSwitcher());
+        
+        var currmap = getParm('map');
+        if (currmap == "osm")
+        {
+        	map.setBaseLayer(osm);
         }
+        else if (currmap == "ghyb")
+        {
+       		map.setBaseLayer(ghyb);
+        }
+        else if (currmap == "gmap")
+        {
+        	map.setBaseLayer(gmap);
+        }
+        else if (currmap == "gphy")
+        {
+        	map.setBaseLayer(gphy);
+        }
+
+        var lonLat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
+        if (!map.getCenter()) map.setCenter (lonLat, zoom);
+        clearMarkers();
+        map.events.register('moveend', null, mapMoved)
+    }
         
     function clearMarkers()
     {

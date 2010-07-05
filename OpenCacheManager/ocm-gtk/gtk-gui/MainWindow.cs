@@ -22,7 +22,7 @@ public partial class MainWindow {
     
     private Gtk.Action HelpAction;
     
-    private Gtk.Action AboutAction;
+    private Gtk.Action aboutAction;
     
     private Gtk.Action ClearAllFiltersAction;
     
@@ -60,19 +60,17 @@ public partial class MainWindow {
     
     private Gtk.Action saveAsAction;
     
-    private Gtk.Action PreferencesAction;
-    
     private Gtk.Action LogFindAction;
     
     private Gtk.Action MarkUnfoundAction;
     
     private Gtk.Action DeleteCacheAction;
     
-    private Gtk.Action FilterAction1;
+    private Gtk.Action FilterAction;
     
-    private Gtk.Action AdditonalFiltersAction;
+    private Gtk.Action AdvancedFiltersAction;
     
-    private Gtk.Action ClearAdditonalFiltersAction;
+    private Gtk.Action ClearAdvancedFiltersAction;
     
     private Gtk.Action PreferencesAction1;
     
@@ -84,7 +82,7 @@ public partial class MainWindow {
     
     private Gtk.Action ConfigureGPSAction;
     
-    private Gtk.Action SendCachesAction;
+    private Gtk.Action TransferCachesAction;
     
     private Gtk.Action ChangeHistoryAction;
     
@@ -93,6 +91,22 @@ public partial class MainWindow {
     private Gtk.Action ResetCentreToHomeAction;
     
     private Gtk.ToggleAction ShowNearbyCachesAction;
+    
+    private Gtk.Action TerraCachingComAction;
+    
+    private Gtk.Action HomePageAction3;
+    
+    private Gtk.Action ToDoListAction;
+    
+    private Gtk.Action TraditionalAction;
+    
+    private Gtk.Action LocationlessAction;
+    
+    private Gtk.Action NaviCacheComAction;
+    
+    private Gtk.Action HomePageAction4;
+    
+    private Gtk.Action MyNaviCacheAction;
     
     private Gtk.VBox vbox1;
     
@@ -122,23 +136,23 @@ public partial class MainWindow {
         this.QuitAction.ShortLabel = Mono.Unix.Catalog.GetString("_Quit");
         w1.Add(this.QuitAction, null);
         this.EditAction = new Gtk.Action("EditAction", Mono.Unix.Catalog.GetString("_Edit"), null, null);
-        this.EditAction.ShortLabel = Mono.Unix.Catalog.GetString("Edit");
+        this.EditAction.ShortLabel = Mono.Unix.Catalog.GetString("_Edit");
         w1.Add(this.EditAction, null);
         this.HelpAction = new Gtk.Action("HelpAction", Mono.Unix.Catalog.GetString("_Help"), null, null);
-        this.HelpAction.ShortLabel = Mono.Unix.Catalog.GetString("Help");
+        this.HelpAction.ShortLabel = Mono.Unix.Catalog.GetString("_Help");
         w1.Add(this.HelpAction, null);
-        this.AboutAction = new Gtk.Action("AboutAction", Mono.Unix.Catalog.GetString("About"), null, "gtk-about");
-        this.AboutAction.ShortLabel = Mono.Unix.Catalog.GetString("About");
-        w1.Add(this.AboutAction, null);
+        this.aboutAction = new Gtk.Action("aboutAction", Mono.Unix.Catalog.GetString("_About"), null, "gtk-about");
+        this.aboutAction.ShortLabel = Mono.Unix.Catalog.GetString("_About");
+        w1.Add(this.aboutAction, null);
         this.ClearAllFiltersAction = new Gtk.Action("ClearAllFiltersAction", Mono.Unix.Catalog.GetString("Clear All Filters"), null, null);
         this.ClearAllFiltersAction.ShortLabel = Mono.Unix.Catalog.GetString("Clear All Filters");
         w1.Add(this.ClearAllFiltersAction, null);
         this.GPSAction = new Gtk.Action("GPSAction", Mono.Unix.Catalog.GetString("G_PS"), null, null);
-        this.GPSAction.ShortLabel = Mono.Unix.Catalog.GetString("GPS");
+        this.GPSAction.ShortLabel = Mono.Unix.Catalog.GetString("G_PS");
         w1.Add(this.GPSAction, null);
         this.CacheAction = new Gtk.Action("CacheAction", Mono.Unix.Catalog.GetString("_Cache"), null, null);
         this.CacheAction.Sensitive = false;
-        this.CacheAction.ShortLabel = Mono.Unix.Catalog.GetString("Cache");
+        this.CacheAction.ShortLabel = Mono.Unix.Catalog.GetString("_Cache");
         w1.Add(this.CacheAction, null);
         this.ViewOnlineAction = new Gtk.Action("ViewOnlineAction", Mono.Unix.Catalog.GetString("_View Online"), null, "gtk-info");
         this.ViewOnlineAction.ShortLabel = Mono.Unix.Catalog.GetString("_View Online");
@@ -159,88 +173,109 @@ public partial class MainWindow {
         this.ViewCacheOnlineAction.Sensitive = false;
         this.ViewCacheOnlineAction.ShortLabel = Mono.Unix.Catalog.GetString("View Cache Online...");
         w1.Add(this.ViewCacheOnlineAction, null);
-        this.ViewMyProfileAction = new Gtk.Action("ViewMyProfileAction", Mono.Unix.Catalog.GetString("View My Profile..."), null, null);
-        this.ViewMyProfileAction.ShortLabel = Mono.Unix.Catalog.GetString("View My Profile...");
+        this.ViewMyProfileAction = new Gtk.Action("ViewMyProfileAction", Mono.Unix.Catalog.GetString("_View My Profile..."), null, null);
+        this.ViewMyProfileAction.ShortLabel = Mono.Unix.Catalog.GetString("_View My Profile...");
         w1.Add(this.ViewMyProfileAction, null);
-        this.CreatePocketQueriesAction = new Gtk.Action("CreatePocketQueriesAction", Mono.Unix.Catalog.GetString("Create Pocket Queries..."), null, null);
-        this.CreatePocketQueriesAction.ShortLabel = Mono.Unix.Catalog.GetString("Create Pocket Queries...");
+        this.CreatePocketQueriesAction = new Gtk.Action("CreatePocketQueriesAction", Mono.Unix.Catalog.GetString("_Create Pocket Queries..."), null, null);
+        this.CreatePocketQueriesAction.ShortLabel = Mono.Unix.Catalog.GetString("_Create Pocket Queries...");
         w1.Add(this.CreatePocketQueriesAction, null);
-        this.FindACacheAction = new Gtk.Action("FindACacheAction", Mono.Unix.Catalog.GetString("Find a Cache..."), null, null);
-        this.FindACacheAction.ShortLabel = Mono.Unix.Catalog.GetString("Find a Cache...");
+        this.FindACacheAction = new Gtk.Action("FindACacheAction", Mono.Unix.Catalog.GetString("_Find a Cache..."), null, null);
+        this.FindACacheAction.ShortLabel = Mono.Unix.Catalog.GetString("_Find a Cache...");
         w1.Add(this.FindACacheAction, null);
-        this.HomePageAction = new Gtk.Action("HomePageAction", Mono.Unix.Catalog.GetString("Home Page..."), null, null);
-        this.HomePageAction.ShortLabel = Mono.Unix.Catalog.GetString("Home Page...");
+        this.HomePageAction = new Gtk.Action("HomePageAction", Mono.Unix.Catalog.GetString("_Home Page..."), null, null);
+        this.HomePageAction.ShortLabel = Mono.Unix.Catalog.GetString("_Home Page...");
         w1.Add(this.HomePageAction, null);
-        this.MyAccountDetailsAction = new Gtk.Action("MyAccountDetailsAction", Mono.Unix.Catalog.GetString("My Account Details..."), null, null);
-        this.MyAccountDetailsAction.ShortLabel = Mono.Unix.Catalog.GetString("My Account Details...");
+        this.MyAccountDetailsAction = new Gtk.Action("MyAccountDetailsAction", Mono.Unix.Catalog.GetString("_My Account Details..."), null, null);
+        this.MyAccountDetailsAction.ShortLabel = Mono.Unix.Catalog.GetString("_My Account Details...");
         w1.Add(this.MyAccountDetailsAction, null);
-        this.newAction1 = new Gtk.Action("newAction1", Mono.Unix.Catalog.GetString("New Database..."), null, "gtk-new");
-        this.newAction1.ShortLabel = Mono.Unix.Catalog.GetString("New Database...");
+        this.newAction1 = new Gtk.Action("newAction1", Mono.Unix.Catalog.GetString("_New Database..."), null, "gtk-new");
+        this.newAction1.ShortLabel = Mono.Unix.Catalog.GetString("_New Database...");
         w1.Add(this.newAction1, null);
-        this.openAction2 = new Gtk.Action("openAction2", Mono.Unix.Catalog.GetString("Open Database..."), null, "gtk-open");
-        this.openAction2.ShortLabel = Mono.Unix.Catalog.GetString("Open Database...");
+        this.openAction2 = new Gtk.Action("openAction2", Mono.Unix.Catalog.GetString("Open _Database..."), null, "gtk-open");
+        this.openAction2.ShortLabel = Mono.Unix.Catalog.GetString("Open _Database...");
         w1.Add(this.openAction2, "<Control><Alt><Mod2>o");
-        this.openAction = new Gtk.Action("openAction", Mono.Unix.Catalog.GetString("Open GPX..."), null, "gtk-open");
-        this.openAction.ShortLabel = Mono.Unix.Catalog.GetString("Import GPX...");
+        this.openAction = new Gtk.Action("openAction", Mono.Unix.Catalog.GetString("_Open GPX/Loc File..."), null, "gtk-open");
+        this.openAction.ShortLabel = Mono.Unix.Catalog.GetString("_Open GPX/Loc File...");
         w1.Add(this.openAction, "<Control><Mod2>o");
-        this.saveAsAction = new Gtk.Action("saveAsAction", Mono.Unix.Catalog.GetString("Save GPX..."), null, "gtk-save-as");
-        this.saveAsAction.ShortLabel = Mono.Unix.Catalog.GetString("SaveGPX...");
+        this.saveAsAction = new Gtk.Action("saveAsAction", Mono.Unix.Catalog.GetString("_Save GPX..."), null, "gtk-save-as");
+        this.saveAsAction.ShortLabel = Mono.Unix.Catalog.GetString("_Save GPX...");
         w1.Add(this.saveAsAction, "<Control><Mod2>s");
-        this.PreferencesAction = new Gtk.Action("PreferencesAction", Mono.Unix.Catalog.GetString("Preferences..."), null, null);
-        this.PreferencesAction.ShortLabel = Mono.Unix.Catalog.GetString("Preferences...");
-        w1.Add(this.PreferencesAction, null);
-        this.LogFindAction = new Gtk.Action("LogFindAction", Mono.Unix.Catalog.GetString("Log Find"), null, null);
-        this.LogFindAction.ShortLabel = Mono.Unix.Catalog.GetString("Log Find");
+        this.LogFindAction = new Gtk.Action("LogFindAction", Mono.Unix.Catalog.GetString("_Log Find"), null, null);
+        this.LogFindAction.ShortLabel = Mono.Unix.Catalog.GetString("_Log Find");
         w1.Add(this.LogFindAction, null);
-        this.MarkUnfoundAction = new Gtk.Action("MarkUnfoundAction", Mono.Unix.Catalog.GetString("Mark Unfound"), null, null);
-        this.MarkUnfoundAction.ShortLabel = Mono.Unix.Catalog.GetString("Mark Unfound");
+        this.MarkUnfoundAction = new Gtk.Action("MarkUnfoundAction", Mono.Unix.Catalog.GetString("_Mark Unfound"), null, null);
+        this.MarkUnfoundAction.ShortLabel = Mono.Unix.Catalog.GetString("_Mark Unfound");
         w1.Add(this.MarkUnfoundAction, null);
-        this.DeleteCacheAction = new Gtk.Action("DeleteCacheAction", Mono.Unix.Catalog.GetString("Delete Cache..."), null, null);
-        this.DeleteCacheAction.ShortLabel = Mono.Unix.Catalog.GetString("Delete Cache...");
+        this.DeleteCacheAction = new Gtk.Action("DeleteCacheAction", Mono.Unix.Catalog.GetString("_Delete Cache..."), null, null);
+        this.DeleteCacheAction.ShortLabel = Mono.Unix.Catalog.GetString("_Delete Cache...");
         w1.Add(this.DeleteCacheAction, null);
-        this.FilterAction1 = new Gtk.Action("FilterAction1", Mono.Unix.Catalog.GetString("F_ilter"), null, null);
-        this.FilterAction1.ShortLabel = Mono.Unix.Catalog.GetString("_View");
-        w1.Add(this.FilterAction1, null);
-        this.AdditonalFiltersAction = new Gtk.Action("AdditonalFiltersAction", Mono.Unix.Catalog.GetString("_Additonal Filters..."), null, null);
-        this.AdditonalFiltersAction.ShortLabel = Mono.Unix.Catalog.GetString("_Additonal Filters...");
-        w1.Add(this.AdditonalFiltersAction, "<Control><Mod2>f");
-        this.ClearAdditonalFiltersAction = new Gtk.Action("ClearAdditonalFiltersAction", Mono.Unix.Catalog.GetString("_Clear Additonal Filters"), null, null);
-        this.ClearAdditonalFiltersAction.Sensitive = false;
-        this.ClearAdditonalFiltersAction.ShortLabel = Mono.Unix.Catalog.GetString("_Clear Additonal Filters");
-        w1.Add(this.ClearAdditonalFiltersAction, null);
+        this.FilterAction = new Gtk.Action("FilterAction", Mono.Unix.Catalog.GetString("F_ilter"), null, null);
+        this.FilterAction.ShortLabel = Mono.Unix.Catalog.GetString("F_ilter");
+        w1.Add(this.FilterAction, null);
+        this.AdvancedFiltersAction = new Gtk.Action("AdvancedFiltersAction", Mono.Unix.Catalog.GetString("_Advanced Filters..."), null, null);
+        this.AdvancedFiltersAction.ShortLabel = Mono.Unix.Catalog.GetString("_Advanced Filters...");
+        w1.Add(this.AdvancedFiltersAction, "<Control><Mod2>f");
+        this.ClearAdvancedFiltersAction = new Gtk.Action("ClearAdvancedFiltersAction", Mono.Unix.Catalog.GetString("_Clear Advanced Filters"), null, null);
+        this.ClearAdvancedFiltersAction.Sensitive = false;
+        this.ClearAdvancedFiltersAction.ShortLabel = Mono.Unix.Catalog.GetString("_Clear Advanced Filters");
+        w1.Add(this.ClearAdvancedFiltersAction, null);
         this.PreferencesAction1 = new Gtk.Action("PreferencesAction1", Mono.Unix.Catalog.GetString("_Preferences..."), null, null);
-        this.PreferencesAction1.ShortLabel = Mono.Unix.Catalog.GetString("Preferences...");
+        this.PreferencesAction1.ShortLabel = Mono.Unix.Catalog.GetString("_Preferences...");
         w1.Add(this.PreferencesAction1, null);
         this.MapAction = new Gtk.Action("MapAction", Mono.Unix.Catalog.GetString("_Map"), null, null);
         this.MapAction.ShortLabel = Mono.Unix.Catalog.GetString("_Map");
         w1.Add(this.MapAction, null);
-        this.ZoomToCentreAction = new Gtk.Action("ZoomToCentreAction", Mono.Unix.Catalog.GetString("Zoom to Centre"), null, null);
-        this.ZoomToCentreAction.ShortLabel = Mono.Unix.Catalog.GetString("Zoom to Centre");
+        this.ZoomToCentreAction = new Gtk.Action("ZoomToCentreAction", Mono.Unix.Catalog.GetString("_Zoom to Centre"), null, null);
+        this.ZoomToCentreAction.ShortLabel = Mono.Unix.Catalog.GetString("_Zoom to Centre");
         w1.Add(this.ZoomToCentreAction, "<Alt><Mod2>Home");
-        this.ZoomToSelectedCacheAction = new Gtk.Action("ZoomToSelectedCacheAction", Mono.Unix.Catalog.GetString("Zoom to Selected Cache"), null, null);
+        this.ZoomToSelectedCacheAction = new Gtk.Action("ZoomToSelectedCacheAction", Mono.Unix.Catalog.GetString("Zoom to Selected _Cache"), null, null);
         this.ZoomToSelectedCacheAction.Sensitive = false;
-        this.ZoomToSelectedCacheAction.ShortLabel = Mono.Unix.Catalog.GetString("Zoom to Selected Cache");
+        this.ZoomToSelectedCacheAction.ShortLabel = Mono.Unix.Catalog.GetString("Zoom to Selected _Cache");
         w1.Add(this.ZoomToSelectedCacheAction, null);
         this.ConfigureGPSAction = new Gtk.Action("ConfigureGPSAction", Mono.Unix.Catalog.GetString("_Configure GPS..."), null, null);
-        this.ConfigureGPSAction.ShortLabel = Mono.Unix.Catalog.GetString("Configure GPS...");
+        this.ConfigureGPSAction.ShortLabel = Mono.Unix.Catalog.GetString("_Configure GPS...");
         w1.Add(this.ConfigureGPSAction, null);
-        this.SendCachesAction = new Gtk.Action("SendCachesAction", Mono.Unix.Catalog.GetString("_Send Caches..."), null, null);
-        this.SendCachesAction.ShortLabel = Mono.Unix.Catalog.GetString("Send Caches...");
-        w1.Add(this.SendCachesAction, "<Control><Alt><Mod2>c");
-        this.ChangeHistoryAction = new Gtk.Action("ChangeHistoryAction", Mono.Unix.Catalog.GetString("Change History..."), null, null);
-        this.ChangeHistoryAction.ShortLabel = Mono.Unix.Catalog.GetString("Change History...");
+        this.TransferCachesAction = new Gtk.Action("TransferCachesAction", Mono.Unix.Catalog.GetString("_Transfer Caches..."), null, null);
+        this.TransferCachesAction.ShortLabel = Mono.Unix.Catalog.GetString("_Transfer Caches...");
+        w1.Add(this.TransferCachesAction, "<Control><Mod2>t");
+        this.ChangeHistoryAction = new Gtk.Action("ChangeHistoryAction", Mono.Unix.Catalog.GetString("_Change History..."), null, null);
+        this.ChangeHistoryAction.ShortLabel = Mono.Unix.Catalog.GetString("_Change History...");
         w1.Add(this.ChangeHistoryAction, null);
         this.SetSelectedCacheAsCentreAction = new Gtk.Action("SetSelectedCacheAsCentreAction", Mono.Unix.Catalog.GetString("Set Selected Cache As Centre"), null, null);
         this.SetSelectedCacheAsCentreAction.Sensitive = false;
         this.SetSelectedCacheAsCentreAction.ShortLabel = Mono.Unix.Catalog.GetString("Set Selected Cache As Centre");
         w1.Add(this.SetSelectedCacheAsCentreAction, null);
-        this.ResetCentreToHomeAction = new Gtk.Action("ResetCentreToHomeAction", Mono.Unix.Catalog.GetString("Reset Centre to Home"), null, null);
+        this.ResetCentreToHomeAction = new Gtk.Action("ResetCentreToHomeAction", Mono.Unix.Catalog.GetString("_Reset Centre to Home"), null, null);
         this.ResetCentreToHomeAction.Sensitive = false;
-        this.ResetCentreToHomeAction.ShortLabel = Mono.Unix.Catalog.GetString("Reset Centre to Home");
+        this.ResetCentreToHomeAction.ShortLabel = Mono.Unix.Catalog.GetString("_Reset Centre to Home");
         w1.Add(this.ResetCentreToHomeAction, null);
-        this.ShowNearbyCachesAction = new Gtk.ToggleAction("ShowNearbyCachesAction", Mono.Unix.Catalog.GetString("Show Nearby Caches"), null, null);
-        this.ShowNearbyCachesAction.ShortLabel = Mono.Unix.Catalog.GetString("Show Nearby Caches");
+        this.ShowNearbyCachesAction = new Gtk.ToggleAction("ShowNearbyCachesAction", Mono.Unix.Catalog.GetString("_Show Nearby Caches"), null, null);
+        this.ShowNearbyCachesAction.ShortLabel = Mono.Unix.Catalog.GetString("_Show Nearby Caches");
         w1.Add(this.ShowNearbyCachesAction, null);
+        this.TerraCachingComAction = new Gtk.Action("TerraCachingComAction", Mono.Unix.Catalog.GetString("_TerraCaching.com"), null, null);
+        this.TerraCachingComAction.ShortLabel = Mono.Unix.Catalog.GetString("_TerraCaching.com");
+        w1.Add(this.TerraCachingComAction, null);
+        this.HomePageAction3 = new Gtk.Action("HomePageAction3", Mono.Unix.Catalog.GetString("_Home Page..."), null, null);
+        this.HomePageAction3.ShortLabel = Mono.Unix.Catalog.GetString("_Home Page...");
+        w1.Add(this.HomePageAction3, null);
+        this.ToDoListAction = new Gtk.Action("ToDoListAction", Mono.Unix.Catalog.GetString("To _Do List"), null, null);
+        this.ToDoListAction.ShortLabel = Mono.Unix.Catalog.GetString("To _Do List");
+        w1.Add(this.ToDoListAction, null);
+        this.TraditionalAction = new Gtk.Action("TraditionalAction", Mono.Unix.Catalog.GetString("Traditional..."), null, null);
+        this.TraditionalAction.ShortLabel = Mono.Unix.Catalog.GetString("Traditional...");
+        w1.Add(this.TraditionalAction, null);
+        this.LocationlessAction = new Gtk.Action("LocationlessAction", Mono.Unix.Catalog.GetString("Locationless..."), null, null);
+        this.LocationlessAction.ShortLabel = Mono.Unix.Catalog.GetString("Locationless...");
+        w1.Add(this.LocationlessAction, null);
+        this.NaviCacheComAction = new Gtk.Action("NaviCacheComAction", Mono.Unix.Catalog.GetString("_NaviCache.com"), null, null);
+        this.NaviCacheComAction.ShortLabel = Mono.Unix.Catalog.GetString("_NaviCache.com");
+        w1.Add(this.NaviCacheComAction, null);
+        this.HomePageAction4 = new Gtk.Action("HomePageAction4", Mono.Unix.Catalog.GetString("_Home Page..."), null, null);
+        this.HomePageAction4.ShortLabel = Mono.Unix.Catalog.GetString("_Home Page...");
+        w1.Add(this.HomePageAction4, null);
+        this.MyNaviCacheAction = new Gtk.Action("MyNaviCacheAction", Mono.Unix.Catalog.GetString("_My NaviCache..."), null, null);
+        this.MyNaviCacheAction.ShortLabel = Mono.Unix.Catalog.GetString("_My NaviCache...");
+        w1.Add(this.MyNaviCacheAction, null);
         this.UIManager.InsertActionGroup(w1, 0);
         this.AddAccelGroup(this.UIManager.AccelGroup);
         this.Name = "MainWindow";
@@ -254,7 +289,7 @@ public partial class MainWindow {
         this.vbox1 = new Gtk.VBox();
         this.vbox1.Name = "vbox1";
         // Container child vbox1.Gtk.Box+BoxChild
-        this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='newAction1' action='newAction1'/><menuitem name='openAction2' action='openAction2'/><separator/><menuitem name='openAction' action='openAction'/><menuitem name='saveAsAction' action='saveAsAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'><menuitem name='PreferencesAction1' action='PreferencesAction1'/></menu><menu name='FilterAction1' action='FilterAction1'><menuitem name='AdditonalFiltersAction' action='AdditonalFiltersAction'/><separator/><menuitem name='ClearAdditonalFiltersAction' action='ClearAdditonalFiltersAction'/></menu><menu name='CacheAction' action='CacheAction'><menuitem name='ViewOnlineAction' action='ViewOnlineAction'/><menuitem name='LogFindAction' action='LogFindAction'/><menuitem name='MarkUnfoundAction' action='MarkUnfoundAction'/><separator/><menuitem name='DeleteCacheAction' action='DeleteCacheAction'/></menu><menu name='GeocachingComAction' action='GeocachingComAction'><menuitem name='HomePageAction' action='HomePageAction'/><menuitem name='ViewMyProfileAction' action='ViewMyProfileAction'/><menuitem name='MyAccountDetailsAction' action='MyAccountDetailsAction'/><menuitem name='CreatePocketQueriesAction' action='CreatePocketQueriesAction'/><separator/><menuitem name='FindACacheAction' action='FindACacheAction'/><menuitem name='ViewCacheOnlineAction' action='ViewCacheOnlineAction'/></menu><menu name='MapAction' action='MapAction'><menuitem name='ShowNearbyCachesAction' action='ShowNearbyCachesAction'/><separator/><menuitem name='ZoomToCentreAction' action='ZoomToCentreAction'/><menuitem name='ZoomToSelectedCacheAction' action='ZoomToSelectedCacheAction'/><menuitem name='SetSelectedCacheAsCentreAction' action='SetSelectedCacheAsCentreAction'/><menuitem name='ResetCentreToHomeAction' action='ResetCentreToHomeAction'/></menu><menu name='GPSAction' action='GPSAction'><menuitem name='ConfigureGPSAction' action='ConfigureGPSAction'/><separator/><menuitem name='SendCachesAction' action='SendCachesAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/><menuitem name='ChangeHistoryAction' action='ChangeHistoryAction'/></menu></menubar></ui>");
+        this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='newAction1' action='newAction1'/><menuitem name='openAction2' action='openAction2'/><separator/><menuitem name='openAction' action='openAction'/><menuitem name='saveAsAction' action='saveAsAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'><menuitem name='PreferencesAction1' action='PreferencesAction1'/></menu><menu name='FilterAction' action='FilterAction'><menuitem name='AdvancedFiltersAction' action='AdvancedFiltersAction'/><separator/><menuitem name='ClearAdvancedFiltersAction' action='ClearAdvancedFiltersAction'/></menu><menu name='CacheAction' action='CacheAction'><menuitem name='ViewOnlineAction' action='ViewOnlineAction'/><menuitem name='LogFindAction' action='LogFindAction'/><menuitem name='MarkUnfoundAction' action='MarkUnfoundAction'/><separator/><menuitem name='DeleteCacheAction' action='DeleteCacheAction'/></menu><menu name='GeocachingComAction' action='GeocachingComAction'><menuitem name='HomePageAction' action='HomePageAction'/><menuitem name='ViewMyProfileAction' action='ViewMyProfileAction'/><menuitem name='MyAccountDetailsAction' action='MyAccountDetailsAction'/><menuitem name='CreatePocketQueriesAction' action='CreatePocketQueriesAction'/><separator/><menuitem name='FindACacheAction' action='FindACacheAction'/><menuitem name='ViewCacheOnlineAction' action='ViewCacheOnlineAction'/></menu><menu name='TerraCachingComAction' action='TerraCachingComAction'><menuitem name='HomePageAction3' action='HomePageAction3'/><separator/><menu name='ToDoListAction' action='ToDoListAction'><menuitem name='TraditionalAction' action='TraditionalAction'/><menuitem name='LocationlessAction' action='LocationlessAction'/></menu></menu><menu name='NaviCacheComAction' action='NaviCacheComAction'><menuitem name='HomePageAction4' action='HomePageAction4'/><separator/><menuitem name='MyNaviCacheAction' action='MyNaviCacheAction'/></menu><menu name='MapAction' action='MapAction'><menuitem name='ShowNearbyCachesAction' action='ShowNearbyCachesAction'/><separator/><menuitem name='ZoomToCentreAction' action='ZoomToCentreAction'/><menuitem name='ZoomToSelectedCacheAction' action='ZoomToSelectedCacheAction'/><menuitem name='SetSelectedCacheAsCentreAction' action='SetSelectedCacheAsCentreAction'/><menuitem name='ResetCentreToHomeAction' action='ResetCentreToHomeAction'/></menu><menu name='GPSAction' action='GPSAction'><menuitem name='ConfigureGPSAction' action='ConfigureGPSAction'/><separator/><menuitem name='TransferCachesAction' action='TransferCachesAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='aboutAction' action='aboutAction'/><menuitem name='ChangeHistoryAction' action='ChangeHistoryAction'/></menu></menubar></ui>");
         this.mainmenubar = ((Gtk.MenuBar)(this.UIManager.GetWidget("/mainmenubar")));
         this.mainmenubar.Name = "mainmenubar";
         this.vbox1.Add(this.mainmenubar);
@@ -322,7 +357,7 @@ public partial class MainWindow {
         this.Show();
         this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
         this.QuitAction.Activated += new System.EventHandler(this.OnQuit);
-        this.AboutAction.Activated += new System.EventHandler(this.doAbout);
+        this.aboutAction.Activated += new System.EventHandler(this.doAbout);
         this.ViewOnlineAction.Activated += new System.EventHandler(this.OnViewOnline);
         this.newAction.Activated += new System.EventHandler(this.OnNewActionActivated);
         this.openAction1.Activated += new System.EventHandler(this.OnOpenDatabaseClicked);
@@ -339,16 +374,21 @@ public partial class MainWindow {
         this.LogFindAction.Activated += new System.EventHandler(this.OnClickLog);
         this.MarkUnfoundAction.Activated += new System.EventHandler(this.OnClickMarkUnfound);
         this.DeleteCacheAction.Activated += new System.EventHandler(this.OnDelete);
-        this.AdditonalFiltersAction.Activated += new System.EventHandler(this.OnFilterClick);
-        this.ClearAdditonalFiltersAction.Activated += new System.EventHandler(this.OnClickClearFilters);
+        this.AdvancedFiltersAction.Activated += new System.EventHandler(this.OnFilterClick);
+        this.ClearAdvancedFiltersAction.Activated += new System.EventHandler(this.OnClickClearFilters);
         this.PreferencesAction1.Activated += new System.EventHandler(this.OnPrefsClicked);
         this.ZoomToCentreAction.Activated += new System.EventHandler(this.OnZoomHome);
         this.ZoomToSelectedCacheAction.Activated += new System.EventHandler(this.OnZoomSelected);
         this.ConfigureGPSAction.Activated += new System.EventHandler(this.OnConfigure);
-        this.SendCachesAction.Activated += new System.EventHandler(this.OnSendCachesActionActivated);
+        this.TransferCachesAction.Activated += new System.EventHandler(this.OnSendCachesActionActivated);
         this.ChangeHistoryAction.Activated += new System.EventHandler(this.OnChangeHistoryClick);
         this.SetSelectedCacheAsCentreAction.Activated += new System.EventHandler(this.OnSetCentre);
         this.ResetCentreToHomeAction.Activated += new System.EventHandler(this.OnResetCentre);
         this.ShowNearbyCachesAction.Toggled += new System.EventHandler(this.OnShowAllToggle);
+        this.HomePageAction3.Activated += new System.EventHandler(this.OnTerraHome);
+        this.TraditionalAction.Activated += new System.EventHandler(this.OnTerraTodo);
+        this.LocationlessAction.Activated += new System.EventHandler(this.OnTerraLocationless);
+        this.HomePageAction4.Activated += new System.EventHandler(this.OnNaviHome);
+        this.MyNaviCacheAction.Activated += new System.EventHandler(this.OnMyNavi);
     }
 }

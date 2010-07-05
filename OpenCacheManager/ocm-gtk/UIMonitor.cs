@@ -230,13 +230,19 @@ namespace ocmgtk
 			CentreLon = (double)m_conf.Get ("/apps/ocm/homelon", 0.0);
 			OwnerID = (string)m_conf.Get ("/apps/ocm/memberid", String.Empty);
 			m_useImperial = (Boolean) m_conf.Get("/apps/ocm/imperial", false);
+			string map = (string) m_conf.Get("/apps/ocm/defmap", "osm");
 			String dbName = (string)m_conf.Get ("/apps/ocm/currentdb", String.Empty);
 			SetCurrentDB (dbName, true);
-			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html");
+			LoadMap (map);
 			SetSelectedCache(null);
 			if (m_useImperial)
 				m_cachelist.SetImperial();
 			GoHome ();
+		}
+		
+		private void LoadMap (string map)
+		{
+			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map);
 		}
 
 		private void SetCurrentDB (string dbName, bool loadNow)
@@ -672,9 +678,9 @@ namespace ocmgtk
 			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Import GPX File"), m_mainWin, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Import"), ResponseType.Accept);
 			dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
 			FileFilter filter = new FileFilter ();
-			filter.Name = "GPS Exchange Files";
-		//	filter.AddMimeType ("application/x-gpx");
+			filter.Name = "Waypoint Files";
 			filter.AddPattern ("*.gpx");
+			filter.AddPattern ("*.loc");
 			dlg.AddFilter (filter);
 			
 			if (dlg.Run () == (int)ResponseType.Accept) {
@@ -695,6 +701,7 @@ namespace ocmgtk
 			fs = System.IO.File.OpenRead (filename);
 			CacheStore store = Engine.getInstance ().Store;
 			ProgressDialog pdlg = new ProgressDialog (parser, total);
+			pdlg.Icon = m_mainWin.Icon;
 			pdlg.Modal = true;
 			pdlg.Start (fs, store);
 			RefreshCaches ();
@@ -710,7 +717,10 @@ namespace ocmgtk
 				dlg.Hide();
 			}
 			dlg.Hide();
-			System.Diagnostics.Process.Start ("http://www.geocaching.com/seek/log.aspx?ID=" + m_selectedCache.CacheID);
+			if (m_selectedCache.Symbol == "TerraCache")
+				System.Diagnostics.Process.Start (m_selectedCache.URL.ToString());
+			else
+				System.Diagnostics.Process.Start ("http://www.geocaching.com/seek/log.aspx?ID=" + m_selectedCache.CacheID);
 		}
 
 		public void MarkCacheFound ()
@@ -740,7 +750,7 @@ namespace ocmgtk
 
 		public void DeleteCache ()
 		{
-			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, "Are you sure you want to delete " + m_selectedCache.Name);
+			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, String.Format(Catalog.GetString("Are you sure you want to delete {0}?"), m_selectedCache.Name));
 			if ((int)ResponseType.Yes == dlg.Run ()) {
 				Engine.getInstance ().Store.DeleteGeocache (m_selectedCache);
 				RefreshCaches ();
@@ -762,7 +772,7 @@ namespace ocmgtk
 
 		public void ClearFilters ()
 		{
-			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, "Are you sure you want to clear all additional filters?");
+			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, Catalog.GetString("Are you sure you want to clear all advanced filters?"));
 			if ((int)ResponseType.Yes == dlg.Run ()) {
 				dlg.Hide ();
 				Engine.getInstance ().Store.Filter = null;
@@ -883,6 +893,7 @@ namespace ocmgtk
 			dlg.Lat = (Double) m_conf.Get ("/apps/ocm/homelat", 0.0);
 			dlg.Lon = (Double) m_conf.Get ("/apps/ocm/homelon", 0.0);
 			dlg.ImperialUnits = (Boolean) m_conf.Get("/apps/ocm/imperial", false);
+			dlg.DefaultMap = (String) m_conf.Get("/apps/ocm/defmap", "osm");
 			dlg.Icon = m_mainWin.Icon;
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
@@ -890,6 +901,7 @@ namespace ocmgtk
 				m_conf.Set ("/apps/ocm/homelat", dlg.Lat);
 				m_conf.Set ("/apps/ocm/homelon", dlg.Lon);
 				m_conf.Set ("/apps/ocm/imperial", dlg.ImperialUnits);
+				m_conf.Set ("/apps/ocm/defmap", dlg.DefaultMap);
 				m_home_lat = dlg.Lat;
 				m_home_lon = dlg.Lon;
 				m_centreLabel.Text = Catalog.GetString("Home");
@@ -902,9 +914,35 @@ namespace ocmgtk
 				{
 					m_cachelist.SetMetric();
 				}
+				LoadMap(dlg.DefaultMap);
 				RefreshCaches();
 			}
 			dlg.Dispose();
+		}
+		
+		public static void TerraHome()
+		{
+			System.Diagnostics.Process.Start("http://www.terracaching.com");
+		}
+		
+		public static void TerraTodo()
+		{
+			System.Diagnostics.Process.Start("http://www.terracaching.com/tdl.cgi?NF=1");
+		}
+		
+		public static void TerraLocTodo()
+		{
+			System.Diagnostics.Process.Start("http://www.terracaching.com/tdl.cgi?NF=1&L=1");
+		}
+		
+		public static void NaviHome()
+		{
+			System.Diagnostics.Process.Start("http://www.navicache.com");
+		}
+		
+		public static void MyNavi()
+		{
+			System.Diagnostics.Process.Start("http://www.navicache.com/cgi-bin/db/MyNaviCacheHome.pl");
 		}
 	}
 }

@@ -26,10 +26,10 @@ namespace ocmgtk
 		static string START_BIG = "<span font='bold 12'>";
 		static string END_BIG = "</span>";
 
-		static string FOUND = "<span font='bold italic 10' fgcolor='darkgreen'>You have already found this cache</span>";
-		static string MINE = "<span font='bold italic 10' fgcolor='darkgreen'>You own this cache</span>";
-		static string UNAVAILABLE = "<span font='bold italic 10' fgcolor='red'>This cache is temporarily unavailable, check the logs for more information.</span>";
-		static string ARCHIVED = "<span font='bold italic 10' fgcolor='red'>This cache has been archived, check the logs for more information.</span>";
+		static string FOUND = Catalog.GetString("<span font='bold italic 10' fgcolor='darkgreen'>You have already found this cache</span>");
+		static string MINE = Catalog.GetString("<span font='bold italic 10' fgcolor='darkgreen'>You own this cache</span>");
+		static string UNAVAILABLE = Catalog.GetString("<span font='bold italic 10' fgcolor='red'>This cache is temporarily unavailable, check the logs for more information.</span>");
+		static string ARCHIVED = Catalog.GetString("<span font='bold italic 10' fgcolor='red'>This cache has been archived, check the logs for more information.</span>");
 
 
 		static Pixbuf STAR_ICON = new Pixbuf ("./icons/scalable/star.svg", 16, 16);
@@ -65,7 +65,7 @@ namespace ocmgtk
 				if (cache == null)
 				{
 					this.Sensitive = false;
-					cacheCodeLabel.Markup = START_BIG + "NO CACHE SELECTED" + END_BIG;
+					cacheCodeLabel.Markup = START_BIG + Catalog.GetString("NO CACHE SELECTED") + END_BIG;
 					cacheNameLabel.Markup = String.Empty;
 					setDifficulty(0);
 					setTerrain(0);
@@ -237,11 +237,11 @@ namespace ocmgtk
 			if (m_monitor.UseImperial)
 			{
 				distance = Utilities.KmToMiles(distance);
-				distance_label.Markup = Catalog.GetString (String.Format ("<span font='bold italic 10'>({0} miles {1} from your home coordinates)</span>", distance.ToString ("0.00"), bmarker));
+				distance_label.Markup = Catalog.GetString (String.Format (Catalog.GetString("<span font='bold italic 10'>({0} miles {1} from your home coordinates)</span>"), distance.ToString ("0.00"), bmarker));
 			}
 			else
 			{
-				distance_label.Markup = Catalog.GetString (String.Format ("<span font='bold italic 10'>({0} km {1} from your home coordinates)</span>", distance.ToString ("0.00"), bmarker));
+				distance_label.Markup = Catalog.GetString (String.Format (Catalog.GetString("<span font='bold italic 10'>({0} km {1} from your home coordinates)</span>"), distance.ToString ("0.00"), bmarker));
 			}
 		}
 

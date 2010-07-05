@@ -16,6 +16,7 @@
 using System;
 using System.Collections.Generic;
 using ocmengine;
+using Mono.Unix;
 
 namespace ocmgtk
 {
@@ -67,15 +68,15 @@ namespace ocmgtk
 		void HandleWriterComplete (object sender, EventArgs args)
 		{
 			writeProgress.Fraction = 1;
-			writeProgress.Text = "Complete";
-			this.infoLabel.Markup = "<i>Send Complete: " + count + " geocaches transferred</i>";
+			writeProgress.Text = Catalog.GetString("Complete");
+			this.infoLabel.Markup = String.Format(Catalog.GetString("<i>Send Complete:{0} geocaches transferred</i>"), count);
 			closeButton.Show ();
 			buttonCancel.Hide ();
 		}
 
 		void HandleWriterStartSend (object sender, EventArgs args)
 		{
-			this.infoLabel.Markup = "<i>Sending Geocaches to Device</i>";
+			this.infoLabel.Markup = Catalog.GetString("<i>Sending Geocaches to Device</i>");
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (false);
 		}
@@ -88,8 +89,5 @@ namespace ocmgtk
 		protected virtual void OnCancelClick (object sender, System.EventArgs e)
 		{
 		}
-		
-		
-		
 	}
 }

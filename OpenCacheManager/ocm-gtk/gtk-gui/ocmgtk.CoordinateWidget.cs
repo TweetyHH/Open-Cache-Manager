@@ -44,7 +44,7 @@ namespace ocmgtk {
             this.degreeEntry = new Gtk.Entry();
             this.degreeEntry.CanFocus = true;
             this.degreeEntry.Name = "degreeEntry";
-            this.degreeEntry.Text = Mono.Unix.Catalog.GetString("000");
+            this.degreeEntry.Text = "000";
             this.degreeEntry.IsEditable = true;
             this.degreeEntry.WidthChars = 3;
             this.degreeEntry.MaxLength = 3;
@@ -66,7 +66,7 @@ namespace ocmgtk {
             this.minuteEntry = new Gtk.Entry();
             this.minuteEntry.CanFocus = true;
             this.minuteEntry.Name = "minuteEntry";
-            this.minuteEntry.Text = Mono.Unix.Catalog.GetString("0.000");
+            this.minuteEntry.Text = "0.000";
             this.minuteEntry.IsEditable = true;
             this.minuteEntry.InvisibleChar = '•';
             this.hbox5.Add(this.minuteEntry);

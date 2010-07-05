@@ -74,6 +74,7 @@ am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(programfilesicons24x24dir)" \
 	"$(DESTDIR)$(programfilesicons48x48dir)" \
 	"$(DESTDIR)$(programfilesiconsscalabledir)" \
+	"$(DESTDIR)$(programfileslicencedir)" \
 	"$(DESTDIR)$(programfileswebdir)"
 SCRIPTS = $(bin_SCRIPTS) $(pkglib_SCRIPTS)
 SOURCES =
@@ -82,16 +83,17 @@ DATA = $(commonapplicationdatarootmimepackages_DATA) \
 	$(linuxdesktopapplications_DATA) $(linuxpkgconfig_DATA) \
 	$(programfiles_DATA) $(programfilesdocs_DATA) \
 	$(programfilesicons24x24_DATA) $(programfilesicons48x48_DATA) \
-	$(programfilesiconsscalable_DATA) $(programfilesweb_DATA)
+	$(programfilesiconsscalable_DATA) $(programfileslicence_DATA) \
+	$(programfilesweb_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/campbelk/svn2/ocm/OpenCacheManager/missing --run aclocal-1.11
-AMTAR = ${SHELL} /home/campbelk/svn2/ocm/OpenCacheManager/missing --run tar
-AUTOCONF = ${SHELL} /home/campbelk/svn2/ocm/OpenCacheManager/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/campbelk/svn2/ocm/OpenCacheManager/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/campbelk/svn2/ocm/OpenCacheManager/missing --run automake-1.11
+ACLOCAL = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run aclocal-1.11
+AMTAR = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run tar
+AUTOCONF = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run automake-1.11
 AWK = gawk
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"OpenCacheManager\" -DPACKAGE_TARNAME=\"opencachemanager\" -DPACKAGE_VERSION=\"0.14\" -DPACKAGE_STRING=\"OpenCacheManager\ 0.14\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"opencachemanager\" -DVERSION=\"0.14\"
+DEFS = -DPACKAGE_NAME=\"OpenCacheManager\" -DPACKAGE_TARNAME=\"opencachemanager\" -DPACKAGE_VERSION=\"0.15\" -DPACKAGE_STRING=\"OpenCacheManager\ 0.15\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"opencachemanager\" -DVERSION=\"0.15\"
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
@@ -113,7 +115,7 @@ LIBOBJS =
 LIBS = 
 LTLIBOBJS = 
 MAINT = 
-MAKEINFO = ${SHELL} /home/campbelk/svn2/ocm/OpenCacheManager/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 NDESK_DBUS_10_CFLAGS =  
 NDESK_DBUS_10_LIBS = -r:/usr/lib/cli/ndesk-dbus-1.0/NDesk.DBus.dll  
@@ -122,22 +124,22 @@ NDESK_DBUS_GLIB_10_LIBS = -r:/usr/lib/cli/ndesk-dbus-glib-1.0/NDesk.DBus.GLib.dl
 PACKAGE = opencachemanager
 PACKAGE_BUGREPORT = 
 PACKAGE_NAME = OpenCacheManager
-PACKAGE_STRING = OpenCacheManager 0.14
+PACKAGE_STRING = OpenCacheManager 0.15
 PACKAGE_TARNAME = opencachemanager
 PACKAGE_URL = 
-PACKAGE_VERSION = 0.14
+PACKAGE_VERSION = 0.15
 PATH_SEPARATOR = :
 PKG_CONFIG = /usr/bin/pkg-config
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
-VERSION = 0.14
+VERSION = 0.15
 WEBKIT_SHARP_10_CFLAGS = -I:/usr/lib/pkgconfig/../../share/gapi-2.0/pango-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/atk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gdk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gtk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
 WEBKIT_SHARP_10_LIBS = -r:/usr/lib/cli/webkit-sharp-1.0/webkit-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/pango-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/atk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gdk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gtk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
-abs_builddir = /home/campbelk/svn2/ocm/OpenCacheManager/ocm-gtk
-abs_srcdir = /home/campbelk/svn2/ocm/OpenCacheManager/ocm-gtk
-abs_top_builddir = /home/campbelk/svn2/ocm/OpenCacheManager
-abs_top_srcdir = /home/campbelk/svn2/ocm/OpenCacheManager
+abs_builddir = /home/campbelk/svn_temp/ocm/OpenCacheManager/ocm-gtk
+abs_srcdir = /home/campbelk/svn_temp/ocm/OpenCacheManager/ocm-gtk
+abs_top_builddir = /home/campbelk/svn_temp/ocm/OpenCacheManager
+abs_top_srcdir = /home/campbelk/svn_temp/ocm/OpenCacheManager
 am__leading_dot = .
 am__tar = ${AMTAR} chof - "$$tardir"
 am__untar = ${AMTAR} xf -
@@ -156,7 +158,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/campbelk/svn2/ocm/OpenCacheManager/install-sh
+install_sh = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -287,12 +289,16 @@ PARKING_SVG_SOURCE = icons/scalable/parking.svg
 #PARKING_SVG_SOURCE = icons/scalable/parking.svg
 TRAILHEAD_SVG_SOURCE = icons/scalable/trailhead.svg
 #TRAILHEAD_SVG_SOURCE = icons/scalable/trailhead.svg
-LICENCE_TXT_SOURCE = docs/Licence.txt
-#LICENCE_TXT_SOURCE = docs/Licence.txt
 CHANGEHISTORY_TXT_SOURCE = docs/ChangeHistory.txt
 #CHANGEHISTORY_TXT_SOURCE = docs/ChangeHistory.txt
 README_TXT_SOURCE = docs/README.txt
 #README_TXT_SOURCE = docs/README.txt
+LICENCE_TXT_SOURCE = licence/Licence.txt
+#LICENCE_TXT_SOURCE = licence/Licence.txt
+TREASURE_SVG_SOURCE = icons/scalable/treasure.svg
+#TREASURE_SVG_SOURCE = icons/scalable/treasure.svg
+TREASURE_PNG_SOURCE = icons/24x24/treasure.png
+#TREASURE_PNG_SOURCE = icons/24x24/treasure.png
 OCMENGINE_DLL_SOURCE = ../ocmengine/bin/Debug/ocmengine.dll
 #OCMENGINE_DLL_SOURCE = ../ocmengine/bin/Debug/ocmengine.dll
 OCMENGINE_DLL_MDB_SOURCE = ../ocmengine/bin/Debug/ocmengine.dll.mdb
@@ -331,7 +337,8 @@ PROGRAMFILES_ICONS_SCALABLE = \
 	$(TRADITIONAL_SVG) \
 	$(BLUEPIN_SVG) \
 	$(PARKING_SVG) \
-	$(TRAILHEAD_SVG)  
+	$(TRAILHEAD_SVG) \
+	$(TREASURE_SVG)  
 
 PROGRAMFILES_WEB = \
 	$(WPT_VIEWER_HTML)  
@@ -354,15 +361,18 @@ PROGRAMFILES_ICONS_24X24 = \
 	$(FOUND_PNG) \
 	$(BLUEPIN_PNG) \
 	$(PARKING_PNG) \
-	$(TRAILHEAD_PNG)  
+	$(TRAILHEAD_PNG) \
+	$(TREASURE_PNG)  
 
 PROGRAMFILES_ICONS_48X48 = \
 	$(CIRCLE_PNG)  
 
 PROGRAMFILES_DOCS = \
-	$(LICENCE_TXT) \
 	$(CHANGEHISTORY_TXT) \
 	$(README_TXT)  
+
+PROGRAMFILES_LICENCE = \
+	$(LICENCE_TXT)  
 
 PROGRAMFILES = \
 	$(OCMENGINE_DLL) \
@@ -440,12 +450,20 @@ FILES = \
 	Widgets/GenericGPSWidget.cs \
 	gtk-gui/ocmgtk.GenericGPSWidget.cs \
 	Widgets/OCMQueryPage3.cs \
-	gtk-gui/ocmgtk.OCMQueryPage3.cs 
+	gtk-gui/ocmgtk.OCMQueryPage3.cs \
+	Dialogs/ChangeHistory.cs \
+	gtk-gui/ocmgtk.ChangeHistory.cs \
+	Config.cs \
+	Widgets/DateWidget.cs \
+	gtk-gui/ocmgtk.DateWidget.cs \
+	Dialogs/CalendarWindow.cs \
+	gtk-gui/ocmgtk.CalendarWindow.cs 
 
 DATA_FILES = 
 RESOURCES = \
 	gtk-gui/gui.stetic \
-	icons/scalable/OCMLogo.svg,ocmgtk.icons.scalable.OCMLogo.svg 
+	icons/scalable/OCMLogo.svg,ocmgtk.icons.scalable.OCMLogo.svg \
+	icons/scalable/OCMLogoSmall.svg,ocmgtk.icons.scalable.OCMLogoSmall.svg 
 
 EXTRAS = \
 	Dialogs \
@@ -455,9 +473,11 @@ EXTRAS = \
 	icons/scalable \
 	icons/24x24 \
 	docs \
+	licence \
 	OCM.desktop \
 	x-gpx.xml \
 	x-ocm.xml \
+	ocm-gtk \
 	ocm-gtk.in 
 
 REFERENCES = \
@@ -476,9 +496,9 @@ CLEANFILES = $(LINUX_DESKTOPAPPLICATIONS) \
 	$(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) \
 	$(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) \
 	$(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) \
-	$(PROGRAMFILES_DOCS) $(PROGRAMFILES) $(BINARIES) $(ASSEMBLY) \
-	$(ASSEMBLY).mdb $(BINARIES) $(build_resx_resources) \
-	$(build_satellite_assembly_list)
+	$(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES) \
+	$(BINARIES) $(ASSEMBLY) $(ASSEMBLY).mdb $(BINARIES) \
+	$(build_resx_resources) $(build_satellite_assembly_list)
 VALID_CULTURES = ar bg ca zh-CHS cs da de el en es fi fr he hu is it ja ko nl no pl pt ro ru hr sk sq sv th tr id uk be sl et lv lt fa vi hy eu mk af fo hi sw gu ta te kn mr gl kok ar-SA bg-BG ca-ES zh-TW cs-CZ da-DK de-DE el-GR en-US fi-FI fr-FR he-IL hu-HU is-IS it-IT ja-JP ko-KR nl-NL nb-NO pl-PL pt-BR ro-RO ru-RU hr-HR sk-SK sq-AL sv-SE th-TH tr-TR id-ID uk-UA be-BY sl-SI et-EE lv-LV lt-LT fa-IR vi-VN hy-AM eu-ES mk-MK af-ZA fo-FO hi-IN sw-KE gu-IN ta-IN te-IN kn-IN mr-IN gl-ES kok-IN ar-IQ zh-CN de-CH en-GB es-MX fr-BE it-CH nl-BE nn-NO pt-PT sv-FI ar-EG zh-HK de-AT en-AU es-ES fr-CA ar-LY zh-SG de-LU en-CA es-GT fr-CH ar-DZ zh-MO en-NZ es-CR fr-LU ar-MA en-IE es-PA ar-TN en-ZA es-DO ar-OM es-VE ar-YE es-CO ar-SY es-PE ar-JO en-TT es-AR ar-LB en-ZW es-EC ar-KW en-PH es-CL ar-AE es-UY ar-BH es-PY ar-QA es-BO es-SV es-HN es-NI es-PR zh-CHT
 s2q = $(subst \ ,?,$1)
 q2s = $(subst ?,\ ,$1)
@@ -550,6 +570,8 @@ programfilesicons48x48dir = ${exec_prefix}/lib/opencachemanager/icons/48x48
 programfilesicons48x48_DATA = $(PROGRAMFILES_ICONS_48X48)
 linuxdesktopapplicationsdir = ${datarootdir}/applications
 linuxdesktopapplications_DATA = $(LINUX_DESKTOPAPPLICATIONS)
+programfileslicencedir = ${exec_prefix}/lib/opencachemanager/licence
+programfileslicence_DATA = $(PROGRAMFILES_LICENCE)
 programfileswebdir = ${exec_prefix}/lib/opencachemanager/web
 programfilesweb_DATA = $(PROGRAMFILES_WEB)
 
@@ -605,9 +627,11 @@ TRAILHEAD_PNG = $(BUILD_DIR)/icons/24x24/trailhead.png
 BLUEPIN_SVG = $(BUILD_DIR)/icons/scalable/bluepin.svg
 PARKING_SVG = $(BUILD_DIR)/icons/scalable/parking.svg
 TRAILHEAD_SVG = $(BUILD_DIR)/icons/scalable/trailhead.svg
-LICENCE_TXT = $(BUILD_DIR)/docs/Licence.txt
 CHANGEHISTORY_TXT = $(BUILD_DIR)/docs/ChangeHistory.txt
 README_TXT = $(BUILD_DIR)/docs/README.txt
+LICENCE_TXT = $(BUILD_DIR)/licence/Licence.txt
+TREASURE_SVG = $(BUILD_DIR)/icons/scalable/treasure.svg
+TREASURE_PNG = $(BUILD_DIR)/icons/24x24/treasure.png
 OCMENGINE_DLL = $(BUILD_DIR)/ocmengine.dll
 OCM_GTK = $(BUILD_DIR)/ocm-gtk
 all: all-am
@@ -873,6 +897,26 @@ uninstall-programfilesiconsscalableDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(programfilesiconsscalabledir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(programfilesiconsscalabledir)" && rm -f $$files
+install-programfileslicenceDATA: $(programfileslicence_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(programfileslicencedir)" || $(MKDIR_P) "$(DESTDIR)$(programfileslicencedir)"
+	@list='$(programfileslicence_DATA)'; test -n "$(programfileslicencedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(programfileslicencedir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(programfileslicencedir)" || exit $$?; \
+	done
+
+uninstall-programfileslicenceDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(programfileslicence_DATA)'; test -n "$(programfileslicencedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(programfileslicencedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(programfileslicencedir)" && rm -f $$files
 install-programfileswebDATA: $(programfilesweb_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(programfileswebdir)" || $(MKDIR_P) "$(DESTDIR)$(programfileswebdir)"
@@ -934,7 +978,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(SCRIPTS) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" "$(DESTDIR)$(linuxdesktopapplicationsdir)" "$(DESTDIR)$(linuxpkgconfigdir)" "$(DESTDIR)$(programfilesdir)" "$(DESTDIR)$(programfilesdocsdir)" "$(DESTDIR)$(programfilesicons24x24dir)" "$(DESTDIR)$(programfilesicons48x48dir)" "$(DESTDIR)$(programfilesiconsscalabledir)" "$(DESTDIR)$(programfileswebdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" "$(DESTDIR)$(linuxdesktopapplicationsdir)" "$(DESTDIR)$(linuxpkgconfigdir)" "$(DESTDIR)$(programfilesdir)" "$(DESTDIR)$(programfilesdocsdir)" "$(DESTDIR)$(programfilesicons24x24dir)" "$(DESTDIR)$(programfilesicons48x48dir)" "$(DESTDIR)$(programfilesiconsscalabledir)" "$(DESTDIR)$(programfileslicencedir)" "$(DESTDIR)$(programfileswebdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -991,7 +1035,7 @@ install-data-am: install-commonapplicationdatarootmimepackagesDATA \
 	install-programfilesicons24x24DATA \
 	install-programfilesicons48x48DATA \
 	install-programfilesiconsscalableDATA \
-	install-programfileswebDATA
+	install-programfileslicenceDATA install-programfileswebDATA
 
 install-dvi: install-dvi-am
 
@@ -1043,6 +1087,7 @@ uninstall-am: uninstall-binSCRIPTS \
 	uninstall-programfilesicons24x24DATA \
 	uninstall-programfilesicons48x48DATA \
 	uninstall-programfilesiconsscalableDATA \
+	uninstall-programfileslicenceDATA \
 	uninstall-programfileswebDATA
 
 .MAKE: install-am install-strip
@@ -1060,11 +1105,11 @@ uninstall-am: uninstall-binSCRIPTS \
 	install-programfilesicons24x24DATA \
 	install-programfilesicons48x48DATA \
 	install-programfilesiconsscalableDATA \
-	install-programfileswebDATA install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-generic pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-binSCRIPTS \
+	install-programfileslicenceDATA install-programfileswebDATA \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
+	pdf-am ps ps-am uninstall uninstall-am uninstall-binSCRIPTS \
 	uninstall-commonapplicationdatarootmimepackagesDATA \
 	uninstall-linuxdesktopapplicationsDATA \
 	uninstall-linuxpkgconfigDATA uninstall-pkglibSCRIPTS \
@@ -1072,10 +1117,11 @@ uninstall-am: uninstall-binSCRIPTS \
 	uninstall-programfilesicons24x24DATA \
 	uninstall-programfilesicons48x48DATA \
 	uninstall-programfilesiconsscalableDATA \
+	uninstall-programfileslicenceDATA \
 	uninstall-programfileswebDATA
 
 
-all: $(ASSEMBLY) $(LINUX_DESKTOPAPPLICATIONS) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES) $(BINARIES) 
+all: $(ASSEMBLY) $(LINUX_DESKTOPAPPLICATIONS) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES) $(BINARIES) 
 
 # macros
 
@@ -1157,9 +1203,11 @@ $(eval $(call emit-deploy-target,TRAILHEAD_PNG))
 $(eval $(call emit-deploy-target,BLUEPIN_SVG))
 $(eval $(call emit-deploy-target,PARKING_SVG))
 $(eval $(call emit-deploy-target,TRAILHEAD_SVG))
-$(eval $(call emit-deploy-target,LICENCE_TXT))
 $(eval $(call emit-deploy-target,CHANGEHISTORY_TXT))
 $(eval $(call emit-deploy-target,README_TXT))
+$(eval $(call emit-deploy-target,LICENCE_TXT))
+$(eval $(call emit-deploy-target,TREASURE_SVG))
+$(eval $(call emit-deploy-target,TREASURE_PNG))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL_MDB))
 $(eval $(call emit-deploy-wrapper,OCM_GTK,ocm-gtk,x))

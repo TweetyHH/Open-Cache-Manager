@@ -16,6 +16,7 @@
 using System;
 using System.IO;
 using ocmengine;
+using Mono.Unix;
 
 namespace ocmgtk
 {
@@ -38,8 +39,8 @@ namespace ocmgtk
 
 		void HandleParserComplete (object sender, EventArgs args)
 		{
-			progressbar6.Text = "Complete";
-			waypointName.Markup =  String.Format ("<i>Import complete, {0} waypoints processed</i>", m_progress);
+			progressbar6.Text = Catalog.GetString("Complete");
+			waypointName.Markup =  String.Format (Catalog.GetString("<i>Import complete, {0} waypoints processed</i>"), m_progress);
 			okButton.Sensitive = true;
 			okButton.Show();
 			buttonCancel.Hide();
@@ -53,6 +54,7 @@ namespace ocmgtk
 			this.Show ();
 			try {
 				m_progress = 0;
+				fileLabel.Markup = Catalog.GetString("<b>File: </b>") + fs.Name;
 				m_parser.parseGPXFile (fs, store);
 			} catch (Exception e) {
 				this.Hide ();
@@ -67,7 +69,7 @@ namespace ocmgtk
 			double fraction = (double)(m_progress / m_total);
 			this.progressbar6.Text = (fraction).ToString ("0%");
 			progressbar6.Fraction = fraction;
-			this.waypointName.Text = "Waypoint: " + (args as ParseEventArgs).Message;
+			this.waypointName.Markup = "<i>" + (args as ParseEventArgs).Message + "</i>";
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (false);
 		}
@@ -81,7 +83,7 @@ namespace ocmgtk
 		{
 			m_parser.Cancel = true;
 			this.Hide ();
-			String message = String.Format ("Import cancelled, all changes reverted.", m_progress);
+			String message = Catalog.GetString("Import cancelled, all changes reverted.");
 			Gtk.MessageDialog dlg = new Gtk.MessageDialog (this, Gtk.DialogFlags.Modal, Gtk.MessageType.Info, Gtk.ButtonsType.Ok, message);
 			dlg.Run ();
 			dlg.Hide ();

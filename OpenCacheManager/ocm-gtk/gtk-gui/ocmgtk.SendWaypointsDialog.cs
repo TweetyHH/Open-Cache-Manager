@@ -60,7 +60,7 @@ namespace ocmgtk {
             // Container child vbox2.Gtk.Box+BoxChild
             this.writeProgress = new Gtk.ProgressBar();
             this.writeProgress.Name = "writeProgress";
-            this.writeProgress.Text = Mono.Unix.Catalog.GetString("0%");
+            this.writeProgress.Text = "0%";
             this.vbox2.Add(this.writeProgress);
             Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.vbox2[this.writeProgress]));
             w3.Position = 1;

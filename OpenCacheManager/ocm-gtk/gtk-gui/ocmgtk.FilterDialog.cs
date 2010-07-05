@@ -23,7 +23,7 @@ namespace ocmgtk {
         
         private Gtk.Label page2;
         
-        private ocmgtk.OCMQueryPage3 ocmquerypage31;
+        private ocmgtk.OCMQueryPage3 datePage;
         
         private Gtk.Label label1;
         
@@ -35,7 +35,7 @@ namespace ocmgtk {
             Stetic.Gui.Initialize(this);
             // Widget ocmgtk.FilterDialog
             this.Name = "ocmgtk.FilterDialog";
-            this.Title = Mono.Unix.Catalog.GetString("Additional Filters...");
+            this.Title = Mono.Unix.Catalog.GetString("Advanced Filters...");
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             // Internal child ocmgtk.FilterDialog.VBox
             Gtk.VBox w1 = this.VBox;
@@ -72,17 +72,21 @@ namespace ocmgtk {
             this.notebook1.SetTabLabel(this.contPage, this.page2);
             this.page2.ShowAll();
             // Container child notebook1.Gtk.Notebook+NotebookChild
-            this.ocmquerypage31 = new ocmgtk.OCMQueryPage3();
-            this.ocmquerypage31.Events = ((Gdk.EventMask)(256));
-            this.ocmquerypage31.Name = "ocmquerypage31";
-            this.notebook1.Add(this.ocmquerypage31);
-            Gtk.Notebook.NotebookChild w4 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.ocmquerypage31]));
+            this.datePage = new ocmgtk.OCMQueryPage3();
+            this.datePage.Events = ((Gdk.EventMask)(256));
+            this.datePage.Name = "datePage";
+            this.datePage.PlaceBefore = new System.DateTime(0);
+            this.datePage.PlaceAfter = new System.DateTime(0);
+            this.datePage.InfoAfter = new System.DateTime(0);
+            this.datePage.InfoBefore = new System.DateTime(0);
+            this.notebook1.Add(this.datePage);
+            Gtk.Notebook.NotebookChild w4 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.datePage]));
             w4.Position = 2;
             // Notebook tab
             this.label1 = new Gtk.Label();
             this.label1.Name = "label1";
-            this.label1.LabelProp = Mono.Unix.Catalog.GetString("Limits/Placed Date");
-            this.notebook1.SetTabLabel(this.ocmquerypage31, this.label1);
+            this.label1.LabelProp = Mono.Unix.Catalog.GetString("Dates");
+            this.notebook1.SetTabLabel(this.datePage, this.label1);
             this.label1.ShowAll();
             w1.Add(this.notebook1);
             Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(w1[this.notebook1]));

@@ -61,7 +61,6 @@ namespace ocmgtk
 			wptView.Selection.Changed += OnSelectionChanged;
 		}
 
-
 		private void OnSelectionChanged (object sender, EventArgs e)
 		{
 			TreeIter iter;
@@ -125,7 +124,7 @@ namespace ocmgtk
 			text.Text = Utilities.getCoordString (wpt.Lat, wpt.Lon);
 		}
 
-		protected virtual void doProperties (object sender, System.EventArgs e)
+		protected virtual void DoEdit (object sender, System.EventArgs e)
 		{
 			try {
 				WaypointDialog dlg = new WaypointDialog ();
@@ -133,10 +132,18 @@ namespace ocmgtk
 				Gtk.TreeModel model;
 				if (wptView.Selection.GetSelected (out model, out itr)) {
 					Waypoint wpt = (Waypoint)model.GetValue (itr, 0);
+					String origname = wpt.Name;
 					dlg.SetPoint (wpt);
 					if ((int)ResponseType.Ok == dlg.Run ()) {
 						wpt = dlg.GetPoint ();
-						Engine.getInstance ().Store.UpdateWaypointAtomic (wpt);
+						CacheStore store = Engine.getInstance().Store;
+						if (wpt.Name == origname)
+							store.UpdateWaypointAtomic (wpt);
+						else
+						{
+							store.DeleteWaypoint(origname);
+							store.UpdateWaypointAtomic(wpt);
+						}
 						dlg.Dispose ();
 						UpdateCacheInfo ();
 					}
@@ -179,7 +186,7 @@ namespace ocmgtk
 			try {
 				if ((int)ResponseType.Yes == md.Run ()) {
 					
-					Engine.getInstance ().Store.DeleteWaypoint (toDelete);
+					Engine.getInstance ().Store.DeleteWaypoint (toDelete.Name);
 					UpdateCacheInfo ();
 				}
 				md.Hide ();
@@ -212,12 +219,6 @@ namespace ocmgtk
 		protected virtual void OnStopActionActivated (object sender, System.EventArgs e)
 		{
 		}
-		
-		
-		
-		
-		
-		
 		
 	}
 }

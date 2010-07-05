@@ -120,7 +120,7 @@ namespace ocmgtk {
             w1.SetUiManager(UIManager);
             this.Hide();
             this.addButton.Clicked += new System.EventHandler(this.doAdd);
-            this.editButton.Clicked += new System.EventHandler(this.doProperties);
+            this.editButton.Clicked += new System.EventHandler(this.DoEdit);
             this.deleteButton.Clicked += new System.EventHandler(this.doRemove);
         }
     }

@@ -1,3 +1,22 @@
+Version 0.15
+-------------
+IMPORTANT: READ UPGRADE NOTE FROM PREVIOUS VERSIONS, see
+http://sourceforge.net/projects/opencachemanage/forums/forum/1075295/topic/3760416
+
+- Support for Terracaching.com GPX files
+- Globalization support for non english locales
+- Support for LOC files
+- Support for Navicache LOC files (preferred for Navicache users)
+- Support for Navicache GPX files
+- Users can now filter on both placed by and updated dates,
+  Filter->Additional Filters->Dates
+- U.S. Units now supported, go to Edit->Preferences to change to miles
+- Improvements to progress dialogs
+- Default map provider can now be chosen in Edit->Preferences
+- New Terracaching.com and Navicache.com menus for quick access
+- Fix problem with exported GPXs not being openable in QLandKarte GT
+
+
 Version 0.14
 ---------------
 - Add integration with GPS Babel for full GPS support. This requires

@@ -15,7 +15,7 @@ namespace ocmgtk {
         
         private Gtk.Label label1;
         
-        private Gtk.Label label2;
+        private Gtk.Label fileLabel;
         
         private Gtk.Alignment progressAlign;
         
@@ -32,7 +32,7 @@ namespace ocmgtk {
             // Widget ocmgtk.ProgressDialog
             this.WidthRequest = 400;
             this.Name = "ocmgtk.ProgressDialog";
-            this.Title = Mono.Unix.Catalog.GetString("Please Wait....");
+            this.Title = Mono.Unix.Catalog.GetString("Open GPX File...");
             this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.Modal = true;
@@ -56,11 +56,13 @@ namespace ocmgtk {
             Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(w1[this.label1]));
             w2.Position = 0;
             // Container child dialog1_VBox.Gtk.Box+BoxChild
-            this.label2 = new Gtk.Label();
-            this.label2.Name = "label2";
-            this.label2.LabelProp = Mono.Unix.Catalog.GetString("label2");
-            w1.Add(this.label2);
-            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(w1[this.label2]));
+            this.fileLabel = new Gtk.Label();
+            this.fileLabel.Name = "fileLabel";
+            this.fileLabel.Xalign = 0F;
+            this.fileLabel.LabelProp = Mono.Unix.Catalog.GetString("<b>File:</b>");
+            this.fileLabel.UseMarkup = true;
+            w1.Add(this.fileLabel);
+            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(w1[this.fileLabel]));
             w3.Position = 1;
             w3.Expand = false;
             w3.Fill = false;
@@ -74,7 +76,7 @@ namespace ocmgtk {
             // Container child progressAlign.Gtk.Container+ContainerChild
             this.progressbar6 = new Gtk.ProgressBar();
             this.progressbar6.Name = "progressbar6";
-            this.progressbar6.Text = Mono.Unix.Catalog.GetString("0%");
+            this.progressbar6.Text = "0%";
             this.progressAlign.Add(this.progressbar6);
             w1.Add(this.progressAlign);
             Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(w1[this.progressAlign]));

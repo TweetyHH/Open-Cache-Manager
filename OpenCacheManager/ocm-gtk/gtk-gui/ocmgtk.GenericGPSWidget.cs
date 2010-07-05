@@ -71,7 +71,7 @@ namespace ocmgtk {
             this.limitEntry.Sensitive = false;
             this.limitEntry.CanFocus = true;
             this.limitEntry.Name = "limitEntry";
-            this.limitEntry.Text = Mono.Unix.Catalog.GetString("1000");
+            this.limitEntry.Text = "1000";
             this.limitEntry.IsEditable = true;
             this.limitEntry.InvisibleChar = '•';
             this.hbox3.Add(this.limitEntry);
@@ -90,7 +90,7 @@ namespace ocmgtk {
             // Container child hotPlugButton.Gtk.Container+ContainerChild
             this.label4 = new Gtk.Label();
             this.label4.Name = "label4";
-            this.label4.LabelProp = Mono.Unix.Catalog.GetString("Read the GPS Babel Documentation to choose the right values for these fields\n<span fgcolor=\"blue\">http://www.gpsbabel.org/readme.html</span>");
+            this.label4.LabelProp = Mono.Unix.Catalog.GetString("Read the GPSBabel Documentation to choose the right values for these fields\n<span fgcolor=\"blue\">http://www.gpsbabel.org/readme.html</span>");
             this.label4.UseMarkup = true;
             this.hotPlugButton.Add(this.label4);
             this.hotPlugButton.Label = null;
@@ -116,7 +116,7 @@ namespace ocmgtk {
             this.formatEntry = new Gtk.Entry();
             this.formatEntry.CanFocus = true;
             this.formatEntry.Name = "formatEntry";
-            this.formatEntry.Text = Mono.Unix.Catalog.GetString("geo");
+            this.formatEntry.Text = "geo";
             this.formatEntry.IsEditable = true;
             this.formatEntry.InvisibleChar = '•';
             this.hbox2.Add(this.formatEntry);
@@ -144,7 +144,7 @@ namespace ocmgtk {
             this.fileEntry = new Gtk.Entry();
             this.fileEntry.CanFocus = true;
             this.fileEntry.Name = "fileEntry";
-            this.fileEntry.Text = Mono.Unix.Catalog.GetString("caches.loc");
+            this.fileEntry.Text = "caches.loc";
             this.fileEntry.IsEditable = true;
             this.fileEntry.InvisibleChar = '•';
             this.hbox4.Add(this.fileEntry);

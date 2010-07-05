@@ -77,6 +77,33 @@ namespace ocmgtk
 			}				
 		}
 		
+		public string DefaultMap
+		{
+			get {
+				switch (mapsCombo.Active)
+				{
+					case 1:
+						return "ghyb";
+					case 2:
+						return "gmap";
+					case 3:
+						return "gphy";
+					default:
+						return "osm";
+				}
+			}
+			set {
+				if (value == "ghyb")
+					mapsCombo.Active = 1;
+				else if (value == "gmap")
+					mapsCombo.Active = 2;
+				else if (value == "gphy")
+					mapsCombo.Active = 3;
+				else
+					mapsCombo.Active = 0;
+			}
+		}
+		
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
 			this.Hide();

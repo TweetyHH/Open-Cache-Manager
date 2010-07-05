@@ -301,7 +301,7 @@ namespace ocmgtk
 				return false;
 			String filterVal = filterEntry.Text.ToLower ();
 			
-			//TODO : PUSH THESE STATUS FLAGS TO DATABASE TO IMPROVE
+			//TODO : PUSH THESE FILTERS TO DATABASE OR CACHESTORE TO IMPROVE
 			// PERFORMANCE
 			if (!m_showArchived && cache.Archived)
 				return false;
@@ -314,6 +314,24 @@ namespace ocmgtk
 					return true;
 				else
 					return false;
+			
+			FilterList list = Engine.getInstance().Store.Filter;
+			if (list != null)
+			{
+				if (list.Contains(FilterList.KEY_PLACEBEFORE))
+					if (cache.Time >= ((DateTime) list.GetCriteria(FilterList.KEY_PLACEBEFORE)))
+						return false;
+				if (list.Contains(FilterList.KEY_PLACEAFTER))
+					if (cache.Time <= ((DateTime) list.GetCriteria(FilterList.KEY_PLACEAFTER)))
+						return false;
+				if (list.Contains(FilterList.KEY_INFOBEFORE))
+					if (cache.Updated >= ((DateTime) list.GetCriteria(FilterList.KEY_INFOBEFORE)))
+						return false;
+				if (list.Contains(FilterList.KEY_INFOAFTER))
+					if (cache.Updated <= ((DateTime) list.GetCriteria(FilterList.KEY_INFOAFTER)))
+						return false;
+			}
+			
 			
 			if (!m_showUnavailble && !cache.Available && !cache.Archived)
 				return false;
@@ -389,9 +407,9 @@ namespace ocmgtk
 		private void CreatePopup ()
 		{
 			Menu popup = new Menu ();
-			MenuItem setCenterItem = new MenuItem ("Set As Map Centre");
-			MenuItem showOnline = new MenuItem ("View Cache Online");
-			MenuItem deleteItem = new MenuItem ("Delete...");
+			MenuItem setCenterItem = new MenuItem (Catalog.GetString("Set As Map Centre"));
+			MenuItem showOnline = new MenuItem (Catalog.GetString("View Cache Online"));
+			MenuItem deleteItem = new MenuItem (Catalog.GetString("Delete..."));
 			
 			setCenterItem.Activated += HandleSetCenterItemActivated;
 			showOnline.Activated += HandleShowOnlineActivated;

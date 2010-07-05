@@ -59,7 +59,7 @@ namespace ocmgtk {
             this.limitEntry = new Gtk.Entry();
             this.limitEntry.CanFocus = true;
             this.limitEntry.Name = "limitEntry";
-            this.limitEntry.Text = Mono.Unix.Catalog.GetString("500");
+            this.limitEntry.Text = "500";
             this.limitEntry.IsEditable = true;
             this.limitEntry.InvisibleChar = '•';
             this.table1.Add(this.limitEntry);

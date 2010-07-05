@@ -133,7 +133,7 @@ namespace ocmgtk {
             this.cacheNameLabel.Xpad = 5;
             this.cacheNameLabel.Ypad = 5;
             this.cacheNameLabel.Xalign = 0F;
-            this.cacheNameLabel.LabelProp = Mono.Unix.Catalog.GetString("<cacheName>");
+            this.cacheNameLabel.LabelProp = "<cacheName>";
             this.cacheNameLabel.Ellipsize = ((Pango.EllipsizeMode)(3));
             this.vbox2.Add(this.cacheNameLabel);
             Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.vbox2[this.cacheNameLabel]));
@@ -146,7 +146,7 @@ namespace ocmgtk {
             this.cacheCodeLabel.Xpad = 6;
             this.cacheCodeLabel.Ypad = 6;
             this.cacheCodeLabel.Xalign = 0F;
-            this.cacheCodeLabel.LabelProp = Mono.Unix.Catalog.GetString("<cacheCode>");
+            this.cacheCodeLabel.LabelProp = "<cacheCode>";
             this.cacheCodeLabel.Ellipsize = ((Pango.EllipsizeMode)(3));
             this.vbox2.Add(this.cacheCodeLabel);
             Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.vbox2[this.cacheCodeLabel]));
@@ -159,7 +159,7 @@ namespace ocmgtk {
             this.cacheTypeLabel.Xpad = 6;
             this.cacheTypeLabel.Ypad = 6;
             this.cacheTypeLabel.Xalign = 0F;
-            this.cacheTypeLabel.LabelProp = Mono.Unix.Catalog.GetString("<cacheType>");
+            this.cacheTypeLabel.LabelProp = "<cacheType>";
             this.cacheTypeLabel.Ellipsize = ((Pango.EllipsizeMode)(3));
             this.vbox2.Add(this.cacheTypeLabel);
             Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.vbox2[this.cacheTypeLabel]));
@@ -270,7 +270,7 @@ namespace ocmgtk {
             this.dateLabel.Xpad = 5;
             this.dateLabel.Ypad = 5;
             this.dateLabel.Xalign = 0F;
-            this.dateLabel.LabelProp = Mono.Unix.Catalog.GetString("<date>");
+            this.dateLabel.LabelProp = "<date>";
             this.hbox2.Add(this.dateLabel);
             Gtk.Box.BoxChild w22 = ((Gtk.Box.BoxChild)(this.hbox2[this.dateLabel]));
             w22.Position = 3;
@@ -289,7 +289,7 @@ namespace ocmgtk {
             // Container child hbox2.Gtk.Box+BoxChild
             this.infoDateLabel = new Gtk.Label();
             this.infoDateLabel.Name = "infoDateLabel";
-            this.infoDateLabel.LabelProp = Mono.Unix.Catalog.GetString("<date>");
+            this.infoDateLabel.LabelProp = "<date>";
             this.hbox2.Add(this.infoDateLabel);
             Gtk.Box.BoxChild w24 = ((Gtk.Box.BoxChild)(this.hbox2[this.infoDateLabel]));
             w24.Position = 5;
@@ -320,7 +320,7 @@ namespace ocmgtk {
             this.cacheSizeLabel = new Gtk.Label();
             this.cacheSizeLabel.Name = "cacheSizeLabel";
             this.cacheSizeLabel.Ypad = 5;
-            this.cacheSizeLabel.LabelProp = Mono.Unix.Catalog.GetString("<cacheSize>");
+            this.cacheSizeLabel.LabelProp = "<cacheSize>";
             this.hbox3.Add(this.cacheSizeLabel);
             Gtk.Box.BoxChild w27 = ((Gtk.Box.BoxChild)(this.hbox3[this.cacheSizeLabel]));
             w27.Position = 1;
@@ -447,7 +447,7 @@ namespace ocmgtk {
             this.coordinateLabel.Name = "coordinateLabel";
             this.coordinateLabel.Xpad = 5;
             this.coordinateLabel.Ypad = 5;
-            this.coordinateLabel.LabelProp = Mono.Unix.Catalog.GetString("<coord>");
+            this.coordinateLabel.LabelProp = "<coord>";
             this.hbox7.Add(this.coordinateLabel);
             Gtk.Box.BoxChild w41 = ((Gtk.Box.BoxChild)(this.hbox7[this.coordinateLabel]));
             w41.Position = 0;
@@ -456,7 +456,7 @@ namespace ocmgtk {
             // Container child hbox7.Gtk.Box+BoxChild
             this.distance_label = new Gtk.Label();
             this.distance_label.Name = "distance_label";
-            this.distance_label.LabelProp = Mono.Unix.Catalog.GetString("<bearing & distance>");
+            this.distance_label.LabelProp = "<bearing & distance>";
             this.hbox7.Add(this.distance_label);
             Gtk.Box.BoxChild w42 = ((Gtk.Box.BoxChild)(this.hbox7[this.distance_label]));
             w42.Position = 1;

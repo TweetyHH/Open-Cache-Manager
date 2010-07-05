@@ -33,10 +33,8 @@ namespace ocmgtk
 				GetPlacedByFilter (filter);
 				GetPlacedByMeFilter (filter);
 				GetKeyWordFilter (filter);
-				if (null != contPage.ContainerTypes)
-					filter.AddFilterCriteria(FilterList.KEY_CONTAINER, contPage.ContainerTypes);
-				else
-					filter.RemoveCriteria(FilterList.KEY_CONTAINER);
+				GetContainerFilter (filter);
+				GetDateFilter (filter);
 				return filter;
 			}
 			set {
@@ -53,8 +51,44 @@ namespace ocmgtk
 					contPage.PlacedByMe = true;
 				contPage.DescriptionKeyWords = value.GetCriteria(FilterList.KEY_DESCRIPTION) as string;
 				contPage.ContainerTypes = value.GetCriteria(FilterList.KEY_CONTAINER) as List<string>;
-	
+				if (value.Contains(FilterList.KEY_PLACEBEFORE))
+					datePage.PlaceBefore = (DateTime) value.GetCriteria(FilterList.KEY_PLACEBEFORE);
+				if (value.Contains(FilterList.KEY_PLACEAFTER))
+					datePage.PlaceAfter = (DateTime) value.GetCriteria(FilterList.KEY_PLACEAFTER);
+				if (value.Contains(FilterList.KEY_INFOBEFORE))
+					datePage.InfoBefore = (DateTime) value.GetCriteria(FilterList.KEY_INFOBEFORE);
+				if (value.Contains(FilterList.KEY_INFOAFTER))
+					datePage.PlaceBefore = (DateTime) value.GetCriteria(FilterList.KEY_INFOAFTER);
+				
 			}
+		}
+		
+		private void GetDateFilter (FilterList filter)
+		{
+				if (datePage.PlaceBefore != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_PLACEBEFORE, datePage.PlaceBefore);
+				else
+					filter.RemoveCriteria(FilterList.KEY_PLACEBEFORE);
+				if (datePage.PlaceAfter != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_PLACEAFTER, datePage.PlaceAfter);
+				else
+					filter.RemoveCriteria(FilterList.KEY_PLACEAFTER);
+				if (datePage.InfoBefore != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_INFOBEFORE, datePage.InfoBefore);
+				else
+					filter.RemoveCriteria(FilterList.KEY_INFOBEFORE);
+				if (datePage.InfoAfter != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_INFOAFTER, datePage.InfoAfter);
+				else
+					filter.RemoveCriteria(FilterList.KEY_INFOAFTER);
+		}
+		
+		private void GetContainerFilter (FilterList filter)
+		{
+				if (null != contPage.ContainerTypes)
+					filter.AddFilterCriteria(FilterList.KEY_CONTAINER, contPage.ContainerTypes);
+				else
+					filter.RemoveCriteria(FilterList.KEY_CONTAINER);
 		}
 		
 		private void GetKeyWordFilter (FilterList filter)
