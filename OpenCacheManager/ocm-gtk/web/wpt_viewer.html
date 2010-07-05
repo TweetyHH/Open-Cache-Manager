@@ -159,7 +159,7 @@ body {
 	function doSelectCache(wpt)
 	{
 		currentPopup.hide();
-		hidden.location.href = "ocm://select/" + wpt;	
+		hidden.innerHTML = "<iframe src='ocm://select/" + wpt + "'/>";
 	}
 
 
@@ -194,7 +194,7 @@ body {
 	function doMapMove()
 	{
 		var lonlat = map.getCenter().transform(map.projection, map.displayProjection);
-		hidden.location.href = "ocm://mapmoved/" + lonlat.lat + "/" + lonlat.lon;
+		hidden.innerHTML = "<iframe src='ocm://mapmoved/" + lonlat.lat + "/" + lonlat.lon + "'/>";
 	}
 	
         // -->
@@ -202,6 +202,6 @@ body {
   </head>
   <body onload="init()">
     <div id="map"></div>
-    <iframe id="hidden" style='visibility:hidden' src="about:blank"/>
+    <div id="hidden" style='visibility:hidden'/>
   </body>
 </html>
