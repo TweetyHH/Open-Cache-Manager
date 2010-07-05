@@ -74,6 +74,7 @@ am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(programfilesicons24x24dir)" \
 	"$(DESTDIR)$(programfilesicons48x48dir)" \
 	"$(DESTDIR)$(programfilesiconsscalabledir)" \
+	"$(DESTDIR)$(programfileslicencedir)" \
 	"$(DESTDIR)$(programfileswebdir)"
 SCRIPTS = $(bin_SCRIPTS) $(pkglib_SCRIPTS)
 SOURCES =
@@ -82,16 +83,17 @@ DATA = $(commonapplicationdatarootmimepackages_DATA) \
 	$(linuxdesktopapplications_DATA) $(linuxpkgconfig_DATA) \
 	$(programfiles_DATA) $(programfilesdocs_DATA) \
 	$(programfilesicons24x24_DATA) $(programfilesicons48x48_DATA) \
-	$(programfilesiconsscalable_DATA) $(programfilesweb_DATA)
+	$(programfilesiconsscalable_DATA) $(programfileslicence_DATA) \
+	$(programfilesweb_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/campbelk/svn2/ocm/OpenCacheManager/missing --run aclocal-1.11
-AMTAR = ${SHELL} /home/campbelk/svn2/ocm/OpenCacheManager/missing --run tar
-AUTOCONF = ${SHELL} /home/campbelk/svn2/ocm/OpenCacheManager/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/campbelk/svn2/ocm/OpenCacheManager/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/campbelk/svn2/ocm/OpenCacheManager/missing --run automake-1.11
+ACLOCAL = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run aclocal-1.11
+AMTAR = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run tar
+AUTOCONF = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run automake-1.11
 AWK = gawk
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"OpenCacheManager\" -DPACKAGE_TARNAME=\"opencachemanager\" -DPACKAGE_VERSION=\"0.14\" -DPACKAGE_STRING=\"OpenCacheManager\ 0.14\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"opencachemanager\" -DVERSION=\"0.14\"
+DEFS = -DPACKAGE_NAME=\"OpenCacheManager\" -DPACKAGE_TARNAME=\"opencachemanager\" -DPACKAGE_VERSION=\"0.15\" -DPACKAGE_STRING=\"OpenCacheManager\ 0.15\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"opencachemanager\" -DVERSION=\"0.15\"
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
@@ -113,7 +115,7 @@ LIBOBJS =
 LIBS = 
 LTLIBOBJS = 
 MAINT = 
-MAKEINFO = ${SHELL} /home/campbelk/svn2/ocm/OpenCacheManager/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 NDESK_DBUS_10_CFLAGS =  
 NDESK_DBUS_10_LIBS = -r:/usr/lib/cli/ndesk-dbus-1.0/NDesk.DBus.dll  
@@ -122,22 +124,22 @@ NDESK_DBUS_GLIB_10_LIBS = -r:/usr/lib/cli/ndesk-dbus-glib-1.0/NDesk.DBus.GLib.dl
 PACKAGE = opencachemanager
 PACKAGE_BUGREPORT = 
 PACKAGE_NAME = OpenCacheManager
-PACKAGE_STRING = OpenCacheManager 0.14
+PACKAGE_STRING = OpenCacheManager 0.15
 PACKAGE_TARNAME = opencachemanager
 PACKAGE_URL = 
-PACKAGE_VERSION = 0.14
+PACKAGE_VERSION = 0.15
 PATH_SEPARATOR = :
 PKG_CONFIG = /usr/bin/pkg-config
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
-VERSION = 0.14
+VERSION = 0.15
 WEBKIT_SHARP_10_CFLAGS = -I:/usr/lib/pkgconfig/../../share/gapi-2.0/pango-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/atk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gdk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gtk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
 WEBKIT_SHARP_10_LIBS = -r:/usr/lib/cli/webkit-sharp-1.0/webkit-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/pango-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/atk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gdk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gtk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
-abs_builddir = /home/campbelk/svn2/ocm/OpenCacheManager/ocmengine
-abs_srcdir = /home/campbelk/svn2/ocm/OpenCacheManager/ocmengine
-abs_top_builddir = /home/campbelk/svn2/ocm/OpenCacheManager
-abs_top_srcdir = /home/campbelk/svn2/ocm/OpenCacheManager
+abs_builddir = /home/campbelk/svn_temp/ocm/OpenCacheManager/ocmengine
+abs_srcdir = /home/campbelk/svn_temp/ocm/OpenCacheManager/ocmengine
+abs_top_builddir = /home/campbelk/svn_temp/ocm/OpenCacheManager
+abs_top_srcdir = /home/campbelk/svn_temp/ocm/OpenCacheManager
 am__leading_dot = .
 am__tar = ${AMTAR} chof - "$$tardir"
 am__untar = ${AMTAR} xf -
@@ -156,7 +158,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/campbelk/svn2/ocm/OpenCacheManager/install-sh
+install_sh = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -312,6 +314,8 @@ programfilesicons48x48dir = ${exec_prefix}/lib/opencachemanager/icons/48x48
 programfilesicons48x48_DATA = $(PROGRAMFILES_ICONS_48X48)
 linuxdesktopapplicationsdir = ${datarootdir}/applications
 linuxdesktopapplications_DATA = $(LINUX_DESKTOPAPPLICATIONS)
+programfileslicencedir = ${exec_prefix}/lib/opencachemanager/licence
+programfileslicence_DATA = $(PROGRAMFILES_LICENCE)
 programfileswebdir = ${exec_prefix}/lib/opencachemanager/web
 programfilesweb_DATA = $(PROGRAMFILES_WEB)
 
@@ -587,6 +591,26 @@ uninstall-programfilesiconsscalableDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(programfilesiconsscalabledir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(programfilesiconsscalabledir)" && rm -f $$files
+install-programfileslicenceDATA: $(programfileslicence_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(programfileslicencedir)" || $(MKDIR_P) "$(DESTDIR)$(programfileslicencedir)"
+	@list='$(programfileslicence_DATA)'; test -n "$(programfileslicencedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(programfileslicencedir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(programfileslicencedir)" || exit $$?; \
+	done
+
+uninstall-programfileslicenceDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(programfileslicence_DATA)'; test -n "$(programfileslicencedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(programfileslicencedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(programfileslicencedir)" && rm -f $$files
 install-programfileswebDATA: $(programfilesweb_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(programfileswebdir)" || $(MKDIR_P) "$(DESTDIR)$(programfileswebdir)"
@@ -648,7 +672,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(SCRIPTS) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" "$(DESTDIR)$(linuxdesktopapplicationsdir)" "$(DESTDIR)$(linuxpkgconfigdir)" "$(DESTDIR)$(programfilesdir)" "$(DESTDIR)$(programfilesdocsdir)" "$(DESTDIR)$(programfilesicons24x24dir)" "$(DESTDIR)$(programfilesicons48x48dir)" "$(DESTDIR)$(programfilesiconsscalabledir)" "$(DESTDIR)$(programfileswebdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" "$(DESTDIR)$(linuxdesktopapplicationsdir)" "$(DESTDIR)$(linuxpkgconfigdir)" "$(DESTDIR)$(programfilesdir)" "$(DESTDIR)$(programfilesdocsdir)" "$(DESTDIR)$(programfilesicons24x24dir)" "$(DESTDIR)$(programfilesicons48x48dir)" "$(DESTDIR)$(programfilesiconsscalabledir)" "$(DESTDIR)$(programfileslicencedir)" "$(DESTDIR)$(programfileswebdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -705,7 +729,7 @@ install-data-am: install-commonapplicationdatarootmimepackagesDATA \
 	install-programfilesicons24x24DATA \
 	install-programfilesicons48x48DATA \
 	install-programfilesiconsscalableDATA \
-	install-programfileswebDATA
+	install-programfileslicenceDATA install-programfileswebDATA
 
 install-dvi: install-dvi-am
 
@@ -757,6 +781,7 @@ uninstall-am: uninstall-binSCRIPTS \
 	uninstall-programfilesicons24x24DATA \
 	uninstall-programfilesicons48x48DATA \
 	uninstall-programfilesiconsscalableDATA \
+	uninstall-programfileslicenceDATA \
 	uninstall-programfileswebDATA
 
 .MAKE: install-am install-strip
@@ -774,11 +799,11 @@ uninstall-am: uninstall-binSCRIPTS \
 	install-programfilesicons24x24DATA \
 	install-programfilesicons48x48DATA \
 	install-programfilesiconsscalableDATA \
-	install-programfileswebDATA install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-generic pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-binSCRIPTS \
+	install-programfileslicenceDATA install-programfileswebDATA \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
+	pdf-am ps ps-am uninstall uninstall-am uninstall-binSCRIPTS \
 	uninstall-commonapplicationdatarootmimepackagesDATA \
 	uninstall-linuxdesktopapplicationsDATA \
 	uninstall-linuxpkgconfigDATA uninstall-pkglibSCRIPTS \
@@ -786,6 +811,7 @@ uninstall-am: uninstall-binSCRIPTS \
 	uninstall-programfilesicons24x24DATA \
 	uninstall-programfilesicons48x48DATA \
 	uninstall-programfilesiconsscalableDATA \
+	uninstall-programfileslicenceDATA \
 	uninstall-programfileswebDATA
 
 

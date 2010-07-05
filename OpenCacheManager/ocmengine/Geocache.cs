@@ -193,7 +193,8 @@ namespace ocmengine
 			cache.Archived = false;
 			cache.TypeOfCache = Geocache.CacheType.GENERIC;
 			cache.ShortDesc = "";
-			cache.LongDesc = "<a href=\"" + cache.URL.ToString() + "\">View Online</a>";
+			if (cache.URL != null)
+				cache.LongDesc = "<a href=\"" + cache.URL.ToString() + "\">View Online</a>";
 			return cache;
 		}
 		

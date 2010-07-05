@@ -36,6 +36,10 @@ namespace ocmengine
 		public const String KEY_PLACEDBY = "placedby";
 		public const String KEY_MINE = "mine";
 		public const String KEY_STATUS = "status";
+		public const String KEY_PLACEAFTER = "placeafter";
+		public const String KEY_PLACEBEFORE = "placebefore";
+		public const String KEY_INFOAFTER = "infoafter";
+		public const String KEY_INFOBEFORE = "infobefore";
 		public FilterList ()
 		{
 			
@@ -55,6 +59,11 @@ namespace ocmengine
 		public object GetCriteria(String key)
 		{
 			return m_criteria[key];
+		}
+		
+		public bool Contains(String key)
+		{
+			return m_criteria.Contains(key);
 		}
 		
 		public void Clear()
@@ -174,8 +183,16 @@ namespace ocmengine
 					builder.Append(" AND GEOCACHE.available == 'True'");
 				if (!status[2] && status[3] && status[4])
 					builder.Append(" AND GEOCACHE.available == 'False'");
-			
  			}
+			
+			/*string placeBefore = m_criteria[KEY_PLACEBEFORE] as string;
+			if (null != placeBefore)
+			{
+				builder.Append(" AND WAYPOINT.TIME <= '");
+				builder.Append(placeBefore);
+				builder.Append("'");
+			}*/
+			
 			 
 			System.Console.WriteLine(builder.ToString());
 			return builder.ToString ();

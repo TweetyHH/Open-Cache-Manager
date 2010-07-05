@@ -47,5 +47,7 @@ namespace ocmengine
 		const string DELETE_GC = "DELETE FROM GEOCACHE WHERE name='{0}'";
 		const string OR_PARENT = " OR parent='{0}'";
 		const string SEPERATOR = ";";
+		const string CREATE_TABLE_WPTS_TEMP = "CREATE TABLE WAYPOINT_TEMP (lastUpdate TEXT, parent TEXT, symbol TEXT, time TEXT, type TEXT, desc TEXT, urlname TEXT, url TEXT, lon TEXT, lat TEXT, name TEXT PRIMARY KEY)";
+		const string CREATE_CACHE_TABLE_TEMP = "CREATE TABLE GEOCACHE (available TEXT, archived TEXT, container TEXT, hint TEXT, longdesc TEXT, shortdesc TEXT, type TEXT, state TEXT, country TEXT, terrain TEXT, difficulty TEXT, placedby TEXT, name TEXT PRIMARY KEY, fullname TEXT, id TEXT, owner TEXT, ownerID TEXT)";	
 	}
 }

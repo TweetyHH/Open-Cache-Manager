@@ -43,6 +43,7 @@ namespace ocmengine
 		public event ParseEventHandler Complete;
 
 		public string m_ownid = "";
+		public string m_source = "unknown";
 		public string CacheOwner
 		{
 			set {m_ownid = value;}
@@ -64,6 +65,8 @@ namespace ocmengine
 			while (rdr.Read())
 			{
 				if (rdr.Name == "wpt" && rdr.IsStartElement())
+					count++;
+				else if (rdr.Name == "waypoint" && rdr.IsStartElement())
 					count++;
 			}
 			rdr.Close();
@@ -87,11 +90,20 @@ namespace ocmengine
 					case XmlNodeType.Element:
 						if (reader.Name == "time")
 							gpx_date = reader.ReadElementContentAsDateTime();
+						if (reader.Name == "loc")
+							m_source = reader.GetAttribute("src");
 						if (reader.Name == "wpt")
 						{
 							Waypoint pt = processWaypoint(reader);
 							pt.Updated = gpx_date;
 							m_store.AddWaypoint(pt);							
+						}
+						
+						if (reader.Name == "waypoint")
+						{
+							Waypoint pt = processLocWaypoint(reader);
+							pt.Updated = System.DateTime.Now;
+							m_store.AddWaypoint(pt);
 						}
 						break;
 					case XmlNodeType.EndElement:
@@ -131,6 +143,105 @@ namespace ocmengine
 				}
 			}
 			return newPoint;
+		}
+		
+		private Waypoint processLocWaypoint(XmlReader reader)
+		{
+			Waypoint newPoint = new Waypoint();
+			bool breakLoop = false;
+			while (reader.Read() && !breakLoop)
+			{
+				switch (reader.NodeType)
+				{
+					case XmlNodeType.Element:
+						processLocWpt(ref newPoint, reader);
+						break;					
+					case XmlNodeType.EndElement:
+						if (reader.Name == "waypoint")
+							breakLoop = true;
+					break;
+				}
+			}
+			return newPoint;
+		}
+		
+		public void processLocWpt(ref Waypoint pt, XmlReader reader)
+		{
+			if (reader.Name == "name")
+			{
+				pt.Name = reader.GetAttribute("id");
+				pt.Desc = reader.ReadElementContentAsString();
+				this.ParseWaypoint(this, new ParseEventArgs(String.Format("Processing Waypoint {0}", pt.Name)));
+			}
+			else if (reader.Name == "coord")
+			{
+				pt.Lat = double.Parse(reader.GetAttribute("lat"), CultureInfo.InvariantCulture);
+				pt.Lon = double.Parse(reader.GetAttribute("lon"), CultureInfo.InvariantCulture);
+			}
+			else if (reader.Name == "type")
+			{
+				pt.Symbol = reader.ReadElementContentAsString();
+				pt.Type = pt.Symbol;
+				if (pt.Type == "Geocache")
+				{
+					pt.URL = new Uri("http://geocaching.com");
+					pt  = Geocache.convertFromWaypoint(pt);
+					if (m_source == "NaviCache")
+					{
+						ParseNaviCache (pt);
+					}
+				}
+			}
+			else if (reader.Name == "link")
+			{
+				pt.URLName = reader.GetAttribute("text");
+				pt.URL = new Uri(reader.ReadElementContentAsString());
+				((Geocache) pt).LongDesc = "<a href=\"" + pt.URL.ToString() + "\">View Online</a>";
+			}
+		}
+		
+		private void ParseNaviCache (Waypoint pt)
+		{
+			Geocache cache = pt as Geocache;
+			cache.Symbol = "NaviCache";
+			String[] lines = pt.Desc.Split('\n');
+			for (int i=0; i < lines.Length; i++)
+			{
+				if (i ==0 )
+				{
+					cache.CacheName = lines[0];
+				}
+				else if (i == 1)
+					continue;
+				else
+				{
+					String[] details = lines[i].Split(':');
+					String detail = details[1].Trim();
+					if (i == 2)
+					{
+						ParseCacheType(detail, ref cache);
+					}
+					else if (i == 3)
+					{
+						if (detail == "Normal")
+							cache.Container = "Regular";
+						else if (detail == "Virtual" || detail == "Unknown")
+							cache.Container = "Not chosen";
+						else
+							cache.Container = detail;
+					}
+					else if (i == 4)
+					{
+						cache.Difficulty = float.Parse(detail, CultureInfo.InvariantCulture);
+					}
+					else if (i == 5)
+					{
+						cache.Terrain = float.Parse(detail, CultureInfo.InvariantCulture);
+					}
+					
+				}
+			}
+			cache.Desc = cache.CacheName + " ("  + cache.Difficulty + "/" + cache.Terrain + ")";
 		}
 		
 		private void processWptElement(ref Waypoint pt, XmlReader reader)
@@ -213,6 +324,8 @@ namespace ocmengine
 			else if (reader.LocalName == "style")
 			{
 				ParseCacheType(reader.ReadElementContentAsString(), ref cache);
+				if ((cache.TypeOfCache == Geocache.CacheType.TRADITIONAL) && cache.Name.StartsWith("LC"))
+					cache.TypeOfCache = Geocache.CacheType.REVERSE;
 			}
 			else if (reader.LocalName == "owner")
 			{
@@ -269,25 +382,30 @@ namespace ocmengine
 			{
 				string sizeVal = reader.ReadElementContentAsString();
 				if (String.IsNullOrEmpty(sizeVal))
-					cache.Container = "Not chosen";
-				int size = int.Parse(sizeVal);
-				switch(size)
 				{
-					case 1:
-						cache.Container = "Large";
-						break;
-					case 2:
-						cache.Container = "Regular";
-						break;
-					case 3:
-						cache.Container = "Small";
-						break;
-					case 4:
-						cache.Container = "Micro";
-						break;
-					case 5: 
-						cache.Container = "Micro";
-						break;
+					cache.Container = "Not chosen";
+				}
+				else
+				{
+					int size = int.Parse(sizeVal);
+					switch(size)
+					{
+						case 1:
+							cache.Container = "Large";
+							break;
+						case 2:
+							cache.Container = "Regular";
+							break;
+						case 3:
+							cache.Container = "Small";
+							break;
+						case 4:
+							cache.Container = "Micro";
+							break;
+						case 5: 
+							cache.Container = "Micro";
+							break;
+					}
 				}
 			}
 			else if (reader.LocalName == "logs" && !reader.IsEmptyElement)
@@ -509,11 +627,11 @@ namespace ocmengine
 		
 		private void ParseCacheType(String type, ref Geocache cache)
 		{
-			if ((type == "Unknown Cache") || (type == "Other"))
+			if ((type == "Unknown Cache") || (type == "Other") || (type == "Puzzle") || (type == "Unknown"))
 				cache.TypeOfCache = Geocache.CacheType.MYSTERY;
-			else if ((type == "Traditional Cache") || (type == "Classic"))
+			else if ((type == "Traditional Cache") || (type == "Classic") || (type == "Normal"))
 				cache.TypeOfCache = Geocache.CacheType.TRADITIONAL;
-			else if ((type == "Multi-cache") || (type == "Offset"))
+			else if ((type == "Multi-cache") || (type == "Offset") || (type == "Multi-Part"))
 				cache.TypeOfCache = Geocache.CacheType.MULTI;
 			else if (type == "Letterbox Hybrid")
 				cache.TypeOfCache = Geocache.CacheType.LETTERBOX;
@@ -537,6 +655,8 @@ namespace ocmengine
 				cache.TypeOfCache = Geocache.CacheType.APE;
 			else if (type == "Lost and Found Event Cache")
 				cache.TypeOfCache = Geocache.CacheType.EVENT;
+			else if (type == "Moving/Travelling")
+				cache.TypeOfCache = Geocache.CacheType.REVERSE;
 			else
 				cache.TypeOfCache = Geocache.CacheType.OTHER;
 				

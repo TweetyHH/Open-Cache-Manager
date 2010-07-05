@@ -112,9 +112,9 @@ namespace ocmengine
 			String co_ordinate = "";
 			
 			if (lat.Degrees > 0)
-				co_ordinate += Catalog.GetString(String.Format("N {0}° {1}", lat.Degrees,lat.Minutes.ToString("0.000")));
+				co_ordinate += String.Format(Catalog.GetString("N {0}° {1}"), lat.Degrees,lat.Minutes.ToString("0.000"));
 			else
-				co_ordinate += Catalog.GetString(String.Format("S {0}° {1}", lat.Degrees * -1,  lat.Minutes.ToString("0.000")));
+				co_ordinate += String.Format(Catalog.GetString("S {0}° {1}"), lat.Degrees * -1,  lat.Minutes.ToString("0.000"));
 				
 			return co_ordinate;
 		}
@@ -124,9 +124,9 @@ namespace ocmengine
 			String co_ordinate = "";
 			
 			if (lon.Degrees > 0)
-				co_ordinate += Catalog.GetString(String.Format("  E {0}° {1}", lon.Degrees, lon.Minutes.ToString("#.000")));
+				co_ordinate += String.Format(Catalog.GetString("  E {0}° {1}"), lon.Degrees, lon.Minutes.ToString("#.000"));
 			else
-				co_ordinate += Catalog.GetString(String.Format("  W {0}° {1}", lon.Degrees *-1 , lon.Minutes.ToString("#.000")));
+				co_ordinate += String.Format(Catalog.GetString("  W {0}° {1}"), lon.Degrees *-1 , lon.Minutes.ToString("#.000"));
 		
 			return co_ordinate;
 		}

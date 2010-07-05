@@ -147,17 +147,16 @@ namespace ocmengine
 			string update = String.Format(UPDATE_WPT, SQLEscape(pt.Name), pt.Lat.ToString(CultureInfo.InvariantCulture), pt.Lon.ToString(CultureInfo.InvariantCulture), pt.URL, 
 			                                SQLEscape(pt.URLName), SQLEscape(pt.Desc), pt.Symbol, pt.Type,
 			                                pt.Time.ToString("o"), pt.Parent, pt.Updated.ToString("o"));			
-			System.Console.WriteLine(insert);
 			InsertOrUpdate (update, insert, cmd);
 		}
 		
-		public void DeleteWaypoint(Waypoint pt)
+		public void DeleteWaypoint(String name)
 		{
 			IDbTransaction trans = StartUpdate();
 			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
 			IDbCommand cmd = m_conn.CreateCommand();
-			cmd.CommandText = String.Format(DELETE_WPT, SQLEscape(pt.Name));
+			cmd.CommandText = String.Format(DELETE_WPT, SQLEscape(name));
 			cmd.ExecuteNonQuery();
 			EndUpdate(trans);
 		}
@@ -184,14 +183,14 @@ namespace ocmengine
 			IDbCommand cmd = m_conn.CreateCommand();
 			string insert = String.Format(INSERT_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
-			                                cache.Difficulty, cache.Terrain, SQLEscape(cache.Country), 
+			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
 			                                cache.Available.ToString());
 			string update = String.Format(UPDATE_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
-			                                cache.Difficulty, cache.Terrain, SQLEscape(cache.Country), 
+			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),

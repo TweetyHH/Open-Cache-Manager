@@ -74,6 +74,7 @@ am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(programfilesicons24x24dir)" \
 	"$(DESTDIR)$(programfilesicons48x48dir)" \
 	"$(DESTDIR)$(programfilesiconsscalabledir)" \
+	"$(DESTDIR)$(programfileslicencedir)" \
 	"$(DESTDIR)$(programfileswebdir)"
 SCRIPTS = $(bin_SCRIPTS) $(pkglib_SCRIPTS)
 SOURCES =
@@ -82,7 +83,8 @@ DATA = $(commonapplicationdatarootmimepackages_DATA) \
 	$(linuxdesktopapplications_DATA) $(linuxpkgconfig_DATA) \
 	$(programfiles_DATA) $(programfilesdocs_DATA) \
 	$(programfilesicons24x24_DATA) $(programfilesicons48x48_DATA) \
-	$(programfilesiconsscalable_DATA) $(programfilesweb_DATA)
+	$(programfilesiconsscalable_DATA) $(programfileslicence_DATA) \
+	$(programfilesweb_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -312,6 +314,8 @@ programfilesicons48x48dir = @libdir@/@PACKAGE@/icons/48x48
 programfilesicons48x48_DATA = $(PROGRAMFILES_ICONS_48X48)
 linuxdesktopapplicationsdir = @datadir@/applications
 linuxdesktopapplications_DATA = $(LINUX_DESKTOPAPPLICATIONS)
+programfileslicencedir = @libdir@/@PACKAGE@/licence
+programfileslicence_DATA = $(PROGRAMFILES_LICENCE)
 programfileswebdir = @libdir@/@PACKAGE@/web
 programfilesweb_DATA = $(PROGRAMFILES_WEB)
 
@@ -587,6 +591,26 @@ uninstall-programfilesiconsscalableDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(programfilesiconsscalabledir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(programfilesiconsscalabledir)" && rm -f $$files
+install-programfileslicenceDATA: $(programfileslicence_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(programfileslicencedir)" || $(MKDIR_P) "$(DESTDIR)$(programfileslicencedir)"
+	@list='$(programfileslicence_DATA)'; test -n "$(programfileslicencedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(programfileslicencedir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(programfileslicencedir)" || exit $$?; \
+	done
+
+uninstall-programfileslicenceDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(programfileslicence_DATA)'; test -n "$(programfileslicencedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(programfileslicencedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(programfileslicencedir)" && rm -f $$files
 install-programfileswebDATA: $(programfilesweb_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(programfileswebdir)" || $(MKDIR_P) "$(DESTDIR)$(programfileswebdir)"
@@ -648,7 +672,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(SCRIPTS) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" "$(DESTDIR)$(linuxdesktopapplicationsdir)" "$(DESTDIR)$(linuxpkgconfigdir)" "$(DESTDIR)$(programfilesdir)" "$(DESTDIR)$(programfilesdocsdir)" "$(DESTDIR)$(programfilesicons24x24dir)" "$(DESTDIR)$(programfilesicons48x48dir)" "$(DESTDIR)$(programfilesiconsscalabledir)" "$(DESTDIR)$(programfileswebdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" "$(DESTDIR)$(linuxdesktopapplicationsdir)" "$(DESTDIR)$(linuxpkgconfigdir)" "$(DESTDIR)$(programfilesdir)" "$(DESTDIR)$(programfilesdocsdir)" "$(DESTDIR)$(programfilesicons24x24dir)" "$(DESTDIR)$(programfilesicons48x48dir)" "$(DESTDIR)$(programfilesiconsscalabledir)" "$(DESTDIR)$(programfileslicencedir)" "$(DESTDIR)$(programfileswebdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -705,7 +729,7 @@ install-data-am: install-commonapplicationdatarootmimepackagesDATA \
 	install-programfilesicons24x24DATA \
 	install-programfilesicons48x48DATA \
 	install-programfilesiconsscalableDATA \
-	install-programfileswebDATA
+	install-programfileslicenceDATA install-programfileswebDATA
 
 install-dvi: install-dvi-am
 
@@ -757,6 +781,7 @@ uninstall-am: uninstall-binSCRIPTS \
 	uninstall-programfilesicons24x24DATA \
 	uninstall-programfilesicons48x48DATA \
 	uninstall-programfilesiconsscalableDATA \
+	uninstall-programfileslicenceDATA \
 	uninstall-programfileswebDATA
 
 .MAKE: install-am install-strip
@@ -774,11 +799,11 @@ uninstall-am: uninstall-binSCRIPTS \
 	install-programfilesicons24x24DATA \
 	install-programfilesicons48x48DATA \
 	install-programfilesiconsscalableDATA \
-	install-programfileswebDATA install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-generic pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-binSCRIPTS \
+	install-programfileslicenceDATA install-programfileswebDATA \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
+	pdf-am ps ps-am uninstall uninstall-am uninstall-binSCRIPTS \
 	uninstall-commonapplicationdatarootmimepackagesDATA \
 	uninstall-linuxdesktopapplicationsDATA \
 	uninstall-linuxpkgconfigDATA uninstall-pkglibSCRIPTS \
@@ -786,6 +811,7 @@ uninstall-am: uninstall-binSCRIPTS \
 	uninstall-programfilesicons24x24DATA \
 	uninstall-programfilesicons48x48DATA \
 	uninstall-programfilesiconsscalableDATA \
+	uninstall-programfileslicenceDATA \
 	uninstall-programfileswebDATA
 
 

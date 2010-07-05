@@ -27,7 +27,13 @@ namespace ocmengine
 		IDataReader m_reader;
 		IDbCommand m_command;
 		IDbConnection m_conn;
+		
 		public Waypoint Current
+		{
+			get { return m_current;}
+		}
+		
+		object System.Collections.IEnumerator.Current
 		{
 			get { return m_current;}
 		}
