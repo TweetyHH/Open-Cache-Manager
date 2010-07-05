@@ -81,6 +81,8 @@ programfilesicons48x48dir = @libdir@/@PACKAGE@/icons/48x48
 programfilesicons48x48_DATA = $(PROGRAMFILES_ICONS_48X48)
 linuxdesktopapplicationsdir = @datadir@/applications
 linuxdesktopapplications_DATA = $(LINUX_DESKTOPAPPLICATIONS)
+programfileslicencedir = @libdir@/@PACKAGE@/licence
+programfileslicence_DATA = $(PROGRAMFILES_LICENCE)
 programfileswebdir = @libdir@/@PACKAGE@/web
 programfilesweb_DATA = $(PROGRAMFILES_WEB)
 

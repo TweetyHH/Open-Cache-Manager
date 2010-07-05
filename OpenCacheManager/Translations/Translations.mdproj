@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ItemType>TranslationProject</ItemType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E733B1D3-94EF-4B2D-B99D-6896FC4118EC}</ProjectGuid>
+    <packageName>i8n1</packageName>
+    <outputType>RelativeToOutput</outputType>
+    <relPath>locale</relPath>
+    <ReleaseVersion>0.15</ReleaseVersion>
+    <projectInformations>
+      <projectInformations>
+        <TranslationProjectInformation projectName="ocmengine" isIncluded="true" />
+        <TranslationProjectInformation projectName="ocm-gtk" isIncluded="true" />
+      </projectInformations>
+    </projectInformations>
+    <translations>
+      <translations>
+        <Translation isoCode="nl" />
+        <Translation isoCode="fr" />
+      </translations>
+    </translations>
+  </PropertyGroup>
+</Project>
