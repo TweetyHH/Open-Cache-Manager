@@ -409,35 +409,102 @@ namespace ocmgtk
 			Menu popup = new Menu ();
 			MenuItem setCenterItem = new MenuItem (Catalog.GetString("Set As Map Centre"));
 			MenuItem showOnline = new MenuItem (Catalog.GetString("View Cache Online"));
+			MenuItem markDisabled = new MenuItem(Catalog.GetString("Mark Disabled"));
+			MenuItem markArchived = new MenuItem(Catalog.GetString("Mark Archived"));
+			MenuItem markAvailable = new MenuItem(Catalog.GetString("Mark Available"));
 			MenuItem deleteItem = new MenuItem (Catalog.GetString("Delete..."));
+			MenuItem bookmark = new MenuItem(Catalog.GetString("Add to Bookmark List"));
+			
+			Geocache cache = UIMonitor.getInstance().SelectedCache;
+			
+			if (cache != null)
+			{
+				if (!cache.Available)
+				{
+					markAvailable.Sensitive = true;
+					markDisabled.Sensitive = false;
+				}
+				else
+				{
+					markAvailable.Sensitive = false;
+					markDisabled.Sensitive = true;
+				}
+				
+				if (!cache.Archived)
+					markArchived.Sensitive = true;
+				else
+					markArchived.Sensitive = false;
+			}
+			
+			CacheStore store = Engine.getInstance().Store;
+			List<string> bookmarklists = store.GetBookmarkLists();
+			if (bookmarklists.Count > 0)
+			{
+				Menu bookMarksSub = new Menu();
+				foreach (String str in bookmarklists)
+				{
+					MenuItem itm = new MenuItem(str);
+					if (str == store.BookmarkList)
+						itm.Sensitive = false;
+					bookMarksSub.Append(itm);
+					itm.Activated += HandleItmActivated;
+				}
+				bookmark.Submenu = bookMarksSub;
+			}		
+			else
+			{
+				bookmark.Sensitive = false;
+			}
+			
+			MenuItem rmvCache = new MenuItem(Catalog.GetString("Remove From Bookmark List"));
+			if (store.BookmarkList == null)
+				rmvCache.Sensitive = false;
+			rmvCache.Activated += HandleRmvCacheActivated;
 			
 			setCenterItem.Activated += HandleSetCenterItemActivated;
 			showOnline.Activated += HandleShowOnlineActivated;
 			deleteItem.Activated += HandleDeleteItemActivated;
+			markDisabled.Activated += HandleMarkDisabledActivated;
+			markArchived.Activated += HandleMarkArchivedActivated;
+			markAvailable.Activated += HandleMarkAvailableActivated;
 			
 			popup.Add (setCenterItem);
 			popup.Add (showOnline);
+			popup.Add (new MenuItem());
+			popup.Add (markDisabled);
+			popup.Add (markArchived);
+			popup.Add (markAvailable);
+			popup.Add (new MenuItem());
+			popup.Add (bookmark);
+			popup.Add (rmvCache);
 			popup.Add (deleteItem);
 			popup.ShowAll ();
 			popup.Popup ();
 		}
 
-		void HandleSetHomeItemActivated (object sender, EventArgs e)
+		void HandleRmvCacheActivated (object sender, EventArgs e)
 		{
-			// Clear any sorting and filtering
-			m_ListSort.SetSortColumnId (-1, SortType.Ascending);
-			
-			Geocache cache = m_monitor.SelectedCache;
-			if (cache == null)
-				return;
-			GConf.Client client = new GConf.Client ();
-			try {
-				m_monitor.CentreLat = (double)client.Get ("/apps/ocm/homelat");
-				m_monitor.CentreLon = (double)client.Get ("/apps/ocm/homelon");
-			} catch (GConf.NoSuchKeyException) {
-				// Do nothing
-			}
-			m_monitor.RefreshCaches ();
+			m_monitor.RemoveSelFromBookmark();
+		}
+
+		void HandleItmActivated (object sender, EventArgs e)
+		{
+			m_monitor.BookmarkSelectedCache(((sender as MenuItem).Child as Label).Text);
+		}
+
+		void HandleMarkAvailableActivated (object sender, EventArgs e)
+		{
+			m_monitor.MarkCacheAvailable();
+		}
+
+		void HandleMarkArchivedActivated (object sender, EventArgs e)
+		{
+			m_monitor.MarkCacheArchived();
+		}
+
+		void HandleMarkDisabledActivated (object sender, EventArgs e)
+		{
+			m_monitor.MarkCacheDisabled();
 		}
 
 		void HandleDeleteItemActivated (object sender, EventArgs e)

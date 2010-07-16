@@ -15,6 +15,7 @@
 
 using System;
 using Mono.Unix;
+using System.Globalization;
 
 namespace ocmgtk
 {
@@ -44,7 +45,7 @@ namespace ocmgtk
 				directionCombo.Active = 0;
 			}
 			
-			minuteEntry.Text = conv.Minutes.ToString("0.000");
+			minuteEntry.Text = conv.Minutes.ToString("0.000", CultureInfo.InvariantCulture);
 		}
 		
 		public double getCoordinate()
@@ -52,7 +53,7 @@ namespace ocmgtk
 			int degrees = int.Parse(degreeEntry.Text);
 			if (directionCombo.Active == 1)
 				degrees = degrees *-1;
-			double minutes = double.Parse(minuteEntry.Text);
+			double minutes = double.Parse(minuteEntry.Text, CultureInfo.InvariantCulture);
 			ocmengine.DegreeMinutes conv = new ocmengine.DegreeMinutes(degrees, minutes);	
 			return conv.GetDecimalDegrees();
 		}

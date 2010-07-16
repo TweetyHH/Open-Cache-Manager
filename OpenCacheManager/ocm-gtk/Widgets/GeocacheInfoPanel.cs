@@ -77,6 +77,7 @@ namespace ocmgtk
 					coordinateLabel.Text = String.Empty;
 					distance_label.Text = String.Empty;
 					cacheTypeLabel.Text = String.Empty;
+					countryLabel.Text = String.Empty;
 					return;
 				}
 				this.Sensitive = true;
@@ -101,6 +102,20 @@ namespace ocmgtk
 				setCacheType (cache.TypeOfCache);
 				placedByLabel.Text = cache.PlacedBy;
 				cacheSizeLabel.Text = cache.Container;
+			
+				if (cache.State.Trim() != String.Empty)
+				{
+					countryLabel.Markup = String.Format(Catalog.GetString("<b>Country:</b> {0},{1}"), cache.State, cache.Country);
+				}
+				else if (cache.Country.Trim() != String.Empty)
+				{
+					countryLabel.Markup = String.Format(Catalog.GetString("<b>Country:</b> {0}"), cache.Country);
+				}
+				else
+				{
+					countryLabel.Text = String.Empty;
+				}
+				
 				setCoordinate (cache);
 			} catch (Exception) {
 				System.Console.WriteLine ("Exception caught!");
