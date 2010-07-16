@@ -225,9 +225,18 @@ namespace ocmgtk
 		/// </summary>
 		public void LoadConfig ()
 		{
-			
-			CentreLat = (double) m_conf.Get ("/apps/ocm/homelat", 0.0);
-			CentreLon = (double)m_conf.Get ("/apps/ocm/homelon", 0.0);
+			CentreLat = (double) m_conf.Get ("/apps/ocm/lastlat", 0.0);
+			CentreLon = (double)m_conf.Get ("/apps/ocm/lastlon", 0.0);
+			CenterName = (string) m_conf.Get("/apps/ocm/lastname", Catalog.GetString("Home"));
+			if (CentreLat == 0 && CentreLon == 0)
+			{
+				CentreLat = (double) m_conf.Get ("/apps/ocm/homelat", 0.0);
+				CentreLon = (double)m_conf.Get ("/apps/ocm/homelon", 0.0);
+			}
+			if (m_centreName != Catalog.GetString("Home"))
+			{
+				m_mainWin.EnableResetCentre();
+			}
 			OwnerID = (string)m_conf.Get ("/apps/ocm/memberid", String.Empty);
 			m_useImperial = (Boolean) m_conf.Get("/apps/ocm/imperial", false);
 			string map = (string) m_conf.Get("/apps/ocm/defmap", "osm");
@@ -251,9 +260,28 @@ namespace ocmgtk
 			String dBShort = dbSplit[dbSplit.Length - 1];
 			m_mainWin.Title = dBShort + " - OCM";
 			m_conf.Set ("/apps/ocm/currentdb", dbName);
+			CacheStore store = Engine.getInstance().Store;
+			store.SetDB(dbName);
+			if (store.NeedsUpgrade())
+				UpgradeDB(dbName, store);
 			Engine.getInstance ().Store.SetDB (dbName);
+			m_mainWin.UpdateBookmarkList(store.GetBookmarkLists());
 			if (loadNow)
 				RefreshCaches ();
+		}
+		
+		private void UpgradeDB(String dbname, CacheStore store)
+		{
+			MessageDialog dlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, Catalog.GetString("OCM needs to upgrade your database.\nWould you like to backup your database first?"));
+			if ((int) ResponseType.Yes == dlg.Run())
+			{
+				System.IO.File.Copy(dbname, dbname + ".bak");
+			}
+			dlg.Hide();
+			store.Upgrade();
+			dlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Question, ButtonsType.Ok, Catalog.GetString("Upgrade complete"));
+			dlg.Run();
+			dlg.Hide();
 		}
 
 		/// <summary>
@@ -285,7 +313,7 @@ namespace ocmgtk
 		{
 			m_selectedCache = cache;
 			m_pane.SetCacheSelected ();
-			m_mainWin.SetCacheSelected ();
+			m_mainWin.SetSelectedCache(cache);
 		}
 
 		/// <summary>
@@ -330,10 +358,14 @@ namespace ocmgtk
 		{
 			CentreLat = (double)m_conf.Get ("/apps/ocm/homelat", 0.0);
 			CentreLon = (double)m_conf.Get ("/apps/ocm/homelon", 0.0);
+			m_conf.Set("/apps/ocm/lastlat", m_home_lat);
+			m_conf.Set("/apps/ocm/lastlon", m_home_lon);
+			m_conf.Set("/apps/ocm/lastname", Catalog.GetString("Home"));
 			Geocache selected = m_selectedCache;
-			m_centreName = "Home";
+			m_centreName = Catalog.GetString("Home");
 			RefreshCaches();
-			SelectCache(selected.Name);
+			if (selected != null)
+				SelectCache(selected.Name);
 		}
 		
 		public void SetSelectedAsCentre()
@@ -342,6 +374,9 @@ namespace ocmgtk
 			m_home_lon = m_selectedCache.Lon;
 			Geocache selected = m_selectedCache;
 			m_centreName = selected.Name;
+			m_conf.Set("/apps/ocm/lastlat", m_home_lat);
+			m_conf.Set("/apps/ocm/lastlon", m_home_lon);
+			m_conf.Set("/apps/ocm/lastname", m_centreName);
 			m_mainWin.EnableResetCentre();
 			RefreshCaches();
 			SelectCache(selected.Name);
@@ -401,7 +436,10 @@ namespace ocmgtk
 			int found = m_cachelist.GetVisibleFoundCacheCount ();
 			int inactive = m_cachelist.GetVisibleInactiveCacheCount ();
 			int mine = m_cachelist.GetOwnedCount ();
-			m_statusbar.Push (m_statusbar.GetContextId ("count"), String.Format (Catalog.GetString ("Showing {0} of {1} caches, {2} found, {3} unavailable/archived, {4} placed by me"), visible, total, found, inactive, mine));
+			if (engine.Store.BookmarkList == null)
+				m_statusbar.Push (m_statusbar.GetContextId ("count"), String.Format (Catalog.GetString ("Showing {0} of {1} caches, {2} found, {3} unavailable/archived, {4} placed by me"), visible, total, found, inactive, mine));
+			else 
+				m_statusbar.Push (m_statusbar.GetContextId ("count"), String.Format (Catalog.GetString ("Showing {0} of {1} caches from {2}, {3} found, {4} unavailable/archived, {5} placed by me"), visible, total, engine.Store.BookmarkList, found, inactive, mine));
 			m_mainWin.GdkWindow.Cursor = new Cursor (CursorType.Arrow);
 			UpdateCentrePointStatus ();
 			DoGUIUpdate ();
@@ -747,6 +785,42 @@ namespace ocmgtk
 			}
 			dlg.Hide ();
 		}
+		
+		public void MarkCacheDisabled ()
+		{
+			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, "Are you sure you want to mark " + m_selectedCache.Name + " as disabled?");
+			if ((int)ResponseType.Yes == dlg.Run ()) {
+				m_selectedCache.Available = false;
+				m_selectedCache.Archived = false;
+				Engine.getInstance ().Store.UpdateCacheAtomic (m_selectedCache);
+				SetSelectedCache(m_selectedCache);
+			}
+			dlg.Hide ();
+		}
+		
+		public void MarkCacheArchived ()
+		{
+			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, "Are you sure you want to mark " + m_selectedCache.Name + " as archived?");
+			if ((int)ResponseType.Yes == dlg.Run ()) {
+				m_selectedCache.Available = false;
+				m_selectedCache.Archived = true;
+				Engine.getInstance ().Store.UpdateCacheAtomic (m_selectedCache);
+				SetSelectedCache(m_selectedCache);
+			}
+			dlg.Hide ();
+		}
+		
+		public void MarkCacheAvailable ()
+		{
+			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, "Are you sure you want to mark " + m_selectedCache.Name + " as available?");
+			if ((int)ResponseType.Yes == dlg.Run ()) {
+				m_selectedCache.Available = true;
+				m_selectedCache.Archived = false;
+				Engine.getInstance ().Store.UpdateCacheAtomic (m_selectedCache);
+				SetSelectedCache(m_selectedCache);
+			}
+			dlg.Hide ();
+		}
 
 		public void DeleteCache ()
 		{
@@ -943,6 +1017,107 @@ namespace ocmgtk
 		public static void MyNavi()
 		{
 			System.Diagnostics.Process.Start("http://www.navicache.com/cgi-bin/db/MyNaviCacheHome.pl");
+		}
+		
+		public void AddBookmark()
+		{
+			AddBookMarkDialog dlg = new AddBookMarkDialog();
+			if ((int) ResponseType.Ok == dlg.Run())
+			{
+				CacheStore store = Engine.getInstance().Store;
+				store.AddBookmark(dlg.BookmarkName);
+				m_mainWin.UpdateBookmarkList(store.GetBookmarkLists());
+			}
+		}
+		
+		public void SetBookmark(String bmrk)
+		{
+			CacheStore store = Engine.getInstance().Store;
+			store.BookmarkList = bmrk;
+			RefreshCaches();
+		}
+		
+		public void BookmarkSelectedCache(String bmrk)
+		{
+			CacheStore store = Engine.getInstance().Store;
+			store.BookMarkCache(m_selectedCache.Name, bmrk);
+			m_statusbar.Push (m_statusbar.GetContextId ("bmrk"), String.Format (Catalog.GetString ("{0} added to {1}"),m_selectedCache.Name, bmrk));
+		}
+		
+		public void BookmarkVisible(String bmrk)
+		{
+			CacheStore store = Engine.getInstance().Store;
+			List<Geocache> caches = GetVisibleCacheList();
+			foreach(Geocache cache in caches)
+			{
+				store.BookMarkCache(cache.Name, bmrk);
+			}
+			m_statusbar.Push (m_statusbar.GetContextId ("bmrk"), String.Format (Catalog.GetString ("{0} caches added to {1}"),caches.Count, bmrk));
+		}
+		
+		public void RemoveSelFromBookmark()
+		{
+			CacheStore store = Engine.getInstance().Store;
+			MessageDialog dlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, String.Format(Catalog.GetString("Are you sure you want to remove {0} from {1}?"), m_selectedCache.Name, store.BookmarkList));
+			if ((int) ResponseType.Yes == dlg.Run())
+			{
+				store.RemoveCacheFromActiveBookmark(m_selectedCache.Name);
+				dlg.Hide();
+				RefreshCaches();
+			}
+			else
+			{
+				dlg.Hide();
+			}
+			dlg.Dispose();
+		}
+		
+		public void RemoveBookmark()
+		{
+			CacheStore store = Engine.getInstance().Store;
+			DeleteBookmark dlg = new DeleteBookmark();
+			if ((int) ResponseType.Ok == dlg.Run())
+			{
+				store.DeleteBookmark(dlg.Bookmark);
+				m_mainWin.UpdateBookmarkList(store.GetBookmarkLists());
+				if (dlg.Bookmark == store.BookmarkList)
+				{
+					store.BookmarkList  = null;
+					RefreshCaches();
+				}
+			}
+			dlg.Dispose();
+		}
+		
+		public void ModifyCache()
+		{
+			ModifyCacheDialog dlg = new ModifyCacheDialog();
+			dlg.Cache = m_selectedCache;
+			if ((int)ResponseType.Ok == dlg.Run())
+			{
+				m_selectedCache = dlg.Cache;
+				Engine.getInstance().Store.UpdateCacheAtomic(dlg.Cache);
+				SetSelectedCache(dlg.Cache);
+			}
+		}
+		
+		public void AddCache()
+		{
+			ModifyCacheDialog dlg = new ModifyCacheDialog();
+			Geocache cache = new Geocache();
+			cache.Name = "GC_CHANGE_THIS";
+			cache.Symbol = "Geocache";
+			cache.Type = "Geocache";
+			cache.Available = true;
+			dlg.Cache = cache;
+			if ((int)ResponseType.Ok == dlg.Run())
+			{
+				m_selectedCache = dlg.Cache;
+				Engine.getInstance().Store.UpdateWaypointAtomic(dlg.Cache);
+				Engine.getInstance().Store.UpdateCacheAtomic(dlg.Cache);
+				RefreshCaches();
+				SetSelectedCache(dlg.Cache);
+			}
 		}
 	}
 }

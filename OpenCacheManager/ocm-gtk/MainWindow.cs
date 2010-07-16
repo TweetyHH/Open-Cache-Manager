@@ -14,6 +14,7 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
+using System.Collections.Generic;
 using Gtk;
 using Mono.Unix;
 using ocmgtk;
@@ -22,10 +23,15 @@ using ocmengine;
 public partial class MainWindow : Gtk.Window
 {
 	UIMonitor m_monitor;
+	MenuItem bmrkLists;
+	MenuItem addVisibleCaches;
+	MenuItem addCacheTo;
+	MenuItem removeSelected;
 	
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{	
 		Build ();
+		BuildBookMarkMenu();
 		m_monitor = UIMonitor.getInstance ();
 		m_monitor.Main = this;
 		m_monitor.StatusProgress = statProgBar;
@@ -36,6 +42,54 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.Map = cachePane.CacheMap;
 	}
 
+	protected void BuildBookMarkMenu()
+	{
+		MenuItem bmrks = new MenuItem(Catalog.GetString("Bookmarks"));
+		mainmenubar.Insert(bmrks, 3);	
+		Menu bmrksMenu = new Menu();
+		MenuItem newBList = new MenuItem(Catalog.GetString("Create Bookmark List..."));
+		MenuItem delBList = new MenuItem(Catalog.GetString("Delete Bookmark List..."));
+		bmrkLists = new MenuItem(Catalog.GetString("Bookmark List"));
+		addVisibleCaches = new MenuItem(Catalog.GetString("Add all Visible Caches to"));
+		addCacheTo = new MenuItem(Catalog.GetString("Add Selected Cache to"));
+		addCacheTo.Sensitive = false;
+		removeSelected = new MenuItem(Catalog.GetString("Remove Selected Cache from Bookmark List"));
+		Menu bookmarksSub = new Menu();
+		MenuItem empty = new MenuItem("Empty");
+		empty.Sensitive = false;
+		bookmarksSub.Append(empty);
+		bmrkLists.Submenu = bookmarksSub;
+		addVisibleCaches.Submenu = bookmarksSub;
+		addCacheTo.Submenu = bookmarksSub;
+		bmrksMenu.Append(newBList);
+		bmrksMenu.Append(delBList);
+		bmrksMenu.Append(new MenuItem());
+		bmrksMenu.Append(bmrkLists);
+		bmrksMenu.Append(addVisibleCaches);
+		bmrksMenu.Append(addCacheTo);
+		bmrksMenu.Append(removeSelected);
+		bmrks.Submenu = bmrksMenu;
+		newBList.Activated += HandleNewBListActivated;
+		removeSelected.Activated += HandleRemoveSelectedActivated;
+		delBList.Activated += HandleDelBListActivated;
+		bmrks.ShowAll();
+	}
+
+	void HandleDelBListActivated (object sender, EventArgs e)
+	{
+		m_monitor.RemoveBookmark();
+	}
+
+	void HandleRemoveSelectedActivated (object sender, EventArgs e)
+	{
+		m_monitor.RemoveSelFromBookmark();
+	}
+
+	void HandleNewBListActivated (object sender, EventArgs e)
+	{
+		m_monitor.AddBookmark();
+	}
+	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
 		Application.Quit ();
@@ -102,11 +156,25 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.ImportGPX();
 	}
 
-	public void SetCacheSelected ()
+	public void SetSelectedCache(Geocache cache)
 	{
-		this.CacheAction.Sensitive = true;
-		this.ZoomToSelectedCacheAction.Sensitive = true;
-		this.SetSelectedCacheAsCentreAction.Sensitive = true;
+		if (cache != null)
+		{
+			this.CacheAction.Sensitive = true;
+			this.ZoomToSelectedCacheAction.Sensitive = true;
+			this.SetSelectedCacheAsCentreAction.Sensitive = true;
+			this.addCacheTo.Sensitive = true;
+			if (Engine.getInstance().Store.BookmarkList != null)
+				this.removeSelected.Sensitive = true;
+		}
+		else
+		{
+			this.CacheAction.Sensitive = false;
+			this.ZoomToSelectedCacheAction.Sensitive = false;
+			this.SetSelectedCacheAsCentreAction.Sensitive = false;
+			this.addCacheTo.Sensitive = false;
+			this.removeSelected.Sensitive = false;
+		}
 	}
 
 	protected virtual void OnViewOnline (object sender, System.EventArgs e)
@@ -114,18 +182,6 @@ public partial class MainWindow : Gtk.Window
 		Process.Start (m_monitor.SelectedCache.URL.ToString ());
 	}
 
-	protected virtual void OnMapClick (object sender, System.EventArgs e)
-	{
-		
-	}
-
-	protected virtual void OnRefresh (object sender, System.EventArgs e)
-	{
-	}
-
-	protected virtual void OnStopActionActivated (object sender, System.EventArgs e)
-	{
-	}
 
 	protected virtual void OnExportClicked (object sender, System.EventArgs e)
 	{
@@ -141,7 +197,7 @@ public partial class MainWindow : Gtk.Window
 	{
 		m_monitor.CreateDB ();
 	}
-	protected virtual void OnHomePageActivate (object sender, System.EventArgs e)
+	protected virtual void OnHomePageActivated (object sender, System.EventArgs e)
 	{
 		UIMonitor.ViewHomePage ();
 	}
@@ -289,10 +345,101 @@ public partial class MainWindow : Gtk.Window
 		UIMonitor.MyNavi();
 	}
 	
+	protected virtual void OnClickDisable (object sender, System.EventArgs e)
+	{
+		m_monitor.MarkCacheDisabled();
+	}
 	
+	protected virtual void OnClickArchive (object sender, System.EventArgs e)
+	{
+		m_monitor.MarkCacheArchived();
+	}
 	
+	protected virtual void OnClickAvailable (object sender, System.EventArgs e)
+	{
+		m_monitor.MarkCacheAvailable();
+	}
 	
+	public void UpdateBookmarkList(List<string> items)
+	{
+		Menu bookmarksSub = new Menu();
+		Menu addAllSub = new Menu();
+		Menu addSelSub = new Menu();
 	
+		CacheStore store = Engine.getInstance().Store;
+		int count = 0;
+		GLib.SList grp = new GLib.SList(IntPtr.Zero);
+		RadioAction noList = new RadioAction("None", Catalog.GetString("None"), null, null, count);
+		noList.Active = true;
+		noList.Toggled += HandleNoListToggled;
+		bookmarksSub.Append(noList.CreateMenuItem());
+		bookmarksSub.Append(new MenuItem());
+		foreach (string str in items)
+		{
+			RadioAction action = new RadioAction(str, str, null, null, count);
+			action.Group = noList.Group;
+			action.Toggled += HandleActionToggled;
+			bookmarksSub.Append(action.CreateMenuItem());
+			MenuItem bookmarkAll = new MenuItem(str);
+			bookmarkAll.Activated += HandleBookmarkAllActivated;
+			addAllSub.Append(bookmarkAll);
+			MenuItem bookmarkSel = new MenuItem(str);
+			bookmarkSel.Activated += HandleBookmarkSelActivated;
+			addSelSub.Append(bookmarkSel);
+			if (str == store.BookmarkList)
+				action.Active = true;
+			count++;
+		}
+		bmrkLists.Submenu = bookmarksSub;
+		addVisibleCaches.Submenu = addAllSub;
+		addCacheTo.Submenu = addSelSub;
+		bmrkLists.ShowAll();
+		addVisibleCaches.ShowAll();
+		addCacheTo.ShowAll();		
+	}
+
+	void HandleNoListToggled (object sender, EventArgs e)
+	{
+		if (((sender) as RadioAction).Active)
+		{
+			m_monitor.SetBookmark(null);
+		}			
+	}
+
+	void HandleActionToggled (object sender, EventArgs e)
+	{
+		RadioAction action = sender as RadioAction;
+		if (action.Active)
+		{
+			m_monitor.SetBookmark(action.Label);
+		}
+	}
+
+	void HandleBookmarkSelActivated (object sender, EventArgs e)
+	{
+		MenuItem item = sender as MenuItem;
+		m_monitor.BookmarkSelectedCache((item.Child as Label).Text);
+	}
+
+	void HandleBookmarkAllActivated (object sender, EventArgs e)
+	{
+		MenuItem item = sender as MenuItem;
+		m_monitor.BookmarkVisible((item.Child as Label).Text);
+	}
+
+	protected virtual void OnToDoActionActivated (object sender, System.EventArgs e)
+	{
+	}
+	
+	protected virtual void OnModifyCacheActionActivated (object sender, System.EventArgs e)
+	{
+		 m_monitor.ModifyCache();
+	}
+	
+	protected virtual void OnAddCacheActionActivated (object sender, System.EventArgs e)
+	{
+		m_monitor.AddCache();
+	}
 	
 	
 	
