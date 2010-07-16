@@ -31,6 +31,9 @@ namespace ocmgtk
 			this.Build ();
 			this.image16.Pixbuf = LOGO;
 			Timer splashtime = new Timer();
+			Color cl = new Color(0,0,0);
+			Color.Parse("#9D9FA1", ref cl);
+			eventbox1.ModifyBg(StateType.Normal, cl);
 			splashtime.AutoReset = false;
 			splashtime.Elapsed += HandleSplashtimeElapsed;
 			splashtime.Interval = 1000;
