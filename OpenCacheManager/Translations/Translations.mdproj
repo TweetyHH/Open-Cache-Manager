@@ -8,7 +8,7 @@
     <packageName>i8n1</packageName>
     <outputType>RelativeToOutput</outputType>
     <relPath>locale</relPath>
-    <ReleaseVersion>0.15</ReleaseVersion>
+    <ReleaseVersion>0.16</ReleaseVersion>
     <projectInformations>
       <projectInformations>
         <TranslationProjectInformation projectName="ocmengine" isIncluded="true" />
@@ -21,5 +21,8 @@
         <Translation isoCode="fr" />
       </translations>
     </translations>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release_Translated</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_Translated|AnyCPU' " />
 </Project>
