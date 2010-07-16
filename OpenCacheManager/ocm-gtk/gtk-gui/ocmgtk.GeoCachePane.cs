@@ -35,6 +35,10 @@ namespace ocmgtk {
         
         private Gtk.Label label9;
         
+        private ocmgtk.NotesWidget notesWidget;
+        
+        private Gtk.Label label10;
+        
         private ocmgtk.BrowserWidget mapWidget1;
         
         protected virtual void Build() {
@@ -54,7 +58,7 @@ namespace ocmgtk {
             this.notebook2 = new Gtk.Notebook();
             this.notebook2.CanFocus = true;
             this.notebook2.Name = "notebook2";
-            this.notebook2.CurrentPage = 0;
+            this.notebook2.CurrentPage = 4;
             // Container child notebook2.Gtk.Notebook+NotebookChild
             this.cacheInfo = new ocmgtk.GeocacheInfoPanel();
             this.cacheInfo.Events = ((Gdk.EventMask)(256));
@@ -105,9 +109,22 @@ namespace ocmgtk {
             this.label9.LabelProp = Mono.Unix.Catalog.GetString("Waypoints");
             this.notebook2.SetTabLabel(this.waypointView, this.label9);
             this.label9.ShowAll();
+            // Container child notebook2.Gtk.Notebook+NotebookChild
+            this.notesWidget = new ocmgtk.NotesWidget();
+            this.notesWidget.Events = ((Gdk.EventMask)(256));
+            this.notesWidget.Name = "notesWidget";
+            this.notebook2.Add(this.notesWidget);
+            Gtk.Notebook.NotebookChild w5 = ((Gtk.Notebook.NotebookChild)(this.notebook2[this.notesWidget]));
+            w5.Position = 4;
+            // Notebook tab
+            this.label10 = new Gtk.Label();
+            this.label10.Name = "label10";
+            this.label10.LabelProp = Mono.Unix.Catalog.GetString("Notes");
+            this.notebook2.SetTabLabel(this.notesWidget, this.label10);
+            this.label10.ShowAll();
             this.vpaned1.Add(this.notebook2);
-            Gtk.Paned.PanedChild w5 = ((Gtk.Paned.PanedChild)(this.vpaned1[this.notebook2]));
-            w5.Resize = false;
+            Gtk.Paned.PanedChild w6 = ((Gtk.Paned.PanedChild)(this.vpaned1[this.notebook2]));
+            w6.Resize = false;
             // Container child vpaned1.Gtk.Paned+PanedChild
             this.mapWidget1 = new ocmgtk.BrowserWidget();
             this.mapWidget1.WidthRequest = 300;

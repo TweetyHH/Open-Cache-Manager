@@ -21,6 +21,22 @@ namespace ocmgtk {
         
         private Gtk.Label label1;
         
+        private Gtk.EventBox eventbox1;
+        
+        private Gtk.HBox hbox4;
+        
+        private Gtk.Label label137;
+        
+        private Gtk.Image image20;
+        
+        private Gtk.Label label135;
+        
+        private Gtk.Label label136;
+        
+        private Gtk.HSeparator hseparator1;
+        
+        private Gtk.Label pby;
+        
         private Gtk.Label label2;
         
         protected virtual void Build() {
@@ -65,21 +81,90 @@ namespace ocmgtk {
             w3.Expand = false;
             w3.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
+            this.eventbox1 = new Gtk.EventBox();
+            this.eventbox1.Name = "eventbox1";
+            // Container child eventbox1.Gtk.Container+ContainerChild
+            this.hbox4 = new Gtk.HBox();
+            this.hbox4.Name = "hbox4";
+            this.hbox4.Spacing = 6;
+            // Container child hbox4.Gtk.Box+BoxChild
+            this.label137 = new Gtk.Label();
+            this.label137.Name = "label137";
+            this.hbox4.Add(this.label137);
+            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.hbox4[this.label137]));
+            w4.Position = 0;
+            w4.Fill = false;
+            // Container child hbox4.Gtk.Box+BoxChild
+            this.image20 = new Gtk.Image();
+            this.image20.Name = "image20";
+            this.image20.Xpad = 6;
+            this.image20.Ypad = 6;
+            this.image20.Pixbuf = Gdk.Pixbuf.LoadFromResource("ocmgtk.icons.OpenLayers.png");
+            this.hbox4.Add(this.image20);
+            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.hbox4[this.image20]));
+            w5.Position = 1;
+            w5.Expand = false;
+            w5.Fill = false;
+            // Container child hbox4.Gtk.Box+BoxChild
+            this.label135 = new Gtk.Label();
+            this.label135.Name = "label135";
+            this.label135.LabelProp = "<span font=\"sans-serif nomal 14\" fgcolor=\"#FFFFFF\">Open Layers</span>";
+            this.label135.UseMarkup = true;
+            this.hbox4.Add(this.label135);
+            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.hbox4[this.label135]));
+            w6.Position = 2;
+            w6.Expand = false;
+            w6.Fill = false;
+            // Container child hbox4.Gtk.Box+BoxChild
+            this.label136 = new Gtk.Label();
+            this.label136.Name = "label136";
+            this.hbox4.Add(this.label136);
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.hbox4[this.label136]));
+            w7.Position = 3;
+            w7.Fill = false;
+            this.eventbox1.Add(this.hbox4);
+            this.vbox2.Add(this.eventbox1);
+            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.vbox2[this.eventbox1]));
+            w9.PackType = ((Gtk.PackType)(1));
+            w9.Position = 1;
+            w9.Expand = false;
+            w9.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.hseparator1 = new Gtk.HSeparator();
+            this.hseparator1.Name = "hseparator1";
+            this.vbox2.Add(this.hseparator1);
+            Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.vbox2[this.hseparator1]));
+            w10.PackType = ((Gtk.PackType)(1));
+            w10.Position = 2;
+            w10.Expand = false;
+            w10.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.pby = new Gtk.Label();
+            this.pby.Name = "pby";
+            this.pby.Xalign = 0F;
+            this.pby.LabelProp = Mono.Unix.Catalog.GetString("Using:");
+            this.vbox2.Add(this.pby);
+            Gtk.Box.BoxChild w11 = ((Gtk.Box.BoxChild)(this.vbox2[this.pby]));
+            w11.PackType = ((Gtk.PackType)(1));
+            w11.Position = 3;
+            w11.Expand = false;
+            w11.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
             this.label2 = new Gtk.Label();
             this.label2.Name = "label2";
             this.label2.LabelProp = "Version 0.15 Alpha";
             this.vbox2.Add(this.label2);
-            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.vbox2[this.label2]));
-            w4.PackType = ((Gtk.PackType)(1));
-            w4.Position = 1;
-            w4.Expand = false;
-            w4.Fill = false;
+            Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.vbox2[this.label2]));
+            w12.PackType = ((Gtk.PackType)(1));
+            w12.Position = 4;
+            w12.Expand = false;
+            w12.Fill = false;
             this.Add(this.vbox2);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 443;
-            this.DefaultHeight = 185;
+            this.DefaultWidth = 456;
+            this.DefaultHeight = 196;
             this.Show();
         }
     }

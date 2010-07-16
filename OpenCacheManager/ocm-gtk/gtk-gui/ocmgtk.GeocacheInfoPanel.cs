@@ -87,6 +87,8 @@ namespace ocmgtk {
         
         private Gtk.Label distance_label;
         
+        private Gtk.Label countryLabel;
+        
         private Gtk.HButtonBox hbuttonbox2;
         
         protected virtual void Build() {
@@ -469,13 +471,24 @@ namespace ocmgtk {
             w44.Expand = false;
             w44.Fill = false;
             // Container child infoPanelVBOX.Gtk.Box+BoxChild
-            this.hbuttonbox2 = new Gtk.HButtonBox();
-            this.hbuttonbox2.Name = "hbuttonbox2";
-            this.infoPanelVBOX.Add(this.hbuttonbox2);
-            Gtk.Box.BoxChild w45 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.hbuttonbox2]));
+            this.countryLabel = new Gtk.Label();
+            this.countryLabel.Name = "countryLabel";
+            this.countryLabel.Xpad = 6;
+            this.countryLabel.Xalign = 0F;
+            this.countryLabel.LabelProp = Mono.Unix.Catalog.GetString("<country>");
+            this.infoPanelVBOX.Add(this.countryLabel);
+            Gtk.Box.BoxChild w45 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.countryLabel]));
             w45.Position = 5;
             w45.Expand = false;
             w45.Fill = false;
+            // Container child infoPanelVBOX.Gtk.Box+BoxChild
+            this.hbuttonbox2 = new Gtk.HButtonBox();
+            this.hbuttonbox2.Name = "hbuttonbox2";
+            this.infoPanelVBOX.Add(this.hbuttonbox2);
+            Gtk.Box.BoxChild w46 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.hbuttonbox2]));
+            w46.Position = 6;
+            w46.Expand = false;
+            w46.Fill = false;
             this.Add(this.infoPanelVBOX);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
