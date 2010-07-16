@@ -39,12 +39,21 @@ namespace ocmengine
 			set { m_filter = value;}
 		}
 		
+		private string m_bmrkList = null;
+		public string BookmarkList
+		{
+			get { return m_bmrkList;}
+			set { m_bmrkList = value;}
+		}
+		
 		public int CacheCount
 		{
 			get { 	
 				IDbConnection conn =  OpenConnection ();
 				IDbCommand command = conn.CreateCommand();
 				command.CommandText = COUNT_GC;
+				if (m_bmrkList != null)
+					command.CommandText += String.Format(BMRK_FILTER_COUNT, m_bmrkList);
 				object val = command.ExecuteScalar();
 				int count = int.Parse(val.ToString());
 				conn.Close();
@@ -118,8 +127,54 @@ namespace ocmengine
 			String sql = GET_GC;
 			if (null != m_filter)
 				sql += m_filter.BuildWhereClause();
+			if (null != m_bmrkList)
+				sql += String.Format(BMRK_FILTER, m_bmrkList);
 			List<Geocache> caches =  GetCacheList(sql);
 			return caches.GetEnumerator();
+		}
+		
+		public void AddBookmark(String name)
+		{
+			IDbTransaction trans = StartUpdate();
+			IDbCommand cmd = m_conn.CreateCommand();
+			cmd.CommandText = String.Format(ADD_BMRK, name);
+			cmd.ExecuteNonQuery();
+			cmd.Dispose();
+			cmd = null;
+			EndUpdate(trans);
+		}
+		
+		public void BookMarkCache(String code, String bmrk)
+		{
+			IDbTransaction trans = StartUpdate();
+			IDbCommand cmd = m_conn.CreateCommand();
+			cmd.CommandText = String.Format(BOOKMARK_CACHE, code, bmrk);
+			cmd.ExecuteNonQuery();
+			cmd.Dispose();
+			cmd = null;
+			EndUpdate(trans);
+		}
+		
+		public void RemoveCacheFromActiveBookmark(string code)
+		{
+			IDbTransaction trans = StartUpdate();
+			IDbCommand cmd = m_conn.CreateCommand();
+			cmd.CommandText = String.Format(REMOVE_CACHE_FROM_BOOKMARK, code, m_bmrkList);
+			cmd.ExecuteNonQuery();
+			cmd.Dispose();
+			cmd = null;
+			EndUpdate(trans);
+		}
+		
+		public void DeleteBookmark(string bmrk)
+		{
+			IDbTransaction trans = StartUpdate();
+			IDbCommand cmd = m_conn.CreateCommand();
+			cmd.CommandText = String.Format(String.Format(REMOVE_BOOKMARK, bmrk));
+			cmd.ExecuteNonQuery();
+			cmd.Dispose();
+			cmd = null;
+			EndUpdate(trans);
 		}
 		
 		
@@ -176,6 +231,13 @@ namespace ocmengine
 			EndUpdate(trans);
 		}
 		
+		public void UpdateCacheAtomic(Geocache pt)
+		{
+			IDbTransaction trans = StartUpdate();
+			UpdateCache(pt);
+			EndUpdate(trans);
+		}
+		
 		public void UpdateCache(Geocache cache)
 		{
 			if (m_conn == null)
@@ -187,14 +249,14 @@ namespace ocmengine
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
-			                                cache.Available.ToString());
+			                                cache.Available.ToString(), SQLEscape(cache.Notes));
 			string update = String.Format(UPDATE_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
 			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
-			                                cache.Available.ToString());;
+			                                cache.Available.ToString(), SQLEscape(cache.Notes));
 			InsertOrUpdate (update, insert, cmd);
 		}
 		
@@ -209,6 +271,22 @@ namespace ocmengine
 			}
 			cmd.Dispose();
 			cmd = null;
+		}
+		
+		public List<string> GetBookmarkLists()
+		{
+			List<string> bmrks = new List<string>();
+			IDbConnection conn =  OpenConnection ();
+			IDbCommand command = conn.CreateCommand();
+			command.CommandText = GET_BMRKS;
+			System.Console.WriteLine(command.CommandText);
+			IDataReader reader = command.ExecuteReader();
+			while (reader.Read())
+			{
+			 	bmrks.Add(reader.GetString(0));
+			}
+			CloseConnection (ref reader, ref command, ref conn);	
+			return bmrks;
 		}
 		
 		private List<Waypoint> GetWayPointList(String sql)
@@ -277,7 +355,7 @@ namespace ocmengine
 			cache.Lat = double.Parse(reader.GetString(1), CultureInfo.InvariantCulture);
 			cache.Lon = double.Parse(reader.GetString(2), CultureInfo.InvariantCulture);
 			String url = reader.GetString(3);
-			if (url != null)
+			if (String.IsNullOrEmpty(url))
 				cache.URL = new Uri(url);
 			cache.URLName = reader.GetString(4);
 			cache.Desc = reader.GetString(5);
@@ -304,6 +382,9 @@ namespace ocmengine
 			String available = reader.GetString(24);
 			cache.Available = Boolean.Parse(available);
 			cache.Updated = DateTime.Parse(reader.GetString(25));
+			Object val = reader.GetValue(26);
+			if (val is string)
+				cache.Notes = reader.GetString(26);
 			return cache;
 			
 		}
@@ -432,6 +513,58 @@ namespace ocmengine
 			return conn;
 		}
 		
+		public bool NeedsUpgrade()
+		{
+			try
+			{
+				int ver =0;
+				ver = GetDBVersion ();
+				if (ver < 1)
+					return true;
+				return false;
+			}
+			catch
+			{
+				// OCM version 0.15 DB
+				return true;
+			}
+			
+		}
+		
+		public void Upgrade()
+		{
+			IDbConnection conn = OpenConnection();
+			IDbCommand cmd = conn.CreateCommand();
+			cmd.CommandText = UPGRADE_GEOCACHE_V0_V1;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = CREATE_TABLE_BMRK;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = CREATE_TABLE_BMRK_CACHES;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = CREATE_DB_VER;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = SET_DB_VER;
+			cmd.ExecuteNonQuery();
+			cmd.Dispose();
+			conn.Close();
+		}
+		
+		private int GetDBVersion ()
+		{
+			int ver = 0;
+			IDbConnection conn =  OpenConnection ();
+			IDbCommand command = conn.CreateCommand();
+			command.CommandText = GET_DB_VER;
+			IDataReader rdr = command.ExecuteReader();
+			
+			while (rdr.Read())
+			{
+				ver = rdr.GetInt32(0);
+			}
+			conn.Close();
+			return ver;
+		}
+		
 		public void SetDB(String filePath)
 		{
 			m_dbFile = filePath;
@@ -449,6 +582,14 @@ namespace ocmengine
 			cmd.CommandText = CREATE_TABLE_TBUGS;
 			cmd.ExecuteNonQuery();
 			cmd.CommandText = CREATE_TABLE_WPTS;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = CREATE_TABLE_BMRK;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = CREATE_TABLE_BMRK_CACHES;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = CREATE_DB_VER;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = SET_DB_VER;
 			cmd.ExecuteNonQuery();
 			cmd.Dispose();
 			conn.Close();

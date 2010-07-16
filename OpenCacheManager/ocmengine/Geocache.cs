@@ -165,6 +165,13 @@ namespace ocmengine
 		{
 			get { return m_travelbugs;}
 		}
+		
+		private string m_notes = String.Empty;
+		public string Notes
+		{
+			get { return m_notes;}
+			set { m_notes = value;}
+		}
 					
 		
 		/// <summary>
@@ -234,7 +241,15 @@ namespace ocmengine
 			writer.WriteElementString(CACHE_PREFIX,"terrain", GPXWriter.NS_CACHE, Terrain.ToString("0.#", CultureInfo.InvariantCulture));
 			writer.WriteElementString(CACHE_PREFIX,"country", GPXWriter.NS_CACHE,  Country);
 			writer.WriteElementString(CACHE_PREFIX,"state", GPXWriter.NS_CACHE,  State);
-			writer.WriteElementString(CACHE_PREFIX,"short_description", GPXWriter.NS_CACHE,  ShortDesc);
+			String shortDescription = ShortDesc;
+			if (!String.IsNullOrEmpty(Notes))
+			{
+				shortDescription = Notes;
+				shortDescription += "<hr noshade/>";
+				shortDescription += ShortDesc;
+				
+			}
+			writer.WriteElementString(CACHE_PREFIX,"short_description", GPXWriter.NS_CACHE,  shortDescription);
 			writer.WriteElementString(CACHE_PREFIX,"long_description", GPXWriter.NS_CACHE,  LongDesc);
 			writer.WriteElementString(CACHE_PREFIX,"encoded_hints", GPXWriter.NS_CACHE,  Hint);
 			writer.WriteStartElement(CACHE_PREFIX,"logs", GPXWriter.NS_CACHE);
@@ -255,7 +270,7 @@ namespace ocmengine
 		}
 		
 		
-		private string GetCTypeString(CacheType ct)
+		public static string GetCTypeString(CacheType ct)
 		{
 			switch (ct)
 			{
