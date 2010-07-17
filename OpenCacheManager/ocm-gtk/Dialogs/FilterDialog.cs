@@ -35,6 +35,12 @@ namespace ocmgtk
 				GetKeyWordFilter (filter);
 				GetContainerFilter (filter);
 				GetDateFilter (filter);
+				string cntry = datePage.Country;
+				if (!String.IsNullOrEmpty(cntry))
+					filter.AddFilterCriteria(FilterList.KEY_COUNTRY, datePage.Country);
+				string state = datePage.State;
+				if (!String.IsNullOrEmpty(state))
+					filter.AddFilterCriteria(FilterList.KEY_STATE, datePage.State);
 				return filter;
 			}
 			set {
@@ -59,6 +65,10 @@ namespace ocmgtk
 					datePage.InfoBefore = (DateTime) value.GetCriteria(FilterList.KEY_INFOBEFORE);
 				if (value.Contains(FilterList.KEY_INFOAFTER))
 					datePage.PlaceBefore = (DateTime) value.GetCriteria(FilterList.KEY_INFOAFTER);
+				if (value.Contains(FilterList.KEY_COUNTRY))
+					datePage.Country = value.GetCriteria(FilterList.KEY_COUNTRY) as string;
+				if (value.Contains(FilterList.KEY_STATE))
+					datePage.Country = value.GetCriteria(FilterList.KEY_STATE) as string;
 				
 			}
 		}

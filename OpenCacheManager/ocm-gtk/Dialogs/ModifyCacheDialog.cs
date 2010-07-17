@@ -163,8 +163,9 @@ namespace ocmgtk
 		{
 			m_cache.Name = codeEntry.Text;
 			m_cache.Desc = descriptionEntry.Buffer.Text;
+			m_cache.Symbol = "Geocache";
 			if (m_cache.TypeOfCache != Geocache.CacheType.GENERIC)
-				m_cache.Symbol = "Geocache|" + Geocache.GetCTypeString(m_cache.TypeOfCache);
+				m_cache.Type = "Geocache|" + Geocache.GetCTypeString(m_cache.TypeOfCache);
 			
 			try
 			{
