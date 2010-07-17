@@ -256,6 +256,26 @@ namespace ocmgtk
 
 		private void SetCurrentDB (string dbName, bool loadNow)
 		{
+			if (! System.IO.File.Exists(dbName))
+			{
+				NoDBDialog dlg = new NoDBDialog();
+				int resp = dlg.Run();
+				if (resp == (int) ResponseType.Yes)
+				{
+					OpenDB();
+					return;
+				}
+				else if (resp == (int) ResponseType.No)
+				{
+					CreateDB();
+					return;
+				}
+				else
+				{
+					Environment.Exit(1);
+				}
+			}
+			
 			String[] dbSplit = dbName.Split ('/');
 			String dBShort = dbSplit[dbSplit.Length - 1];
 			m_mainWin.Title = dBShort + " - OCM";
@@ -265,6 +285,7 @@ namespace ocmgtk
 			if (store.NeedsUpgrade())
 				UpgradeDB(dbName, store);
 			Engine.getInstance ().Store.SetDB (dbName);
+			RegisterRecentFile(dbName);
 			m_mainWin.UpdateBookmarkList(store.GetBookmarkLists());
 			if (loadNow)
 				RefreshCaches ();
@@ -554,9 +575,13 @@ namespace ocmgtk
 		private static string GetMapIcon (String symbol)
 		{
 			if (symbol.Equals ("Parking Area"))
-				return "parking.png"; else if (symbol.Equals ("Trailhead"))
-				return "trailhead.png"; else if (symbol.Equals ("Final Location"))
+				return "parking.png"; 
+			else if (symbol.Equals ("Trailhead"))
+				return "trailhead.png"; 
+			else if (symbol.Equals ("Final Location"))
 				return "bluepin.png";
+			else if ((symbol.Equals("Other")) || symbol.Equals("Reference Point"))
+				return "greenpin.png";
 			return "pushpin.png";
 		}
 
@@ -615,7 +640,6 @@ namespace ocmgtk
 				
 				if (dlg.Run () == (int)ResponseType.Accept) {
 					dlg.Hide ();
-					RegisterRecentFile(dlg.Filename);
 					SetCurrentDB (dlg.Filename, true);
 				}
 				dlg.Destroy ();
@@ -755,7 +779,10 @@ namespace ocmgtk
 				dlg.Hide();
 			}
 			dlg.Hide();
-			if (m_selectedCache.Symbol == "TerraCache")
+			System.Console.WriteLine(m_selectedCache.URL);
+			if (m_selectedCache.URL == null)
+				return;
+			else if (!m_selectedCache.URL.ToString().Contains("geocaching"))
 				System.Diagnostics.Process.Start (m_selectedCache.URL.ToString());
 			else
 				System.Diagnostics.Process.Start ("http://www.geocaching.com/seek/log.aspx?ID=" + m_selectedCache.CacheID);
@@ -893,7 +920,7 @@ namespace ocmgtk
 						continue;
 					else
 						AddOtherCacheToMap (cache.Current);
-					if (count < 50)
+					if (count < 100)
 						count++;
 					else
 						return;
@@ -1096,6 +1123,7 @@ namespace ocmgtk
 			if ((int)ResponseType.Ok == dlg.Run())
 			{
 				m_selectedCache = dlg.Cache;
+				Engine.getInstance().Store.UpdateWaypointAtomic(dlg.Cache);
 				Engine.getInstance().Store.UpdateCacheAtomic(dlg.Cache);
 				SetSelectedCache(dlg.Cache);
 			}

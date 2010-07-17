@@ -44,23 +44,16 @@ public partial class MainWindow : Gtk.Window
 
 	protected void BuildBookMarkMenu()
 	{
-		MenuItem bmrks = new MenuItem(Catalog.GetString("Bookmarks"));
+		MenuItem bmrks = new MenuItem(Catalog.GetString("_Bookmarks"));
 		mainmenubar.Insert(bmrks, 3);	
 		Menu bmrksMenu = new Menu();
-		MenuItem newBList = new MenuItem(Catalog.GetString("Create Bookmark List..."));
-		MenuItem delBList = new MenuItem(Catalog.GetString("Delete Bookmark List..."));
-		bmrkLists = new MenuItem(Catalog.GetString("Bookmark List"));
-		addVisibleCaches = new MenuItem(Catalog.GetString("Add all Visible Caches to"));
-		addCacheTo = new MenuItem(Catalog.GetString("Add Selected Cache to"));
+		MenuItem newBList = new MenuItem(Catalog.GetString("_Create Bookmark List..."));
+		MenuItem delBList = new MenuItem(Catalog.GetString("_Delete Bookmark List..."));
+		bmrkLists = new MenuItem(Catalog.GetString("Bookmark _List"));
+		addVisibleCaches = new MenuItem(Catalog.GetString("_Add All Visible Caches to"));
+		addCacheTo = new MenuItem(Catalog.GetString("Add _Selected Cache to"));
 		addCacheTo.Sensitive = false;
-		removeSelected = new MenuItem(Catalog.GetString("Remove Selected Cache from Bookmark List"));
-		Menu bookmarksSub = new Menu();
-		MenuItem empty = new MenuItem("Empty");
-		empty.Sensitive = false;
-		bookmarksSub.Append(empty);
-		bmrkLists.Submenu = bookmarksSub;
-		addVisibleCaches.Submenu = bookmarksSub;
-		addCacheTo.Submenu = bookmarksSub;
+		removeSelected = new MenuItem(Catalog.GetString("_Remove Selected Cache from Bookmark List"));
 		bmrksMenu.Append(newBList);
 		bmrksMenu.Append(delBList);
 		bmrksMenu.Append(new MenuItem());
@@ -107,7 +100,9 @@ public partial class MainWindow : Gtk.Window
 		
 		dialog.ProgramName = "Open Cache Manager";
 		
-		dialog.Version = "ALPHA 0.15";
+		dialog.Icon = this.Icon;
+		
+		dialog.Version = "ALPHA 0.16";
 		
 		//dialog.Comments = (asm.GetCustomAttributes (typeof(AssemblyDescriptionAttribute), false)[0] as AssemblyDescriptionAttribute).Description;
 		
@@ -119,7 +114,7 @@ public partial class MainWindow : Gtk.Window
 		
 		reader.Close();
 		
-		dialog.Authors = new String[] { "Kyle Campbell" };
+		dialog.Authors = new String[] { "Kyle Campbell - Programming", "Madelayne DeGrâce - Icons", "Harrie Klomp - Dutch Translation" };
 		
 		dialog.Run ();
 		dialog.Hide();
@@ -134,11 +129,6 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OnToggleUnavailable (object sender, System.EventArgs e)
 	{
 		cacheList.ToggleUnavailableCaches ();
-	}
-
-	protected virtual void OnToggleMine (object sender, System.EventArgs e)
-	{
-		
 	}
 
 	protected virtual void OnToggleFound (object sender, System.EventArgs e)
@@ -160,20 +150,34 @@ public partial class MainWindow : Gtk.Window
 	{
 		if (cache != null)
 		{
-			this.CacheAction.Sensitive = true;
 			this.ZoomToSelectedCacheAction.Sensitive = true;
 			this.SetSelectedCacheAsCentreAction.Sensitive = true;
 			this.addCacheTo.Sensitive = true;
 			if (Engine.getInstance().Store.BookmarkList != null)
 				this.removeSelected.Sensitive = true;
+			ViewOnlineAction.Sensitive = true;
+			LogFindAction.Sensitive = true;
+			MarkArchivedAction.Sensitive = true;
+			MarkAvailableAction.Sensitive = true;
+			MarkDisabledAction.Sensitive = true;
+			MarkUnfoundAction.Sensitive = true;
+			ModifyCacheAction.Sensitive = true;
+			DeleteCacheAction.Sensitive = true;			
 		}
 		else
 		{
-			this.CacheAction.Sensitive = false;
 			this.ZoomToSelectedCacheAction.Sensitive = false;
 			this.SetSelectedCacheAsCentreAction.Sensitive = false;
 			this.addCacheTo.Sensitive = false;
 			this.removeSelected.Sensitive = false;
+			ViewOnlineAction.Sensitive = false;
+			LogFindAction.Sensitive = false;
+			MarkArchivedAction.Sensitive = false;
+			MarkAvailableAction.Sensitive = false;
+			MarkDisabledAction.Sensitive = false;
+			MarkUnfoundAction.Sensitive = false;
+			ModifyCacheAction.Sensitive = false;
+			DeleteCacheAction.Sensitive = false;	
 		}
 	}
 
@@ -187,11 +191,6 @@ public partial class MainWindow : Gtk.Window
 	{
 		m_monitor.ExportGPX();		
 	}
-
-	protected virtual void OnPreferences (object sender, System.EventArgs e)
-	{
-	}
-
 
 	protected virtual void OnNewActionActivated (object sender, System.EventArgs e)
 	{
@@ -220,16 +219,6 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OnFindOnlineActivate (object sender, System.EventArgs e)
 	{
 		UIMonitor.FindCacheOnline ();
-	}
-
-
-
-	protected virtual void OnViewOnlineActivate (object sender, System.EventArgs e)
-	{
-	}
-
-	protected virtual void OnLogActivate (object sender, System.EventArgs e)
-	{
 	}
 
 	protected virtual void OnAccountActivated (object sender, System.EventArgs e)
@@ -390,9 +379,24 @@ public partial class MainWindow : Gtk.Window
 				action.Active = true;
 			count++;
 		}
-		bmrkLists.Submenu = bookmarksSub;
-		addVisibleCaches.Submenu = addAllSub;
-		addCacheTo.Submenu = addSelSub;
+		if (items.Count != 0)
+		{
+			bmrkLists.Submenu = bookmarksSub;
+			bmrkLists.Sensitive = true;
+			addVisibleCaches.Submenu = addAllSub;
+			addVisibleCaches.Sensitive = true;
+			addCacheTo.Submenu = addSelSub;
+			addCacheTo.Sensitive = true;
+		}
+		else
+		{
+			bmrkLists.Sensitive = false;
+			bmrkLists.Submenu = null;
+			addVisibleCaches.Submenu = null;
+			addVisibleCaches.Sensitive = false;
+			addCacheTo.Submenu = null;
+			addCacheTo.Sensitive = false;
+		}
 		bmrkLists.ShowAll();
 		addVisibleCaches.ShowAll();
 		addCacheTo.ShowAll();		

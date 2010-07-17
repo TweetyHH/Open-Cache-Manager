@@ -172,6 +172,9 @@
     <Compile Include="gtk-gui\ocmgtk.DeleteBookmark.cs" />
     <Compile Include="Dialogs\ModifyCacheDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.ModifyCacheDialog.cs" />
+    <Compile Include="Dialogs\NoDBDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.NoDBDialog.cs" />
+    <Compile Include="GPS.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -527,6 +530,9 @@
     <Resource Include="web\theme\default\img\zoom-panel-NOALPHA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\24x24\greenpin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="OCM.desktop">
@@ -548,5 +554,6 @@
     <None Include="ocm-gtk" />
     <None Include="docs\Credits.txt" />
     <None Include="docs\Version.txt" />
+    <None Include="icons\scalable\greenpin.svg" />
   </ItemGroup>
 </Project>
