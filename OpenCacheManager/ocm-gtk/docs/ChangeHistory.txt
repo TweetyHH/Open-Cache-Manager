@@ -1,3 +1,29 @@
+Version 0.16
+------------
+- Add Bookmark lists, a new feature to organize your caches. You can create 
+  any number of named bookmark lists and add any cache to it. Caches can be 
+  in multiple lists. To go back to the main list, choose Bookmarks->Bookmark List->None
+- Reorganized the various links to gc.com, navicache.com, and terracache.com under the 
+  Web menu
+- Cache Notes support. You can now add user notes to a cache on the notes tab. These
+  notes will appear on the cache description page on a GPS that supports paperless
+  caching
+- OCM now sets the icons on your GPS to match the icons on it's own map for child
+  waypoints
+- OCM now remembers where the map was centered on restart
+- OpenLayers which is used by OCM for the map display, is now directly included to 
+  improve map loading speed
+- Coordinates use the "." character always, regardless of language or locale to
+  make it easier to copy-paste from the web
+- Fixed bug where OCM would crash on startup if you moved or deleted your last database
+- You can now filter on country and state/province
+- You can now manually add or modify cache details from the Cache menu
+- You can now manually mark a cache as unavailable/archived/available
+- Terracaches that contain the word "Unavailable" in the title will be automatically marked as unavailable
+- OCM now has a Dutch translation by Harrie Klomp
+
+
+
 Version 0.15
 -------------
 IMPORTANT: READ UPGRADE NOTE FROM PREVIOUS VERSIONS, see
