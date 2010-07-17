@@ -47,6 +47,13 @@ namespace ocmengine
 		
 		public int guidStart = 9000000;
 		
+		bool m_UseOCMPtTypes = false;
+		public Boolean UseOCMPtTypes
+		{
+		 	set { m_UseOCMPtTypes = value;}
+			get { return m_UseOCMPtTypes;}
+		}
+		
 		public int GetNextGUID()
 		{
 			return guidStart++;

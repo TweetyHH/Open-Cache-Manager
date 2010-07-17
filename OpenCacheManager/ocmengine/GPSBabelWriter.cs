@@ -56,6 +56,7 @@ namespace ocmengine
 			}
 			
 			writer.IncludeGroundSpeakExtensions = false;
+			writer.UseOCMPtTypes = true;
 			writer.Complete += HandleWriterComplete;
 			String tempFile = Path.GetTempFileName ();
 			writer.WriteWaypoint += HandleWriterWriteWaypoint;

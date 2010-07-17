@@ -47,7 +47,7 @@ namespace ocmengine
 		public string CacheOwner
 		{
 			set {m_ownid = value;}
-		}
+		}	
 		
 		private DateTime gpx_date;
 		
@@ -184,7 +184,8 @@ namespace ocmengine
 				pt.Type = pt.Symbol;
 				if (pt.Type == "Geocache")
 				{
-					pt.URL = new Uri("http://geocaching.com");
+					if (pt.URL == null)
+						pt.URL = new Uri("http://geocaching.com");
 					pt  = Geocache.convertFromWaypoint(pt);
 					if (m_source == "NaviCache")
 					{
@@ -270,6 +271,7 @@ namespace ocmengine
 			{
 				pt.URL = new Uri(reader.GetAttribute("href"));
 				pt.URLName = pt.Name;
+				System.Console.WriteLine(pt.URL);
 			}
 			else if (reader.Name == "urlname")
 			{
@@ -316,6 +318,8 @@ namespace ocmengine
 			else if (reader.LocalName == "name")
 			{
 				cache.CacheName = reader.ReadElementContentAsString();
+				if (cache.CacheName.ToUpperInvariant().Contains("UNAVAILABLE"))
+					cache.Available = false;
 			}
 			else if (reader.LocalName == "description")
 			{

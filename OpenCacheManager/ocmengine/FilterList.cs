@@ -40,6 +40,8 @@ namespace ocmengine
 		public const String KEY_PLACEBEFORE = "placebefore";
 		public const String KEY_INFOAFTER = "infoafter";
 		public const String KEY_INFOBEFORE = "infobefore";
+		public const String KEY_COUNTRY = "country";
+		public const String KEY_STATE = "state";
 		public FilterList ()
 		{
 			
@@ -184,6 +186,20 @@ namespace ocmengine
 				if (!status[2] && status[3] && status[4])
 					builder.Append(" AND GEOCACHE.available == 'False'");
  			}
+			
+			if (m_criteria.ContainsKey(KEY_COUNTRY))
+			{
+				builder.Append(" AND GEOCACHE.country LIKE '");
+				builder.Append(m_criteria[KEY_COUNTRY] as string);
+				builder.Append("'");
+			}
+			
+			if (m_criteria.ContainsKey(KEY_STATE))
+			{
+				builder.Append(" AND GEOCACHE.state LIKE '");
+				builder.Append(m_criteria[KEY_STATE] as string);
+				builder.Append("'");
+			}
 			
 			/*string placeBefore = m_criteria[KEY_PLACEBEFORE] as string;
 			if (null != placeBefore)

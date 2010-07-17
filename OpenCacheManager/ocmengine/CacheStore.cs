@@ -116,7 +116,7 @@ namespace ocmengine
 		internal void AddWaypoint(Waypoint point)
 		{
 			if (point is Geocache)
-				UpdateCache(point as Geocache);
+				AddCache(point as Geocache);
 			UpdateWaypoint(point);
 		}
 		
@@ -260,6 +260,28 @@ namespace ocmengine
 			InsertOrUpdate (update, insert, cmd);
 		}
 		
+		public void AddCache(Geocache cache)
+		{
+			if (m_conn == null)
+				throw new Exception("DB NOT OPEN");
+			IDbCommand cmd = m_conn.CreateCommand();
+			string insert = String.Format(INSERT_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
+			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
+			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
+			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
+			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
+			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
+			                                cache.Available.ToString(), SQLEscape(cache.Notes));
+			string update = String.Format(ADD_EXISTING_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
+			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
+			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
+			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
+			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
+			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
+			                                cache.Available.ToString());
+			InsertOrUpdate (update, insert, cmd);
+		}
+		
 		private static void InsertOrUpdate (string update, string insert, IDbCommand cmd)
 		{
 			cmd.CommandText = update;
@@ -355,7 +377,7 @@ namespace ocmengine
 			cache.Lat = double.Parse(reader.GetString(1), CultureInfo.InvariantCulture);
 			cache.Lon = double.Parse(reader.GetString(2), CultureInfo.InvariantCulture);
 			String url = reader.GetString(3);
-			if (String.IsNullOrEmpty(url))
+			if (!String.IsNullOrEmpty(url))
 				cache.URL = new Uri(url);
 			cache.URLName = reader.GetString(4);
 			cache.Desc = reader.GetString(5);

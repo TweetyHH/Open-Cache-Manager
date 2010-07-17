@@ -129,7 +129,29 @@ namespace ocmengine
 				writer.WriteElementString("url", this.URL.ToString());
 			if (!String.IsNullOrEmpty(this.URLName))
 				writer.WriteElementString("urlname", this.URLName);
-			writer.WriteElementString("sym", this.Symbol);
+			if (!gpx.UseOCMPtTypes)
+				writer.WriteElementString("sym", this.Symbol);
+			else
+			{
+					if (this.Symbol == "Trailhead")
+						writer.WriteElementString("sym","Trail Head");
+					else if (this.Symbol == "Question to Answer" || this.Symbol == "Stages of a Multicache")
+						writer.WriteElementString("sym","Pin, Red");
+					else if (this.Symbol == "Reference Point" || this.Symbol == "Other")
+						writer.WriteElementString("sym","Pin, Green");
+					else if (this.Symbol == "Final Location")
+						writer.WriteElementString("sym","Pin, Blue");
+					else if (this.Symbol == "TerraCache")
+						writer.WriteElementString("sym", "Geocache");
+					else 
+						writer.WriteElementString("sym", this.Symbol);
+				
+					if (this is Geocache)
+					{
+						if (!(this as Geocache).Available)
+							writer.WriteElementString("sym","Flag, Red");
+					}
+			}
 			writer.WriteElementString("type", this.Type);
 		}
 		
