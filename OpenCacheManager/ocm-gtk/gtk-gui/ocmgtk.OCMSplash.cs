@@ -142,7 +142,7 @@ namespace ocmgtk {
             this.pby = new Gtk.Label();
             this.pby.Name = "pby";
             this.pby.Xalign = 0F;
-            this.pby.LabelProp = Mono.Unix.Catalog.GetString("Using:");
+            this.pby.LabelProp = Mono.Unix.Catalog.GetString("Includes:");
             this.vbox2.Add(this.pby);
             Gtk.Box.BoxChild w11 = ((Gtk.Box.BoxChild)(this.vbox2[this.pby]));
             w11.PackType = ((Gtk.PackType)(1));
@@ -152,7 +152,7 @@ namespace ocmgtk {
             // Container child vbox2.Gtk.Box+BoxChild
             this.label2 = new Gtk.Label();
             this.label2.Name = "label2";
-            this.label2.LabelProp = "Version 0.15 Alpha";
+            this.label2.LabelProp = "Version 0.16 Alpha";
             this.vbox2.Add(this.label2);
             Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.vbox2[this.label2]));
             w12.PackType = ((Gtk.PackType)(1));

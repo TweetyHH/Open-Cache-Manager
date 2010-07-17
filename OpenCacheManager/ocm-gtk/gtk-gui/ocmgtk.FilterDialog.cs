@@ -85,7 +85,7 @@ namespace ocmgtk {
             // Notebook tab
             this.label1 = new Gtk.Label();
             this.label1.Name = "label1";
-            this.label1.LabelProp = Mono.Unix.Catalog.GetString("Dates");
+            this.label1.LabelProp = Mono.Unix.Catalog.GetString("Dates/Location");
             this.notebook1.SetTabLabel(this.datePage, this.label1);
             this.label1.ShowAll();
             w1.Add(this.notebook1);

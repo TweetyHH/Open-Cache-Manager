@@ -272,7 +272,7 @@ namespace ocmgtk {
             this.typeEntry.AppendText(Mono.Unix.Catalog.GetString("Locationless Cache"));
             this.typeEntry.AppendText(Mono.Unix.Catalog.GetString("Virtual Cache"));
             this.typeEntry.AppendText(Mono.Unix.Catalog.GetString("Webcam Cache"));
-            this.typeEntry.AppendText(Mono.Unix.Catalog.GetString("Wheigo Cache"));
+            this.typeEntry.AppendText(Mono.Unix.Catalog.GetString("Wherigo Cache"));
             this.typeEntry.AppendText(Mono.Unix.Catalog.GetString("Cache In Trash Out Event"));
             this.typeEntry.AppendText(Mono.Unix.Catalog.GetString("Mega Event Cache"));
             this.typeEntry.Name = "typeEntry";

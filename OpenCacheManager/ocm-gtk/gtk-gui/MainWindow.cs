@@ -40,8 +40,6 @@ public partial class MainWindow {
     
     private Gtk.Action GeocachingComAction;
     
-    private Gtk.Action ViewCacheOnlineAction;
-    
     private Gtk.Action ViewMyProfileAction;
     
     private Gtk.Action CreatePocketQueriesAction;
@@ -208,6 +206,7 @@ public partial class MainWindow {
         this.CacheAction.ShortLabel = Mono.Unix.Catalog.GetString("_Cache");
         w1.Add(this.CacheAction, null);
         this.ViewOnlineAction = new Gtk.Action("ViewOnlineAction", Mono.Unix.Catalog.GetString("_View Online"), null, "gtk-info");
+        this.ViewOnlineAction.Sensitive = false;
         this.ViewOnlineAction.ShortLabel = Mono.Unix.Catalog.GetString("_View Online");
         w1.Add(this.ViewOnlineAction, null);
         this.DeleteAction = new Gtk.Action("DeleteAction", Mono.Unix.Catalog.GetString("_Delete"), null, "gtk-delete");
@@ -222,10 +221,6 @@ public partial class MainWindow {
         this.GeocachingComAction = new Gtk.Action("GeocachingComAction", Mono.Unix.Catalog.GetString("_Geocaching.com"), null, null);
         this.GeocachingComAction.ShortLabel = Mono.Unix.Catalog.GetString("_Geocaching.com");
         w1.Add(this.GeocachingComAction, null);
-        this.ViewCacheOnlineAction = new Gtk.Action("ViewCacheOnlineAction", Mono.Unix.Catalog.GetString("View Cache Online..."), null, null);
-        this.ViewCacheOnlineAction.Sensitive = false;
-        this.ViewCacheOnlineAction.ShortLabel = Mono.Unix.Catalog.GetString("View Cache Online...");
-        w1.Add(this.ViewCacheOnlineAction, null);
         this.ViewMyProfileAction = new Gtk.Action("ViewMyProfileAction", Mono.Unix.Catalog.GetString("_View My Profile..."), null, null);
         this.ViewMyProfileAction.ShortLabel = Mono.Unix.Catalog.GetString("_View My Profile...");
         w1.Add(this.ViewMyProfileAction, null);
@@ -251,12 +246,15 @@ public partial class MainWindow {
         this.saveAsAction.ShortLabel = Mono.Unix.Catalog.GetString("_Save GPX...");
         w1.Add(this.saveAsAction, "<Control><Mod2>s");
         this.LogFindAction = new Gtk.Action("LogFindAction", Mono.Unix.Catalog.GetString("_Log Find"), null, null);
+        this.LogFindAction.Sensitive = false;
         this.LogFindAction.ShortLabel = Mono.Unix.Catalog.GetString("_Log Find");
         w1.Add(this.LogFindAction, null);
         this.MarkUnfoundAction = new Gtk.Action("MarkUnfoundAction", Mono.Unix.Catalog.GetString("_Mark Unfound"), null, null);
+        this.MarkUnfoundAction.Sensitive = false;
         this.MarkUnfoundAction.ShortLabel = Mono.Unix.Catalog.GetString("_Mark Unfound");
         w1.Add(this.MarkUnfoundAction, null);
         this.DeleteCacheAction = new Gtk.Action("DeleteCacheAction", Mono.Unix.Catalog.GetString("_Delete Cache..."), null, null);
+        this.DeleteCacheAction.Sensitive = false;
         this.DeleteCacheAction.ShortLabel = Mono.Unix.Catalog.GetString("_Delete Cache...");
         w1.Add(this.DeleteCacheAction, null);
         this.FilterAction = new Gtk.Action("FilterAction", Mono.Unix.Catalog.GetString("F_ilter"), null, null);
@@ -375,15 +373,19 @@ public partial class MainWindow {
         this.MyNaviCacheAction1.ShortLabel = Mono.Unix.Catalog.GetString("_My NaviCache");
         w1.Add(this.MyNaviCacheAction1, null);
         this.MarkDisabledAction = new Gtk.Action("MarkDisabledAction", Mono.Unix.Catalog.GetString("Mark _Disabled"), null, null);
+        this.MarkDisabledAction.Sensitive = false;
         this.MarkDisabledAction.ShortLabel = Mono.Unix.Catalog.GetString("Mark _Disabled");
         w1.Add(this.MarkDisabledAction, null);
         this.MarkArchivedAction = new Gtk.Action("MarkArchivedAction", Mono.Unix.Catalog.GetString("Mark _Archived"), null, null);
+        this.MarkArchivedAction.Sensitive = false;
         this.MarkArchivedAction.ShortLabel = Mono.Unix.Catalog.GetString("Mark _Archived");
         w1.Add(this.MarkArchivedAction, null);
         this.MarkAvailableAction = new Gtk.Action("MarkAvailableAction", Mono.Unix.Catalog.GetString("Mark A_vailable"), null, null);
+        this.MarkAvailableAction.Sensitive = false;
         this.MarkAvailableAction.ShortLabel = Mono.Unix.Catalog.GetString("Mark A_vailable");
         w1.Add(this.MarkAvailableAction, null);
         this.ModifyCacheAction = new Gtk.Action("ModifyCacheAction", Mono.Unix.Catalog.GetString("M_odify Cache..."), null, null);
+        this.ModifyCacheAction.Sensitive = false;
         this.ModifyCacheAction.ShortLabel = Mono.Unix.Catalog.GetString("M_odify Cache...");
         w1.Add(this.ModifyCacheAction, null);
         this.ToDoAction = new Gtk.Action("ToDoAction", Mono.Unix.Catalog.GetString("_To Do"), null, null);
@@ -499,7 +501,6 @@ public partial class MainWindow {
         this.ViewOnlineAction.Activated += new System.EventHandler(this.OnViewOnline);
         this.newAction.Activated += new System.EventHandler(this.OnNewActionActivated);
         this.openAction1.Activated += new System.EventHandler(this.OnOpenDatabaseClicked);
-        this.ViewCacheOnlineAction.Activated += new System.EventHandler(this.OnViewOnlineActivate);
         this.ViewMyProfileAction.Activated += new System.EventHandler(this.OnViewProfileActivate);
         this.CreatePocketQueriesAction.Activated += new System.EventHandler(this.OnPocketQueryActivate);
         this.FindACacheAction.Activated += new System.EventHandler(this.OnFindOnlineActivate);

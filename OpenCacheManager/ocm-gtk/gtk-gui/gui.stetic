@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="webkit-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
-    <widget-library name="../bin/ocm-gtk.exe" internal="true" />
+    <widget-library name="../bind/ocm-gtk.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="1284 1201">
     <action-group name="Default">
@@ -58,6 +58,7 @@
       <action id="ViewOnlineAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_View Online</property>
+        <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">_View Online</property>
         <property name="StockId">gtk-info</property>
         <signal name="Activated" handler="OnViewOnline" />
@@ -86,13 +87,6 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Geocaching.com</property>
         <property name="ShortLabel" translatable="yes">_Geocaching.com</property>
-      </action>
-      <action id="ViewCacheOnlineAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">View Cache Online...</property>
-        <property name="Sensitive">False</property>
-        <property name="ShortLabel" translatable="yes">View Cache Online...</property>
-        <signal name="Activated" handler="OnViewOnlineActivate" />
       </action>
       <action id="ViewMyProfileAction">
         <property name="Type">Action</property>
@@ -152,18 +146,21 @@
       <action id="LogFindAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Log Find</property>
+        <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">_Log Find</property>
         <signal name="Activated" handler="OnClickLog" />
       </action>
       <action id="MarkUnfoundAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Mark Unfound</property>
+        <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">_Mark Unfound</property>
         <signal name="Activated" handler="OnClickMarkUnfound" />
       </action>
       <action id="DeleteCacheAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Delete Cache...</property>
+        <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">_Delete Cache...</property>
         <signal name="Activated" handler="OnDelete" />
       </action>
@@ -390,24 +387,28 @@
       <action id="MarkDisabledAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Mark _Disabled</property>
+        <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">Mark _Disabled</property>
         <signal name="Activated" handler="OnClickDisable" />
       </action>
       <action id="MarkArchivedAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Mark _Archived</property>
+        <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">Mark _Archived</property>
         <signal name="Activated" handler="OnClickArchive" />
       </action>
       <action id="MarkAvailableAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Mark A_vailable</property>
+        <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">Mark A_vailable</property>
         <signal name="Activated" handler="OnClickAvailable" />
       </action>
       <action id="ModifyCacheAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">M_odify Cache...</property>
+        <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">M_odify Cache...</property>
         <signal name="Activated" handler="OnModifyCacheActionActivated" />
       </action>
@@ -3181,7 +3182,6 @@ home and know which caches are yours.</property>
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Label" translatable="yes">All Cache Types</property>
-                <property name="Active">True</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
@@ -3898,7 +3898,7 @@ Less Than</property>
           <widget class="Gtk.Label" id="pby">
             <property name="MemberName" />
             <property name="Xalign">0</property>
-            <property name="LabelProp" translatable="yes">Using:</property>
+            <property name="LabelProp" translatable="yes">Includes:</property>
           </widget>
           <packing>
             <property name="PackType">End</property>
@@ -3911,7 +3911,7 @@ Less Than</property>
         <child>
           <widget class="Gtk.Label" id="label2">
             <property name="MemberName" />
-            <property name="LabelProp">Version 0.15 Alpha</property>
+            <property name="LabelProp">Version 0.16 Alpha</property>
           </widget>
           <packing>
             <property name="PackType">End</property>
@@ -3989,7 +3989,7 @@ Less Than</property>
             <child>
               <widget class="Gtk.Label" id="label1">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Dates</property>
+                <property name="LabelProp" translatable="yes">Dates/Location</property>
               </widget>
               <packing>
                 <property name="type">tab</property>
@@ -5287,7 +5287,7 @@ USB to allow OCM to write to your Garmin Device. See:
     <child>
       <widget class="Gtk.Table" id="table2">
         <property name="MemberName" />
-        <property name="NRows">5</property>
+        <property name="NRows">8</property>
         <property name="NColumns">2</property>
         <property name="RowSpacing">6</property>
         <property name="ColumnSpacing">6</property>
@@ -5297,6 +5297,71 @@ USB to allow OCM to write to your Garmin Device. See:
         </child>
         <child>
           <placeholder />
+        </child>
+        <child>
+          <widget class="Gtk.CheckButton" id="countryCheck">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Label" translatable="yes">Country</property>
+            <property name="DrawIndicator">True</property>
+            <property name="HasLabel">True</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Toggled" handler="OnCountryToggle" />
+          </widget>
+          <packing>
+            <property name="TopAttach">5</property>
+            <property name="BottomAttach">6</property>
+            <property name="AutoSize">True</property>
+            <property name="YOptions">Fill</property>
+            <property name="XExpand">True</property>
+            <property name="XFill">True</property>
+            <property name="XShrink">False</property>
+            <property name="YExpand">False</property>
+            <property name="YFill">True</property>
+            <property name="YShrink">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="countryEntry">
+            <property name="MemberName" />
+            <property name="Sensitive">False</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">•</property>
+          </widget>
+          <packing>
+            <property name="TopAttach">5</property>
+            <property name="BottomAttach">6</property>
+            <property name="LeftAttach">1</property>
+            <property name="RightAttach">2</property>
+            <property name="AutoSize">True</property>
+            <property name="XOptions">Fill</property>
+            <property name="YOptions">Fill</property>
+            <property name="XExpand">False</property>
+            <property name="XFill">True</property>
+            <property name="XShrink">False</property>
+            <property name="YExpand">False</property>
+            <property name="YFill">True</property>
+            <property name="YShrink">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HSeparator" id="hseparator1">
+            <property name="MemberName" />
+          </widget>
+          <packing>
+            <property name="TopAttach">4</property>
+            <property name="BottomAttach">5</property>
+            <property name="RightAttach">2</property>
+            <property name="AutoSize">True</property>
+            <property name="YOptions">Fill</property>
+            <property name="XExpand">True</property>
+            <property name="XFill">True</property>
+            <property name="XShrink">False</property>
+            <property name="YExpand">False</property>
+            <property name="YFill">True</property>
+            <property name="YShrink">False</property>
+          </packing>
         </child>
         <child>
           <widget class="Gtk.CheckButton" id="infoAfterCheck">
@@ -5465,6 +5530,53 @@ USB to allow OCM to write to your Garmin Device. See:
           <packing>
             <property name="TopAttach">1</property>
             <property name="BottomAttach">2</property>
+            <property name="LeftAttach">1</property>
+            <property name="RightAttach">2</property>
+            <property name="AutoSize">True</property>
+            <property name="XOptions">Fill</property>
+            <property name="YOptions">Fill</property>
+            <property name="XExpand">False</property>
+            <property name="XFill">True</property>
+            <property name="XShrink">False</property>
+            <property name="YExpand">False</property>
+            <property name="YFill">True</property>
+            <property name="YShrink">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.CheckButton" id="stateCheck">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Label" translatable="yes">State/Province</property>
+            <property name="DrawIndicator">True</property>
+            <property name="HasLabel">True</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Toggled" handler="OnStateCheckToggled" />
+          </widget>
+          <packing>
+            <property name="TopAttach">6</property>
+            <property name="BottomAttach">7</property>
+            <property name="AutoSize">True</property>
+            <property name="YOptions">Fill</property>
+            <property name="XExpand">True</property>
+            <property name="XFill">True</property>
+            <property name="XShrink">False</property>
+            <property name="YExpand">False</property>
+            <property name="YFill">True</property>
+            <property name="YShrink">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="stateEntry">
+            <property name="MemberName" />
+            <property name="Sensitive">False</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">•</property>
+          </widget>
+          <packing>
+            <property name="TopAttach">6</property>
+            <property name="BottomAttach">7</property>
             <property name="LeftAttach">1</property>
             <property name="RightAttach">2</property>
             <property name="AutoSize">True</property>
@@ -6200,7 +6312,7 @@ GPS Adventures Exhibit
 Locationless Cache
 Virtual Cache
 Webcam Cache
-Wheigo Cache
+Wherigo Cache
 Cache In Trash Out Event
 Mega Event Cache</property>
                     <property name="Active">0</property>
@@ -6835,6 +6947,113 @@ Mega Event Cache</property>
           </widget>
           <packing>
             <property name="Position">1</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="ocmgtk.NoDBDialog" design-size="417 135">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">Error</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="BorderWidth">6</property>
+    <property name="Buttons">3</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.HBox" id="hbox1">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Image" id="image30">
+                <property name="MemberName" />
+                <property name="Pixbuf">stock:gtk-dialog-error Dialog</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="label1">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Unable to open database</property>
+                <property name="UseMarkup">True</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">3</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="button268">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">New Database...</property>
+            <property name="UseUnderline">True</property>
+            <property name="ResponseId">0</property>
+            <signal name="Clicked" handler="NewDBClicked" />
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="button267">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Open Database...</property>
+            <property name="UseUnderline">True</property>
+            <property name="ResponseId">0</property>
+            <signal name="Clicked" handler="OpenDBClicked" />
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="button269">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Quit</property>
+            <property name="UseUnderline">True</property>
+            <property name="ResponseId">0</property>
+            <signal name="Clicked" handler="QuitClicked" />
+          </widget>
+          <packing>
+            <property name="Position">2</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>
