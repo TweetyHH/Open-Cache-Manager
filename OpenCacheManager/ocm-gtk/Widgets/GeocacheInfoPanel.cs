@@ -105,11 +105,11 @@ namespace ocmgtk
 			
 				if (cache.State.Trim() != String.Empty)
 				{
-					countryLabel.Markup = String.Format(Catalog.GetString("<b>Country:</b> {0},{1}"), cache.State, cache.Country);
+					countryLabel.Markup = String.Format(Catalog.GetString("<b>Location: </b> {0},{1}"), cache.State, cache.Country);
 				}
 				else if (cache.Country.Trim() != String.Empty)
 				{
-					countryLabel.Markup = String.Format(Catalog.GetString("<b>Country:</b> {0}"), cache.Country);
+					countryLabel.Markup = String.Format(Catalog.GetString("<b>Location: </b> {0}"), cache.Country);
 				}
 				else
 				{
@@ -238,15 +238,15 @@ namespace ocmgtk
 			double distance = Utilities.calculateDistance (m_monitor.CentreLat, cache.Lat, m_monitor.CentreLon, cache.Lon);
 			double bearing = Utilities.calculateBearing (m_monitor.CentreLat, cache.Lat, m_monitor.CentreLon, cache.Lon);
 			
-			string bmarker = "N";
+			string bmarker = Catalog.GetString("N");
 			if (bearing > 22.5 && bearing <= 67.5)
-				bmarker = "NE"; else if (bearing > 67.5 && bearing <= 112.5)
-				bmarker = "E"; else if (bearing > 112.5 && bearing <= 157.5)
-				bmarker = "SE"; else if (bearing > 157.5 && bearing <= 202.5)
-				bmarker = "S"; else if (bearing > 202.5 && bearing <= 247.5)
-				bmarker = "SW"; else if (bearing > 247.5 && bearing <= 292.5)
-				bmarker = "W"; else if (bearing > 292.5 && bearing <= 337.5)
-				bmarker = "NW";
+				bmarker = Catalog.GetString("NE"); else if (bearing > 67.5 && bearing <= 112.5)
+				bmarker = Catalog.GetString("E"); else if (bearing > 112.5 && bearing <= 157.5)
+				bmarker = Catalog.GetString("SE"); else if (bearing > 157.5 && bearing <= 202.5)
+				bmarker = Catalog.GetString("S"); else if (bearing > 202.5 && bearing <= 247.5)
+				bmarker = Catalog.GetString("SW"); else if (bearing > 247.5 && bearing <= 292.5)
+				bmarker = Catalog.GetString("W"); else if (bearing > 292.5 && bearing <= 337.5)
+				bmarker = Catalog.GetString("NW");
 			
 			
 			if (m_monitor.UseImperial)

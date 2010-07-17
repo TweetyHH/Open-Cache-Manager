@@ -91,6 +91,49 @@ namespace ocmgtk
 			}
 		}
 		
+		public string Country
+		{
+			get { 
+				if (countryCheck.Active)
+					return countryEntry.Text;
+				else
+					return null;
+				
+			}
+			set { 
+				if (value != null)
+				{
+					countryEntry.Text = value;
+					countryCheck.Active = true;
+				}
+				else
+				{
+					countryCheck.Active = false;
+				}
+			}
+		}
+		
+		public string State
+		{
+			get { 
+				if (stateCheck.Active)
+					return stateEntry.Text;
+				else
+					return null;
+			}
+			set { 
+				if (value != null)
+				{
+					stateEntry.Text = value;
+					countryCheck.Active = true;
+				}
+				else
+				{
+					countryCheck.Active = false;
+				}
+			}
+		}
+		
 		
 		public OCMQueryPage3 ()
 		{
@@ -116,5 +159,14 @@ namespace ocmgtk
 			this.placeAfterEntry.Sensitive = placeAfterCheck.Active;
 		}
 		
+		protected virtual void OnCountryToggle (object sender, System.EventArgs e)
+		{
+			countryEntry.Sensitive = countryCheck.Active;
+		}
+		
+		protected virtual void OnStateCheckToggled (object sender, System.EventArgs e)
+		{
+			stateEntry.Sensitive = stateCheck.Active;
+		}
 	}
 }
