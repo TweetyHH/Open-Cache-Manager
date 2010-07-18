@@ -79,11 +79,12 @@ namespace ocmengine
 		private void WriteFullGPX (List<Geocache> cacheList, GPXWriter writer)
 		{
 			writer.IncludeGroundSpeakExtensions = true;
-				writer.Complete += HandleWriterComplete;
-				writer.WriteWaypoint += HandleWriterWriteWaypoint;
-				writer.WriteGPXFile (m_file, cacheList);
-				this.Complete (this, new WriteEventArgs ("Complete"));
-				return;
+			writer.UseOCMPtTypes = true;
+			writer.Complete += HandleWriterComplete;
+			writer.WriteWaypoint += HandleWriterWriteWaypoint;
+			writer.WriteGPXFile (m_file, cacheList);
+			this.Complete (this, new WriteEventArgs ("Complete"));
+			return;
 		}
 
 		void HandleWriterWriteWaypoint (object sender, EventArgs args)
