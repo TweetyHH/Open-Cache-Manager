@@ -125,11 +125,11 @@ namespace ocmgtk
 				if (value != null)
 				{
 					stateEntry.Text = value;
-					countryCheck.Active = true;
+					stateCheck.Active = true;
 				}
 				else
 				{
-					countryCheck.Active = false;
+					stateCheck.Active = false;
 				}
 			}
 		}
