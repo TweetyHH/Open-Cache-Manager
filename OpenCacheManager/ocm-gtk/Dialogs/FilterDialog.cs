@@ -68,7 +68,7 @@ namespace ocmgtk
 				if (value.Contains(FilterList.KEY_COUNTRY))
 					datePage.Country = value.GetCriteria(FilterList.KEY_COUNTRY) as string;
 				if (value.Contains(FilterList.KEY_STATE))
-					datePage.Country = value.GetCriteria(FilterList.KEY_STATE) as string;
+					datePage.State = value.GetCriteria(FilterList.KEY_STATE) as string;
 				
 			}
 		}
