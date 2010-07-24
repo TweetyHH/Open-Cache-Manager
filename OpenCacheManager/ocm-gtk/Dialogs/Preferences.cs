@@ -77,6 +77,23 @@ namespace ocmgtk
 			}				
 		}
 		
+		public bool ShowNearby
+		{
+			get { 
+				if (nearbyCombo.Active == 0)
+					return true;
+				else
+					return false;
+			}
+			set
+			{
+				if (value)
+					nearbyCombo.Active = 0;
+				else
+					nearbyCombo.Active = 1;
+			}		
+		}
+		
 		public string DefaultMap
 		{
 			get {

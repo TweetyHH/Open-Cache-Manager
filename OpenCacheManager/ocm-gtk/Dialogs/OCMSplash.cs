@@ -53,7 +53,7 @@ namespace ocmgtk
 			MainWindow win = new MainWindow();
 			UIMonitor.getInstance().LoadConfig();
 			if (m_file != null)
-					UIMonitor.getInstance().ImportGPXFile(m_file);
+				UIMonitor.getInstance().ImportGPXFile(m_file);
 			});
 		}
 	}
