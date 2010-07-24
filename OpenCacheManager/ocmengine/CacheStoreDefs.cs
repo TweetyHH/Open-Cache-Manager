@@ -37,11 +37,16 @@ namespace ocmengine
 		const string GET_TB = "SELECT id, ref, name FROM TBUGS WHERE cache='{0}'";
 		const string WHERE_PARENT = " WHERE parent='{0}'";
 		const string GET_LOGS = "SELECT date, loggedby, message, status, finderID, encoded FROM LOGS WHERE cache='{0}' ORDER BY date DESC";
+		const string LOG_STAT_SCAN = "SELECT status, date, cache from LOGS WHERE cache='{0}' and date=(SELECT MAX(date) FROM LOGS WHERE cache='{0}')";
+		const string LAST_LOG_BY_YOU = "SELECT date from LOGS WHERE cache='{0}' and finderID='{1}' and date=(SELECT MAX(date) FROM LOGS WHERE cache='{0}' and finderID='{1}')";
 		const string INSERT_GC = "INSERT INTO GEOCACHE (name, fullname, id, owner, ownerID, placedby, difficulty, terrain, country, state, type, shortdesc, longdesc, hint, container, archived, available, notes)" + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}', '{17}')";
 		const string ADD_EXISTING_GC = "UPDATE GEOCACHE SET fullname='{1}', id='{2}', owner='{3}', ownerID='{4}',  placedby='{5}', difficulty='{6}', terrain='{7}', country='{8}',state='{9}',type='{10}',shortdesc='{11}',longdesc='{12}',hint='{13}',container='{14}',archived='{15}',available='{16}' WHERE name='{0}'";
 		const string UPDATE_GC = "UPDATE GEOCACHE SET fullname='{1}', id='{2}', owner='{3}', ownerID='{4}',  placedby='{5}', difficulty='{6}', terrain='{7}', country='{8}',state='{9}',type='{10}',shortdesc='{11}',longdesc='{12}',hint='{13}',container='{14}',archived='{15}',available='{16}', notes='{17}' WHERE name='{0}'";
 		const string GC_EXISTS_CHECK = "SELECT * FROM GEOCACHE WHERE name='{0}'";
-		const string GET_GC = "SELECT  WAYPOINT.name, WAYPOINT.lat, WAYPOINT.lon, WAYPOINT.url, WAYPOINT.urlname, WAYPOINT.desc, WAYPOINT.symbol, WAYPOINT.type, WAYPOINT.time," + "GEOCACHE.fullname, GEOCACHE.id, GEOCACHE.owner, GEOCACHE.ownerID, GEOCACHE.placedby, GEOCACHE.difficulty, GEOCACHE.terrain, GEOCACHE.country, GEOCACHE.state," + "GEOCACHE.type, GEOCACHE.shortdesc, GEOCACHE.longdesc, GEOCACHE.hint, GEOCACHE.container, GEOCACHE.archived, GEOCACHE.available, WAYPOINT.lastUpdate, GEOCACHE.notes" + " FROM WAYPOINT, GEOCACHE WHERE WAYPOINT.name = GEOCACHE.name";
+		const string GET_GC = "SELECT  WAYPOINT.name, WAYPOINT.lat, WAYPOINT.lon, WAYPOINT.url, WAYPOINT.urlname, WAYPOINT.desc, WAYPOINT.symbol, WAYPOINT.type, WAYPOINT.time," 
+			+ "GEOCACHE.fullname, GEOCACHE.id, GEOCACHE.owner, GEOCACHE.ownerID, GEOCACHE.placedby, GEOCACHE.difficulty, GEOCACHE.terrain, GEOCACHE.country, GEOCACHE.state,"
+			+ "GEOCACHE.type, GEOCACHE.shortdesc, GEOCACHE.longdesc, GEOCACHE.hint, GEOCACHE.container, GEOCACHE.archived, GEOCACHE.available, WAYPOINT.lastUpdate, GEOCACHE.notes"
+			+ " FROM WAYPOINT, GEOCACHE WHERE WAYPOINT.name = GEOCACHE.name";
 		const string COUNT_GC = "SELECT COUNT(name) from GEOCACHE";
 		const string COUNT_WPT = "SELECT COUNT(name) from WAYPOINT";
 		const string FOUND = " WHERE SYMBOL='Geocache Found'";

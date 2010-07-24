@@ -59,6 +59,8 @@ namespace ocmengine
 		private bool m_archived=false;
 		private string m_cacheID = "";
 		private string m_ownerID = "";
+		private bool m_recentDNFs = false;
+		private DateTime m_foundByYou = DateTime.MinValue;
 		
 		public string CacheName
 		{
@@ -171,6 +173,12 @@ namespace ocmengine
 		{
 			get { return m_notes;}
 			set { m_notes = value;}
+		}
+		
+		public bool RecentDNFs
+		{
+			get { return m_recentDNFs;}
+			set { m_recentDNFs = value;}
 		}
 					
 		

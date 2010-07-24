@@ -295,6 +295,47 @@ namespace ocmengine
 			cmd = null;
 		}
 		
+		/*private void LogScan(Geocache cache, IDbConnection conn)
+		{
+			IDbCommand command = conn.CreateCommand();
+			command.CommandText = String.Format(LOG_STAT_SCAN, cache.Name);
+			IDataReader reader = command.ExecuteReader();
+			while (reader.Read())
+			{
+				System.Console.WriteLine(val);
+				if (val.Equals("Didn't find it") || val.Equals("Needs Maintenance"))
+				{
+					cache.RecentDNFs = true;
+				}
+				else
+					cache.RecentDNFs = false;
+			}
+			reader.Close();
+			reader.Dispose();
+			command.Dispose();
+			command = null;
+		}*/
+		
+		
+		public DateTime GetLastLogByYou(Geocache cache, String ownerID)
+		{
+			IDbConnection conn = OpenConnection();
+			IDbCommand command = conn.CreateCommand();
+			command.CommandText = String.Format(LAST_LOG_BY_YOU, cache.Name, ownerID);
+			System.Console.WriteLine(command.CommandText);
+			IDataReader reader = command.ExecuteReader();
+			DateTime date = DateTime.MinValue;
+			while (reader.Read())
+			{
+				string val = reader.GetString(0);
+				if (!String.IsNullOrEmpty(val))
+					date = DateTime.Parse(val);
+					
+			}
+			CloseConnection(ref reader, ref command, ref conn);
+			return date;
+		}
+		
 		public List<string> GetBookmarkLists()
 		{
 			List<string> bmrks = new List<string>();
@@ -332,12 +373,14 @@ namespace ocmengine
 			IDbConnection conn =  OpenConnection ();
 			IDbCommand command = conn.CreateCommand();
 			command.CommandText = sql;
+			System.Console.WriteLine(sql);
 			IDataReader reader = command.ExecuteReader();
 			while (reader.Read())
 			{
 				pts.Add(BuildCache(reader));
 			}
-			CloseConnection (ref reader, ref command, ref conn);	
+			
+			CloseConnection (ref reader, ref command, ref conn);
 			return pts;				
 		}
 		
