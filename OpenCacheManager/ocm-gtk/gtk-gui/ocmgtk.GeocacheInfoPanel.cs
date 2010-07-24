@@ -35,6 +35,14 @@ namespace ocmgtk {
         
         private Gtk.Button viewButton;
         
+        private Gtk.HBox hbox4;
+        
+        private Gtk.Label countryLabel;
+        
+        private Gtk.Label label6;
+        
+        private Gtk.Label lastFoundDateLabel;
+        
         private Gtk.HBox hbox2;
         
         private Gtk.Label label3;
@@ -86,8 +94,6 @@ namespace ocmgtk {
         private Gtk.Label coordinateLabel;
         
         private Gtk.Label distance_label;
-        
-        private Gtk.Label countryLabel;
         
         private Gtk.HButtonBox hbuttonbox2;
         
@@ -225,6 +231,45 @@ namespace ocmgtk {
             w18.Expand = false;
             w18.Fill = false;
             // Container child infoPanelVBOX.Gtk.Box+BoxChild
+            this.hbox4 = new Gtk.HBox();
+            this.hbox4.Name = "hbox4";
+            this.hbox4.Spacing = 6;
+            // Container child hbox4.Gtk.Box+BoxChild
+            this.countryLabel = new Gtk.Label();
+            this.countryLabel.Name = "countryLabel";
+            this.countryLabel.Xpad = 6;
+            this.countryLabel.Xalign = 0F;
+            this.countryLabel.LabelProp = Mono.Unix.Catalog.GetString("<country>");
+            this.hbox4.Add(this.countryLabel);
+            Gtk.Box.BoxChild w19 = ((Gtk.Box.BoxChild)(this.hbox4[this.countryLabel]));
+            w19.Position = 0;
+            w19.Expand = false;
+            w19.Fill = false;
+            // Container child hbox4.Gtk.Box+BoxChild
+            this.label6 = new Gtk.Label();
+            this.label6.Name = "label6";
+            this.label6.LabelProp = Mono.Unix.Catalog.GetString("<b>Last Log By You:</b>");
+            this.label6.UseMarkup = true;
+            this.hbox4.Add(this.label6);
+            Gtk.Box.BoxChild w20 = ((Gtk.Box.BoxChild)(this.hbox4[this.label6]));
+            w20.Position = 1;
+            w20.Expand = false;
+            w20.Fill = false;
+            // Container child hbox4.Gtk.Box+BoxChild
+            this.lastFoundDateLabel = new Gtk.Label();
+            this.lastFoundDateLabel.Name = "lastFoundDateLabel";
+            this.lastFoundDateLabel.LabelProp = Mono.Unix.Catalog.GetString("Never");
+            this.hbox4.Add(this.lastFoundDateLabel);
+            Gtk.Box.BoxChild w21 = ((Gtk.Box.BoxChild)(this.hbox4[this.lastFoundDateLabel]));
+            w21.Position = 2;
+            w21.Expand = false;
+            w21.Fill = false;
+            this.infoPanelVBOX.Add(this.hbox4);
+            Gtk.Box.BoxChild w22 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.hbox4]));
+            w22.Position = 2;
+            w22.Expand = false;
+            w22.Fill = false;
+            // Container child infoPanelVBOX.Gtk.Box+BoxChild
             this.hbox2 = new Gtk.HBox();
             this.hbox2.Name = "hbox2";
             this.hbox2.Spacing = 6;
@@ -236,10 +281,10 @@ namespace ocmgtk {
             this.label3.LabelProp = Mono.Unix.Catalog.GetString("<b>A cache by:</b>");
             this.label3.UseMarkup = true;
             this.hbox2.Add(this.label3);
-            Gtk.Box.BoxChild w19 = ((Gtk.Box.BoxChild)(this.hbox2[this.label3]));
-            w19.Position = 0;
-            w19.Expand = false;
-            w19.Fill = false;
+            Gtk.Box.BoxChild w23 = ((Gtk.Box.BoxChild)(this.hbox2[this.label3]));
+            w23.Position = 0;
+            w23.Expand = false;
+            w23.Fill = false;
             // Container child hbox2.Gtk.Box+BoxChild
             this.placedByLabel = new Gtk.Label();
             this.placedByLabel.Name = "placedByLabel";
@@ -249,10 +294,10 @@ namespace ocmgtk {
             this.placedByLabel.Ellipsize = ((Pango.EllipsizeMode)(3));
             this.placedByLabel.MaxWidthChars = 15;
             this.hbox2.Add(this.placedByLabel);
-            Gtk.Box.BoxChild w20 = ((Gtk.Box.BoxChild)(this.hbox2[this.placedByLabel]));
-            w20.Position = 1;
-            w20.Expand = false;
-            w20.Fill = false;
+            Gtk.Box.BoxChild w24 = ((Gtk.Box.BoxChild)(this.hbox2[this.placedByLabel]));
+            w24.Position = 1;
+            w24.Expand = false;
+            w24.Fill = false;
             // Container child hbox2.Gtk.Box+BoxChild
             this.label5 = new Gtk.Label();
             this.label5.Name = "label5";
@@ -262,10 +307,10 @@ namespace ocmgtk {
             this.label5.UseMarkup = true;
             this.label5.Justify = ((Gtk.Justification)(1));
             this.hbox2.Add(this.label5);
-            Gtk.Box.BoxChild w21 = ((Gtk.Box.BoxChild)(this.hbox2[this.label5]));
-            w21.Position = 2;
-            w21.Expand = false;
-            w21.Fill = false;
+            Gtk.Box.BoxChild w25 = ((Gtk.Box.BoxChild)(this.hbox2[this.label5]));
+            w25.Position = 2;
+            w25.Expand = false;
+            w25.Fill = false;
             // Container child hbox2.Gtk.Box+BoxChild
             this.dateLabel = new Gtk.Label();
             this.dateLabel.Name = "dateLabel";
@@ -274,34 +319,34 @@ namespace ocmgtk {
             this.dateLabel.Xalign = 0F;
             this.dateLabel.LabelProp = "<date>";
             this.hbox2.Add(this.dateLabel);
-            Gtk.Box.BoxChild w22 = ((Gtk.Box.BoxChild)(this.hbox2[this.dateLabel]));
-            w22.Position = 3;
-            w22.Expand = false;
-            w22.Fill = false;
+            Gtk.Box.BoxChild w26 = ((Gtk.Box.BoxChild)(this.hbox2[this.dateLabel]));
+            w26.Position = 3;
+            w26.Expand = false;
+            w26.Fill = false;
             // Container child hbox2.Gtk.Box+BoxChild
             this.label2 = new Gtk.Label();
             this.label2.Name = "label2";
             this.label2.LabelProp = Mono.Unix.Catalog.GetString("<b>Last Update:</b>");
             this.label2.UseMarkup = true;
             this.hbox2.Add(this.label2);
-            Gtk.Box.BoxChild w23 = ((Gtk.Box.BoxChild)(this.hbox2[this.label2]));
-            w23.Position = 4;
-            w23.Expand = false;
-            w23.Fill = false;
+            Gtk.Box.BoxChild w27 = ((Gtk.Box.BoxChild)(this.hbox2[this.label2]));
+            w27.Position = 4;
+            w27.Expand = false;
+            w27.Fill = false;
             // Container child hbox2.Gtk.Box+BoxChild
             this.infoDateLabel = new Gtk.Label();
             this.infoDateLabel.Name = "infoDateLabel";
             this.infoDateLabel.LabelProp = "<date>";
             this.hbox2.Add(this.infoDateLabel);
-            Gtk.Box.BoxChild w24 = ((Gtk.Box.BoxChild)(this.hbox2[this.infoDateLabel]));
-            w24.Position = 5;
-            w24.Expand = false;
-            w24.Fill = false;
+            Gtk.Box.BoxChild w28 = ((Gtk.Box.BoxChild)(this.hbox2[this.infoDateLabel]));
+            w28.Position = 5;
+            w28.Expand = false;
+            w28.Fill = false;
             this.infoPanelVBOX.Add(this.hbox2);
-            Gtk.Box.BoxChild w25 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.hbox2]));
-            w25.Position = 2;
-            w25.Expand = false;
-            w25.Fill = false;
+            Gtk.Box.BoxChild w29 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.hbox2]));
+            w29.Position = 3;
+            w29.Expand = false;
+            w29.Fill = false;
             // Container child infoPanelVBOX.Gtk.Box+BoxChild
             this.hbox3 = new Gtk.HBox();
             this.hbox3.Name = "hbox3";
@@ -314,20 +359,20 @@ namespace ocmgtk {
             this.label1.LabelProp = Mono.Unix.Catalog.GetString("<b>Cache Size:</b>");
             this.label1.UseMarkup = true;
             this.hbox3.Add(this.label1);
-            Gtk.Box.BoxChild w26 = ((Gtk.Box.BoxChild)(this.hbox3[this.label1]));
-            w26.Position = 0;
-            w26.Expand = false;
-            w26.Fill = false;
+            Gtk.Box.BoxChild w30 = ((Gtk.Box.BoxChild)(this.hbox3[this.label1]));
+            w30.Position = 0;
+            w30.Expand = false;
+            w30.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.cacheSizeLabel = new Gtk.Label();
             this.cacheSizeLabel.Name = "cacheSizeLabel";
             this.cacheSizeLabel.Ypad = 5;
             this.cacheSizeLabel.LabelProp = "<cacheSize>";
             this.hbox3.Add(this.cacheSizeLabel);
-            Gtk.Box.BoxChild w27 = ((Gtk.Box.BoxChild)(this.hbox3[this.cacheSizeLabel]));
-            w27.Position = 1;
-            w27.Expand = false;
-            w27.Fill = false;
+            Gtk.Box.BoxChild w31 = ((Gtk.Box.BoxChild)(this.hbox3[this.cacheSizeLabel]));
+            w31.Position = 1;
+            w31.Expand = false;
+            w31.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.diffLabel = new Gtk.Label();
             this.diffLabel.Name = "diffLabel";
@@ -336,50 +381,50 @@ namespace ocmgtk {
             this.diffLabel.LabelProp = Mono.Unix.Catalog.GetString("<b>Difficulty:</b>");
             this.diffLabel.UseMarkup = true;
             this.hbox3.Add(this.diffLabel);
-            Gtk.Box.BoxChild w28 = ((Gtk.Box.BoxChild)(this.hbox3[this.diffLabel]));
-            w28.Position = 2;
-            w28.Expand = false;
-            w28.Fill = false;
+            Gtk.Box.BoxChild w32 = ((Gtk.Box.BoxChild)(this.hbox3[this.diffLabel]));
+            w32.Position = 2;
+            w32.Expand = false;
+            w32.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.diff_i1 = new Gtk.Image();
             this.diff_i1.Name = "diff_i1";
             this.hbox3.Add(this.diff_i1);
-            Gtk.Box.BoxChild w29 = ((Gtk.Box.BoxChild)(this.hbox3[this.diff_i1]));
-            w29.Position = 3;
-            w29.Expand = false;
-            w29.Fill = false;
+            Gtk.Box.BoxChild w33 = ((Gtk.Box.BoxChild)(this.hbox3[this.diff_i1]));
+            w33.Position = 3;
+            w33.Expand = false;
+            w33.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.diff_i2 = new Gtk.Image();
             this.diff_i2.Name = "diff_i2";
             this.hbox3.Add(this.diff_i2);
-            Gtk.Box.BoxChild w30 = ((Gtk.Box.BoxChild)(this.hbox3[this.diff_i2]));
-            w30.Position = 4;
-            w30.Expand = false;
-            w30.Fill = false;
+            Gtk.Box.BoxChild w34 = ((Gtk.Box.BoxChild)(this.hbox3[this.diff_i2]));
+            w34.Position = 4;
+            w34.Expand = false;
+            w34.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.diff_i3 = new Gtk.Image();
             this.diff_i3.Name = "diff_i3";
             this.hbox3.Add(this.diff_i3);
-            Gtk.Box.BoxChild w31 = ((Gtk.Box.BoxChild)(this.hbox3[this.diff_i3]));
-            w31.Position = 5;
-            w31.Expand = false;
-            w31.Fill = false;
+            Gtk.Box.BoxChild w35 = ((Gtk.Box.BoxChild)(this.hbox3[this.diff_i3]));
+            w35.Position = 5;
+            w35.Expand = false;
+            w35.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.diff_i4 = new Gtk.Image();
             this.diff_i4.Name = "diff_i4";
             this.hbox3.Add(this.diff_i4);
-            Gtk.Box.BoxChild w32 = ((Gtk.Box.BoxChild)(this.hbox3[this.diff_i4]));
-            w32.Position = 6;
-            w32.Expand = false;
-            w32.Fill = false;
+            Gtk.Box.BoxChild w36 = ((Gtk.Box.BoxChild)(this.hbox3[this.diff_i4]));
+            w36.Position = 6;
+            w36.Expand = false;
+            w36.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.diff_i5 = new Gtk.Image();
             this.diff_i5.Name = "diff_i5";
             this.hbox3.Add(this.diff_i5);
-            Gtk.Box.BoxChild w33 = ((Gtk.Box.BoxChild)(this.hbox3[this.diff_i5]));
-            w33.Position = 7;
-            w33.Expand = false;
-            w33.Fill = false;
+            Gtk.Box.BoxChild w37 = ((Gtk.Box.BoxChild)(this.hbox3[this.diff_i5]));
+            w37.Position = 7;
+            w37.Expand = false;
+            w37.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.label4 = new Gtk.Label();
             this.label4.Name = "label4";
@@ -388,55 +433,55 @@ namespace ocmgtk {
             this.label4.LabelProp = Mono.Unix.Catalog.GetString("<b>Terrain:</b>");
             this.label4.UseMarkup = true;
             this.hbox3.Add(this.label4);
-            Gtk.Box.BoxChild w34 = ((Gtk.Box.BoxChild)(this.hbox3[this.label4]));
-            w34.Position = 8;
-            w34.Expand = false;
-            w34.Fill = false;
+            Gtk.Box.BoxChild w38 = ((Gtk.Box.BoxChild)(this.hbox3[this.label4]));
+            w38.Position = 8;
+            w38.Expand = false;
+            w38.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.terr_i1 = new Gtk.Image();
             this.terr_i1.Name = "terr_i1";
             this.hbox3.Add(this.terr_i1);
-            Gtk.Box.BoxChild w35 = ((Gtk.Box.BoxChild)(this.hbox3[this.terr_i1]));
-            w35.Position = 9;
-            w35.Expand = false;
-            w35.Fill = false;
+            Gtk.Box.BoxChild w39 = ((Gtk.Box.BoxChild)(this.hbox3[this.terr_i1]));
+            w39.Position = 9;
+            w39.Expand = false;
+            w39.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.terr_i2 = new Gtk.Image();
             this.terr_i2.Name = "terr_i2";
             this.hbox3.Add(this.terr_i2);
-            Gtk.Box.BoxChild w36 = ((Gtk.Box.BoxChild)(this.hbox3[this.terr_i2]));
-            w36.Position = 10;
-            w36.Expand = false;
-            w36.Fill = false;
+            Gtk.Box.BoxChild w40 = ((Gtk.Box.BoxChild)(this.hbox3[this.terr_i2]));
+            w40.Position = 10;
+            w40.Expand = false;
+            w40.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.terr_i3 = new Gtk.Image();
             this.terr_i3.Name = "terr_i3";
             this.hbox3.Add(this.terr_i3);
-            Gtk.Box.BoxChild w37 = ((Gtk.Box.BoxChild)(this.hbox3[this.terr_i3]));
-            w37.Position = 11;
-            w37.Expand = false;
-            w37.Fill = false;
+            Gtk.Box.BoxChild w41 = ((Gtk.Box.BoxChild)(this.hbox3[this.terr_i3]));
+            w41.Position = 11;
+            w41.Expand = false;
+            w41.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.terr_i4 = new Gtk.Image();
             this.terr_i4.Name = "terr_i4";
             this.hbox3.Add(this.terr_i4);
-            Gtk.Box.BoxChild w38 = ((Gtk.Box.BoxChild)(this.hbox3[this.terr_i4]));
-            w38.Position = 12;
-            w38.Expand = false;
-            w38.Fill = false;
+            Gtk.Box.BoxChild w42 = ((Gtk.Box.BoxChild)(this.hbox3[this.terr_i4]));
+            w42.Position = 12;
+            w42.Expand = false;
+            w42.Fill = false;
             // Container child hbox3.Gtk.Box+BoxChild
             this.terr_i5 = new Gtk.Image();
             this.terr_i5.Name = "terr_i5";
             this.hbox3.Add(this.terr_i5);
-            Gtk.Box.BoxChild w39 = ((Gtk.Box.BoxChild)(this.hbox3[this.terr_i5]));
-            w39.Position = 13;
-            w39.Expand = false;
-            w39.Fill = false;
+            Gtk.Box.BoxChild w43 = ((Gtk.Box.BoxChild)(this.hbox3[this.terr_i5]));
+            w43.Position = 13;
+            w43.Expand = false;
+            w43.Fill = false;
             this.infoPanelVBOX.Add(this.hbox3);
-            Gtk.Box.BoxChild w40 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.hbox3]));
-            w40.Position = 3;
-            w40.Expand = false;
-            w40.Fill = false;
+            Gtk.Box.BoxChild w44 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.hbox3]));
+            w44.Position = 4;
+            w44.Expand = false;
+            w44.Fill = false;
             // Container child infoPanelVBOX.Gtk.Box+BoxChild
             this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
             this.alignment1.Name = "alignment1";
@@ -451,44 +496,33 @@ namespace ocmgtk {
             this.coordinateLabel.Ypad = 5;
             this.coordinateLabel.LabelProp = "<coord>";
             this.hbox7.Add(this.coordinateLabel);
-            Gtk.Box.BoxChild w41 = ((Gtk.Box.BoxChild)(this.hbox7[this.coordinateLabel]));
-            w41.Position = 0;
-            w41.Expand = false;
-            w41.Fill = false;
+            Gtk.Box.BoxChild w45 = ((Gtk.Box.BoxChild)(this.hbox7[this.coordinateLabel]));
+            w45.Position = 0;
+            w45.Expand = false;
+            w45.Fill = false;
             // Container child hbox7.Gtk.Box+BoxChild
             this.distance_label = new Gtk.Label();
             this.distance_label.Name = "distance_label";
             this.distance_label.LabelProp = "<bearing & distance>";
             this.hbox7.Add(this.distance_label);
-            Gtk.Box.BoxChild w42 = ((Gtk.Box.BoxChild)(this.hbox7[this.distance_label]));
-            w42.Position = 1;
-            w42.Expand = false;
-            w42.Fill = false;
+            Gtk.Box.BoxChild w46 = ((Gtk.Box.BoxChild)(this.hbox7[this.distance_label]));
+            w46.Position = 1;
+            w46.Expand = false;
+            w46.Fill = false;
             this.alignment1.Add(this.hbox7);
             this.infoPanelVBOX.Add(this.alignment1);
-            Gtk.Box.BoxChild w44 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.alignment1]));
-            w44.Position = 4;
-            w44.Expand = false;
-            w44.Fill = false;
-            // Container child infoPanelVBOX.Gtk.Box+BoxChild
-            this.countryLabel = new Gtk.Label();
-            this.countryLabel.Name = "countryLabel";
-            this.countryLabel.Xpad = 6;
-            this.countryLabel.Xalign = 0F;
-            this.countryLabel.LabelProp = Mono.Unix.Catalog.GetString("<country>");
-            this.infoPanelVBOX.Add(this.countryLabel);
-            Gtk.Box.BoxChild w45 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.countryLabel]));
-            w45.Position = 5;
-            w45.Expand = false;
-            w45.Fill = false;
+            Gtk.Box.BoxChild w48 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.alignment1]));
+            w48.Position = 5;
+            w48.Expand = false;
+            w48.Fill = false;
             // Container child infoPanelVBOX.Gtk.Box+BoxChild
             this.hbuttonbox2 = new Gtk.HButtonBox();
             this.hbuttonbox2.Name = "hbuttonbox2";
             this.infoPanelVBOX.Add(this.hbuttonbox2);
-            Gtk.Box.BoxChild w46 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.hbuttonbox2]));
-            w46.Position = 6;
-            w46.Expand = false;
-            w46.Fill = false;
+            Gtk.Box.BoxChild w49 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.hbuttonbox2]));
+            w49.Position = 6;
+            w49.Expand = false;
+            w49.Fill = false;
             this.Add(this.infoPanelVBOX);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

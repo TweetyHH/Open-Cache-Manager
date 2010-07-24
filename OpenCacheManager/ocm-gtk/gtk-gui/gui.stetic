@@ -458,6 +458,25 @@
         <property name="Label" translatable="yes">Done</property>
         <property name="ShortLabel" translatable="yes">Done</property>
       </action>
+      <action id="DeleteAllVisibleCachesAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Delete All Visible Caches...</property>
+        <property name="ShortLabel" translatable="yes">Delete All Visible Caches...</property>
+        <signal name="Activated" handler="OnDeleteAllSelect" />
+      </action>
+      <action id="UseGPSDAsCentreAction">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">Use GPSD as Centre</property>
+        <property name="ShortLabel" translatable="yes">Use GPSD as Centre</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">False</property>
+        <signal name="Toggled" handler="OnGPSDToggle" />
+      </action>
+      <action id="ConfigureGPSDAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Configure GPSD...</property>
+        <property name="ShortLabel" translatable="yes">Configure GPSD...</property>
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">OCM</property>
@@ -508,6 +527,7 @@
                 <node type="Menuitem" action="AddCacheAction" />
                 <node type="Menuitem" action="ModifyCacheAction" />
                 <node type="Menuitem" action="DeleteCacheAction" />
+                <node type="Menuitem" action="DeleteAllVisibleCachesAction" />
               </node>
               <node type="Menu" action="WebAction">
                 <node type="Menu" action="GeocachingComAction1">
@@ -538,6 +558,9 @@
                 <node type="Menuitem" action="ZoomToSelectedCacheAction" />
                 <node type="Menuitem" action="SetSelectedCacheAsCentreAction" />
                 <node type="Menuitem" action="ResetCentreToHomeAction" />
+                <node type="Separator" />
+                <node type="Menuitem" action="UseGPSDAsCentreAction" />
+                <node type="Menuitem" action="ConfigureGPSDAction" />
               </node>
               <node type="Menu" action="GPSAction">
                 <node type="Menuitem" action="ConfigureGPSAction" />
@@ -632,7 +655,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="ocmgtk.GeocacheInfoPanel" design-size="998 1491">
+  <widget class="Gtk.Bin" id="ocmgtk.GeocacheInfoPanel" design-size="941 320">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -783,6 +806,57 @@
           </packing>
         </child>
         <child>
+          <widget class="Gtk.HBox" id="hbox4">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Label" id="countryLabel">
+                <property name="MemberName" />
+                <property name="Xpad">6</property>
+                <property name="Xalign">0</property>
+                <property name="LabelProp" translatable="yes">&lt;country&gt;</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="label6">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">&lt;b&gt;Last Log By You:&lt;/b&gt;</property>
+                <property name="UseMarkup">True</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="lastFoundDateLabel">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Never</property>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
           <widget class="Gtk.HBox" id="hbox2">
             <property name="MemberName" />
             <property name="Spacing">6</property>
@@ -878,7 +952,7 @@
             </child>
           </widget>
           <packing>
-            <property name="Position">2</property>
+            <property name="Position">3</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -1058,7 +1132,7 @@
             </child>
           </widget>
           <packing>
-            <property name="Position">3</property>
+            <property name="Position">4</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -1099,20 +1173,6 @@
                 </child>
               </widget>
             </child>
-          </widget>
-          <packing>
-            <property name="Position">4</property>
-            <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
-          </packing>
-        </child>
-        <child>
-          <widget class="Gtk.Label" id="countryLabel">
-            <property name="MemberName" />
-            <property name="Xpad">6</property>
-            <property name="Xalign">0</property>
-            <property name="LabelProp" translatable="yes">&lt;country&gt;</property>
           </widget>
           <packing>
             <property name="Position">5</property>
@@ -2232,7 +2292,7 @@ Other</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.Preferences" design-size="550 331">
+  <widget class="Gtk.Dialog" id="ocmgtk.Preferences" design-size="550 341">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Preferences...</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -2253,12 +2313,6 @@ Other</property>
             <property name="NColumns">2</property>
             <property name="RowSpacing">6</property>
             <property name="ColumnSpacing">6</property>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
             <child>
               <placeholder />
             </child>
@@ -2383,6 +2437,26 @@ Other</property>
               </packing>
             </child>
             <child>
+              <widget class="Gtk.Label" id="label5">
+                <property name="MemberName" />
+                <property name="Xalign">0</property>
+                <property name="LabelProp" translatable="yes">Nearby Caches on Map:</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">7</property>
+                <property name="BottomAttach">8</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="ocmgtk.CoordinateWidget" id="latControl">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
@@ -2472,6 +2546,30 @@ Google Terrain</property>
               </packing>
             </child>
             <child>
+              <widget class="Gtk.ComboBox" id="nearbyCombo">
+                <property name="MemberName" />
+                <property name="IsTextCombo">True</property>
+                <property name="Items" translatable="yes">Enabled on Startup
+Disabled on Startup</property>
+                <property name="Active">0</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">7</property>
+                <property name="BottomAttach">8</property>
+                <property name="LeftAttach">1</property>
+                <property name="RightAttach">2</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="Gtk.ComboBox" id="unitsCombo">
                 <property name="MemberName" />
                 <property name="IsTextCombo">True</property>
@@ -2499,6 +2597,8 @@ U.S./Imperial</property>
           <packing>
             <property name="Position">0</property>
             <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
           </packing>
         </child>
       </widget>
@@ -3182,6 +3282,7 @@ home and know which caches are yours.</property>
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Label" translatable="yes">All Cache Types</property>
+                <property name="Active">True</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>

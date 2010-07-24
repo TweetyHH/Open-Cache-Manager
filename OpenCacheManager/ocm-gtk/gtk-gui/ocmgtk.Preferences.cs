@@ -27,6 +27,8 @@ namespace ocmgtk {
         
         private Gtk.Label label4;
         
+        private Gtk.Label label5;
+        
         private ocmgtk.CoordinateWidget latControl;
         
         private ocmgtk.CoordinateWidget lonControl;
@@ -34,6 +36,8 @@ namespace ocmgtk {
         private Gtk.ComboBox mapsCombo;
         
         private Gtk.Entry memberId;
+        
+        private Gtk.ComboBox nearbyCombo;
         
         private Gtk.ComboBox unitsCombo;
         
@@ -123,27 +127,38 @@ namespace ocmgtk {
             w7.XOptions = ((Gtk.AttachOptions)(4));
             w7.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
+            this.label5 = new Gtk.Label();
+            this.label5.Name = "label5";
+            this.label5.Xalign = 0F;
+            this.label5.LabelProp = Mono.Unix.Catalog.GetString("Nearby Caches on Map:");
+            this.table1.Add(this.label5);
+            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table1[this.label5]));
+            w8.TopAttach = ((uint)(7));
+            w8.BottomAttach = ((uint)(8));
+            w8.XOptions = ((Gtk.AttachOptions)(4));
+            w8.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
             this.latControl = new ocmgtk.CoordinateWidget();
             this.latControl.Events = ((Gdk.EventMask)(256));
             this.latControl.Name = "latControl";
             this.table1.Add(this.latControl);
-            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table1[this.latControl]));
-            w8.LeftAttach = ((uint)(1));
-            w8.RightAttach = ((uint)(2));
-            w8.XOptions = ((Gtk.AttachOptions)(4));
-            w8.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table1[this.latControl]));
+            w9.LeftAttach = ((uint)(1));
+            w9.RightAttach = ((uint)(2));
+            w9.XOptions = ((Gtk.AttachOptions)(4));
+            w9.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.lonControl = new ocmgtk.CoordinateWidget();
             this.lonControl.Events = ((Gdk.EventMask)(256));
             this.lonControl.Name = "lonControl";
             this.table1.Add(this.lonControl);
-            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table1[this.lonControl]));
-            w9.TopAttach = ((uint)(1));
-            w9.BottomAttach = ((uint)(2));
-            w9.LeftAttach = ((uint)(1));
-            w9.RightAttach = ((uint)(2));
-            w9.XOptions = ((Gtk.AttachOptions)(4));
-            w9.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.table1[this.lonControl]));
+            w10.TopAttach = ((uint)(1));
+            w10.BottomAttach = ((uint)(2));
+            w10.LeftAttach = ((uint)(1));
+            w10.RightAttach = ((uint)(2));
+            w10.XOptions = ((Gtk.AttachOptions)(4));
+            w10.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.mapsCombo = Gtk.ComboBox.NewText();
             this.mapsCombo.AppendText(Mono.Unix.Catalog.GetString("Open Street Maps"));
@@ -153,13 +168,13 @@ namespace ocmgtk {
             this.mapsCombo.Name = "mapsCombo";
             this.mapsCombo.Active = 0;
             this.table1.Add(this.mapsCombo);
-            Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.table1[this.mapsCombo]));
-            w10.TopAttach = ((uint)(6));
-            w10.BottomAttach = ((uint)(7));
-            w10.LeftAttach = ((uint)(1));
-            w10.RightAttach = ((uint)(2));
-            w10.XOptions = ((Gtk.AttachOptions)(4));
-            w10.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w11 = ((Gtk.Table.TableChild)(this.table1[this.mapsCombo]));
+            w11.TopAttach = ((uint)(6));
+            w11.BottomAttach = ((uint)(7));
+            w11.LeftAttach = ((uint)(1));
+            w11.RightAttach = ((uint)(2));
+            w11.XOptions = ((Gtk.AttachOptions)(4));
+            w11.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.memberId = new Gtk.Entry();
             this.memberId.CanFocus = true;
@@ -167,13 +182,27 @@ namespace ocmgtk {
             this.memberId.IsEditable = true;
             this.memberId.InvisibleChar = '•';
             this.table1.Add(this.memberId);
-            Gtk.Table.TableChild w11 = ((Gtk.Table.TableChild)(this.table1[this.memberId]));
-            w11.TopAttach = ((uint)(3));
-            w11.BottomAttach = ((uint)(4));
-            w11.LeftAttach = ((uint)(1));
-            w11.RightAttach = ((uint)(2));
-            w11.XOptions = ((Gtk.AttachOptions)(4));
-            w11.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w12 = ((Gtk.Table.TableChild)(this.table1[this.memberId]));
+            w12.TopAttach = ((uint)(3));
+            w12.BottomAttach = ((uint)(4));
+            w12.LeftAttach = ((uint)(1));
+            w12.RightAttach = ((uint)(2));
+            w12.XOptions = ((Gtk.AttachOptions)(4));
+            w12.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.nearbyCombo = Gtk.ComboBox.NewText();
+            this.nearbyCombo.AppendText(Mono.Unix.Catalog.GetString("Enabled on Startup"));
+            this.nearbyCombo.AppendText(Mono.Unix.Catalog.GetString("Disabled on Startup"));
+            this.nearbyCombo.Name = "nearbyCombo";
+            this.nearbyCombo.Active = 0;
+            this.table1.Add(this.nearbyCombo);
+            Gtk.Table.TableChild w13 = ((Gtk.Table.TableChild)(this.table1[this.nearbyCombo]));
+            w13.TopAttach = ((uint)(7));
+            w13.BottomAttach = ((uint)(8));
+            w13.LeftAttach = ((uint)(1));
+            w13.RightAttach = ((uint)(2));
+            w13.XOptions = ((Gtk.AttachOptions)(4));
+            w13.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.unitsCombo = Gtk.ComboBox.NewText();
             this.unitsCombo.AppendText(Mono.Unix.Catalog.GetString("Metric"));
@@ -181,22 +210,24 @@ namespace ocmgtk {
             this.unitsCombo.Name = "unitsCombo";
             this.unitsCombo.Active = 0;
             this.table1.Add(this.unitsCombo);
-            Gtk.Table.TableChild w12 = ((Gtk.Table.TableChild)(this.table1[this.unitsCombo]));
-            w12.TopAttach = ((uint)(5));
-            w12.BottomAttach = ((uint)(6));
-            w12.LeftAttach = ((uint)(1));
-            w12.RightAttach = ((uint)(2));
-            w12.XOptions = ((Gtk.AttachOptions)(4));
-            w12.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w14 = ((Gtk.Table.TableChild)(this.table1[this.unitsCombo]));
+            w14.TopAttach = ((uint)(5));
+            w14.BottomAttach = ((uint)(6));
+            w14.LeftAttach = ((uint)(1));
+            w14.RightAttach = ((uint)(2));
+            w14.XOptions = ((Gtk.AttachOptions)(4));
+            w14.YOptions = ((Gtk.AttachOptions)(4));
             w1.Add(this.table1);
-            Gtk.Box.BoxChild w13 = ((Gtk.Box.BoxChild)(w1[this.table1]));
-            w13.Position = 0;
+            Gtk.Box.BoxChild w15 = ((Gtk.Box.BoxChild)(w1[this.table1]));
+            w15.Position = 0;
+            w15.Expand = false;
+            w15.Fill = false;
             // Internal child ocmgtk.Preferences.ActionArea
-            Gtk.HButtonBox w14 = this.ActionArea;
-            w14.Name = "dialog1_ActionArea";
-            w14.Spacing = 10;
-            w14.BorderWidth = ((uint)(5));
-            w14.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            Gtk.HButtonBox w16 = this.ActionArea;
+            w16.Name = "dialog1_ActionArea";
+            w16.Spacing = 10;
+            w16.BorderWidth = ((uint)(5));
+            w16.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -206,9 +237,9 @@ namespace ocmgtk {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w15 = ((Gtk.ButtonBox.ButtonBoxChild)(w14[this.buttonCancel]));
-            w15.Expand = false;
-            w15.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w17 = ((Gtk.ButtonBox.ButtonBoxChild)(w16[this.buttonCancel]));
+            w17.Expand = false;
+            w17.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -218,15 +249,15 @@ namespace ocmgtk {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w16 = ((Gtk.ButtonBox.ButtonBoxChild)(w14[this.buttonOk]));
-            w16.Position = 1;
-            w16.Expand = false;
-            w16.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w18 = ((Gtk.ButtonBox.ButtonBoxChild)(w16[this.buttonOk]));
+            w18.Position = 1;
+            w18.Expand = false;
+            w18.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 550;
-            this.DefaultHeight = 331;
+            this.DefaultHeight = 341;
             this.buttonOk.HasDefault = true;
             this.Show();
             this.buttonCancel.Clicked += new System.EventHandler(this.OnCancelClicked);
