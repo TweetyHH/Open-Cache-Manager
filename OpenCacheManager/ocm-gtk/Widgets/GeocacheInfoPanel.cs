@@ -88,6 +88,11 @@ namespace ocmgtk
 				setCacheIcon (cache.TypeOfCache);
 				dateLabel.Text = cache.Time.ToShortDateString ();
 				infoDateLabel.Text = cache.Updated.ToShortDateString ();
+				DateTime lastDate = Engine.getInstance().Store.GetLastLogByYou(cache, m_monitor.OwnerID);
+				if (lastDate == DateTime.MinValue)
+					lastFoundDateLabel.Text = Catalog.GetString("Never");
+				else
+					lastFoundDateLabel.Text = lastDate.ToShortDateString();
 				
 				if (cache.Found)
 					statusLabel.Markup = FOUND; 
@@ -117,8 +122,8 @@ namespace ocmgtk
 				}
 				
 				setCoordinate (cache);
-			} catch (Exception) {
-				System.Console.WriteLine ("Exception caught!");
+			} catch (Exception e) {
+				UIMonitor.ShowException(e);
 			}
 		}
 

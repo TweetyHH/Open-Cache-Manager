@@ -17,6 +17,7 @@ namespace ocmgtk
 		const string START_FOUND = "<span fgcolor='darkgreen'>";
 		const string START_ARCHIVE = "<span fgcolor='red' strikethrough='true'>";
 		const string START_UNAVAIL = "<span fgcolor='red'>";
+		const string START_RECENT_DNF = "<span fgcolor='orange'>";
 		const string END_SPAN = "</span>";
 		const string FOUND_CACHE = "Geocache Found";
 
@@ -107,6 +108,7 @@ namespace ocmgtk
 			return caches;
 		}
 		
+		
 		public void SetImperial()
 		{
 			m_distanceCol.Title = Catalog.GetString("Mi");
@@ -192,8 +194,11 @@ namespace ocmgtk
 			CellRendererText text = cell as CellRendererText;
 			
 			if (!cache.Available && !cache.Archived)
-				text.Markup = unavailText (cache.CacheName); else if (cache.Archived)
+				text.Markup = unavailText (cache.CacheName);
+			else if (cache.Archived)
 				text.Markup = archiveText (cache.CacheName);
+			else if (cache.RecentDNFs)
+				text.Markup = START_RECENT_DNF + cache.CacheName + END_SPAN;
 			else
 				text.Markup = GLib.Markup.EscapeText (cache.CacheName);
 		}
@@ -260,7 +265,7 @@ namespace ocmgtk
 				refreshTimer.Enabled = true;
 		}
 
-		private void RefilterList ()
+		public void RefilterList ()
 		{
 			m_monitor.StartFiltering ();
 			m_QuickFilter.Refilter ();
@@ -583,7 +588,6 @@ namespace ocmgtk
 			do
 			{
 				Geocache cache = (Geocache)model.GetValue (itr, 0);
-				System.Console.WriteLine(cache.Name);
 				if (cache.Name == code)
 				{
 					treeview1.Selection.SelectIter(itr);

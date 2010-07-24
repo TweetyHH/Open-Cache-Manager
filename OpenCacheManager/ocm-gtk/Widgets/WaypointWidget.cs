@@ -28,6 +28,7 @@ namespace ocmgtk
 	{
 
 		private ListStore m_childPoints;
+		private TreeModelSort m_ListSort;
 		private UIMonitor m_mon;
 
 		public WaypointWidget ()
@@ -44,10 +45,16 @@ namespace ocmgtk
 			CellRendererText code_cell = new CellRendererText ();
 			CellRendererText title_cell = new CellRendererText ();
 			CellRendererText coord_cell = new CellRendererText ();
+			CellRendererPixbuf icon_cell = new CellRendererPixbuf ();
+			TreeViewColumn wpt_icon = new TreeViewColumn (Catalog.GetString ("Type"), icon_cell);
 			TreeViewColumn wpt_code = new TreeViewColumn (Catalog.GetString ("Code"), code_cell);
+			wpt_code.SortColumnId = 0;
 			TreeViewColumn wpt_Lat = new TreeViewColumn (Catalog.GetString ("Location"), coord_cell);
+			wpt_Lat.SortColumnId = 1;
 			TreeViewColumn wpt_title = new TreeViewColumn (Catalog.GetString ("Name"), title_cell);
+			wpt_title.SortColumnId = 2;
 			
+			wptView.AppendColumn (wpt_icon);
 			wptView.AppendColumn (wpt_code);
 			wptView.AppendColumn (wpt_Lat);
 			wptView.AppendColumn (wpt_title);
@@ -56,9 +63,48 @@ namespace ocmgtk
 			wpt_code.SetCellDataFunc (code_cell, new TreeCellDataFunc (RenderCode));
 			wpt_title.SetCellDataFunc (title_cell, new TreeCellDataFunc (RenderTitle));
 			wpt_Lat.SetCellDataFunc (coord_cell, new TreeCellDataFunc (RenderCoord));
+			wpt_icon.SetCellDataFunc (icon_cell, new TreeCellDataFunc (RenderIcon));
+			m_ListSort = new TreeModelSort(m_childPoints);
+			m_ListSort.SetSortFunc (2, NameCompare);
+			m_ListSort.SetSortFunc (1, LocationCompare);
+			m_ListSort.SetSortFunc (0, CodeCompare);
 			
-			wptView.Model = m_childPoints;
+			wptView.Model = m_ListSort;
 			wptView.Selection.Changed += OnSelectionChanged;
+		}
+		
+		private int NameCompare (TreeModel model, TreeIter tia, TreeIter tib)
+		{
+			Waypoint cacheA = (Waypoint)model.GetValue (tia, 0);
+			Waypoint cacheB = (Waypoint)model.GetValue (tib, 0);
+			return String.Compare (cacheA.Desc, cacheB.Desc);
+		}
+		
+		private int LocationCompare (TreeModel model, TreeIter tia, TreeIter tib)
+		{
+			Waypoint cacheA = (Waypoint)model.GetValue (tia, 0);
+			Waypoint cacheB = (Waypoint)model.GetValue (tib, 0);
+			double compare = GetDistanceFromParent (cacheA) - GetDistanceFromParent(cacheB);
+			if (compare > 0)
+				return 1; else if (compare == 0)
+				return 0;
+			else
+				return -1;
+		}
+		
+		public double GetDistanceFromParent (Waypoint pt)
+		{
+			if (pt == null)
+				return 0;
+			return Utilities.calculateDistance (m_mon.SelectedCache.Lat, pt.Lat, m_mon.SelectedCache.Lon, pt.Lon);
+		}
+
+		
+		private int CodeCompare (TreeModel model, TreeIter tia, TreeIter tib)
+		{
+			Waypoint cacheA = (Waypoint)model.GetValue (tia, 0);
+			Waypoint cacheB = (Waypoint)model.GetValue (tib, 0);
+			return String.Compare (cacheA.Name, cacheB.Name);
 		}
 
 		private void OnSelectionChanged (object sender, EventArgs e)
@@ -98,7 +144,7 @@ namespace ocmgtk
 				m_mon.AddMapWayPoint (wptenum.Current);
 				
 			}
-			
+			m_ListSort.SetSortColumnId (1, SortType.Ascending);
 			m_mon.ZoomToPoint (cache.Lat, cache.Lon);
 		}
 
@@ -122,6 +168,16 @@ namespace ocmgtk
 			Waypoint wpt = (Waypoint)model.GetValue (iter, 0);
 			CellRendererText text = cell as CellRendererText;
 			text.Text = Utilities.getCoordString (wpt.Lat, wpt.Lon);
+		}
+		
+		private void RenderIcon (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
+		{
+			Waypoint pt = (Waypoint)model.GetValue (iter, 0);
+			CellRendererPixbuf icon = cell as CellRendererPixbuf;
+			if (pt is Geocache)
+				icon.Pixbuf = UIMonitor.GetSmallCacheIcon ((pt as Geocache).TypeOfCache);
+			else
+				icon.Pixbuf = UIMonitor.GetSmallWaypointIcon(pt.Symbol);
 		}
 
 		protected virtual void DoEdit (object sender, System.EventArgs e)
