@@ -1,4 +1,4 @@
-using System.Timers;
+
 using org.freedesktop.DBus;
 using NDesk.DBus;
 
@@ -10,33 +10,41 @@ namespace ocmgtk
 		private Connection DbusConnection;
 		public Gpsd gps;
 		
-		public double lastLat = 0;
-		public double lastLon = 0;
+		private double lastLat = 0;
+		public double Lat
+		{
+			get { return lastLat;}
+		}
+		
+		
+		private double lastLon = 0;
+		public double Lon
+		{
+			get { return lastLon;}
+		}
 		
 		public GPS ()
 		{
 			DbusConnection = Bus.System;
 			gps = DbusConnection.GetObject<Gpsd> ("org.gpsd", new ObjectPath ("/org/gpsd"));
 			gps.fix += HandleGpsfix;
-			/*Timer pollInterval = new Timer(60000);
-			pollInterval.AutoReset = true;
-			pollInterval.Elapsed += HandlePollIntervalElapsed;*/
-		}
-		
-		private void GetCoord ()
-		{
-		
 		}
 
 		void HandleGpsfix (GPSFix fix)
-		{
-			System.Console.WriteLine("GPS FIX:" + fix.latitude + " " + fix.longitude);
-		}
-
-		void HandlePollIntervalElapsed (object sender, ElapsedEventArgs e)
-		{
-			
-		}		
+		{;
+			if (double.IsNaN(fix.latitude) || fix.latitude > 90 || fix.latitude < -90)
+			{
+				// Garbage coordinate. Ignore this reading;
+				return;
+			}
+			else if (double.IsNaN(fix.longitude) || fix.longitude < -180 || fix.longitude > 180)
+			{
+				// Garbage coordinate. Ignore this reading;
+				return;
+			}
+			lastLat = fix.latitude;
+			lastLon = fix.longitude;
+		}	
 	}
 
 	public struct GPSFix

@@ -42,6 +42,11 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.Map = cachePane.CacheMap;
 	}
 
+	void HandleHandleConfigureEvent (object o, ConfigureEventArgs args)
+	{
+		System.Console.WriteLine("CONFIGURE!");
+	}
+
 	protected void BuildBookMarkMenu()
 	{
 		MenuItem bmrks = new MenuItem(Catalog.GetString("_Bookmarks"));
@@ -85,12 +90,14 @@ public partial class MainWindow : Gtk.Window
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
+		m_monitor.SaveWinSettings();
 		Application.Quit ();
 		a.RetVal = true;
 	}
 
 	protected virtual void OnQuit (object sender, System.EventArgs e)
 	{
+		m_monitor.SaveWinSettings();
 		Application.Quit ();
 	}
 
@@ -259,6 +266,11 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OnShowAllToggle (object sender, System.EventArgs e)
 	{
 		m_monitor.ShowNearby = ShowNearbyCachesAction.Active;
+	}
+	
+	public void SetNearbyEnabled()
+	{
+		ShowNearbyCachesAction.Active = true;
 	}
 	
 	protected virtual void OnZoomHome (object sender, System.EventArgs e)
@@ -445,6 +457,16 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.AddCache();
 	}
 	
+	protected virtual void OnDeleteAllSelect (object sender, System.EventArgs e)
+	{
+		m_monitor.DeleteAll();
+	}
 	
-	
+	protected virtual void OnGPSDToggle (object sender, System.EventArgs e)
+	{
+		if (UseGPSDAsCentreAction.Active)
+			m_monitor.EnableGPS();
+		else
+			m_monitor.DisableGPS();
+	}
 }

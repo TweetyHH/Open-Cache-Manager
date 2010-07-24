@@ -533,6 +533,9 @@
     <Resource Include="icons\24x24\greenpin.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\scalable\pushpin.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="OCM.desktop">
@@ -554,6 +557,8 @@
     <None Include="ocm-gtk" />
     <None Include="docs\Credits.txt" />
     <None Include="docs\Version.txt" />
-    <None Include="icons\scalable\greenpin.svg" />
+    <None Include="icons\scalable\greenpin.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

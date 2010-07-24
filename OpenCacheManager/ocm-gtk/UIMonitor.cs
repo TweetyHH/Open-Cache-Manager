@@ -21,6 +21,7 @@ using Gtk;
 using ocmengine;
 using System.Diagnostics;
 using System.Globalization;
+using System.Timers;
 
 namespace ocmgtk
 {
@@ -51,6 +52,11 @@ namespace ocmgtk
 		private static Pixbuf VIRTUAL_S = new Pixbuf ("./icons/scalable/virtual.svg", 24, 24);
 		private static Pixbuf OWNED_S = new Pixbuf ("./icons/scalable/star.svg", 24, 24);
 		private static Pixbuf GENERIC_S = new Pixbuf ("./icons/scalable/treasure.svg", 24, 24);
+		private static Pixbuf PARKING_S = new Pixbuf ("./icons/scalable/parking.svg", 24, 24);
+		private static Pixbuf TRAILHEAD_S = new Pixbuf ("./icons/scalable/trailhead.svg", 24, 24);
+		private static Pixbuf GREENPIN_S = new Pixbuf ("./icons/scalable/greenpin.svg", 24, 24);
+		private static Pixbuf BLUEPIN_S = new Pixbuf ("./icons/scalable/bluepin.svg", 24, 24);
+		private static Pixbuf REDPIN_S = new Pixbuf ("./icons/scalable/pushpin.svg", 24, 24);
 
 		private static string TRAD_MI = "traditional.png";
 		private static string CITO_MI = "cito.png";
@@ -84,6 +90,10 @@ namespace ocmgtk
 		private ProgressBar m_progress;
 		private bool m_showNearby;
 		private bool m_useImperial;
+		private Timer m_gpsTimer;
+		private GPS m_gps;
+		private int m_width;
+		private int m_height;
 		#endregion
 
 		#region Properties
@@ -117,7 +127,7 @@ namespace ocmgtk
 		/// </summary>
 		public MainWindow Main {
 			get { return m_mainWin; }
-			set { m_mainWin = value; }
+			set { m_mainWin = value;}
 		}
 
 		/// <summary>
@@ -239,16 +249,29 @@ namespace ocmgtk
 			}
 			OwnerID = (string)m_conf.Get ("/apps/ocm/memberid", String.Empty);
 			m_useImperial = (Boolean) m_conf.Get("/apps/ocm/imperial", false);
+			int win_width = (int) m_conf.Get("/apps/ocm/winwidth", 1024);
+			int win_height = (int) m_conf.Get("/apps/ocm/winheight", 768);
+			m_mainWin.Resize(win_width, win_height);
 			string map = (string) m_conf.Get("/apps/ocm/defmap", "osm");
 			String dbName = (string)m_conf.Get ("/apps/ocm/currentdb", String.Empty);
+			m_mainWin.SizeAllocated += HandleM_mainWinSizeAllocated;
 			SetCurrentDB (dbName, true);
 			LoadMap (map);
 			SetSelectedCache(null);
+			bool showNearby = (Boolean) m_conf.Get("/apps/ocm/shownearby", true);
+			if (showNearby)
+				m_mainWin.SetNearbyEnabled();
 			if (m_useImperial)
 				m_cachelist.SetImperial();
 			GoHome ();
 		}
-		
+
+		void HandleM_mainWinSizeAllocated (object o, SizeAllocatedArgs args)
+		{
+			m_width = args.Allocation.Width;
+			m_height = args.Allocation.Height;
+		}
+
 		private void LoadMap (string map)
 		{
 			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map);
@@ -311,6 +334,7 @@ namespace ocmgtk
 		public void RefreshCaches ()
 		{
 			m_mainWin.GdkWindow.Cursor = new Cursor (Gdk.CursorType.Watch);
+			Geocache selected = m_selectedCache;
 			m_statusbar.Push (m_statusbar.GetContextId ("refilter"), "Retrieving caches, please wait..");
 			UpdateCentrePointStatus ();
 			DoGUIUpdate ();
@@ -516,6 +540,19 @@ namespace ocmgtk
 			default:
 				return UIMonitor.OTHERICON_S;
 			}
+		}
+		
+		public static Pixbuf GetSmallWaypointIcon (String symbol)
+		{
+			if (symbol.Equals ("Parking Area"))
+				return PARKING_S; 
+			else if (symbol.Equals ("Trailhead"))
+				return TRAILHEAD_S; 
+			else if (symbol.Equals ("Final Location"))
+				return BLUEPIN_S;
+			else if ((symbol.Equals("Other")) || symbol.Equals("Reference Point"))
+				return GREENPIN_S;
+			return REDPIN_S;
 		}
 
 		/// <summary>
@@ -995,6 +1032,7 @@ namespace ocmgtk
 			dlg.Lon = (Double) m_conf.Get ("/apps/ocm/homelon", 0.0);
 			dlg.ImperialUnits = (Boolean) m_conf.Get("/apps/ocm/imperial", false);
 			dlg.DefaultMap = (String) m_conf.Get("/apps/ocm/defmap", "osm");
+			dlg.ShowNearby = (Boolean) m_conf.Get("/apps/ocm/shownearby", true);
 			dlg.Icon = m_mainWin.Icon;
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
@@ -1003,6 +1041,7 @@ namespace ocmgtk
 				m_conf.Set ("/apps/ocm/homelon", dlg.Lon);
 				m_conf.Set ("/apps/ocm/imperial", dlg.ImperialUnits);
 				m_conf.Set ("/apps/ocm/defmap", dlg.DefaultMap);
+				m_conf.Set ("/apps/ocm/shownearby", dlg.ShowNearby);
 				m_home_lat = dlg.Lat;
 				m_home_lon = dlg.Lon;
 				m_centreLabel.Text = Catalog.GetString("Home");
@@ -1146,6 +1185,76 @@ namespace ocmgtk
 				RefreshCaches();
 				SetSelectedCache(dlg.Cache);
 			}
+		}
+		
+		public void DeleteAll()
+		{
+			List<Geocache> list = GetVisibleCacheList();
+			MessageDialog dlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Warning,
+			                                      ButtonsType.YesNo, 
+			                                      String.Format(Catalog.GetString("Are you sure you want to delete these {0} caches?\nThis operation cannot be undone."), list.Count));
+			if ((int)ResponseType.Yes == dlg.Run ()) {
+				dlg.Hide();
+				CacheStore store = Engine.getInstance().Store;
+				foreach(Geocache cache in list)
+				{
+					store.DeleteGeocache (cache);
+				}
+				SetSelectedCache(null);
+				RefreshCaches ();
+			}
+			else
+			{
+				dlg.Hide();
+			}
+		}
+		
+		public void EnableGPS()
+		{
+			m_gps = new GPS();
+			m_gpsTimer = new Timer(10000);
+			m_gpsTimer.AutoReset = true;
+			m_gpsTimer.Enabled = true;
+			m_gpsTimer.Elapsed += HandleM_gpsTimerElapsed;
+			m_centreName = "GPS";
+			m_home_lat = m_gps.Lat;
+			m_home_lon = m_gps.Lon;
+			UpdateCentrePointStatus();
+			Timer init = new Timer(1000);
+			init.AutoReset = false;
+			init.Elapsed += HandleM_gpsTimerElapsed;
+			init.Start();
+		}
+
+		void HandleM_gpsTimerElapsed (object sender, ElapsedEventArgs e)
+		{
+			
+			Application.Invoke(delegate{
+			m_centreName = "GPS";
+			m_home_lat = m_gps.Lat;
+			m_home_lon = m_gps.Lon;
+			m_cachelist.RefilterList();
+			if (m_selectedCache == null)
+				GoHome();
+			});
+			
+			
+		}
+		
+		public void DisableGPS()
+		{
+			if (null == m_gpsTimer)
+				return;
+			m_gpsTimer.AutoReset = false;
+			m_gpsTimer.Stop();
+			m_gpsTimer = null;
+			m_gps = null;
+		}
+		
+		public void SaveWinSettings()
+		{
+			m_conf.Set("/apps/ocm/winwidth", m_width);
+			m_conf.Set("/apps/ocm/winheight",m_height);
 		}
 	}
 }
