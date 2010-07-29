@@ -49,23 +49,35 @@ namespace ocmgtk
 					return gpxwidget;
 			}
 		}
+		
+		public void UpdateWaypointSymbols(Config config)
+		{
+			waypointWidget.UpdateMappings(config);
+		}
 
 		public GPSConfiguration (Config config)
 		{
 			this.Build ();
 			try
 			{
+				//waypointWidget.PopulateMappings(config);
+				//waypointWidget.ShowAll();
 				SavedGPSConf saved = new SavedGPSConf(config);
 				if (saved.GetBabelFormat() == "garmin")
 				{
 					gusbRadio.Active = true;
 					gusbwidet.SetCacheLimit(saved.GetCacheLimit());
+					gusbwidet.SetGeocacheOverride(saved.IgnoreGeocacheOverrides());
+					gusbwidet.SetIgnoreWaypoint(saved.IgnoreWaypointOverrides());
+					gusbwidet.SetNameMode(saved.GetNameMode());
+					gusbwidet.SetDescMode(saved.GetDescMode());
 				}
 				else if (saved.GetBabelFormat()== "OCM_GPX")
 				{
 					gpxRadio.Active = true;
 					gpxwidget.SetCacheLimit(saved.GetCacheLimit());
 					gpxwidget.SetOutputFile(saved.GetOutputFile());
+					gpxwidget.SetLogLimit(saved.GetLogLimit());
 				}
 				else
 				{
@@ -75,6 +87,7 @@ namespace ocmgtk
 					gpswidget.SetOutputFile(saved.GetOutputFile());
 					gpswidget.SetBabelFormat(saved.GetBabelFormat());
 				}
+				
 			}
 			catch (GConf.NoSuchKeyException)
 			{

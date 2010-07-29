@@ -36,7 +36,7 @@ namespace ocmgtk
 			writer.WriteWaypoint += HandleWriterWriteWaypoint;
 		}
 
-		public void Start (List<Geocache> caches, IGPSConfig config)
+		public void Start (List<Geocache> caches, IGPSConfig config, Dictionary<string,string> wmappings)
 		{
 			try {
 				if (config.GetCacheLimit () == -1)
@@ -46,7 +46,10 @@ namespace ocmgtk
 				writer.Limit = config.GetCacheLimit ();
 				writer.BabelFile = config.GetOutputFile();
 				writer.BabelFormat = config.GetBabelFormat ();
-				writer.WriteToGPS (caches);
+				writer.DescMode = config.GetDescMode();
+				writer.NameMode = config.GetNameMode();
+				writer.LogLimit = config.GetLogLimit();
+				writer.WriteToGPS (caches, wmappings);
 				this.Show ();
 			} catch (Exception e) {
 				this.Hide ();

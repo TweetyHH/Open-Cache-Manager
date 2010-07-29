@@ -52,6 +52,23 @@ namespace ocmgtk
 			this.Hide();
 		}
 		
+		public bool IsModifyDialog
+		{
+			set
+			{
+				if (value)
+				{
+					codeEntry.Sensitive = false;
+					this.Title = "Modify Cache";
+				}
+				else
+				{
+					codeEntry.Sensitive = true;
+					this.Title = "Add Cache";
+				}
+			}
+		}
+		
 		private void PopulateDescription()
 		{
 			codeEntry.Text = m_cache.Name;

@@ -37,11 +37,11 @@ namespace ocmgtk
 			m_writer = writer;
 		}
 		
-		public void Start(String filename, List<Geocache> list)
+		public void Start(String filename, List<Geocache> list, Dictionary<string,string> wmappings)
 		{
 			total = list.Count;
 			fileLabel.Markup = Catalog.GetString("<b>File: </b>") + filename;
-			m_writer.WriteGPXFile(filename, list);
+			m_writer.WriteGPXFile(filename, list, wmappings);
 		}
 
 		void HandleWriterComplete (object sender, EventArgs args)

@@ -30,6 +30,7 @@ namespace ocmgtk
 		{
 			this.Build ();
 			this.image16.Pixbuf = LOGO;
+			versionLabel.Markup = "<b><big>" + UIMonitor.getInstance().GetOCMVersion() + "</big></b>";
 			Timer splashtime = new Timer();
 			//Color cl2 = new Color(255,255,255);
 			//this.ModifyBg(StateType.Normal, cl2);
