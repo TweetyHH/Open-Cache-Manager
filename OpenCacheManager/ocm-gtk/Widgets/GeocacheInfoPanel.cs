@@ -26,10 +26,12 @@ namespace ocmgtk
 		static string START_BIG = "<span font='bold 12'>";
 		static string END_BIG = "</span>";
 
+		static string FOUND_DATE = Catalog.GetString("<span font='bold italic 10' fgcolor='darkgreen'>You have already found this cache on {0}</span>");
 		static string FOUND = Catalog.GetString("<span font='bold italic 10' fgcolor='darkgreen'>You have already found this cache</span>");
 		static string MINE = Catalog.GetString("<span font='bold italic 10' fgcolor='darkgreen'>You own this cache</span>");
 		static string UNAVAILABLE = Catalog.GetString("<span font='bold italic 10' fgcolor='red'>This cache is temporarily unavailable, check the logs for more information.</span>");
 		static string ARCHIVED = Catalog.GetString("<span font='bold italic 10' fgcolor='red'>This cache has been archived, check the logs for more information.</span>");
+		static string CHECK_LOGS = Catalog.GetString("<span font='bold italic 10' fgcolor='darkorange'>This cache has a recent DNF or requires maintenance, check the logs for more information</span>");
 
 
 		static Pixbuf STAR_ICON = new Pixbuf ("./icons/scalable/star.svg", 16, 16);
@@ -54,8 +56,7 @@ namespace ocmgtk
 		{
 			this.Build ();
 			m_monitor = UIMonitor.getInstance ();
-			setDifficulty (0);
-			setTerrain (0);
+			updateCacheInfo();
 		}
 
 		public void updateCacheInfo ()
@@ -88,20 +89,26 @@ namespace ocmgtk
 				setCacheIcon (cache.TypeOfCache);
 				dateLabel.Text = cache.Time.ToShortDateString ();
 				infoDateLabel.Text = cache.Updated.ToShortDateString ();
-				DateTime lastDate = Engine.getInstance().Store.GetLastLogByYou(cache, m_monitor.OwnerID);
+				CacheStore store = Engine.getInstance().Store;
+				DateTime lastDate = store.GetLastLogByYou(cache, m_monitor.OwnerID);
 				if (lastDate == DateTime.MinValue)
 					lastFoundDateLabel.Text = Catalog.GetString("Never");
 				else
 					lastFoundDateLabel.Text = lastDate.ToShortDateString();
-				
-				if (cache.Found)
+				DateTime lastFound = store.GetLastFindByYou(cache, m_monitor.OwnerID);
+				System.Console.WriteLine("LAST FOUND" + lastFound);
+				if (cache.Found && lastFound == DateTime.MinValue)
 					statusLabel.Markup = FOUND; 
+				else if (cache.Found)
+					statusLabel.Markup = String.Format(FOUND_DATE, lastFound.ToShortDateString()); 
 				else if (cache.Archived)
 					statusLabel.Markup = ARCHIVED; 
 				else if (!cache.Available)
 					statusLabel.Markup = UNAVAILABLE;
 				else if (cache.OwnerID == m_monitor.OwnerID)
 					statusLabel.Markup = MINE;
+				else if (cache.CheckNotes)
+					statusLabel.Markup = CHECK_LOGS;
 				else
 					statusLabel.Markup = String.Empty;
 				setCacheType (cache.TypeOfCache);

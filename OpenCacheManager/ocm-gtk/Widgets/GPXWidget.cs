@@ -71,6 +71,41 @@ namespace ocmgtk
 			return "OCM_GPX";
 		}
 		
+		public int GetLogLimit()
+		{
+			if (logLimitCheck.Active)
+				return int.Parse(logLimitEntry.Text);
+			return -1;
+		}
+		
+		public void SetLogLimit(int val)
+		{
+			if (val == -1)
+				logLimitCheck.Active = false;
+			else
+				logLimitEntry.Text = val.ToString();
+		}
+		
+		public bool IgnoreGeocacheOverrides()
+		{
+			return false;
+		}
+		
+		public bool IgnoreWaypointOverrides()
+		{
+			return false;
+		}
+		
+		public ocmengine.WaypointNameMode GetNameMode()
+		{
+			return ocmengine.WaypointNameMode.CODE;
+		}
+		
+		public ocmengine.WaypointDescMode GetDescMode()
+		{
+			return ocmengine.WaypointDescMode.DESC;
+		}
+		
 		protected virtual void OnFileClick (object sender, System.EventArgs e)
 		{
 			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Select GPX location"), null, FileChooserAction.Save, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Select"), ResponseType.Accept);
@@ -90,6 +125,12 @@ namespace ocmgtk
 			}
 			dlg.Destroy ();
 		}
+		
+		protected virtual void OnLogLimitToggle (object sender, System.EventArgs e)
+		{
+			logLimitEntry.Sensitive = logLimitCheck.Active;
+		}
+		
 		
 		
 	}

@@ -47,6 +47,7 @@ namespace ocmgtk
 			CellRendererText coord_cell = new CellRendererText ();
 			CellRendererPixbuf icon_cell = new CellRendererPixbuf ();
 			TreeViewColumn wpt_icon = new TreeViewColumn (Catalog.GetString ("Type"), icon_cell);
+			wpt_icon.SortColumnId = 3;
 			TreeViewColumn wpt_code = new TreeViewColumn (Catalog.GetString ("Code"), code_cell);
 			wpt_code.SortColumnId = 0;
 			TreeViewColumn wpt_Lat = new TreeViewColumn (Catalog.GetString ("Location"), coord_cell);
@@ -65,6 +66,7 @@ namespace ocmgtk
 			wpt_Lat.SetCellDataFunc (coord_cell, new TreeCellDataFunc (RenderCoord));
 			wpt_icon.SetCellDataFunc (icon_cell, new TreeCellDataFunc (RenderIcon));
 			m_ListSort = new TreeModelSort(m_childPoints);
+			m_ListSort.SetSortFunc (3, TypeCompare);
 			m_ListSort.SetSortFunc (2, NameCompare);
 			m_ListSort.SetSortFunc (1, LocationCompare);
 			m_ListSort.SetSortFunc (0, CodeCompare);
@@ -77,13 +79,26 @@ namespace ocmgtk
 		{
 			Waypoint cacheA = (Waypoint)model.GetValue (tia, 0);
 			Waypoint cacheB = (Waypoint)model.GetValue (tib, 0);
+			if (cacheA == null || cacheB == null)
+				return 0;				
 			return String.Compare (cacheA.Desc, cacheB.Desc);
+		}
+		
+		private int TypeCompare (TreeModel model, TreeIter tia, TreeIter tib)
+		{
+			Waypoint cacheA = (Waypoint)model.GetValue (tia, 0);
+			Waypoint cacheB = (Waypoint)model.GetValue (tib, 0);
+			if (cacheA == null || cacheB == null)
+				return 0;
+			return String.Compare (cacheA.Symbol, cacheB.Symbol);
 		}
 		
 		private int LocationCompare (TreeModel model, TreeIter tia, TreeIter tib)
 		{
 			Waypoint cacheA = (Waypoint)model.GetValue (tia, 0);
 			Waypoint cacheB = (Waypoint)model.GetValue (tib, 0);
+			if (cacheA == null || cacheB == null)
+				return 0;
 			double compare = GetDistanceFromParent (cacheA) - GetDistanceFromParent(cacheB);
 			if (compare > 0)
 				return 1; else if (compare == 0)
@@ -104,6 +119,8 @@ namespace ocmgtk
 		{
 			Waypoint cacheA = (Waypoint)model.GetValue (tia, 0);
 			Waypoint cacheB = (Waypoint)model.GetValue (tib, 0);
+			if (cacheA == null || cacheB == null)
+				return 0;
 			return String.Compare (cacheA.Name, cacheB.Name);
 		}
 
@@ -117,7 +134,7 @@ namespace ocmgtk
 				if (val != null)
 					m_mon.ZoomToPoint (val.Lat, val.Lon);
 				if (val is Geocache) {
-					editButton.Sensitive = false;
+					editButton.Sensitive = true;
 					deleteButton.Sensitive = false;
 				} else {
 					editButton.Sensitive = true;
@@ -183,11 +200,17 @@ namespace ocmgtk
 		protected virtual void DoEdit (object sender, System.EventArgs e)
 		{
 			try {
-				WaypointDialog dlg = new WaypointDialog ();
+				
 				Gtk.TreeIter itr;
 				Gtk.TreeModel model;
 				if (wptView.Selection.GetSelected (out model, out itr)) {
 					Waypoint wpt = (Waypoint)model.GetValue (itr, 0);
+					if (wpt is Geocache)
+					{
+						m_mon.ModifyCache();
+						return;
+					}
+					WaypointDialog dlg = new WaypointDialog ();
 					String origname = wpt.Name;
 					dlg.SetPoint (wpt);
 					if ((int)ResponseType.Ok == dlg.Run ()) {

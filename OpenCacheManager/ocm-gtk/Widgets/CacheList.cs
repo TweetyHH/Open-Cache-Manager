@@ -6,6 +6,7 @@ using Gtk;
 using ocmengine;
 using Mono.Unix;
 using System.Timers;
+using System.Text;
 
 namespace ocmgtk
 {
@@ -17,7 +18,9 @@ namespace ocmgtk
 		const string START_FOUND = "<span fgcolor='darkgreen'>";
 		const string START_ARCHIVE = "<span fgcolor='red' strikethrough='true'>";
 		const string START_UNAVAIL = "<span fgcolor='red'>";
-		const string START_RECENT_DNF = "<span fgcolor='orange'>";
+		const string START_RECENT_DNF = "<span fgcolor='darkorange'>";
+		const string START_BOLD = "<b>";
+		const string END_BOLD = "</b>";
 		const string END_SPAN = "</span>";
 		const string FOUND_CACHE = "Geocache Found";
 
@@ -193,14 +196,20 @@ namespace ocmgtk
 			Geocache cache = (Geocache)model.GetValue (iter, 0);
 			CellRendererText text = cell as CellRendererText;
 			
+			StringBuilder builder = new StringBuilder();
+			if (cache.Children > 0)
+				builder.Append(START_BOLD);
 			if (!cache.Available && !cache.Archived)
-				text.Markup = unavailText (cache.CacheName);
+				builder.Append(unavailText (cache.CacheName));
 			else if (cache.Archived)
-				text.Markup = archiveText (cache.CacheName);
-			else if (cache.RecentDNFs)
-				text.Markup = START_RECENT_DNF + cache.CacheName + END_SPAN;
+				builder.Append(archiveText (cache.CacheName));
+			else if (cache.CheckNotes)
+				builder.Append(START_RECENT_DNF + GLib.Markup.EscapeText (cache.CacheName) + END_SPAN);
 			else
-				text.Markup = GLib.Markup.EscapeText (cache.CacheName);
+				builder.Append(GLib.Markup.EscapeText (cache.CacheName));
+			if (cache.Children > 0)
+				builder.Append(END_BOLD);
+			text.Markup = builder.ToString();
 		}
 
 		private void RenderCacheIcon (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)

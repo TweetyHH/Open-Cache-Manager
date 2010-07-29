@@ -58,7 +58,85 @@ namespace ocmgtk
 				limitEntry.Text = val.ToString();
 			}
 		}
-
+		
+		public int GetLogLimit()
+		{
+			return 0;
+		}
+		
+		public bool IgnoreGeocacheOverrides()
+		{
+			return geocacheCheck.Active;
+		}
+		
+		public void SetGeocacheOverride(bool val)
+		{
+			geocacheCheck.Active = val;
+		}
+		
+		public bool IgnoreWaypointOverrides()
+		{
+			return overrideCheck.Active;
+		}
+		
+		public void SetIgnoreWaypoint(bool val)
+		{
+			overrideCheck.Active = val;
+		}
+		
+		public ocmengine.WaypointNameMode GetNameMode()
+		{
+			switch (nameMode.Active)
+			{
+				case 0:
+					return ocmengine.WaypointNameMode.CODE;
+				default:
+					return ocmengine.WaypointNameMode.NAME;
+			}
+		}
+		
+		public void SetNameMode(ocmengine.WaypointNameMode mode)
+		{
+			switch (mode)
+			{
+				case ocmengine.WaypointNameMode.CODE:
+					nameMode.Active = 0;
+					break;
+				default:
+					nameMode.Active = 1;
+					break;
+			}
+		}
+		
+		public ocmengine.WaypointDescMode GetDescMode()
+		{
+			switch (descMode.Active)
+			{
+				case 0:
+					return ocmengine.WaypointDescMode.DESC;
+				case 1:
+					return ocmengine.WaypointDescMode.CODESIZEANDHINT;
+				default:
+					return ocmengine.WaypointDescMode.CODESIZETYPE;
+			}
+		}
+		
+		public void SetDescMode(ocmengine.WaypointDescMode mode)
+		{
+			switch (mode)
+			{
+				case ocmengine.WaypointDescMode.DESC:
+					descMode.Active = 0;
+					break; 
+				case ocmengine.WaypointDescMode.CODESIZEANDHINT:
+					descMode.Active = 1;
+					break;
+				default:
+					descMode.Active = 2;
+					break;
+				
+			}
+		}
 		
 		public string GetOutputFile ()
 		{

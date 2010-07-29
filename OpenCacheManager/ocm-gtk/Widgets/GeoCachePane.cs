@@ -32,5 +32,11 @@ namespace ocmgtk
 			notesWidget.UpdateCacheInfo();
 			
 		}
+		
+		public int VPos
+		{
+			get { return vpaned1.Position;}
+			set { vpaned1.Position = value;}
+		}
 	}
 }

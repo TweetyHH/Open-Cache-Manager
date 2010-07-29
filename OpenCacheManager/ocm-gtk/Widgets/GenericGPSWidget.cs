@@ -67,6 +67,37 @@ namespace ocmgtk
 		{
 			fileEntry.Text = file;
 		}
+		
+				int m_LogLimit;
+		public int GetLogLimit()
+		{
+			return m_LogLimit;
+		}
+		
+		bool m_waypointOverrides;
+		public bool IgnoreWaypointOverrides()
+		{
+			return m_waypointOverrides;
+		}
+		
+		bool m_geocacheOverrides;
+		public bool IgnoreGeocacheOverrides()
+		{
+			return m_geocacheOverrides;
+		}
+		
+		ocmengine.WaypointNameMode m_namemode;
+		public ocmengine.WaypointNameMode GetNameMode()
+		{
+			return m_namemode;
+		}
+		
+		ocmengine.WaypointDescMode m_descmode;
+		public ocmengine.WaypointDescMode GetDescMode()
+		{
+			return m_descmode;
+		}
+		
 		protected virtual void OnInfoClick (object sender, System.EventArgs e)
 		{
 			System.Diagnostics.Process.Start("http://www.gpsbabel.org/readme.html");

@@ -24,5 +24,10 @@ namespace ocmgtk
 		int GetCacheLimit();
 		string GetOutputFile();
 		string GetBabelFormat();
+		int GetLogLimit();
+		bool IgnoreGeocacheOverrides();
+		bool IgnoreWaypointOverrides();
+		ocmengine.WaypointNameMode GetNameMode();
+		ocmengine.WaypointDescMode GetDescMode();
 	}
 }
