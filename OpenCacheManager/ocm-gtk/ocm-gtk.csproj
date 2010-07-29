@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.16</ReleaseVersion>
+    <ReleaseVersion>0.17</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -175,6 +175,12 @@
     <Compile Include="Dialogs\NoDBDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.NoDBDialog.cs" />
     <Compile Include="GPS.cs" />
+    <Compile Include="Dialogs\GPSDConfig.cs" />
+    <Compile Include="gtk-gui\ocmgtk.GPSDConfig.cs" />
+    <Compile Include="Widgets\WaypointOverrideWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.WaypointOverrideWidget.cs" />
+    <Compile Include="Widgets\SymbolChooser.cs" />
+    <Compile Include="gtk-gui\ocmgtk.SymbolChooser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -192,6 +198,7 @@
     <Folder Include="icons\24x24\" />
     <Folder Include="docs\" />
     <Folder Include="licence\" />
+    <Folder Include="version\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
@@ -536,6 +543,10 @@
     <Resource Include="icons\scalable\pushpin.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="version\Version.txt">
+      <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="OCM.desktop">
@@ -556,7 +567,6 @@
     </None>
     <None Include="ocm-gtk" />
     <None Include="docs\Credits.txt" />
-    <None Include="docs\Version.txt" />
     <None Include="icons\scalable\greenpin.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

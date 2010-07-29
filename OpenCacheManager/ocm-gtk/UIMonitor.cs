@@ -184,6 +184,41 @@ namespace ocmgtk
 			set { m_progress = value; }
 		}
 		
+		private Dictionary<string, string> m_WaypointMappings;
+		public Dictionary<string, string> WaypointMappings
+		{
+			get{return m_WaypointMappings;}
+		}
+		
+		private void BuildWaypointMappings()
+		{
+			Dictionary<string, string> mappings = new Dictionary<string, string>();
+			mappings.Add("Geocache|Traditional Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Traditional_Cache", "Geocache") as string);
+			mappings.Add("Geocache|Unknown Cache",m_conf.Get("/apps/ocm/wmappings/Geocache_Unknown_Cache", "Geocache") as string);
+			mappings.Add("Geocache|Virtual Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Virtual_Cache", "Geocache") as string);
+			mappings.Add("Geocache|Multi-cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Multi-cache", "Geocache") as string);
+			mappings.Add("Geocache|Project APE Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Project_APE_Cache", "Geocache") as string);
+			mappings.Add("Geocache|Cache In Trash Out Event", m_conf.Get("/apps/ocm/wmappings/Geocache_Cache_In_Trash_Out_Event", "Geocache") as string);
+			mappings.Add("Geocache|Earthcache", m_conf.Get("/apps/ocm/wmappings/Geocache_Earthcache", "Geocache") as string);
+			mappings.Add("Geocache|Event Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Event_Cache", "Geocache") as string);
+			mappings.Add("Geocache|Letterbox Hybrid", m_conf.Get("/apps/ocm/wmappings/Geocache_Letterbox_Hybrid", "Geocache") as string);
+			mappings.Add("Geocache|GPS Adventures Exhibit",m_conf.Get("/apps/ocm/wmappings/Geocache_GPS_Adventures_Exhibit", "Geocache") as string);
+			mappings.Add("Geocache|Mega-Event Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Mega-Event_Cache", "Geocache") as string);
+			mappings.Add("Geocache|Locationless Cache",m_conf.Get("/apps/ocm/wmappings/Geocache_Locationless_Cache", "Geocache") as string);
+			mappings.Add("Geocache|Webcam Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Webcam_Cache", "Geocache") as string);
+			mappings.Add("Geocache|Wherigo Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Wherigo_Cache", "Geocache") as string);
+			mappings.Add("Geocache", m_conf.Get("/apps/ocm/wmappings/Geocache", "Geocache") as string);
+			mappings.Add("Geocache Found", m_conf.Get("/apps/ocm/wmappings/Geocache_Found", "Geocache Found") as string);
+			mappings.Add("Waypoint|Final Location", m_conf.Get("/apps/ocm/wmappings/Waypoint_Final_Location", "Pin, Blue") as string);
+			mappings.Add("Waypoint|Parking Area", m_conf.Get("/apps/ocm/wmappings/Waypoint_Parking_Area", "Parking Area") as string);
+			mappings.Add("Waypoint|Reference Point", m_conf.Get("/apps/ocm/wmappings/Waypoint_Reference_Point", "Pin, Green") as string);
+			mappings.Add("Waypoint|Question to Answer", m_conf.Get("/apps/ocm/wmappings/Waypoint_Question_to_Answer", "Pin, Red") as string);
+			mappings.Add("Waypoint|Stages of a Multicache", m_conf.Get("/apps/ocm/wmappings/Waypoint_Stages_of_a_Multicache", "Pin, Red") as string);
+			mappings.Add("Waypoint|Trailhead", m_conf.Get("/apps/ocm/wmappings/Waypoint_Trailhead", "Trail Head") as string);
+			mappings.Add("Waypoint|Other", m_conf.Get("/apps/ocm/wmappings/Waypoint_Other", "Pin, Green") as string);
+			m_WaypointMappings = mappings;
+		}
+		
 		
 
 		public Boolean ShowNearby {
@@ -251,13 +286,18 @@ namespace ocmgtk
 			m_useImperial = (Boolean) m_conf.Get("/apps/ocm/imperial", false);
 			int win_width = (int) m_conf.Get("/apps/ocm/winwidth", 1024);
 			int win_height = (int) m_conf.Get("/apps/ocm/winheight", 768);
+			m_pane.VPos = (int) m_conf.Get("/apps/ocm/vpos", 300);
+			m_mainWin.HPos = (int) m_conf.Get("/apps/ocm/hpos", 400);
 			m_mainWin.Resize(win_width, win_height);
 			string map = (string) m_conf.Get("/apps/ocm/defmap", "osm");
 			String dbName = (string)m_conf.Get ("/apps/ocm/currentdb", String.Empty);
 			m_mainWin.SizeAllocated += HandleM_mainWinSizeAllocated;
+			while (Gtk.Application.EventsPending ())
+				Gtk.Application.RunIteration (false);
 			SetCurrentDB (dbName, true);
 			LoadMap (map);
 			SetSelectedCache(null);
+			BuildWaypointMappings();
 			bool showNearby = (Boolean) m_conf.Get("/apps/ocm/shownearby", true);
 			if (showNearby)
 				m_mainWin.SetNearbyEnabled();
@@ -319,7 +359,7 @@ namespace ocmgtk
 			MessageDialog dlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, Catalog.GetString("OCM needs to upgrade your database.\nWould you like to backup your database first?"));
 			if ((int) ResponseType.Yes == dlg.Run())
 			{
-				System.IO.File.Copy(dbname, dbname + ".bak");
+				System.IO.File.Copy(dbname, dbname + ".bak", true);
 			}
 			dlg.Hide();
 			store.Upgrade();
@@ -706,7 +746,7 @@ namespace ocmgtk
 				if (dlg.Run () == (int)ResponseType.Accept) {
 					dlg.Hide ();
 					edlg.Icon = m_mainWin.Icon;
-					edlg.Start (dlg.Filename, GetVisibleCacheList ());
+					edlg.Start (dlg.Filename, GetVisibleCacheList (), m_WaypointMappings);
 					RecentManager manager = RecentManager.Default;
 					manager.AddItem("file://" + dlg.Filename);
 				}
@@ -1003,6 +1043,13 @@ namespace ocmgtk
 				m_conf.Set("/apps/ocm/gps/type", dlg.GPSConfig.GetBabelFormat());
 				m_conf.Set("/apps/ocm/gps/file", dlg.GPSConfig.GetOutputFile());
 				m_conf.Set("/apps/ocm/gps/limit", dlg.GPSConfig.GetCacheLimit());
+				m_conf.Set("/apps/ocm/gps/namemode", dlg.GPSConfig.GetNameMode().ToString());
+				m_conf.Set("/apps/ocm/gps/descmode", dlg.GPSConfig.GetDescMode().ToString());
+				m_conf.Set("/apps/ocm/gps/loglimit", dlg.GPSConfig.GetLogLimit());
+				m_conf.Set("/apps/ocm/gps/ignorewaypointsym", dlg.GPSConfig.IgnoreWaypointOverrides());
+				m_conf.Set("/apps/ocm/gps/ignoregeocachesym", dlg.GPSConfig.IgnoreGeocacheOverrides());
+				dlg.UpdateWaypointSymbols(m_conf);
+				BuildWaypointMappings();
 			}
 		}
 		
@@ -1014,7 +1061,7 @@ namespace ocmgtk
 				dlg.Parent = m_mainWin;
 				dlg.Icon = m_mainWin.Icon;
 				SavedGPSConf conf = new SavedGPSConf(m_conf);
-				dlg.Start(m_cachelist.getVisibleCaches(), conf);
+				dlg.Start(m_cachelist.getVisibleCaches(), conf, m_WaypointMappings);
 			}
 			catch (GConf.NoSuchKeyException)
 			{
@@ -1083,6 +1130,21 @@ namespace ocmgtk
 		public static void MyNavi()
 		{
 			System.Diagnostics.Process.Start("http://www.navicache.com/cgi-bin/db/MyNaviCacheHome.pl");
+		}
+		
+		public static void OCMHome()
+		{
+			System.Diagnostics.Process.Start("http://opencachemanage.sourceforge.net/");
+		}
+		
+		public static void BabelHome()
+		{
+			System.Diagnostics.Process.Start("http://www.gpsbabel.org/");
+		}
+		
+		public static void GPSDHome()
+		{
+			System.Diagnostics.Process.Start("http://gpsd.berlios.de/");
 		}
 		
 		public void AddBookmark()
@@ -1158,6 +1220,7 @@ namespace ocmgtk
 		public void ModifyCache()
 		{
 			ModifyCacheDialog dlg = new ModifyCacheDialog();
+			dlg.IsModifyDialog = true;
 			dlg.Cache = m_selectedCache;
 			if ((int)ResponseType.Ok == dlg.Run())
 			{
@@ -1171,6 +1234,7 @@ namespace ocmgtk
 		public void AddCache()
 		{
 			ModifyCacheDialog dlg = new ModifyCacheDialog();
+			dlg.IsModifyDialog = false;
 			Geocache cache = new Geocache();
 			cache.Name = "GC_CHANGE_THIS";
 			cache.Symbol = "Geocache";
@@ -1255,6 +1319,27 @@ namespace ocmgtk
 		{
 			m_conf.Set("/apps/ocm/winwidth", m_width);
 			m_conf.Set("/apps/ocm/winheight",m_height);
+			m_conf.Set("/apps/ocm/hpos", m_mainWin.HPos);
+			m_conf.Set("/apps/ocm/vpos",m_pane.VPos);
+		}
+		
+		public void ConfigureGPSD()
+		{
+			GPSDConfig dlg = new GPSDConfig();
+			dlg.Icon = m_mainWin.Icon;
+			if ((int) ResponseType.Ok == dlg.Run())
+			{
+				
+			}
+		}
+		
+		public string GetOCMVersion()
+		{
+			String version = "Unknown";	
+			System.IO.StreamReader reader = new System.IO.StreamReader(new System.IO.FileStream("version/Version.txt",System.IO.FileMode.Open,System.IO.FileAccess.Read));
+			version = reader.ReadToEnd();
+			reader.Close();
+			return version;
 		}
 	}
 }

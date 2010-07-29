@@ -28,6 +28,12 @@ public partial class MainWindow : Gtk.Window
 	MenuItem addCacheTo;
 	MenuItem removeSelected;
 	
+	public int HPos
+	{
+		get { return hSplitPane.Position;}
+		set { hSplitPane.Position = value;}
+	}
+	
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{	
 		Build ();
@@ -109,7 +115,11 @@ public partial class MainWindow : Gtk.Window
 		
 		dialog.Icon = this.Icon;
 		
-		dialog.Version = "ALPHA 0.16";
+		dialog.Version = m_monitor.GetOCMVersion();
+		
+		dialog.Logo =  new Gdk.Pixbuf ("./icons/scalable/OCMLogo.svg", 96, 96);
+		
+		dialog.Website = "http://opencachemanage.sourceforge.net/";
 		
 		//dialog.Comments = (asm.GetCustomAttributes (typeof(AssemblyDescriptionAttribute), false)[0] as AssemblyDescriptionAttribute).Description;
 		
@@ -469,4 +479,28 @@ public partial class MainWindow : Gtk.Window
 		else
 			m_monitor.DisableGPS();
 	}
+	protected virtual void ConfigureGPSD (object sender, System.EventArgs e)
+	{
+		m_monitor.ConfigureGPSD();
+	}
+	
+	protected virtual void OnOCMHome (object sender, System.EventArgs e)
+	{
+		UIMonitor.OCMHome();
+	}
+	
+	protected virtual void OnBabelHome (object sender, System.EventArgs e)
+	{
+		UIMonitor.BabelHome();
+	}
+	
+	protected virtual void OnGPSDHome (object sender, System.EventArgs e)
+	{
+		UIMonitor.GPSDHome();
+	}
+	
+	
+	
+	
+	
 }
