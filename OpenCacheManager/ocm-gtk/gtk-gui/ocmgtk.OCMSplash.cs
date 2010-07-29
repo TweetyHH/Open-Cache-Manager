@@ -37,7 +37,7 @@ namespace ocmgtk {
         
         private Gtk.Label pby;
         
-        private Gtk.Label label2;
+        private Gtk.Label versionLabel;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -150,11 +150,11 @@ namespace ocmgtk {
             w11.Expand = false;
             w11.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
-            this.label2 = new Gtk.Label();
-            this.label2.Name = "label2";
-            this.label2.LabelProp = "Version 0.16 Alpha";
-            this.vbox2.Add(this.label2);
-            Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.vbox2[this.label2]));
+            this.versionLabel = new Gtk.Label();
+            this.versionLabel.Name = "versionLabel";
+            this.versionLabel.LabelProp = "Version 0.16 Alpha";
+            this.vbox2.Add(this.versionLabel);
+            Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.vbox2[this.versionLabel]));
             w12.PackType = ((Gtk.PackType)(1));
             w12.Position = 4;
             w12.Expand = false;

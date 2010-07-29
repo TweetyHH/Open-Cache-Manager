@@ -13,6 +13,8 @@ namespace ocmgtk {
     
     public partial class GPSConfiguration {
         
+        private Gtk.Notebook notebook1;
+        
         private Gtk.Table table1;
         
         private Gtk.RadioButton gpxRadio;
@@ -25,6 +27,12 @@ namespace ocmgtk {
         
         private Gtk.RadioButton otherRadio;
         
+        private Gtk.Label label4;
+        
+        private ocmgtk.WaypointOverrideWidget waypointWidget;
+        
+        private Gtk.Label label5;
+        
         private Gtk.Button buttonCancel;
         
         private Gtk.Button buttonOk;
@@ -33,7 +41,7 @@ namespace ocmgtk {
             Stetic.Gui.Initialize(this);
             // Widget ocmgtk.GPSConfiguration
             this.WidthRequest = 500;
-            this.HeightRequest = 350;
+            this.HeightRequest = 500;
             this.Name = "ocmgtk.GPSConfiguration";
             this.Title = Mono.Unix.Catalog.GetString("GPS Configuration...");
             this.TypeHint = ((Gdk.WindowTypeHint)(1));
@@ -49,6 +57,11 @@ namespace ocmgtk {
             w1.Name = "dialog1_VBox";
             w1.BorderWidth = ((uint)(2));
             // Container child dialog1_VBox.Gtk.Box+BoxChild
+            this.notebook1 = new Gtk.Notebook();
+            this.notebook1.CanFocus = true;
+            this.notebook1.Name = "notebook1";
+            this.notebook1.CurrentPage = 1;
+            // Container child notebook1.Gtk.Notebook+NotebookChild
             this.table1 = new Gtk.Table(((uint)(4)), ((uint)(2)), false);
             this.table1.Name = "table1";
             this.table1.RowSpacing = ((uint)(6));
@@ -116,17 +129,35 @@ namespace ocmgtk {
             w6.RightAttach = ((uint)(2));
             w6.XOptions = ((Gtk.AttachOptions)(4));
             w6.YOptions = ((Gtk.AttachOptions)(4));
-            w1.Add(this.table1);
-            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(w1[this.table1]));
-            w7.Position = 0;
-            w7.Expand = false;
-            w7.Fill = false;
+            this.notebook1.Add(this.table1);
+            // Notebook tab
+            this.label4 = new Gtk.Label();
+            this.label4.Name = "label4";
+            this.label4.LabelProp = Mono.Unix.Catalog.GetString("Device");
+            this.notebook1.SetTabLabel(this.table1, this.label4);
+            this.label4.ShowAll();
+            // Container child notebook1.Gtk.Notebook+NotebookChild
+            this.waypointWidget = new ocmgtk.WaypointOverrideWidget();
+            this.waypointWidget.Events = ((Gdk.EventMask)(256));
+            this.waypointWidget.Name = "waypointWidget";
+            this.notebook1.Add(this.waypointWidget);
+            Gtk.Notebook.NotebookChild w8 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.waypointWidget]));
+            w8.Position = 1;
+            // Notebook tab
+            this.label5 = new Gtk.Label();
+            this.label5.Name = "label5";
+            this.label5.LabelProp = Mono.Unix.Catalog.GetString("Waypoint Symbols");
+            this.notebook1.SetTabLabel(this.waypointWidget, this.label5);
+            this.label5.ShowAll();
+            w1.Add(this.notebook1);
+            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(w1[this.notebook1]));
+            w9.Position = 0;
             // Internal child ocmgtk.GPSConfiguration.ActionArea
-            Gtk.HButtonBox w8 = this.ActionArea;
-            w8.Name = "dialog1_ActionArea";
-            w8.Spacing = 10;
-            w8.BorderWidth = ((uint)(5));
-            w8.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            Gtk.HButtonBox w10 = this.ActionArea;
+            w10.Name = "dialog1_ActionArea";
+            w10.Spacing = 10;
+            w10.BorderWidth = ((uint)(5));
+            w10.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -136,9 +167,9 @@ namespace ocmgtk {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w9 = ((Gtk.ButtonBox.ButtonBoxChild)(w8[this.buttonCancel]));
-            w9.Expand = false;
-            w9.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w11 = ((Gtk.ButtonBox.ButtonBoxChild)(w10[this.buttonCancel]));
+            w11.Expand = false;
+            w11.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -148,15 +179,15 @@ namespace ocmgtk {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w10 = ((Gtk.ButtonBox.ButtonBoxChild)(w8[this.buttonOk]));
-            w10.Position = 1;
-            w10.Expand = false;
-            w10.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w12 = ((Gtk.ButtonBox.ButtonBoxChild)(w10[this.buttonOk]));
+            w12.Position = 1;
+            w12.Expand = false;
+            w12.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 502;
-            this.DefaultHeight = 379;
+            this.DefaultHeight = 529;
             this.buttonOk.HasDefault = true;
             this.Show();
             this.otherRadio.Toggled += new System.EventHandler(this.OnOtherToggle);

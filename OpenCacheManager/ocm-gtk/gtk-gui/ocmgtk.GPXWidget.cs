@@ -15,11 +15,19 @@ namespace ocmgtk {
         
         private Gtk.VBox vbox3;
         
-        private Gtk.HBox hbox3;
+        private Gtk.Table table1;
+        
+        private Gtk.CheckButton checkbutton42;
+        
+        private Gtk.CheckButton checkbutton43;
         
         private Gtk.CheckButton limitCheck;
         
         private Gtk.Entry limitEntry;
+        
+        private Gtk.CheckButton logLimitCheck;
+        
+        private Gtk.Entry logLimitEntry;
         
         private Gtk.HBox hbox4;
         
@@ -42,21 +50,49 @@ namespace ocmgtk {
             this.vbox3.Spacing = 6;
             this.vbox3.BorderWidth = ((uint)(6));
             // Container child vbox3.Gtk.Box+BoxChild
-            this.hbox3 = new Gtk.HBox();
-            this.hbox3.Name = "hbox3";
-            this.hbox3.Spacing = 6;
-            // Container child hbox3.Gtk.Box+BoxChild
+            this.table1 = new Gtk.Table(((uint)(4)), ((uint)(2)), false);
+            this.table1.Name = "table1";
+            this.table1.RowSpacing = ((uint)(6));
+            this.table1.ColumnSpacing = ((uint)(6));
+            // Container child table1.Gtk.Table+TableChild
+            this.checkbutton42 = new Gtk.CheckButton();
+            this.checkbutton42.Sensitive = false;
+            this.checkbutton42.CanFocus = true;
+            this.checkbutton42.Name = "checkbutton42";
+            this.checkbutton42.Label = Mono.Unix.Catalog.GetString("Ignore User Defined Geocache Symbols");
+            this.checkbutton42.DrawIndicator = true;
+            this.checkbutton42.UseUnderline = true;
+            this.table1.Add(this.checkbutton42);
+            Gtk.Table.TableChild w1 = ((Gtk.Table.TableChild)(this.table1[this.checkbutton42]));
+            w1.TopAttach = ((uint)(2));
+            w1.BottomAttach = ((uint)(3));
+            w1.RightAttach = ((uint)(2));
+            w1.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.checkbutton43 = new Gtk.CheckButton();
+            this.checkbutton43.Sensitive = false;
+            this.checkbutton43.CanFocus = true;
+            this.checkbutton43.Name = "checkbutton43";
+            this.checkbutton43.Label = Mono.Unix.Catalog.GetString("Ignore User Defined Waypoint Symbols");
+            this.checkbutton43.DrawIndicator = true;
+            this.checkbutton43.UseUnderline = true;
+            this.table1.Add(this.checkbutton43);
+            Gtk.Table.TableChild w2 = ((Gtk.Table.TableChild)(this.table1[this.checkbutton43]));
+            w2.TopAttach = ((uint)(3));
+            w2.BottomAttach = ((uint)(4));
+            w2.RightAttach = ((uint)(2));
+            w2.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
             this.limitCheck = new Gtk.CheckButton();
             this.limitCheck.CanFocus = true;
             this.limitCheck.Name = "limitCheck";
             this.limitCheck.Label = Mono.Unix.Catalog.GetString("Limit Number of Caches");
             this.limitCheck.DrawIndicator = true;
             this.limitCheck.UseUnderline = true;
-            this.hbox3.Add(this.limitCheck);
-            Gtk.Box.BoxChild w1 = ((Gtk.Box.BoxChild)(this.hbox3[this.limitCheck]));
-            w1.Position = 0;
-            w1.Expand = false;
-            // Container child hbox3.Gtk.Box+BoxChild
+            this.table1.Add(this.limitCheck);
+            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table1[this.limitCheck]));
+            w3.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
             this.limitEntry = new Gtk.Entry();
             this.limitEntry.Sensitive = false;
             this.limitEntry.CanFocus = true;
@@ -64,14 +100,43 @@ namespace ocmgtk {
             this.limitEntry.Text = "1000";
             this.limitEntry.IsEditable = true;
             this.limitEntry.InvisibleChar = '•';
-            this.hbox3.Add(this.limitEntry);
-            Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.hbox3[this.limitEntry]));
-            w2.Position = 1;
-            this.vbox3.Add(this.hbox3);
-            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.vbox3[this.hbox3]));
-            w3.Position = 0;
-            w3.Expand = false;
-            w3.Fill = false;
+            this.table1.Add(this.limitEntry);
+            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table1[this.limitEntry]));
+            w4.LeftAttach = ((uint)(1));
+            w4.RightAttach = ((uint)(2));
+            w4.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.logLimitCheck = new Gtk.CheckButton();
+            this.logLimitCheck.CanFocus = true;
+            this.logLimitCheck.Name = "logLimitCheck";
+            this.logLimitCheck.Label = Mono.Unix.Catalog.GetString("Limit Number of Logs");
+            this.logLimitCheck.Active = true;
+            this.logLimitCheck.DrawIndicator = true;
+            this.logLimitCheck.UseUnderline = true;
+            this.table1.Add(this.logLimitCheck);
+            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table1[this.logLimitCheck]));
+            w5.TopAttach = ((uint)(1));
+            w5.BottomAttach = ((uint)(2));
+            w5.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.logLimitEntry = new Gtk.Entry();
+            this.logLimitEntry.CanFocus = true;
+            this.logLimitEntry.Name = "logLimitEntry";
+            this.logLimitEntry.Text = Mono.Unix.Catalog.GetString("5");
+            this.logLimitEntry.IsEditable = true;
+            this.logLimitEntry.InvisibleChar = '•';
+            this.table1.Add(this.logLimitEntry);
+            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table1[this.logLimitEntry]));
+            w6.TopAttach = ((uint)(1));
+            w6.BottomAttach = ((uint)(2));
+            w6.LeftAttach = ((uint)(1));
+            w6.RightAttach = ((uint)(2));
+            w6.YOptions = ((Gtk.AttachOptions)(4));
+            this.vbox3.Add(this.table1);
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox3[this.table1]));
+            w7.Position = 0;
+            w7.Expand = false;
+            w7.Fill = false;
             // Container child vbox3.Gtk.Box+BoxChild
             this.hbox4 = new Gtk.HBox();
             this.hbox4.Name = "hbox4";
@@ -81,10 +146,10 @@ namespace ocmgtk {
             this.label3.Name = "label3";
             this.label3.LabelProp = Mono.Unix.Catalog.GetString("GPX Output File:");
             this.hbox4.Add(this.label3);
-            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.hbox4[this.label3]));
-            w4.Position = 0;
-            w4.Expand = false;
-            w4.Fill = false;
+            Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.hbox4[this.label3]));
+            w8.Position = 0;
+            w8.Expand = false;
+            w8.Fill = false;
             // Container child hbox4.Gtk.Box+BoxChild
             this.fileEntry = new Gtk.Entry();
             this.fileEntry.CanFocus = true;
@@ -93,8 +158,8 @@ namespace ocmgtk {
             this.fileEntry.IsEditable = true;
             this.fileEntry.InvisibleChar = '•';
             this.hbox4.Add(this.fileEntry);
-            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.hbox4[this.fileEntry]));
-            w5.Position = 1;
+            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.hbox4[this.fileEntry]));
+            w9.Position = 1;
             // Container child hbox4.Gtk.Box+BoxChild
             this.fileButton = new Gtk.Button();
             this.fileButton.CanFocus = true;
@@ -106,20 +171,21 @@ namespace ocmgtk {
             this.fileButton.Add(this.image3);
             this.fileButton.Label = null;
             this.hbox4.Add(this.fileButton);
-            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.hbox4[this.fileButton]));
-            w7.Position = 2;
-            w7.Expand = false;
-            w7.Fill = false;
+            Gtk.Box.BoxChild w11 = ((Gtk.Box.BoxChild)(this.hbox4[this.fileButton]));
+            w11.Position = 2;
+            w11.Expand = false;
+            w11.Fill = false;
             this.vbox3.Add(this.hbox4);
-            Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.vbox3[this.hbox4]));
-            w8.Position = 1;
-            w8.Expand = false;
-            w8.Fill = false;
+            Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.vbox3[this.hbox4]));
+            w12.Position = 1;
+            w12.Expand = false;
+            w12.Fill = false;
             this.Add(this.vbox3);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.Hide();
+            this.logLimitCheck.Toggled += new System.EventHandler(this.OnLogLimitToggle);
             this.limitCheck.Toggled += new System.EventHandler(this.OnLimitToggle);
             this.fileButton.Clicked += new System.EventHandler(this.OnFileClick);
         }
