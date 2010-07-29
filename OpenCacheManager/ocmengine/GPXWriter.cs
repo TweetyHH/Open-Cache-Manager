@@ -20,6 +20,9 @@ using System.IO;
 
 namespace ocmengine
 {
+	public enum WaypointNameMode{CODE,NAME};
+	public enum WaypointDescMode{DESC,CODESIZEANDHINT,CODESIZETYPE};
+	
 	public class WriteEventArgs:EventArgs
 	{
 		private string m_message;
@@ -71,6 +74,13 @@ namespace ocmengine
 			set { m_Limit = value;}
 		}
 		
+		private int m_LogLimit = -1;
+		public int LogLimit
+		{
+			get { return m_LogLimit;}
+			set { m_LogLimit = value;}
+		}
+		
 		private bool m_isFullInfo = true;
 		public bool IncludeGroundSpeakExtensions
 		{
@@ -78,11 +88,32 @@ namespace ocmengine
 			get { return m_isFullInfo;}
 		}
 		
+		WaypointNameMode m_namemode = WaypointNameMode.CODE;
+		public WaypointNameMode NameMode
+		{
+			get { return m_namemode;}
+			set { m_namemode = value;}
+		}
+		
+		WaypointDescMode m_descmode = WaypointDescMode.DESC;
+		public WaypointDescMode DescriptionMode
+		{
+			get { return m_descmode;}
+			set { m_descmode = value;}
+		}
+		
+		private Dictionary<string,string> m_mappings;
+		public Dictionary<string,string> Mappings
+		{
+			get{return m_mappings;}
+		}
+		
 		private int m_Count = 0;
 
-		public void WriteGPXFile (String name, List<Geocache> caches)
+		public void WriteGPXFile (String name, List<Geocache> caches, Dictionary<string,string> waypointmappings)
 		{
 			FileStream stream = new System.IO.FileStream(name, FileMode.Create, FileAccess.Write, FileShare.Write, 655356);
+			m_mappings = waypointmappings;
 			XmlTextWriter writer = new XmlTextWriter (stream, System.Text.Encoding.UTF8);
 			//Pretty-print the document
 			writer.Formatting = Formatting.Indented;

@@ -59,8 +59,9 @@ namespace ocmengine
 		private bool m_archived=false;
 		private string m_cacheID = "";
 		private string m_ownerID = "";
-		private bool m_recentDNFs = false;
+		private bool m_checkNotes = false;
 		private DateTime m_foundByYou = DateTime.MinValue;
+		private int m_children = 0;
 		
 		public string CacheName
 		{
@@ -175,10 +176,16 @@ namespace ocmengine
 			set { m_notes = value;}
 		}
 		
-		public bool RecentDNFs
+		public bool CheckNotes
 		{
-			get { return m_recentDNFs;}
-			set { m_recentDNFs = value;}
+			get { return m_checkNotes;}
+			set { m_checkNotes = value;}
+		}
+		
+		public int Children
+		{
+			get { return m_children;}
+			set { m_children = value;}
 		}
 					
 		
@@ -262,9 +269,14 @@ namespace ocmengine
 			writer.WriteElementString(CACHE_PREFIX,"encoded_hints", GPXWriter.NS_CACHE,  Hint);
 			writer.WriteStartElement(CACHE_PREFIX,"logs", GPXWriter.NS_CACHE);
 			IEnumerator<CacheLog> itr = Engine.getInstance().GetLogs(this.Name);
+			int iCount = 0;
 			while (itr.MoveNext())
 			{
-				itr.Current.WriteToGPX(writer);
+				if ((iCount >= gpx.LogLimit) && (gpx.LogLimit != -1))
+					break;
+				else
+					itr.Current.WriteToGPX(writer);
+				iCount++;
 			}
 			writer.WriteEndElement();
 			writer.WriteStartElement(CACHE_PREFIX,"travelbugs", GPXWriter.NS_CACHE);

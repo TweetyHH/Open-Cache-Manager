@@ -527,11 +527,12 @@ namespace ocmengine
 		private void parseCacheLogs(ref Geocache cache, XmlReader reader)
 		{
 			m_store.ClearLogs(cache.Name);
+			bool logsChecked = false;
 			while (reader.Read())
 			{
 				if (reader.LocalName == "log")
 				{
-					parseCacheLog(ref cache, reader);
+					parseCacheLog(ref cache, reader, ref logsChecked);
 				}
 				if (reader.LocalName == "logs")
 				{
@@ -540,7 +541,7 @@ namespace ocmengine
 			}
 		}
 		
-		private void parseCacheLog(ref Geocache cache, XmlReader reader)
+		private void parseCacheLog(ref Geocache cache, XmlReader reader, ref bool logsChecked)
 		{
 			CacheLog log = new CacheLog();
 			bool breakLoop = false;
@@ -569,7 +570,21 @@ namespace ocmengine
 					breakLoop = true;
 				}
 			}
-			m_store.AddLog(cache.Name, log);			
+			m_store.AddLog(cache.Name, log);	
+			if (!logsChecked)
+			{
+				if (log.LogStatus=="Didn't find it" || log.LogStatus == "Needs Maintenance" || log.LogStatus == "no_find")
+				{
+					cache.CheckNotes = true;
+					logsChecked = true;
+				}
+				else if (log.LogStatus != "Write Note" && log.LogStatus != "Note")
+				{
+					cache.CheckNotes = false;
+					logsChecked = true;
+				}
+			}
+			
 		}
 		
 		private void parseVCacheLogs(ref Geocache cache, XmlReader reader)

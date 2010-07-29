@@ -249,20 +249,20 @@ namespace ocmengine
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
-			                                cache.Available.ToString(), SQLEscape(cache.Notes));
+			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString());
 			string update = String.Format(UPDATE_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
 			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
-			                                cache.Available.ToString(), SQLEscape(cache.Notes));
+			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString());
 			InsertOrUpdate (update, insert, cmd);
 		}
 		
 		public void AddCache(Geocache cache)
 		{
-			if (m_conn == null)
+				if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
 			IDbCommand cmd = m_conn.CreateCommand();
 			string insert = String.Format(INSERT_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
@@ -271,14 +271,14 @@ namespace ocmengine
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
-			                                cache.Available.ToString(), SQLEscape(cache.Notes));
+			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString());
 			string update = String.Format(ADD_EXISTING_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
 			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
-			                                cache.Available.ToString());
+			                                cache.Available.ToString(), cache.CheckNotes.ToString());
 			InsertOrUpdate (update, insert, cmd);
 		}
 		
@@ -295,26 +295,38 @@ namespace ocmengine
 			cmd = null;
 		}
 		
-		/*private void LogScan(Geocache cache, IDbConnection conn)
+		private void ScanLogs()
+		{
+			List<Geocache> caches = GetCacheList(GET_GC);
+			IDbTransaction trans =  StartUpdate();
+			IDbConnection conn = OpenConnection();
+			foreach (Geocache cache in caches)
+			{
+				LogScan(cache, conn);
+			}
+			EndUpdate(trans);
+		}
+		
+		private void LogScan(Geocache cache, IDbConnection conn)
 		{
 			IDbCommand command = conn.CreateCommand();
 			command.CommandText = String.Format(LOG_STAT_SCAN, cache.Name);
 			IDataReader reader = command.ExecuteReader();
 			while (reader.Read())
 			{
-				System.Console.WriteLine(val);
-				if (val.Equals("Didn't find it") || val.Equals("Needs Maintenance"))
-				{
-					cache.RecentDNFs = true;
-				}
+				String val = reader.GetString(0);
+				if (val.Equals("Didn't find it") || val.Equals("Needs Maintenance")
+				    || val.Equals("no_find"));
 				else
-					cache.RecentDNFs = false;
+					cache.CheckNotes = false;
 			}
 			reader.Close();
 			reader.Dispose();
+			command.CommandText = String.Format(UPDATE_GC_CHECKNOTE, cache.CheckNotes.ToString(), cache.Name);
+			command.ExecuteNonQuery();
 			command.Dispose();
 			command = null;
-		}*/
+		}
 		
 		
 		public DateTime GetLastLogByYou(Geocache cache, String ownerID)
@@ -322,7 +334,24 @@ namespace ocmengine
 			IDbConnection conn = OpenConnection();
 			IDbCommand command = conn.CreateCommand();
 			command.CommandText = String.Format(LAST_LOG_BY_YOU, cache.Name, ownerID);
-			System.Console.WriteLine(command.CommandText);
+			IDataReader reader = command.ExecuteReader();
+			DateTime date = DateTime.MinValue;
+			while (reader.Read())
+			{
+				string val = reader.GetString(0);
+				if (!String.IsNullOrEmpty(val))
+					date = DateTime.Parse(val);
+					
+			}
+			CloseConnection(ref reader, ref command, ref conn);
+			return date;
+		}
+		
+		public DateTime GetLastFindByYou(Geocache cache, String ownerID)
+		{
+			IDbConnection conn = OpenConnection();
+			IDbCommand command = conn.CreateCommand();
+			command.CommandText = String.Format(LAST_FIND_BY_YOU, cache.Name, ownerID);
 			IDataReader reader = command.ExecuteReader();
 			DateTime date = DateTime.MinValue;
 			while (reader.Read())
@@ -342,7 +371,6 @@ namespace ocmengine
 			IDbConnection conn =  OpenConnection ();
 			IDbCommand command = conn.CreateCommand();
 			command.CommandText = GET_BMRKS;
-			System.Console.WriteLine(command.CommandText);
 			IDataReader reader = command.ExecuteReader();
 			while (reader.Read())
 			{
@@ -373,7 +401,6 @@ namespace ocmengine
 			IDbConnection conn =  OpenConnection ();
 			IDbCommand command = conn.CreateCommand();
 			command.CommandText = sql;
-			System.Console.WriteLine(sql);
 			IDataReader reader = command.ExecuteReader();
 			while (reader.Read())
 			{
@@ -450,6 +477,12 @@ namespace ocmengine
 			Object val = reader.GetValue(26);
 			if (val is string)
 				cache.Notes = reader.GetString(26);
+			val = reader.GetValue(27);
+			if (val is string)
+				cache.CheckNotes = Boolean.Parse(val as string);
+			else
+				cache.CheckNotes = false;
+			cache.Children = reader.GetInt32(28);
 			return cache;
 			
 		}
@@ -584,7 +617,7 @@ namespace ocmengine
 			{
 				int ver =0;
 				ver = GetDBVersion ();
-				if (ver < 1)
+				if (ver < 2)
 					return true;
 				return false;
 			}
@@ -600,18 +633,27 @@ namespace ocmengine
 		{
 			IDbConnection conn = OpenConnection();
 			IDbCommand cmd = conn.CreateCommand();
-			cmd.CommandText = UPGRADE_GEOCACHE_V0_V1;
+			int ver = GetDBVersion();
+			if (ver == 0)
+			{
+				cmd.CommandText = UPGRADE_GEOCACHE_V0_V1;
+				cmd.ExecuteNonQuery();
+				cmd.CommandText = CREATE_TABLE_BMRK;
+				cmd.ExecuteNonQuery();
+				cmd.CommandText = CREATE_TABLE_BMRK_CACHES;
+				cmd.ExecuteNonQuery();
+				cmd.CommandText = CREATE_DB_VER;
+				cmd.ExecuteNonQuery();
+			}
+			cmd.CommandText = CLEAR_DB_VER;
 			cmd.ExecuteNonQuery();
-			cmd.CommandText = CREATE_TABLE_BMRK;
-			cmd.ExecuteNonQuery();
-			cmd.CommandText = CREATE_TABLE_BMRK_CACHES;
-			cmd.ExecuteNonQuery();
-			cmd.CommandText = CREATE_DB_VER;
+			cmd.CommandText = UPGRADE_GEOCACHE_V1_V2;
 			cmd.ExecuteNonQuery();
 			cmd.CommandText = SET_DB_VER;
 			cmd.ExecuteNonQuery();
 			cmd.Dispose();
 			conn.Close();
+		//	ScanLogs();
 		}
 		
 		private int GetDBVersion ()

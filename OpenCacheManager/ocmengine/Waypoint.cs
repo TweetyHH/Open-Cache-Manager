@@ -120,11 +120,35 @@ namespace ocmengine
 		
 		internal virtual void WriteWPTDetails(XmlWriter writer, GPXWriter gpx)
 		{
+			Geocache cache = null;
+			if (this is Geocache)
+			{
+				cache = this as Geocache;
+			}
+			
 			writer.WriteAttributeString("lat", this.Lat.ToString(CultureInfo.InvariantCulture));
 			writer.WriteAttributeString("lon", this.Lon.ToString(CultureInfo.InvariantCulture));
 			writer.WriteElementString("time", this.Time.ToString("o"));
-			writer.WriteElementString("name", this.Name);
-			writer.WriteElementString("desc", this.Desc);
+			if (cache != null && gpx.NameMode == WaypointNameMode.NAME)
+				writer.WriteElementString("name", cache.CacheName);
+			else
+				writer.WriteElementString("name", this.Name);
+			if (cache != null && gpx.DescriptionMode == WaypointDescMode.CODESIZEANDHINT)
+			{
+				if (!String.IsNullOrEmpty(cache.Container))
+					writer.WriteElementString("desc", cache.Name + "/" + cache.Container.Substring(0, 3) + "/" + cache.Hint);
+				else
+					writer.WriteElementString("desc", cache.Name);
+			}
+			else if (cache != null && gpx.DescriptionMode == WaypointDescMode.CODESIZETYPE)
+			{
+				if (!String.IsNullOrEmpty(cache.Container))
+					writer.WriteElementString("desc", cache.Name + "/" + cache.Container.Substring(0, 3) + "/" + cache.TypeOfCache.ToString());
+				else
+					writer.WriteElementString("desc", cache.Name + "/" + cache.TypeOfCache.ToString());
+			}
+			else
+				writer.WriteElementString("desc", this.Desc);	
 			if (this.URL != null)
 				writer.WriteElementString("url", this.URL.ToString());
 			if (!String.IsNullOrEmpty(this.URLName))
@@ -133,24 +157,16 @@ namespace ocmengine
 				writer.WriteElementString("sym", this.Symbol);
 			else
 			{
-					if (this.Symbol == "Trailhead")
-						writer.WriteElementString("sym","Trail Head");
-					else if (this.Symbol == "Question to Answer" || this.Symbol == "Stages of a Multicache")
-						writer.WriteElementString("sym","Pin, Red");
-					else if (this.Symbol == "Reference Point" || this.Symbol == "Other")
-						writer.WriteElementString("sym","Pin, Green");
-					else if (this.Symbol == "Final Location")
-						writer.WriteElementString("sym","Pin, Blue");
-					else if (this.Symbol == "TerraCache")
-						writer.WriteElementString("sym", "Geocache");
-					else 
-						writer.WriteElementString("sym", this.Symbol);
-				
-					if (this is Geocache)
+					if (cache != null && cache.TypeOfCache != Geocache.CacheType.GENERIC)
 					{
-						if (!(this as Geocache).Available)
-							writer.WriteElementString("sym","Flag, Red");
+						string key = "Geocache|" + Geocache.GetCTypeString(cache.TypeOfCache);
+						System.Console.WriteLine(key);
+						writer.WriteElementString("sym", gpx.Mappings[key]);
 					}
+					else if (gpx.Mappings.ContainsKey(this.Type))
+						writer.WriteElementString("sym", gpx.Mappings[this.Type]);
+					else
+						writer.WriteElementString("sym", this.Symbol);
 			}
 			writer.WriteElementString("type", this.Type);
 		}

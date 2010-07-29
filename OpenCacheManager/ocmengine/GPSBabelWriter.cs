@@ -38,6 +38,23 @@ namespace ocmengine
 		public string BabelFile {
 			set { m_file = value; }
 		}
+		
+		private int m_LogLimit = -1;
+		public int LogLimit{
+			set { m_LogLimit = value;}
+		}
+		
+		private WaypointDescMode m_descMode = WaypointDescMode.DESC;
+		public WaypointDescMode DescMode
+		{
+			set { m_descMode = value;}
+		}
+		
+		private WaypointNameMode m_nameMode = WaypointNameMode.NAME;
+		public WaypointNameMode NameMode
+		{
+			set { m_nameMode = value;}
+		}
 
 		public event WriteEventHandler WriteWaypoint;
 		public event WriteEventHandler StartSend;
@@ -45,13 +62,15 @@ namespace ocmengine
 		public delegate void WriteEventHandler (object sender, EventArgs args);
 
 
-		public void WriteToGPS (List<Geocache> cacheList)
+		public void WriteToGPS (List<Geocache> cacheList, Dictionary<string,string> waypointmappings)
 		{
 			GPXWriter writer = new GPXWriter ();
-			if (m_Limit > 0)
-				writer.Limit = m_Limit;
+			writer.NameMode = m_nameMode;
+			writer.DescriptionMode = m_descMode;
+			writer.Limit = m_Limit;
+			writer.LogLimit = m_LogLimit;
 			if (m_format == "OCM_GPX") {
-				WriteFullGPX (cacheList, writer);
+				WriteFullGPX (cacheList, writer, waypointmappings);
 				return;
 			}
 			
@@ -60,7 +79,7 @@ namespace ocmengine
 			writer.Complete += HandleWriterComplete;
 			String tempFile = Path.GetTempFileName ();
 			writer.WriteWaypoint += HandleWriterWriteWaypoint;
-			writer.WriteGPXFile (tempFile, cacheList);
+			writer.WriteGPXFile (tempFile, cacheList, waypointmappings);
 			this.StartSend (this, new WriteEventArgs ("Sending Waypoints to GPS"));
 			StringBuilder builder = new StringBuilder ();
 			builder.Append ("gpsbabel -i gpx -f ");
@@ -76,13 +95,13 @@ namespace ocmengine
 			this.Complete (this, new WriteEventArgs ("Complete"));
 		}
 		
-		private void WriteFullGPX (List<Geocache> cacheList, GPXWriter writer)
+		private void WriteFullGPX (List<Geocache> cacheList, GPXWriter writer, Dictionary<string,string> waypointmappings)
 		{
 			writer.IncludeGroundSpeakExtensions = true;
 			writer.UseOCMPtTypes = true;
 			writer.Complete += HandleWriterComplete;
 			writer.WriteWaypoint += HandleWriterWriteWaypoint;
-			writer.WriteGPXFile (m_file, cacheList);
+			writer.WriteGPXFile (m_file, cacheList, waypointmappings);
 			this.Complete (this, new WriteEventArgs ("Complete"));
 			return;
 		}
