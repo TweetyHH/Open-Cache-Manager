@@ -151,7 +151,7 @@ body {
 	
 	function addExtraMarker(lat, lon, icon, wptName, wptDescription)
 	{
-		var size = new OpenLayers.Size(18,18);
+		var size = new OpenLayers.Size(24,24);
 		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
 		var icon = new OpenLayers.Icon(icon,size,offset);
 		var lonlat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
@@ -160,7 +160,8 @@ body {
 		feature.data.popupContentHTML ="<div><span style='font-face:sans-serif; font-weight:bolder; font-size:12pt'>" + wptName + "</span><hr noshade>" + wptDescription + "<hr noshade><a href='javascript:doSelectCache(\"" + wptName + "\")'>[Select this cache]</a></div>";
 		feature.data.icon = icon;
 		var marker = feature.createMarker();
-		marker.setOpacity(0.85);
+		marker.setOpacity(0.66);
+		map.raiseLayer(extra, -1)
 		marker.events.register('mousedown',feature,mousedown);
 		extra.addMarker(marker);
 	}
