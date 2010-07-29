@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2010-07-17 08:32:36-0400\n"
-"PO-Revision-Date: 2010-07-19 23:13+0100\n"
+"PO-Revision-Date: 2010-07-25 11:09+0100\n"
 "Last-Translator: Harrie Klomp <harrie@harrieklomp.nl>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -81,7 +81,7 @@ msgstr "_Help"
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:195
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:196
 msgid "_About"
-msgstr "_Over"
+msgstr "_Over OCM"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:198
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:199
@@ -106,7 +106,7 @@ msgstr "_Online bekijken"
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:211
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:212
 msgid "_Delete"
-msgstr ""
+msgstr "_verwijderen"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:214
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:215
@@ -214,12 +214,12 @@ msgstr "_Kaarten"
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:275
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:276
 msgid "_Zoom to Centre"
-msgstr ""
+msgstr "_Inzoemen naar centrum"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:278
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:280
 msgid "Zoom to Selected _Cache"
-msgstr ""
+msgstr "Inzoemen naar geselecteerde _cache"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:282
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:283
@@ -234,17 +234,17 @@ msgstr "_Verzend caches..."
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:288
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:289
 msgid "_Change History..."
-msgstr ""
+msgstr "_Geschiedenis..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:291
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:293
 msgid "Set Selected Cache As Centre"
-msgstr ""
+msgstr "Centreer centrum op geselecteerde cache"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:295
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:297
 msgid "_Reset Centre to Home"
-msgstr ""
+msgstr "_Herstel centrum naar thuis"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:299
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:300
@@ -347,12 +347,12 @@ msgstr "_Te doen"
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:394
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:396
 msgid "_Done"
-msgstr ""
+msgstr "_Klaar"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:398
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:399
 msgid "_Solved Puzzles"
-msgstr ""
+msgstr "_Opgeloste puzzels"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:401
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:403
@@ -385,7 +385,7 @@ msgstr "OCM"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:470
 msgid "Not Set"
-msgstr ""
+msgstr "Niet ingesteld"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:195
 msgid "Log My Find..."
@@ -505,7 +505,7 @@ msgstr "Mijlen"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:409
 msgid "Set As Map Centre"
-msgstr ""
+msgstr "Stel in als kaartcenrum"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:410
 msgid "View Cache Online"
@@ -733,7 +733,7 @@ msgstr "Longitude:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:208
 msgid "Symbol:"
-msgstr ""
+msgstr "Symbool:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:222
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:209
@@ -762,6 +762,8 @@ msgid ""
 "OCM needs to upgrade your database.\n"
 "Would you like to backup your database first?"
 msgstr ""
+"OCM gaat uw database te vernieuwen.\n"
+"Wilt u eerst een backup maken?"
 
 #: ../ocm-gtk/UIMonitor.cs:302
 msgid "Upgrade complete"
@@ -777,7 +779,7 @@ msgstr "In beeld {0} van {1} caches van {2}. {3} gevonden, {4} niet beschikbaar/
 
 #: ../ocm-gtk/UIMonitor.cs:471
 msgid "Centred on {0} ({1})"
-msgstr ""
+msgstr "Gecentreerd op {0} ({1})"
 
 #: ../ocm-gtk/UIMonitor.cs:603
 msgid "Create database"
@@ -839,9 +841,8 @@ msgid "{0} caches added to {1}"
 msgstr "{0} caches toegevoegd aan {1}"
 
 #: ../ocm-gtk/UIMonitor.cs:1087
-#, fuzzy
 msgid "Are you sure you want to remove {0} from {1}?"
-msgstr "Are you sure you want to remove {0} from {1}?"
+msgstr "Weet u zeker om {0} te verwijderen van {1}?"
 
 #: ../ocm-gtk/Dialogs/ProgressDialog.cs:41
 #: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:51
@@ -898,7 +899,7 @@ msgstr "Herken mijn caches met:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:106
 msgid "Units:"
-msgstr ""
+msgstr "Eenheden:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:117
 msgid "Default Map:"
@@ -926,7 +927,7 @@ msgstr "Metrisch"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:179
 msgid "U.S./Imperial"
-msgstr ""
+msgstr "U.S./Imperial"
 
 #: ../ocm-gtk/Widgets/CoordinateWidget.cs:89
 msgid "Invalid Coordinate"
@@ -945,7 +946,7 @@ msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage1.cs:48
 msgid "Sign Up for an Account..."
-msgstr ""
+msgstr "Meld je aan voor een account..."
 
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:35
 msgid "Choose Database Location"
@@ -953,7 +954,7 @@ msgstr "Kies database locatie"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage2.cs:39
 msgid "You will need to create a database to use OCM, or open an existing OCM database if you already have one from somewhere else. "
-msgstr ""
+msgstr "U dient een database te maken om OCM te gebruiken, of open een bestaand OCM database die al ergens opgeslagen is."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage3.cs:50
 msgid ""
@@ -987,6 +988,8 @@ msgid ""
 "Cancelling an export will result in an invalid GPX file.\n"
 "Are you sure?"
 msgstr ""
+"Anuleren van een export zal resulteren in een slechte GPX bestand.\n"
+"Doorgaan?"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ExportProgressDialog.cs:32
 msgid "Saving File..."
@@ -1006,7 +1009,7 @@ msgstr "<b>GEEN CACHE GESELECTEERD</b>"
 
 #: ../ocm-gtk/Widgets/DescriptionWidget.cs:66
 msgid "Ref"
-msgstr ""
+msgstr "Ref"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DescriptionWidget.cs:55
 msgid "<b>Hint</b>"
@@ -1014,7 +1017,7 @@ msgstr "<b>Hint</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DescriptionWidget.cs:84
 msgid "<b>Trackables</b>"
-msgstr ""
+msgstr "<b>Trackables</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:87
 msgid "All Cache Types"
@@ -1027,12 +1030,12 @@ msgstr "Moeilijkheid"
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:114
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:385
 msgid "Greater Than"
-msgstr "Hoger dan"
+msgstr "Meer dan"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:115
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:386
 msgid "Greater Than or Equal To"
-msgstr "Hoger dan of gelijk aan"
+msgstr "Meer dan of gelijk aan"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:116
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:387
@@ -1156,7 +1159,7 @@ msgstr "Wherigo"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:350
 msgid "<b>Cache Types</b>"
-msgstr ""
+msgstr "<b>Cache soorten</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:360
 msgid "Selected Cache Types"
@@ -1172,7 +1175,7 @@ msgstr "OCMSplash"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMSplash.cs:144
 msgid "Using:"
-msgstr ""
+msgstr "Gebruik:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:37
 msgid "Advanced Filters..."
@@ -1216,7 +1219,7 @@ msgstr "Klein"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:166
 msgid "<b>Container Types</b>"
-msgstr ""
+msgstr "<b>Container soorten</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:179
 msgid "Description Keywords:"
@@ -1283,6 +1286,9 @@ msgid ""
 "USB to allow OCM to write to your Garmin Device. See:\n"
 "<span fgcolor=\"blue\">http://www.gpsbabel.org/os/Linux_Hotplug.html</span>"
 msgstr ""
+"<b>Belankrijk:</b>  U dient te configureren in non-root toegang voor\n"
+"USB om OCM naar uw Garmin apparaat te laten schrijven. Zie:\n"
+"<span fgcolor=\"blue\">http://www.gpsbabel.org/os/Linux_Hotplug.html</span>"
 
 #: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:71
 msgid "<i>Send Complete:{0} geocaches transferred</i>"
@@ -1306,7 +1312,7 @@ msgstr "Sluiten"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.MagellanExploristWidget.cs:81
 msgid "Serial Port or File:"
-msgstr ""
+msgstr "Seriele poort of bestand:"
 
 #: ../ocm-gtk/Widgets/GenericGPSWidget.cs:82
 msgid "Select File location"
@@ -1317,14 +1323,14 @@ msgid ""
 "Read the GPSBabel Documentation to choose the right values for these fields\n"
 "<span fgcolor=\"blue\">http://www.gpsbabel.org/readme.html</span>"
 msgstr ""
+"Lees de GPSBabel documentatie om de correcte waarden van deze velden te kiezen \n"
+"<span fgcolor=\"blue\">http://www.gpsbabel.org/readme.html</span>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:108
-#, fuzzy
 msgid "Output Format:"
 msgstr "Uitvoer formaat:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:136
-#, fuzzy
 msgid "Output FIle:"
 msgstr "Bestand:"
 
@@ -1354,7 +1360,7 @@ msgstr "Geplaatst op of voor:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ChangeHistory.cs:25
 msgid "Change History..."
-msgstr ""
+msgstr "Geschiedenis..."
 
 #: ../ocm-gtk/Widgets/NotesWidget.cs:46
 msgid "You have unsaved notes, do you wish to save them?"
@@ -1398,7 +1404,7 @@ msgstr "Cache Code:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:262
 msgid "Generic"
-msgstr ""
+msgstr "Algemeen"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:266
 msgid "Earthcache"
