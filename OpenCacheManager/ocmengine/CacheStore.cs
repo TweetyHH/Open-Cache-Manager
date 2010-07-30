@@ -316,7 +316,8 @@ namespace ocmengine
 			{
 				String val = reader.GetString(0);
 				if (val.Equals("Didn't find it") || val.Equals("Needs Maintenance")
-				    || val.Equals("no_find"));
+				    || val.Equals("no_find"))
+					cache.CheckNotes = true;
 				else
 					cache.CheckNotes = false;
 			}
