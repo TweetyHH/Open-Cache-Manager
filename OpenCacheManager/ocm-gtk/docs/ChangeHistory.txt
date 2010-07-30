@@ -1,3 +1,28 @@
+Version 0.17
+------------
+- Highlight caches with DNF or maintenance required in orange (on GPX import)
+- Caches with child waypoints displayed in bold
+- GPSD support. If you have a GPS device that gpsd supports, you can set OCM to continuously refresh
+cache distances and the map position from the GPS coordinates
+- Child Waypoint list is now sortable and displays the icon type
+- You can now delete all visible caches from the cache menu instead of deleting them one-by-one
+- OCM now remembers the last window size and pane layout
+- Show Nearby Caches is now a preference, and is on by default
+- Add OCM, GPSBabel, and GPSD home pages to the web menu
+- Add Deselect cache to the cache menu
+- OCM will now show the last log date by you in the quick start menu (any type of log)
+- OCM will now show your cache find date in the "You have already found this cache" status message
+- There is now a log export limit of 5 (configurable) for GPX based garmin devices
+- You can now override the waypoint symbols OCM uses when sending to the device from the GPS Configuration menu
+- For eTrex/Map60 units, you can now have waypoint names as either the cache code or the actual cache name
+- For eTrex/Map60 units, you can now have the waypoint description as the cache name, cache code/size/hint, 
+  or cache code/size/type.
+- Improved icon set for maps
+- Fixed bug where OCM crashes if a DBUS session bus is not running
+- Map now shows a scale line
+
+
+
 Version 0.16
 ------------
 - Add Bookmark lists, a new feature to organize your caches. You can create 
