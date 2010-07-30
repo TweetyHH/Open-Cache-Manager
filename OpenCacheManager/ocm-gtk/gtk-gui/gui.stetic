@@ -496,6 +496,17 @@
         <property name="ShortLabel" translatable="yes">OCM Home Page...</property>
         <signal name="Activated" handler="OnOCMHome" />
       </action>
+      <action id="DeselectAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Deselect</property>
+        <property name="ShortLabel" translatable="yes">Deselect</property>
+      </action>
+      <action id="DeselectCacheAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Deselect Cache</property>
+        <property name="ShortLabel" translatable="yes">Deselect Cache</property>
+        <signal name="Activated" handler="OnDeselectClick" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">OCM</property>
@@ -544,6 +555,7 @@
                 <node type="Menuitem" action="MarkAvailableAction" />
                 <node type="Separator" />
                 <node type="Menuitem" action="AddCacheAction" />
+                <node type="Menuitem" action="DeselectCacheAction" />
                 <node type="Menuitem" action="ModifyCacheAction" />
                 <node type="Menuitem" action="DeleteCacheAction" />
                 <node type="Menuitem" action="DeleteAllVisibleCachesAction" />
@@ -4625,6 +4637,7 @@ Less Than</property>
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Label" translatable="yes">Garmin Colorado/Oregon/Dakota/Nuvi</property>
+                    <property name="Active">True</property>
                     <property name="DrawIndicator">True</property>
                     <property name="HasLabel">True</property>
                     <property name="UseUnderline">True</property>
@@ -7470,7 +7483,7 @@ Mega Event Cache</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.GPSDConfig" design-size="311 195">
+  <widget class="Gtk.Dialog" id="ocmgtk.GPSDConfig" design-size="425 195">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Configure GPSD...</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -7551,6 +7564,7 @@ Mega Event Cache</property>
               <widget class="Gtk.Entry" id="pollEntry">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
+                <property name="Text" translatable="yes">30</property>
                 <property name="IsEditable">True</property>
                 <property name="InvisibleChar">•</property>
               </widget>
@@ -7573,7 +7587,8 @@ Mega Event Cache</property>
               <widget class="Gtk.CheckButton" id="recenterCheck">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Label" translatable="yes">Continuosly Recenter Map</property>
+                <property name="Label" translatable="yes">Continuously Recenter Map</property>
+                <property name="Active">True</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>

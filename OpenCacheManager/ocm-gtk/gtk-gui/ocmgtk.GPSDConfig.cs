@@ -83,6 +83,7 @@ namespace ocmgtk {
             this.pollEntry = new Gtk.Entry();
             this.pollEntry.CanFocus = true;
             this.pollEntry.Name = "pollEntry";
+            this.pollEntry.Text = Mono.Unix.Catalog.GetString("30");
             this.pollEntry.IsEditable = true;
             this.pollEntry.InvisibleChar = '•';
             this.table1.Add(this.pollEntry);
@@ -96,7 +97,8 @@ namespace ocmgtk {
             this.recenterCheck = new Gtk.CheckButton();
             this.recenterCheck.CanFocus = true;
             this.recenterCheck.Name = "recenterCheck";
-            this.recenterCheck.Label = Mono.Unix.Catalog.GetString("Continuosly Recenter Map");
+            this.recenterCheck.Label = Mono.Unix.Catalog.GetString("Continuously Recenter Map");
+            this.recenterCheck.Active = true;
             this.recenterCheck.DrawIndicator = true;
             this.recenterCheck.UseUnderline = true;
             this.table1.Add(this.recenterCheck);
@@ -158,7 +160,7 @@ namespace ocmgtk {
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 311;
+            this.DefaultWidth = 425;
             this.DefaultHeight = 195;
             this.Show();
             this.buttonCancel.Clicked += new System.EventHandler(this.OnButtonCancelClicked);
