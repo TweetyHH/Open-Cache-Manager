@@ -96,6 +96,7 @@ body {
 
 	    extra = new OpenLayers.Layer.Markers("Other Geocaches");
         map.addLayers([osm, ghyb,gmap,gphy, extra]);
+        map.addControl(new OpenLayers.Control.ScaleLine(),new OpenLayers.Pixel(80,10))
         map.addControl(new OpenLayers.Control.LayerSwitcher());
         
         var currmap = getParm('map');
