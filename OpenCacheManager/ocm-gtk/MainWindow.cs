@@ -484,6 +484,11 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.ConfigureGPSD();
 	}
 	
+	public void SetGPSDOn()
+	{
+		UseGPSDAsCentreAction.Active = true;
+	}
+	
 	protected virtual void OnOCMHome (object sender, System.EventArgs e)
 	{
 		UIMonitor.OCMHome();
@@ -498,6 +503,12 @@ public partial class MainWindow : Gtk.Window
 	{
 		UIMonitor.GPSDHome();
 	}
+	
+	protected virtual void OnDeselectClick (object sender, System.EventArgs e)
+	{
+		m_monitor.SetSelectedCache(null);
+	}
+	
 	
 	
 	

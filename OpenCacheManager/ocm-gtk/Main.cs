@@ -23,20 +23,28 @@ namespace ocmgtk
 
 		public static void Main (string[] args)
 		{
-			BusG.Init ();
+			
 			Application.Init ();
-			Bus bus = Bus.Session;
-			string busName = "org.ocm.dbus";
-			if (bus.RequestName (busName) != RequestNameReply.PrimaryOwner) {
+			try
+			{
+				BusG.Init ();
+				Bus bus = Bus.Session;
+				string busName = "org.ocm.dbus";
+				if (bus.RequestName (busName) != RequestNameReply.PrimaryOwner) {
 				if (args != null)
 					if (args.Length > 0) {
 						IDBusComm comm = bus.GetObject<IDBusComm> (busName, new ObjectPath ("/org/ocm/dbus"));
 						comm.ImportGPX (args[0]);
 					}
 				return;
-			} else {
+				} else {
 				DBusComm comm = new DBusComm ();
 				bus.Register (new ObjectPath ("/org/ocm/dbus"), comm);
+				}
+			}
+			catch
+			{
+				System.Console.Error.WriteLine("NO SESSION DBUS RUNNING");
 			}
 			
 			Mono.Unix.Catalog.Init ("i8n1", "./locale");

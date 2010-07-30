@@ -291,6 +291,9 @@ namespace ocmgtk
 			m_mainWin.Resize(win_width, win_height);
 			string map = (string) m_conf.Get("/apps/ocm/defmap", "osm");
 			String dbName = (string)m_conf.Get ("/apps/ocm/currentdb", String.Empty);
+			bool enableGPS = (bool) m_conf.Get("/apps/ocm/gpsd/onstartup", false);
+			if (enableGPS)
+				m_mainWin.SetGPSDOn();
 			m_mainWin.SizeAllocated += HandleM_mainWinSizeAllocated;
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (false);
@@ -1276,7 +1279,9 @@ namespace ocmgtk
 		public void EnableGPS()
 		{
 			m_gps = new GPS();
-			m_gpsTimer = new Timer(10000);
+
+			int interval = (int) m_conf.Get("/apps/ocm/gpsd/poll", 30);
+			m_gpsTimer = new Timer(interval * 1000);
 			m_gpsTimer.AutoReset = true;
 			m_gpsTimer.Enabled = true;
 			m_gpsTimer.Elapsed += HandleM_gpsTimerElapsed;
@@ -1298,7 +1303,8 @@ namespace ocmgtk
 			m_home_lat = m_gps.Lat;
 			m_home_lon = m_gps.Lon;
 			m_cachelist.RefilterList();
-			if (m_selectedCache == null)
+			bool recenterMap = (bool) m_conf.Get("/apps/ocm/gpsd/recenter", true);
+			if (m_selectedCache == null && recenterMap)
 				GoHome();
 			});
 			
@@ -1327,9 +1333,14 @@ namespace ocmgtk
 		{
 			GPSDConfig dlg = new GPSDConfig();
 			dlg.Icon = m_mainWin.Icon;
+			dlg.GPSDOnStartup = (bool) m_conf.Get("/apps/ocm/gpsd/onstartup", false);
+			dlg.RecenterMap = (bool) m_conf.Get("/apps/ocm/gpsd/recenter", true);
+			dlg.PollInterval = (int) m_conf.Get("/apps/ocm/gpsd/poll", 30);
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
-				
+				m_conf.Set("/apps/ocm/gpsd/onstartup", dlg.GPSDOnStartup);
+				m_conf.Set("/apps/ocm/gpsd/recenter", dlg.RecenterMap);
+				m_conf.Set("/apps/ocm/gpsd/poll", dlg.PollInterval);
 			}
 		}
 		
