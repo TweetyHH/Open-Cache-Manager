@@ -28,6 +28,8 @@ namespace ocmgtk
 		private GPXParser m_parser;
 		double m_total = 0;
 		double m_progress = 0;
+		bool m_autoClose = false;
+		bool m_WaypointsOnly = false;
 		public ProgressDialog (GPXParser parser, int total)
 		{
 			this.Build ();
@@ -47,6 +49,7 @@ namespace ocmgtk
 			buttonCancel.Sensitive = false;
 			okButton.GrabDefault();
 		}
+		
 
 
 		public void Start (FileStream fs, CacheStore store)

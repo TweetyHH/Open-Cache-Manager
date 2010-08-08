@@ -29,6 +29,24 @@ namespace ocmgtk
 		double count = 0;
 		GPXWriter m_writer =null;
 		
+		private bool m_autoClose =false;
+		public bool AutoClose
+		{
+			set { m_autoClose = value;}
+		}
+		
+		private bool m_waypointsOnly = false;
+		public bool WaypointsOnly
+		{
+			set { m_writer.IncludeGroundSpeakExtensions = false;}
+		}
+		
+		private string m_command = null;
+		public String CompleteCommand
+		{
+			set { m_command = value;}
+		}
+		
 		public ExportProgressDialog (GPXWriter writer)
 		{
 			this.Build ();
@@ -46,6 +64,16 @@ namespace ocmgtk
 
 		void HandleWriterComplete (object sender, EventArgs args)
 		{
+			if (m_autoClose)
+			{
+				this.Hide();
+				if (m_command != null)
+				{
+					System.Diagnostics.Process.Start(m_command);
+				}
+				return;
+			}
+			
 			okButton.Sensitive = true;
 			buttonCancel.Sensitive = false;
 			infoLabel.Markup = String.Format(Catalog.GetString("<i>{0} Geocaches exported.</i>"), count);

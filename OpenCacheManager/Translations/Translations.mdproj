@@ -8,7 +8,7 @@
     <packageName>i8n1</packageName>
     <outputType>RelativeToOutput</outputType>
     <relPath>locale</relPath>
-    <ReleaseVersion>0.17</ReleaseVersion>
+    <ReleaseVersion>0.18</ReleaseVersion>
     <projectInformations>
       <projectInformations>
         <TranslationProjectInformation projectName="ocmengine" isIncluded="true" />

@@ -48,11 +48,6 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.Map = cachePane.CacheMap;
 	}
 
-	void HandleHandleConfigureEvent (object o, ConfigureEventArgs args)
-	{
-		System.Console.WriteLine("CONFIGURE!");
-	}
-
 	protected void BuildBookMarkMenu()
 	{
 		MenuItem bmrks = new MenuItem(Catalog.GetString("_Bookmarks"));
@@ -371,6 +366,25 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.MarkCacheAvailable();
 	}
 	
+	public void SetBookmarkList(string str)
+	{
+		foreach (Gtk.MenuItem item in (addCacheTo.Submenu as Menu))
+		{
+			item.Sensitive = true;
+			if (item.Child != null && item.Child is Label)
+				if (str == (item.Child as Label).Text)
+					item.Sensitive = false;
+		}
+		
+		foreach (Gtk.MenuItem item in (addVisibleCaches.Submenu as Menu))
+		{
+			item.Sensitive = true;
+			if (item.Child != null && item.Child is Label)
+				if (str == (item.Child as Label).Text)
+					item.Sensitive = false;
+		}
+	}
+	
 	public void UpdateBookmarkList(List<string> items)
 	{
 		Menu bookmarksSub = new Menu();
@@ -392,9 +406,13 @@ public partial class MainWindow : Gtk.Window
 			action.Toggled += HandleActionToggled;
 			bookmarksSub.Append(action.CreateMenuItem());
 			MenuItem bookmarkAll = new MenuItem(str);
+			if (store.BookmarkList == str)
+				bookmarkAll.Sensitive = false;
 			bookmarkAll.Activated += HandleBookmarkAllActivated;
 			addAllSub.Append(bookmarkAll);
 			MenuItem bookmarkSel = new MenuItem(str);
+			if (store.BookmarkList == str)
+				bookmarkSel.Sensitive = false;
 			bookmarkSel.Activated += HandleBookmarkSelActivated;
 			addSelSub.Append(bookmarkSel);
 			if (str == store.BookmarkList)
@@ -508,6 +526,66 @@ public partial class MainWindow : Gtk.Window
 	{
 		m_monitor.SetSelectedCache(null);
 	}
+	
+	protected virtual void OnQTLandKarteClick (object sender, System.EventArgs e)
+	{
+		m_monitor.OpenInQTLandKarte();
+	}
+	
+	protected virtual void OnViewSelectedInQlandKarte (object sender, System.EventArgs e)
+	{
+		m_monitor.OpenSelectedCacheInQLandKarte();
+	}
+	
+	protected virtual void OnAllFilterClick (object sender, System.EventArgs e)
+	{
+		m_monitor.ApplyQuickFilter(QuickFilter.ALL_FILTER);
+	}
+	
+	protected virtual void OnTodoClick (object sender, System.EventArgs e)
+	{
+		m_monitor.ApplyQuickFilter(QuickFilter.TODO_FILTER);
+	}
+	
+	protected virtual void OnDoneClick (object sender, System.EventArgs e)
+	{
+		m_monitor.ApplyQuickFilter(QuickFilter.DONE_FILTER);
+	}
+	
+	protected virtual void OnMineClick (object sender, System.EventArgs e)
+	{
+		m_monitor.ApplyQuickFilter(QuickFilter.MINE_FILTER);
+	}
+	
+	protected virtual void OnClearAllFilter (object sender, System.EventArgs e)
+	{
+		m_monitor.ApplyQuickFilter(QuickFilter.ALL_FILTER);
+	}
+	
+	public void RebuildQuickFilterMenu(QuickFilters filters)
+	{
+			Menu qmenu = filters.BuildQuickFilterMenu();
+			(QuickFilterAction.Proxies[0] as MenuItem).Submenu = qmenu;
+	}
+	
+	protected virtual void OnSaveQuickFilter (object sender, System.EventArgs e)
+	{
+		m_monitor.SaveQuickFilter();
+	}
+	
+	protected virtual void OnDeleteQF (object sender, System.EventArgs e)
+	{
+		m_monitor.DeleteQuickFilter();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

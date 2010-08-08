@@ -176,6 +176,20 @@ public partial class MainWindow {
     
     private Gtk.Action DeselectCacheAction;
     
+    private Gtk.Action ToolsAction;
+    
+    private Gtk.Action ViewAllInQLandkarteGTAction;
+    
+    private Gtk.Action ViewSelectedCacheInQLandkarteGTAction;
+    
+    private Gtk.Action MineAction;
+    
+    private Gtk.Action AllAction;
+    
+    private Gtk.Action SaveCurrentViewAsQuickFilterAction;
+    
+    private Gtk.Action DeleteQuickFilterAction;
+    
     private Gtk.VBox vbox1;
     
     private Gtk.MenuBar mainmenubar;
@@ -416,15 +430,13 @@ public partial class MainWindow {
         this.SolvedPuzzlesAction.ShortLabel = Mono.Unix.Catalog.GetString("_Solved Puzzles");
         w1.Add(this.SolvedPuzzlesAction, null);
         this.ClearAllFiltersAction1 = new Gtk.Action("ClearAllFiltersAction1", Mono.Unix.Catalog.GetString("Clear _All Filters"), null, null);
-        this.ClearAllFiltersAction1.Sensitive = false;
         this.ClearAllFiltersAction1.ShortLabel = Mono.Unix.Catalog.GetString("Clear _All Filters");
         w1.Add(this.ClearAllFiltersAction1, null);
         this.AddCacheAction = new Gtk.Action("AddCacheAction", Mono.Unix.Catalog.GetString("Add Cache..."), null, null);
         this.AddCacheAction.ShortLabel = Mono.Unix.Catalog.GetString("Add Cache...");
         w1.Add(this.AddCacheAction, null);
-        this.QuickFilterAction = new Gtk.Action("QuickFilterAction", Mono.Unix.Catalog.GetString("Quick Filter"), null, null);
-        this.QuickFilterAction.Sensitive = false;
-        this.QuickFilterAction.ShortLabel = Mono.Unix.Catalog.GetString("Quick Filter");
+        this.QuickFilterAction = new Gtk.Action("QuickFilterAction", Mono.Unix.Catalog.GetString("_Quick Filter"), null, null);
+        this.QuickFilterAction.ShortLabel = Mono.Unix.Catalog.GetString("_Quick Filter");
         w1.Add(this.QuickFilterAction, null);
         this.ToDoAction1 = new Gtk.Action("ToDoAction1", Mono.Unix.Catalog.GetString("To Do"), null, null);
         this.ToDoAction1.ShortLabel = Mono.Unix.Catalog.GetString("To Do");
@@ -456,6 +468,27 @@ public partial class MainWindow {
         this.DeselectCacheAction = new Gtk.Action("DeselectCacheAction", Mono.Unix.Catalog.GetString("Deselect Cache"), null, null);
         this.DeselectCacheAction.ShortLabel = Mono.Unix.Catalog.GetString("Deselect Cache");
         w1.Add(this.DeselectCacheAction, null);
+        this.ToolsAction = new Gtk.Action("ToolsAction", Mono.Unix.Catalog.GetString("_Tools"), null, null);
+        this.ToolsAction.ShortLabel = Mono.Unix.Catalog.GetString("_Tools");
+        w1.Add(this.ToolsAction, null);
+        this.ViewAllInQLandkarteGTAction = new Gtk.Action("ViewAllInQLandkarteGTAction", Mono.Unix.Catalog.GetString("_View All in QLandkarte GT..."), null, null);
+        this.ViewAllInQLandkarteGTAction.ShortLabel = Mono.Unix.Catalog.GetString("_View All in QLandkarte GT...");
+        w1.Add(this.ViewAllInQLandkarteGTAction, null);
+        this.ViewSelectedCacheInQLandkarteGTAction = new Gtk.Action("ViewSelectedCacheInQLandkarteGTAction", Mono.Unix.Catalog.GetString("View Selected _Cache in QLandkarte GT..."), null, null);
+        this.ViewSelectedCacheInQLandkarteGTAction.ShortLabel = Mono.Unix.Catalog.GetString("View Selected _Cache in QLandkarte GT...");
+        w1.Add(this.ViewSelectedCacheInQLandkarteGTAction, null);
+        this.MineAction = new Gtk.Action("MineAction", Mono.Unix.Catalog.GetString("Mine"), null, null);
+        this.MineAction.ShortLabel = Mono.Unix.Catalog.GetString("Mine");
+        w1.Add(this.MineAction, null);
+        this.AllAction = new Gtk.Action("AllAction", Mono.Unix.Catalog.GetString("All"), null, null);
+        this.AllAction.ShortLabel = Mono.Unix.Catalog.GetString("All");
+        w1.Add(this.AllAction, null);
+        this.SaveCurrentViewAsQuickFilterAction = new Gtk.Action("SaveCurrentViewAsQuickFilterAction", Mono.Unix.Catalog.GetString("_Save Current View as Quick Filter"), null, null);
+        this.SaveCurrentViewAsQuickFilterAction.ShortLabel = Mono.Unix.Catalog.GetString("_Save Current as Quick Filter");
+        w1.Add(this.SaveCurrentViewAsQuickFilterAction, null);
+        this.DeleteQuickFilterAction = new Gtk.Action("DeleteQuickFilterAction", Mono.Unix.Catalog.GetString("_Delete Quick Filter..."), null, null);
+        this.DeleteQuickFilterAction.ShortLabel = Mono.Unix.Catalog.GetString("_Delete Quick Filter...");
+        w1.Add(this.DeleteQuickFilterAction, null);
         this.UIManager.InsertActionGroup(w1, 0);
         this.AddAccelGroup(this.UIManager.AccelGroup);
         this.Name = "MainWindow";
@@ -469,7 +502,7 @@ public partial class MainWindow {
         this.vbox1 = new Gtk.VBox();
         this.vbox1.Name = "vbox1";
         // Container child vbox1.Gtk.Box+BoxChild
-        this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='newAction1' action='newAction1'/><menuitem name='openAction2' action='openAction2'/><separator/><menuitem name='openAction' action='openAction'/><menuitem name='saveAsAction' action='saveAsAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'><menuitem name='PreferencesAction1' action='PreferencesAction1'/></menu><menu name='FilterAction' action='FilterAction'><menu name='QuickFilterAction' action='QuickFilterAction'><menuitem name='ToDoAction1' action='ToDoAction1'/><menuitem name='DoneAction1' action='DoneAction1'/></menu><separator/><menuitem name='AdvancedFiltersAction' action='AdvancedFiltersAction'/><menuitem name='ClearAdvancedFiltersAction' action='ClearAdvancedFiltersAction'/><menuitem name='ClearAllFiltersAction1' action='ClearAllFiltersAction1'/></menu><menu name='CacheAction' action='CacheAction'><menuitem name='ViewOnlineAction' action='ViewOnlineAction'/><menuitem name='LogFindAction' action='LogFindAction'/><separator/><menuitem name='MarkUnfoundAction' action='MarkUnfoundAction'/><menuitem name='MarkDisabledAction' action='MarkDisabledAction'/><menuitem name='MarkArchivedAction' action='MarkArchivedAction'/><menuitem name='MarkAvailableAction' action='MarkAvailableAction'/><separator/><menuitem name='AddCacheAction' action='AddCacheAction'/><menuitem name='DeselectCacheAction' action='DeselectCacheAction'/><menuitem name='ModifyCacheAction' action='ModifyCacheAction'/><menuitem name='DeleteCacheAction' action='DeleteCacheAction'/><menuitem name='DeleteAllVisibleCachesAction' action='DeleteAllVisibleCachesAction'/></menu><menu name='WebAction' action='WebAction'><menuitem name='OCMHomePageAction' action='OCMHomePageAction'/><separator/><menu name='GeocachingComAction1' action='GeocachingComAction1'><menuitem name='HomePageAction5' action='HomePageAction5'/><menuitem name='ViewMyProfileAction1' action='ViewMyProfileAction1'/><menuitem name='MyAccountDetailsAction1' action='MyAccountDetailsAction1'/><menuitem name='CreatePocketQueriesAction1' action='CreatePocketQueriesAction1'/><separator/><menuitem name='FindACacheAction1' action='FindACacheAction1'/></menu><menu name='TerraCachingComAction1' action='TerraCachingComAction1'><menuitem name='HomePageAction' action='HomePageAction'/><separator/><menu name='ToDoListAction1' action='ToDoListAction1'><menuitem name='TraditionalAction1' action='TraditionalAction1'/><menuitem name='LocationlessAction1' action='LocationlessAction1'/></menu></menu><menu name='NaviCacheComAction1' action='NaviCacheComAction1'><menuitem name='HomePageAction7' action='HomePageAction7'/><menuitem name='MyNaviCacheAction1' action='MyNaviCacheAction1'/></menu><separator/><menuitem name='GPSBabelHomePageAction' action='GPSBabelHomePageAction'/><menuitem name='GPSDHomePageAction' action='GPSDHomePageAction'/></menu><menu name='MapAction' action='MapAction'><menuitem name='ShowNearbyCachesAction' action='ShowNearbyCachesAction'/><separator/><menuitem name='ZoomToCentreAction' action='ZoomToCentreAction'/><menuitem name='ZoomToSelectedCacheAction' action='ZoomToSelectedCacheAction'/><menuitem name='SetSelectedCacheAsCentreAction' action='SetSelectedCacheAsCentreAction'/><menuitem name='ResetCentreToHomeAction' action='ResetCentreToHomeAction'/><separator/><menuitem name='UseGPSDAsCentreAction' action='UseGPSDAsCentreAction'/><menuitem name='ConfigureGPSDAction' action='ConfigureGPSDAction'/></menu><menu name='GPSAction' action='GPSAction'><menuitem name='ConfigureGPSAction' action='ConfigureGPSAction'/><separator/><menuitem name='TransferCachesAction' action='TransferCachesAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='aboutAction' action='aboutAction'/><menuitem name='ChangeHistoryAction' action='ChangeHistoryAction'/></menu><menu><menuitem/><menuitem/></menu></menubar></ui>");
+        this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='newAction1' action='newAction1'/><menuitem name='openAction2' action='openAction2'/><separator/><menuitem name='openAction' action='openAction'/><menuitem name='saveAsAction' action='saveAsAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'><menuitem name='PreferencesAction1' action='PreferencesAction1'/></menu><menu name='FilterAction' action='FilterAction'><menuitem name='QuickFilterAction' action='QuickFilterAction'/><separator/><menuitem name='AdvancedFiltersAction' action='AdvancedFiltersAction'/><menuitem name='ClearAdvancedFiltersAction' action='ClearAdvancedFiltersAction'/><menuitem name='ClearAllFiltersAction1' action='ClearAllFiltersAction1'/><separator/><menuitem name='SaveCurrentViewAsQuickFilterAction' action='SaveCurrentViewAsQuickFilterAction'/><menuitem name='DeleteQuickFilterAction' action='DeleteQuickFilterAction'/></menu><menu name='CacheAction' action='CacheAction'><menuitem name='ViewOnlineAction' action='ViewOnlineAction'/><menuitem name='LogFindAction' action='LogFindAction'/><separator/><menuitem name='MarkUnfoundAction' action='MarkUnfoundAction'/><menuitem name='MarkDisabledAction' action='MarkDisabledAction'/><menuitem name='MarkArchivedAction' action='MarkArchivedAction'/><menuitem name='MarkAvailableAction' action='MarkAvailableAction'/><separator/><menuitem name='AddCacheAction' action='AddCacheAction'/><menuitem name='DeselectCacheAction' action='DeselectCacheAction'/><menuitem name='ModifyCacheAction' action='ModifyCacheAction'/><menuitem name='DeleteCacheAction' action='DeleteCacheAction'/><menuitem name='DeleteAllVisibleCachesAction' action='DeleteAllVisibleCachesAction'/></menu><menu name='WebAction' action='WebAction'><menuitem name='OCMHomePageAction' action='OCMHomePageAction'/><separator/><menu name='GeocachingComAction1' action='GeocachingComAction1'><menuitem name='HomePageAction5' action='HomePageAction5'/><menuitem name='ViewMyProfileAction1' action='ViewMyProfileAction1'/><menuitem name='MyAccountDetailsAction1' action='MyAccountDetailsAction1'/><menuitem name='CreatePocketQueriesAction1' action='CreatePocketQueriesAction1'/><separator/><menuitem name='FindACacheAction1' action='FindACacheAction1'/></menu><menu name='TerraCachingComAction1' action='TerraCachingComAction1'><menuitem name='HomePageAction' action='HomePageAction'/><separator/><menu name='ToDoListAction1' action='ToDoListAction1'><menuitem name='TraditionalAction1' action='TraditionalAction1'/><menuitem name='LocationlessAction1' action='LocationlessAction1'/></menu></menu><menu name='NaviCacheComAction1' action='NaviCacheComAction1'><menuitem name='HomePageAction7' action='HomePageAction7'/><menuitem name='MyNaviCacheAction1' action='MyNaviCacheAction1'/></menu><separator/><menuitem name='GPSBabelHomePageAction' action='GPSBabelHomePageAction'/><menuitem name='GPSDHomePageAction' action='GPSDHomePageAction'/></menu><menu name='MapAction' action='MapAction'><menuitem name='ShowNearbyCachesAction' action='ShowNearbyCachesAction'/><separator/><menuitem name='ZoomToCentreAction' action='ZoomToCentreAction'/><menuitem name='ZoomToSelectedCacheAction' action='ZoomToSelectedCacheAction'/><menuitem name='SetSelectedCacheAsCentreAction' action='SetSelectedCacheAsCentreAction'/><menuitem name='ResetCentreToHomeAction' action='ResetCentreToHomeAction'/><separator/><menuitem name='UseGPSDAsCentreAction' action='UseGPSDAsCentreAction'/><menuitem name='ConfigureGPSDAction' action='ConfigureGPSDAction'/></menu><menu name='GPSAction' action='GPSAction'><menuitem name='ConfigureGPSAction' action='ConfigureGPSAction'/><separator/><menuitem name='TransferCachesAction' action='TransferCachesAction'/></menu><menu name='ToolsAction' action='ToolsAction'><menuitem name='ViewAllInQLandkarteGTAction' action='ViewAllInQLandkarteGTAction'/><menuitem name='ViewSelectedCacheInQLandkarteGTAction' action='ViewSelectedCacheInQLandkarteGTAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='aboutAction' action='aboutAction'/><menuitem name='ChangeHistoryAction' action='ChangeHistoryAction'/></menu><menu><menuitem/><menuitem/></menu></menubar></ui>");
         this.mainmenubar = ((Gtk.MenuBar)(this.UIManager.GetWidget("/mainmenubar")));
         this.mainmenubar.Name = "mainmenubar";
         this.vbox1.Add(this.mainmenubar);
@@ -584,7 +617,10 @@ public partial class MainWindow {
         this.MarkAvailableAction.Activated += new System.EventHandler(this.OnClickAvailable);
         this.ModifyCacheAction.Activated += new System.EventHandler(this.OnModifyCacheActionActivated);
         this.ToDoAction.Activated += new System.EventHandler(this.OnToDoActionActivated);
+        this.ClearAllFiltersAction1.Activated += new System.EventHandler(this.OnClearAllFilter);
         this.AddCacheAction.Activated += new System.EventHandler(this.OnAddCacheActionActivated);
+        this.ToDoAction1.Activated += new System.EventHandler(this.OnTodoClick);
+        this.DoneAction1.Activated += new System.EventHandler(this.OnDoneClick);
         this.DeleteAllVisibleCachesAction.Activated += new System.EventHandler(this.OnDeleteAllSelect);
         this.UseGPSDAsCentreAction.Toggled += new System.EventHandler(this.OnGPSDToggle);
         this.ConfigureGPSDAction.Activated += new System.EventHandler(this.ConfigureGPSD);
@@ -592,5 +628,11 @@ public partial class MainWindow {
         this.GPSDHomePageAction.Activated += new System.EventHandler(this.OnGPSDHome);
         this.OCMHomePageAction.Activated += new System.EventHandler(this.OnOCMHome);
         this.DeselectCacheAction.Activated += new System.EventHandler(this.OnDeselectClick);
+        this.ViewAllInQLandkarteGTAction.Activated += new System.EventHandler(this.OnQTLandKarteClick);
+        this.ViewSelectedCacheInQLandkarteGTAction.Activated += new System.EventHandler(this.OnViewSelectedInQlandKarte);
+        this.MineAction.Activated += new System.EventHandler(this.OnMineClick);
+        this.AllAction.Activated += new System.EventHandler(this.OnAllFilterClick);
+        this.SaveCurrentViewAsQuickFilterAction.Activated += new System.EventHandler(this.OnSaveQuickFilter);
+        this.DeleteQuickFilterAction.Activated += new System.EventHandler(this.OnDeleteQF);
     }
 }

@@ -94,6 +94,7 @@ namespace ocmgtk
 		private GPS m_gps;
 		private int m_width;
 		private int m_height;
+		private QuickFilters m_filters;
 		#endregion
 
 		#region Properties
@@ -301,6 +302,8 @@ namespace ocmgtk
 			LoadMap (map);
 			SetSelectedCache(null);
 			BuildWaypointMappings();
+			m_filters = QuickFilters.LoadQuickFilters();
+			m_mainWin.RebuildQuickFilterMenu(m_filters);
 			bool showNearby = (Boolean) m_conf.Get("/apps/ocm/shownearby", true);
 			if (showNearby)
 				m_mainWin.SetNearbyEnabled();
@@ -1165,6 +1168,7 @@ namespace ocmgtk
 		{
 			CacheStore store = Engine.getInstance().Store;
 			store.BookmarkList = bmrk;
+			m_mainWin.SetBookmarkList(bmrk);
 			RefreshCaches();
 		}
 		
@@ -1352,5 +1356,72 @@ namespace ocmgtk
 			reader.Close();
 			return version;
 		}
+		
+		public void OpenInQTLandKarte()
+		{
+			GPXWriter writer = new GPXWriter();
+			String tempPath = System.IO.Path.GetTempPath();
+			String tempFile = tempPath + "ocm_export.gpx";
+			ExportProgressDialog dlg = new ExportProgressDialog(writer);
+			dlg.AutoClose = true;
+			dlg.Title = Catalog.GetString("Preparing to send to QLandKarte GT");
+			dlg.WaypointsOnly = true;
+			dlg.CompleteCommand = "qlandkartegt " + tempFile;
+			dlg.Icon = m_mainWin.Icon;
+			dlg.Start(tempFile, GetVisibleCacheList(), m_WaypointMappings);
+		}
+		
+		public void OpenSelectedCacheInQLandKarte()
+		{
+			GPXWriter writer = new GPXWriter();
+			String tempPath = System.IO.Path.GetTempPath();
+			String tempFile = tempPath + "ocm_export.gpx";
+			List<Geocache> cache = new List<Geocache>();
+			cache.Add(m_selectedCache);
+			ExportProgressDialog dlg = new ExportProgressDialog(writer);
+			dlg.AutoClose = true;
+			dlg.Title = Catalog.GetString("Preparing to send to QLandKarte GT");
+			dlg.WaypointsOnly = true;
+			dlg.CompleteCommand = "qlandkartegt " + tempFile;
+			dlg.Icon = m_mainWin.Icon;
+			dlg.Start(tempFile, cache, m_WaypointMappings);
+		}
+		
+		public void ApplyQuickFilter(QuickFilter filter)
+		{
+			m_cachelist.ApplyQuickFilter(filter);
+			Engine.getInstance().Store.Filter = filter.AdvancedFilters;
+			if (filter.AdvancedFilters != null)
+				m_mainWin.SetAllowClearFilter (true);
+			else
+				m_mainWin.SetAllowClearFilter(false);
+			RefreshCaches();
+		}
+		
+		public void SaveQuickFilter()
+		{
+			AddBookMarkDialog dlg = new AddBookMarkDialog();
+			dlg.Title = Catalog.GetString("Save QuickFilter");
+			if (((int) ResponseType.Ok) == dlg.Run())
+			{
+				QuickFilter filter = new QuickFilter();
+				filter.AdvancedFilters = Engine.getInstance().Store.Filter;
+				m_cachelist.PopulateQuickFilter(filter);
+				filter.Name = dlg.BookmarkName;
+				m_filters.AddFilter(filter);
+				m_mainWin.RebuildQuickFilterMenu(m_filters);
+			}
+		}
+		
+		public void DeleteQuickFilter()
+		{
+			DeleteBookmark dlg = new DeleteBookmark(m_filters);
+			if ((int) ResponseType.Ok == dlg.Run())
+			{
+				m_filters.DeleteFilter(dlg.Bookmark);
+				m_mainWin.RebuildQuickFilterMenu(m_filters);
+			}
+		}
+
 	}
 }

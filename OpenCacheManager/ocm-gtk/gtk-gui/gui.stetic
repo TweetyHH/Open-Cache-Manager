@@ -433,8 +433,8 @@
       <action id="ClearAllFiltersAction1">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Clear _All Filters</property>
-        <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">Clear _All Filters</property>
+        <signal name="Activated" handler="OnClearAllFilter" />
       </action>
       <action id="AddCacheAction">
         <property name="Type">Action</property>
@@ -444,19 +444,20 @@
       </action>
       <action id="QuickFilterAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Quick Filter</property>
-        <property name="Sensitive">False</property>
-        <property name="ShortLabel" translatable="yes">Quick Filter</property>
+        <property name="Label" translatable="yes">_Quick Filter</property>
+        <property name="ShortLabel" translatable="yes">_Quick Filter</property>
       </action>
       <action id="ToDoAction1">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">To Do</property>
         <property name="ShortLabel" translatable="yes">To Do</property>
+        <signal name="Activated" handler="OnTodoClick" />
       </action>
       <action id="DoneAction1">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Done</property>
         <property name="ShortLabel" translatable="yes">Done</property>
+        <signal name="Activated" handler="OnDoneClick" />
       </action>
       <action id="DeleteAllVisibleCachesAction">
         <property name="Type">Action</property>
@@ -507,6 +508,47 @@
         <property name="ShortLabel" translatable="yes">Deselect Cache</property>
         <signal name="Activated" handler="OnDeselectClick" />
       </action>
+      <action id="ToolsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Tools</property>
+        <property name="ShortLabel" translatable="yes">_Tools</property>
+      </action>
+      <action id="ViewAllInQLandkarteGTAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_View All in QLandkarte GT...</property>
+        <property name="ShortLabel" translatable="yes">_View All in QLandkarte GT...</property>
+        <signal name="Activated" handler="OnQTLandKarteClick" />
+      </action>
+      <action id="ViewSelectedCacheInQLandkarteGTAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">View Selected _Cache in QLandkarte GT...</property>
+        <property name="ShortLabel" translatable="yes">View Selected _Cache in QLandkarte GT...</property>
+        <signal name="Activated" handler="OnViewSelectedInQlandKarte" />
+      </action>
+      <action id="MineAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Mine</property>
+        <property name="ShortLabel" translatable="yes">Mine</property>
+        <signal name="Activated" handler="OnMineClick" />
+      </action>
+      <action id="AllAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">All</property>
+        <property name="ShortLabel" translatable="yes">All</property>
+        <signal name="Activated" handler="OnAllFilterClick" />
+      </action>
+      <action id="SaveCurrentViewAsQuickFilterAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Save Current View as Quick Filter</property>
+        <property name="ShortLabel" translatable="yes">_Save Current as Quick Filter</property>
+        <signal name="Activated" handler="OnSaveQuickFilter" />
+      </action>
+      <action id="DeleteQuickFilterAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Delete Quick Filter...</property>
+        <property name="ShortLabel" translatable="yes">_Delete Quick Filter...</property>
+        <signal name="Activated" handler="OnDeleteQF" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">OCM</property>
@@ -536,14 +578,14 @@
                 <node type="Menuitem" action="PreferencesAction1" />
               </node>
               <node type="Menu" action="FilterAction">
-                <node type="Menu" action="QuickFilterAction">
-                  <node type="Menuitem" action="ToDoAction1" />
-                  <node type="Menuitem" action="DoneAction1" />
-                </node>
+                <node type="Menuitem" action="QuickFilterAction" />
                 <node type="Separator" />
                 <node type="Menuitem" action="AdvancedFiltersAction" />
                 <node type="Menuitem" action="ClearAdvancedFiltersAction" />
                 <node type="Menuitem" action="ClearAllFiltersAction1" />
+                <node type="Separator" />
+                <node type="Menuitem" action="SaveCurrentViewAsQuickFilterAction" />
+                <node type="Menuitem" action="DeleteQuickFilterAction" />
               </node>
               <node type="Menu" action="CacheAction">
                 <node type="Menuitem" action="ViewOnlineAction" />
@@ -602,6 +644,10 @@
                 <node type="Menuitem" action="ConfigureGPSAction" />
                 <node type="Separator" />
                 <node type="Menuitem" action="TransferCachesAction" />
+              </node>
+              <node type="Menu" action="ToolsAction">
+                <node type="Menuitem" action="ViewAllInQLandkarteGTAction" />
+                <node type="Menuitem" action="ViewSelectedCacheInQLandkarteGTAction" />
               </node>
               <node type="Menu" action="HelpAction">
                 <node type="Menuitem" action="aboutAction" />
@@ -7898,6 +7944,63 @@ Water Source</property>
           <packing>
             <property name="Position">1</property>
             <property name="AutoSize">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="ocmgtk.QTLandKarteDialog" design-size="400 300">
+    <property name="MemberName" />
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Buttons">2</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <placeholder />
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">2</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonCancel">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-cancel</property>
+            <property name="ResponseId">-6</property>
+            <property name="label">gtk-cancel</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-ok</property>
+            <property name="ResponseId">-5</property>
+            <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
           </packing>
         </child>
       </widget>

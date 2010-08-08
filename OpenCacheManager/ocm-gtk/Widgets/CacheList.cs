@@ -36,6 +36,7 @@ namespace ocmgtk
 		private bool m_showNotFound = true;
 		private UIMonitor m_monitor;
 		private double m_maxDistance = -1;
+		private bool m_disableRefilter = false;
 		TreeViewColumn m_distanceCol;
 
 		private Timer refreshTimer;
@@ -276,6 +277,8 @@ namespace ocmgtk
 
 		public void RefilterList ()
 		{
+			if (m_disableRefilter)
+				return;
 			m_monitor.StartFiltering ();
 			m_QuickFilter.Refilter ();
 			m_monitor.UpdateStatusBar ();
@@ -428,6 +431,7 @@ namespace ocmgtk
 			MenuItem markAvailable = new MenuItem(Catalog.GetString("Mark Available"));
 			MenuItem deleteItem = new MenuItem (Catalog.GetString("Delete..."));
 			MenuItem bookmark = new MenuItem(Catalog.GetString("Add to Bookmark List"));
+			MenuItem qlandkarte = new MenuItem(Catalog.GetString("View in QLandkarte GT..."));
 			
 			Geocache cache = UIMonitor.getInstance().SelectedCache;
 			
@@ -481,6 +485,8 @@ namespace ocmgtk
 			markDisabled.Activated += HandleMarkDisabledActivated;
 			markArchived.Activated += HandleMarkArchivedActivated;
 			markAvailable.Activated += HandleMarkAvailableActivated;
+			qlandkarte.Activated += HandleQlandkarteActivated;
+		
 			
 			popup.Add (setCenterItem);
 			popup.Add (showOnline);
@@ -491,9 +497,16 @@ namespace ocmgtk
 			popup.Add (new MenuItem());
 			popup.Add (bookmark);
 			popup.Add (rmvCache);
+			popup.Add (new MenuItem());
+			popup.Add (qlandkarte);
 			popup.Add (deleteItem);
 			popup.ShowAll ();
 			popup.Popup ();
+		}
+
+		void HandleQlandkarteActivated (object sender, EventArgs e)
+		{
+			m_monitor.OpenSelectedCacheInQLandKarte();
 		}
 
 		void HandleRmvCacheActivated (object sender, EventArgs e)
@@ -623,6 +636,40 @@ namespace ocmgtk
 			RefilterList();
 		}
 		
+		public void ApplyQuickFilter(QuickFilter filter)
+		{
+			m_disableRefilter = true;
+			FoundButton.Active = filter.Found;
+			checkbutton1.Active = filter.NotFound;
+			MineButton.Active = filter.Mine;
+			checkbutton2.Active = filter.Available;
+			UnavailableButton.Active = filter.Unavailable;
+			ArchivedButton.Active = filter.Archived;
+			if (filter.Distance > 0)
+				distanceEntry.Text = filter.Distance.ToString();
+			else
+				distanceEntry.Text = String.Empty;
+			if (!String.IsNullOrEmpty(filter.NameFilter))
+				filterEntry.Text = filter.NameFilter;
+			else
+				filterEntry.Text = String.Empty;
+			m_disableRefilter = false;
+		}
 		
+		public void PopulateQuickFilter(QuickFilter filter)
+		{
+			filter.Found = FoundButton.Active;
+			filter.NotFound = checkbutton1.Active;
+			filter.Mine = MineButton.Active;
+			filter.Available = checkbutton2.Active;
+			filter.Unavailable = UnavailableButton.Active;
+			filter.Archived = ArchivedButton.Active;
+			if (!String.IsNullOrEmpty(distanceEntry.Text))
+				filter.Distance = int.Parse(distanceEntry.Text);
+			else
+				filter.Distance = -1;
+			filter.NameFilter = filterEntry.Text;
+		}
+	
 	}
 }

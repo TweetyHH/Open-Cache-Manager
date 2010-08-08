@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.17</ReleaseVersion>
+    <ReleaseVersion>0.18</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -75,6 +75,7 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -181,6 +182,10 @@
     <Compile Include="gtk-gui\ocmgtk.WaypointOverrideWidget.cs" />
     <Compile Include="Widgets\SymbolChooser.cs" />
     <Compile Include="gtk-gui\ocmgtk.SymbolChooser.cs" />
+    <Compile Include="QuickFilter.cs" />
+    <Compile Include="Dialogs\QTLandKarteDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.QTLandKarteDialog.cs" />
+    <Compile Include="QuickFilters.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

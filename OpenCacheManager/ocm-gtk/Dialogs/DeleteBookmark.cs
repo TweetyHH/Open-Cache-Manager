@@ -16,6 +16,7 @@
 using System;
 using System.Collections.Generic;
 using ocmengine;
+using Mono.Unix;
 
 namespace ocmgtk
 {
@@ -28,11 +29,35 @@ namespace ocmgtk
 			get { return bmrkCombo.ActiveText;}
 		}
 		
-		public DeleteBookmark ()
+		public DeleteBookmark ():this(null)
+		{
+		}
+		
+		public DeleteBookmark (QuickFilters filters)
 		{
 			this.Build ();
-			PopulateList();
+			if (filters != null)
+			{
+				this.label1.Text = Catalog.GetString("Quick Filter:");
+				int iCount = 0;
+				foreach (QuickFilter filter in filters.FilterArray)
+				{
+					if (iCount <= 3)
+					{
+						iCount++;
+						continue;
+					}
+					bmrkCombo.AppendText(filter.Name);
+					bmrkCombo.Active = 0;
+					iCount ++;
+				}
+			}
+			else
+			{
+				PopulateList();
+			}
 		}
+		
 		
 		private void PopulateList()
 		{

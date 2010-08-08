@@ -21,7 +21,7 @@ using System.Text;
 namespace ocmengine
 {
 
-
+	[Serializable]
 	public class FilterList
 	{
 		Hashtable m_criteria;
@@ -200,17 +200,9 @@ namespace ocmengine
 				builder.Append(m_criteria[KEY_STATE] as string);
 				builder.Append("'");
 			}
-			
-			/*string placeBefore = m_criteria[KEY_PLACEBEFORE] as string;
-			if (null != placeBefore)
-			{
-				builder.Append(" AND WAYPOINT.TIME <= '");
-				builder.Append(placeBefore);
-				builder.Append("'");
-			}*/
-			
+
 			 
-			System.Console.WriteLine(builder.ToString());
+			//System.Console.WriteLine(builder.ToString());
 			return builder.ToString ();
 		}
 		
