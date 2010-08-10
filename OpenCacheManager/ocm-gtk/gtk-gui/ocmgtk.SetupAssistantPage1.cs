@@ -34,7 +34,7 @@ namespace ocmgtk {
             // Container child vbox2.Gtk.Box+BoxChild
             this.label3 = new Gtk.Label();
             this.label3.Name = "label3";
-            this.label3.LabelProp = Mono.Unix.Catalog.GetString("Welcome to OCM! This assistant will guide you through setting up OCM for first time use. You will need to know your home coordinates from your GPS, plus some information from your geocaching.com profile. \n\nTo use all of the features of OCM, you will need a Premium account from Geocaching.com. If you don't have an account, you can sign up by clicking on the button below.");
+            this.label3.LabelProp = Mono.Unix.Catalog.GetString("Welcome to OCM! This assistant will guide you through setting up OCM for first time use. You will need to know your home coordinates from your GPS, plus some information from your preferred caching website. \n\nFor Geocaching.com and Terracaching users, you will need a premium account to use all of the features of OCM. If you don't have an account, click on the button below to sign up to Geocaching.com");
             this.label3.Wrap = true;
             this.vbox2.Add(this.label3);
             Gtk.Box.BoxChild w1 = ((Gtk.Box.BoxChild)(this.vbox2[this.label3]));

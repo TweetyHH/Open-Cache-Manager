@@ -120,6 +120,32 @@ namespace ocmengine
 			UpdateWaypoint(point);
 		}
 		
+		public string GenerateNewName(String testname)
+		{
+			IDbConnection conn =  OpenConnection ();
+			IDbCommand command = conn.CreateCommand();
+			command.CommandText = String.Format(WPT_EXISTS_CHECK, testname);
+			object val = command.ExecuteScalar();
+			int count = int.Parse(val.ToString());
+			conn.Close();
+			if (count > 0)
+			{
+				string oldNumStr = testname.Substring(testname.Length -2);
+				try
+				{
+					int num = int.Parse(oldNumStr);
+					num++;
+					testname = testname.Substring(0, testname.Length -2) + num.ToString("00");
+				}
+				catch
+				{
+					testname += "01";
+				}
+				return GenerateNewName(testname);
+			}
+			return testname;
+		}
+		
 		
 		
 		public IEnumerator<Geocache> getCacheEnumerator()

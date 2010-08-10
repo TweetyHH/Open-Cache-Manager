@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using ocmengine;
 
 namespace ocmgtk
 {
@@ -31,6 +32,13 @@ namespace ocmgtk
 		{
 			this.Build();
 		}	
+		
+		bool m_ignorePrefix = false;
+		public bool IgnorePrefix
+		{
+			get { return m_ignorePrefix;}
+			set { m_ignorePrefix = value;}
+		}
 		
 		public void SetPoint(ocmengine.Waypoint pnt)
 		{
@@ -132,7 +140,13 @@ namespace ocmgtk
 			default:
 				break;
 			}
-			nameEntry.Text = prefix + m_point.Parent.Substring(2);
+			String name;
+			if (IgnorePrefix)
+				 name = m_point.Parent;
+			else
+				 name = prefix + m_point.Parent.Substring(2);
+			name = Engine.getInstance().Store.GenerateNewName(name);
+			nameEntry.Text = name;
 		}
 		
 		private bool validateEntry()

@@ -67,7 +67,6 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" \
-	"$(DESTDIR)$(linuxdesktopapplicationsdir)" \
 	"$(DESTDIR)$(linuxpkgconfigdir)" \
 	"$(DESTDIR)$(programfilesdir)" \
 	"$(DESTDIR)$(programfilesdocsdir)" \
@@ -75,16 +74,22 @@ am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(programfilesicons48x48dir)" \
 	"$(DESTDIR)$(programfilesiconsscalabledir)" \
 	"$(DESTDIR)$(programfileslicencedir)" \
-	"$(DESTDIR)$(programfileswebdir)"
+	"$(DESTDIR)$(programfilesversiondir)" \
+	"$(DESTDIR)$(programfileswebdir)" \
+	"$(DESTDIR)$(programfileswebimgdir)" \
+	"$(DESTDIR)$(programfileswebthemedefaultdir)" \
+	"$(DESTDIR)$(programfileswebthemedefaultimgdir)"
 SCRIPTS = $(bin_SCRIPTS) $(pkglib_SCRIPTS)
 SOURCES =
 DIST_SOURCES =
 DATA = $(commonapplicationdatarootmimepackages_DATA) \
-	$(linuxdesktopapplications_DATA) $(linuxpkgconfig_DATA) \
-	$(programfiles_DATA) $(programfilesdocs_DATA) \
-	$(programfilesicons24x24_DATA) $(programfilesicons48x48_DATA) \
+	$(linuxpkgconfig_DATA) $(programfiles_DATA) \
+	$(programfilesdocs_DATA) $(programfilesicons24x24_DATA) \
+	$(programfilesicons48x48_DATA) \
 	$(programfilesiconsscalable_DATA) $(programfileslicence_DATA) \
-	$(programfilesweb_DATA)
+	$(programfilesversion_DATA) $(programfilesweb_DATA) \
+	$(programfileswebimg_DATA) $(programfileswebthemedefault_DATA) \
+	$(programfileswebthemedefaultimg_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run aclocal-1.11
 AMTAR = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run tar
@@ -93,7 +98,7 @@ AUTOHEADER = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run
 AUTOMAKE = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run automake-1.11
 AWK = gawk
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"OpenCacheManager\" -DPACKAGE_TARNAME=\"opencachemanager\" -DPACKAGE_VERSION=\"0.15\" -DPACKAGE_STRING=\"OpenCacheManager\ 0.15\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"opencachemanager\" -DVERSION=\"0.15\"
+DEFS = -DPACKAGE_NAME=\"OpenCacheManager\" -DPACKAGE_TARNAME=\"opencachemanager\" -DPACKAGE_VERSION=\"0.18\" -DPACKAGE_STRING=\"OpenCacheManager\ 0.18\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"opencachemanager\" -DVERSION=\"0.18\"
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
@@ -102,8 +107,6 @@ GCONF_SHARP_20_LIBS = -r:/usr/lib/cli/gconf-sharp-2.0/gconf-sharp.dll
 GLIB_SHARP_20_CFLAGS = -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
 GLIB_SHARP_20_LIBS = -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
 GMCS = /usr/bin/gmcs
-GTKHTML_SHARP_314_CFLAGS = -I:/usr/share/gtkhtml-sharp/3.14/gtkhtml-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/pango-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/atk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gdk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gtk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
-GTKHTML_SHARP_314_LIBS = -r:/usr/lib/cli/gtkhtml-sharp-3.16/gtkhtml-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/pango-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/atk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gdk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gtk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
 GTK_SHARP_20_CFLAGS = -I:/usr/lib/pkgconfig/../../share/gapi-2.0/pango-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/atk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gdk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gtk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
 GTK_SHARP_20_LIBS = -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/pango-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/atk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gdk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gtk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
 INSTALL = /usr/bin/install -c
@@ -114,7 +117,7 @@ INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAINT = 
+MAINT = #
 MAKEINFO = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 NDESK_DBUS_10_CFLAGS =  
@@ -124,16 +127,16 @@ NDESK_DBUS_GLIB_10_LIBS = -r:/usr/lib/cli/ndesk-dbus-glib-1.0/NDesk.DBus.GLib.dl
 PACKAGE = opencachemanager
 PACKAGE_BUGREPORT = 
 PACKAGE_NAME = OpenCacheManager
-PACKAGE_STRING = OpenCacheManager 0.15
+PACKAGE_STRING = OpenCacheManager 0.18
 PACKAGE_TARNAME = opencachemanager
 PACKAGE_URL = 
-PACKAGE_VERSION = 0.15
+PACKAGE_VERSION = 0.18
 PATH_SEPARATOR = :
 PKG_CONFIG = /usr/bin/pkg-config
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
-VERSION = 0.15
+VERSION = 0.18
 WEBKIT_SHARP_10_CFLAGS = -I:/usr/lib/pkgconfig/../../share/gapi-2.0/pango-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/atk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gdk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gtk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
 WEBKIT_SHARP_10_LIBS = -r:/usr/lib/cli/webkit-sharp-1.0/webkit-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/pango-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/atk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gdk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gtk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
 abs_builddir = /home/campbelk/svn_temp/ocm/OpenCacheManager/ocm-gtk
@@ -201,8 +204,6 @@ PROJECT_REFERENCES = \
 
 BUILD_DIR = bind
 #BUILD_DIR = bin
-OCM_DESKTOP_SOURCE = OCM.desktop
-#OCM_DESKTOP_SOURCE = OCM.desktop
 X_GPX_XML_SOURCE = x-gpx.xml
 #X_GPX_XML_SOURCE = x-gpx.xml
 X_OCM_XML_SOURCE = x-ocm.xml
@@ -299,6 +300,140 @@ TREASURE_SVG_SOURCE = icons/scalable/treasure.svg
 #TREASURE_SVG_SOURCE = icons/scalable/treasure.svg
 TREASURE_PNG_SOURCE = icons/24x24/treasure.png
 #TREASURE_PNG_SOURCE = icons/24x24/treasure.png
+OPENLAYERS_JS_SOURCE = web/OpenLayers.js
+#OPENLAYERS_JS_SOURCE = web/OpenLayers.js
+BLANK_GIF_SOURCE = web/img/blank.gif
+#BLANK_GIF_SOURCE = web/img/blank.gif
+CLOUD_POPUP_RELATIVE_PNG_SOURCE = web/img/cloud-popup-relative.png
+#CLOUD_POPUP_RELATIVE_PNG_SOURCE = web/img/cloud-popup-relative.png
+DRAG_RECTANGLE_OFF_PNG_SOURCE = web/img/drag-rectangle-off.png
+#DRAG_RECTANGLE_OFF_PNG_SOURCE = web/img/drag-rectangle-off.png
+DRAG_RECTANGLE_ON_PNG_SOURCE = web/img/drag-rectangle-on.png
+#DRAG_RECTANGLE_ON_PNG_SOURCE = web/img/drag-rectangle-on.png
+EAST_MINI_PNG_SOURCE = web/img/east-mini.png
+#EAST_MINI_PNG_SOURCE = web/img/east-mini.png
+LAYER_SWITCHER_MAXIMIZE_PNG_SOURCE = web/img/layer-switcher-maximize.png
+#LAYER_SWITCHER_MAXIMIZE_PNG_SOURCE = web/img/layer-switcher-maximize.png
+LAYER_SWITCHER_MINIMIZE_PNG_SOURCE = web/img/layer-switcher-minimize.png
+#LAYER_SWITCHER_MINIMIZE_PNG_SOURCE = web/img/layer-switcher-minimize.png
+MARKER_PNG_SOURCE = web/img/marker.png
+#MARKER_PNG_SOURCE = web/img/marker.png
+MARKER_BLUE_PNG_SOURCE = web/img/marker-blue.png
+#MARKER_BLUE_PNG_SOURCE = web/img/marker-blue.png
+MARKER_GOLD_PNG_SOURCE = web/img/marker-gold.png
+#MARKER_GOLD_PNG_SOURCE = web/img/marker-gold.png
+MARKER_GREEN_PNG_SOURCE = web/img/marker-green.png
+#MARKER_GREEN_PNG_SOURCE = web/img/marker-green.png
+MEASURING_STICK_OFF_PNG_SOURCE = web/img/measuring-stick-off.png
+#MEASURING_STICK_OFF_PNG_SOURCE = web/img/measuring-stick-off.png
+MEASURING_STICK_ON_PNG_SOURCE = web/img/measuring-stick-on.png
+#MEASURING_STICK_ON_PNG_SOURCE = web/img/measuring-stick-on.png
+NORTH_MINI_PNG_SOURCE = web/img/north-mini.png
+#NORTH_MINI_PNG_SOURCE = web/img/north-mini.png
+PANNING_HAND_OFF_PNG_SOURCE = web/img/panning-hand-off.png
+#PANNING_HAND_OFF_PNG_SOURCE = web/img/panning-hand-off.png
+PANNING_HAND_ON_PNG_SOURCE = web/img/panning-hand-on.png
+#PANNING_HAND_ON_PNG_SOURCE = web/img/panning-hand-on.png
+SLIDER_PNG_SOURCE = web/img/slider.png
+#SLIDER_PNG_SOURCE = web/img/slider.png
+SOUTH_MINI_PNG_SOURCE = web/img/south-mini.png
+#SOUTH_MINI_PNG_SOURCE = web/img/south-mini.png
+WEST_MINI_PNG_SOURCE = web/img/west-mini.png
+#WEST_MINI_PNG_SOURCE = web/img/west-mini.png
+ZOOMBAR_PNG_SOURCE = web/img/zoombar.png
+#ZOOMBAR_PNG_SOURCE = web/img/zoombar.png
+ZOOM_MINUS_MINI_PNG_SOURCE = web/img/zoom-minus-mini.png
+#ZOOM_MINUS_MINI_PNG_SOURCE = web/img/zoom-minus-mini.png
+ZOOM_PLUS_MINI_PNG_SOURCE = web/img/zoom-plus-mini.png
+#ZOOM_PLUS_MINI_PNG_SOURCE = web/img/zoom-plus-mini.png
+ZOOM_WORLD_MINI_PNG_SOURCE = web/img/zoom-world-mini.png
+#ZOOM_WORLD_MINI_PNG_SOURCE = web/img/zoom-world-mini.png
+FRAMEDCLOUD_CSS_SOURCE = web/theme/default/framedCloud.css
+#FRAMEDCLOUD_CSS_SOURCE = web/theme/default/framedCloud.css
+GOOGLE_CSS_SOURCE = web/theme/default/google.css
+#GOOGLE_CSS_SOURCE = web/theme/default/google.css
+IE6_STYLE_CSS_SOURCE = web/theme/default/ie6-style.css
+#IE6_STYLE_CSS_SOURCE = web/theme/default/ie6-style.css
+STYLE_CSS_SOURCE = web/theme/default/style.css
+#STYLE_CSS_SOURCE = web/theme/default/style.css
+ADD_POINT_OFF_PNG_SOURCE = web/theme/default/img/add_point_off.png
+#ADD_POINT_OFF_PNG_SOURCE = web/theme/default/img/add_point_off.png
+ADD_POINT_ON_PNG_SOURCE = web/theme/default/img/add_point_on.png
+#ADD_POINT_ON_PNG_SOURCE = web/theme/default/img/add_point_on.png
+BLANK_GIF2_SOURCE = web/theme/default/img/blank.gif
+#BLANK_GIF2_SOURCE = web/theme/default/img/blank.gif
+CLOSE_GIF_SOURCE = web/theme/default/img/close.gif
+#CLOSE_GIF_SOURCE = web/theme/default/img/close.gif
+DRAG_RECTANGLE_OFF_PNG2_SOURCE = web/theme/default/img/drag-rectangle-off.png
+#DRAG_RECTANGLE_OFF_PNG2_SOURCE = web/theme/default/img/drag-rectangle-off.png
+DRAG_RECTANGLE_ON_PNG2_SOURCE = web/theme/default/img/drag-rectangle-on.png
+#DRAG_RECTANGLE_ON_PNG2_SOURCE = web/theme/default/img/drag-rectangle-on.png
+DRAW_LINE_OFF_PNG_SOURCE = web/theme/default/img/draw_line_off.png
+#DRAW_LINE_OFF_PNG_SOURCE = web/theme/default/img/draw_line_off.png
+DRAW_LINE_ON_PNG_SOURCE = web/theme/default/img/draw_line_on.png
+#DRAW_LINE_ON_PNG_SOURCE = web/theme/default/img/draw_line_on.png
+DRAW_POINT_OFF_PNG_SOURCE = web/theme/default/img/draw_point_off.png
+#DRAW_POINT_OFF_PNG_SOURCE = web/theme/default/img/draw_point_off.png
+DRAW_POINT_ON_PNG_SOURCE = web/theme/default/img/draw_point_on.png
+#DRAW_POINT_ON_PNG_SOURCE = web/theme/default/img/draw_point_on.png
+DRAW_POLYGON_OFF_PNG_SOURCE = web/theme/default/img/draw_polygon_off.png
+#DRAW_POLYGON_OFF_PNG_SOURCE = web/theme/default/img/draw_polygon_off.png
+DRAW_POLYGON_ON_PNG_SOURCE = web/theme/default/img/draw_polygon_on.png
+#DRAW_POLYGON_ON_PNG_SOURCE = web/theme/default/img/draw_polygon_on.png
+EDITING_TOOL_BAR_PNG_SOURCE = web/theme/default/img/editing_tool_bar.png
+#EDITING_TOOL_BAR_PNG_SOURCE = web/theme/default/img/editing_tool_bar.png
+MOVE_FEATURE_OFF_PNG_SOURCE = web/theme/default/img/move_feature_off.png
+#MOVE_FEATURE_OFF_PNG_SOURCE = web/theme/default/img/move_feature_off.png
+MOVE_FEATURE_ON_PNG_SOURCE = web/theme/default/img/move_feature_on.png
+#MOVE_FEATURE_ON_PNG_SOURCE = web/theme/default/img/move_feature_on.png
+NAVIGATION_HISTORY_PNG_SOURCE = web/theme/default/img/navigation_history.png
+#NAVIGATION_HISTORY_PNG_SOURCE = web/theme/default/img/navigation_history.png
+OVERVIEW_REPLACEMENT_GIF_SOURCE = web/theme/default/img/overview_replacement.gif
+#OVERVIEW_REPLACEMENT_GIF_SOURCE = web/theme/default/img/overview_replacement.gif
+PANNING_HAND_OFF_PNG2_SOURCE = web/theme/default/img/panning-hand-off.png
+#PANNING_HAND_OFF_PNG2_SOURCE = web/theme/default/img/panning-hand-off.png
+PANNING_HAND_ON_PNG2_SOURCE = web/theme/default/img/panning-hand-on.png
+#PANNING_HAND_ON_PNG2_SOURCE = web/theme/default/img/panning-hand-on.png
+PAN_OFF_PNG_SOURCE = web/theme/default/img/pan_off.png
+#PAN_OFF_PNG_SOURCE = web/theme/default/img/pan_off.png
+PAN_ON_PNG_SOURCE = web/theme/default/img/pan_on.png
+#PAN_ON_PNG_SOURCE = web/theme/default/img/pan_on.png
+PAN_PANEL_PNG_SOURCE = web/theme/default/img/pan-panel.png
+#PAN_PANEL_PNG_SOURCE = web/theme/default/img/pan-panel.png
+PAN_PANEL_NOALPHA_PNG_SOURCE = web/theme/default/img/pan-panel-NOALPHA.png
+#PAN_PANEL_NOALPHA_PNG_SOURCE = web/theme/default/img/pan-panel-NOALPHA.png
+REMOVE_POINT_OFF_PNG_SOURCE = web/theme/default/img/remove_point_off.png
+#REMOVE_POINT_OFF_PNG_SOURCE = web/theme/default/img/remove_point_off.png
+REMOVE_POINT_ON_PNG_SOURCE = web/theme/default/img/remove_point_on.png
+#REMOVE_POINT_ON_PNG_SOURCE = web/theme/default/img/remove_point_on.png
+RULER_PNG_SOURCE = web/theme/default/img/ruler.png
+#RULER_PNG_SOURCE = web/theme/default/img/ruler.png
+SAVE_FEATURES_OFF_PNG_SOURCE = web/theme/default/img/save_features_off.png
+#SAVE_FEATURES_OFF_PNG_SOURCE = web/theme/default/img/save_features_off.png
+SAVE_FEATURES_ON_PNG_SOURCE = web/theme/default/img/save_features_on.png
+#SAVE_FEATURES_ON_PNG_SOURCE = web/theme/default/img/save_features_on.png
+VIEW_NEXT_OFF_PNG_SOURCE = web/theme/default/img/view_next_off.png
+#VIEW_NEXT_OFF_PNG_SOURCE = web/theme/default/img/view_next_off.png
+VIEW_NEXT_ON_PNG_SOURCE = web/theme/default/img/view_next_on.png
+#VIEW_NEXT_ON_PNG_SOURCE = web/theme/default/img/view_next_on.png
+VIEW_PREVIOUS_OFF_PNG_SOURCE = web/theme/default/img/view_previous_off.png
+#VIEW_PREVIOUS_OFF_PNG_SOURCE = web/theme/default/img/view_previous_off.png
+VIEW_PREVIOUS_ON_PNG_SOURCE = web/theme/default/img/view_previous_on.png
+#VIEW_PREVIOUS_ON_PNG_SOURCE = web/theme/default/img/view_previous_on.png
+ZOOM_PANEL_PNG_SOURCE = web/theme/default/img/zoom-panel.png
+#ZOOM_PANEL_PNG_SOURCE = web/theme/default/img/zoom-panel.png
+ZOOM_PANEL_NOALPHA_PNG_SOURCE = web/theme/default/img/zoom-panel-NOALPHA.png
+#ZOOM_PANEL_NOALPHA_PNG_SOURCE = web/theme/default/img/zoom-panel-NOALPHA.png
+GREENPIN_PNG_SOURCE = icons/24x24/greenpin.png
+#GREENPIN_PNG_SOURCE = icons/24x24/greenpin.png
+PUSHPIN_SVG_SOURCE = icons/scalable/pushpin.svg
+#PUSHPIN_SVG_SOURCE = icons/scalable/pushpin.svg
+VERSION_TXT_SOURCE = version/Version.txt
+#VERSION_TXT_SOURCE = version/Version.txt
+SHADOW_PNG_SOURCE = icons/24x24/shadow.png
+#SHADOW_PNG_SOURCE = icons/24x24/shadow.png
+GREENPIN_SVG_SOURCE = icons/scalable/greenpin.svg
+#GREENPIN_SVG_SOURCE = icons/scalable/greenpin.svg
 OCMENGINE_DLL_SOURCE = ../ocmengine/bin/Debug/ocmengine.dll
 #OCMENGINE_DLL_SOURCE = ../ocmengine/bin/Debug/ocmengine.dll
 OCMENGINE_DLL_MDB_SOURCE = ../ocmengine/bin/Debug/ocmengine.dll.mdb
@@ -309,9 +444,6 @@ OCM_GTK_EXE_MDB = $(BUILD_DIR)/ocm-gtk.exe.mdb
 #OCM_GTK_EXE_MDB = 
 AL = al2
 SATELLITE_ASSEMBLY_NAME = $(notdir $(basename $(ASSEMBLY))).resources.dll
-LINUX_DESKTOPAPPLICATIONS = \
-	$(OCM_DESKTOP)  
-
 COMMONAPPLICATIONDATAROOT_MIME_PACKAGES = \
 	$(X_GPX_XML) \
 	$(X_OCM_XML)  
@@ -338,10 +470,13 @@ PROGRAMFILES_ICONS_SCALABLE = \
 	$(BLUEPIN_SVG) \
 	$(PARKING_SVG) \
 	$(TRAILHEAD_SVG) \
-	$(TREASURE_SVG)  
+	$(TREASURE_SVG) \
+	$(PUSHPIN_SVG) \
+	$(GREENPIN_SVG)  
 
 PROGRAMFILES_WEB = \
-	$(WPT_VIEWER_HTML)  
+	$(WPT_VIEWER_HTML) \
+	$(OPENLAYERS_JS)  
 
 PROGRAMFILES_ICONS_24X24 = \
 	$(CITO_PNG) \
@@ -362,7 +497,9 @@ PROGRAMFILES_ICONS_24X24 = \
 	$(BLUEPIN_PNG) \
 	$(PARKING_PNG) \
 	$(TRAILHEAD_PNG) \
-	$(TREASURE_PNG)  
+	$(TREASURE_PNG) \
+	$(GREENPIN_PNG) \
+	$(SHADOW_PNG)  
 
 PROGRAMFILES_ICONS_48X48 = \
 	$(CIRCLE_PNG)  
@@ -374,94 +511,188 @@ PROGRAMFILES_DOCS = \
 PROGRAMFILES_LICENCE = \
 	$(LICENCE_TXT)  
 
+PROGRAMFILES_WEB_IMG = \
+	$(BLANK_GIF) \
+	$(CLOUD_POPUP_RELATIVE_PNG) \
+	$(DRAG_RECTANGLE_OFF_PNG) \
+	$(DRAG_RECTANGLE_ON_PNG) \
+	$(EAST_MINI_PNG) \
+	$(LAYER_SWITCHER_MAXIMIZE_PNG) \
+	$(LAYER_SWITCHER_MINIMIZE_PNG) \
+	$(MARKER_PNG) \
+	$(MARKER_BLUE_PNG) \
+	$(MARKER_GOLD_PNG) \
+	$(MARKER_GREEN_PNG) \
+	$(MEASURING_STICK_OFF_PNG) \
+	$(MEASURING_STICK_ON_PNG) \
+	$(NORTH_MINI_PNG) \
+	$(PANNING_HAND_OFF_PNG) \
+	$(PANNING_HAND_ON_PNG) \
+	$(SLIDER_PNG) \
+	$(SOUTH_MINI_PNG) \
+	$(WEST_MINI_PNG) \
+	$(ZOOMBAR_PNG) \
+	$(ZOOM_MINUS_MINI_PNG) \
+	$(ZOOM_PLUS_MINI_PNG) \
+	$(ZOOM_WORLD_MINI_PNG)  
+
+PROGRAMFILES_WEB_THEME_DEFAULT = \
+	$(FRAMEDCLOUD_CSS) \
+	$(GOOGLE_CSS) \
+	$(IE6_STYLE_CSS) \
+	$(STYLE_CSS)  
+
+PROGRAMFILES_WEB_THEME_DEFAULT_IMG = \
+	$(ADD_POINT_OFF_PNG) \
+	$(ADD_POINT_ON_PNG) \
+	$(BLANK_GIF2) \
+	$(CLOSE_GIF) \
+	$(DRAG_RECTANGLE_OFF_PNG2) \
+	$(DRAG_RECTANGLE_ON_PNG2) \
+	$(DRAW_LINE_OFF_PNG) \
+	$(DRAW_LINE_ON_PNG) \
+	$(DRAW_POINT_OFF_PNG) \
+	$(DRAW_POINT_ON_PNG) \
+	$(DRAW_POLYGON_OFF_PNG) \
+	$(DRAW_POLYGON_ON_PNG) \
+	$(EDITING_TOOL_BAR_PNG) \
+	$(MOVE_FEATURE_OFF_PNG) \
+	$(MOVE_FEATURE_ON_PNG) \
+	$(NAVIGATION_HISTORY_PNG) \
+	$(OVERVIEW_REPLACEMENT_GIF) \
+	$(PANNING_HAND_OFF_PNG2) \
+	$(PANNING_HAND_ON_PNG2) \
+	$(PAN_OFF_PNG) \
+	$(PAN_ON_PNG) \
+	$(PAN_PANEL_PNG) \
+	$(PAN_PANEL_NOALPHA_PNG) \
+	$(REMOVE_POINT_OFF_PNG) \
+	$(REMOVE_POINT_ON_PNG) \
+	$(RULER_PNG) \
+	$(SAVE_FEATURES_OFF_PNG) \
+	$(SAVE_FEATURES_ON_PNG) \
+	$(VIEW_NEXT_OFF_PNG) \
+	$(VIEW_NEXT_ON_PNG) \
+	$(VIEW_PREVIOUS_OFF_PNG) \
+	$(VIEW_PREVIOUS_ON_PNG) \
+	$(ZOOM_PANEL_PNG) \
+	$(ZOOM_PANEL_NOALPHA_PNG)  
+
+PROGRAMFILES_VERSION = \
+	$(VERSION_TXT)  
+
 PROGRAMFILES = \
+	$(OCM_GTK_EXE_MDB) \
 	$(OCMENGINE_DLL) \
-	$(OCMENGINE_DLL_MDB) \
-	$(OCM_GTK_EXE_MDB)  
+	$(OCMENGINE_DLL_MDB)  
 
 BINARIES = \
 	$(OCM_GTK)  
 
 RESGEN = resgen2
 FILES = \
-	gtk-gui/generated.cs \
-	MainWindow.cs \
-	gtk-gui/MainWindow.cs \
-	Main.cs \
 	AssemblyInfo.cs \
+	Config.cs \
+	DBusComm.cs \
+	Dialogs/AddBookMarkDialog.cs \
+	Dialogs/CalendarWindow.cs \
+	Dialogs/ChangeHistory.cs \
+	Dialogs/DeleteBookmark.cs \
+	Dialogs/ExportProgressDialog.cs \
+	Dialogs/FilterDialog.cs \
+	Dialogs/GPSConfiguration.cs \
+	Dialogs/GPSDConfig.cs \
+	Dialogs/ModifyCacheDialog.cs \
+	Dialogs/NoDBDialog.cs \
+	Dialogs/OCMSplash.cs \
+	Dialogs/Preferences.cs \
+	Dialogs/ProgressDialog.cs \
+	Dialogs/QTLandKarteDialog.cs \
+	Dialogs/SendWaypointsDialog.cs \
+	Dialogs/SetupAssistant.cs \
+	Dialogs/WaypointDialog.cs \
+	GPS.cs \
+	gtk-gui/generated.cs \
+	gtk-gui/MainWindow.cs \
+	gtk-gui/ocmgtk.AddBookMarkDialog.cs \
+	gtk-gui/ocmgtk.BrowserWidget.cs \
+	gtk-gui/ocmgtk.CacheList.cs \
+	gtk-gui/ocmgtk.CalendarWindow.cs \
+	gtk-gui/ocmgtk.ChangeHistory.cs \
+	gtk-gui/ocmgtk.CoordinateWidget.cs \
+	gtk-gui/ocmgtk.DateWidget.cs \
+	gtk-gui/ocmgtk.DeleteBookmark.cs \
+	gtk-gui/ocmgtk.DescriptionWidget.cs \
+	gtk-gui/ocmgtk.ExportProgressDialog.cs \
+	gtk-gui/ocmgtk.FilterDialog.cs \
+	gtk-gui/ocmgtk.GarminUSBWidget.cs \
+	gtk-gui/ocmgtk.GenericGPSWidget.cs \
 	gtk-gui/ocmgtk.GeocacheInfoPanel.cs \
 	gtk-gui/ocmgtk.GeoCachePane.cs \
-	gtk-gui/ocmgtk.CacheList.cs \
+	gtk-gui/ocmgtk.GPSConfiguration.cs \
+	gtk-gui/ocmgtk.GPSDConfig.cs \
+	gtk-gui/ocmgtk.GPXWidget.cs \
+	gtk-gui/ocmgtk.HTMLEditorWidget.cs \
+	gtk-gui/ocmgtk.HTMLWidget.cs \
+	gtk-gui/ocmgtk.LogViewerWidget.cs \
+	gtk-gui/ocmgtk.MagellanExploristWidget.cs \
+	gtk-gui/ocmgtk.ModifyCacheDialog.cs \
+	gtk-gui/ocmgtk.NoDBDialog.cs \
+	gtk-gui/ocmgtk.NotesWidget.cs \
+	gtk-gui/ocmgtk.OCMQueryPage1.cs \
+	gtk-gui/ocmgtk.OCMQueryPage2.cs \
+	gtk-gui/ocmgtk.OCMQueryPage3.cs \
+	gtk-gui/ocmgtk.OCMSplash.cs \
+	gtk-gui/ocmgtk.Preferences.cs \
+	gtk-gui/ocmgtk.ProgressDialog.cs \
+	gtk-gui/ocmgtk.QTLandKarteDialog.cs \
+	gtk-gui/ocmgtk.SendWaypointsDialog.cs \
+	gtk-gui/ocmgtk.SetupAssistant.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage1.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage2.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage3.cs \
+	gtk-gui/ocmgtk.SymbolChooser.cs \
+	gtk-gui/ocmgtk.WaypointDialog.cs \
+	gtk-gui/ocmgtk.WaypointOverrideWidget.cs \
+	gtk-gui/ocmgtk.WaypointWidget.cs \
+	IDBusComm.cs \
+	Main.cs \
+	MainWindow.cs \
+	QuickFilter.cs \
+	QuickFilters.cs \
+	SavedGPSConf.cs \
+	UIMonitor.cs \
+	Widgets/BrowserWidget.cs \
 	Widgets/CacheList.cs \
+	Widgets/CoordinateWidget.cs \
+	Widgets/DateWidget.cs \
+	Widgets/DescriptionWidget.cs \
+	Widgets/GarminUSBWidget.cs \
+	Widgets/GenericGPSWidget.cs \
 	Widgets/GeocacheInfoPanel.cs \
 	Widgets/GeoCachePane.cs \
-	gtk-gui/ocmgtk.WaypointWidget.cs \
-	gtk-gui/ocmgtk.LogViewerWidget.cs \
-	gtk-gui/ocmgtk.BrowserWidget.cs \
-	gtk-gui/ocmgtk.WaypointDialog.cs \
-	Widgets/WaypointWidget.cs \
-	Widgets/BrowserWidget.cs \
-	Widgets/LogViewerWidget.cs \
-	Dialogs/WaypointDialog.cs \
-	Widgets/HTMLWidget.cs \
-	UIMonitor.cs \
-	gtk-gui/ocmgtk.HTMLWidget.cs \
-	Dialogs/ProgressDialog.cs \
-	gtk-gui/ocmgtk.ProgressDialog.cs \
-	Dialogs/Preferences.cs \
-	gtk-gui/ocmgtk.Preferences.cs \
-	Widgets/CoordinateWidget.cs \
-	gtk-gui/ocmgtk.CoordinateWidget.cs \
-	Widgets/SetupAssistantPage1.cs \
-	gtk-gui/ocmgtk.SetupAssistantPage1.cs \
-	Dialogs/SetupAssistant.cs \
-	gtk-gui/ocmgtk.SetupAssistant.cs \
-	IDBusComm.cs \
-	DBusComm.cs \
-	Widgets/SetupAssistantPage2.cs \
-	gtk-gui/ocmgtk.SetupAssistantPage2.cs \
-	Widgets/SetupAssistantPage3.cs \
-	gtk-gui/ocmgtk.SetupAssistantPage3.cs \
-	Dialogs/ExportProgressDialog.cs \
-	gtk-gui/ocmgtk.ExportProgressDialog.cs \
-	Widgets/DescriptionWidget.cs \
-	gtk-gui/ocmgtk.DescriptionWidget.cs \
-	Widgets/OCMQueryPage1.cs \
-	gtk-gui/ocmgtk.OCMQueryPage1.cs \
-	Dialogs/OCMSplash.cs \
-	gtk-gui/ocmgtk.OCMSplash.cs \
-	Dialogs/FilterDialog.cs \
-	gtk-gui/ocmgtk.FilterDialog.cs \
-	Widgets/OCMQueryPage2.cs \
-	gtk-gui/ocmgtk.OCMQueryPage2.cs \
-	Widgets/OCMWebView.cs \
-	Dialogs/GPSConfiguration.cs \
-	gtk-gui/ocmgtk.GPSConfiguration.cs \
 	Widgets/GPXWidget.cs \
-	gtk-gui/ocmgtk.GPXWidget.cs \
-	gtk-gui/ocmgtk.GarminUSBWidget.cs \
-	Widgets/GarminUSBWidget.cs \
+	Widgets/HTMLEditorWidget.cs \
+	Widgets/HTMLWidget.cs \
 	Widgets/IGPSConfig.cs \
-	Dialogs/SendWaypointsDialog.cs \
-	gtk-gui/ocmgtk.SendWaypointsDialog.cs \
-	SavedGPSConf.cs \
+	Widgets/LogViewerWidget.cs \
 	Widgets/MagellanExploristWidget.cs \
-	gtk-gui/ocmgtk.MagellanExploristWidget.cs \
-	Widgets/GenericGPSWidget.cs \
-	gtk-gui/ocmgtk.GenericGPSWidget.cs \
+	Widgets/NotesWidget.cs \
+	Widgets/OCMQueryPage1.cs \
+	Widgets/OCMQueryPage2.cs \
 	Widgets/OCMQueryPage3.cs \
-	gtk-gui/ocmgtk.OCMQueryPage3.cs \
-	Dialogs/ChangeHistory.cs \
-	gtk-gui/ocmgtk.ChangeHistory.cs \
-	Config.cs \
-	Widgets/DateWidget.cs \
-	gtk-gui/ocmgtk.DateWidget.cs \
-	Dialogs/CalendarWindow.cs \
-	gtk-gui/ocmgtk.CalendarWindow.cs 
+	Widgets/OCMWebView.cs \
+	Widgets/SetupAssistantPage1.cs \
+	Widgets/SetupAssistantPage2.cs \
+	Widgets/SetupAssistantPage3.cs \
+	Widgets/SymbolChooser.cs \
+	Widgets/WaypointOverrideWidget.cs \
+	Widgets/WaypointWidget.cs 
 
 DATA_FILES = 
 RESOURCES = \
 	gtk-gui/gui.stetic \
+	icons/OpenLayers.png,ocmgtk.icons.OpenLayers.png \
 	icons/scalable/OCMLogo.svg,ocmgtk.icons.scalable.OCMLogo.svg \
 	icons/scalable/OCMLogoSmall.svg,ocmgtk.icons.scalable.OCMLogoSmall.svg 
 
@@ -474,31 +705,36 @@ EXTRAS = \
 	icons/24x24 \
 	docs \
 	licence \
-	OCM.desktop \
+	version \
 	x-gpx.xml \
 	x-ocm.xml \
 	ocm-gtk \
+	docs/Credits.txt \
+	icons/scalable/greenpin.svg \
 	ocm-gtk.in 
 
 REFERENCES = \
-	System \
-	$(GTK_SHARP_20_LIBS) \
+	../ocmengine/bin/Debug/ocmengine.dll \
 	Mono.Posix \
-	$(WEBKIT_SHARP_10_LIBS) \
-	$(GTKHTML_SHARP_314_LIBS) \
-	$(GCONF_SHARP_20_LIBS) \
-	$(NDESK_DBUS_10_LIBS) \
-	$(NDESK_DBUS_GLIB_10_LIBS) \
-	$(GLIB_SHARP_20_LIBS)
+	-pkg:gconf-sharp-2.0 \
+	-pkg:glib-sharp-2.0 \
+	-pkg:gtk-sharp-2.0 \
+	-pkg:ndesk-dbus-1.0 \
+	-pkg:ndesk-dbus-glib-1.0 \
+	-pkg:webkit-sharp-1.0 \
+	System \
+	System.Xml
 
 DLL_REFERENCES = 
-CLEANFILES = $(LINUX_DESKTOPAPPLICATIONS) \
-	$(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) \
+CLEANFILES = $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) \
 	$(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) \
 	$(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) \
-	$(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES) \
-	$(BINARIES) $(ASSEMBLY) $(ASSEMBLY).mdb $(BINARIES) \
-	$(build_resx_resources) $(build_satellite_assembly_list)
+	$(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) \
+	$(PROGRAMFILES_WEB_IMG) $(PROGRAMFILES_WEB_THEME_DEFAULT) \
+	$(PROGRAMFILES_WEB_THEME_DEFAULT_IMG) $(PROGRAMFILES_VERSION) \
+	$(PROGRAMFILES) $(BINARIES) $(ASSEMBLY) $(ASSEMBLY).mdb \
+	$(BINARIES) $(build_resx_resources) \
+	$(build_satellite_assembly_list)
 VALID_CULTURES = ar bg ca zh-CHS cs da de el en es fi fr he hu is it ja ko nl no pl pt ro ru hr sk sq sv th tr id uk be sl et lv lt fa vi hy eu mk af fo hi sw gu ta te kn mr gl kok ar-SA bg-BG ca-ES zh-TW cs-CZ da-DK de-DE el-GR en-US fi-FI fr-FR he-IL hu-HU is-IS it-IT ja-JP ko-KR nl-NL nb-NO pl-PL pt-BR ro-RO ru-RU hr-HR sk-SK sq-AL sv-SE th-TH tr-TR id-ID uk-UA be-BY sl-SI et-EE lv-LV lt-LT fa-IR vi-VN hy-AM eu-ES mk-MK af-ZA fo-FO hi-IN sw-KE gu-IN ta-IN te-IN kn-IN mr-IN gl-ES kok-IN ar-IQ zh-CN de-CH en-GB es-MX fr-BE it-CH nl-BE nn-NO pt-PT sv-FI ar-EG zh-HK de-AT en-AU es-ES fr-CA ar-LY zh-SG de-LU en-CA es-GT fr-CH ar-DZ zh-MO en-NZ es-CR fr-LU ar-MA en-IE es-PA ar-TN en-ZA es-DO ar-OM es-VE ar-YE es-CO ar-SY es-PE ar-JO en-TT es-AR ar-LB en-ZW es-EC ar-KW en-PH es-CL ar-AE es-UY ar-BH es-PY ar-QA es-BO es-SV es-HN es-NI es-PR zh-CHT
 s2q = $(subst \ ,?,$1)
 q2s = $(subst ?,\ ,$1)
@@ -562,16 +798,22 @@ programfilesiconsscalabledir = ${exec_prefix}/lib/opencachemanager/icons/scalabl
 programfilesiconsscalable_DATA = $(PROGRAMFILES_ICONS_SCALABLE)
 commonapplicationdatarootmimepackagesdir = ${datarootdir}/mime/packages
 commonapplicationdatarootmimepackages_DATA = $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES)
+programfileswebthemedefaultdir = ${exec_prefix}/lib/opencachemanager/web/theme/default
+programfileswebthemedefault_DATA = $(PROGRAMFILES_WEB_THEME_DEFAULT)
+programfileswebthemedefaultimgdir = ${exec_prefix}/lib/opencachemanager/web/theme/default/img
+programfileswebthemedefaultimg_DATA = $(PROGRAMFILES_WEB_THEME_DEFAULT_IMG)
 programfilesdocsdir = ${exec_prefix}/lib/opencachemanager/docs
 programfilesdocs_DATA = $(PROGRAMFILES_DOCS)
-programfilesdir = ${exec_prefix}/lib/opencachemanager
-programfiles_DATA = $(PROGRAMFILES)
 programfilesicons48x48dir = ${exec_prefix}/lib/opencachemanager/icons/48x48
 programfilesicons48x48_DATA = $(PROGRAMFILES_ICONS_48X48)
-linuxdesktopapplicationsdir = ${datarootdir}/applications
-linuxdesktopapplications_DATA = $(LINUX_DESKTOPAPPLICATIONS)
+programfilesdir = ${exec_prefix}/lib/opencachemanager
+programfiles_DATA = $(PROGRAMFILES)
 programfileslicencedir = ${exec_prefix}/lib/opencachemanager/licence
 programfileslicence_DATA = $(PROGRAMFILES_LICENCE)
+programfilesversiondir = ${exec_prefix}/lib/opencachemanager/version
+programfilesversion_DATA = $(PROGRAMFILES_VERSION)
+programfileswebimgdir = ${exec_prefix}/lib/opencachemanager/web/img
+programfileswebimg_DATA = $(PROGRAMFILES_WEB_IMG)
 programfileswebdir = ${exec_prefix}/lib/opencachemanager/web
 programfilesweb_DATA = $(PROGRAMFILES_WEB)
 
@@ -583,7 +825,6 @@ culture_resource_commandlines = $(call unesc2,cmd_line_satellite_$1 += '/embed:$
 build_satellite_assembly_list = $(call q2s,$(cultures:%=$(BUILD_DIR)/%/$(SATELLITE_ASSEMBLY_NAME)))
 build_culture_res_files = $(call q2s,$(foreach res, $(culture_resources),$(call get_resource_name,$(res))))
 install_satellite_assembly_list = $(subst $(BUILD_DIR),$(DESTDIR)$(libdir)/$(PACKAGE),$(build_satellite_assembly_list))
-OCM_DESKTOP = $(BUILD_DIR)/OCM.desktop
 X_GPX_XML = $(BUILD_DIR)/mime/packages/x-gpx.xml
 X_OCM_XML = $(BUILD_DIR)/mime/packages/x-ocm.xml
 OCMLOGO_SVG = $(BUILD_DIR)/icons/scalable/OCMLogo.svg
@@ -632,12 +873,79 @@ README_TXT = $(BUILD_DIR)/docs/README.txt
 LICENCE_TXT = $(BUILD_DIR)/licence/Licence.txt
 TREASURE_SVG = $(BUILD_DIR)/icons/scalable/treasure.svg
 TREASURE_PNG = $(BUILD_DIR)/icons/24x24/treasure.png
+OPENLAYERS_JS = $(BUILD_DIR)/web/OpenLayers.js
+BLANK_GIF = $(BUILD_DIR)/web/img/blank.gif
+CLOUD_POPUP_RELATIVE_PNG = $(BUILD_DIR)/web/img/cloud-popup-relative.png
+DRAG_RECTANGLE_OFF_PNG = $(BUILD_DIR)/web/img/drag-rectangle-off.png
+DRAG_RECTANGLE_ON_PNG = $(BUILD_DIR)/web/img/drag-rectangle-on.png
+EAST_MINI_PNG = $(BUILD_DIR)/web/img/east-mini.png
+LAYER_SWITCHER_MAXIMIZE_PNG = $(BUILD_DIR)/web/img/layer-switcher-maximize.png
+LAYER_SWITCHER_MINIMIZE_PNG = $(BUILD_DIR)/web/img/layer-switcher-minimize.png
+MARKER_PNG = $(BUILD_DIR)/web/img/marker.png
+MARKER_BLUE_PNG = $(BUILD_DIR)/web/img/marker-blue.png
+MARKER_GOLD_PNG = $(BUILD_DIR)/web/img/marker-gold.png
+MARKER_GREEN_PNG = $(BUILD_DIR)/web/img/marker-green.png
+MEASURING_STICK_OFF_PNG = $(BUILD_DIR)/web/img/measuring-stick-off.png
+MEASURING_STICK_ON_PNG = $(BUILD_DIR)/web/img/measuring-stick-on.png
+NORTH_MINI_PNG = $(BUILD_DIR)/web/img/north-mini.png
+PANNING_HAND_OFF_PNG = $(BUILD_DIR)/web/img/panning-hand-off.png
+PANNING_HAND_ON_PNG = $(BUILD_DIR)/web/img/panning-hand-on.png
+SLIDER_PNG = $(BUILD_DIR)/web/img/slider.png
+SOUTH_MINI_PNG = $(BUILD_DIR)/web/img/south-mini.png
+WEST_MINI_PNG = $(BUILD_DIR)/web/img/west-mini.png
+ZOOMBAR_PNG = $(BUILD_DIR)/web/img/zoombar.png
+ZOOM_MINUS_MINI_PNG = $(BUILD_DIR)/web/img/zoom-minus-mini.png
+ZOOM_PLUS_MINI_PNG = $(BUILD_DIR)/web/img/zoom-plus-mini.png
+ZOOM_WORLD_MINI_PNG = $(BUILD_DIR)/web/img/zoom-world-mini.png
+FRAMEDCLOUD_CSS = $(BUILD_DIR)/web/theme/default/framedCloud.css
+GOOGLE_CSS = $(BUILD_DIR)/web/theme/default/google.css
+IE6_STYLE_CSS = $(BUILD_DIR)/web/theme/default/ie6-style.css
+STYLE_CSS = $(BUILD_DIR)/web/theme/default/style.css
+ADD_POINT_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/add_point_off.png
+ADD_POINT_ON_PNG = $(BUILD_DIR)/web/theme/default/img/add_point_on.png
+BLANK_GIF2 = $(BUILD_DIR)/web/theme/default/img/blank.gif
+CLOSE_GIF = $(BUILD_DIR)/web/theme/default/img/close.gif
+DRAG_RECTANGLE_OFF_PNG2 = $(BUILD_DIR)/web/theme/default/img/drag-rectangle-off.png
+DRAG_RECTANGLE_ON_PNG2 = $(BUILD_DIR)/web/theme/default/img/drag-rectangle-on.png
+DRAW_LINE_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/draw_line_off.png
+DRAW_LINE_ON_PNG = $(BUILD_DIR)/web/theme/default/img/draw_line_on.png
+DRAW_POINT_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/draw_point_off.png
+DRAW_POINT_ON_PNG = $(BUILD_DIR)/web/theme/default/img/draw_point_on.png
+DRAW_POLYGON_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/draw_polygon_off.png
+DRAW_POLYGON_ON_PNG = $(BUILD_DIR)/web/theme/default/img/draw_polygon_on.png
+EDITING_TOOL_BAR_PNG = $(BUILD_DIR)/web/theme/default/img/editing_tool_bar.png
+MOVE_FEATURE_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/move_feature_off.png
+MOVE_FEATURE_ON_PNG = $(BUILD_DIR)/web/theme/default/img/move_feature_on.png
+NAVIGATION_HISTORY_PNG = $(BUILD_DIR)/web/theme/default/img/navigation_history.png
+OVERVIEW_REPLACEMENT_GIF = $(BUILD_DIR)/web/theme/default/img/overview_replacement.gif
+PANNING_HAND_OFF_PNG2 = $(BUILD_DIR)/web/theme/default/img/panning-hand-off.png
+PANNING_HAND_ON_PNG2 = $(BUILD_DIR)/web/theme/default/img/panning-hand-on.png
+PAN_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/pan_off.png
+PAN_ON_PNG = $(BUILD_DIR)/web/theme/default/img/pan_on.png
+PAN_PANEL_PNG = $(BUILD_DIR)/web/theme/default/img/pan-panel.png
+PAN_PANEL_NOALPHA_PNG = $(BUILD_DIR)/web/theme/default/img/pan-panel-NOALPHA.png
+REMOVE_POINT_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/remove_point_off.png
+REMOVE_POINT_ON_PNG = $(BUILD_DIR)/web/theme/default/img/remove_point_on.png
+RULER_PNG = $(BUILD_DIR)/web/theme/default/img/ruler.png
+SAVE_FEATURES_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/save_features_off.png
+SAVE_FEATURES_ON_PNG = $(BUILD_DIR)/web/theme/default/img/save_features_on.png
+VIEW_NEXT_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/view_next_off.png
+VIEW_NEXT_ON_PNG = $(BUILD_DIR)/web/theme/default/img/view_next_on.png
+VIEW_PREVIOUS_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/view_previous_off.png
+VIEW_PREVIOUS_ON_PNG = $(BUILD_DIR)/web/theme/default/img/view_previous_on.png
+ZOOM_PANEL_PNG = $(BUILD_DIR)/web/theme/default/img/zoom-panel.png
+ZOOM_PANEL_NOALPHA_PNG = $(BUILD_DIR)/web/theme/default/img/zoom-panel-NOALPHA.png
+GREENPIN_PNG = $(BUILD_DIR)/icons/24x24/greenpin.png
+PUSHPIN_SVG = $(BUILD_DIR)/icons/scalable/pushpin.svg
+VERSION_TXT = $(BUILD_DIR)/version/Version.txt
+SHADOW_PNG = $(BUILD_DIR)/icons/24x24/shadow.png
+GREENPIN_SVG = $(BUILD_DIR)/icons/scalable/greenpin.svg
 OCMENGINE_DLL = $(BUILD_DIR)/ocmengine.dll
 OCM_GTK = $(BUILD_DIR)/ocm-gtk
 all: all-am
 
 .SUFFIXES:
-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/Makefile.include $(am__configure_deps)
+$(srcdir)/Makefile.in: # $(srcdir)/Makefile.am $(top_srcdir)/Makefile.include $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -662,9 +970,9 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 
-$(top_srcdir)/configure:  $(am__configure_deps)
+$(top_srcdir)/configure: # $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
+$(ACLOCAL_M4): # $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
 ocm-gtk: $(top_builddir)/config.status $(srcdir)/ocm-gtk.in
@@ -757,26 +1065,6 @@ uninstall-commonapplicationdatarootmimepackagesDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" && rm -f $$files
-install-linuxdesktopapplicationsDATA: $(linuxdesktopapplications_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(linuxdesktopapplicationsdir)" || $(MKDIR_P) "$(DESTDIR)$(linuxdesktopapplicationsdir)"
-	@list='$(linuxdesktopapplications_DATA)'; test -n "$(linuxdesktopapplicationsdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(linuxdesktopapplicationsdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(linuxdesktopapplicationsdir)" || exit $$?; \
-	done
-
-uninstall-linuxdesktopapplicationsDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(linuxdesktopapplications_DATA)'; test -n "$(linuxdesktopapplicationsdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(linuxdesktopapplicationsdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(linuxdesktopapplicationsdir)" && rm -f $$files
 install-linuxpkgconfigDATA: $(linuxpkgconfig_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(linuxpkgconfigdir)" || $(MKDIR_P) "$(DESTDIR)$(linuxpkgconfigdir)"
@@ -917,6 +1205,26 @@ uninstall-programfileslicenceDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(programfileslicencedir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(programfileslicencedir)" && rm -f $$files
+install-programfilesversionDATA: $(programfilesversion_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(programfilesversiondir)" || $(MKDIR_P) "$(DESTDIR)$(programfilesversiondir)"
+	@list='$(programfilesversion_DATA)'; test -n "$(programfilesversiondir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(programfilesversiondir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(programfilesversiondir)" || exit $$?; \
+	done
+
+uninstall-programfilesversionDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(programfilesversion_DATA)'; test -n "$(programfilesversiondir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(programfilesversiondir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(programfilesversiondir)" && rm -f $$files
 install-programfileswebDATA: $(programfilesweb_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(programfileswebdir)" || $(MKDIR_P) "$(DESTDIR)$(programfileswebdir)"
@@ -937,6 +1245,66 @@ uninstall-programfileswebDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(programfileswebdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(programfileswebdir)" && rm -f $$files
+install-programfileswebimgDATA: $(programfileswebimg_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(programfileswebimgdir)" || $(MKDIR_P) "$(DESTDIR)$(programfileswebimgdir)"
+	@list='$(programfileswebimg_DATA)'; test -n "$(programfileswebimgdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(programfileswebimgdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(programfileswebimgdir)" || exit $$?; \
+	done
+
+uninstall-programfileswebimgDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(programfileswebimg_DATA)'; test -n "$(programfileswebimgdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(programfileswebimgdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(programfileswebimgdir)" && rm -f $$files
+install-programfileswebthemedefaultDATA: $(programfileswebthemedefault_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(programfileswebthemedefaultdir)" || $(MKDIR_P) "$(DESTDIR)$(programfileswebthemedefaultdir)"
+	@list='$(programfileswebthemedefault_DATA)'; test -n "$(programfileswebthemedefaultdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(programfileswebthemedefaultdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(programfileswebthemedefaultdir)" || exit $$?; \
+	done
+
+uninstall-programfileswebthemedefaultDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(programfileswebthemedefault_DATA)'; test -n "$(programfileswebthemedefaultdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(programfileswebthemedefaultdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(programfileswebthemedefaultdir)" && rm -f $$files
+install-programfileswebthemedefaultimgDATA: $(programfileswebthemedefaultimg_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(programfileswebthemedefaultimgdir)" || $(MKDIR_P) "$(DESTDIR)$(programfileswebthemedefaultimgdir)"
+	@list='$(programfileswebthemedefaultimg_DATA)'; test -n "$(programfileswebthemedefaultimgdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(programfileswebthemedefaultimgdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(programfileswebthemedefaultimgdir)" || exit $$?; \
+	done
+
+uninstall-programfileswebthemedefaultimgDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(programfileswebthemedefaultimg_DATA)'; test -n "$(programfileswebthemedefaultimgdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(programfileswebthemedefaultimgdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(programfileswebthemedefaultimgdir)" && rm -f $$files
 tags: TAGS
 TAGS:
 
@@ -978,7 +1346,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(SCRIPTS) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" "$(DESTDIR)$(linuxdesktopapplicationsdir)" "$(DESTDIR)$(linuxpkgconfigdir)" "$(DESTDIR)$(programfilesdir)" "$(DESTDIR)$(programfilesdocsdir)" "$(DESTDIR)$(programfilesicons24x24dir)" "$(DESTDIR)$(programfilesicons48x48dir)" "$(DESTDIR)$(programfilesiconsscalabledir)" "$(DESTDIR)$(programfileslicencedir)" "$(DESTDIR)$(programfileswebdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" "$(DESTDIR)$(linuxpkgconfigdir)" "$(DESTDIR)$(programfilesdir)" "$(DESTDIR)$(programfilesdocsdir)" "$(DESTDIR)$(programfilesicons24x24dir)" "$(DESTDIR)$(programfilesicons48x48dir)" "$(DESTDIR)$(programfilesiconsscalabledir)" "$(DESTDIR)$(programfileslicencedir)" "$(DESTDIR)$(programfilesversiondir)" "$(DESTDIR)$(programfileswebdir)" "$(DESTDIR)$(programfileswebimgdir)" "$(DESTDIR)$(programfileswebthemedefaultdir)" "$(DESTDIR)$(programfileswebthemedefaultimgdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1029,13 +1397,16 @@ info: info-am
 info-am:
 
 install-data-am: install-commonapplicationdatarootmimepackagesDATA \
-	install-linuxdesktopapplicationsDATA \
 	install-linuxpkgconfigDATA install-programfilesDATA \
 	install-programfilesdocsDATA \
 	install-programfilesicons24x24DATA \
 	install-programfilesicons48x48DATA \
 	install-programfilesiconsscalableDATA \
-	install-programfileslicenceDATA install-programfileswebDATA
+	install-programfileslicenceDATA \
+	install-programfilesversionDATA install-programfileswebDATA \
+	install-programfileswebimgDATA \
+	install-programfileswebthemedefaultDATA \
+	install-programfileswebthemedefaultimgDATA
 
 install-dvi: install-dvi-am
 
@@ -1081,14 +1452,16 @@ ps-am:
 
 uninstall-am: uninstall-binSCRIPTS \
 	uninstall-commonapplicationdatarootmimepackagesDATA \
-	uninstall-linuxdesktopapplicationsDATA \
 	uninstall-linuxpkgconfigDATA uninstall-pkglibSCRIPTS \
 	uninstall-programfilesDATA uninstall-programfilesdocsDATA \
 	uninstall-programfilesicons24x24DATA \
 	uninstall-programfilesicons48x48DATA \
 	uninstall-programfilesiconsscalableDATA \
 	uninstall-programfileslicenceDATA \
-	uninstall-programfileswebDATA
+	uninstall-programfilesversionDATA \
+	uninstall-programfileswebDATA uninstall-programfileswebimgDATA \
+	uninstall-programfileswebthemedefaultDATA \
+	uninstall-programfileswebthemedefaultimgDATA
 
 .MAKE: install-am install-strip
 
@@ -1098,30 +1471,35 @@ uninstall-am: uninstall-binSCRIPTS \
 	install-commonapplicationdatarootmimepackagesDATA install-data \
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am install-info \
-	install-info-am install-linuxdesktopapplicationsDATA \
-	install-linuxpkgconfigDATA install-man install-pdf \
-	install-pdf-am install-pkglibSCRIPTS install-programfilesDATA \
-	install-programfilesdocsDATA \
+	install-info-am install-linuxpkgconfigDATA install-man \
+	install-pdf install-pdf-am install-pkglibSCRIPTS \
+	install-programfilesDATA install-programfilesdocsDATA \
 	install-programfilesicons24x24DATA \
 	install-programfilesicons48x48DATA \
 	install-programfilesiconsscalableDATA \
-	install-programfileslicenceDATA install-programfileswebDATA \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
-	pdf-am ps ps-am uninstall uninstall-am uninstall-binSCRIPTS \
+	install-programfileslicenceDATA \
+	install-programfilesversionDATA install-programfileswebDATA \
+	install-programfileswebimgDATA \
+	install-programfileswebthemedefaultDATA \
+	install-programfileswebthemedefaultimgDATA install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic pdf pdf-am ps ps-am uninstall \
+	uninstall-am uninstall-binSCRIPTS \
 	uninstall-commonapplicationdatarootmimepackagesDATA \
-	uninstall-linuxdesktopapplicationsDATA \
 	uninstall-linuxpkgconfigDATA uninstall-pkglibSCRIPTS \
 	uninstall-programfilesDATA uninstall-programfilesdocsDATA \
 	uninstall-programfilesicons24x24DATA \
 	uninstall-programfilesicons48x48DATA \
 	uninstall-programfilesiconsscalableDATA \
 	uninstall-programfileslicenceDATA \
-	uninstall-programfileswebDATA
+	uninstall-programfilesversionDATA \
+	uninstall-programfileswebDATA uninstall-programfileswebimgDATA \
+	uninstall-programfileswebthemedefaultDATA \
+	uninstall-programfileswebthemedefaultimgDATA
 
 
-all: $(ASSEMBLY) $(LINUX_DESKTOPAPPLICATIONS) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES) $(BINARIES) 
+all: $(ASSEMBLY) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES_WEB_IMG) $(PROGRAMFILES_WEB_THEME_DEFAULT) $(PROGRAMFILES_WEB_THEME_DEFAULT_IMG) $(PROGRAMFILES_VERSION) $(PROGRAMFILES) $(BINARIES) 
 
 # macros
 
@@ -1159,7 +1537,6 @@ install-satellite-assemblies: $(install_satellite_assembly_list)
 uninstall-satellite-assemblies:
 	rm -rf $(install_satellite_assembly_list)
 
-$(eval $(call emit-deploy-target,OCM_DESKTOP))
 $(eval $(call emit-deploy-target,X_GPX_XML))
 $(eval $(call emit-deploy-target,X_OCM_XML))
 $(eval $(call emit-deploy-target,OCMLOGO_SVG))
@@ -1208,6 +1585,73 @@ $(eval $(call emit-deploy-target,README_TXT))
 $(eval $(call emit-deploy-target,LICENCE_TXT))
 $(eval $(call emit-deploy-target,TREASURE_SVG))
 $(eval $(call emit-deploy-target,TREASURE_PNG))
+$(eval $(call emit-deploy-target,OPENLAYERS_JS))
+$(eval $(call emit-deploy-target,BLANK_GIF))
+$(eval $(call emit-deploy-target,CLOUD_POPUP_RELATIVE_PNG))
+$(eval $(call emit-deploy-target,DRAG_RECTANGLE_OFF_PNG))
+$(eval $(call emit-deploy-target,DRAG_RECTANGLE_ON_PNG))
+$(eval $(call emit-deploy-target,EAST_MINI_PNG))
+$(eval $(call emit-deploy-target,LAYER_SWITCHER_MAXIMIZE_PNG))
+$(eval $(call emit-deploy-target,LAYER_SWITCHER_MINIMIZE_PNG))
+$(eval $(call emit-deploy-target,MARKER_PNG))
+$(eval $(call emit-deploy-target,MARKER_BLUE_PNG))
+$(eval $(call emit-deploy-target,MARKER_GOLD_PNG))
+$(eval $(call emit-deploy-target,MARKER_GREEN_PNG))
+$(eval $(call emit-deploy-target,MEASURING_STICK_OFF_PNG))
+$(eval $(call emit-deploy-target,MEASURING_STICK_ON_PNG))
+$(eval $(call emit-deploy-target,NORTH_MINI_PNG))
+$(eval $(call emit-deploy-target,PANNING_HAND_OFF_PNG))
+$(eval $(call emit-deploy-target,PANNING_HAND_ON_PNG))
+$(eval $(call emit-deploy-target,SLIDER_PNG))
+$(eval $(call emit-deploy-target,SOUTH_MINI_PNG))
+$(eval $(call emit-deploy-target,WEST_MINI_PNG))
+$(eval $(call emit-deploy-target,ZOOMBAR_PNG))
+$(eval $(call emit-deploy-target,ZOOM_MINUS_MINI_PNG))
+$(eval $(call emit-deploy-target,ZOOM_PLUS_MINI_PNG))
+$(eval $(call emit-deploy-target,ZOOM_WORLD_MINI_PNG))
+$(eval $(call emit-deploy-target,FRAMEDCLOUD_CSS))
+$(eval $(call emit-deploy-target,GOOGLE_CSS))
+$(eval $(call emit-deploy-target,IE6_STYLE_CSS))
+$(eval $(call emit-deploy-target,STYLE_CSS))
+$(eval $(call emit-deploy-target,ADD_POINT_OFF_PNG))
+$(eval $(call emit-deploy-target,ADD_POINT_ON_PNG))
+$(eval $(call emit-deploy-target,BLANK_GIF2))
+$(eval $(call emit-deploy-target,CLOSE_GIF))
+$(eval $(call emit-deploy-target,DRAG_RECTANGLE_OFF_PNG2))
+$(eval $(call emit-deploy-target,DRAG_RECTANGLE_ON_PNG2))
+$(eval $(call emit-deploy-target,DRAW_LINE_OFF_PNG))
+$(eval $(call emit-deploy-target,DRAW_LINE_ON_PNG))
+$(eval $(call emit-deploy-target,DRAW_POINT_OFF_PNG))
+$(eval $(call emit-deploy-target,DRAW_POINT_ON_PNG))
+$(eval $(call emit-deploy-target,DRAW_POLYGON_OFF_PNG))
+$(eval $(call emit-deploy-target,DRAW_POLYGON_ON_PNG))
+$(eval $(call emit-deploy-target,EDITING_TOOL_BAR_PNG))
+$(eval $(call emit-deploy-target,MOVE_FEATURE_OFF_PNG))
+$(eval $(call emit-deploy-target,MOVE_FEATURE_ON_PNG))
+$(eval $(call emit-deploy-target,NAVIGATION_HISTORY_PNG))
+$(eval $(call emit-deploy-target,OVERVIEW_REPLACEMENT_GIF))
+$(eval $(call emit-deploy-target,PANNING_HAND_OFF_PNG2))
+$(eval $(call emit-deploy-target,PANNING_HAND_ON_PNG2))
+$(eval $(call emit-deploy-target,PAN_OFF_PNG))
+$(eval $(call emit-deploy-target,PAN_ON_PNG))
+$(eval $(call emit-deploy-target,PAN_PANEL_PNG))
+$(eval $(call emit-deploy-target,PAN_PANEL_NOALPHA_PNG))
+$(eval $(call emit-deploy-target,REMOVE_POINT_OFF_PNG))
+$(eval $(call emit-deploy-target,REMOVE_POINT_ON_PNG))
+$(eval $(call emit-deploy-target,RULER_PNG))
+$(eval $(call emit-deploy-target,SAVE_FEATURES_OFF_PNG))
+$(eval $(call emit-deploy-target,SAVE_FEATURES_ON_PNG))
+$(eval $(call emit-deploy-target,VIEW_NEXT_OFF_PNG))
+$(eval $(call emit-deploy-target,VIEW_NEXT_ON_PNG))
+$(eval $(call emit-deploy-target,VIEW_PREVIOUS_OFF_PNG))
+$(eval $(call emit-deploy-target,VIEW_PREVIOUS_ON_PNG))
+$(eval $(call emit-deploy-target,ZOOM_PANEL_PNG))
+$(eval $(call emit-deploy-target,ZOOM_PANEL_NOALPHA_PNG))
+$(eval $(call emit-deploy-target,GREENPIN_PNG))
+$(eval $(call emit-deploy-target,PUSHPIN_SVG))
+$(eval $(call emit-deploy-target,VERSION_TXT))
+$(eval $(call emit-deploy-target,SHADOW_PNG))
+$(eval $(call emit-deploy-target,GREENPIN_SVG))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL_MDB))
 $(eval $(call emit-deploy-wrapper,OCM_GTK,ocm-gtk,x))

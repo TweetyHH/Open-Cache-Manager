@@ -1,7 +1,7 @@
 dnl Warning: This is an automatically generated file, do not edit!
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.54])
-AC_INIT([OpenCacheManager], [0.15])
+AC_INIT([OpenCacheManager], [0.18])
 AM_INIT_AUTOMAKE([foreign])
 AM_MAINTAINER_MODE
 
@@ -39,14 +39,6 @@ AM_CONDITIONAL(ENABLE_RELEASE, test x$enable_release = xyes)
 if test "x$enable_release" = "xyes" ; then
 	CONFIG_REQUESTED="yes"
 fi
-AC_ARG_ENABLE(default,
-	AC_HELP_STRING([--enable-default],
-		[Use 'DEFAULT' Configuration [default=NO]]),
-		enable_default=yes, enable_default=no)
-AM_CONDITIONAL(ENABLE_DEFAULT, test x$enable_default = xyes)
-if test "x$enable_default" = "xyes" ; then
-	CONFIG_REQUESTED="yes"
-fi
 if test -z "$CONFIG_REQUESTED" ; then
 	AM_CONDITIONAL(ENABLE_DEBUG, true)
 	enable_debug=yes
@@ -56,7 +48,6 @@ fi
 dnl package checks, common for all configs
 PKG_CHECK_MODULES([GTK_SHARP_20], [gtk-sharp-2.0])
 PKG_CHECK_MODULES([WEBKIT_SHARP_10], [webkit-sharp-1.0])
-PKG_CHECK_MODULES([GTKHTML_SHARP_314], [gtkhtml-sharp-3.14])
 PKG_CHECK_MODULES([GCONF_SHARP_20], [gconf-sharp-2.0])
 PKG_CHECK_MODULES([NDESK_DBUS_10], [ndesk-dbus-1.0])
 PKG_CHECK_MODULES([NDESK_DBUS_GLIB_10], [ndesk-dbus-glib-1.0])

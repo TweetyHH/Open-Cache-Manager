@@ -13,7 +13,6 @@ PROJECT_REFERENCES =  \
 	../ocmengine/bin/Debug/ocmengine.dll
 BUILD_DIR = bind
 
-OCM_DESKTOP_SOURCE=OCM.desktop
 X_GPX_XML_SOURCE=x-gpx.xml
 X_OCM_XML_SOURCE=x-ocm.xml
 OCMLOGO_SVG_SOURCE=icons/scalable/OCMLogo.svg
@@ -62,6 +61,73 @@ README_TXT_SOURCE=docs/README.txt
 LICENCE_TXT_SOURCE=licence/Licence.txt
 TREASURE_SVG_SOURCE=icons/scalable/treasure.svg
 TREASURE_PNG_SOURCE=icons/24x24/treasure.png
+OPENLAYERS_JS_SOURCE=web/OpenLayers.js
+BLANK_GIF_SOURCE=web/img/blank.gif
+CLOUD_POPUP_RELATIVE_PNG_SOURCE=web/img/cloud-popup-relative.png
+DRAG_RECTANGLE_OFF_PNG_SOURCE=web/img/drag-rectangle-off.png
+DRAG_RECTANGLE_ON_PNG_SOURCE=web/img/drag-rectangle-on.png
+EAST_MINI_PNG_SOURCE=web/img/east-mini.png
+LAYER_SWITCHER_MAXIMIZE_PNG_SOURCE=web/img/layer-switcher-maximize.png
+LAYER_SWITCHER_MINIMIZE_PNG_SOURCE=web/img/layer-switcher-minimize.png
+MARKER_PNG_SOURCE=web/img/marker.png
+MARKER_BLUE_PNG_SOURCE=web/img/marker-blue.png
+MARKER_GOLD_PNG_SOURCE=web/img/marker-gold.png
+MARKER_GREEN_PNG_SOURCE=web/img/marker-green.png
+MEASURING_STICK_OFF_PNG_SOURCE=web/img/measuring-stick-off.png
+MEASURING_STICK_ON_PNG_SOURCE=web/img/measuring-stick-on.png
+NORTH_MINI_PNG_SOURCE=web/img/north-mini.png
+PANNING_HAND_OFF_PNG_SOURCE=web/img/panning-hand-off.png
+PANNING_HAND_ON_PNG_SOURCE=web/img/panning-hand-on.png
+SLIDER_PNG_SOURCE=web/img/slider.png
+SOUTH_MINI_PNG_SOURCE=web/img/south-mini.png
+WEST_MINI_PNG_SOURCE=web/img/west-mini.png
+ZOOMBAR_PNG_SOURCE=web/img/zoombar.png
+ZOOM_MINUS_MINI_PNG_SOURCE=web/img/zoom-minus-mini.png
+ZOOM_PLUS_MINI_PNG_SOURCE=web/img/zoom-plus-mini.png
+ZOOM_WORLD_MINI_PNG_SOURCE=web/img/zoom-world-mini.png
+FRAMEDCLOUD_CSS_SOURCE=web/theme/default/framedCloud.css
+GOOGLE_CSS_SOURCE=web/theme/default/google.css
+IE6_STYLE_CSS_SOURCE=web/theme/default/ie6-style.css
+STYLE_CSS_SOURCE=web/theme/default/style.css
+ADD_POINT_OFF_PNG_SOURCE=web/theme/default/img/add_point_off.png
+ADD_POINT_ON_PNG_SOURCE=web/theme/default/img/add_point_on.png
+BLANK_GIF2_SOURCE=web/theme/default/img/blank.gif
+CLOSE_GIF_SOURCE=web/theme/default/img/close.gif
+DRAG_RECTANGLE_OFF_PNG2_SOURCE=web/theme/default/img/drag-rectangle-off.png
+DRAG_RECTANGLE_ON_PNG2_SOURCE=web/theme/default/img/drag-rectangle-on.png
+DRAW_LINE_OFF_PNG_SOURCE=web/theme/default/img/draw_line_off.png
+DRAW_LINE_ON_PNG_SOURCE=web/theme/default/img/draw_line_on.png
+DRAW_POINT_OFF_PNG_SOURCE=web/theme/default/img/draw_point_off.png
+DRAW_POINT_ON_PNG_SOURCE=web/theme/default/img/draw_point_on.png
+DRAW_POLYGON_OFF_PNG_SOURCE=web/theme/default/img/draw_polygon_off.png
+DRAW_POLYGON_ON_PNG_SOURCE=web/theme/default/img/draw_polygon_on.png
+EDITING_TOOL_BAR_PNG_SOURCE=web/theme/default/img/editing_tool_bar.png
+MOVE_FEATURE_OFF_PNG_SOURCE=web/theme/default/img/move_feature_off.png
+MOVE_FEATURE_ON_PNG_SOURCE=web/theme/default/img/move_feature_on.png
+NAVIGATION_HISTORY_PNG_SOURCE=web/theme/default/img/navigation_history.png
+OVERVIEW_REPLACEMENT_GIF_SOURCE=web/theme/default/img/overview_replacement.gif
+PANNING_HAND_OFF_PNG2_SOURCE=web/theme/default/img/panning-hand-off.png
+PANNING_HAND_ON_PNG2_SOURCE=web/theme/default/img/panning-hand-on.png
+PAN_OFF_PNG_SOURCE=web/theme/default/img/pan_off.png
+PAN_ON_PNG_SOURCE=web/theme/default/img/pan_on.png
+PAN_PANEL_PNG_SOURCE=web/theme/default/img/pan-panel.png
+PAN_PANEL_NOALPHA_PNG_SOURCE=web/theme/default/img/pan-panel-NOALPHA.png
+REMOVE_POINT_OFF_PNG_SOURCE=web/theme/default/img/remove_point_off.png
+REMOVE_POINT_ON_PNG_SOURCE=web/theme/default/img/remove_point_on.png
+RULER_PNG_SOURCE=web/theme/default/img/ruler.png
+SAVE_FEATURES_OFF_PNG_SOURCE=web/theme/default/img/save_features_off.png
+SAVE_FEATURES_ON_PNG_SOURCE=web/theme/default/img/save_features_on.png
+VIEW_NEXT_OFF_PNG_SOURCE=web/theme/default/img/view_next_off.png
+VIEW_NEXT_ON_PNG_SOURCE=web/theme/default/img/view_next_on.png
+VIEW_PREVIOUS_OFF_PNG_SOURCE=web/theme/default/img/view_previous_off.png
+VIEW_PREVIOUS_ON_PNG_SOURCE=web/theme/default/img/view_previous_on.png
+ZOOM_PANEL_PNG_SOURCE=web/theme/default/img/zoom-panel.png
+ZOOM_PANEL_NOALPHA_PNG_SOURCE=web/theme/default/img/zoom-panel-NOALPHA.png
+GREENPIN_PNG_SOURCE=icons/24x24/greenpin.png
+PUSHPIN_SVG_SOURCE=icons/scalable/pushpin.svg
+VERSION_TXT_SOURCE=version/Version.txt
+SHADOW_PNG_SOURCE=icons/24x24/shadow.png
+GREENPIN_SVG_SOURCE=icons/scalable/greenpin.svg
 OCMENGINE_DLL_SOURCE=../ocmengine/bin/Debug/ocmengine.dll
 OCMENGINE_DLL_MDB_SOURCE=../ocmengine/bin/Debug/ocmengine.dll.mdb
 OCMENGINE_DLL_MDB=$(BUILD_DIR)/ocmengine.dll.mdb
@@ -80,7 +146,6 @@ PROJECT_REFERENCES =  \
 	../ocmengine/bin/Debug/ocmengine.dll
 BUILD_DIR = bin
 
-OCM_DESKTOP_SOURCE=OCM.desktop
 X_GPX_XML_SOURCE=x-gpx.xml
 X_OCM_XML_SOURCE=x-ocm.xml
 OCMLOGO_SVG_SOURCE=icons/scalable/OCMLogo.svg
@@ -129,6 +194,73 @@ README_TXT_SOURCE=docs/README.txt
 LICENCE_TXT_SOURCE=licence/Licence.txt
 TREASURE_SVG_SOURCE=icons/scalable/treasure.svg
 TREASURE_PNG_SOURCE=icons/24x24/treasure.png
+OPENLAYERS_JS_SOURCE=web/OpenLayers.js
+BLANK_GIF_SOURCE=web/img/blank.gif
+CLOUD_POPUP_RELATIVE_PNG_SOURCE=web/img/cloud-popup-relative.png
+DRAG_RECTANGLE_OFF_PNG_SOURCE=web/img/drag-rectangle-off.png
+DRAG_RECTANGLE_ON_PNG_SOURCE=web/img/drag-rectangle-on.png
+EAST_MINI_PNG_SOURCE=web/img/east-mini.png
+LAYER_SWITCHER_MAXIMIZE_PNG_SOURCE=web/img/layer-switcher-maximize.png
+LAYER_SWITCHER_MINIMIZE_PNG_SOURCE=web/img/layer-switcher-minimize.png
+MARKER_PNG_SOURCE=web/img/marker.png
+MARKER_BLUE_PNG_SOURCE=web/img/marker-blue.png
+MARKER_GOLD_PNG_SOURCE=web/img/marker-gold.png
+MARKER_GREEN_PNG_SOURCE=web/img/marker-green.png
+MEASURING_STICK_OFF_PNG_SOURCE=web/img/measuring-stick-off.png
+MEASURING_STICK_ON_PNG_SOURCE=web/img/measuring-stick-on.png
+NORTH_MINI_PNG_SOURCE=web/img/north-mini.png
+PANNING_HAND_OFF_PNG_SOURCE=web/img/panning-hand-off.png
+PANNING_HAND_ON_PNG_SOURCE=web/img/panning-hand-on.png
+SLIDER_PNG_SOURCE=web/img/slider.png
+SOUTH_MINI_PNG_SOURCE=web/img/south-mini.png
+WEST_MINI_PNG_SOURCE=web/img/west-mini.png
+ZOOMBAR_PNG_SOURCE=web/img/zoombar.png
+ZOOM_MINUS_MINI_PNG_SOURCE=web/img/zoom-minus-mini.png
+ZOOM_PLUS_MINI_PNG_SOURCE=web/img/zoom-plus-mini.png
+ZOOM_WORLD_MINI_PNG_SOURCE=web/img/zoom-world-mini.png
+FRAMEDCLOUD_CSS_SOURCE=web/theme/default/framedCloud.css
+GOOGLE_CSS_SOURCE=web/theme/default/google.css
+IE6_STYLE_CSS_SOURCE=web/theme/default/ie6-style.css
+STYLE_CSS_SOURCE=web/theme/default/style.css
+ADD_POINT_OFF_PNG_SOURCE=web/theme/default/img/add_point_off.png
+ADD_POINT_ON_PNG_SOURCE=web/theme/default/img/add_point_on.png
+BLANK_GIF2_SOURCE=web/theme/default/img/blank.gif
+CLOSE_GIF_SOURCE=web/theme/default/img/close.gif
+DRAG_RECTANGLE_OFF_PNG2_SOURCE=web/theme/default/img/drag-rectangle-off.png
+DRAG_RECTANGLE_ON_PNG2_SOURCE=web/theme/default/img/drag-rectangle-on.png
+DRAW_LINE_OFF_PNG_SOURCE=web/theme/default/img/draw_line_off.png
+DRAW_LINE_ON_PNG_SOURCE=web/theme/default/img/draw_line_on.png
+DRAW_POINT_OFF_PNG_SOURCE=web/theme/default/img/draw_point_off.png
+DRAW_POINT_ON_PNG_SOURCE=web/theme/default/img/draw_point_on.png
+DRAW_POLYGON_OFF_PNG_SOURCE=web/theme/default/img/draw_polygon_off.png
+DRAW_POLYGON_ON_PNG_SOURCE=web/theme/default/img/draw_polygon_on.png
+EDITING_TOOL_BAR_PNG_SOURCE=web/theme/default/img/editing_tool_bar.png
+MOVE_FEATURE_OFF_PNG_SOURCE=web/theme/default/img/move_feature_off.png
+MOVE_FEATURE_ON_PNG_SOURCE=web/theme/default/img/move_feature_on.png
+NAVIGATION_HISTORY_PNG_SOURCE=web/theme/default/img/navigation_history.png
+OVERVIEW_REPLACEMENT_GIF_SOURCE=web/theme/default/img/overview_replacement.gif
+PANNING_HAND_OFF_PNG2_SOURCE=web/theme/default/img/panning-hand-off.png
+PANNING_HAND_ON_PNG2_SOURCE=web/theme/default/img/panning-hand-on.png
+PAN_OFF_PNG_SOURCE=web/theme/default/img/pan_off.png
+PAN_ON_PNG_SOURCE=web/theme/default/img/pan_on.png
+PAN_PANEL_PNG_SOURCE=web/theme/default/img/pan-panel.png
+PAN_PANEL_NOALPHA_PNG_SOURCE=web/theme/default/img/pan-panel-NOALPHA.png
+REMOVE_POINT_OFF_PNG_SOURCE=web/theme/default/img/remove_point_off.png
+REMOVE_POINT_ON_PNG_SOURCE=web/theme/default/img/remove_point_on.png
+RULER_PNG_SOURCE=web/theme/default/img/ruler.png
+SAVE_FEATURES_OFF_PNG_SOURCE=web/theme/default/img/save_features_off.png
+SAVE_FEATURES_ON_PNG_SOURCE=web/theme/default/img/save_features_on.png
+VIEW_NEXT_OFF_PNG_SOURCE=web/theme/default/img/view_next_off.png
+VIEW_NEXT_ON_PNG_SOURCE=web/theme/default/img/view_next_on.png
+VIEW_PREVIOUS_OFF_PNG_SOURCE=web/theme/default/img/view_previous_off.png
+VIEW_PREVIOUS_ON_PNG_SOURCE=web/theme/default/img/view_previous_on.png
+ZOOM_PANEL_PNG_SOURCE=web/theme/default/img/zoom-panel.png
+ZOOM_PANEL_NOALPHA_PNG_SOURCE=web/theme/default/img/zoom-panel-NOALPHA.png
+GREENPIN_PNG_SOURCE=icons/24x24/greenpin.png
+PUSHPIN_SVG_SOURCE=icons/scalable/pushpin.svg
+VERSION_TXT_SOURCE=version/Version.txt
+SHADOW_PNG_SOURCE=icons/24x24/shadow.png
+GREENPIN_SVG_SOURCE=icons/scalable/greenpin.svg
 OCMENGINE_DLL_SOURCE=../ocmengine/bin/Debug/ocmengine.dll
 OCMENGINE_DLL_MDB=
 OCM_GTK_EXE_MDB=
@@ -137,9 +269,6 @@ endif
 
 AL=al2
 SATELLITE_ASSEMBLY_NAME=$(notdir $(basename $(ASSEMBLY))).resources.dll
-
-LINUX_DESKTOPAPPLICATIONS = \
-	$(OCM_DESKTOP)  
 
 COMMONAPPLICATIONDATAROOT_MIME_PACKAGES = \
 	$(X_GPX_XML) \
@@ -167,10 +296,13 @@ PROGRAMFILES_ICONS_SCALABLE = \
 	$(BLUEPIN_SVG) \
 	$(PARKING_SVG) \
 	$(TRAILHEAD_SVG) \
-	$(TREASURE_SVG)  
+	$(TREASURE_SVG) \
+	$(PUSHPIN_SVG) \
+	$(GREENPIN_SVG)  
 
 PROGRAMFILES_WEB = \
-	$(WPT_VIEWER_HTML)  
+	$(WPT_VIEWER_HTML) \
+	$(OPENLAYERS_JS)  
 
 PROGRAMFILES_ICONS_24X24 = \
 	$(CITO_PNG) \
@@ -191,7 +323,9 @@ PROGRAMFILES_ICONS_24X24 = \
 	$(BLUEPIN_PNG) \
 	$(PARKING_PNG) \
 	$(TRAILHEAD_PNG) \
-	$(TREASURE_PNG)  
+	$(TREASURE_PNG) \
+	$(GREENPIN_PNG) \
+	$(SHADOW_PNG)  
 
 PROGRAMFILES_ICONS_48X48 = \
 	$(CIRCLE_PNG)  
@@ -203,10 +337,80 @@ PROGRAMFILES_DOCS = \
 PROGRAMFILES_LICENCE = \
 	$(LICENCE_TXT)  
 
-PROGRAMFILES = \
+PROGRAMFILES_WEB_IMG = \
+	$(BLANK_GIF) \
+	$(CLOUD_POPUP_RELATIVE_PNG) \
+	$(DRAG_RECTANGLE_OFF_PNG) \
+	$(DRAG_RECTANGLE_ON_PNG) \
+	$(EAST_MINI_PNG) \
+	$(LAYER_SWITCHER_MAXIMIZE_PNG) \
+	$(LAYER_SWITCHER_MINIMIZE_PNG) \
+	$(MARKER_PNG) \
+	$(MARKER_BLUE_PNG) \
+	$(MARKER_GOLD_PNG) \
+	$(MARKER_GREEN_PNG) \
+	$(MEASURING_STICK_OFF_PNG) \
+	$(MEASURING_STICK_ON_PNG) \
+	$(NORTH_MINI_PNG) \
+	$(PANNING_HAND_OFF_PNG) \
+	$(PANNING_HAND_ON_PNG) \
+	$(SLIDER_PNG) \
+	$(SOUTH_MINI_PNG) \
+	$(WEST_MINI_PNG) \
+	$(ZOOMBAR_PNG) \
+	$(ZOOM_MINUS_MINI_PNG) \
+	$(ZOOM_PLUS_MINI_PNG) \
+	$(ZOOM_WORLD_MINI_PNG)  
+
+PROGRAMFILES_WEB_THEME_DEFAULT = \
+	$(FRAMEDCLOUD_CSS) \
+	$(GOOGLE_CSS) \
+	$(IE6_STYLE_CSS) \
+	$(STYLE_CSS)  
+
+PROGRAMFILES_WEB_THEME_DEFAULT_IMG = \
+	$(ADD_POINT_OFF_PNG) \
+	$(ADD_POINT_ON_PNG) \
+	$(BLANK_GIF2) \
+	$(CLOSE_GIF) \
+	$(DRAG_RECTANGLE_OFF_PNG2) \
+	$(DRAG_RECTANGLE_ON_PNG2) \
+	$(DRAW_LINE_OFF_PNG) \
+	$(DRAW_LINE_ON_PNG) \
+	$(DRAW_POINT_OFF_PNG) \
+	$(DRAW_POINT_ON_PNG) \
+	$(DRAW_POLYGON_OFF_PNG) \
+	$(DRAW_POLYGON_ON_PNG) \
+	$(EDITING_TOOL_BAR_PNG) \
+	$(MOVE_FEATURE_OFF_PNG) \
+	$(MOVE_FEATURE_ON_PNG) \
+	$(NAVIGATION_HISTORY_PNG) \
+	$(OVERVIEW_REPLACEMENT_GIF) \
+	$(PANNING_HAND_OFF_PNG2) \
+	$(PANNING_HAND_ON_PNG2) \
+	$(PAN_OFF_PNG) \
+	$(PAN_ON_PNG) \
+	$(PAN_PANEL_PNG) \
+	$(PAN_PANEL_NOALPHA_PNG) \
+	$(REMOVE_POINT_OFF_PNG) \
+	$(REMOVE_POINT_ON_PNG) \
+	$(RULER_PNG) \
+	$(SAVE_FEATURES_OFF_PNG) \
+	$(SAVE_FEATURES_ON_PNG) \
+	$(VIEW_NEXT_OFF_PNG) \
+	$(VIEW_NEXT_ON_PNG) \
+	$(VIEW_PREVIOUS_OFF_PNG) \
+	$(VIEW_PREVIOUS_ON_PNG) \
+	$(ZOOM_PANEL_PNG) \
+	$(ZOOM_PANEL_NOALPHA_PNG)  
+
+PROGRAMFILES_VERSION = \
+	$(VERSION_TXT)  
+
+PROGRAMFILES =  \
+	$(OCM_GTK_EXE_MDB) \
 	$(OCMENGINE_DLL) \
-	$(OCMENGINE_DLL_MDB) \
-	$(OCM_GTK_EXE_MDB)  
+	$(OCMENGINE_DLL_MDB)  
 
 BINARIES = \
 	$(OCM_GTK)  
@@ -214,88 +418,112 @@ BINARIES = \
 
 RESGEN=resgen2
 	
-all: $(ASSEMBLY) $(LINUX_DESKTOPAPPLICATIONS) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES) $(BINARIES) 
+all: $(ASSEMBLY) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES_WEB_IMG) $(PROGRAMFILES_WEB_THEME_DEFAULT) $(PROGRAMFILES_WEB_THEME_DEFAULT_IMG) $(PROGRAMFILES_VERSION) $(PROGRAMFILES) $(BINARIES) 
 
-FILES = \
-	gtk-gui/generated.cs \
-	MainWindow.cs \
-	gtk-gui/MainWindow.cs \
-	Main.cs \
+FILES =  \
 	AssemblyInfo.cs \
+	Config.cs \
+	DBusComm.cs \
+	Dialogs/AddBookMarkDialog.cs \
+	Dialogs/CalendarWindow.cs \
+	Dialogs/ChangeHistory.cs \
+	Dialogs/DeleteBookmark.cs \
+	Dialogs/ExportProgressDialog.cs \
+	Dialogs/FilterDialog.cs \
+	Dialogs/GPSConfiguration.cs \
+	Dialogs/GPSDConfig.cs \
+	Dialogs/ModifyCacheDialog.cs \
+	Dialogs/NoDBDialog.cs \
+	Dialogs/OCMSplash.cs \
+	Dialogs/Preferences.cs \
+	Dialogs/ProgressDialog.cs \
+	Dialogs/QTLandKarteDialog.cs \
+	Dialogs/SendWaypointsDialog.cs \
+	Dialogs/SetupAssistant.cs \
+	Dialogs/WaypointDialog.cs \
+	GPS.cs \
+	gtk-gui/generated.cs \
+	gtk-gui/MainWindow.cs \
+	gtk-gui/ocmgtk.AddBookMarkDialog.cs \
+	gtk-gui/ocmgtk.BrowserWidget.cs \
+	gtk-gui/ocmgtk.CacheList.cs \
+	gtk-gui/ocmgtk.CalendarWindow.cs \
+	gtk-gui/ocmgtk.ChangeHistory.cs \
+	gtk-gui/ocmgtk.CoordinateWidget.cs \
+	gtk-gui/ocmgtk.DateWidget.cs \
+	gtk-gui/ocmgtk.DeleteBookmark.cs \
+	gtk-gui/ocmgtk.DescriptionWidget.cs \
+	gtk-gui/ocmgtk.ExportProgressDialog.cs \
+	gtk-gui/ocmgtk.FilterDialog.cs \
+	gtk-gui/ocmgtk.GarminUSBWidget.cs \
+	gtk-gui/ocmgtk.GenericGPSWidget.cs \
 	gtk-gui/ocmgtk.GeocacheInfoPanel.cs \
 	gtk-gui/ocmgtk.GeoCachePane.cs \
-	gtk-gui/ocmgtk.CacheList.cs \
+	gtk-gui/ocmgtk.GPSConfiguration.cs \
+	gtk-gui/ocmgtk.GPSDConfig.cs \
+	gtk-gui/ocmgtk.GPXWidget.cs \
+	gtk-gui/ocmgtk.HTMLEditorWidget.cs \
+	gtk-gui/ocmgtk.HTMLWidget.cs \
+	gtk-gui/ocmgtk.LogViewerWidget.cs \
+	gtk-gui/ocmgtk.MagellanExploristWidget.cs \
+	gtk-gui/ocmgtk.ModifyCacheDialog.cs \
+	gtk-gui/ocmgtk.NoDBDialog.cs \
+	gtk-gui/ocmgtk.NotesWidget.cs \
+	gtk-gui/ocmgtk.OCMQueryPage1.cs \
+	gtk-gui/ocmgtk.OCMQueryPage2.cs \
+	gtk-gui/ocmgtk.OCMQueryPage3.cs \
+	gtk-gui/ocmgtk.OCMSplash.cs \
+	gtk-gui/ocmgtk.Preferences.cs \
+	gtk-gui/ocmgtk.ProgressDialog.cs \
+	gtk-gui/ocmgtk.QTLandKarteDialog.cs \
+	gtk-gui/ocmgtk.SendWaypointsDialog.cs \
+	gtk-gui/ocmgtk.SetupAssistant.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage1.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage2.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage3.cs \
+	gtk-gui/ocmgtk.SymbolChooser.cs \
+	gtk-gui/ocmgtk.WaypointDialog.cs \
+	gtk-gui/ocmgtk.WaypointOverrideWidget.cs \
+	gtk-gui/ocmgtk.WaypointWidget.cs \
+	IDBusComm.cs \
+	Main.cs \
+	MainWindow.cs \
+	QuickFilter.cs \
+	QuickFilters.cs \
+	SavedGPSConf.cs \
+	UIMonitor.cs \
+	Widgets/BrowserWidget.cs \
 	Widgets/CacheList.cs \
+	Widgets/CoordinateWidget.cs \
+	Widgets/DateWidget.cs \
+	Widgets/DescriptionWidget.cs \
+	Widgets/GarminUSBWidget.cs \
+	Widgets/GenericGPSWidget.cs \
 	Widgets/GeocacheInfoPanel.cs \
 	Widgets/GeoCachePane.cs \
-	gtk-gui/ocmgtk.WaypointWidget.cs \
-	gtk-gui/ocmgtk.LogViewerWidget.cs \
-	gtk-gui/ocmgtk.BrowserWidget.cs \
-	gtk-gui/ocmgtk.WaypointDialog.cs \
-	Widgets/WaypointWidget.cs \
-	Widgets/BrowserWidget.cs \
-	Widgets/LogViewerWidget.cs \
-	Dialogs/WaypointDialog.cs \
-	Widgets/HTMLWidget.cs \
-	UIMonitor.cs \
-	gtk-gui/ocmgtk.HTMLWidget.cs \
-	Dialogs/ProgressDialog.cs \
-	gtk-gui/ocmgtk.ProgressDialog.cs \
-	Dialogs/Preferences.cs \
-	gtk-gui/ocmgtk.Preferences.cs \
-	Widgets/CoordinateWidget.cs \
-	gtk-gui/ocmgtk.CoordinateWidget.cs \
-	Widgets/SetupAssistantPage1.cs \
-	gtk-gui/ocmgtk.SetupAssistantPage1.cs \
-	Dialogs/SetupAssistant.cs \
-	gtk-gui/ocmgtk.SetupAssistant.cs \
-	IDBusComm.cs \
-	DBusComm.cs \
-	Widgets/SetupAssistantPage2.cs \
-	gtk-gui/ocmgtk.SetupAssistantPage2.cs \
-	Widgets/SetupAssistantPage3.cs \
-	gtk-gui/ocmgtk.SetupAssistantPage3.cs \
-	Dialogs/ExportProgressDialog.cs \
-	gtk-gui/ocmgtk.ExportProgressDialog.cs \
-	Widgets/DescriptionWidget.cs \
-	gtk-gui/ocmgtk.DescriptionWidget.cs \
-	Widgets/OCMQueryPage1.cs \
-	gtk-gui/ocmgtk.OCMQueryPage1.cs \
-	Dialogs/OCMSplash.cs \
-	gtk-gui/ocmgtk.OCMSplash.cs \
-	Dialogs/FilterDialog.cs \
-	gtk-gui/ocmgtk.FilterDialog.cs \
-	Widgets/OCMQueryPage2.cs \
-	gtk-gui/ocmgtk.OCMQueryPage2.cs \
-	Widgets/OCMWebView.cs \
-	Dialogs/GPSConfiguration.cs \
-	gtk-gui/ocmgtk.GPSConfiguration.cs \
 	Widgets/GPXWidget.cs \
-	gtk-gui/ocmgtk.GPXWidget.cs \
-	gtk-gui/ocmgtk.GarminUSBWidget.cs \
-	Widgets/GarminUSBWidget.cs \
+	Widgets/HTMLEditorWidget.cs \
+	Widgets/HTMLWidget.cs \
 	Widgets/IGPSConfig.cs \
-	Dialogs/SendWaypointsDialog.cs \
-	gtk-gui/ocmgtk.SendWaypointsDialog.cs \
-	SavedGPSConf.cs \
+	Widgets/LogViewerWidget.cs \
 	Widgets/MagellanExploristWidget.cs \
-	gtk-gui/ocmgtk.MagellanExploristWidget.cs \
-	Widgets/GenericGPSWidget.cs \
-	gtk-gui/ocmgtk.GenericGPSWidget.cs \
+	Widgets/NotesWidget.cs \
+	Widgets/OCMQueryPage1.cs \
+	Widgets/OCMQueryPage2.cs \
 	Widgets/OCMQueryPage3.cs \
-	gtk-gui/ocmgtk.OCMQueryPage3.cs \
-	Dialogs/ChangeHistory.cs \
-	gtk-gui/ocmgtk.ChangeHistory.cs \
-	Config.cs \
-	Widgets/DateWidget.cs \
-	gtk-gui/ocmgtk.DateWidget.cs \
-	Dialogs/CalendarWindow.cs \
-	gtk-gui/ocmgtk.CalendarWindow.cs 
+	Widgets/OCMWebView.cs \
+	Widgets/SetupAssistantPage1.cs \
+	Widgets/SetupAssistantPage2.cs \
+	Widgets/SetupAssistantPage3.cs \
+	Widgets/SymbolChooser.cs \
+	Widgets/WaypointOverrideWidget.cs \
+	Widgets/WaypointWidget.cs 
 
 DATA_FILES = 
 
-RESOURCES = \
+RESOURCES =  \
 	gtk-gui/gui.stetic \
+	icons/OpenLayers.png,ocmgtk.icons.OpenLayers.png \
 	icons/scalable/OCMLogo.svg,ocmgtk.icons.scalable.OCMLogo.svg \
 	icons/scalable/OCMLogoSmall.svg,ocmgtk.icons.scalable.OCMLogoSmall.svg 
 
@@ -308,30 +536,32 @@ EXTRAS = \
 	icons/24x24 \
 	docs \
 	licence \
-	OCM.desktop \
+	version \
 	x-gpx.xml \
 	x-ocm.xml \
 	ocm-gtk \
+	docs/Credits.txt \
+	icons/scalable/greenpin.svg \
 	ocm-gtk.in 
 
 REFERENCES =  \
-	System \
-	$(GTK_SHARP_20_LIBS) \
+	../ocmengine/bin/Debug/ocmengine.dll \
 	Mono.Posix \
-	$(WEBKIT_SHARP_10_LIBS) \
-	$(GTKHTML_SHARP_314_LIBS) \
-	$(GCONF_SHARP_20_LIBS) \
-	$(NDESK_DBUS_10_LIBS) \
-	$(NDESK_DBUS_GLIB_10_LIBS) \
-	$(GLIB_SHARP_20_LIBS)
+	-pkg:gconf-sharp-2.0 \
+	-pkg:glib-sharp-2.0 \
+	-pkg:gtk-sharp-2.0 \
+	-pkg:ndesk-dbus-1.0 \
+	-pkg:ndesk-dbus-glib-1.0 \
+	-pkg:webkit-sharp-1.0 \
+	System \
+	System.Xml
 
 DLL_REFERENCES = 
 
-CLEANFILES = $(LINUX_DESKTOPAPPLICATIONS) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES) $(BINARIES) 
+CLEANFILES = $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES_WEB_IMG) $(PROGRAMFILES_WEB_THEME_DEFAULT) $(PROGRAMFILES_WEB_THEME_DEFAULT_IMG) $(PROGRAMFILES_VERSION) $(PROGRAMFILES) $(BINARIES) 
 
 include $(top_srcdir)/Makefile.include
 
-OCM_DESKTOP = $(BUILD_DIR)/OCM.desktop
 X_GPX_XML = $(BUILD_DIR)/mime/packages/x-gpx.xml
 X_OCM_XML = $(BUILD_DIR)/mime/packages/x-ocm.xml
 OCMLOGO_SVG = $(BUILD_DIR)/icons/scalable/OCMLogo.svg
@@ -380,10 +610,76 @@ README_TXT = $(BUILD_DIR)/docs/README.txt
 LICENCE_TXT = $(BUILD_DIR)/licence/Licence.txt
 TREASURE_SVG = $(BUILD_DIR)/icons/scalable/treasure.svg
 TREASURE_PNG = $(BUILD_DIR)/icons/24x24/treasure.png
+OPENLAYERS_JS = $(BUILD_DIR)/web/OpenLayers.js
+BLANK_GIF = $(BUILD_DIR)/web/img/blank.gif
+CLOUD_POPUP_RELATIVE_PNG = $(BUILD_DIR)/web/img/cloud-popup-relative.png
+DRAG_RECTANGLE_OFF_PNG = $(BUILD_DIR)/web/img/drag-rectangle-off.png
+DRAG_RECTANGLE_ON_PNG = $(BUILD_DIR)/web/img/drag-rectangle-on.png
+EAST_MINI_PNG = $(BUILD_DIR)/web/img/east-mini.png
+LAYER_SWITCHER_MAXIMIZE_PNG = $(BUILD_DIR)/web/img/layer-switcher-maximize.png
+LAYER_SWITCHER_MINIMIZE_PNG = $(BUILD_DIR)/web/img/layer-switcher-minimize.png
+MARKER_PNG = $(BUILD_DIR)/web/img/marker.png
+MARKER_BLUE_PNG = $(BUILD_DIR)/web/img/marker-blue.png
+MARKER_GOLD_PNG = $(BUILD_DIR)/web/img/marker-gold.png
+MARKER_GREEN_PNG = $(BUILD_DIR)/web/img/marker-green.png
+MEASURING_STICK_OFF_PNG = $(BUILD_DIR)/web/img/measuring-stick-off.png
+MEASURING_STICK_ON_PNG = $(BUILD_DIR)/web/img/measuring-stick-on.png
+NORTH_MINI_PNG = $(BUILD_DIR)/web/img/north-mini.png
+PANNING_HAND_OFF_PNG = $(BUILD_DIR)/web/img/panning-hand-off.png
+PANNING_HAND_ON_PNG = $(BUILD_DIR)/web/img/panning-hand-on.png
+SLIDER_PNG = $(BUILD_DIR)/web/img/slider.png
+SOUTH_MINI_PNG = $(BUILD_DIR)/web/img/south-mini.png
+WEST_MINI_PNG = $(BUILD_DIR)/web/img/west-mini.png
+ZOOMBAR_PNG = $(BUILD_DIR)/web/img/zoombar.png
+ZOOM_MINUS_MINI_PNG = $(BUILD_DIR)/web/img/zoom-minus-mini.png
+ZOOM_PLUS_MINI_PNG = $(BUILD_DIR)/web/img/zoom-plus-mini.png
+ZOOM_WORLD_MINI_PNG = $(BUILD_DIR)/web/img/zoom-world-mini.png
+FRAMEDCLOUD_CSS = $(BUILD_DIR)/web/theme/default/framedCloud.css
+GOOGLE_CSS = $(BUILD_DIR)/web/theme/default/google.css
+IE6_STYLE_CSS = $(BUILD_DIR)/web/theme/default/ie6-style.css
+STYLE_CSS = $(BUILD_DIR)/web/theme/default/style.css
+ADD_POINT_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/add_point_off.png
+ADD_POINT_ON_PNG = $(BUILD_DIR)/web/theme/default/img/add_point_on.png
+BLANK_GIF2 = $(BUILD_DIR)/web/theme/default/img/blank.gif
+CLOSE_GIF = $(BUILD_DIR)/web/theme/default/img/close.gif
+DRAG_RECTANGLE_OFF_PNG2 = $(BUILD_DIR)/web/theme/default/img/drag-rectangle-off.png
+DRAG_RECTANGLE_ON_PNG2 = $(BUILD_DIR)/web/theme/default/img/drag-rectangle-on.png
+DRAW_LINE_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/draw_line_off.png
+DRAW_LINE_ON_PNG = $(BUILD_DIR)/web/theme/default/img/draw_line_on.png
+DRAW_POINT_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/draw_point_off.png
+DRAW_POINT_ON_PNG = $(BUILD_DIR)/web/theme/default/img/draw_point_on.png
+DRAW_POLYGON_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/draw_polygon_off.png
+DRAW_POLYGON_ON_PNG = $(BUILD_DIR)/web/theme/default/img/draw_polygon_on.png
+EDITING_TOOL_BAR_PNG = $(BUILD_DIR)/web/theme/default/img/editing_tool_bar.png
+MOVE_FEATURE_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/move_feature_off.png
+MOVE_FEATURE_ON_PNG = $(BUILD_DIR)/web/theme/default/img/move_feature_on.png
+NAVIGATION_HISTORY_PNG = $(BUILD_DIR)/web/theme/default/img/navigation_history.png
+OVERVIEW_REPLACEMENT_GIF = $(BUILD_DIR)/web/theme/default/img/overview_replacement.gif
+PANNING_HAND_OFF_PNG2 = $(BUILD_DIR)/web/theme/default/img/panning-hand-off.png
+PANNING_HAND_ON_PNG2 = $(BUILD_DIR)/web/theme/default/img/panning-hand-on.png
+PAN_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/pan_off.png
+PAN_ON_PNG = $(BUILD_DIR)/web/theme/default/img/pan_on.png
+PAN_PANEL_PNG = $(BUILD_DIR)/web/theme/default/img/pan-panel.png
+PAN_PANEL_NOALPHA_PNG = $(BUILD_DIR)/web/theme/default/img/pan-panel-NOALPHA.png
+REMOVE_POINT_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/remove_point_off.png
+REMOVE_POINT_ON_PNG = $(BUILD_DIR)/web/theme/default/img/remove_point_on.png
+RULER_PNG = $(BUILD_DIR)/web/theme/default/img/ruler.png
+SAVE_FEATURES_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/save_features_off.png
+SAVE_FEATURES_ON_PNG = $(BUILD_DIR)/web/theme/default/img/save_features_on.png
+VIEW_NEXT_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/view_next_off.png
+VIEW_NEXT_ON_PNG = $(BUILD_DIR)/web/theme/default/img/view_next_on.png
+VIEW_PREVIOUS_OFF_PNG = $(BUILD_DIR)/web/theme/default/img/view_previous_off.png
+VIEW_PREVIOUS_ON_PNG = $(BUILD_DIR)/web/theme/default/img/view_previous_on.png
+ZOOM_PANEL_PNG = $(BUILD_DIR)/web/theme/default/img/zoom-panel.png
+ZOOM_PANEL_NOALPHA_PNG = $(BUILD_DIR)/web/theme/default/img/zoom-panel-NOALPHA.png
+GREENPIN_PNG = $(BUILD_DIR)/icons/24x24/greenpin.png
+PUSHPIN_SVG = $(BUILD_DIR)/icons/scalable/pushpin.svg
+VERSION_TXT = $(BUILD_DIR)/version/Version.txt
+SHADOW_PNG = $(BUILD_DIR)/icons/24x24/shadow.png
+GREENPIN_SVG = $(BUILD_DIR)/icons/scalable/greenpin.svg
 OCMENGINE_DLL = $(BUILD_DIR)/ocmengine.dll
 OCM_GTK = $(BUILD_DIR)/ocm-gtk
 
-$(eval $(call emit-deploy-target,OCM_DESKTOP))
 $(eval $(call emit-deploy-target,X_GPX_XML))
 $(eval $(call emit-deploy-target,X_OCM_XML))
 $(eval $(call emit-deploy-target,OCMLOGO_SVG))
@@ -432,6 +728,73 @@ $(eval $(call emit-deploy-target,README_TXT))
 $(eval $(call emit-deploy-target,LICENCE_TXT))
 $(eval $(call emit-deploy-target,TREASURE_SVG))
 $(eval $(call emit-deploy-target,TREASURE_PNG))
+$(eval $(call emit-deploy-target,OPENLAYERS_JS))
+$(eval $(call emit-deploy-target,BLANK_GIF))
+$(eval $(call emit-deploy-target,CLOUD_POPUP_RELATIVE_PNG))
+$(eval $(call emit-deploy-target,DRAG_RECTANGLE_OFF_PNG))
+$(eval $(call emit-deploy-target,DRAG_RECTANGLE_ON_PNG))
+$(eval $(call emit-deploy-target,EAST_MINI_PNG))
+$(eval $(call emit-deploy-target,LAYER_SWITCHER_MAXIMIZE_PNG))
+$(eval $(call emit-deploy-target,LAYER_SWITCHER_MINIMIZE_PNG))
+$(eval $(call emit-deploy-target,MARKER_PNG))
+$(eval $(call emit-deploy-target,MARKER_BLUE_PNG))
+$(eval $(call emit-deploy-target,MARKER_GOLD_PNG))
+$(eval $(call emit-deploy-target,MARKER_GREEN_PNG))
+$(eval $(call emit-deploy-target,MEASURING_STICK_OFF_PNG))
+$(eval $(call emit-deploy-target,MEASURING_STICK_ON_PNG))
+$(eval $(call emit-deploy-target,NORTH_MINI_PNG))
+$(eval $(call emit-deploy-target,PANNING_HAND_OFF_PNG))
+$(eval $(call emit-deploy-target,PANNING_HAND_ON_PNG))
+$(eval $(call emit-deploy-target,SLIDER_PNG))
+$(eval $(call emit-deploy-target,SOUTH_MINI_PNG))
+$(eval $(call emit-deploy-target,WEST_MINI_PNG))
+$(eval $(call emit-deploy-target,ZOOMBAR_PNG))
+$(eval $(call emit-deploy-target,ZOOM_MINUS_MINI_PNG))
+$(eval $(call emit-deploy-target,ZOOM_PLUS_MINI_PNG))
+$(eval $(call emit-deploy-target,ZOOM_WORLD_MINI_PNG))
+$(eval $(call emit-deploy-target,FRAMEDCLOUD_CSS))
+$(eval $(call emit-deploy-target,GOOGLE_CSS))
+$(eval $(call emit-deploy-target,IE6_STYLE_CSS))
+$(eval $(call emit-deploy-target,STYLE_CSS))
+$(eval $(call emit-deploy-target,ADD_POINT_OFF_PNG))
+$(eval $(call emit-deploy-target,ADD_POINT_ON_PNG))
+$(eval $(call emit-deploy-target,BLANK_GIF2))
+$(eval $(call emit-deploy-target,CLOSE_GIF))
+$(eval $(call emit-deploy-target,DRAG_RECTANGLE_OFF_PNG2))
+$(eval $(call emit-deploy-target,DRAG_RECTANGLE_ON_PNG2))
+$(eval $(call emit-deploy-target,DRAW_LINE_OFF_PNG))
+$(eval $(call emit-deploy-target,DRAW_LINE_ON_PNG))
+$(eval $(call emit-deploy-target,DRAW_POINT_OFF_PNG))
+$(eval $(call emit-deploy-target,DRAW_POINT_ON_PNG))
+$(eval $(call emit-deploy-target,DRAW_POLYGON_OFF_PNG))
+$(eval $(call emit-deploy-target,DRAW_POLYGON_ON_PNG))
+$(eval $(call emit-deploy-target,EDITING_TOOL_BAR_PNG))
+$(eval $(call emit-deploy-target,MOVE_FEATURE_OFF_PNG))
+$(eval $(call emit-deploy-target,MOVE_FEATURE_ON_PNG))
+$(eval $(call emit-deploy-target,NAVIGATION_HISTORY_PNG))
+$(eval $(call emit-deploy-target,OVERVIEW_REPLACEMENT_GIF))
+$(eval $(call emit-deploy-target,PANNING_HAND_OFF_PNG2))
+$(eval $(call emit-deploy-target,PANNING_HAND_ON_PNG2))
+$(eval $(call emit-deploy-target,PAN_OFF_PNG))
+$(eval $(call emit-deploy-target,PAN_ON_PNG))
+$(eval $(call emit-deploy-target,PAN_PANEL_PNG))
+$(eval $(call emit-deploy-target,PAN_PANEL_NOALPHA_PNG))
+$(eval $(call emit-deploy-target,REMOVE_POINT_OFF_PNG))
+$(eval $(call emit-deploy-target,REMOVE_POINT_ON_PNG))
+$(eval $(call emit-deploy-target,RULER_PNG))
+$(eval $(call emit-deploy-target,SAVE_FEATURES_OFF_PNG))
+$(eval $(call emit-deploy-target,SAVE_FEATURES_ON_PNG))
+$(eval $(call emit-deploy-target,VIEW_NEXT_OFF_PNG))
+$(eval $(call emit-deploy-target,VIEW_NEXT_ON_PNG))
+$(eval $(call emit-deploy-target,VIEW_PREVIOUS_OFF_PNG))
+$(eval $(call emit-deploy-target,VIEW_PREVIOUS_ON_PNG))
+$(eval $(call emit-deploy-target,ZOOM_PANEL_PNG))
+$(eval $(call emit-deploy-target,ZOOM_PANEL_NOALPHA_PNG))
+$(eval $(call emit-deploy-target,GREENPIN_PNG))
+$(eval $(call emit-deploy-target,PUSHPIN_SVG))
+$(eval $(call emit-deploy-target,VERSION_TXT))
+$(eval $(call emit-deploy-target,SHADOW_PNG))
+$(eval $(call emit-deploy-target,GREENPIN_SVG))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL_MDB))
 $(eval $(call emit-deploy-wrapper,OCM_GTK,ocm-gtk,x))

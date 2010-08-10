@@ -240,9 +240,16 @@ namespace ocmgtk
 				newPoint.Symbol = "Final Location";
 				newPoint.Parent = parent.Name;
 				newPoint.Lat = parent.Lat;
-				newPoint.Lon = parent.Lon;
-				newPoint.Name = "FL" + parent.Name.Substring (2);
+				newPoint.Lon = parent.Lon;		
+				String name = "FL" + parent.Name.Substring (2);
 				WaypointDialog dlg = new WaypointDialog ();
+				if ((bool) m_mon.Configuration.Get("/apps/ocm/noprefixes", false))
+				{
+					name = parent.Name;
+					dlg.IgnorePrefix = true;
+				}
+				name = Engine.getInstance().Store.GenerateNewName(name);
+				newPoint.Name = name;
 				dlg.SetPoint (newPoint);
 				if ((int)ResponseType.Ok == dlg.Run ()) {
 					newPoint = dlg.GetPoint ();

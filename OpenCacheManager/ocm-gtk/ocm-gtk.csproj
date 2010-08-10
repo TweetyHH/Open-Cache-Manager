@@ -20,11 +20,6 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="Custom" name="update-mime" command="update-mime-database /usr/local/share/mime" workingdir="${TargetDir}" />
-      </CustomCommands>
-    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -208,7 +203,8 @@
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
-        <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="Makefile.am" SyncReferences="true" IsAutotoolsProject="true" RelativeConfigureInPath="..">
+        <Deployment.LinuxDeployData generateScript="false" />
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am" SyncReferences="true" IsAutotoolsProject="true" RelativeConfigureInPath="..">
           <BuildFilesVar Sync="true" Name="FILES" />
           <DeployFilesVar Sync="true" Name="PROGRAMFILES" />
           <ResourcesVar Sync="true" Name="RESOURCES" />
@@ -555,12 +551,11 @@
     <Resource Include="icons\24x24\shadow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="OCM.desktop">
+    <Resource Include="ocm-gtk">
       <DeployService-Deploy>true</DeployService-Deploy>
-      <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
-    </Content>
+      <DeployService-HasPathReferences>true</DeployService-HasPathReferences>
+      <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <None Include="x-gpx.xml">
@@ -573,10 +568,16 @@
       <DeployService-RelativeDeployPath>mime/packages/x-ocm.xml</DeployService-RelativeDeployPath>
       <DeployService-TargetDirectoryId>CommonApplicationDataRoot</DeployService-TargetDirectoryId>
     </None>
-    <None Include="ocm-gtk" />
     <None Include="docs\Credits.txt" />
     <None Include="icons\scalable\greenpin.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="OCM.desktop">
+      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-HasPathReferences>true</DeployService-HasPathReferences>
+      <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
+    </ApplicationDefinition>
   </ItemGroup>
 </Project>

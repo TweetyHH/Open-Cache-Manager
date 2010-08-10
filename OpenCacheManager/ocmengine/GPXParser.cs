@@ -259,6 +259,10 @@ namespace ocmengine
 				if (!String.IsNullOrEmpty(url))
 					pt.URL = new Uri(url);
 			}
+			else if (reader.Name == "parent")
+			{
+				pt.Parent = reader.ReadElementContentAsString();
+			}	
 			else if (reader.Name == "desc")
 			{
 				pt.Desc = reader.ReadElementContentAsString();
@@ -624,6 +628,10 @@ namespace ocmengine
 					log.FinderID = reader.GetAttribute("id");
 					log.LoggedBy = reader.ReadElementContentAsString();
 					if (log.FinderID == m_ownid && log.LogStatus == "find")
+					{
+						cache.Symbol = "Geocache Found";
+					}
+					else if (log.LoggedBy == m_ownid && log.LogStatus == "find")
 					{
 						cache.Symbol = "Geocache Found";
 					}

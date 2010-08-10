@@ -105,7 +105,7 @@ AUTOHEADER = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run
 AUTOMAKE = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run automake-1.11
 AWK = gawk
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"OpenCacheManager\" -DPACKAGE_TARNAME=\"opencachemanager\" -DPACKAGE_VERSION=\"0.15\" -DPACKAGE_STRING=\"OpenCacheManager\ 0.15\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"opencachemanager\" -DVERSION=\"0.15\"
+DEFS = -DPACKAGE_NAME=\"OpenCacheManager\" -DPACKAGE_TARNAME=\"opencachemanager\" -DPACKAGE_VERSION=\"0.18\" -DPACKAGE_STRING=\"OpenCacheManager\ 0.18\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"opencachemanager\" -DVERSION=\"0.18\"
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
@@ -114,8 +114,6 @@ GCONF_SHARP_20_LIBS = -r:/usr/lib/cli/gconf-sharp-2.0/gconf-sharp.dll
 GLIB_SHARP_20_CFLAGS = -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
 GLIB_SHARP_20_LIBS = -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
 GMCS = /usr/bin/gmcs
-GTKHTML_SHARP_314_CFLAGS = -I:/usr/share/gtkhtml-sharp/3.14/gtkhtml-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/pango-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/atk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gdk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gtk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
-GTKHTML_SHARP_314_LIBS = -r:/usr/lib/cli/gtkhtml-sharp-3.16/gtkhtml-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/pango-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/atk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gdk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gtk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
 GTK_SHARP_20_CFLAGS = -I:/usr/lib/pkgconfig/../../share/gapi-2.0/pango-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/atk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gdk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gtk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
 GTK_SHARP_20_LIBS = -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/pango-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/atk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gdk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gtk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
 INSTALL = /usr/bin/install -c
@@ -126,7 +124,7 @@ INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAINT = 
+MAINT = #
 MAKEINFO = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 NDESK_DBUS_10_CFLAGS =  
@@ -136,16 +134,16 @@ NDESK_DBUS_GLIB_10_LIBS = -r:/usr/lib/cli/ndesk-dbus-glib-1.0/NDesk.DBus.GLib.dl
 PACKAGE = opencachemanager
 PACKAGE_BUGREPORT = 
 PACKAGE_NAME = OpenCacheManager
-PACKAGE_STRING = OpenCacheManager 0.15
+PACKAGE_STRING = OpenCacheManager 0.18
 PACKAGE_TARNAME = opencachemanager
 PACKAGE_URL = 
-PACKAGE_VERSION = 0.15
+PACKAGE_VERSION = 0.18
 PATH_SEPARATOR = :
 PKG_CONFIG = /usr/bin/pkg-config
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
-VERSION = 0.15
+VERSION = 0.18
 WEBKIT_SHARP_10_CFLAGS = -I:/usr/lib/pkgconfig/../../share/gapi-2.0/pango-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/atk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gdk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gtk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
 WEBKIT_SHARP_10_LIBS = -r:/usr/lib/cli/webkit-sharp-1.0/webkit-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/pango-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/atk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gdk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gtk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
 abs_builddir = /home/campbelk/svn_temp/ocm/OpenCacheManager
@@ -194,14 +192,13 @@ EXTRA_DIST = expansions.m4
 
 #Warning: This is an automatically generated file, do not edit!
 SUBDIRS = ocmengine ocm-gtk
-#SUBDIRS = 
 #SUBDIRS = ocmengine ocm-gtk
 all: all-recursive
 
 .SUFFIXES:
 am--refresh:
 	@:
-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
+$(srcdir)/Makefile.in: # $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -228,9 +225,9 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	$(SHELL) ./config.status --recheck
 
-$(top_srcdir)/configure:  $(am__configure_deps)
+$(top_srcdir)/configure: # $(am__configure_deps)
 	$(am__cd) $(srcdir) && $(AUTOCONF)
-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
+$(ACLOCAL_M4): # $(am__aclocal_m4_deps)
 	$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 $(am__aclocal_m4_deps):
 

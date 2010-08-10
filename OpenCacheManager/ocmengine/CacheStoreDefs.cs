@@ -28,7 +28,7 @@ namespace ocmengine
 		const string SQL_CONNECT = "Data Source=";
 		const string INSERT_WPT = "INSERT INTO WAYPOINT (name,lat,lon,url,urlname,desc,symbol,type,time, parent, lastUpdate) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}', '{10}')";
 		const string UPDATE_WPT = "UPDATE WAYPOINT SET lat='{1}', lon='{2}',url='{3}', urlname='{4}', desc='{5}', symbol='{6}', type='{7}', time='{8}', parent='{9}', lastUpdate='{10}' WHERE name='{0}'";
-		const string WPT_EXISTS_CHECK = "SELECT * FROM WAYPOINT WHERE name='{0}'";
+		const string WPT_EXISTS_CHECK = "SELECT COUNT(name) FROM WAYPOINT WHERE name='{0}'";
 		const string GET_WPTS = "SELECT name, lat, lon, url, urlname, desc, symbol, type, time, parent, lastUpdate FROM WAYPOINT";
 		const string DELETE_LOGS = "DELETE FROM LOGS where cache='{0}'";
 		const string DELETE_TBS = "DELETE FROM TBUGS where cache='{0}'";
@@ -39,8 +39,8 @@ namespace ocmengine
 		const string GET_LOGS = "SELECT date, loggedby, message, status, finderID, encoded FROM LOGS WHERE cache='{0}' ORDER BY date DESC";
 		const string LOG_STAT_SCAN = "SELECT status from LOGS WHERE cache='{0}' and date=(SELECT MAX(date) FROM LOGS WHERE cache='{0}')";
 		const string UPDATE_GC_CHECKNOTE = "UPDATE GEOCACHE  SET checkNotes='{0}' WHERE name='{1}'";
-		const string LAST_LOG_BY_YOU = "SELECT date from LOGS WHERE cache='{0}' and finderID='{1}' and date=(SELECT MAX(date) FROM LOGS WHERE cache='{0}' and finderID='{1}')";
-		const string LAST_FIND_BY_YOU = "SELECT date from LOGS WHERE cache='{0}' and finderID='{1}' and status='Found it' or status='find'";
+		const string LAST_LOG_BY_YOU = "SELECT date from LOGS WHERE cache='{0}' and (finderID='{1}' or loggedBy='{1}') and date=(SELECT MAX(date) FROM LOGS WHERE cache='{0}' and (finderID='{1}' or loggedBy='{1}'))";
+		const string LAST_FIND_BY_YOU = "SELECT date from LOGS WHERE cache='{0}' and (finderID='{1}' or loggedBy='{1}') and (status='Found it' or status='find')";
 		const string INSERT_GC = "INSERT INTO GEOCACHE (name, fullname, id, owner, ownerID, placedby, difficulty, terrain, country, state, type, shortdesc, longdesc, hint, container, archived, available, notes, checkNotes)" + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}', '{17}', '{18}')";
 		const string UPDATE_GC = "UPDATE GEOCACHE SET fullname='{1}', id='{2}', owner='{3}', ownerID='{4}',  placedby='{5}', difficulty='{6}', terrain='{7}', country='{8}',state='{9}',type='{10}',shortdesc='{11}',longdesc='{12}',hint='{13}',container='{14}',archived='{15}',available='{16}', notes='{17}', checkNotes='{18}' WHERE name='{0}'";
 		// SAME AS UPDATE, BUT DOESN't OVERWRITE CACHE NOTES

@@ -578,6 +578,12 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.DeleteQuickFilter();
 	}
 	
+	protected virtual void OnWikiClick (object sender, System.EventArgs e)
+	{
+		UIMonitor.ViewOCMWiki();
+	}
+	
+	
 	
 	
 	

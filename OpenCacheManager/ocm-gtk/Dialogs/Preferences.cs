@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using ocmengine;
 using Gtk;
 
 namespace ocmgtk
@@ -120,6 +121,23 @@ namespace ocmgtk
 					mapsCombo.Active = 0;
 			}
 		}
+
+		public bool UsePrefixesForChildWaypoints
+		{
+			get {
+				if (modeCombo.Active == 0)
+					return true;
+				return false;
+			}
+			set 
+			{
+				if (value)
+					modeCombo.Active = 0;
+				else
+					modeCombo.Active = 1;
+			}
+		}
+		
 		
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{

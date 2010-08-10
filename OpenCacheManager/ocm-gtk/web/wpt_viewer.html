@@ -132,32 +132,53 @@ body {
     	map.addLayer(pois);
     }
 
-	function addMarker(lat, lon, icon, wptName, wptDescription)
+	function addMarker(lat, lon, icon, wptName, wptFullName, wptDescription, mode)
 	{
 		var size = new OpenLayers.Size(24,24);
 		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
 		var icon = new OpenLayers.Icon(icon,size,offset);
 		var lonlat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
 		var feature = new OpenLayers.Feature(pois, lonlat);
+		
+		var openspan = "<span style='font-face:sans-serif; font-weight:bolder; font-size:12pt;";
+		if (mode == "archived")
+			openspan += " color:darkred; text-decoration:line-through;'>";
+		else if (mode == "disabled")
+			openspan += " color:darkred;'>";
+		else if (mode == "checknotes")
+			openspan += " color:darkorange;'>";
+		else
+			openspan += "'>";
+
 		feature.popupClass = OpenLayers.Class(OpenLayers.Popup.FramedCloud, {'autoSize': true,  'maxSize': new OpenLayers.Size(300,300)});
-		feature.data.popupContentHTML ="<div><span style='font-face:sans-serif; font-weight:bolder; font-size:12pt'>" + wptName + "</span><hr noshade>" + wptDescription + "</div>";
+		feature.data.popupContentHTML ="<div>" + openspan + wptName + "<br/>" + wptFullName + "</span><hr noshade>" + wptDescription;
 		feature.data.icon = icon;
 		var marker = feature.createMarker();
-		//marker.icon = icon;
 		marker.events.register('mousedown',feature,mousedown);
 		pois.addMarker(marker);
 	   	map.setCenter (lonlat, 14);
 	}
 	
-	function addExtraMarker(lat, lon, icon, wptName, wptDescription)
+	function addExtraMarker(lat, lon, icon, wptName, wptFullName, wptDescription, mode)
 	{
 		var size = new OpenLayers.Size(24,24);
 		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
 		var icon = new OpenLayers.Icon(icon,size,offset);
 		var lonlat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
 		var feature = new OpenLayers.Feature(extra, lonlat);
+		
+		var openspan = "<span style='font-face:sans-serif; font-weight:bolder; font-size:12pt;";
+		if (mode == "archived")
+			openspan += " color:darkred; text-decoration:line-through;'>";
+		else if (mode == "disabled")
+			openspan += " color:darkred;'>";
+		else if (mode == "checknotes")
+			openspan += " color:darkorange;'>";
+		else
+			openspan += "'>";
+		
 		feature.popupClass = OpenLayers.Class(OpenLayers.Popup.FramedCloud, {'autoSize': true, 'minSize': new OpenLayers.Size(300,200), 'maxSize': new OpenLayers.Size(500,300)});
-		feature.data.popupContentHTML ="<div><span style='font-face:sans-serif; font-weight:bolder; font-size:12pt'>" + wptName + "</span><hr noshade>" + wptDescription + "<hr noshade><a href='javascript:doSelectCache(\"" + wptName + "\")'>[Select this cache]</a></div>";
+		feature.data.popupContentHTML ="<div>" + openspan + wptName + "<br/>" + wptFullName + "</span><hr noshade>" + wptDescription + "<hr noshade><a href='javascript:doSelectCache(\"" + wptName + "\")'>[Select this cache]</a></div>";
 		feature.data.icon = icon;
 		var marker = feature.createMarker();
 		marker.setOpacity(0.66);

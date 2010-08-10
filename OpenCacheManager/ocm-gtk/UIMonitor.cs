@@ -98,6 +98,11 @@ namespace ocmgtk
 		#endregion
 
 		#region Properties
+		
+		public Config Configuration
+		{
+			get { return m_conf;}
+		}
 
 		/// <summary>
 		/// The Geocache Pane widget
@@ -309,6 +314,10 @@ namespace ocmgtk
 				m_mainWin.SetNearbyEnabled();
 			if (m_useImperial)
 				m_cachelist.SetImperial();
+			if (true == (bool) m_conf.Get("/apps/ocm/userownerid", true))
+				Engine.getInstance().Mode = UserMode.OWNER_ID;
+			else
+				Engine.getInstance().Mode = UserMode.USERNAME;
 			GoHome ();
 		}
 
@@ -493,13 +502,42 @@ namespace ocmgtk
 		/// </param>
 		public void AddMapCache (Geocache cache)
 		{
-			string script = "addMarker(" + cache.Lat.ToString(CultureInfo.InvariantCulture) + "," + cache.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" + GetMapIcon (cache) + "',\"" + cache.Name + "\",\"" + cache.Desc.Replace("\"","''") + "\")";
-			m_map.LoadScript (script);
+			string mode = String.Empty;
+			if (cache.Archived)
+				mode = "archived";
+			else if (!cache.Available)
+				mode = "disabled";
+			else if (cache.CheckNotes)
+				mode = "checknotes";
+			string cachedesc = "<div style=font-size:10pt;>" + Catalog.GetString("<b>A cache by:</b> ") + cache.PlacedBy + Catalog.GetString("<br><b>Hidden on: </b>") 
+				+  cache.Time.ToShortDateString() + "<br><b>Difficulty: </b>" + cache.Difficulty + "<br><b>Terrain: </b>" + cache.Terrain +
+					"<br><b>Cache size: </b>" + cache.Container + "</div>";
+
+			m_map.LoadScript ("addMarker(" + cache.Lat.ToString(CultureInfo.InvariantCulture) + ","
+			                  + cache.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" 
+			                  + GetMapIcon (cache) + "',\"" 
+			                  + cache.Name + "\",\"" + cache.CacheName.Replace("\"","'") + "\",\"" 
+			                  + cachedesc.Replace("\"","''") + "\",\"" + mode + "\")");
 		}
 
 		public void AddOtherCacheToMap (Geocache cache)
 		{
-			m_map.LoadScript ("addExtraMarker(" + cache.Lat.ToString(CultureInfo.InvariantCulture) + "," + cache.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" + GetMapIcon (cache) + "',\"" + cache.Name.Replace("\"","'") + "\",\"" + cache.Desc.Replace("\"","''") + "\")");
+			string mode = String.Empty;
+			if (cache.Archived)
+				mode = "archived";
+			else if (!cache.Available)
+				mode = "disabled";
+			else if (cache.CheckNotes)
+				mode = "checknotes";
+			string cachedesc = "<div style=font-size:10pt;>" + Catalog.GetString("<b>A cache by:</b> ") + cache.PlacedBy + Catalog.GetString("<br><b>Hidden on: </b>") 
+				+  cache.Time.ToShortDateString() + "<br><b>Difficulty: </b>" + cache.Difficulty + "<br><b>Terrain: </b>" + cache.Terrain +
+					"<br><b>Cache size: </b>" + cache.Container + "</div>";
+
+			m_map.LoadScript ("addExtraMarker(" + cache.Lat.ToString(CultureInfo.InvariantCulture) + ","
+			                  + cache.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" 
+			                  + GetMapIcon (cache) + "',\"" 
+			                  + cache.Name + "\",\"" + cache.CacheName.Replace("\"","'") + "\",\"" 
+			                  + cachedesc.Replace("\"","''") + "\",\"" + mode + "\")");
 		}
 
 		/*public void AddMapOtherCache (Geocache cache)
@@ -1421,6 +1459,11 @@ namespace ocmgtk
 				m_filters.DeleteFilter(dlg.Bookmark);
 				m_mainWin.RebuildQuickFilterMenu(m_filters);
 			}
+		}
+		
+		public static void ViewOCMWiki()
+		{
+			Process.Start("http://sourceforge.net/apps/mediawiki/opencachemanage/");
 		}
 
 	}

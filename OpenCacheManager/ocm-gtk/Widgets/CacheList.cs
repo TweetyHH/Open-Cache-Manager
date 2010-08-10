@@ -164,7 +164,7 @@ namespace ocmgtk
 				return 0;
 			do {
 				Geocache cache = (Geocache)m_ListSort.GetValue (itr, 0);
-				if (cache.OwnerID == m_monitor.OwnerID)
+				if (cache.OwnerID == m_monitor.OwnerID || cache.CacheOwner == m_monitor.OwnerID)
 					count++;
 			} while (m_ListSort.IterNext (ref itr));
 			return count;
@@ -218,7 +218,8 @@ namespace ocmgtk
 			Geocache cache = (Geocache)model.GetValue (iter, 0);
 			CellRendererPixbuf icon = cell as CellRendererPixbuf;
 			if (cache.Found)
-				icon.Pixbuf = UIMonitor.GetSmallCacheIcon (Geocache.CacheType.FOUND); else if (cache.OwnerID == m_monitor.OwnerID)
+				icon.Pixbuf = UIMonitor.GetSmallCacheIcon (Geocache.CacheType.FOUND);
+			else if ((cache.OwnerID == m_monitor.OwnerID  ) || (cache.CacheOwner == m_monitor.OwnerID))
 				icon.Pixbuf = UIMonitor.GetSmallCacheIcon (Geocache.CacheType.MINE);
 			else
 				icon.Pixbuf = UIMonitor.GetSmallCacheIcon (cache.TypeOfCache);
@@ -323,11 +324,11 @@ namespace ocmgtk
 			if (!m_showArchived && cache.Archived)
 				return false;
 			
-			if (!m_showMine && (cache.OwnerID == m_monitor.OwnerID))
+			if (!m_showMine && ((cache.OwnerID == m_monitor.OwnerID  ) || (cache.CacheOwner == m_monitor.OwnerID)))
 				return false;
 			
 			if (!m_showNotFound && cache.Symbol != FOUND_CACHE )
-				if (m_showMine && (cache.OwnerID == m_monitor.OwnerID))
+				if (m_showMine && ((cache.OwnerID == m_monitor.OwnerID  ) || (cache.CacheOwner == m_monitor.OwnerID)))
 					return true;
 				else
 					return false;

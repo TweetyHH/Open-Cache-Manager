@@ -68,7 +68,6 @@ namespace ocmgtk
 				string[]  request = args.Request.Uri.Substring(6).Split('/');
 				if (request[0].Equals("select"))
 				{
-					System.Console.WriteLine("selecting: " + request[1]);
 					m_monitor.SelectCache(request[1]);
 				}
 				else if (request[0].Equals("mapmoved"))

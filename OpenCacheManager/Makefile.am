@@ -8,6 +8,3 @@ endif
 if ENABLE_RELEASE
  SUBDIRS =  ocmengine ocm-gtk
 endif
-if ENABLE_DEFAULT
- SUBDIRS = 
-endif

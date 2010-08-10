@@ -96,7 +96,6 @@ namespace ocmgtk
 				else
 					lastFoundDateLabel.Text = lastDate.ToShortDateString();
 				DateTime lastFound = store.GetLastFindByYou(cache, m_monitor.OwnerID);
-				System.Console.WriteLine("LAST FOUND" + lastFound);
 				if (cache.Found && lastFound == DateTime.MinValue)
 					statusLabel.Markup = FOUND; 
 				else if (cache.Found)

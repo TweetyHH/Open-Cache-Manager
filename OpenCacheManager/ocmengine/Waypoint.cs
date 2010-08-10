@@ -160,7 +160,6 @@ namespace ocmengine
 					if (cache != null && cache.TypeOfCache != Geocache.CacheType.GENERIC)
 					{
 						string key = "Geocache|" + Geocache.GetCTypeString(cache.TypeOfCache);
-						System.Console.WriteLine(key);
 						writer.WriteElementString("sym", gpx.Mappings[key]);
 					}
 					else if (gpx.Mappings.ContainsKey(this.Type))
@@ -169,6 +168,9 @@ namespace ocmengine
 						writer.WriteElementString("sym", this.Symbol);
 			}
 			writer.WriteElementString("type", this.Type);
+			if (this.Parent != null)
+				writer.WriteElementString("parent", "http://opencachemanage.sourceforge.net/schema1", this.Parent);
+	
 		}
 		
 		public override string ToString ()
