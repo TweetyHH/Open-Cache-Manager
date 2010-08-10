@@ -430,8 +430,6 @@ PUSHPIN_SVG_SOURCE = icons/scalable/pushpin.svg
 #PUSHPIN_SVG_SOURCE = icons/scalable/pushpin.svg
 VERSION_TXT_SOURCE = version/Version.txt
 #VERSION_TXT_SOURCE = version/Version.txt
-SHADOW_PNG_SOURCE = icons/24x24/shadow.png
-#SHADOW_PNG_SOURCE = icons/24x24/shadow.png
 GREENPIN_SVG_SOURCE = icons/scalable/greenpin.svg
 #GREENPIN_SVG_SOURCE = icons/scalable/greenpin.svg
 OCMENGINE_DLL_SOURCE = ../ocmengine/bin/Debug/ocmengine.dll
@@ -499,7 +497,7 @@ PROGRAMFILES_ICONS_24X24 = \
 	$(TRAILHEAD_PNG) \
 	$(TREASURE_PNG) \
 	$(GREENPIN_PNG) \
-	$(SHADOW_PNG)  
+	
 
 PROGRAMFILES_ICONS_48X48 = \
 	$(CIRCLE_PNG)  
@@ -938,7 +936,6 @@ ZOOM_PANEL_NOALPHA_PNG = $(BUILD_DIR)/web/theme/default/img/zoom-panel-NOALPHA.p
 GREENPIN_PNG = $(BUILD_DIR)/icons/24x24/greenpin.png
 PUSHPIN_SVG = $(BUILD_DIR)/icons/scalable/pushpin.svg
 VERSION_TXT = $(BUILD_DIR)/version/Version.txt
-SHADOW_PNG = $(BUILD_DIR)/icons/24x24/shadow.png
 GREENPIN_SVG = $(BUILD_DIR)/icons/scalable/greenpin.svg
 OCMENGINE_DLL = $(BUILD_DIR)/ocmengine.dll
 OCM_GTK = $(BUILD_DIR)/ocm-gtk
@@ -1650,7 +1647,6 @@ $(eval $(call emit-deploy-target,ZOOM_PANEL_NOALPHA_PNG))
 $(eval $(call emit-deploy-target,GREENPIN_PNG))
 $(eval $(call emit-deploy-target,PUSHPIN_SVG))
 $(eval $(call emit-deploy-target,VERSION_TXT))
-$(eval $(call emit-deploy-target,SHADOW_PNG))
 $(eval $(call emit-deploy-target,GREENPIN_SVG))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL_MDB))
