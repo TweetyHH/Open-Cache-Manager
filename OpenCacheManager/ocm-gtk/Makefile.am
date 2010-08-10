@@ -126,7 +126,6 @@ ZOOM_PANEL_NOALPHA_PNG_SOURCE=web/theme/default/img/zoom-panel-NOALPHA.png
 GREENPIN_PNG_SOURCE=icons/24x24/greenpin.png
 PUSHPIN_SVG_SOURCE=icons/scalable/pushpin.svg
 VERSION_TXT_SOURCE=version/Version.txt
-SHADOW_PNG_SOURCE=icons/24x24/shadow.png
 GREENPIN_SVG_SOURCE=icons/scalable/greenpin.svg
 OCMENGINE_DLL_SOURCE=../ocmengine/bin/Debug/ocmengine.dll
 OCMENGINE_DLL_MDB_SOURCE=../ocmengine/bin/Debug/ocmengine.dll.mdb
@@ -259,7 +258,6 @@ ZOOM_PANEL_NOALPHA_PNG_SOURCE=web/theme/default/img/zoom-panel-NOALPHA.png
 GREENPIN_PNG_SOURCE=icons/24x24/greenpin.png
 PUSHPIN_SVG_SOURCE=icons/scalable/pushpin.svg
 VERSION_TXT_SOURCE=version/Version.txt
-SHADOW_PNG_SOURCE=icons/24x24/shadow.png
 GREENPIN_SVG_SOURCE=icons/scalable/greenpin.svg
 OCMENGINE_DLL_SOURCE=../ocmengine/bin/Debug/ocmengine.dll
 OCMENGINE_DLL_MDB=
@@ -270,9 +268,15 @@ endif
 AL=al2
 SATELLITE_ASSEMBLY_NAME=$(notdir $(basename $(ASSEMBLY))).resources.dll
 
+BINARIES = \
+	$(OCM_GTK)  
+
 COMMONAPPLICATIONDATAROOT_MIME_PACKAGES = \
 	$(X_GPX_XML) \
 	$(X_OCM_XML)  
+
+LINUX_DESKTOPAPPLICATIONS = \
+	$(OCM_DESKTOP)  
 
 PROGRAMFILES_ICONS_SCALABLE = \
 	$(OCMLOGO_SVG) \
@@ -324,8 +328,7 @@ PROGRAMFILES_ICONS_24X24 = \
 	$(PARKING_PNG) \
 	$(TRAILHEAD_PNG) \
 	$(TREASURE_PNG) \
-	$(GREENPIN_PNG) \
-	$(SHADOW_PNG)  
+	$(GREENPIN_PNG)  
 
 PROGRAMFILES_ICONS_48X48 = \
 	$(CIRCLE_PNG)  
@@ -407,125 +410,122 @@ PROGRAMFILES_WEB_THEME_DEFAULT_IMG = \
 PROGRAMFILES_VERSION = \
 	$(VERSION_TXT)  
 
-PROGRAMFILES =  \
-	$(OCM_GTK_EXE_MDB) \
+PROGRAMFILES = \
 	$(OCMENGINE_DLL) \
-	$(OCMENGINE_DLL_MDB)  
-
-BINARIES = \
-	$(OCM_GTK)  
+	$(OCMENGINE_DLL_MDB) \
+	$(OCM_GTK_EXE_MDB)  
 
 
 RESGEN=resgen2
 	
-all: $(ASSEMBLY) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES_WEB_IMG) $(PROGRAMFILES_WEB_THEME_DEFAULT) $(PROGRAMFILES_WEB_THEME_DEFAULT_IMG) $(PROGRAMFILES_VERSION) $(PROGRAMFILES) $(BINARIES) 
+all: $(ASSEMBLY) $(BINARIES) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(LINUX_DESKTOPAPPLICATIONS) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES_WEB_IMG) $(PROGRAMFILES_WEB_THEME_DEFAULT) $(PROGRAMFILES_WEB_THEME_DEFAULT_IMG) $(PROGRAMFILES_VERSION) $(PROGRAMFILES) 
 
-FILES =  \
-	AssemblyInfo.cs \
-	Config.cs \
-	DBusComm.cs \
-	Dialogs/AddBookMarkDialog.cs \
-	Dialogs/CalendarWindow.cs \
-	Dialogs/ChangeHistory.cs \
-	Dialogs/DeleteBookmark.cs \
-	Dialogs/ExportProgressDialog.cs \
-	Dialogs/FilterDialog.cs \
-	Dialogs/GPSConfiguration.cs \
-	Dialogs/GPSDConfig.cs \
-	Dialogs/ModifyCacheDialog.cs \
-	Dialogs/NoDBDialog.cs \
-	Dialogs/OCMSplash.cs \
-	Dialogs/Preferences.cs \
-	Dialogs/ProgressDialog.cs \
-	Dialogs/QTLandKarteDialog.cs \
-	Dialogs/SendWaypointsDialog.cs \
-	Dialogs/SetupAssistant.cs \
-	Dialogs/WaypointDialog.cs \
-	GPS.cs \
+FILES = \
 	gtk-gui/generated.cs \
+	MainWindow.cs \
 	gtk-gui/MainWindow.cs \
-	gtk-gui/ocmgtk.AddBookMarkDialog.cs \
-	gtk-gui/ocmgtk.BrowserWidget.cs \
-	gtk-gui/ocmgtk.CacheList.cs \
-	gtk-gui/ocmgtk.CalendarWindow.cs \
-	gtk-gui/ocmgtk.ChangeHistory.cs \
-	gtk-gui/ocmgtk.CoordinateWidget.cs \
-	gtk-gui/ocmgtk.DateWidget.cs \
-	gtk-gui/ocmgtk.DeleteBookmark.cs \
-	gtk-gui/ocmgtk.DescriptionWidget.cs \
-	gtk-gui/ocmgtk.ExportProgressDialog.cs \
-	gtk-gui/ocmgtk.FilterDialog.cs \
-	gtk-gui/ocmgtk.GarminUSBWidget.cs \
-	gtk-gui/ocmgtk.GenericGPSWidget.cs \
+	Main.cs \
+	AssemblyInfo.cs \
 	gtk-gui/ocmgtk.GeocacheInfoPanel.cs \
 	gtk-gui/ocmgtk.GeoCachePane.cs \
-	gtk-gui/ocmgtk.GPSConfiguration.cs \
-	gtk-gui/ocmgtk.GPSDConfig.cs \
-	gtk-gui/ocmgtk.GPXWidget.cs \
-	gtk-gui/ocmgtk.HTMLEditorWidget.cs \
-	gtk-gui/ocmgtk.HTMLWidget.cs \
-	gtk-gui/ocmgtk.LogViewerWidget.cs \
-	gtk-gui/ocmgtk.MagellanExploristWidget.cs \
-	gtk-gui/ocmgtk.ModifyCacheDialog.cs \
-	gtk-gui/ocmgtk.NoDBDialog.cs \
-	gtk-gui/ocmgtk.NotesWidget.cs \
-	gtk-gui/ocmgtk.OCMQueryPage1.cs \
-	gtk-gui/ocmgtk.OCMQueryPage2.cs \
-	gtk-gui/ocmgtk.OCMQueryPage3.cs \
-	gtk-gui/ocmgtk.OCMSplash.cs \
-	gtk-gui/ocmgtk.Preferences.cs \
-	gtk-gui/ocmgtk.ProgressDialog.cs \
-	gtk-gui/ocmgtk.QTLandKarteDialog.cs \
-	gtk-gui/ocmgtk.SendWaypointsDialog.cs \
-	gtk-gui/ocmgtk.SetupAssistant.cs \
-	gtk-gui/ocmgtk.SetupAssistantPage1.cs \
-	gtk-gui/ocmgtk.SetupAssistantPage2.cs \
-	gtk-gui/ocmgtk.SetupAssistantPage3.cs \
-	gtk-gui/ocmgtk.SymbolChooser.cs \
-	gtk-gui/ocmgtk.WaypointDialog.cs \
-	gtk-gui/ocmgtk.WaypointOverrideWidget.cs \
-	gtk-gui/ocmgtk.WaypointWidget.cs \
-	IDBusComm.cs \
-	Main.cs \
-	MainWindow.cs \
-	QuickFilter.cs \
-	QuickFilters.cs \
-	SavedGPSConf.cs \
-	UIMonitor.cs \
-	Widgets/BrowserWidget.cs \
+	gtk-gui/ocmgtk.CacheList.cs \
 	Widgets/CacheList.cs \
-	Widgets/CoordinateWidget.cs \
-	Widgets/DateWidget.cs \
-	Widgets/DescriptionWidget.cs \
-	Widgets/GarminUSBWidget.cs \
-	Widgets/GenericGPSWidget.cs \
 	Widgets/GeocacheInfoPanel.cs \
 	Widgets/GeoCachePane.cs \
-	Widgets/GPXWidget.cs \
-	Widgets/HTMLEditorWidget.cs \
-	Widgets/HTMLWidget.cs \
-	Widgets/IGPSConfig.cs \
+	gtk-gui/ocmgtk.WaypointWidget.cs \
+	gtk-gui/ocmgtk.LogViewerWidget.cs \
+	gtk-gui/ocmgtk.BrowserWidget.cs \
+	gtk-gui/ocmgtk.WaypointDialog.cs \
+	Widgets/WaypointWidget.cs \
+	Widgets/BrowserWidget.cs \
 	Widgets/LogViewerWidget.cs \
-	Widgets/MagellanExploristWidget.cs \
-	Widgets/NotesWidget.cs \
-	Widgets/OCMQueryPage1.cs \
-	Widgets/OCMQueryPage2.cs \
-	Widgets/OCMQueryPage3.cs \
-	Widgets/OCMWebView.cs \
+	Dialogs/WaypointDialog.cs \
+	Widgets/HTMLWidget.cs \
+	UIMonitor.cs \
+	gtk-gui/ocmgtk.HTMLWidget.cs \
+	Dialogs/ProgressDialog.cs \
+	gtk-gui/ocmgtk.ProgressDialog.cs \
+	Dialogs/Preferences.cs \
+	gtk-gui/ocmgtk.Preferences.cs \
+	Widgets/CoordinateWidget.cs \
+	gtk-gui/ocmgtk.CoordinateWidget.cs \
 	Widgets/SetupAssistantPage1.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage1.cs \
+	Dialogs/SetupAssistant.cs \
+	gtk-gui/ocmgtk.SetupAssistant.cs \
+	IDBusComm.cs \
+	DBusComm.cs \
 	Widgets/SetupAssistantPage2.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage2.cs \
 	Widgets/SetupAssistantPage3.cs \
-	Widgets/SymbolChooser.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage3.cs \
+	Dialogs/ExportProgressDialog.cs \
+	gtk-gui/ocmgtk.ExportProgressDialog.cs \
+	Widgets/DescriptionWidget.cs \
+	gtk-gui/ocmgtk.DescriptionWidget.cs \
+	Widgets/OCMQueryPage1.cs \
+	gtk-gui/ocmgtk.OCMQueryPage1.cs \
+	Dialogs/OCMSplash.cs \
+	gtk-gui/ocmgtk.OCMSplash.cs \
+	Dialogs/FilterDialog.cs \
+	gtk-gui/ocmgtk.FilterDialog.cs \
+	Widgets/OCMQueryPage2.cs \
+	gtk-gui/ocmgtk.OCMQueryPage2.cs \
+	Widgets/OCMWebView.cs \
+	Dialogs/GPSConfiguration.cs \
+	gtk-gui/ocmgtk.GPSConfiguration.cs \
+	Widgets/GPXWidget.cs \
+	gtk-gui/ocmgtk.GPXWidget.cs \
+	gtk-gui/ocmgtk.GarminUSBWidget.cs \
+	Widgets/GarminUSBWidget.cs \
+	Widgets/IGPSConfig.cs \
+	Dialogs/SendWaypointsDialog.cs \
+	gtk-gui/ocmgtk.SendWaypointsDialog.cs \
+	SavedGPSConf.cs \
+	Widgets/MagellanExploristWidget.cs \
+	gtk-gui/ocmgtk.MagellanExploristWidget.cs \
+	Widgets/GenericGPSWidget.cs \
+	gtk-gui/ocmgtk.GenericGPSWidget.cs \
+	Widgets/OCMQueryPage3.cs \
+	gtk-gui/ocmgtk.OCMQueryPage3.cs \
+	Dialogs/ChangeHistory.cs \
+	gtk-gui/ocmgtk.ChangeHistory.cs \
+	Config.cs \
+	Widgets/DateWidget.cs \
+	gtk-gui/ocmgtk.DateWidget.cs \
+	Dialogs/CalendarWindow.cs \
+	gtk-gui/ocmgtk.CalendarWindow.cs \
+	Widgets/HTMLEditorWidget.cs \
+	gtk-gui/ocmgtk.HTMLEditorWidget.cs \
+	Widgets/NotesWidget.cs \
+	gtk-gui/ocmgtk.NotesWidget.cs \
+	Dialogs/AddBookMarkDialog.cs \
+	gtk-gui/ocmgtk.AddBookMarkDialog.cs \
+	Dialogs/DeleteBookmark.cs \
+	gtk-gui/ocmgtk.DeleteBookmark.cs \
+	Dialogs/ModifyCacheDialog.cs \
+	gtk-gui/ocmgtk.ModifyCacheDialog.cs \
+	Dialogs/NoDBDialog.cs \
+	gtk-gui/ocmgtk.NoDBDialog.cs \
+	GPS.cs \
+	Dialogs/GPSDConfig.cs \
+	gtk-gui/ocmgtk.GPSDConfig.cs \
 	Widgets/WaypointOverrideWidget.cs \
-	Widgets/WaypointWidget.cs 
+	gtk-gui/ocmgtk.WaypointOverrideWidget.cs \
+	Widgets/SymbolChooser.cs \
+	gtk-gui/ocmgtk.SymbolChooser.cs \
+	QuickFilter.cs \
+	Dialogs/QTLandKarteDialog.cs \
+	gtk-gui/ocmgtk.QTLandKarteDialog.cs \
+	QuickFilters.cs 
 
 DATA_FILES = 
 
-RESOURCES =  \
+RESOURCES = \
 	gtk-gui/gui.stetic \
-	icons/OpenLayers.png,ocmgtk.icons.OpenLayers.png \
 	icons/scalable/OCMLogo.svg,ocmgtk.icons.scalable.OCMLogo.svg \
-	icons/scalable/OCMLogoSmall.svg,ocmgtk.icons.scalable.OCMLogoSmall.svg 
+	icons/scalable/OCMLogoSmall.svg,ocmgtk.icons.scalable.OCMLogoSmall.svg \
+	icons/OpenLayers.png,ocmgtk.icons.OpenLayers.png 
 
 EXTRAS = \
 	Dialogs \
@@ -539,31 +539,32 @@ EXTRAS = \
 	version \
 	x-gpx.xml \
 	x-ocm.xml \
-	ocm-gtk \
 	docs/Credits.txt \
 	icons/scalable/greenpin.svg \
-	ocm-gtk.in 
+	ocm-gtk.in \
+	OCM.desktop.in 
 
 REFERENCES =  \
-	../ocmengine/bin/Debug/ocmengine.dll \
-	Mono.Posix \
-	-pkg:gconf-sharp-2.0 \
-	-pkg:glib-sharp-2.0 \
-	-pkg:gtk-sharp-2.0 \
-	-pkg:ndesk-dbus-1.0 \
-	-pkg:ndesk-dbus-glib-1.0 \
-	-pkg:webkit-sharp-1.0 \
 	System \
+	$(GTK_SHARP_20_LIBS) \
+	Mono.Posix \
+	$(WEBKIT_SHARP_10_LIBS) \
+	$(GCONF_SHARP_20_LIBS) \
+	$(NDESK_DBUS_10_LIBS) \
+	$(NDESK_DBUS_GLIB_10_LIBS) \
+	$(GLIB_SHARP_20_LIBS) \
 	System.Xml
 
 DLL_REFERENCES = 
 
-CLEANFILES = $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES_WEB_IMG) $(PROGRAMFILES_WEB_THEME_DEFAULT) $(PROGRAMFILES_WEB_THEME_DEFAULT_IMG) $(PROGRAMFILES_VERSION) $(PROGRAMFILES) $(BINARIES) 
+CLEANFILES = $(BINARIES) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(LINUX_DESKTOPAPPLICATIONS) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES_WEB_IMG) $(PROGRAMFILES_WEB_THEME_DEFAULT) $(PROGRAMFILES_WEB_THEME_DEFAULT_IMG) $(PROGRAMFILES_VERSION) $(PROGRAMFILES) 
 
 include $(top_srcdir)/Makefile.include
 
+OCM_GTK = $(BUILD_DIR)/ocm-gtk
 X_GPX_XML = $(BUILD_DIR)/mime/packages/x-gpx.xml
 X_OCM_XML = $(BUILD_DIR)/mime/packages/x-ocm.xml
+OCM_DESKTOP = $(BUILD_DIR)/OCM.desktop
 OCMLOGO_SVG = $(BUILD_DIR)/icons/scalable/OCMLogo.svg
 CITO_SVG = $(BUILD_DIR)/icons/scalable/cito.svg
 EARTH_SVG = $(BUILD_DIR)/icons/scalable/earth.svg
@@ -675,13 +676,13 @@ ZOOM_PANEL_NOALPHA_PNG = $(BUILD_DIR)/web/theme/default/img/zoom-panel-NOALPHA.p
 GREENPIN_PNG = $(BUILD_DIR)/icons/24x24/greenpin.png
 PUSHPIN_SVG = $(BUILD_DIR)/icons/scalable/pushpin.svg
 VERSION_TXT = $(BUILD_DIR)/version/Version.txt
-SHADOW_PNG = $(BUILD_DIR)/icons/24x24/shadow.png
 GREENPIN_SVG = $(BUILD_DIR)/icons/scalable/greenpin.svg
 OCMENGINE_DLL = $(BUILD_DIR)/ocmengine.dll
-OCM_GTK = $(BUILD_DIR)/ocm-gtk
 
+$(eval $(call emit-deploy-wrapper,OCM_GTK,ocm-gtk))
 $(eval $(call emit-deploy-target,X_GPX_XML))
 $(eval $(call emit-deploy-target,X_OCM_XML))
+$(eval $(call emit-deploy-wrapper,OCM_DESKTOP,OCM.desktop))
 $(eval $(call emit-deploy-target,OCMLOGO_SVG))
 $(eval $(call emit-deploy-target,CITO_SVG))
 $(eval $(call emit-deploy-target,EARTH_SVG))
@@ -793,11 +794,9 @@ $(eval $(call emit-deploy-target,ZOOM_PANEL_NOALPHA_PNG))
 $(eval $(call emit-deploy-target,GREENPIN_PNG))
 $(eval $(call emit-deploy-target,PUSHPIN_SVG))
 $(eval $(call emit-deploy-target,VERSION_TXT))
-$(eval $(call emit-deploy-target,SHADOW_PNG))
 $(eval $(call emit-deploy-target,GREENPIN_SVG))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL_MDB))
-$(eval $(call emit-deploy-wrapper,OCM_GTK,ocm-gtk,x))
 
 
 $(eval $(call emit_resgen_targets))
