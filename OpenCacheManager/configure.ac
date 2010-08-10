@@ -60,6 +60,7 @@ AC_CONFIG_FILES([
 ocmengine/ocmengine.pc
 ocmengine/Makefile
 ocm-gtk/ocm-gtk
+ocm-gtk/OCM.desktop
 ocm-gtk/Makefile
 Makefile
 
