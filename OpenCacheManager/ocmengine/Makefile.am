@@ -44,23 +44,23 @@ RESGEN=resgen2
 	
 all: $(ASSEMBLY) $(PROGRAMFILES) $(LINUX_PKGCONFIG) 
 
-FILES =  \
+FILES = \
 	AssemblyInfo.cs \
 	CacheLog.cs \
-	CacheStore.cs \
-	CacheStoreDefs.cs \
-	DegreeMinutes.cs \
-	Engine.cs \
-	FilterList.cs \
-	Geocache.cs \
-	GPSBabelWriter.cs \
-	GPXParser.cs \
-	GPXWriter.cs \
-	OLMarkerGenerator.cs \
-	TravelBug.cs \
-	Utilities.cs \
 	Waypoint.cs \
-	WaypointEnumerator.cs 
+	GPXParser.cs \
+	Utilities.cs \
+	DegreeMinutes.cs \
+	Geocache.cs \
+	CacheStore.cs \
+	Engine.cs \
+	OLMarkerGenerator.cs \
+	GPXWriter.cs \
+	TravelBug.cs \
+	WaypointEnumerator.cs \
+	CacheStoreDefs.cs \
+	FilterList.cs \
+	GPSBabelWriter.cs 
 
 DATA_FILES = 
 
@@ -70,11 +70,11 @@ EXTRAS = \
 	ocmengine.pc.in 
 
 REFERENCES =  \
-	Mono.Data.Sqlite \
-	Mono.Posix \
 	System \
+	System.Xml \
+	Mono.Posix \
 	System.Data \
-	System.Xml
+	Mono.Data.Sqlite
 
 DLL_REFERENCES = 
 
