@@ -548,9 +548,6 @@
       <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\24x24\shadow.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="ocm-gtk">
       <DeployService-Deploy>true</DeployService-Deploy>
       <DeployService-HasPathReferences>true</DeployService-HasPathReferences>
