@@ -430,8 +430,16 @@ namespace ocmengine
 		{
 			if (reader.LocalName == "cache")
 				{
-					cache.Available = Boolean.Parse(reader.GetAttribute("available"));
-					cache.Archived = Boolean.Parse(reader.GetAttribute("archived"));
+					string avail = reader.GetAttribute("available");
+					string arch = reader.GetAttribute("archived");
+					if (!String.IsNullOrEmpty(avail))
+						cache.Available = Boolean.Parse(avail);
+					else
+						cache.Available = true;
+					if (!String.IsNullOrEmpty(arch))
+						cache.Archived = Boolean.Parse(arch);
+					else
+						cache.Archived = false;
 					cache.CacheID = reader.GetAttribute("id");
 				}
 				else if (reader.LocalName == "name")
