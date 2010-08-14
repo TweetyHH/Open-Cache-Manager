@@ -5,13 +5,13 @@
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E733B1D3-94EF-4B2D-B99D-6896FC4118EC}</ProjectGuid>
-    <packageName>i8n1</packageName>
+    <packageName>ocm</packageName>
     <outputType>RelativeToOutput</outputType>
     <relPath>locale</relPath>
     <ReleaseVersion>0.18</ReleaseVersion>
     <projectInformations>
       <projectInformations>
-        <TranslationProjectInformation projectName="ocmengine" isIncluded="true" />
+        <TranslationProjectInformation projectName="ocmengine" isIncluded="false" />
         <TranslationProjectInformation projectName="ocm-gtk" isIncluded="true" />
       </projectInformations>
     </projectInformations>
@@ -19,6 +19,7 @@
       <translations>
         <Translation isoCode="nl" />
         <Translation isoCode="fr" />
+        <Translation isoCode="da" />
       </translations>
     </translations>
     <Configuration Condition=" '$(Configuration)' == '' ">Release_Translated</Configuration>

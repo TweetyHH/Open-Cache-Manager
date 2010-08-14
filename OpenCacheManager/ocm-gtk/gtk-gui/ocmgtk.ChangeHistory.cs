@@ -66,6 +66,7 @@ namespace ocmgtk {
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
+            this.buttonOk.HasDefault = true;
             this.Show();
             this.buttonOk.Clicked += new System.EventHandler(this.OnButtonOkClicked);
         }

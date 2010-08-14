@@ -82,7 +82,7 @@ namespace ocmgtk {
             // Container child hbox3.Gtk.Box+BoxChild
             this.image19 = new Gtk.Image();
             this.image19.Name = "image19";
-            this.image19.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-find", Gtk.IconSize.Menu, 16);
+            this.image19.Pixbuf = Gdk.Pixbuf.LoadFromResource("ocmgtk.icons.scalable.SearchIcon.svg");
             this.hbox3.Add(this.image19);
             Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.hbox3[this.image19]));
             w3.Position = 0;
@@ -125,7 +125,7 @@ namespace ocmgtk {
             // Container child hbox2.Gtk.Box+BoxChild
             this.image23 = new Gtk.Image();
             this.image23.Name = "image23";
-            this.image23.Pixbuf = Stetic.IconLoader.LoadIcon(this, "stock_draw-dimension-line", Gtk.IconSize.Menu, 16);
+            this.image23.Pixbuf = Gdk.Pixbuf.LoadFromResource("ocmgtk.icons.scalable.DistIcon.svg");
             this.hbox2.Add(this.image23);
             Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.hbox2[this.image23]));
             w8.Position = 0;

@@ -68,7 +68,7 @@ namespace ocmgtk
 			fileEntry.Text = file;
 		}
 		
-				int m_LogLimit;
+		int m_LogLimit;
 		public int GetLogLimit()
 		{
 			return m_LogLimit;

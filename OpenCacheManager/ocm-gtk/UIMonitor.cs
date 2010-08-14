@@ -22,6 +22,8 @@ using ocmengine;
 using System.Diagnostics;
 using System.Globalization;
 using System.Timers;
+using org.freedesktop.DBus;
+using NDesk.DBus;
 
 namespace ocmgtk
 {
@@ -389,7 +391,6 @@ namespace ocmgtk
 		public void RefreshCaches ()
 		{
 			m_mainWin.GdkWindow.Cursor = new Cursor (Gdk.CursorType.Watch);
-			Geocache selected = m_selectedCache;
 			m_statusbar.Push (m_statusbar.GetContextId ("refilter"), "Retrieving caches, please wait..");
 			UpdateCentrePointStatus ();
 			DoGUIUpdate ();
@@ -652,7 +653,7 @@ namespace ocmgtk
 		{
 			if (cache.Found)
 				return FOUND_MI;
-			if (cache.OwnerID == m_instance.OwnerID)
+			if ((cache.OwnerID == m_instance.OwnerID) ||(cache.CacheOwner == m_instance.OwnerID))
 				return OWNED_MI;
 			switch (cache.TypeOfCache) {
 				case Geocache.CacheType.TRADITIONAL:
@@ -1124,6 +1125,7 @@ namespace ocmgtk
 			dlg.ImperialUnits = (Boolean) m_conf.Get("/apps/ocm/imperial", false);
 			dlg.DefaultMap = (String) m_conf.Get("/apps/ocm/defmap", "osm");
 			dlg.ShowNearby = (Boolean) m_conf.Get("/apps/ocm/shownearby", true);
+			dlg.UsePrefixesForChildWaypoints = !((bool) m_conf.Get("/apps/ocm/noprefixes", false));
 			dlg.Icon = m_mainWin.Icon;
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
@@ -1133,6 +1135,7 @@ namespace ocmgtk
 				m_conf.Set ("/apps/ocm/imperial", dlg.ImperialUnits);
 				m_conf.Set ("/apps/ocm/defmap", dlg.DefaultMap);
 				m_conf.Set ("/apps/ocm/shownearby", dlg.ShowNearby);
+				m_conf.Set ("/apps/ocm/noprefixes", !dlg.UsePrefixesForChildWaypoints);
 				m_home_lat = dlg.Lat;
 				m_home_lon = dlg.Lon;
 				m_centreLabel.Text = Catalog.GetString("Home");
@@ -1395,12 +1398,18 @@ namespace ocmgtk
 			return version;
 		}
 		
-		public void OpenInQTLandKarte()
+		public void OpenInQLandKarte()
 		{
 			GPXWriter writer = new GPXWriter();
 			String tempPath = System.IO.Path.GetTempPath();
 			String tempFile = tempPath + "ocm_export.gpx";
 			ExportProgressDialog dlg = new ExportProgressDialog(writer);
+			
+			/*Connection DbusConnection = Bus.Session;
+			IQLandkarteGT ql = DbusConnection.GetObject<IQLandkarteGT> ("org.qlandkarte.dbus", new ObjectPath ("QLandkarteGT"));
+			System.Console.WriteLine("Connected");
+			ql.loadGeoData("/home/campbelk/Desktop/export.gpx");	*/		
+			
 			dlg.AutoClose = true;
 			dlg.Title = Catalog.GetString("Preparing to send to QLandKarte GT");
 			dlg.WaypointsOnly = true;

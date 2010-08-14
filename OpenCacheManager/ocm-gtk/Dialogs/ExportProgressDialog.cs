@@ -35,7 +35,6 @@ namespace ocmgtk
 			set { m_autoClose = value;}
 		}
 		
-		private bool m_waypointsOnly = false;
 		public bool WaypointsOnly
 		{
 			set { m_writer.IncludeGroundSpeakExtensions = false;}

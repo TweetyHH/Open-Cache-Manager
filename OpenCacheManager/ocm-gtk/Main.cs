@@ -47,7 +47,7 @@ namespace ocmgtk
 				System.Console.Error.WriteLine("NO SESSION DBUS RUNNING");
 			}
 			
-			Mono.Unix.Catalog.Init ("i8n1", "./locale");
+			Mono.Unix.Catalog.Init ("ocm", "./locale");
 			bool runWizard = false;
 			try {
 				GConf.Client client = new GConf.Client ();

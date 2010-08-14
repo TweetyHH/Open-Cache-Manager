@@ -25,13 +25,13 @@ namespace ocmgtk {
         
         private Gtk.Table table2;
         
-        private Gtk.ComboBox combobox2;
-        
-        private Gtk.ComboBox combobox3;
-        
         private Gtk.Label label2;
         
         private Gtk.Label label3;
+        
+        private Gtk.ComboBox mapsCombo;
+        
+        private Gtk.ComboBox unitsCombo;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -49,7 +49,7 @@ namespace ocmgtk {
             this.label1.Xalign = 0F;
             this.label1.LabelProp = Mono.Unix.Catalog.GetString("You will need to create a database to use OCM, or open an existing OCM database if you already have one from somewhere else. ");
             this.label1.Wrap = true;
-            this.label1.WidthChars = 60;
+            this.label1.WidthChars = 80;
             this.vbox2.Add(this.label1);
             Gtk.Box.BoxChild w1 = ((Gtk.Box.BoxChild)(this.vbox2[this.label1]));
             w1.Position = 0;
@@ -91,51 +91,51 @@ namespace ocmgtk {
             this.table2.RowSpacing = ((uint)(6));
             this.table2.ColumnSpacing = ((uint)(6));
             // Container child table2.Gtk.Table+TableChild
-            this.combobox2 = Gtk.ComboBox.NewText();
-            this.combobox2.AppendText(Mono.Unix.Catalog.GetString("Metric"));
-            this.combobox2.AppendText(Mono.Unix.Catalog.GetString("U.S./Imperial"));
-            this.combobox2.Name = "combobox2";
-            this.combobox2.Active = 0;
-            this.table2.Add(this.combobox2);
-            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table2[this.combobox2]));
-            w5.LeftAttach = ((uint)(1));
-            w5.RightAttach = ((uint)(2));
-            w5.XOptions = ((Gtk.AttachOptions)(4));
-            w5.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table2.Gtk.Table+TableChild
-            this.combobox3 = Gtk.ComboBox.NewText();
-            this.combobox3.AppendText(Mono.Unix.Catalog.GetString("Open Street Maps"));
-            this.combobox3.AppendText(Mono.Unix.Catalog.GetString("Google Hybrid"));
-            this.combobox3.AppendText(Mono.Unix.Catalog.GetString("Google Terrain"));
-            this.combobox3.AppendText(Mono.Unix.Catalog.GetString("Google Street Maps"));
-            this.combobox3.Name = "combobox3";
-            this.combobox3.Active = 0;
-            this.table2.Add(this.combobox3);
-            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table2[this.combobox3]));
-            w6.TopAttach = ((uint)(1));
-            w6.BottomAttach = ((uint)(2));
-            w6.LeftAttach = ((uint)(1));
-            w6.RightAttach = ((uint)(2));
-            w6.XOptions = ((Gtk.AttachOptions)(4));
-            w6.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table2.Gtk.Table+TableChild
             this.label2 = new Gtk.Label();
             this.label2.Name = "label2";
             this.label2.Xalign = 0F;
             this.label2.LabelProp = Mono.Unix.Catalog.GetString("OCM should report distances in ");
             this.table2.Add(this.label2);
-            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table2[this.label2]));
-            w7.XOptions = ((Gtk.AttachOptions)(4));
-            w7.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table2[this.label2]));
+            w5.XOptions = ((Gtk.AttachOptions)(4));
+            w5.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.label3 = new Gtk.Label();
             this.label3.Name = "label3";
             this.label3.Xalign = 0F;
             this.label3.LabelProp = Mono.Unix.Catalog.GetString("Default map that OCM should use");
             this.table2.Add(this.label3);
-            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table2[this.label3]));
-            w8.TopAttach = ((uint)(1));
-            w8.BottomAttach = ((uint)(2));
+            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table2[this.label3]));
+            w6.TopAttach = ((uint)(1));
+            w6.BottomAttach = ((uint)(2));
+            w6.XOptions = ((Gtk.AttachOptions)(4));
+            w6.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.mapsCombo = Gtk.ComboBox.NewText();
+            this.mapsCombo.AppendText(Mono.Unix.Catalog.GetString("Open Street Maps"));
+            this.mapsCombo.AppendText(Mono.Unix.Catalog.GetString("Google Hybrid"));
+            this.mapsCombo.AppendText(Mono.Unix.Catalog.GetString("Google Street Maps"));
+            this.mapsCombo.AppendText(Mono.Unix.Catalog.GetString("Google Terrain"));
+            this.mapsCombo.Name = "mapsCombo";
+            this.mapsCombo.Active = 0;
+            this.table2.Add(this.mapsCombo);
+            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table2[this.mapsCombo]));
+            w7.TopAttach = ((uint)(1));
+            w7.BottomAttach = ((uint)(2));
+            w7.LeftAttach = ((uint)(1));
+            w7.RightAttach = ((uint)(2));
+            w7.XOptions = ((Gtk.AttachOptions)(4));
+            w7.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.unitsCombo = Gtk.ComboBox.NewText();
+            this.unitsCombo.AppendText(Mono.Unix.Catalog.GetString("Metric"));
+            this.unitsCombo.AppendText(Mono.Unix.Catalog.GetString("U.S./Imperial"));
+            this.unitsCombo.Name = "unitsCombo";
+            this.unitsCombo.Active = 0;
+            this.table2.Add(this.unitsCombo);
+            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table2[this.unitsCombo]));
+            w8.LeftAttach = ((uint)(1));
+            w8.RightAttach = ((uint)(2));
             w8.XOptions = ((Gtk.AttachOptions)(4));
             w8.YOptions = ((Gtk.AttachOptions)(4));
             this.vbox2.Add(this.table2);

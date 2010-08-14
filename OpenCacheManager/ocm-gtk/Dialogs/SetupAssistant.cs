@@ -16,6 +16,7 @@
 using System;
 using System.IO;
 using ocmengine;
+using Mono.Unix;
 
 namespace ocmgtk
 {
@@ -27,6 +28,7 @@ namespace ocmgtk
 		SetupAssistantPage1 page1 = new SetupAssistantPage1 ();
 		SetupAssistantPage2 page2 = new SetupAssistantPage2 ();
 		SetupAssistantPage3 page3 = new SetupAssistantPage3 ();
+		SetupAssistantPage4 summ = new SetupAssistantPage4 ();
 
 		public SetupAssistant ()
 		{
@@ -36,16 +38,21 @@ namespace ocmgtk
 			AppendPage (page1);
 			AppendPage (page2);
 			AppendPage (page3);
-			Title = "Setup Assistant";
-			SetPageTitle (page1, "Welcome");
+			AppendPage (summ);
+			Title = Catalog.GetString("Setup Assistant");
+			SetPageTitle (page1, Catalog.GetString("Welcome"));
 			SetPageComplete (page1, true);
 			SetPageType (page1, Gtk.AssistantPageType.Intro);
-			SetPageTitle (page2, "Setup a Database");
+			SetPageTitle (page2, Catalog.GetString("Setup a Database"));
 			SetPageComplete (page2, true);
-			SetPageTitle (page3, "User Details");
-			SetPageType (page3, Gtk.AssistantPageType.Summary);
+			SetPageTitle (page3, Catalog.GetString("User Details"));
+			SetPageType (page3, Gtk.AssistantPageType.Content);
+			SetPageComplete(page3, true);
+			SetPageTitle(summ, "Summary");
+			SetPageType (summ, Gtk.AssistantPageType.Summary);
+			SetPageComplete(summ, true);
 			WidthRequest = 600;
-			HeightRequest = 400;
+			HeightRequest = 500;
 			this.Cancel += HandleHandleCancel;
 			this.Apply += HandleHandleApply;
 			this.Close += HandleHandleClose;
@@ -64,8 +71,10 @@ namespace ocmgtk
 			client.Set("/apps/ocm/homelat", page3.HomeLat);
 			client.Set("/apps/ocm/homelon", page3.HomeLon);
 			client.Set("/apps/ocm/memberid", page3.MemberID);
-			client.Set("/apps/ocm/wizardone", "true");			
-			
+			client.Set("/apps/ocm/wizardone", "true");
+			client.Set("/apps/ocm/imperial", page2.ImperialUnits);
+			client.Set("/apps/ocm/defmap", page2.DefaultMap);
+						
 			MainWindow win = new MainWindow ();
 			win.Show();
 			UIMonitor.getInstance().LoadConfig();;

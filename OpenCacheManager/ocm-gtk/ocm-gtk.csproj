@@ -82,6 +82,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="icons\scalable\OCMLogoSmall.svg" />
     <EmbeddedResource Include="icons\OpenLayers.png" />
+    <EmbeddedResource Include="icons\scalable\DistIcon.svg" />
+    <EmbeddedResource Include="icons\scalable\SearchIcon.svg" />
+    <EmbeddedResource Include="icons\scalable\log.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -181,6 +184,11 @@
     <Compile Include="Dialogs\QTLandKarteDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.QTLandKarteDialog.cs" />
     <Compile Include="QuickFilters.cs" />
+    <Compile Include="Dialogs\ProcessLogs.cs" />
+    <Compile Include="gtk-gui\ocmgtk.ProcessLogs.cs" />
+    <Compile Include="IQLandkarteGT.cs" />
+    <Compile Include="Widgets\SetupAssistantPage4.cs" />
+    <Compile Include="gtk-gui\ocmgtk.SetupAssistantPage4.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -204,7 +212,7 @@
     <MonoDevelop>
       <Properties>
         <Deployment.LinuxDeployData generateScript="false" />
-        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am" SyncReferences="true" IsAutotoolsProject="true" RelativeConfigureInPath="..">
+        <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="Makefile.am" SyncReferences="true" IsAutotoolsProject="true" RelativeConfigureInPath="..">
           <BuildFilesVar Sync="true" Name="FILES" />
           <DeployFilesVar Sync="true" Name="PROGRAMFILES" />
           <ResourcesVar Sync="true" Name="RESOURCES" />
@@ -565,7 +573,6 @@
       <DeployService-RelativeDeployPath>mime/packages/x-ocm.xml</DeployService-RelativeDeployPath>
       <DeployService-TargetDirectoryId>CommonApplicationDataRoot</DeployService-TargetDirectoryId>
     </None>
-    <None Include="docs\Credits.txt" />
     <None Include="icons\scalable\greenpin.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

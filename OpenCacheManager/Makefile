@@ -98,11 +98,11 @@ DIST_ARCHIVES = $(distdir).tar.gz
 GZIP_ENV = --best
 distuninstallcheck_listfiles = find . -type f -print
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run aclocal-1.11
-AMTAR = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run tar
-AUTOCONF = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run automake-1.11
+ACLOCAL = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/missing --run aclocal-1.11
+AMTAR = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/missing --run tar
+AUTOCONF = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/missing --run automake-1.11
 AWK = gawk
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"OpenCacheManager\" -DPACKAGE_TARNAME=\"opencachemanager\" -DPACKAGE_VERSION=\"0.18\" -DPACKAGE_STRING=\"OpenCacheManager\ 0.18\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"opencachemanager\" -DVERSION=\"0.18\"
@@ -124,8 +124,8 @@ INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAINT = #
-MAKEINFO = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run makeinfo
+MAINT = 
+MAKEINFO = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 NDESK_DBUS_10_CFLAGS =  
 NDESK_DBUS_10_LIBS = -r:/usr/lib/cli/ndesk-dbus-1.0/NDesk.DBus.dll  
@@ -146,10 +146,10 @@ STRIP =
 VERSION = 0.18
 WEBKIT_SHARP_10_CFLAGS = -I:/usr/lib/pkgconfig/../../share/gapi-2.0/pango-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/atk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gdk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gtk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
 WEBKIT_SHARP_10_LIBS = -r:/usr/lib/cli/webkit-sharp-1.0/webkit-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/pango-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/atk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gdk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gtk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
-abs_builddir = /home/campbelk/svn_temp/ocm/OpenCacheManager
-abs_srcdir = /home/campbelk/svn_temp/ocm/OpenCacheManager
-abs_top_builddir = /home/campbelk/svn_temp/ocm/OpenCacheManager
-abs_top_srcdir = /home/campbelk/svn_temp/ocm/OpenCacheManager
+abs_builddir = /home/campbelk/ocm_source/OpenCacheManager
+abs_srcdir = /home/campbelk/ocm_source/OpenCacheManager
+abs_top_builddir = /home/campbelk/ocm_source/OpenCacheManager
+abs_top_srcdir = /home/campbelk/ocm_source/OpenCacheManager
 am__leading_dot = .
 am__tar = ${AMTAR} chof - "$$tardir"
 am__untar = ${AMTAR} xf -
@@ -168,7 +168,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/install-sh
+install_sh = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -198,7 +198,7 @@ all: all-recursive
 .SUFFIXES:
 am--refresh:
 	@:
-$(srcdir)/Makefile.in: # $(srcdir)/Makefile.am  $(am__configure_deps)
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -225,9 +225,9 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	$(SHELL) ./config.status --recheck
 
-$(top_srcdir)/configure: # $(am__configure_deps)
+$(top_srcdir)/configure:  $(am__configure_deps)
 	$(am__cd) $(srcdir) && $(AUTOCONF)
-$(ACLOCAL_M4): # $(am__aclocal_m4_deps)
+$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 $(am__aclocal_m4_deps):
 

@@ -34,7 +34,8 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/ocm-gtk.in $(top_srcdir)/Makefile.include
+	$(srcdir)/OCM.desktop.in $(srcdir)/ocm-gtk.in \
+	$(top_srcdir)/Makefile.include
 subdir = ocm-gtk
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/expansions.m4 \
@@ -42,7 +43,7 @@ am__aclocal_m4_deps = $(top_srcdir)/expansions.m4 \
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
-CONFIG_CLEAN_FILES = ocm-gtk
+CONFIG_CLEAN_FILES = ocm-gtk OCM.desktop
 CONFIG_CLEAN_VPATH_FILES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
@@ -67,6 +68,7 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" \
+	"$(DESTDIR)$(linuxdesktopapplicationsdir)" \
 	"$(DESTDIR)$(linuxpkgconfigdir)" \
 	"$(DESTDIR)$(programfilesdir)" \
 	"$(DESTDIR)$(programfilesdocsdir)" \
@@ -83,19 +85,19 @@ SCRIPTS = $(bin_SCRIPTS) $(pkglib_SCRIPTS)
 SOURCES =
 DIST_SOURCES =
 DATA = $(commonapplicationdatarootmimepackages_DATA) \
-	$(linuxpkgconfig_DATA) $(programfiles_DATA) \
-	$(programfilesdocs_DATA) $(programfilesicons24x24_DATA) \
-	$(programfilesicons48x48_DATA) \
+	$(linuxdesktopapplications_DATA) $(linuxpkgconfig_DATA) \
+	$(programfiles_DATA) $(programfilesdocs_DATA) \
+	$(programfilesicons24x24_DATA) $(programfilesicons48x48_DATA) \
 	$(programfilesiconsscalable_DATA) $(programfileslicence_DATA) \
 	$(programfilesversion_DATA) $(programfilesweb_DATA) \
 	$(programfileswebimg_DATA) $(programfileswebthemedefault_DATA) \
 	$(programfileswebthemedefaultimg_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run aclocal-1.11
-AMTAR = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run tar
-AUTOCONF = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run automake-1.11
+ACLOCAL = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/missing --run aclocal-1.11
+AMTAR = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/missing --run tar
+AUTOCONF = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/missing --run automake-1.11
 AWK = gawk
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"OpenCacheManager\" -DPACKAGE_TARNAME=\"opencachemanager\" -DPACKAGE_VERSION=\"0.18\" -DPACKAGE_STRING=\"OpenCacheManager\ 0.18\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"opencachemanager\" -DVERSION=\"0.18\"
@@ -117,8 +119,8 @@ INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAINT = #
-MAKEINFO = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/missing --run makeinfo
+MAINT = 
+MAKEINFO = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 NDESK_DBUS_10_CFLAGS =  
 NDESK_DBUS_10_LIBS = -r:/usr/lib/cli/ndesk-dbus-1.0/NDesk.DBus.dll  
@@ -139,10 +141,10 @@ STRIP =
 VERSION = 0.18
 WEBKIT_SHARP_10_CFLAGS = -I:/usr/lib/pkgconfig/../../share/gapi-2.0/pango-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/atk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gdk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gtk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
 WEBKIT_SHARP_10_LIBS = -r:/usr/lib/cli/webkit-sharp-1.0/webkit-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/pango-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/atk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gdk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gtk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
-abs_builddir = /home/campbelk/svn_temp/ocm/OpenCacheManager/ocm-gtk
-abs_srcdir = /home/campbelk/svn_temp/ocm/OpenCacheManager/ocm-gtk
-abs_top_builddir = /home/campbelk/svn_temp/ocm/OpenCacheManager
-abs_top_srcdir = /home/campbelk/svn_temp/ocm/OpenCacheManager
+abs_builddir = /home/campbelk/ocm_source/OpenCacheManager/ocm-gtk
+abs_srcdir = /home/campbelk/ocm_source/OpenCacheManager/ocm-gtk
+abs_top_builddir = /home/campbelk/ocm_source/OpenCacheManager
+abs_top_srcdir = /home/campbelk/ocm_source/OpenCacheManager
 am__leading_dot = .
 am__tar = ${AMTAR} chof - "$$tardir"
 am__untar = ${AMTAR} xf -
@@ -161,7 +163,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/campbelk/svn_temp/ocm/OpenCacheManager/install-sh
+install_sh = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -442,9 +444,15 @@ OCM_GTK_EXE_MDB = $(BUILD_DIR)/ocm-gtk.exe.mdb
 #OCM_GTK_EXE_MDB = 
 AL = al2
 SATELLITE_ASSEMBLY_NAME = $(notdir $(basename $(ASSEMBLY))).resources.dll
+BINARIES = \
+	$(OCM_GTK)  
+
 COMMONAPPLICATIONDATAROOT_MIME_PACKAGES = \
 	$(X_GPX_XML) \
 	$(X_OCM_XML)  
+
+LINUX_DESKTOPAPPLICATIONS = \
+	$(OCM_DESKTOP)  
 
 PROGRAMFILES_ICONS_SCALABLE = \
 	$(OCMLOGO_SVG) \
@@ -496,8 +504,7 @@ PROGRAMFILES_ICONS_24X24 = \
 	$(PARKING_PNG) \
 	$(TRAILHEAD_PNG) \
 	$(TREASURE_PNG) \
-	$(GREENPIN_PNG) \
-	
+	$(GREENPIN_PNG)  
 
 PROGRAMFILES_ICONS_48X48 = \
 	$(CIRCLE_PNG)  
@@ -580,119 +587,123 @@ PROGRAMFILES_VERSION = \
 	$(VERSION_TXT)  
 
 PROGRAMFILES = \
-	$(OCM_GTK_EXE_MDB) \
 	$(OCMENGINE_DLL) \
-	$(OCMENGINE_DLL_MDB)  
-
-BINARIES = \
-	$(OCM_GTK)  
+	$(OCMENGINE_DLL_MDB) \
+	$(OCM_GTK_EXE_MDB)  
 
 RESGEN = resgen2
 FILES = \
-	AssemblyInfo.cs \
-	Config.cs \
-	DBusComm.cs \
-	Dialogs/AddBookMarkDialog.cs \
-	Dialogs/CalendarWindow.cs \
-	Dialogs/ChangeHistory.cs \
-	Dialogs/DeleteBookmark.cs \
-	Dialogs/ExportProgressDialog.cs \
-	Dialogs/FilterDialog.cs \
-	Dialogs/GPSConfiguration.cs \
-	Dialogs/GPSDConfig.cs \
-	Dialogs/ModifyCacheDialog.cs \
-	Dialogs/NoDBDialog.cs \
-	Dialogs/OCMSplash.cs \
-	Dialogs/Preferences.cs \
-	Dialogs/ProgressDialog.cs \
-	Dialogs/QTLandKarteDialog.cs \
-	Dialogs/SendWaypointsDialog.cs \
-	Dialogs/SetupAssistant.cs \
-	Dialogs/WaypointDialog.cs \
-	GPS.cs \
 	gtk-gui/generated.cs \
+	MainWindow.cs \
 	gtk-gui/MainWindow.cs \
-	gtk-gui/ocmgtk.AddBookMarkDialog.cs \
-	gtk-gui/ocmgtk.BrowserWidget.cs \
-	gtk-gui/ocmgtk.CacheList.cs \
-	gtk-gui/ocmgtk.CalendarWindow.cs \
-	gtk-gui/ocmgtk.ChangeHistory.cs \
-	gtk-gui/ocmgtk.CoordinateWidget.cs \
-	gtk-gui/ocmgtk.DateWidget.cs \
-	gtk-gui/ocmgtk.DeleteBookmark.cs \
-	gtk-gui/ocmgtk.DescriptionWidget.cs \
-	gtk-gui/ocmgtk.ExportProgressDialog.cs \
-	gtk-gui/ocmgtk.FilterDialog.cs \
-	gtk-gui/ocmgtk.GarminUSBWidget.cs \
-	gtk-gui/ocmgtk.GenericGPSWidget.cs \
+	Main.cs \
+	AssemblyInfo.cs \
 	gtk-gui/ocmgtk.GeocacheInfoPanel.cs \
 	gtk-gui/ocmgtk.GeoCachePane.cs \
-	gtk-gui/ocmgtk.GPSConfiguration.cs \
-	gtk-gui/ocmgtk.GPSDConfig.cs \
-	gtk-gui/ocmgtk.GPXWidget.cs \
-	gtk-gui/ocmgtk.HTMLEditorWidget.cs \
-	gtk-gui/ocmgtk.HTMLWidget.cs \
-	gtk-gui/ocmgtk.LogViewerWidget.cs \
-	gtk-gui/ocmgtk.MagellanExploristWidget.cs \
-	gtk-gui/ocmgtk.ModifyCacheDialog.cs \
-	gtk-gui/ocmgtk.NoDBDialog.cs \
-	gtk-gui/ocmgtk.NotesWidget.cs \
-	gtk-gui/ocmgtk.OCMQueryPage1.cs \
-	gtk-gui/ocmgtk.OCMQueryPage2.cs \
-	gtk-gui/ocmgtk.OCMQueryPage3.cs \
-	gtk-gui/ocmgtk.OCMSplash.cs \
-	gtk-gui/ocmgtk.Preferences.cs \
-	gtk-gui/ocmgtk.ProgressDialog.cs \
-	gtk-gui/ocmgtk.QTLandKarteDialog.cs \
-	gtk-gui/ocmgtk.SendWaypointsDialog.cs \
-	gtk-gui/ocmgtk.SetupAssistant.cs \
-	gtk-gui/ocmgtk.SetupAssistantPage1.cs \
-	gtk-gui/ocmgtk.SetupAssistantPage2.cs \
-	gtk-gui/ocmgtk.SetupAssistantPage3.cs \
-	gtk-gui/ocmgtk.SymbolChooser.cs \
-	gtk-gui/ocmgtk.WaypointDialog.cs \
-	gtk-gui/ocmgtk.WaypointOverrideWidget.cs \
-	gtk-gui/ocmgtk.WaypointWidget.cs \
-	IDBusComm.cs \
-	Main.cs \
-	MainWindow.cs \
-	QuickFilter.cs \
-	QuickFilters.cs \
-	SavedGPSConf.cs \
-	UIMonitor.cs \
-	Widgets/BrowserWidget.cs \
+	gtk-gui/ocmgtk.CacheList.cs \
 	Widgets/CacheList.cs \
-	Widgets/CoordinateWidget.cs \
-	Widgets/DateWidget.cs \
-	Widgets/DescriptionWidget.cs \
-	Widgets/GarminUSBWidget.cs \
-	Widgets/GenericGPSWidget.cs \
 	Widgets/GeocacheInfoPanel.cs \
 	Widgets/GeoCachePane.cs \
-	Widgets/GPXWidget.cs \
-	Widgets/HTMLEditorWidget.cs \
-	Widgets/HTMLWidget.cs \
-	Widgets/IGPSConfig.cs \
+	gtk-gui/ocmgtk.WaypointWidget.cs \
+	gtk-gui/ocmgtk.LogViewerWidget.cs \
+	gtk-gui/ocmgtk.BrowserWidget.cs \
+	gtk-gui/ocmgtk.WaypointDialog.cs \
+	Widgets/WaypointWidget.cs \
+	Widgets/BrowserWidget.cs \
 	Widgets/LogViewerWidget.cs \
-	Widgets/MagellanExploristWidget.cs \
-	Widgets/NotesWidget.cs \
-	Widgets/OCMQueryPage1.cs \
-	Widgets/OCMQueryPage2.cs \
-	Widgets/OCMQueryPage3.cs \
-	Widgets/OCMWebView.cs \
+	Dialogs/WaypointDialog.cs \
+	Widgets/HTMLWidget.cs \
+	UIMonitor.cs \
+	gtk-gui/ocmgtk.HTMLWidget.cs \
+	Dialogs/ProgressDialog.cs \
+	gtk-gui/ocmgtk.ProgressDialog.cs \
+	Dialogs/Preferences.cs \
+	gtk-gui/ocmgtk.Preferences.cs \
+	Widgets/CoordinateWidget.cs \
+	gtk-gui/ocmgtk.CoordinateWidget.cs \
 	Widgets/SetupAssistantPage1.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage1.cs \
+	Dialogs/SetupAssistant.cs \
+	gtk-gui/ocmgtk.SetupAssistant.cs \
+	IDBusComm.cs \
+	DBusComm.cs \
 	Widgets/SetupAssistantPage2.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage2.cs \
 	Widgets/SetupAssistantPage3.cs \
-	Widgets/SymbolChooser.cs \
+	gtk-gui/ocmgtk.SetupAssistantPage3.cs \
+	Dialogs/ExportProgressDialog.cs \
+	gtk-gui/ocmgtk.ExportProgressDialog.cs \
+	Widgets/DescriptionWidget.cs \
+	gtk-gui/ocmgtk.DescriptionWidget.cs \
+	Widgets/OCMQueryPage1.cs \
+	gtk-gui/ocmgtk.OCMQueryPage1.cs \
+	Dialogs/OCMSplash.cs \
+	gtk-gui/ocmgtk.OCMSplash.cs \
+	Dialogs/FilterDialog.cs \
+	gtk-gui/ocmgtk.FilterDialog.cs \
+	Widgets/OCMQueryPage2.cs \
+	gtk-gui/ocmgtk.OCMQueryPage2.cs \
+	Widgets/OCMWebView.cs \
+	Dialogs/GPSConfiguration.cs \
+	gtk-gui/ocmgtk.GPSConfiguration.cs \
+	Widgets/GPXWidget.cs \
+	gtk-gui/ocmgtk.GPXWidget.cs \
+	gtk-gui/ocmgtk.GarminUSBWidget.cs \
+	Widgets/GarminUSBWidget.cs \
+	Widgets/IGPSConfig.cs \
+	Dialogs/SendWaypointsDialog.cs \
+	gtk-gui/ocmgtk.SendWaypointsDialog.cs \
+	SavedGPSConf.cs \
+	Widgets/MagellanExploristWidget.cs \
+	gtk-gui/ocmgtk.MagellanExploristWidget.cs \
+	Widgets/GenericGPSWidget.cs \
+	gtk-gui/ocmgtk.GenericGPSWidget.cs \
+	Widgets/OCMQueryPage3.cs \
+	gtk-gui/ocmgtk.OCMQueryPage3.cs \
+	Dialogs/ChangeHistory.cs \
+	gtk-gui/ocmgtk.ChangeHistory.cs \
+	Config.cs \
+	Widgets/DateWidget.cs \
+	gtk-gui/ocmgtk.DateWidget.cs \
+	Dialogs/CalendarWindow.cs \
+	gtk-gui/ocmgtk.CalendarWindow.cs \
+	Widgets/HTMLEditorWidget.cs \
+	gtk-gui/ocmgtk.HTMLEditorWidget.cs \
+	Widgets/NotesWidget.cs \
+	gtk-gui/ocmgtk.NotesWidget.cs \
+	Dialogs/AddBookMarkDialog.cs \
+	gtk-gui/ocmgtk.AddBookMarkDialog.cs \
+	Dialogs/DeleteBookmark.cs \
+	gtk-gui/ocmgtk.DeleteBookmark.cs \
+	Dialogs/ModifyCacheDialog.cs \
+	gtk-gui/ocmgtk.ModifyCacheDialog.cs \
+	Dialogs/NoDBDialog.cs \
+	gtk-gui/ocmgtk.NoDBDialog.cs \
+	GPS.cs \
+	Dialogs/GPSDConfig.cs \
+	gtk-gui/ocmgtk.GPSDConfig.cs \
 	Widgets/WaypointOverrideWidget.cs \
-	Widgets/WaypointWidget.cs 
+	gtk-gui/ocmgtk.WaypointOverrideWidget.cs \
+	Widgets/SymbolChooser.cs \
+	gtk-gui/ocmgtk.SymbolChooser.cs \
+	QuickFilter.cs \
+	Dialogs/QTLandKarteDialog.cs \
+	gtk-gui/ocmgtk.QTLandKarteDialog.cs \
+	QuickFilters.cs \
+	Dialogs/ProcessLogs.cs \
+	gtk-gui/ocmgtk.ProcessLogs.cs \
+	IQLandkarteGT.cs \
+	delthis.cs \
+	DumbClass.cs 
 
 DATA_FILES = 
 RESOURCES = \
 	gtk-gui/gui.stetic \
-	icons/OpenLayers.png,ocmgtk.icons.OpenLayers.png \
 	icons/scalable/OCMLogo.svg,ocmgtk.icons.scalable.OCMLogo.svg \
-	icons/scalable/OCMLogoSmall.svg,ocmgtk.icons.scalable.OCMLogoSmall.svg 
+	icons/scalable/OCMLogoSmall.svg,ocmgtk.icons.scalable.OCMLogoSmall.svg \
+	icons/OpenLayers.png,ocmgtk.icons.OpenLayers.png \
+	icons/scalable/DistIcon.svg,ocmgtk.icons.scalable.DistIcon.svg \
+	icons/scalable/SearchIcon.svg,ocmgtk.icons.scalable.SearchIcon.svg 
 
 EXTRAS = \
 	Dialogs \
@@ -706,33 +717,31 @@ EXTRAS = \
 	version \
 	x-gpx.xml \
 	x-ocm.xml \
-	ocm-gtk \
-	docs/Credits.txt \
 	icons/scalable/greenpin.svg \
-	ocm-gtk.in 
+	ocm-gtk.in \
+	OCM.desktop.in 
 
 REFERENCES = \
-	../ocmengine/bin/Debug/ocmengine.dll \
-	Mono.Posix \
-	-pkg:gconf-sharp-2.0 \
-	-pkg:glib-sharp-2.0 \
-	-pkg:gtk-sharp-2.0 \
-	-pkg:ndesk-dbus-1.0 \
-	-pkg:ndesk-dbus-glib-1.0 \
-	-pkg:webkit-sharp-1.0 \
 	System \
+	$(GTK_SHARP_20_LIBS) \
+	Mono.Posix \
+	$(WEBKIT_SHARP_10_LIBS) \
+	$(GCONF_SHARP_20_LIBS) \
+	$(NDESK_DBUS_10_LIBS) \
+	$(NDESK_DBUS_GLIB_10_LIBS) \
+	$(GLIB_SHARP_20_LIBS) \
 	System.Xml
 
 DLL_REFERENCES = 
-CLEANFILES = $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) \
-	$(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) \
-	$(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) \
-	$(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) \
-	$(PROGRAMFILES_WEB_IMG) $(PROGRAMFILES_WEB_THEME_DEFAULT) \
+CLEANFILES = $(BINARIES) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) \
+	$(LINUX_DESKTOPAPPLICATIONS) $(PROGRAMFILES_ICONS_SCALABLE) \
+	$(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) \
+	$(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) \
+	$(PROGRAMFILES_LICENCE) $(PROGRAMFILES_WEB_IMG) \
+	$(PROGRAMFILES_WEB_THEME_DEFAULT) \
 	$(PROGRAMFILES_WEB_THEME_DEFAULT_IMG) $(PROGRAMFILES_VERSION) \
-	$(PROGRAMFILES) $(BINARIES) $(ASSEMBLY) $(ASSEMBLY).mdb \
-	$(BINARIES) $(build_resx_resources) \
-	$(build_satellite_assembly_list)
+	$(PROGRAMFILES) $(ASSEMBLY) $(ASSEMBLY).mdb $(BINARIES) \
+	$(build_resx_resources) $(build_satellite_assembly_list)
 VALID_CULTURES = ar bg ca zh-CHS cs da de el en es fi fr he hu is it ja ko nl no pl pt ro ru hr sk sq sv th tr id uk be sl et lv lt fa vi hy eu mk af fo hi sw gu ta te kn mr gl kok ar-SA bg-BG ca-ES zh-TW cs-CZ da-DK de-DE el-GR en-US fi-FI fr-FR he-IL hu-HU is-IS it-IT ja-JP ko-KR nl-NL nb-NO pl-PL pt-BR ro-RO ru-RU hr-HR sk-SK sq-AL sv-SE th-TH tr-TR id-ID uk-UA be-BY sl-SI et-EE lv-LV lt-LT fa-IR vi-VN hy-AM eu-ES mk-MK af-ZA fo-FO hi-IN sw-KE gu-IN ta-IN te-IN kn-IN mr-IN gl-ES kok-IN ar-IQ zh-CN de-CH en-GB es-MX fr-BE it-CH nl-BE nn-NO pt-PT sv-FI ar-EG zh-HK de-AT en-AU es-ES fr-CA ar-LY zh-SG de-LU en-CA es-GT fr-CH ar-DZ zh-MO en-NZ es-CR fr-LU ar-MA en-IE es-PA ar-TN en-ZA es-DO ar-OM es-VE ar-YE es-CO ar-SY es-PE ar-JO en-TT es-AR ar-LB en-ZW es-EC ar-KW en-PH es-CL ar-AE es-UY ar-BH es-PY ar-QA es-BO es-SV es-HN es-NI es-PR zh-CHT
 s2q = $(subst \ ,?,$1)
 q2s = $(subst ?,\ ,$1)
@@ -802,10 +811,12 @@ programfileswebthemedefaultimgdir = ${exec_prefix}/lib/opencachemanager/web/them
 programfileswebthemedefaultimg_DATA = $(PROGRAMFILES_WEB_THEME_DEFAULT_IMG)
 programfilesdocsdir = ${exec_prefix}/lib/opencachemanager/docs
 programfilesdocs_DATA = $(PROGRAMFILES_DOCS)
-programfilesicons48x48dir = ${exec_prefix}/lib/opencachemanager/icons/48x48
-programfilesicons48x48_DATA = $(PROGRAMFILES_ICONS_48X48)
 programfilesdir = ${exec_prefix}/lib/opencachemanager
 programfiles_DATA = $(PROGRAMFILES)
+programfilesicons48x48dir = ${exec_prefix}/lib/opencachemanager/icons/48x48
+programfilesicons48x48_DATA = $(PROGRAMFILES_ICONS_48X48)
+linuxdesktopapplicationsdir = ${datarootdir}/applications
+linuxdesktopapplications_DATA = $(LINUX_DESKTOPAPPLICATIONS)
 programfileslicencedir = ${exec_prefix}/lib/opencachemanager/licence
 programfileslicence_DATA = $(PROGRAMFILES_LICENCE)
 programfilesversiondir = ${exec_prefix}/lib/opencachemanager/version
@@ -823,8 +834,10 @@ culture_resource_commandlines = $(call unesc2,cmd_line_satellite_$1 += '/embed:$
 build_satellite_assembly_list = $(call q2s,$(cultures:%=$(BUILD_DIR)/%/$(SATELLITE_ASSEMBLY_NAME)))
 build_culture_res_files = $(call q2s,$(foreach res, $(culture_resources),$(call get_resource_name,$(res))))
 install_satellite_assembly_list = $(subst $(BUILD_DIR),$(DESTDIR)$(libdir)/$(PACKAGE),$(build_satellite_assembly_list))
+OCM_GTK = $(BUILD_DIR)/ocm-gtk
 X_GPX_XML = $(BUILD_DIR)/mime/packages/x-gpx.xml
 X_OCM_XML = $(BUILD_DIR)/mime/packages/x-ocm.xml
+OCM_DESKTOP = $(BUILD_DIR)/OCM.desktop
 OCMLOGO_SVG = $(BUILD_DIR)/icons/scalable/OCMLogo.svg
 CITO_SVG = $(BUILD_DIR)/icons/scalable/cito.svg
 EARTH_SVG = $(BUILD_DIR)/icons/scalable/earth.svg
@@ -938,11 +951,10 @@ PUSHPIN_SVG = $(BUILD_DIR)/icons/scalable/pushpin.svg
 VERSION_TXT = $(BUILD_DIR)/version/Version.txt
 GREENPIN_SVG = $(BUILD_DIR)/icons/scalable/greenpin.svg
 OCMENGINE_DLL = $(BUILD_DIR)/ocmengine.dll
-OCM_GTK = $(BUILD_DIR)/ocm-gtk
 all: all-am
 
 .SUFFIXES:
-$(srcdir)/Makefile.in: # $(srcdir)/Makefile.am $(top_srcdir)/Makefile.include $(am__configure_deps)
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/Makefile.include $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -967,12 +979,14 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 
-$(top_srcdir)/configure: # $(am__configure_deps)
+$(top_srcdir)/configure:  $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-$(ACLOCAL_M4): # $(am__aclocal_m4_deps)
+$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
 ocm-gtk: $(top_builddir)/config.status $(srcdir)/ocm-gtk.in
+	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
+OCM.desktop: $(top_builddir)/config.status $(srcdir)/OCM.desktop.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 install-binSCRIPTS: $(bin_SCRIPTS)
 	@$(NORMAL_INSTALL)
@@ -1062,6 +1076,26 @@ uninstall-commonapplicationdatarootmimepackagesDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" && rm -f $$files
+install-linuxdesktopapplicationsDATA: $(linuxdesktopapplications_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(linuxdesktopapplicationsdir)" || $(MKDIR_P) "$(DESTDIR)$(linuxdesktopapplicationsdir)"
+	@list='$(linuxdesktopapplications_DATA)'; test -n "$(linuxdesktopapplicationsdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(linuxdesktopapplicationsdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(linuxdesktopapplicationsdir)" || exit $$?; \
+	done
+
+uninstall-linuxdesktopapplicationsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(linuxdesktopapplications_DATA)'; test -n "$(linuxdesktopapplicationsdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(linuxdesktopapplicationsdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(linuxdesktopapplicationsdir)" && rm -f $$files
 install-linuxpkgconfigDATA: $(linuxpkgconfig_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(linuxpkgconfigdir)" || $(MKDIR_P) "$(DESTDIR)$(linuxpkgconfigdir)"
@@ -1343,7 +1377,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(SCRIPTS) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" "$(DESTDIR)$(linuxpkgconfigdir)" "$(DESTDIR)$(programfilesdir)" "$(DESTDIR)$(programfilesdocsdir)" "$(DESTDIR)$(programfilesicons24x24dir)" "$(DESTDIR)$(programfilesicons48x48dir)" "$(DESTDIR)$(programfilesiconsscalabledir)" "$(DESTDIR)$(programfileslicencedir)" "$(DESTDIR)$(programfilesversiondir)" "$(DESTDIR)$(programfileswebdir)" "$(DESTDIR)$(programfileswebimgdir)" "$(DESTDIR)$(programfileswebthemedefaultdir)" "$(DESTDIR)$(programfileswebthemedefaultimgdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(commonapplicationdatarootmimepackagesdir)" "$(DESTDIR)$(linuxdesktopapplicationsdir)" "$(DESTDIR)$(linuxpkgconfigdir)" "$(DESTDIR)$(programfilesdir)" "$(DESTDIR)$(programfilesdocsdir)" "$(DESTDIR)$(programfilesicons24x24dir)" "$(DESTDIR)$(programfilesicons48x48dir)" "$(DESTDIR)$(programfilesiconsscalabledir)" "$(DESTDIR)$(programfileslicencedir)" "$(DESTDIR)$(programfilesversiondir)" "$(DESTDIR)$(programfileswebdir)" "$(DESTDIR)$(programfileswebimgdir)" "$(DESTDIR)$(programfileswebthemedefaultdir)" "$(DESTDIR)$(programfileswebthemedefaultimgdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1394,6 +1428,7 @@ info: info-am
 info-am:
 
 install-data-am: install-commonapplicationdatarootmimepackagesDATA \
+	install-linuxdesktopapplicationsDATA \
 	install-linuxpkgconfigDATA install-programfilesDATA \
 	install-programfilesdocsDATA \
 	install-programfilesicons24x24DATA \
@@ -1449,6 +1484,7 @@ ps-am:
 
 uninstall-am: uninstall-binSCRIPTS \
 	uninstall-commonapplicationdatarootmimepackagesDATA \
+	uninstall-linuxdesktopapplicationsDATA \
 	uninstall-linuxpkgconfigDATA uninstall-pkglibSCRIPTS \
 	uninstall-programfilesDATA uninstall-programfilesdocsDATA \
 	uninstall-programfilesicons24x24DATA \
@@ -1468,9 +1504,10 @@ uninstall-am: uninstall-binSCRIPTS \
 	install-commonapplicationdatarootmimepackagesDATA install-data \
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am install-info \
-	install-info-am install-linuxpkgconfigDATA install-man \
-	install-pdf install-pdf-am install-pkglibSCRIPTS \
-	install-programfilesDATA install-programfilesdocsDATA \
+	install-info-am install-linuxdesktopapplicationsDATA \
+	install-linuxpkgconfigDATA install-man install-pdf \
+	install-pdf-am install-pkglibSCRIPTS install-programfilesDATA \
+	install-programfilesdocsDATA \
 	install-programfilesicons24x24DATA \
 	install-programfilesicons48x48DATA \
 	install-programfilesiconsscalableDATA \
@@ -1484,6 +1521,7 @@ uninstall-am: uninstall-binSCRIPTS \
 	mostlyclean mostlyclean-generic pdf pdf-am ps ps-am uninstall \
 	uninstall-am uninstall-binSCRIPTS \
 	uninstall-commonapplicationdatarootmimepackagesDATA \
+	uninstall-linuxdesktopapplicationsDATA \
 	uninstall-linuxpkgconfigDATA uninstall-pkglibSCRIPTS \
 	uninstall-programfilesDATA uninstall-programfilesdocsDATA \
 	uninstall-programfilesicons24x24DATA \
@@ -1496,7 +1534,7 @@ uninstall-am: uninstall-binSCRIPTS \
 	uninstall-programfileswebthemedefaultimgDATA
 
 
-all: $(ASSEMBLY) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES_WEB_IMG) $(PROGRAMFILES_WEB_THEME_DEFAULT) $(PROGRAMFILES_WEB_THEME_DEFAULT_IMG) $(PROGRAMFILES_VERSION) $(PROGRAMFILES) $(BINARIES) 
+all: $(ASSEMBLY) $(BINARIES) $(COMMONAPPLICATIONDATAROOT_MIME_PACKAGES) $(LINUX_DESKTOPAPPLICATIONS) $(PROGRAMFILES_ICONS_SCALABLE) $(PROGRAMFILES_WEB) $(PROGRAMFILES_ICONS_24X24) $(PROGRAMFILES_ICONS_48X48) $(PROGRAMFILES_DOCS) $(PROGRAMFILES_LICENCE) $(PROGRAMFILES_WEB_IMG) $(PROGRAMFILES_WEB_THEME_DEFAULT) $(PROGRAMFILES_WEB_THEME_DEFAULT_IMG) $(PROGRAMFILES_VERSION) $(PROGRAMFILES) 
 
 # macros
 
@@ -1534,8 +1572,10 @@ install-satellite-assemblies: $(install_satellite_assembly_list)
 uninstall-satellite-assemblies:
 	rm -rf $(install_satellite_assembly_list)
 
+$(eval $(call emit-deploy-wrapper,OCM_GTK,ocm-gtk))
 $(eval $(call emit-deploy-target,X_GPX_XML))
 $(eval $(call emit-deploy-target,X_OCM_XML))
+$(eval $(call emit-deploy-wrapper,OCM_DESKTOP,OCM.desktop))
 $(eval $(call emit-deploy-target,OCMLOGO_SVG))
 $(eval $(call emit-deploy-target,CITO_SVG))
 $(eval $(call emit-deploy-target,EARTH_SVG))
@@ -1650,7 +1690,6 @@ $(eval $(call emit-deploy-target,VERSION_TXT))
 $(eval $(call emit-deploy-target,GREENPIN_SVG))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL_MDB))
-$(eval $(call emit-deploy-wrapper,OCM_GTK,ocm-gtk,x))
 
 $(eval $(call emit_resgen_targets))
 $(build_xamlg_list): %.xaml.g.cs: %.xaml

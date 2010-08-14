@@ -95,7 +95,6 @@ namespace ocmgtk
 		}
 		
 		public enum PREDEF_FILTER {DONE, TODO, MINE, ALL, CUSTOM};
-		private PREDEF_FILTER m_predef = PREDEF_FILTER.CUSTOM;
 		
 		public static QuickFilter TODO_FILTER = new QuickFilter(PREDEF_FILTER.TODO);
 		public static QuickFilter DONE_FILTER = new QuickFilter(PREDEF_FILTER.DONE);

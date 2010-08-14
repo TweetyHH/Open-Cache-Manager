@@ -18,6 +18,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Mono.Unix;
 using Gtk;
 
 namespace ocmgtk
@@ -49,6 +50,22 @@ namespace ocmgtk
 		
 		public void AddFilter(QuickFilter filter)
 		{
+			if (m_filters.ContainsKey(filter.Name))
+			{
+				MessageDialog dlg = new MessageDialog(null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo,
+				                                      String.Format(Catalog.GetString("Are you sure you wish to " +
+				                                      	"overwrite \"{0}\"?"), filter.Name));
+				if ((int) ResponseType.Yes != dlg.Run())
+				{
+					dlg.Hide();
+					return;
+				}
+				else
+				{
+					dlg.Hide();
+					m_filters.Remove(filter.Name);
+				}
+			}
 			m_filters.Add(filter.Name, filter);
 			UpdateQFFile();
 		}

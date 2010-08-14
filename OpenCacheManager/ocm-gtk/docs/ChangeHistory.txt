@@ -1,3 +1,25 @@
+Version 0.18
+------------
+- Implement quick filters. There are now four predefined quick filters:
+All, Todo, Done, Mine. You may also save any currently filtered view as
+a quickfilter from the Filter Menu
+- If you have QLandkarte GT installed (see http://www.qlandkarte.org/) you
+can now send your caches and waypoints directly via the Tools menu
+- Improved auto-naming of child waypoints, you can choose the style of
+generated names via the Preferences dialog
+- Help menu now has a link to the OCM wiki
+- Modified GPX export to prevent orphaned waypoints on reimport into OCM
+- Fixed hard-coded and missing paths in the ocm-gtk and OCM.desktop files
+- Map bubbles now show more information, and indicate archived/disabled/dnf'd
+caches
+- Include OCM icons for the GUI so that OCM looks correct in non-Gnome
+desktop environments like KDE
+- Revamped the setup assistant
+- Fix bookmarks menu bug that allowed you to add a cache to a bookmark
+list that it already belongs to
+- You can now use your geocaching username instead of your account id
+
+
 Version 0.17
 ------------
 - Highlight caches with DNF or maintenance required in orange (on GPX import)

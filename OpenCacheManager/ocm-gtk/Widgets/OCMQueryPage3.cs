@@ -113,7 +113,7 @@ namespace ocmgtk
 			}
 		}
 		
-		public string State
+		public string Province
 		{
 			get { 
 				if (stateCheck.Active)

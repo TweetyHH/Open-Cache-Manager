@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="webkit-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
-    <widget-library name="../bind/ocm-gtk.exe" internal="true" />
+    <widget-library name="../bin/Release_Translated/ocm-gtk.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="1284 1201">
     <action-group name="Default">
@@ -854,7 +854,7 @@
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Type">TextAndIcon</property>
-                    <property name="Icon">stock:stock_help-chat Menu</property>
+                    <property name="Icon">resource:ocmgtk.icons.scalable.log.svg</property>
                     <property name="Label" translatable="yes">Log My Find...</property>
                     <property name="UseUnderline">True</property>
                     <signal name="Clicked" handler="OnClickLog" />
@@ -1430,7 +1430,7 @@
             <child>
               <widget class="Gtk.Image" id="image19">
                 <property name="MemberName" />
-                <property name="Pixbuf">stock:gtk-find Menu</property>
+                <property name="Pixbuf">resource:ocmgtk.icons.scalable.SearchIcon.svg</property>
               </widget>
               <packing>
                 <property name="Position">0</property>
@@ -1487,7 +1487,7 @@
             <child>
               <widget class="Gtk.Image" id="image23">
                 <property name="MemberName" />
-                <property name="Pixbuf">stock:stock_draw-dimension-line Menu</property>
+                <property name="Pixbuf">resource:ocmgtk.icons.scalable.DistIcon.svg</property>
               </widget>
               <packing>
                 <property name="Position">0</property>
@@ -2843,7 +2843,7 @@ U.S./Imperial</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="ocmgtk.SetupAssistantPage1" design-size="417 215">
+  <widget class="Gtk.Bin" id="ocmgtk.SetupAssistantPage1" design-size="614 215">
     <property name="MemberName" />
     <property name="WidthRequest">300</property>
     <property name="HeightRequest">0</property>
@@ -2860,6 +2860,7 @@ U.S./Imperial</property>
 
 For Geocaching.com and Terracaching users, you will need a premium account to use all of the features of OCM. If you don't have an account, click on the button below to sign up to Geocaching.com</property>
             <property name="Wrap">True</property>
+            <property name="WidthChars">80</property>
           </widget>
           <packing>
             <property name="Position">0</property>
@@ -2895,7 +2896,7 @@ For Geocaching.com and Terracaching users, you will need a premium account to us
       <placeholder />
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="ocmgtk.SetupAssistantPage2" design-size="432 216">
+  <widget class="Gtk.Bin" id="ocmgtk.SetupAssistantPage2" design-size="572 216">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -2909,7 +2910,7 @@ For Geocaching.com and Terracaching users, you will need a premium account to us
             <property name="Xalign">0</property>
             <property name="LabelProp" translatable="yes">You will need to create a database to use OCM, or open an existing OCM database if you already have one from somewhere else. </property>
             <property name="Wrap">True</property>
-            <property name="WidthChars">60</property>
+            <property name="WidthChars">80</property>
           </widget>
           <packing>
             <property name="Position">0</property>
@@ -2967,54 +2968,6 @@ For Geocaching.com and Terracaching users, you will need a premium account to us
             <property name="RowSpacing">6</property>
             <property name="ColumnSpacing">6</property>
             <child>
-              <widget class="Gtk.ComboBox" id="combobox2">
-                <property name="MemberName" />
-                <property name="IsTextCombo">True</property>
-                <property name="Items" translatable="yes">Metric
-U.S./Imperial</property>
-                <property name="Active">0</property>
-              </widget>
-              <packing>
-                <property name="LeftAttach">1</property>
-                <property name="RightAttach">2</property>
-                <property name="AutoSize">True</property>
-                <property name="XOptions">Fill</property>
-                <property name="YOptions">Fill</property>
-                <property name="XExpand">False</property>
-                <property name="XFill">True</property>
-                <property name="XShrink">False</property>
-                <property name="YExpand">False</property>
-                <property name="YFill">True</property>
-                <property name="YShrink">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.ComboBox" id="combobox3">
-                <property name="MemberName" />
-                <property name="IsTextCombo">True</property>
-                <property name="Items" translatable="yes">Open Street Maps
-Google Hybrid
-Google Terrain
-Google Street Maps</property>
-                <property name="Active">0</property>
-              </widget>
-              <packing>
-                <property name="TopAttach">1</property>
-                <property name="BottomAttach">2</property>
-                <property name="LeftAttach">1</property>
-                <property name="RightAttach">2</property>
-                <property name="AutoSize">True</property>
-                <property name="XOptions">Fill</property>
-                <property name="YOptions">Fill</property>
-                <property name="XExpand">False</property>
-                <property name="XFill">True</property>
-                <property name="XShrink">False</property>
-                <property name="YExpand">False</property>
-                <property name="YFill">True</property>
-                <property name="YShrink">False</property>
-              </packing>
-            </child>
-            <child>
               <widget class="Gtk.Label" id="label2">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
@@ -3052,6 +3005,54 @@ Google Street Maps</property>
                 <property name="YShrink">False</property>
               </packing>
             </child>
+            <child>
+              <widget class="Gtk.ComboBox" id="mapsCombo">
+                <property name="MemberName" />
+                <property name="IsTextCombo">True</property>
+                <property name="Items" translatable="yes">Open Street Maps
+Google Hybrid
+Google Street Maps
+Google Terrain</property>
+                <property name="Active">0</property>
+              </widget>
+              <packing>
+                <property name="TopAttach">1</property>
+                <property name="BottomAttach">2</property>
+                <property name="LeftAttach">1</property>
+                <property name="RightAttach">2</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.ComboBox" id="unitsCombo">
+                <property name="MemberName" />
+                <property name="IsTextCombo">True</property>
+                <property name="Items" translatable="yes">Metric
+U.S./Imperial</property>
+                <property name="Active">0</property>
+              </widget>
+              <packing>
+                <property name="LeftAttach">1</property>
+                <property name="RightAttach">2</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
           </widget>
           <packing>
             <property name="Position">2</property>
@@ -3063,7 +3064,7 @@ Google Street Maps</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="ocmgtk.SetupAssistantPage3" design-size="543 222">
+  <widget class="Gtk.Bin" id="ocmgtk.SetupAssistantPage3" design-size="572 326">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -3075,8 +3076,11 @@ Google Street Maps</property>
           <widget class="Gtk.Label" id="label17">
             <property name="MemberName" />
             <property name="Xalign">0</property>
-            <property name="LabelProp" translatable="yes">Finally, you need to enter your home coordinates and user ID so that OCM can correctly calculate the distance to caches from your home and correctly identify which caches are yours. </property>
+            <property name="LabelProp" translatable="yes">Finally, you need to enter your home coordinates and user ID so that OCM can correctly calculate the distance to caches from your home and correctly identify which caches are yours. 
+
+If you don't know these settings and are a Geocaching.com user, click on "View Account Online..." to see your information from Geocaching.com</property>
             <property name="Wrap">True</property>
+            <property name="WidthChars">80</property>
           </widget>
           <packing>
             <property name="Position">0</property>
@@ -3092,16 +3096,10 @@ Google Street Maps</property>
             <child>
               <widget class="Gtk.Table" id="table1">
                 <property name="MemberName" />
-                <property name="NRows">4</property>
-                <property name="NColumns">3</property>
+                <property name="NRows">5</property>
+                <property name="NColumns">2</property>
                 <property name="RowSpacing">6</property>
                 <property name="ColumnSpacing">6</property>
-                <child>
-                  <placeholder />
-                </child>
-                <child>
-                  <placeholder />
-                </child>
                 <child>
                   <widget class="Gtk.Button" id="button180">
                     <property name="MemberName" />
@@ -3112,10 +3110,7 @@ Google Street Maps</property>
                     <signal name="Clicked" handler="OnAccountInfoClicked" />
                   </widget>
                   <packing>
-                    <property name="TopAttach">3</property>
-                    <property name="BottomAttach">4</property>
-                    <property name="LeftAttach">2</property>
-                    <property name="RightAttach">3</property>
+                    <property name="RightAttach">2</property>
                     <property name="AutoSize">True</property>
                     <property name="XOptions">Fill</property>
                     <property name="YOptions">Fill</property>
@@ -3131,13 +3126,14 @@ Google Street Maps</property>
                   <widget class="Gtk.Label" id="label1">
                     <property name="MemberName" />
                     <property name="Xalign">0</property>
-                    <property name="LabelProp" translatable="yes">You can choose either your account ID or user name to help OCM identify your caches and finds</property>
+                    <property name="LabelProp" translatable="yes">You can enter either your account ID or user name to help OCM identify your caches and finds</property>
                     <property name="Wrap">True</property>
+                    <property name="WidthChars">80</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">2</property>
-                    <property name="BottomAttach">3</property>
-                    <property name="RightAttach">3</property>
+                    <property name="TopAttach">3</property>
+                    <property name="BottomAttach">4</property>
+                    <property name="RightAttach">2</property>
                     <property name="AutoSize">True</property>
                     <property name="XOptions">Fill</property>
                     <property name="YOptions">Fill</property>
@@ -3156,6 +3152,8 @@ Google Street Maps</property>
                     <property name="LabelProp" translatable="yes">Home Latitude:</property>
                   </widget>
                   <packing>
+                    <property name="TopAttach">1</property>
+                    <property name="BottomAttach">2</property>
                     <property name="AutoSize">True</property>
                     <property name="XOptions">Fill</property>
                     <property name="YOptions">Fill</property>
@@ -3174,8 +3172,8 @@ Google Street Maps</property>
                     <property name="LabelProp" translatable="yes">Home Longitude:</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">1</property>
-                    <property name="BottomAttach">2</property>
+                    <property name="TopAttach">2</property>
+                    <property name="BottomAttach">3</property>
                     <property name="AutoSize">True</property>
                     <property name="XOptions">Fill</property>
                     <property name="YOptions">Fill</property>
@@ -3193,6 +3191,8 @@ Google Street Maps</property>
                     <property name="Events">ButtonPressMask</property>
                   </widget>
                   <packing>
+                    <property name="TopAttach">1</property>
+                    <property name="BottomAttach">2</property>
                     <property name="LeftAttach">1</property>
                     <property name="RightAttach">2</property>
                     <property name="AutoSize">True</property>
@@ -3212,32 +3212,10 @@ Google Street Maps</property>
                     <property name="Events">ButtonPressMask</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">1</property>
-                    <property name="BottomAttach">2</property>
+                    <property name="TopAttach">2</property>
+                    <property name="BottomAttach">3</property>
                     <property name="LeftAttach">1</property>
                     <property name="RightAttach">2</property>
-                    <property name="AutoSize">True</property>
-                    <property name="XOptions">Fill</property>
-                    <property name="YOptions">Fill</property>
-                    <property name="XExpand">False</property>
-                    <property name="XFill">True</property>
-                    <property name="XShrink">False</property>
-                    <property name="YExpand">False</property>
-                    <property name="YFill">True</property>
-                    <property name="YShrink">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.ComboBox" id="modeCombo">
-                    <property name="MemberName" />
-                    <property name="IsTextCombo">True</property>
-                    <property name="Items" translatable="yes">Owner ID
-User Name</property>
-                    <property name="Active">0</property>
-                  </widget>
-                  <packing>
-                    <property name="TopAttach">3</property>
-                    <property name="BottomAttach">4</property>
                     <property name="AutoSize">True</property>
                     <property name="XOptions">Fill</property>
                     <property name="YOptions">Fill</property>
@@ -3257,9 +3235,8 @@ User Name</property>
                     <property name="InvisibleChar">•</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">3</property>
-                    <property name="BottomAttach">4</property>
-                    <property name="LeftAttach">1</property>
+                    <property name="TopAttach">4</property>
+                    <property name="BottomAttach">5</property>
                     <property name="RightAttach">2</property>
                     <property name="AutoSize">True</property>
                     <property name="XOptions">Fill</property>
@@ -8180,6 +8157,133 @@ Water Source</property>
             <property name="Fill">False</property>
           </packing>
         </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="ocmgtk.ProcessLogs" design-size="400 300">
+    <property name="MemberName" />
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Buttons">2</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.HBox" id="hbox1">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="ShadowType">In</property>
+                <child>
+                  <widget class="Gtk.TreeView" id="treeview1">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.VButtonBox" id="vbuttonbox1">
+                <property name="MemberName" />
+                <property name="Size">1</property>
+                <child>
+                  <widget class="Gtk.Button" id="button356">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">GtkButton</property>
+                    <property name="UseUnderline">True</property>
+                  </widget>
+                  <packing>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">2</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonCancel">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-cancel</property>
+            <property name="ResponseId">-6</property>
+            <property name="label">gtk-cancel</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-ok</property>
+            <property name="ResponseId">-5</property>
+            <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Bin" id="ocmgtk.SetupAssistantPage4" design-size="572 210">
+    <property name="MemberName" />
+    <property name="Visible">False</property>
+    <child>
+      <widget class="Gtk.Label" id="label2">
+        <property name="MemberName" />
+        <property name="Xpad">6</property>
+        <property name="Ypad">6</property>
+        <property name="Xalign">0</property>
+        <property name="Yalign">0</property>
+        <property name="LabelProp" translatable="yes">OCM Is now ready to use. Click Close to close this assistant and begin using OCM.
+
+You will need to use a GPX or LOC file to populate the OCM database with caches. In Geocaching.com you can build a Pocket Query if you are a Premium Member. For Terraching, go to the "To Do List" on Terracaching.com. For Navicache, create an advanced search and download the caches from "My NaviCache". You can find links to all of these under the Web menu.
+
+Visit the OCM wiki for help and how to guides by click on Help&gt;OCM Wiki...
+</property>
+        <property name="Wrap">True</property>
+        <property name="WidthChars">80</property>
       </widget>
     </child>
   </widget>

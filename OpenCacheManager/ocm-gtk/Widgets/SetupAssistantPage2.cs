@@ -30,6 +30,33 @@ namespace ocmgtk
 			get { return dbEntry.Text;}
 		}
 		
+		public string DefaultMap
+		{
+			get {
+				switch (mapsCombo.Active)
+				{
+					case 1:
+						return "ghyb";
+					case 2:
+						return "gmap";
+					case 3:
+						return "gphy";
+					default:
+						return "osm";
+				}
+			}
+		}
+		
+		public bool ImperialUnits
+		{
+			get { 
+				if (unitsCombo.Active == 1)
+					return true;
+				else
+					return false;
+			}		
+		}
+		
 		
 		protected virtual void OnOpenClicked (object sender, System.EventArgs e)
 		{

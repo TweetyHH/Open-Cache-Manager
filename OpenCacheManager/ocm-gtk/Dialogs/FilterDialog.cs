@@ -38,9 +38,9 @@ namespace ocmgtk
 				string cntry = datePage.Country;
 				if (!String.IsNullOrEmpty(cntry))
 					filter.AddFilterCriteria(FilterList.KEY_COUNTRY, datePage.Country);
-				string state = datePage.State;
+				string state = datePage.Province;
 				if (!String.IsNullOrEmpty(state))
-					filter.AddFilterCriteria(FilterList.KEY_STATE, datePage.State);
+					filter.AddFilterCriteria(FilterList.KEY_STATE, datePage.Province);
 				return filter;
 			}
 			set {
@@ -68,7 +68,7 @@ namespace ocmgtk
 				if (value.Contains(FilterList.KEY_COUNTRY))
 					datePage.Country = value.GetCriteria(FilterList.KEY_COUNTRY) as string;
 				if (value.Contains(FilterList.KEY_STATE))
-					datePage.State = value.GetCriteria(FilterList.KEY_STATE) as string;
+					datePage.Province = value.GetCriteria(FilterList.KEY_STATE) as string;
 				
 			}
 		}

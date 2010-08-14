@@ -51,7 +51,7 @@ namespace ocmgtk
 		void HandleSplashtimeElapsed (object sender, ElapsedEventArgs e)
 		{
 			Application.Invoke(delegate{this.Hide();
-			MainWindow win = new MainWindow();
+			new MainWindow();
 			UIMonitor.getInstance().LoadConfig();
 			if (m_file != null)
 				UIMonitor.getInstance().ImportGPXFile(m_file);

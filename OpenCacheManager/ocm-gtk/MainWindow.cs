@@ -385,6 +385,7 @@ public partial class MainWindow : Gtk.Window
 		}
 	}
 	
+#pragma warning disable 219
 	public void UpdateBookmarkList(List<string> items)
 	{
 		Menu bookmarksSub = new Menu();
@@ -529,7 +530,7 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnQTLandKarteClick (object sender, System.EventArgs e)
 	{
-		m_monitor.OpenInQTLandKarte();
+		m_monitor.OpenInQLandKarte();
 	}
 	
 	protected virtual void OnViewSelectedInQlandKarte (object sender, System.EventArgs e)

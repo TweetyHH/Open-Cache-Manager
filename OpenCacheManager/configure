@@ -3109,7 +3109,7 @@ fi
 
 
 
-ac_config_files="$ac_config_files ocmengine/ocmengine.pc ocmengine/Makefile ocm-gtk/ocm-gtk ocm-gtk/Makefile Makefile"
+ac_config_files="$ac_config_files ocmengine/ocmengine.pc ocmengine/Makefile ocm-gtk/ocm-gtk ocm-gtk/OCM.desktop ocm-gtk/Makefile Makefile"
 
 
 cat >confcache <<\_ACEOF
@@ -3829,6 +3829,7 @@ do
     "ocmengine/ocmengine.pc") CONFIG_FILES="$CONFIG_FILES ocmengine/ocmengine.pc" ;;
     "ocmengine/Makefile") CONFIG_FILES="$CONFIG_FILES ocmengine/Makefile" ;;
     "ocm-gtk/ocm-gtk") CONFIG_FILES="$CONFIG_FILES ocm-gtk/ocm-gtk" ;;
+    "ocm-gtk/OCM.desktop") CONFIG_FILES="$CONFIG_FILES ocm-gtk/OCM.desktop" ;;
     "ocm-gtk/Makefile") CONFIG_FILES="$CONFIG_FILES ocm-gtk/Makefile" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
 
