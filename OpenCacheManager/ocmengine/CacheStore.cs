@@ -320,42 +320,7 @@ namespace ocmengine
 			cmd.Dispose();
 			cmd = null;
 		}
-		
-		private void ScanLogs()
-		{
-			List<Geocache> caches = GetCacheList(GET_GC);
-			IDbTransaction trans =  StartUpdate();
-			IDbConnection conn = OpenConnection();
-			foreach (Geocache cache in caches)
-			{
-				LogScan(cache, conn);
-			}
-			EndUpdate(trans);
-		}
-		
-		private void LogScan(Geocache cache, IDbConnection conn)
-		{
-			IDbCommand command = conn.CreateCommand();
-			command.CommandText = String.Format(LOG_STAT_SCAN, cache.Name);
-			IDataReader reader = command.ExecuteReader();
-			while (reader.Read())
-			{
-				String val = reader.GetString(0);
-				if (val.Equals("Didn't find it") || val.Equals("Needs Maintenance")
-				    || val.Equals("no_find"))
-					cache.CheckNotes = true;
-				else
-					cache.CheckNotes = false;
-			}
-			reader.Close();
-			reader.Dispose();
-			command.CommandText = String.Format(UPDATE_GC_CHECKNOTE, cache.CheckNotes.ToString(), cache.Name);
-			command.ExecuteNonQuery();
-			command.Dispose();
-			command = null;
-		}
-		
-		
+			
 		public DateTime GetLastLogByYou(Geocache cache, String ownerID)
 		{
 			IDbConnection conn = OpenConnection();

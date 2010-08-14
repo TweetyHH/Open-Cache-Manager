@@ -60,7 +60,6 @@ namespace ocmengine
 		private string m_cacheID = "";
 		private string m_ownerID = "";
 		private bool m_checkNotes = false;
-		private DateTime m_foundByYou = DateTime.MinValue;
 		private int m_children = 0;
 		
 		public string CacheName
