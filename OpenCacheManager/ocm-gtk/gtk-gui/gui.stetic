@@ -5,7 +5,7 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="webkit-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
+    <widget-library name="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
     <widget-library name="../bin/Release_Translated/ocm-gtk.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="1284 1201">
@@ -438,7 +438,7 @@
       </action>
       <action id="AddCacheAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Add Cache...</property>
+        <property name="Label" translatable="yes">_Add Cache...</property>
         <property name="ShortLabel" translatable="yes">Add Cache...</property>
         <signal name="Activated" handler="OnAddCacheActionActivated" />
       </action>
@@ -5733,7 +5733,7 @@ USB to allow OCM to write to your Garmin Device. See:
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="ocmgtk.GenericGPSWidget" design-size="486 180">
+  <widget class="Gtk.Bin" id="ocmgtk.GenericGPSWidget" design-size="424 192">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -5793,9 +5793,11 @@ USB to allow OCM to write to your Garmin Device. See:
             <child>
               <widget class="Gtk.Label" id="label4">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Read the GPSBabel Documentation to choose the right values for these fields
-&lt;span fgcolor="blue"&gt;http://www.gpsbabel.org/readme.html&lt;/span&gt;</property>
+                <property name="Xalign">0</property>
+                <property name="LabelProp" translatable="yes">Read the GPSBabel Documentation to choose the right values for these fields &lt;span fgcolor="blue"&gt;http://www.gpsbabel.org/readme.html&lt;/span&gt;</property>
                 <property name="UseMarkup">True</property>
+                <property name="Wrap">True</property>
+                <property name="WidthChars">50</property>
               </widget>
             </child>
           </widget>
@@ -5828,6 +5830,7 @@ USB to allow OCM to write to your Garmin Device. See:
                 <property name="CanFocus">True</property>
                 <property name="Text">geo</property>
                 <property name="IsEditable">True</property>
+                <property name="WidthChars">20</property>
                 <property name="InvisibleChar">•</property>
               </widget>
               <packing>

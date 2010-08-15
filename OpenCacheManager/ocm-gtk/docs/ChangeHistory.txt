@@ -1,3 +1,9 @@
+Version 0.18.1
+--------------
+- Fix crash on splash screen on Ubuntu 10.04
+- Merge latest dutch translation
+- Grey out "View Selected Cache in QLandkarte" if no cache selected
+
 Version 0.18
 ------------
 - Implement quick filters. There are now four predefined quick filters:

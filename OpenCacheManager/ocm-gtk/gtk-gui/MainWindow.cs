@@ -434,7 +434,7 @@ public partial class MainWindow {
         this.ClearAllFiltersAction1 = new Gtk.Action("ClearAllFiltersAction1", Mono.Unix.Catalog.GetString("Clear _All Filters"), null, null);
         this.ClearAllFiltersAction1.ShortLabel = Mono.Unix.Catalog.GetString("Clear _All Filters");
         w1.Add(this.ClearAllFiltersAction1, null);
-        this.AddCacheAction = new Gtk.Action("AddCacheAction", Mono.Unix.Catalog.GetString("Add Cache..."), null, null);
+        this.AddCacheAction = new Gtk.Action("AddCacheAction", Mono.Unix.Catalog.GetString("_Add Cache..."), null, null);
         this.AddCacheAction.ShortLabel = Mono.Unix.Catalog.GetString("Add Cache...");
         w1.Add(this.AddCacheAction, null);
         this.QuickFilterAction = new Gtk.Action("QuickFilterAction", Mono.Unix.Catalog.GetString("_Quick Filter"), null, null);

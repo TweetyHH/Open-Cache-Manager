@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2010-08-13 08:10:12-0400\n"
+"POT-Creation-Date: 2010-08-14 08:18:05-0400\n"
 "PO-Revision-Date: 2010-07-13 19:23:29-0400\n"
 "Last-Translator: Kyle Campbell <kmcamp_ott@yahoo.com>\n"
 "Language-Team: \n"
@@ -39,7 +39,7 @@ msgstr ""
 msgid "_Remove Selected Cache from Bookmark List"
 msgstr ""
 
-#: ../ocm-gtk/MainWindow.cs:397
+#: ../ocm-gtk/MainWindow.cs:399
 msgid "None"
 msgstr ""
 
@@ -277,7 +277,11 @@ msgstr ""
 msgid "Clear _All Filters"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:436 ../ocm-gtk/gtk-gui/MainWindow.cs:437
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:436
+msgid "_Add Cache..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:437
 msgid "Add Cache..."
 msgstr ""
 
@@ -1471,17 +1475,17 @@ msgstr ""
 msgid "Select File location"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:92
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:93
 msgid ""
-"Read the GPSBabel Documentation to choose the right values for these fields\n"
+"Read the GPSBabel Documentation to choose the right values for these fields "
 "<span fgcolor=\"blue\">http://www.gpsbabel.org/readme.html</span>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:108
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:111
 msgid "Output Format:"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:136
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:140
 msgid "Output FIle:"
 msgstr ""
 

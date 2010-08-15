@@ -174,7 +174,8 @@ public partial class MainWindow : Gtk.Window
 			MarkDisabledAction.Sensitive = true;
 			MarkUnfoundAction.Sensitive = true;
 			ModifyCacheAction.Sensitive = true;
-			DeleteCacheAction.Sensitive = true;			
+			DeleteCacheAction.Sensitive = true;
+			ViewSelectedCacheInQLandkarteGTAction.Sensitive = true;
 		}
 		else
 		{
@@ -189,7 +190,8 @@ public partial class MainWindow : Gtk.Window
 			MarkDisabledAction.Sensitive = false;
 			MarkUnfoundAction.Sensitive = false;
 			ModifyCacheAction.Sensitive = false;
-			DeleteCacheAction.Sensitive = false;	
+			DeleteCacheAction.Sensitive = false;
+			ViewSelectedCacheInQLandkarteGTAction.Sensitive = false;
 		}
 	}
 

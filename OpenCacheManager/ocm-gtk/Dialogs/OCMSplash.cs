@@ -14,7 +14,6 @@
 //    limitations under the License.
 
 using System;
-using System.Timers;
 using Gdk;
 using Gtk;
 
@@ -31,31 +30,9 @@ namespace ocmgtk
 			this.Build ();
 			this.image16.Pixbuf = LOGO;
 			versionLabel.Markup = "<b><big>" + UIMonitor.getInstance().GetOCMVersion() + "</big></b>";
-			Timer splashtime = new Timer();
-			//Color cl2 = new Color(255,255,255);
-			//this.ModifyBg(StateType.Normal, cl2);
 			Color cl = new Color(0,0,0);
-			Color.Parse("#9D9FA1", ref cl);
+			Color.Parse("#9D9FA1", ref cl);	
 			eventbox1.ModifyBg(StateType.Normal, cl);
-			splashtime.AutoReset = false;
-			splashtime.Elapsed += HandleSplashtimeElapsed;
-			splashtime.Interval = 1000;
-			splashtime.Start();
-		}
-		
-		public void OpenFile(String file)
-		{
-			m_file = file;
-		}
-
-		void HandleSplashtimeElapsed (object sender, ElapsedEventArgs e)
-		{
-			Application.Invoke(delegate{this.Hide();
-			new MainWindow();
-			UIMonitor.getInstance().LoadConfig();
-			if (m_file != null)
-				UIMonitor.getInstance().ImportGPXFile(m_file);
-			});
 		}
 	}
 }

@@ -90,8 +90,11 @@ namespace ocmgtk {
             // Container child hotPlugButton.Gtk.Container+ContainerChild
             this.label4 = new Gtk.Label();
             this.label4.Name = "label4";
-            this.label4.LabelProp = Mono.Unix.Catalog.GetString("Read the GPSBabel Documentation to choose the right values for these fields\n<span fgcolor=\"blue\">http://www.gpsbabel.org/readme.html</span>");
+            this.label4.Xalign = 0F;
+            this.label4.LabelProp = Mono.Unix.Catalog.GetString("Read the GPSBabel Documentation to choose the right values for these fields <span fgcolor=\"blue\">http://www.gpsbabel.org/readme.html</span>");
             this.label4.UseMarkup = true;
+            this.label4.Wrap = true;
+            this.label4.WidthChars = 50;
             this.hotPlugButton.Add(this.label4);
             this.hotPlugButton.Label = null;
             this.vbox3.Add(this.hotPlugButton);
@@ -118,6 +121,7 @@ namespace ocmgtk {
             this.formatEntry.Name = "formatEntry";
             this.formatEntry.Text = "geo";
             this.formatEntry.IsEditable = true;
+            this.formatEntry.WidthChars = 20;
             this.formatEntry.InvisibleChar = '•';
             this.hbox2.Add(this.formatEntry);
             Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.hbox2[this.formatEntry]));

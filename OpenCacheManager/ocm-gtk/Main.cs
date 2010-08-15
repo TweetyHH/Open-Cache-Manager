@@ -13,6 +13,7 @@
 using System;
 using System.Threading;
 using Gtk;
+using System.Timers;
 using NDesk.DBus;
 using org.freedesktop.DBus;
 
@@ -20,7 +21,9 @@ namespace ocmgtk
 {
 	class MainClass
 	{
-
+		static string m_file = null;
+		static OCMSplash m_splash = null;
+		
 		public static void Main (string[] args)
 		{
 			
@@ -47,6 +50,10 @@ namespace ocmgtk
 				System.Console.Error.WriteLine("NO SESSION DBUS RUNNING");
 			}
 			
+			if (args != null)
+				if (args.Length > 0)
+					m_file = null;
+			
 			Mono.Unix.Catalog.Init ("ocm", "./locale");
 			bool runWizard = false;
 			try {
@@ -59,17 +66,47 @@ namespace ocmgtk
 			
 			if (runWizard) {
 				UIMonitor.getInstance ().RunSetupAssistant ();
-			} else {
-				OCMSplash splash = new OCMSplash ();
-				if (args != null)
-					if (args.Length > 0)
-						splash.OpenFile(args[0]);
-				splash.Show ();
+			} 
+			else
+			{
+				ShowSplash();
 			}			
 			
 			Application.Run ();
 			
 		}
 		
+		public static void ShowSplash()
+		{
+			m_splash = new OCMSplash();
+			m_splash.ShowNow();
+			System.Timers.Timer splashtime = new System.Timers.Timer();
+			splashtime.AutoReset = false;
+			splashtime.Interval = 1000;
+			splashtime.Elapsed += HandleSplashtimeElapsed;
+			splashtime.Start();
+		}
+
+		static void HandleSplashtimeElapsed (object sender, ElapsedEventArgs e)
+		{
+			Application.Invoke(delegate{
+				ShowMain();
+			});
+		}
+		
+		public static void ShowMain()
+		{
+			if (m_splash != null)
+			{
+				m_splash.Hide();
+				m_splash.Dispose();
+			}
+			
+			MainWindow win = new MainWindow();
+			UIMonitor.getInstance().LoadConfig();			
+			if (m_file != null)
+				UIMonitor.getInstance().ImportGPXFile(m_file);
+			win.ShowAll();
+		}		
 	}
 }
