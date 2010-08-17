@@ -45,11 +45,11 @@ namespace ocmengine
 		const string UPDATE_GC = "UPDATE GEOCACHE SET fullname='{1}', id='{2}', owner='{3}', ownerID='{4}',  placedby='{5}', difficulty='{6}', terrain='{7}', country='{8}',state='{9}',type='{10}',shortdesc='{11}',longdesc='{12}',hint='{13}',container='{14}',archived='{15}',available='{16}', notes='{17}', checkNotes='{18}' WHERE name='{0}'";
 		// SAME AS UPDATE, BUT DOESN't OVERWRITE CACHE NOTES
 		const string ADD_EXISTING_GC = "UPDATE GEOCACHE SET fullname='{1}', id='{2}', owner='{3}', ownerID='{4}',  placedby='{5}', difficulty='{6}', terrain='{7}', country='{8}',state='{9}',type='{10}',shortdesc='{11}',longdesc='{12}',hint='{13}',container='{14}',archived='{15}',available='{16}', checkNotes='{17}' WHERE name='{0}'";
-		const string GC_EXISTS_CHECK = "SELECT * FROM GEOCACHE WHERE name='{0}'";
+		const string GC_EXISTS_CHECK = "SELECT 1 FROM GEOCACHE WHERE name='{0}'";
 		const string GET_GC = "SELECT  WAYPOINT.name, WAYPOINT.lat, WAYPOINT.lon, WAYPOINT.url, WAYPOINT.urlname, WAYPOINT.desc, WAYPOINT.symbol, WAYPOINT.type, WAYPOINT.time," 
 			+ "GEOCACHE.fullname, GEOCACHE.id, GEOCACHE.owner, GEOCACHE.ownerID, GEOCACHE.placedby, GEOCACHE.difficulty, GEOCACHE.terrain, GEOCACHE.country, GEOCACHE.state,"
-			+ "GEOCACHE.type, GEOCACHE.shortdesc, GEOCACHE.longdesc, GEOCACHE.hint, GEOCACHE.container, GEOCACHE.archived, GEOCACHE.available, WAYPOINT.lastUpdate, GEOCACHE.notes, GEOCACHE.checkNotes, (SELECT COUNT(*) FROM WAYPOINT WHERE WAYPOINT.parent = GEOCACHE.name)"
-			+ " FROM WAYPOINT, GEOCACHE WHERE WAYPOINT.name = GEOCACHE.name";
+			+ "GEOCACHE.type, GEOCACHE.shortdesc, GEOCACHE.longdesc, GEOCACHE.hint, GEOCACHE.container, GEOCACHE.archived, GEOCACHE.available, WAYPOINT.lastUpdate, GEOCACHE.notes, GEOCACHE.checkNotes, (SELECT 1 FROM WAYPOINT WHERE WAYPOINT.parent = GEOCACHE.name)"
+			+ " FROM WAYPOINT, GEOCACHE WHERE GEOCACHE.name = WAYPOINT.name";
 		const string COUNT_GC = "SELECT COUNT(name) from GEOCACHE";
 		const string COUNT_WPT = "SELECT COUNT(name) from WAYPOINT";
 		const string FOUND = " WHERE SYMBOL='Geocache Found'";
@@ -73,5 +73,6 @@ namespace ocmengine
 		const string SET_DB_VER = "INSERT INTO DB_VER (VER) VALUES (2)";
 		const string UPGRADE_GEOCACHE_V0_V1 = "ALTER TABLE GEOCACHE ADD COLUMN notes TEXT";
 		const string UPGRADE_GEOCACHE_V1_V2 = "ALTER TABLE GEOCACHE ADD COLUMN checkNotes TEXT";
+		const string VACUUM = "VACUUM";
 	}
 }

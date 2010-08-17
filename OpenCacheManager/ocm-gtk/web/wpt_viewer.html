@@ -28,8 +28,8 @@ body {
  
 	// Start position for the map (hardcoded here for simplicity,
 	// but maybe you want to get from URL params)
-	var lat = 45.39271;
-	var lon = -75.63399;
+	var lat = 0;
+	var lon = 0;
 	var zoom = 14;
 	var pois,extra;
 	var notify;
@@ -79,20 +79,6 @@ body {
             );
 
 
-            /*var yahoo = new OpenLayers.Layer.Yahoo(
-                "Yahoo Street Map",
-                {'sphericalMercator': true}
-            );
-            var yahoosat = new OpenLayers.Layer.Yahoo(
-                "Yahoo Satellite",
-                {'type': YAHOO_MAP_SAT, 'sphericalMercator': true}
-            );
-            var yahoohyb = new OpenLayers.Layer.Yahoo(
-                "Yahoo Hybrid",
-                {'type': YAHOO_MAP_HYB, 'sphericalMercator': true}
-            );*/
-
-
 	    extra = new OpenLayers.Layer.Markers("Other Geocaches");
         map.addLayers([osm, ghyb,gmap,gphy, extra]);
         map.addControl(new OpenLayers.Control.ScaleLine(),new OpenLayers.Pixel(80,10))
@@ -115,9 +101,12 @@ body {
         {
         	map.setBaseLayer(gphy);
         }
+        
+        lon = getParm('lon');
+        lat = getParm('lat');       
 
         var lonLat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
-        if (!map.getCenter()) map.setCenter (lonLat, zoom);
+        map.setCenter (lonLat, zoom);
         clearMarkers();
         map.events.register('moveend', null, mapMoved)
     }

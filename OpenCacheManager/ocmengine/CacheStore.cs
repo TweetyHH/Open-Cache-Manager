@@ -26,8 +26,28 @@ namespace ocmengine
 	
 	public partial class CacheStore
 	{
+		public class ReadCacheArgs:EventArgs
+		{
+			private Geocache m_cache;
+			
+			public Geocache Cache
+			{
+				get { return m_cache;}
+			}
+			
+			public ReadCacheArgs(Geocache message):base()
+			{
+				m_cache = message;
+			}
+		}
 		
 #region Properties
+		
+		public event ReadCacheEventHandler ReadCache;
+		public event ReadCompleteEventHandler Complete;
+		public delegate void ReadCacheEventHandler(object sender, ReadCacheArgs args);
+		public delegate void ReadCompleteEventHandler(object sender, EventArgs args);
+		
 		
 		private IDbConnection m_conn = null;
 		private String m_dbFile = null;
@@ -44,6 +64,11 @@ namespace ocmengine
 		{
 			get { return m_bmrkList;}
 			set { m_bmrkList = value;}
+		}
+		
+		public string DBFile
+		{
+			get { return m_dbFile;}
 		}
 		
 		public int CacheCount
@@ -113,7 +138,7 @@ namespace ocmengine
 			EndUpdate(trans);			
 		}
 		
-		internal void AddWaypoint(Waypoint point)
+		public void AddWaypoint(Waypoint point)
 		{
 			if (point is Geocache)
 				AddCache(point as Geocache);
@@ -148,7 +173,7 @@ namespace ocmengine
 		
 		
 		
-		public IEnumerator<Geocache> getCacheEnumerator()
+		public void GetCaches()
 		{
 			String sql = GET_GC;
 			if (null != m_filter)
@@ -156,7 +181,8 @@ namespace ocmengine
 			if (null != m_bmrkList)
 				sql += String.Format(BMRK_FILTER, m_bmrkList);
 			List<Geocache> caches =  GetCacheList(sql);
-			return caches.GetEnumerator();
+			if (this.Complete != null)
+				this.Complete(this, new EventArgs());
 		}
 		
 		public void AddBookmark(String name)
@@ -474,7 +500,13 @@ namespace ocmengine
 				cache.CheckNotes = Boolean.Parse(val as string);
 			else
 				cache.CheckNotes = false;
-			cache.Children = reader.GetInt32(28);
+			val = reader.GetValue(28);
+			if (val != DBNull.Value)
+				cache.Children = true;
+			else
+				cache.Children = false;
+			if (this.ReadCache != null)
+				this.ReadCache(this, new ReadCacheArgs(cache));
 			return cache;
 			
 		}
@@ -495,7 +527,7 @@ namespace ocmengine
 			EndUpdate(trans);
 		}
 		
-		internal void AddLog(String cachename, CacheLog log)
+		public void AddLog(String cachename, CacheLog log)
 		{
 			IDbCommand cmd = m_conn.CreateCommand();
 			cmd.CommandText = String.Format(ADD_LOG, cachename, log.LogDate.ToString("o"), SQLEscape(log.LoggedBy), SQLEscape(log.LogMessage), SQLEscape(log.LogStatus), log.FinderID, log.Encoded.ToString());
@@ -646,6 +678,15 @@ namespace ocmengine
 			cmd.Dispose();
 			conn.Close();
 		//	ScanLogs();
+		}
+		
+		public void Compact()
+		{
+			IDbConnection conn =  OpenConnection ();
+			IDbCommand command = conn.CreateCommand();
+			command.CommandText = VACUUM;
+			command.ExecuteNonQuery();
+			conn.Close();
 		}
 		
 		private int GetDBVersion ()

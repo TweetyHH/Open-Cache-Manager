@@ -192,9 +192,9 @@ namespace ocmgtk
 			Waypoint pt = (Waypoint)model.GetValue (iter, 0);
 			CellRendererPixbuf icon = cell as CellRendererPixbuf;
 			if (pt is Geocache)
-				icon.Pixbuf = UIMonitor.GetSmallCacheIcon ((pt as Geocache).TypeOfCache);
+				icon.Pixbuf = IconManager.GetSmallCacheIcon ((pt as Geocache).TypeOfCache);
 			else
-				icon.Pixbuf = UIMonitor.GetSmallWaypointIcon(pt.Symbol);
+				icon.Pixbuf = IconManager.GetSmallWaypointIcon(pt.Symbol);
 		}
 
 		protected virtual void DoEdit (object sender, System.EventArgs e)

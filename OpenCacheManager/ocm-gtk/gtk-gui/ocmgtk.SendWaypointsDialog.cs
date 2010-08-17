@@ -119,6 +119,7 @@ namespace ocmgtk {
             this.DefaultHeight = 175;
             this.closeButton.Hide();
             this.Show();
+            this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDelete);
             this.buttonCancel.Clicked += new System.EventHandler(this.OnCancelClick);
             this.closeButton.Clicked += new System.EventHandler(this.OnCloseClick);
         }

@@ -39,42 +39,6 @@ namespace ocmgtk
 		private static UIMonitor m_instance = null;
 		private GeoCachePane m_pane = null;
 		private Statusbar m_statusbar = null;
-		private static Pixbuf TRADICON_S = new Pixbuf ("./icons/scalable/traditional.svg", 24, 24);
-		private static Pixbuf LETTERICON_S = new Pixbuf ("./icons/scalable/letterbox.svg", 24, 24);
-		private static Pixbuf MULTIICON_S = new Pixbuf ("./icons/scalable/multi.svg", 24, 24);
-		private static Pixbuf MYSTERYICON_S = new Pixbuf ("./icons/scalable/unknown.svg", 24, 24);
-		private static Pixbuf OTHERICON_S = new Pixbuf ("./icons/scalable/other.svg", 24, 24);
-		private static Pixbuf FOUNDICON_S = new Pixbuf ("./icons/scalable/found.svg", 24, 24);
-		private static Pixbuf EARTHICON_S = new Pixbuf ("./icons/scalable/earth.svg", 24, 24);
-		private static Pixbuf CITOICON_S = new Pixbuf ("./icons/scalable/cito.svg", 24, 24);
-		private static Pixbuf MEGAEVENT_S = new Pixbuf ("./icons/scalable/mega.svg", 24, 24);
-		private static Pixbuf EVENT_S = new Pixbuf ("./icons/scalable/event.svg", 24, 24);
-		private static Pixbuf WEBCAM_S = new Pixbuf ("./icons/scalable/webcam.svg", 24, 24);
-		private static Pixbuf WHERIGO_S = new Pixbuf ("./icons/scalable/wherigo.svg", 24, 24);
-		private static Pixbuf VIRTUAL_S = new Pixbuf ("./icons/scalable/virtual.svg", 24, 24);
-		private static Pixbuf OWNED_S = new Pixbuf ("./icons/scalable/star.svg", 24, 24);
-		private static Pixbuf GENERIC_S = new Pixbuf ("./icons/scalable/treasure.svg", 24, 24);
-		private static Pixbuf PARKING_S = new Pixbuf ("./icons/scalable/parking.svg", 24, 24);
-		private static Pixbuf TRAILHEAD_S = new Pixbuf ("./icons/scalable/trailhead.svg", 24, 24);
-		private static Pixbuf GREENPIN_S = new Pixbuf ("./icons/scalable/greenpin.svg", 24, 24);
-		private static Pixbuf BLUEPIN_S = new Pixbuf ("./icons/scalable/bluepin.svg", 24, 24);
-		private static Pixbuf REDPIN_S = new Pixbuf ("./icons/scalable/pushpin.svg", 24, 24);
-
-		private static string TRAD_MI = "traditional.png";
-		private static string CITO_MI = "cito.png";
-		private static string EARH_MI = "earth.png";
-		private static string LETTRBOX_MI = "letterbox.png";
-		private static string EVENT_MI = "event.png";
-		private static string MEGA_MI = "mega.png";
-		private static string MULTI_MI = "multi.png";
-		private static string OTHER_MI = "other.png";
-		private static string OWNED_MI = "owned.png";
-		private static string FOUND_MI = "found.png";
-		private static string UNKNOWN_MI = "unknown.png";
-		private static string VIRTUAL_MI = "virtual.png";
-		private static string WEBCAM_MI = "webcam.png";
-		private static string WHERIGO_MI = "wherigo.png";
-		private static string GENERIC_MI = "treasure.png";
 
 
 
@@ -313,14 +277,17 @@ namespace ocmgtk
 			m_mainWin.RebuildQuickFilterMenu(m_filters);
 			bool showNearby = (Boolean) m_conf.Get("/apps/ocm/shownearby", true);
 			if (showNearby)
+			{
 				m_mainWin.SetNearbyEnabled();
+				GetNearByCaches(m_home_lat, m_home_lon);
+			}				
 			if (m_useImperial)
 				m_cachelist.SetImperial();
 			if (true == (bool) m_conf.Get("/apps/ocm/userownerid", true))
 				Engine.getInstance().Mode = UserMode.OWNER_ID;
 			else
 				Engine.getInstance().Mode = UserMode.USERNAME;
-			GoHome ();
+				
 		}
 
 		void HandleM_mainWinSizeAllocated (object o, SizeAllocatedArgs args)
@@ -331,29 +298,16 @@ namespace ocmgtk
 
 		private void LoadMap (string map)
 		{
-			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map);
+			System.Console.WriteLine("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_home_lat + "&lon=" + m_home_lon);
+			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_home_lat + "&lon=" + m_home_lon);
 		}
 
 		private void SetCurrentDB (string dbName, bool loadNow)
 		{
 			if (! System.IO.File.Exists(dbName))
 			{
-				NoDBDialog dlg = new NoDBDialog();
-				int resp = dlg.Run();
-				if (resp == (int) ResponseType.Yes)
-				{
-					OpenDB();
-					return;
-				}
-				else if (resp == (int) ResponseType.No)
-				{
-					CreateDB();
-					return;
-				}
-				else
-				{
-					Environment.Exit(1);
-				}
+				HandleNoDB ();
+				return;
 			}
 			
 			String[] dbSplit = dbName.Split ('/');
@@ -369,6 +323,28 @@ namespace ocmgtk
 			m_mainWin.UpdateBookmarkList(store.GetBookmarkLists());
 			if (loadNow)
 				RefreshCaches ();
+		}
+		
+		private void HandleNoDB ()
+		{
+			NoDBDialog dlg = new NoDBDialog();
+			int resp = dlg.Run();
+			if (resp == (int) ResponseType.Yes)
+			{
+				if (!OpenDB())
+					HandleNoDB();				
+				return;
+			}
+			else if (resp == (int) ResponseType.No)
+			{
+				if (!CreateDB())
+					HandleNoDB();
+				return;
+			}
+			else
+			{
+				Environment.Exit(1);
+			}
 		}
 		
 		private void UpgradeDB(String dbname, CacheStore store)
@@ -492,7 +468,7 @@ namespace ocmgtk
 		/// </param>
 		public void AddMapWayPoint (Waypoint pt)
 		{
-			m_map.LoadScript ("addMarker(" + pt.Lat.ToString(CultureInfo.InvariantCulture) + "," + pt.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" + GetMapIcon (pt.Symbol) + "',\"" + pt.Name + "\",\"" + pt.Desc.Replace("\"","''") + "\")");
+			m_map.LoadScript ("addMarker(" + pt.Lat.ToString(CultureInfo.InvariantCulture) + "," + pt.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" + IconManager.GetMapIcon (pt.Symbol) + "',\"" + pt.Name + "\",\"" + pt.Desc.Replace("\"","''") + "\")");
 		}
 
 		/// <summary>
@@ -516,7 +492,7 @@ namespace ocmgtk
 
 			m_map.LoadScript ("addMarker(" + cache.Lat.ToString(CultureInfo.InvariantCulture) + ","
 			                  + cache.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" 
-			                  + GetMapIcon (cache) + "',\"" 
+			                  + IconManager.GetMapIcon (cache, m_ownerid) + "',\"" 
 			                  + cache.Name + "\",\"" + cache.CacheName.Replace("\"","'") + "\",\"" 
 			                  + cachedesc.Replace("\"","''") + "\",\"" + mode + "\")");
 		}
@@ -536,7 +512,7 @@ namespace ocmgtk
 
 			m_map.LoadScript ("addExtraMarker(" + cache.Lat.ToString(CultureInfo.InvariantCulture) + ","
 			                  + cache.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" 
-			                  + GetMapIcon (cache) + "',\"" 
+			                  + IconManager.GetMapIcon (cache, m_ownerid) + "',\"" 
 			                  + cache.Name + "\",\"" + cache.CacheName.Replace("\"","'") + "\",\"" 
 			                  + cachedesc.Replace("\"","''") + "\",\"" + mode + "\")");
 		}
@@ -583,131 +559,6 @@ namespace ocmgtk
 		}
 
 		/// <summary>
-		/// Returns a PixBuf containing the 16x16 icon for the specified cache type
-		/// </summary>
-		/// <param name="type">
-		/// Cache Type <see cref="Geocache.CacheType"/>
-		/// </param>
-		/// <returns>
-		/// A pixbuf containing the icon <see cref="Pixbuf"/>
-		/// </returns>
-		public static Pixbuf GetSmallCacheIcon (Geocache.CacheType type)
-		{
-			switch (type) {
-			case Geocache.CacheType.FOUND:
-				return UIMonitor.FOUNDICON_S;
-			case Geocache.CacheType.TRADITIONAL:
-				return UIMonitor.TRADICON_S;
-			case Geocache.CacheType.MYSTERY:
-				return UIMonitor.MYSTERYICON_S;
-			case Geocache.CacheType.MULTI:
-				return UIMonitor.MULTIICON_S;
-			case Geocache.CacheType.LETTERBOX:
-				return UIMonitor.LETTERICON_S;
-			case Geocache.CacheType.EARTH:
-				return UIMonitor.EARTHICON_S;
-			case Geocache.CacheType.CITO:
-				return UIMonitor.CITOICON_S;
-			case Geocache.CacheType.VIRTUAL:
-				return UIMonitor.VIRTUAL_S;
-			case Geocache.CacheType.MEGAEVENT:
-				return UIMonitor.MEGAEVENT_S;
-			case Geocache.CacheType.EVENT:
-				return UIMonitor.EVENT_S;
-			case Geocache.CacheType.WEBCAM:
-				return UIMonitor.WEBCAM_S;
-			case Geocache.CacheType.WHERIGO:
-				return UIMonitor.WHERIGO_S;
-			case Geocache.CacheType.MINE:
-				return UIMonitor.OWNED_S;
-			case Geocache.CacheType.GENERIC:
-				return UIMonitor.GENERIC_S;
-			default:
-				return UIMonitor.OTHERICON_S;
-			}
-		}
-		
-		public static Pixbuf GetSmallWaypointIcon (String symbol)
-		{
-			if (symbol.Equals ("Parking Area"))
-				return PARKING_S; 
-			else if (symbol.Equals ("Trailhead"))
-				return TRAILHEAD_S; 
-			else if (symbol.Equals ("Final Location"))
-				return BLUEPIN_S;
-			else if ((symbol.Equals("Other")) || symbol.Equals("Reference Point"))
-				return GREENPIN_S;
-			return REDPIN_S;
-		}
-
-		/// <summary>
-		/// Gets the icon name for the corresponding cache type
-		/// </summary>
-		/// <param name="type">
-		/// A geocache type <see cref="Geocache.CacheType"/>
-		/// </param>
-		/// <returns>
-		/// Icon file name <see cref="System.String"/>
-		/// </returns>
-		private static string GetMapIcon (Geocache cache)
-		{
-			if (cache.Found)
-				return FOUND_MI;
-			if ((cache.OwnerID == m_instance.OwnerID) ||(cache.CacheOwner == m_instance.OwnerID))
-				return OWNED_MI;
-			switch (cache.TypeOfCache) {
-				case Geocache.CacheType.TRADITIONAL:
-					return UIMonitor.TRAD_MI;
-				case Geocache.CacheType.MYSTERY:
-					return UIMonitor.UNKNOWN_MI;
-				case Geocache.CacheType.MULTI:
-					return UIMonitor.MULTI_MI;
-				case Geocache.CacheType.LETTERBOX:
-					return UIMonitor.LETTRBOX_MI;
-				case Geocache.CacheType.EARTH:
-					return UIMonitor.EARH_MI;
-				case Geocache.CacheType.CITO:
-					return UIMonitor.CITO_MI;
-				case Geocache.CacheType.VIRTUAL:
-					return UIMonitor.VIRTUAL_MI;
-				case Geocache.CacheType.MEGAEVENT:
-					return UIMonitor.MEGA_MI;
-				case Geocache.CacheType.EVENT:
-					return UIMonitor.EVENT_MI;
-				case Geocache.CacheType.WEBCAM:
-					return UIMonitor.WEBCAM_MI;
-				case Geocache.CacheType.WHERIGO:
-					return UIMonitor.WHERIGO_MI;
-				case Geocache.CacheType.GENERIC:
-					return UIMonitor.GENERIC_MI;
-				default:
-					return UIMonitor.OTHER_MI;
-			}
-		}
-
-		/// <summary>
-		/// Returns the map icon for a given waypoint symbol
-		/// </summary>
-		/// <param name="symbol">
-		/// Waypoint symbol name<see cref="String"/>
-		/// </param>
-		/// <returns>
-		/// Icon file path <see cref="System.String"/>
-		/// </returns>
-		private static string GetMapIcon (String symbol)
-		{
-			if (symbol.Equals ("Parking Area"))
-				return "parking.png"; 
-			else if (symbol.Equals ("Trailhead"))
-				return "trailhead.png"; 
-			else if (symbol.Equals ("Final Location"))
-				return "bluepin.png";
-			else if ((symbol.Equals("Other")) || symbol.Equals("Reference Point"))
-				return "greenpin.png";
-			return "pushpin.png";
-		}
-
-		/// <summary>
 		/// Gets the list of caches in the cache list page as currently filtered
 		/// </summary>
 		/// <returns>
@@ -721,23 +572,24 @@ namespace ocmgtk
 		/// <summary>
 		/// Creates a new cache Database
 		/// </summary>
-		public void CreateDB ()
+		public bool CreateDB ()
 		{
 			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Create database"), m_mainWin, FileChooserAction.Save, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Save"), ResponseType.Accept);
 			dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
 			dlg.CurrentName = "newdb.ocm";
 			FileFilter filter = new FileFilter ();
 			filter.Name = "OCM Databases";
-		//	filter.AddMimeType ("application/x-sqlite3");
 			filter.AddPattern ("*.ocm");
-			dlg.AddFilter (filter);
-			
+			dlg.AddFilter (filter);			
 			if (dlg.Run () == (int)ResponseType.Accept) {
 				RegisterRecentFile (dlg.Filename);
 				Engine.getInstance ().Store.CreateDB (dlg.Filename);
 				SetCurrentDB (dlg.Filename, true);
+				dlg.Destroy ();
+				return true;
 			}
-			dlg.Destroy ();
+			dlg.Destroy();
+			return false;
 		}
 		
 		private static void RegisterRecentFile (String filename)
@@ -749,24 +601,39 @@ namespace ocmgtk
 		/// <summary>
 		/// Opens an OCM database
 		/// </summary>
-		public void OpenDB ()
+		public bool OpenDB ()
 		{
 			try {
-				FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Open Database"), m_mainWin, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Open"), ResponseType.Accept);
+				FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Open Database"), 
+				                                               m_mainWin, FileChooserAction.Open, 
+				                                               Catalog.GetString ("Cancel"), 
+				                                               ResponseType.Cancel, 
+				                                               Catalog.GetString ("Open"), 
+				                                               ResponseType.Accept);
 				dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
 				FileFilter filter = new FileFilter ();
 				filter.Name = "OCM Databases";
-			//	filter.AddMimeType ("application/x-ocm");
 				filter.AddPattern ("*.ocm");
 				dlg.AddFilter (filter);
 				
-				if (dlg.Run () == (int)ResponseType.Accept) {
+				if (dlg.Run () == (int)ResponseType.Accept) 
+				{
 					dlg.Hide ();
 					SetCurrentDB (dlg.Filename, true);
+					dlg.Destroy ();
+					return true;
 				}
-				dlg.Destroy ();
-			} catch (Exception e) {
+				else
+				{
+					dlg.Hide();
+					return false;
+				}
+				
+			} 
+			catch (Exception e) 
+			{
 				ShowException (e);
+				return false;
 			}
 		}
 
@@ -783,7 +650,6 @@ namespace ocmgtk
 				dlg.CurrentName = "export.gpx";
 				FileFilter filter = new FileFilter ();
 				filter.Name = "GPX Files";
-			//	filter.AddMimeType ("application/x-gpx");
 				filter.AddPattern ("*.gpx");
 				
 				dlg.AddFilter (filter);
@@ -795,6 +661,7 @@ namespace ocmgtk
 					RecentManager manager = RecentManager.Default;
 					manager.AddItem("file://" + dlg.Filename);
 				}
+				edlg.Destroy();
 				dlg.Destroy ();
 			} catch (Exception e) {
 				ShowException (e);
@@ -986,6 +853,8 @@ namespace ocmgtk
 			CacheStore store = Engine.getInstance ().Store;
 			FilterDialog dlg = new FilterDialog ();
 			dlg.Filter = store.Filter;
+			dlg.Parent = m_mainWin;
+			dlg.Icon = m_mainWin.Icon;
 			if (((int)ResponseType.Ok) == dlg.Run ()) {
 				store.Filter = dlg.Filter;
 				m_mainWin.SetAllowClearFilter (true);
@@ -1468,6 +1337,39 @@ namespace ocmgtk
 				m_filters.DeleteFilter(dlg.Bookmark);
 				m_mainWin.RebuildQuickFilterMenu(m_filters);
 			}
+		}
+		
+		public void CompactDB()
+		{
+			Engine.getInstance().Store.Compact();
+			MessageDialog dlg = new MessageDialog(m_mainWin, DialogFlags.Modal, 
+			                                      MessageType.Info, ButtonsType.Ok,
+			                                      Catalog.GetString("Database Compacted."));
+			dlg.Run();
+			dlg.Destroy();
+		}
+		
+		public void CopyToDB()
+		{
+			CopyMoveDialog dlg = new CopyMoveDialog();
+			if ((int)ResponseType.Ok == dlg.Run())
+			{
+				CopyingProgress cp = new CopyingProgress();
+				cp.Start(dlg.Filename, false);
+			}
+		}
+		
+		public void MoveToDB()
+		{
+			CopyMoveDialog dlg = new CopyMoveDialog();
+			dlg.Title = Catalog.GetString("Move Geocaches...");
+			if ((int)ResponseType.Ok == dlg.Run())
+			{
+				CopyingProgress cp = new CopyingProgress();
+				cp.Start(dlg.Filename, true);
+				RefreshCaches();
+			}
+			
 		}
 		
 		public static void ViewOCMWiki()

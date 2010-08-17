@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using ocmengine;
 using Mono.Unix;
+using Gtk;
 
 namespace ocmgtk
 {
@@ -27,6 +28,9 @@ namespace ocmgtk
 		GPSBabelWriter writer = new GPSBabelWriter ();
 		double total = 0;
 		double count = 0;
+		
+		public bool noCancel = false;
+		public bool done = false;
 
 		public SendWaypointsDialog ()
 		{
@@ -70,8 +74,14 @@ namespace ocmgtk
 
 		void HandleWriterComplete (object sender, EventArgs args)
 		{
+			if ((args as WriteEventArgs).Message == "Cancelled")
+			{
+				this.Hide();
+				return;
+			}
 			writeProgress.Fraction = 1;
 			writeProgress.Text = Catalog.GetString("Complete");
+			done = true;
 			this.infoLabel.Markup = String.Format(Catalog.GetString("<i>Send Complete:{0} geocaches transferred</i>"), count);
 			closeButton.Show ();
 			buttonCancel.Hide ();
@@ -80,9 +90,12 @@ namespace ocmgtk
 		void HandleWriterStartSend (object sender, EventArgs args)
 		{
 			this.infoLabel.Markup = Catalog.GetString("<i>Sending Geocaches to Device</i>");
+			noCancel = true;
+			buttonCancel.Sensitive = false;
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (false);
 		}
+		
 		protected virtual void OnCloseClick (object sender, System.EventArgs e)
 		{
 			this.Hide ();
@@ -91,6 +104,30 @@ namespace ocmgtk
 
 		protected virtual void OnCancelClick (object sender, System.EventArgs e)
 		{
+			Cancel ();
 		}
+		
+		private bool Cancel ()
+		{
+			MessageDialog dlg = new MessageDialog(null, DialogFlags.Modal, MessageType.Question, ButtonsType.OkCancel,
+			                                      Catalog.GetString("Are you sure you want to cancel?"));
+			if ((int) ResponseType.Ok == dlg.Run())
+			{
+				writer.Cancel();
+				dlg.Hide();
+				return true;
+			}
+			dlg.Hide();
+			return false;
+		}
+		protected virtual void OnDelete (object o, Gtk.DeleteEventArgs args)
+		{
+			if (done)
+				return;
+			if (noCancel || !Cancel())
+				args.RetVal = true;
+		}
+		
+		
 	}
 }

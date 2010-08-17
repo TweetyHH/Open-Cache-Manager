@@ -55,6 +55,8 @@ namespace ocmengine
 		{
 			set { m_nameMode = value;}
 		}
+		
+		private GPXWriter writer;
 
 		public event WriteEventHandler WriteWaypoint;
 		public event WriteEventHandler StartSend;
@@ -64,13 +66,13 @@ namespace ocmengine
 
 		public void WriteToGPS (List<Geocache> cacheList, Dictionary<string,string> waypointmappings)
 		{
-			GPXWriter writer = new GPXWriter ();
+			writer = new GPXWriter ();
 			writer.NameMode = m_nameMode;
 			writer.DescriptionMode = m_descMode;
 			writer.Limit = m_Limit;
 			writer.LogLimit = m_LogLimit;
 			if (m_format == "OCM_GPX") {
-				WriteFullGPX (cacheList, writer, waypointmappings);
+				WriteFullGPX (cacheList, waypointmappings);
 				return;
 			}
 			
@@ -88,6 +90,10 @@ namespace ocmengine
 			builder.Append (m_format);
 			builder.Append (" -F ");
 			builder.Append (m_file);
+			if (writer.Cancel)
+			{
+				throw new Exception ("Aborted");
+			}
 			Process babel = Process.Start (builder.ToString ());
 			babel.WaitForExit ();
 			if (babel.ExitCode != 0)
@@ -95,7 +101,7 @@ namespace ocmengine
 			this.Complete (this, new WriteEventArgs ("Complete"));
 		}
 		
-		private void WriteFullGPX (List<Geocache> cacheList, GPXWriter writer, Dictionary<string,string> waypointmappings)
+		private void WriteFullGPX (List<Geocache> cacheList, Dictionary<string,string> waypointmappings)
 		{
 			writer.IncludeGroundSpeakExtensions = true;
 			writer.UseOCMPtTypes = true;
@@ -114,6 +120,11 @@ namespace ocmengine
 		void HandleWriterComplete (object sender, EventArgs args)
 		{
 			this.Complete (this, args as WriteEventArgs);
+		}
+		
+		public void Cancel()
+		{
+			writer.Cancel = true;
 		}
 	}
 }

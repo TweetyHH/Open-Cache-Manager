@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.18.1</ReleaseVersion>
+    <ReleaseVersion>0.18.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,18 +40,15 @@
     </Reference>
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
-      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="Mono.Posix">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
-      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
-      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="webkit-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745">
       <Package>webkit-sharp-1.0</Package>
@@ -59,7 +56,6 @@
     </Reference>
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
-      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="gconf-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
@@ -74,9 +70,9 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>glib-sharp-2.0</Package>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -195,6 +191,11 @@
     <Compile Include="IQLandkarteGT.cs" />
     <Compile Include="Widgets\SetupAssistantPage4.cs" />
     <Compile Include="gtk-gui\ocmgtk.SetupAssistantPage4.cs" />
+    <Compile Include="IconManager.cs" />
+    <Compile Include="Dialogs\CopyMoveDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.CopyMoveDialog.cs" />
+    <Compile Include="Dialogs\CopyingProgress.cs" />
+    <Compile Include="gtk-gui\ocmgtk.CopyingProgress.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

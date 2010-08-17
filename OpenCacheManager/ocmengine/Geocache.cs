@@ -60,7 +60,7 @@ namespace ocmengine
 		private string m_cacheID = "";
 		private string m_ownerID = "";
 		private bool m_checkNotes = false;
-		private int m_children = 0;
+		private bool m_children = false;
 		
 		public string CacheName
 		{
@@ -181,7 +181,7 @@ namespace ocmengine
 			set { m_checkNotes = value;}
 		}
 		
-		public int Children
+		public bool Children
 		{
 			get { return m_children;}
 			set { m_children = value;}

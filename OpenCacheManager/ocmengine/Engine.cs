@@ -58,11 +58,6 @@ namespace ocmengine
 			}
 		}
 		
-		public IEnumerator<Geocache> getCacheEnumerator()
-		{
-			return m_store.getCacheEnumerator();
-		}
-		
 		public int CacheCount
 		{
 			get {return m_store.CacheCount;}

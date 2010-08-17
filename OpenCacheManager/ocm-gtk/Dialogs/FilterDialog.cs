@@ -178,6 +178,14 @@ namespace ocmgtk
 			this.Hide ();
 		}
 		
+		protected virtual void OnDeleteClick (object o, Gtk.DeleteEventArgs args)
+		{
+			System.Console.WriteLine("HERE");
+			this.Respond (ResponseType.Cancel);
+			this.Hide ();
+		}
+		
+		
 		
 	}
 }

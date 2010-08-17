@@ -586,19 +586,18 @@ public partial class MainWindow : Gtk.Window
 		UIMonitor.ViewOCMWiki();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	protected virtual void OnCompact (object sender, System.EventArgs e)
+	{
+		m_monitor.CompactDB();
+	}
+	protected virtual void OnCopyVisibleCachesActionActivated (object sender, System.EventArgs e)
+	{
+		m_monitor.CopyToDB();
+	}
+	protected virtual void OnMove (object sender, System.EventArgs e)
+	{
+		m_monitor.MoveToDB();
+	}
 	
 	
 }

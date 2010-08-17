@@ -21,6 +21,8 @@ namespace ocmgtk
 		const string START_RECENT_DNF = "<span fgcolor='darkorange'>";
 		const string START_BOLD = "<b>";
 		const string END_BOLD = "</b>";
+		const string START_UNDERLINE = "<u>";
+		const string END_UNDERLINE = "</u>";
 		const string END_SPAN = "</span>";
 		const string FOUND_CACHE = "Geocache Found";
 
@@ -174,11 +176,29 @@ namespace ocmgtk
 		{
 			m_cacheModel.Clear ();
 			m_ListSort.SetSortColumnId (-1, SortType.Ascending);
+			/*System.Console.WriteLine("Query Start" + DateTime.Now.ToUniversalTime());
 			IEnumerator<Geocache> cache_enum = Engine.getInstance ().getCacheEnumerator ();
+			System.Console.WriteLine("Query End" + DateTime.Now.ToUniversalTime());
 			while (cache_enum.MoveNext ()) {
 				m_cacheModel.AppendValues (cache_enum.Current);
 			}
+			System.Console.WriteLine(DateTime.Now.ToUniversalTime());*/
+			CacheStore store = Engine.getInstance().Store;
+			store.ReadCache += HandleStoreReadCache;
+			store.Complete += HandleStoreComplete;
+			store.GetCaches();
 			m_ListSort.SetSortColumnId (2, SortType.Ascending);
+		}
+
+		void HandleStoreComplete (object sender, EventArgs args)
+		{
+			Engine.getInstance().Store.ReadCache -= HandleStoreReadCache;
+			Engine.getInstance().Store.Complete -= HandleStoreComplete;
+		}
+
+		void HandleStoreReadCache (object sender, CacheStore.ReadCacheArgs args)
+		{
+			m_cacheModel.AppendValues(args.Cache);
 		}
 
 		private void RenderCacheCode (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
@@ -198,8 +218,10 @@ namespace ocmgtk
 			CellRendererText text = cell as CellRendererText;
 			
 			StringBuilder builder = new StringBuilder();
-			if (cache.Children > 0)
+			if (cache.Children)
 				builder.Append(START_BOLD);
+			if (!String.IsNullOrEmpty(cache.Notes))
+				builder.Append(START_UNDERLINE);
 			if (!cache.Available && !cache.Archived)
 				builder.Append(unavailText (cache.CacheName));
 			else if (cache.Archived)
@@ -208,7 +230,9 @@ namespace ocmgtk
 				builder.Append(START_RECENT_DNF + GLib.Markup.EscapeText (cache.CacheName) + END_SPAN);
 			else
 				builder.Append(GLib.Markup.EscapeText (cache.CacheName));
-			if (cache.Children > 0)
+			if (!String.IsNullOrEmpty(cache.Notes))
+				builder.Append(END_UNDERLINE);
+			if (cache.Children)
 				builder.Append(END_BOLD);
 			text.Markup = builder.ToString();
 		}
@@ -218,11 +242,11 @@ namespace ocmgtk
 			Geocache cache = (Geocache)model.GetValue (iter, 0);
 			CellRendererPixbuf icon = cell as CellRendererPixbuf;
 			if (cache.Found)
-				icon.Pixbuf = UIMonitor.GetSmallCacheIcon (Geocache.CacheType.FOUND);
+				icon.Pixbuf = IconManager.GetSmallCacheIcon (Geocache.CacheType.FOUND);
 			else if ((cache.OwnerID == m_monitor.OwnerID  ) || (cache.CacheOwner == m_monitor.OwnerID))
-				icon.Pixbuf = UIMonitor.GetSmallCacheIcon (Geocache.CacheType.MINE);
+				icon.Pixbuf = IconManager.GetSmallCacheIcon (Geocache.CacheType.MINE);
 			else
-				icon.Pixbuf = UIMonitor.GetSmallCacheIcon (cache.TypeOfCache);
+				icon.Pixbuf = IconManager.GetSmallCacheIcon (cache.TypeOfCache);
 		}
 
 		private void RenderCacheDistance (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)

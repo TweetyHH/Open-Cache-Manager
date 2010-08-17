@@ -65,6 +65,7 @@ namespace ocmengine
 		bool m_cancel = false;
 		public bool Cancel
 		{
+			get { return m_cancel; }
 			set {m_cancel = true;}
 		}
 		
