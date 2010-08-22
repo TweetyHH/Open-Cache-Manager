@@ -136,12 +136,6 @@ public partial class MainWindow {
     
     private Gtk.Action MyNaviCacheAction1;
     
-    private Gtk.Action MarkDisabledAction;
-    
-    private Gtk.Action MarkArchivedAction;
-    
-    private Gtk.Action MarkAvailableAction;
-    
     private Gtk.Action ModifyCacheAction;
     
     private Gtk.Action ToDoAction;
@@ -201,6 +195,18 @@ public partial class MainWindow {
     private Gtk.Action CopyVisibleCachesAction;
     
     private Gtk.Action MoveVisibleCachesAction;
+    
+    private Gtk.Action MarkAction;
+    
+    private Gtk.Action MarkUnfoundAction1;
+    
+    private Gtk.Action MarkDisabledAction1;
+    
+    private Gtk.Action MarkArchivedAction1;
+    
+    private Gtk.Action MarkAvailableAction1;
+    
+    private Gtk.Action MarkFoundAction;
     
     private Gtk.VBox vbox1;
     
@@ -281,11 +287,11 @@ public partial class MainWindow {
         this.openAction2 = new Gtk.Action("openAction2", Mono.Unix.Catalog.GetString("Open _Database..."), null, "gtk-open");
         this.openAction2.ShortLabel = Mono.Unix.Catalog.GetString("Open _Database...");
         w1.Add(this.openAction2, "<Control><Alt><Mod2>o");
-        this.openAction = new Gtk.Action("openAction", Mono.Unix.Catalog.GetString("_Open GPX/Loc File..."), null, "gtk-open");
-        this.openAction.ShortLabel = Mono.Unix.Catalog.GetString("_Open GPX/Loc File...");
+        this.openAction = new Gtk.Action("openAction", Mono.Unix.Catalog.GetString("_Import GPX/Loc File..."), null, "gtk-open");
+        this.openAction.ShortLabel = Mono.Unix.Catalog.GetString("_Import GPX/Loc File...");
         w1.Add(this.openAction, "<Control><Mod2>o");
-        this.saveAsAction = new Gtk.Action("saveAsAction", Mono.Unix.Catalog.GetString("_Save GPX..."), null, "gtk-save-as");
-        this.saveAsAction.ShortLabel = Mono.Unix.Catalog.GetString("_Save GPX...");
+        this.saveAsAction = new Gtk.Action("saveAsAction", Mono.Unix.Catalog.GetString("_Export GPX..."), null, "gtk-save-as");
+        this.saveAsAction.ShortLabel = Mono.Unix.Catalog.GetString("_Export GPX...");
         w1.Add(this.saveAsAction, "<Control><Mod2>s");
         this.LogFindAction = new Gtk.Action("LogFindAction", Mono.Unix.Catalog.GetString("_Log Find"), null, null);
         this.LogFindAction.Sensitive = false;
@@ -414,18 +420,6 @@ public partial class MainWindow {
         this.MyNaviCacheAction1 = new Gtk.Action("MyNaviCacheAction1", Mono.Unix.Catalog.GetString("_My NaviCache"), null, null);
         this.MyNaviCacheAction1.ShortLabel = Mono.Unix.Catalog.GetString("_My NaviCache");
         w1.Add(this.MyNaviCacheAction1, null);
-        this.MarkDisabledAction = new Gtk.Action("MarkDisabledAction", Mono.Unix.Catalog.GetString("Mark _Disabled"), null, null);
-        this.MarkDisabledAction.Sensitive = false;
-        this.MarkDisabledAction.ShortLabel = Mono.Unix.Catalog.GetString("Mark _Disabled");
-        w1.Add(this.MarkDisabledAction, null);
-        this.MarkArchivedAction = new Gtk.Action("MarkArchivedAction", Mono.Unix.Catalog.GetString("Mark _Archived"), null, null);
-        this.MarkArchivedAction.Sensitive = false;
-        this.MarkArchivedAction.ShortLabel = Mono.Unix.Catalog.GetString("Mark _Archived");
-        w1.Add(this.MarkArchivedAction, null);
-        this.MarkAvailableAction = new Gtk.Action("MarkAvailableAction", Mono.Unix.Catalog.GetString("Mark A_vailable"), null, null);
-        this.MarkAvailableAction.Sensitive = false;
-        this.MarkAvailableAction.ShortLabel = Mono.Unix.Catalog.GetString("Mark A_vailable");
-        w1.Add(this.MarkAvailableAction, null);
         this.ModifyCacheAction = new Gtk.Action("ModifyCacheAction", Mono.Unix.Catalog.GetString("M_odify Cache..."), null, null);
         this.ModifyCacheAction.Sensitive = false;
         this.ModifyCacheAction.ShortLabel = Mono.Unix.Catalog.GetString("M_odify Cache...");
@@ -519,6 +513,24 @@ public partial class MainWindow {
         this.MoveVisibleCachesAction = new Gtk.Action("MoveVisibleCachesAction", Mono.Unix.Catalog.GetString("Move Visible Caches..."), null, null);
         this.MoveVisibleCachesAction.ShortLabel = Mono.Unix.Catalog.GetString("Move Visible Caches...");
         w1.Add(this.MoveVisibleCachesAction, null);
+        this.MarkAction = new Gtk.Action("MarkAction", Mono.Unix.Catalog.GetString("_Mark"), null, null);
+        this.MarkAction.ShortLabel = Mono.Unix.Catalog.GetString("_Mark");
+        w1.Add(this.MarkAction, null);
+        this.MarkUnfoundAction1 = new Gtk.Action("MarkUnfoundAction1", Mono.Unix.Catalog.GetString("Mark _Unfound"), null, null);
+        this.MarkUnfoundAction1.ShortLabel = Mono.Unix.Catalog.GetString("Mark _Unfound");
+        w1.Add(this.MarkUnfoundAction1, null);
+        this.MarkDisabledAction1 = new Gtk.Action("MarkDisabledAction1", Mono.Unix.Catalog.GetString("Mark _Disabled"), null, null);
+        this.MarkDisabledAction1.ShortLabel = Mono.Unix.Catalog.GetString("Mark _Disabled");
+        w1.Add(this.MarkDisabledAction1, null);
+        this.MarkArchivedAction1 = new Gtk.Action("MarkArchivedAction1", Mono.Unix.Catalog.GetString("Mark _Archived"), null, null);
+        this.MarkArchivedAction1.ShortLabel = Mono.Unix.Catalog.GetString("Mark _Archived");
+        w1.Add(this.MarkArchivedAction1, null);
+        this.MarkAvailableAction1 = new Gtk.Action("MarkAvailableAction1", Mono.Unix.Catalog.GetString("Mark A_vailable"), null, null);
+        this.MarkAvailableAction1.ShortLabel = Mono.Unix.Catalog.GetString("Mark A_vailable");
+        w1.Add(this.MarkAvailableAction1, null);
+        this.MarkFoundAction = new Gtk.Action("MarkFoundAction", Mono.Unix.Catalog.GetString("Mark _Found"), null, null);
+        this.MarkFoundAction.ShortLabel = Mono.Unix.Catalog.GetString("Mark _Found");
+        w1.Add(this.MarkFoundAction, null);
         this.UIManager.InsertActionGroup(w1, 0);
         this.AddAccelGroup(this.UIManager.AccelGroup);
         this.Name = "MainWindow";
@@ -532,7 +544,7 @@ public partial class MainWindow {
         this.vbox1 = new Gtk.VBox();
         this.vbox1.Name = "vbox1";
         // Container child vbox1.Gtk.Box+BoxChild
-        this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='newAction1' action='newAction1'/><menuitem name='openAction2' action='openAction2'/><separator/><menuitem name='openAction' action='openAction'/><menuitem name='saveAsAction' action='saveAsAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'><menuitem name='PreferencesAction1' action='PreferencesAction1'/></menu><menu name='FilterAction' action='FilterAction'><menuitem name='QuickFilterAction' action='QuickFilterAction'/><separator/><menuitem name='AdvancedFiltersAction' action='AdvancedFiltersAction'/><menuitem name='ClearAdvancedFiltersAction' action='ClearAdvancedFiltersAction'/><menuitem name='ClearAllFiltersAction1' action='ClearAllFiltersAction1'/><separator/><menuitem name='SaveCurrentViewAsQuickFilterAction' action='SaveCurrentViewAsQuickFilterAction'/><menuitem name='DeleteQuickFilterAction' action='DeleteQuickFilterAction'/></menu><menu name='CacheAction' action='CacheAction'><menuitem name='ViewOnlineAction' action='ViewOnlineAction'/><menuitem name='LogFindAction' action='LogFindAction'/><separator/><menuitem name='MarkUnfoundAction' action='MarkUnfoundAction'/><menuitem name='MarkDisabledAction' action='MarkDisabledAction'/><menuitem name='MarkArchivedAction' action='MarkArchivedAction'/><menuitem name='MarkAvailableAction' action='MarkAvailableAction'/><separator/><menuitem name='AddCacheAction' action='AddCacheAction'/><menuitem name='DeselectCacheAction' action='DeselectCacheAction'/><menuitem name='ModifyCacheAction' action='ModifyCacheAction'/><menuitem name='DeleteCacheAction' action='DeleteCacheAction'/><menuitem name='DeleteAllVisibleCachesAction' action='DeleteAllVisibleCachesAction'/></menu><menu name='WebAction' action='WebAction'><menuitem name='OCMHomePageAction' action='OCMHomePageAction'/><separator/><menu name='GeocachingComAction1' action='GeocachingComAction1'><menuitem name='HomePageAction5' action='HomePageAction5'/><menuitem name='ViewMyProfileAction1' action='ViewMyProfileAction1'/><menuitem name='MyAccountDetailsAction1' action='MyAccountDetailsAction1'/><menuitem name='CreatePocketQueriesAction1' action='CreatePocketQueriesAction1'/><separator/><menuitem name='FindACacheAction1' action='FindACacheAction1'/></menu><menu name='TerraCachingComAction1' action='TerraCachingComAction1'><menuitem name='HomePageAction' action='HomePageAction'/><separator/><menu name='ToDoListAction1' action='ToDoListAction1'><menuitem name='TraditionalAction1' action='TraditionalAction1'/><menuitem name='LocationlessAction1' action='LocationlessAction1'/></menu></menu><menu name='NaviCacheComAction1' action='NaviCacheComAction1'><menuitem name='HomePageAction7' action='HomePageAction7'/><menuitem name='MyNaviCacheAction1' action='MyNaviCacheAction1'/></menu><separator/><menuitem name='GPSBabelHomePageAction' action='GPSBabelHomePageAction'/><menuitem name='GPSDHomePageAction' action='GPSDHomePageAction'/></menu><menu name='MapAction' action='MapAction'><menuitem name='ShowNearbyCachesAction' action='ShowNearbyCachesAction'/><separator/><menuitem name='ZoomToCentreAction' action='ZoomToCentreAction'/><menuitem name='ZoomToSelectedCacheAction' action='ZoomToSelectedCacheAction'/><menuitem name='SetSelectedCacheAsCentreAction' action='SetSelectedCacheAsCentreAction'/><menuitem name='ResetCentreToHomeAction' action='ResetCentreToHomeAction'/><separator/><menuitem name='UseGPSDAsCentreAction' action='UseGPSDAsCentreAction'/><menuitem name='ConfigureGPSDAction' action='ConfigureGPSDAction'/></menu><menu name='GPSAction' action='GPSAction'><menuitem name='ConfigureGPSAction' action='ConfigureGPSAction'/><separator/><menuitem name='TransferCachesAction' action='TransferCachesAction'/></menu><menu name='ToolsAction' action='ToolsAction'><menuitem name='ViewAllInQLandkarteGTAction' action='ViewAllInQLandkarteGTAction'/><menuitem name='ViewSelectedCacheInQLandkarteGTAction' action='ViewSelectedCacheInQLandkarteGTAction'/><separator/><menu name='DatabaseToolsAction' action='DatabaseToolsAction'><menuitem name='CompactDatabaseAction1' action='CompactDatabaseAction1'/><menuitem name='CopyVisibleCachesAction' action='CopyVisibleCachesAction'/><menuitem name='MoveVisibleCachesAction' action='MoveVisibleCachesAction'/></menu></menu><menu name='HelpAction' action='HelpAction'><menuitem name='OCMWikiAction' action='OCMWikiAction'/><separator/><menuitem name='aboutAction' action='aboutAction'/><menuitem name='ChangeHistoryAction' action='ChangeHistoryAction'/></menu><menu><menuitem/><menuitem/></menu></menubar></ui>");
+        this.UIManager.AddUiFromString("<ui><menubar name='mainmenubar'><menu name='FileAction' action='FileAction'><menuitem name='newAction1' action='newAction1'/><menuitem name='openAction2' action='openAction2'/><separator/><menuitem name='openAction' action='openAction'/><menuitem name='saveAsAction' action='saveAsAction'/><separator/><menuitem name='QuitAction' action='QuitAction'/></menu><menu name='EditAction' action='EditAction'><menuitem name='PreferencesAction1' action='PreferencesAction1'/></menu><menu name='FilterAction' action='FilterAction'><menuitem name='QuickFilterAction' action='QuickFilterAction'/><separator/><menuitem name='AdvancedFiltersAction' action='AdvancedFiltersAction'/><menuitem name='ClearAdvancedFiltersAction' action='ClearAdvancedFiltersAction'/><menuitem name='ClearAllFiltersAction1' action='ClearAllFiltersAction1'/><separator/><menuitem name='SaveCurrentViewAsQuickFilterAction' action='SaveCurrentViewAsQuickFilterAction'/><menuitem name='DeleteQuickFilterAction' action='DeleteQuickFilterAction'/></menu><menu name='CacheAction' action='CacheAction'><menuitem name='ViewOnlineAction' action='ViewOnlineAction'/><menuitem name='LogFindAction' action='LogFindAction'/><separator/><menu name='MarkAction' action='MarkAction'><menuitem name='MarkFoundAction' action='MarkFoundAction'/><menuitem name='MarkUnfoundAction1' action='MarkUnfoundAction1'/><menuitem name='MarkDisabledAction1' action='MarkDisabledAction1'/><menuitem name='MarkArchivedAction1' action='MarkArchivedAction1'/><menuitem name='MarkAvailableAction1' action='MarkAvailableAction1'/></menu><separator/><menuitem name='AddCacheAction' action='AddCacheAction'/><menuitem name='DeselectCacheAction' action='DeselectCacheAction'/><menuitem name='ModifyCacheAction' action='ModifyCacheAction'/><menuitem name='DeleteCacheAction' action='DeleteCacheAction'/><menuitem name='DeleteAllVisibleCachesAction' action='DeleteAllVisibleCachesAction'/></menu><menu name='WebAction' action='WebAction'><menuitem name='OCMHomePageAction' action='OCMHomePageAction'/><separator/><menu name='GeocachingComAction1' action='GeocachingComAction1'><menuitem name='HomePageAction5' action='HomePageAction5'/><menuitem name='ViewMyProfileAction1' action='ViewMyProfileAction1'/><menuitem name='MyAccountDetailsAction1' action='MyAccountDetailsAction1'/><menuitem name='CreatePocketQueriesAction1' action='CreatePocketQueriesAction1'/><separator/><menuitem name='FindACacheAction1' action='FindACacheAction1'/></menu><menu name='TerraCachingComAction1' action='TerraCachingComAction1'><menuitem name='HomePageAction' action='HomePageAction'/><separator/><menu name='ToDoListAction1' action='ToDoListAction1'><menuitem name='TraditionalAction1' action='TraditionalAction1'/><menuitem name='LocationlessAction1' action='LocationlessAction1'/></menu></menu><menu name='NaviCacheComAction1' action='NaviCacheComAction1'><menuitem name='HomePageAction7' action='HomePageAction7'/><menuitem name='MyNaviCacheAction1' action='MyNaviCacheAction1'/></menu><separator/><menuitem name='GPSBabelHomePageAction' action='GPSBabelHomePageAction'/><menuitem name='GPSDHomePageAction' action='GPSDHomePageAction'/></menu><menu name='MapAction' action='MapAction'><menuitem name='ShowNearbyCachesAction' action='ShowNearbyCachesAction'/><separator/><menuitem name='ZoomToCentreAction' action='ZoomToCentreAction'/><menuitem name='ZoomToSelectedCacheAction' action='ZoomToSelectedCacheAction'/><menuitem name='SetSelectedCacheAsCentreAction' action='SetSelectedCacheAsCentreAction'/><menuitem name='ResetCentreToHomeAction' action='ResetCentreToHomeAction'/><separator/><menuitem name='UseGPSDAsCentreAction' action='UseGPSDAsCentreAction'/><menuitem name='ConfigureGPSDAction' action='ConfigureGPSDAction'/></menu><menu name='GPSAction' action='GPSAction'><menuitem name='ConfigureGPSAction' action='ConfigureGPSAction'/><separator/><menuitem name='TransferCachesAction' action='TransferCachesAction'/></menu><menu name='ToolsAction' action='ToolsAction'><menuitem name='ViewAllInQLandkarteGTAction' action='ViewAllInQLandkarteGTAction'/><menuitem name='ViewSelectedCacheInQLandkarteGTAction' action='ViewSelectedCacheInQLandkarteGTAction'/><separator/><menu name='DatabaseToolsAction' action='DatabaseToolsAction'><menuitem name='CompactDatabaseAction1' action='CompactDatabaseAction1'/><menuitem name='CopyVisibleCachesAction' action='CopyVisibleCachesAction'/><menuitem name='MoveVisibleCachesAction' action='MoveVisibleCachesAction'/></menu></menu><menu name='HelpAction' action='HelpAction'><menuitem name='OCMWikiAction' action='OCMWikiAction'/><separator/><menuitem name='aboutAction' action='aboutAction'/><menuitem name='ChangeHistoryAction' action='ChangeHistoryAction'/></menu><menu><menuitem/><menuitem/></menu></menubar></ui>");
         this.mainmenubar = ((Gtk.MenuBar)(this.UIManager.GetWidget("/mainmenubar")));
         this.mainmenubar.Name = "mainmenubar";
         this.vbox1.Add(this.mainmenubar);
@@ -642,9 +654,6 @@ public partial class MainWindow {
         this.LocationlessAction1.Activated += new System.EventHandler(this.OnTerraLocationless);
         this.HomePageAction7.Activated += new System.EventHandler(this.OnNaviHome);
         this.MyNaviCacheAction1.Activated += new System.EventHandler(this.OnMyNavi);
-        this.MarkDisabledAction.Activated += new System.EventHandler(this.OnClickDisable);
-        this.MarkArchivedAction.Activated += new System.EventHandler(this.OnClickArchive);
-        this.MarkAvailableAction.Activated += new System.EventHandler(this.OnClickAvailable);
         this.ModifyCacheAction.Activated += new System.EventHandler(this.OnModifyCacheActionActivated);
         this.ToDoAction.Activated += new System.EventHandler(this.OnToDoActionActivated);
         this.ClearAllFiltersAction1.Activated += new System.EventHandler(this.OnClearAllFilter);
@@ -669,5 +678,10 @@ public partial class MainWindow {
         this.CompactDatabaseAction1.Activated += new System.EventHandler(this.OnCompact);
         this.CopyVisibleCachesAction.Activated += new System.EventHandler(this.OnCopyVisibleCachesActionActivated);
         this.MoveVisibleCachesAction.Activated += new System.EventHandler(this.OnMove);
+        this.MarkUnfoundAction1.Activated += new System.EventHandler(this.OnClickMarkUnfound);
+        this.MarkDisabledAction1.Activated += new System.EventHandler(this.OnClickMarkDisabled);
+        this.MarkArchivedAction1.Activated += new System.EventHandler(this.OnClickMarkArchived);
+        this.MarkAvailableAction1.Activated += new System.EventHandler(this.OnClickMarkAvailable);
+        this.MarkFoundAction.Activated += new System.EventHandler(this.OnClickMarkFound);
     }
 }

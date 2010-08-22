@@ -33,6 +33,8 @@ namespace ocmgtk {
         
         private Gtk.Button deleteButton;
         
+        private Gtk.Button button414;
+        
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget ocmgtk.WaypointWidget
@@ -105,14 +107,25 @@ namespace ocmgtk {
             w7.Position = 2;
             w7.Expand = false;
             w7.Fill = false;
-            this.hbox1.Add(this.vbuttonbox1);
-            Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.hbox1[this.vbuttonbox1]));
-            w8.Position = 1;
+            // Container child vbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
+            this.button414 = new Gtk.Button();
+            this.button414.CanFocus = true;
+            this.button414.Name = "button414";
+            this.button414.UseUnderline = true;
+            this.button414.Label = Mono.Unix.Catalog.GetString("_Grab Waypoints...");
+            this.vbuttonbox1.Add(this.button414);
+            Gtk.ButtonBox.ButtonBoxChild w8 = ((Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox1[this.button414]));
+            w8.Position = 3;
             w8.Expand = false;
             w8.Fill = false;
+            this.hbox1.Add(this.vbuttonbox1);
+            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.hbox1[this.vbuttonbox1]));
+            w9.Position = 1;
+            w9.Expand = false;
+            w9.Fill = false;
             this.widgetBox.Add(this.hbox1);
-            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.widgetBox[this.hbox1]));
-            w9.Position = 0;
+            Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.widgetBox[this.hbox1]));
+            w10.Position = 0;
             this.Add(this.widgetBox);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
@@ -122,6 +135,7 @@ namespace ocmgtk {
             this.addButton.Clicked += new System.EventHandler(this.doAdd);
             this.editButton.Clicked += new System.EventHandler(this.DoEdit);
             this.deleteButton.Clicked += new System.EventHandler(this.doRemove);
+            this.button414.Clicked += new System.EventHandler(this.OnGrabClick);
         }
     }
 }

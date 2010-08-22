@@ -33,16 +33,21 @@ namespace ocmgtk
 				BusG.Init ();
 				Bus bus = Bus.Session;
 				string busName = "org.ocm.dbus";
-				if (bus.RequestName (busName) != RequestNameReply.PrimaryOwner) {
-				if (args != null)
-					if (args.Length > 0) {
-						IDBusComm comm = bus.GetObject<IDBusComm> (busName, new ObjectPath ("/org/ocm/dbus"));
-						comm.ImportGPX (args[0]);
+				if (bus.RequestName (busName) != RequestNameReply.PrimaryOwner) 
+				{
+					IDBusComm comm = bus.GetObject<IDBusComm> (busName, new ObjectPath ("/org/ocm/dbus"));
+					if (args != null)
+					{
+						if (args.Length > 0) 
+							comm.ImportGPX (args[0]);
 					}
-				return;
-				} else {
-				DBusComm comm = new DBusComm ();
-				bus.Register (new ObjectPath ("/org/ocm/dbus"), comm);
+					comm.ShowOCM();
+					return;
+				}
+				else 
+				{
+					DBusComm comm = new DBusComm ();
+					bus.Register (new ObjectPath ("/org/ocm/dbus"), comm);
 				}
 			}
 			catch
@@ -52,7 +57,7 @@ namespace ocmgtk
 			
 			if (args != null)
 				if (args.Length > 0)
-					m_file = null;
+					m_file = args[0];
 			
 			Mono.Unix.Catalog.Init ("ocm", "./locale");
 			bool runWizard = false;
@@ -102,10 +107,26 @@ namespace ocmgtk
 				m_splash.Dispose();
 			}
 			
-			MainWindow win = new MainWindow();
-			UIMonitor.getInstance().LoadConfig();			
+			MainWindow win = new MainWindow();	
+			
 			if (m_file != null)
-				UIMonitor.getInstance().ImportGPXFile(m_file);
+			{
+				UIMonitor.getInstance().LoadConfig(false);
+				if (m_file.EndsWith(".ocm"))
+				{
+					System.Console.WriteLine("Loading...");
+					UIMonitor.getInstance().SetCurrentDB(m_file, true);
+				}
+				else
+				{
+					UIMonitor.getInstance().ImportGPXFile(m_file);	
+				}
+			}
+			else
+			{
+				UIMonitor.getInstance().LoadConfig(true);
+			}
+				
 			win.ShowAll();
 		}		
 	}

@@ -39,6 +39,9 @@ namespace ocmgtk
 		private UIMonitor m_monitor;
 		private double m_maxDistance = -1;
 		private bool m_disableRefilter = false;
+		private double m_loadTotal = 0;
+		private double m_intervalCount = 0;
+		private double m_loadCount = 0;
 		TreeViewColumn m_distanceCol;
 
 		private Timer refreshTimer;
@@ -174,32 +177,40 @@ namespace ocmgtk
 
 		public void PopulateList ()
 		{
-			m_cacheModel.Clear ();
-			m_ListSort.SetSortColumnId (-1, SortType.Ascending);
-			/*System.Console.WriteLine("Query Start" + DateTime.Now.ToUniversalTime());
-			IEnumerator<Geocache> cache_enum = Engine.getInstance ().getCacheEnumerator ();
-			System.Console.WriteLine("Query End" + DateTime.Now.ToUniversalTime());
-			while (cache_enum.MoveNext ()) {
-				m_cacheModel.AppendValues (cache_enum.Current);
-			}
-			System.Console.WriteLine(DateTime.Now.ToUniversalTime());*/
 			CacheStore store = Engine.getInstance().Store;
+			m_cacheModel.Clear ();
+			m_loadTotal = store.CacheCount;
+			m_loadCount = 0;
+			m_intervalCount = 0;
+			treeview1.Model = null;
+			m_ListSort.SetSortColumnId (-1, SortType.Ascending);
+			m_monitor.StartProgressLoad("Loading Caches");
 			store.ReadCache += HandleStoreReadCache;
 			store.Complete += HandleStoreComplete;
 			store.GetCaches();
+			treeview1.Model = m_ListSort;
 			m_ListSort.SetSortColumnId (2, SortType.Ascending);
+			
 		}
 
 		void HandleStoreComplete (object sender, EventArgs args)
 		{
 			Engine.getInstance().Store.ReadCache -= HandleStoreReadCache;
 			Engine.getInstance().Store.Complete -= HandleStoreComplete;
+			m_monitor.SetProgressDone();
 		}
 
 		void HandleStoreReadCache (object sender, CacheStore.ReadCacheArgs args)
 		{
 			m_cacheModel.AppendValues(args.Cache);
-		}
+			m_loadCount ++;
+			m_intervalCount ++;
+			if (m_intervalCount == 50)
+			{
+				m_monitor.SetProgress(m_loadCount, m_loadTotal, String.Format(Catalog.GetString("Loading Caches {0}"), (m_loadCount/m_loadTotal).ToString("0%")));
+				m_intervalCount = 0;
+			}
+		}	
 
 		private void RenderCacheCode (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
@@ -451,6 +462,10 @@ namespace ocmgtk
 			Menu popup = new Menu ();
 			MenuItem setCenterItem = new MenuItem (Catalog.GetString("Set As Map Centre"));
 			MenuItem showOnline = new MenuItem (Catalog.GetString("View Cache Online"));
+			MenuItem mark = new MenuItem(Catalog.GetString("Mark"));
+			Menu markSub = new Menu();
+			MenuItem markFound = new MenuItem(Catalog.GetString("Mark Found"));
+			MenuItem markUnfound = new MenuItem(Catalog.GetString("Mark Unfound"));
 			MenuItem markDisabled = new MenuItem(Catalog.GetString("Mark Disabled"));
 			MenuItem markArchived = new MenuItem(Catalog.GetString("Mark Archived"));
 			MenuItem markAvailable = new MenuItem(Catalog.GetString("Mark Available"));
@@ -477,6 +492,17 @@ namespace ocmgtk
 					markArchived.Sensitive = true;
 				else
 					markArchived.Sensitive = false;
+				
+				if (cache.Symbol.Contains("Found"))
+				{
+					markUnfound.Sensitive = true;
+					markFound.Sensitive = false;
+				}
+				else
+				{
+					markUnfound.Sensitive = false;
+					markFound.Sensitive = true;
+				}
 			}
 			
 			CacheStore store = Engine.getInstance().Store;
@@ -507,6 +533,8 @@ namespace ocmgtk
 			setCenterItem.Activated += HandleSetCenterItemActivated;
 			showOnline.Activated += HandleShowOnlineActivated;
 			deleteItem.Activated += HandleDeleteItemActivated;
+			markFound.Activated += HandleMarkFoundActivated;
+			markUnfound.Activated += HandleMarkUnfoundActivated;
 			markDisabled.Activated += HandleMarkDisabledActivated;
 			markArchived.Activated += HandleMarkArchivedActivated;
 			markAvailable.Activated += HandleMarkAvailableActivated;
@@ -516,9 +544,13 @@ namespace ocmgtk
 			popup.Add (setCenterItem);
 			popup.Add (showOnline);
 			popup.Add (new MenuItem());
-			popup.Add (markDisabled);
-			popup.Add (markArchived);
-			popup.Add (markAvailable);
+			popup.Add (mark);
+			markSub.Add(markFound);
+			markSub.Add(markUnfound);
+			markSub.Add (markDisabled);
+			markSub.Add (markArchived);
+			markSub.Add (markAvailable);
+			mark.Submenu = markSub;
 			popup.Add (new MenuItem());
 			popup.Add (bookmark);
 			popup.Add (rmvCache);
@@ -527,6 +559,16 @@ namespace ocmgtk
 			popup.Add (deleteItem);
 			popup.ShowAll ();
 			popup.Popup ();
+		}
+
+		void HandleMarkUnfoundActivated (object sender, EventArgs e)
+		{
+			m_monitor.MarkCacheUnfound();
+		}
+
+		void HandleMarkFoundActivated (object sender, EventArgs e)
+		{
+			m_monitor.MarkCacheFound();
 		}
 
 		void HandleQlandkarteActivated (object sender, EventArgs e)

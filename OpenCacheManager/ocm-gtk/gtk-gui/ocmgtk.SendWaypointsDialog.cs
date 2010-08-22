@@ -36,8 +36,6 @@ namespace ocmgtk {
             this.BorderWidth = ((uint)(6));
             this.Resizable = false;
             this.AllowGrow = false;
-            this.SkipPagerHint = true;
-            this.SkipTaskbarHint = true;
             // Internal child ocmgtk.SendWaypointsDialog.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";
@@ -116,7 +114,7 @@ namespace ocmgtk {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 402;
-            this.DefaultHeight = 175;
+            this.DefaultHeight = 181;
             this.closeButton.Hide();
             this.Show();
             this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDelete);

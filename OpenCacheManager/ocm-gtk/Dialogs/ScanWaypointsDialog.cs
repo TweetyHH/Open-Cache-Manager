@@ -14,24 +14,17 @@
 //    limitations under the License.
 
 using System;
-using Gdk;
-using Gtk;
 
 namespace ocmgtk
 {
 
 
-	public partial class OCMSplash : Gtk.Window
+	public partial class ScanWaypointsDialog : Gtk.Dialog
 	{
-		private static Pixbuf LOGO = new Pixbuf ("./icons/scalable/OCMLogo.svg", 96, 96);
-		public OCMSplash () : base(Gtk.WindowType.Toplevel)
+
+		public ScanWaypointsDialog ()
 		{
 			this.Build ();
-			this.image16.Pixbuf = LOGO;
-			versionLabel.Markup = "<b><big>" + UIMonitor.getInstance().GetOCMVersion() + "</big></b>";
-			Color cl = new Color(0,0,0);
-			Color.Parse("#9D9FA1", ref cl);	
-			eventbox1.ModifyBg(StateType.Normal, cl);
 		}
 	}
 }

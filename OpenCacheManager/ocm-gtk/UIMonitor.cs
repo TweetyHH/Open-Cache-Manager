@@ -240,7 +240,7 @@ namespace ocmgtk
 		/// <summary>
 		/// Loads the configuration from GConf
 		/// </summary>
-		public void LoadConfig ()
+		public void LoadConfig (bool refreshNow)
 		{
 			CentreLat = (double) m_conf.Get ("/apps/ocm/lastlat", 0.0);
 			CentreLon = (double)m_conf.Get ("/apps/ocm/lastlon", 0.0);
@@ -269,7 +269,7 @@ namespace ocmgtk
 			m_mainWin.SizeAllocated += HandleM_mainWinSizeAllocated;
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (false);
-			SetCurrentDB (dbName, true);
+			SetCurrentDB (dbName, refreshNow);
 			LoadMap (map);
 			SetSelectedCache(null);
 			BuildWaypointMappings();
@@ -302,7 +302,7 @@ namespace ocmgtk
 			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_home_lat + "&lon=" + m_home_lon);
 		}
 
-		private void SetCurrentDB (string dbName, bool loadNow)
+		public void SetCurrentDB (string dbName, bool loadNow)
 		{
 			if (! System.IO.File.Exists(dbName))
 			{
@@ -374,7 +374,7 @@ namespace ocmgtk
 			UpdateStatusBar ();
 		}
 
-		private static void DoGUIUpdate ()
+		public static void DoGUIUpdate ()
 		{
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (false);
@@ -440,7 +440,7 @@ namespace ocmgtk
 			m_conf.Set("/apps/ocm/lastname", Catalog.GetString("Home"));
 			Geocache selected = m_selectedCache;
 			m_centreName = Catalog.GetString("Home");
-			RefreshCaches();
+			m_cachelist.RefilterList();
 			if (selected != null)
 				SelectCache(selected.Name);
 		}
@@ -455,7 +455,7 @@ namespace ocmgtk
 			m_conf.Set("/apps/ocm/lastlon", m_home_lon);
 			m_conf.Set("/apps/ocm/lastname", m_centreName);
 			m_mainWin.EnableResetCentre();
-			RefreshCaches();
+			m_cachelist.RefilterList();
 			SelectCache(selected.Name);
 		}
 
@@ -761,13 +761,7 @@ namespace ocmgtk
 
 		public void LogFind ()
 		{
-			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, "Do you wish to mark this cache as found in the database?");
-			if ((int)ResponseType.Yes == dlg.Run ()) 
-			{
-				MarkCacheFound ();
-				dlg.Hide();
-			}
-			dlg.Hide();
+			MarkCacheFound();
 			System.Console.WriteLine(m_selectedCache.URL);
 			if (m_selectedCache.URL == null)
 				return;
@@ -779,6 +773,14 @@ namespace ocmgtk
 
 		public void MarkCacheFound ()
 		{
+			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, 
+			                                       String.Format("Do you wish to mark {0} as found?", m_selectedCache.Name));
+			if ((int)ResponseType.No == dlg.Run ()) 
+			{
+				dlg.Hide();
+				return;
+			}
+			dlg.Hide();
 			m_selectedCache.Symbol = "Geocache Found";
 			CacheLog log = new CacheLog ();
 			log.FinderID = OwnerID;
@@ -875,18 +877,20 @@ namespace ocmgtk
 			dlg.Dispose ();
 		}
 
-		public void StartProgressLoad ()
+		public void StartProgressLoad (String msg)
 		{
 			m_progress.Show ();
 			m_progress.Fraction = 0;
-			m_progress.Text = "Loading Map 0%";
+			m_progress.Text = msg;
 			DoGUIUpdate ();
 		}
 
-		public void SetProgress (int progress)
+		public void SetProgress (double progress, double total, string msg)
 		{
-			m_progress.Fraction = ((double)progress / 100);
-			m_progress.Text = String.Format ("Loading Map ({0}%)", progress.ToString ());
+			if (!m_progress.Visible)
+				m_progress.Show();
+			m_progress.Fraction = (progress / total);
+			m_progress.Text = String.Format (msg, progress.ToString ());
 			DoGUIUpdate ();
 		}
 

@@ -169,10 +169,27 @@ public partial class MainWindow : Gtk.Window
 				this.removeSelected.Sensitive = true;
 			ViewOnlineAction.Sensitive = true;
 			LogFindAction.Sensitive = true;
-			MarkArchivedAction.Sensitive = true;
-			MarkAvailableAction.Sensitive = true;
-			MarkDisabledAction.Sensitive = true;
-			MarkUnfoundAction.Sensitive = true;
+			if (cache.Symbol.Contains("Found"))
+			{
+				MarkFoundAction.Sensitive = false;
+				MarkUnfoundAction1.Sensitive = true;
+			}
+			else
+			{
+				MarkFoundAction.Sensitive = true;
+				MarkUnfoundAction1.Sensitive = false;	
+			}
+			
+			MarkArchivedAction1.Sensitive = false;
+			MarkDisabledAction1.Sensitive = false;
+			MarkAvailableAction1.Sensitive = false;			
+			if (cache.Archived == false)
+				MarkArchivedAction1.Sensitive = true;
+			if (!cache.Available)
+				MarkAvailableAction1.Sensitive = true;
+			else
+				MarkDisabledAction1.Sensitive = true;
+			
 			ModifyCacheAction.Sensitive = true;
 			DeleteCacheAction.Sensitive = true;
 			ViewSelectedCacheInQLandkarteGTAction.Sensitive = true;
@@ -185,10 +202,11 @@ public partial class MainWindow : Gtk.Window
 			this.removeSelected.Sensitive = false;
 			ViewOnlineAction.Sensitive = false;
 			LogFindAction.Sensitive = false;
-			MarkArchivedAction.Sensitive = false;
-			MarkAvailableAction.Sensitive = false;
-			MarkDisabledAction.Sensitive = false;
-			MarkUnfoundAction.Sensitive = false;
+			MarkFoundAction.Sensitive = false;
+			MarkArchivedAction1.Sensitive = false;
+			MarkAvailableAction1.Sensitive = false;
+			MarkDisabledAction1.Sensitive = false;
+			MarkUnfoundAction1.Sensitive = false;
 			ModifyCacheAction.Sensitive = false;
 			DeleteCacheAction.Sensitive = false;
 			ViewSelectedCacheInQLandkarteGTAction.Sensitive = false;
@@ -598,6 +616,30 @@ public partial class MainWindow : Gtk.Window
 	{
 		m_monitor.MoveToDB();
 	}
+	
+	protected virtual void OnClickMarkFound (object sender, System.EventArgs e)
+	{
+		m_monitor.MarkCacheFound();
+	}
+	
+	protected virtual void OnClickMarkDisabled (object sender, System.EventArgs e)
+	{
+		m_monitor.MarkCacheDisabled();
+	}
+	
+	protected virtual void OnClickMarkArchived (object sender, System.EventArgs e)
+	{
+		m_monitor.MarkCacheArchived();
+	}
+	
+	protected virtual void OnClickMarkAvailable (object sender, System.EventArgs e)
+	{
+		m_monitor.MarkCacheAvailable();
+	}
+	
+	
+	
+	
 	
 	
 }

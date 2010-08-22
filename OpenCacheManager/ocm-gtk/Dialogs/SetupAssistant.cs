@@ -77,7 +77,7 @@ namespace ocmgtk
 						
 			MainWindow win = new MainWindow ();
 			win.Show();
-			UIMonitor.getInstance().LoadConfig();;
+			UIMonitor.getInstance().LoadConfig(true);
 		}
 
 		void HandleHandleApply (object sender, EventArgs e)

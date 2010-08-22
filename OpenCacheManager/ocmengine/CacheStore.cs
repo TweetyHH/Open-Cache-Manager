@@ -173,7 +173,7 @@ namespace ocmengine
 		
 		
 		
-		public void GetCaches()
+		public List<Geocache> GetCaches()
 		{
 			String sql = GET_GC;
 			if (null != m_filter)
@@ -183,6 +183,7 @@ namespace ocmengine
 			List<Geocache> caches =  GetCacheList(sql);
 			if (this.Complete != null)
 				this.Complete(this, new EventArgs());
+			return caches;
 		}
 		
 		public void AddBookmark(String name)

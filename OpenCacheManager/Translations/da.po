@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2010-08-14 08:18:05-0400\n"
+"POT-Creation-Date: 2010-08-17 22:32:36-0400\n"
 "PO-Revision-Date: 2010-08-12 21:12:30-0400\n"
 "Last-Translator: Kyle Campbell\n"
 "Language-Team: \n"
@@ -38,497 +38,84 @@ msgstr ""
 msgid "_Remove Selected Cache from Bookmark List"
 msgstr ""
 
-#: ../ocm-gtk/MainWindow.cs:399
+#: ../ocm-gtk/MainWindow.cs:401
 msgid "None"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:215 ../ocm-gtk/gtk-gui/MainWindow.cs:216
-msgid "_File"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:218 ../ocm-gtk/gtk-gui/MainWindow.cs:219
-msgid "_Quit"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:221 ../ocm-gtk/gtk-gui/MainWindow.cs:222
-msgid "_Edit"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:224 ../ocm-gtk/gtk-gui/MainWindow.cs:225
-msgid "_Help"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:227 ../ocm-gtk/gtk-gui/MainWindow.cs:228
-msgid "_About"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:230 ../ocm-gtk/gtk-gui/MainWindow.cs:231
-msgid "Clear All Filters"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:233 ../ocm-gtk/gtk-gui/MainWindow.cs:234
-msgid "G_PS"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:236 ../ocm-gtk/gtk-gui/MainWindow.cs:237
-msgid "_Cache"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:239 ../ocm-gtk/gtk-gui/MainWindow.cs:241
-msgid "_View Online"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:243 ../ocm-gtk/gtk-gui/MainWindow.cs:244
-msgid "_Delete"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:246 ../ocm-gtk/gtk-gui/MainWindow.cs:247
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:267 ../ocm-gtk/gtk-gui/MainWindow.cs:268
-msgid "_New Database..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:249 ../ocm-gtk/gtk-gui/MainWindow.cs:250
-#: ../ocm-gtk/gtk-gui/ocmgtk.NoDBDialog.cs:87
-msgid "Open Database..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:252 ../ocm-gtk/gtk-gui/MainWindow.cs:253
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:364 ../ocm-gtk/gtk-gui/MainWindow.cs:365
-msgid "_Geocaching.com"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:255 ../ocm-gtk/gtk-gui/MainWindow.cs:256
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:376 ../ocm-gtk/gtk-gui/MainWindow.cs:377
-msgid "_View My Profile..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:258 ../ocm-gtk/gtk-gui/MainWindow.cs:259
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:379 ../ocm-gtk/gtk-gui/MainWindow.cs:380
-msgid "_Create Pocket Queries..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:261 ../ocm-gtk/gtk-gui/MainWindow.cs:262
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:385 ../ocm-gtk/gtk-gui/MainWindow.cs:386
-msgid "_Find a Cache..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:264 ../ocm-gtk/gtk-gui/MainWindow.cs:265
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:382 ../ocm-gtk/gtk-gui/MainWindow.cs:383
-msgid "_My Account Details..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:270 ../ocm-gtk/gtk-gui/MainWindow.cs:271
-msgid "Open _Database..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:273 ../ocm-gtk/gtk-gui/MainWindow.cs:274
-msgid "_Open GPX/Loc File..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:276 ../ocm-gtk/gtk-gui/MainWindow.cs:277
-msgid "_Save GPX..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:279 ../ocm-gtk/gtk-gui/MainWindow.cs:281
-msgid "_Log Find"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:283 ../ocm-gtk/gtk-gui/MainWindow.cs:285
-msgid "_Mark Unfound"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:287 ../ocm-gtk/gtk-gui/MainWindow.cs:289
-msgid "_Delete Cache..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:291 ../ocm-gtk/gtk-gui/MainWindow.cs:292
-msgid "F_ilter"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:294 ../ocm-gtk/gtk-gui/MainWindow.cs:295
-msgid "_Advanced Filters..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:297 ../ocm-gtk/gtk-gui/MainWindow.cs:299
-msgid "_Clear Advanced Filters"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:301 ../ocm-gtk/gtk-gui/MainWindow.cs:302
-msgid "_Preferences..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:304 ../ocm-gtk/gtk-gui/MainWindow.cs:305
-msgid "_Map"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:307 ../ocm-gtk/gtk-gui/MainWindow.cs:308
-msgid "_Zoom to Centre"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:310 ../ocm-gtk/gtk-gui/MainWindow.cs:312
-msgid "Zoom to Selected _Cache"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:314 ../ocm-gtk/gtk-gui/MainWindow.cs:315
-msgid "_Configure GPS..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:317 ../ocm-gtk/gtk-gui/MainWindow.cs:318
-msgid "_Transfer Caches..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:320 ../ocm-gtk/gtk-gui/MainWindow.cs:321
-msgid "_Change History..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:323 ../ocm-gtk/gtk-gui/MainWindow.cs:325
-msgid "Set Selected Cache As Centre"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:327 ../ocm-gtk/gtk-gui/MainWindow.cs:329
-msgid "_Reset Centre to Home"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:331 ../ocm-gtk/gtk-gui/MainWindow.cs:332
-msgid "_Show Nearby Caches"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:334 ../ocm-gtk/gtk-gui/MainWindow.cs:335
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:367 ../ocm-gtk/gtk-gui/MainWindow.cs:368
-msgid "_TerraCaching.com"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:337 ../ocm-gtk/gtk-gui/MainWindow.cs:338
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:352 ../ocm-gtk/gtk-gui/MainWindow.cs:353
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:373 ../ocm-gtk/gtk-gui/MainWindow.cs:374
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:388 ../ocm-gtk/gtk-gui/MainWindow.cs:389
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:400 ../ocm-gtk/gtk-gui/MainWindow.cs:401
-msgid "_Home Page..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:340 ../ocm-gtk/gtk-gui/MainWindow.cs:341
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:391 ../ocm-gtk/gtk-gui/MainWindow.cs:392
-msgid "To _Do List"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:343 ../ocm-gtk/gtk-gui/MainWindow.cs:344
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:394 ../ocm-gtk/gtk-gui/MainWindow.cs:395
-msgid "Traditional..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:346 ../ocm-gtk/gtk-gui/MainWindow.cs:347
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:397 ../ocm-gtk/gtk-gui/MainWindow.cs:398
-msgid "Locationless..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:349 ../ocm-gtk/gtk-gui/MainWindow.cs:350
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:370 ../ocm-gtk/gtk-gui/MainWindow.cs:371
-msgid "_NaviCache.com"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:355 ../ocm-gtk/gtk-gui/MainWindow.cs:356
-msgid "_My NaviCache..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:358 ../ocm-gtk/gtk-gui/MainWindow.cs:359
-msgid "All Caches"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:361 ../ocm-gtk/gtk-gui/MainWindow.cs:362
-msgid "_Web"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:403 ../ocm-gtk/gtk-gui/MainWindow.cs:404
-msgid "_My NaviCache"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:406 ../ocm-gtk/gtk-gui/MainWindow.cs:408
-msgid "Mark _Disabled"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:410 ../ocm-gtk/gtk-gui/MainWindow.cs:412
-msgid "Mark _Archived"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:414 ../ocm-gtk/gtk-gui/MainWindow.cs:416
-msgid "Mark A_vailable"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:418 ../ocm-gtk/gtk-gui/MainWindow.cs:420
-msgid "M_odify Cache..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:422 ../ocm-gtk/gtk-gui/MainWindow.cs:424
-msgid "_To Do"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:426 ../ocm-gtk/gtk-gui/MainWindow.cs:428
-msgid "_Done"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:430 ../ocm-gtk/gtk-gui/MainWindow.cs:431
-msgid "_Solved Puzzles"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:433 ../ocm-gtk/gtk-gui/MainWindow.cs:434
-msgid "Clear _All Filters"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:436
-msgid "_Add Cache..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:437
-msgid "Add Cache..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:439 ../ocm-gtk/gtk-gui/MainWindow.cs:440
-msgid "_Quick Filter"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:442 ../ocm-gtk/gtk-gui/MainWindow.cs:443
-#: ../ocm-gtk/QuickFilter.cs:134
-msgid "To Do"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:445 ../ocm-gtk/gtk-gui/MainWindow.cs:446
-#: ../ocm-gtk/QuickFilter.cs:122
-msgid "Done"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:448 ../ocm-gtk/gtk-gui/MainWindow.cs:449
-msgid "Delete All Visible Caches..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:451 ../ocm-gtk/gtk-gui/MainWindow.cs:452
-msgid "Use GPSD as Centre"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:454 ../ocm-gtk/gtk-gui/MainWindow.cs:455
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSDConfig.cs:37
-msgid "Configure GPSD..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:457 ../ocm-gtk/gtk-gui/MainWindow.cs:458
-msgid "G_PSBabel Home Page..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:460 ../ocm-gtk/gtk-gui/MainWindow.cs:461
-msgid "GPS_D Home Page..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:463 ../ocm-gtk/gtk-gui/MainWindow.cs:464
-msgid "OCM Home Page..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:466 ../ocm-gtk/gtk-gui/MainWindow.cs:467
-msgid "Deselect"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:469 ../ocm-gtk/gtk-gui/MainWindow.cs:470
-msgid "Deselect Cache"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:472 ../ocm-gtk/gtk-gui/MainWindow.cs:473
-msgid "_Tools"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:475 ../ocm-gtk/gtk-gui/MainWindow.cs:476
-msgid "_View All in QLandkarte GT..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:478 ../ocm-gtk/gtk-gui/MainWindow.cs:479
-msgid "View Selected _Cache in QLandkarte GT..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:481 ../ocm-gtk/gtk-gui/MainWindow.cs:482
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:234
-#: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:126
-#: ../ocm-gtk/QuickFilter.cs:146
-msgid "Mine"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:484 ../ocm-gtk/gtk-gui/MainWindow.cs:485
-#: ../ocm-gtk/QuickFilter.cs:158
-msgid "All"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:487
-msgid "_Save Current View as Quick Filter"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:488
-msgid "_Save Current as Quick Filter"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:490 ../ocm-gtk/gtk-gui/MainWindow.cs:491
-msgid "_Delete Quick Filter..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:493 ../ocm-gtk/gtk-gui/MainWindow.cs:494
-msgid "OCM Wiki..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:499
-msgid "OCM"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:549
-msgid "Not Set"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:201
-msgid "Log My Find..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:215
-msgid "View Online..."
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:241
-msgid "<country>"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:250
-msgid "<b>Last Log By You:</b>"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:260
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:94
-msgid "Never"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:280
-msgid "<b>A cache by:</b>"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:305
-msgid "<b>Hidden on:</b>"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:328
-msgid "<b>Last Update:</b>"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:358
-msgid "<b>Cache Size:</b>"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:380
-msgid "<b>Difficulty:</b>"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:432
-msgid "<b>Terrain:</b>"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:69
-msgid "Quick Info"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:82
-msgid "Description"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:95
-msgid "Logs"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:108
-msgid "Waypoints"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:121
-msgid "Notes"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:67
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:68
-msgid "Filter"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:147
-msgid "km"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:182
-msgid "Archived"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:197
-msgid "Not Found"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:210
-msgid "Available"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:223
-msgid "Found"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:247
-msgid "Disabled"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/CacheList.cs:70 ../ocm-gtk/Widgets/WaypointWidget.cs:48
+#: ../ocm-gtk/Widgets/CacheList.cs:75 ../ocm-gtk/Widgets/WaypointWidget.cs:48
 msgid "Type"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:71 ../ocm-gtk/Widgets/WaypointWidget.cs:50
+#: ../ocm-gtk/Widgets/CacheList.cs:76 ../ocm-gtk/Widgets/WaypointWidget.cs:50
 msgid "Code"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:72 ../ocm-gtk/Widgets/CacheList.cs:123
-#: ../ocm-gtk/Widgets/CacheList.cs:124
+#: ../ocm-gtk/Widgets/CacheList.cs:77 ../ocm-gtk/Widgets/CacheList.cs:128
+#: ../ocm-gtk/Widgets/CacheList.cs:129
 msgid "Km"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:73
+#: ../ocm-gtk/Widgets/CacheList.cs:78
 msgid "Title"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:117
+#: ../ocm-gtk/Widgets/CacheList.cs:122
 msgid "Mi"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:118
+#: ../ocm-gtk/Widgets/CacheList.cs:123
 msgid "Miles"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:427
+#: ../ocm-gtk/Widgets/CacheList.cs:208
+msgid "Loading Caches {0}"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/CacheList.cs:461
 msgid "Set As Map Centre"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:428
+#: ../ocm-gtk/Widgets/CacheList.cs:462
 msgid "View Cache Online"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:429
+#: ../ocm-gtk/Widgets/CacheList.cs:463
+msgid "Mark"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/CacheList.cs:465
+msgid "Mark Found"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/CacheList.cs:466
+msgid "Mark Unfound"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/CacheList.cs:467
 msgid "Mark Disabled"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:430
+#: ../ocm-gtk/Widgets/CacheList.cs:468
 msgid "Mark Archived"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:431
+#: ../ocm-gtk/Widgets/CacheList.cs:469
 msgid "Mark Available"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:432
+#: ../ocm-gtk/Widgets/CacheList.cs:470
 msgid "Delete..."
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:433
+#: ../ocm-gtk/Widgets/CacheList.cs:471
 msgid "Add to Bookmark List"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:434
+#: ../ocm-gtk/Widgets/CacheList.cs:472
 msgid "View in QLandkarte GT..."
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:477
+#: ../ocm-gtk/Widgets/CacheList.cs:526
 msgid "Remove From Bookmark List"
 msgstr ""
 
@@ -570,6 +157,11 @@ msgstr ""
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:68
 #: ../ocm-gtk/Widgets/LogViewerWidget.cs:51
 msgid "NO CACHE SELECTED"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:94
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:260
+msgid "Never"
 msgstr ""
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:118
@@ -703,6 +295,713 @@ msgstr ""
 msgid "Geocache"
 msgstr ""
 
+#: ../ocm-gtk/Widgets/WaypointWidget.cs:52
+msgid "Location"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/WaypointWidget.cs:54
+#: ../ocm-gtk/Widgets/DescriptionWidget.cs:67
+msgid "Name"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/BrowserWidget.cs:54
+msgid "Loading Map {0}"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/BrowserWidget.cs:60
+msgid "Loading Map"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:246 ../ocm-gtk/UIMonitor.cs:252
+#: ../ocm-gtk/UIMonitor.cs:439 ../ocm-gtk/UIMonitor.cs:441
+#: ../ocm-gtk/UIMonitor.cs:1013
+msgid "Home"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:351
+msgid ""
+"OCM needs to upgrade your database.\n"
+"Would you like to backup your database first?"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:358
+msgid "Upgrade complete"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:488 ../ocm-gtk/UIMonitor.cs:508
+msgid "<b>A cache by:</b> "
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:488 ../ocm-gtk/UIMonitor.cs:508
+msgid "<br><b>Hidden on: </b>"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:545
+msgid ""
+"Showing {0} of {1} caches, {2} found, {3} unavailable/archived, {4} placed "
+"by me"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:547
+msgid ""
+"Showing {0} of {1} caches from {2}, {3} found, {4} unavailable/archived, {5} "
+"placed by me"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:556
+msgid "Centred on {0} ({1})"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:576
+msgid "Create database"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:576 ../ocm-gtk/UIMonitor.cs:608
+#: ../ocm-gtk/UIMonitor.cs:647 ../ocm-gtk/UIMonitor.cs:728
+#: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
+#: ../ocm-gtk/Widgets/GPXWidget.cs:110
+#: ../ocm-gtk/Widgets/GenericGPSWidget.cs:113
+msgid "Cancel"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:576
+msgid "Save"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:606
+msgid "Open Database"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:610 ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
+msgid "Open"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:647
+msgid "Save GPX File"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:647
+msgid "Export"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:728
+msgid "Import GPX File"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:728
+msgid "Import"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:844
+msgid "Are you sure you want to delete {0}?"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:868
+msgid "Are you sure you want to clear all advanced filters?"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:1092
+msgid "{0} added to {1}"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:1103
+msgid "{0} caches added to {1}"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:1109
+msgid "Are you sure you want to remove {0} from {1}?"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:1179
+msgid ""
+"Are you sure you want to delete these {0} caches?\n"
+"This operation cannot be undone."
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:1286 ../ocm-gtk/UIMonitor.cs:1302
+msgid "Preparing to send to QLandKarte GT"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:1323
+msgid "Save QuickFilter"
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:1350
+msgid "Database Compacted."
+msgstr ""
+
+#: ../ocm-gtk/UIMonitor.cs:1368
+msgid "Move Geocaches..."
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:41
+#: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:78
+#: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:82
+#: ../ocm-gtk/Dialogs/CopyingProgress.cs:83
+msgid "Complete"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:42
+msgid "<i>Import complete, {0} waypoints processed</i>"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:57
+#: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:59
+msgid "<b>File: </b>"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:86
+msgid "Import cancelled, all changes reverted."
+msgstr ""
+
+#: ../ocm-gtk/Widgets/CoordinateWidget.cs:89
+msgid "Invalid Coordinate"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/SetupAssistant.cs:41
+msgid "Setup Assistant"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/SetupAssistant.cs:42
+msgid "Welcome"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/SetupAssistant.cs:45
+msgid "Setup a Database"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/SetupAssistant.cs:47
+msgid "User Details"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
+msgid "Choose Database Location"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:77
+msgid "<i>{0} Geocaches exported.</i>"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:104
+msgid ""
+"Cancelling an export will result in an invalid GPX file.\n"
+"Are you sure?"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/DescriptionWidget.cs:46
+msgid "<b>NO CACHE SELECTED</b>"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/DescriptionWidget.cs:66
+msgid "Ref"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/GPXWidget.cs:110
+msgid "Select GPX location"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/GPXWidget.cs:110
+#: ../ocm-gtk/Widgets/GenericGPSWidget.cs:113
+msgid "Select"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:84
+msgid "<i>Send Complete:{0} geocaches transferred</i>"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:91
+msgid "<i>Sending Geocaches to Device</i>"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:112
+msgid "Are you sure you want to cancel?"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/GenericGPSWidget.cs:113
+msgid "Select File location"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/NotesWidget.cs:46
+msgid "You have unsaved notes, do you wish to save them?"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/DeleteBookmark.cs:40
+msgid "Quick Filter:"
+msgstr ""
+
+#: ../ocm-gtk/QuickFilter.cs:122 ../ocm-gtk/gtk-gui/MainWindow.cs:449
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:450
+msgid "Done"
+msgstr ""
+
+#: ../ocm-gtk/QuickFilter.cs:134 ../ocm-gtk/gtk-gui/MainWindow.cs:446
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:447
+msgid "To Do"
+msgstr ""
+
+#: ../ocm-gtk/QuickFilter.cs:146 ../ocm-gtk/gtk-gui/MainWindow.cs:485
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:486
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:234
+#: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:126
+msgid "Mine"
+msgstr ""
+
+#: ../ocm-gtk/QuickFilter.cs:158 ../ocm-gtk/gtk-gui/MainWindow.cs:488
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:489
+msgid "All"
+msgstr ""
+
+#: ../ocm-gtk/QuickFilters.cs:55
+msgid "Are you sure you wish to overwrite \"{0}\"?"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/CopyingProgress.cs:39
+msgid "Move Caches..."
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/CopyingProgress.cs:40
+msgid "Moving Geocaches"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/CopyingProgress.cs:82
+msgid "<i>Complete</i>"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/CopyingProgress.cs:94
+msgid "<i>Copying:{0}</i>"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:231 ../ocm-gtk/gtk-gui/MainWindow.cs:232
+msgid "_File"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:234 ../ocm-gtk/gtk-gui/MainWindow.cs:235
+msgid "_Quit"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:237 ../ocm-gtk/gtk-gui/MainWindow.cs:238
+msgid "_Edit"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:240 ../ocm-gtk/gtk-gui/MainWindow.cs:241
+msgid "_Help"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:243 ../ocm-gtk/gtk-gui/MainWindow.cs:244
+msgid "_About"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:246 ../ocm-gtk/gtk-gui/MainWindow.cs:247
+msgid "Clear All Filters"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:249 ../ocm-gtk/gtk-gui/MainWindow.cs:250
+msgid "G_PS"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:252 ../ocm-gtk/gtk-gui/MainWindow.cs:253
+msgid "_Cache"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:255 ../ocm-gtk/gtk-gui/MainWindow.cs:257
+msgid "_View Online"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:259 ../ocm-gtk/gtk-gui/MainWindow.cs:260
+msgid "_Delete"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:262 ../ocm-gtk/gtk-gui/MainWindow.cs:263
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:283 ../ocm-gtk/gtk-gui/MainWindow.cs:284
+msgid "_New Database..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:265 ../ocm-gtk/gtk-gui/MainWindow.cs:266
+#: ../ocm-gtk/gtk-gui/ocmgtk.NoDBDialog.cs:87
+msgid "Open Database..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:268 ../ocm-gtk/gtk-gui/MainWindow.cs:269
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:380 ../ocm-gtk/gtk-gui/MainWindow.cs:381
+msgid "_Geocaching.com"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:271 ../ocm-gtk/gtk-gui/MainWindow.cs:272
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:392 ../ocm-gtk/gtk-gui/MainWindow.cs:393
+msgid "_View My Profile..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:274 ../ocm-gtk/gtk-gui/MainWindow.cs:275
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:395 ../ocm-gtk/gtk-gui/MainWindow.cs:396
+msgid "_Create Pocket Queries..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:277 ../ocm-gtk/gtk-gui/MainWindow.cs:278
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:401 ../ocm-gtk/gtk-gui/MainWindow.cs:402
+msgid "_Find a Cache..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:280 ../ocm-gtk/gtk-gui/MainWindow.cs:281
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:398 ../ocm-gtk/gtk-gui/MainWindow.cs:399
+msgid "_My Account Details..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:286 ../ocm-gtk/gtk-gui/MainWindow.cs:287
+msgid "Open _Database..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:289 ../ocm-gtk/gtk-gui/MainWindow.cs:290
+msgid "_Import GPX/Loc File..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:292 ../ocm-gtk/gtk-gui/MainWindow.cs:293
+msgid "_Export GPX..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:295 ../ocm-gtk/gtk-gui/MainWindow.cs:297
+msgid "_Log Find"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:299 ../ocm-gtk/gtk-gui/MainWindow.cs:301
+msgid "_Mark Unfound"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:303 ../ocm-gtk/gtk-gui/MainWindow.cs:305
+msgid "_Delete Cache..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:307 ../ocm-gtk/gtk-gui/MainWindow.cs:308
+msgid "F_ilter"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:310 ../ocm-gtk/gtk-gui/MainWindow.cs:311
+msgid "_Advanced Filters..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:313 ../ocm-gtk/gtk-gui/MainWindow.cs:315
+msgid "_Clear Advanced Filters"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:317 ../ocm-gtk/gtk-gui/MainWindow.cs:318
+msgid "_Preferences..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:320 ../ocm-gtk/gtk-gui/MainWindow.cs:321
+msgid "_Map"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:323 ../ocm-gtk/gtk-gui/MainWindow.cs:324
+msgid "_Zoom to Centre"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:326 ../ocm-gtk/gtk-gui/MainWindow.cs:328
+msgid "Zoom to Selected _Cache"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:330 ../ocm-gtk/gtk-gui/MainWindow.cs:331
+msgid "_Configure GPS..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:333 ../ocm-gtk/gtk-gui/MainWindow.cs:334
+msgid "_Transfer Caches..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:336 ../ocm-gtk/gtk-gui/MainWindow.cs:337
+msgid "_Change History..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:339 ../ocm-gtk/gtk-gui/MainWindow.cs:341
+msgid "Set Selected Cache As Centre"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:343 ../ocm-gtk/gtk-gui/MainWindow.cs:345
+msgid "_Reset Centre to Home"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:347 ../ocm-gtk/gtk-gui/MainWindow.cs:348
+msgid "_Show Nearby Caches"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:350 ../ocm-gtk/gtk-gui/MainWindow.cs:351
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:383 ../ocm-gtk/gtk-gui/MainWindow.cs:384
+msgid "_TerraCaching.com"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:353 ../ocm-gtk/gtk-gui/MainWindow.cs:354
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:368 ../ocm-gtk/gtk-gui/MainWindow.cs:369
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:389 ../ocm-gtk/gtk-gui/MainWindow.cs:390
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:404 ../ocm-gtk/gtk-gui/MainWindow.cs:405
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:416 ../ocm-gtk/gtk-gui/MainWindow.cs:417
+msgid "_Home Page..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:356 ../ocm-gtk/gtk-gui/MainWindow.cs:357
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:407 ../ocm-gtk/gtk-gui/MainWindow.cs:408
+msgid "To _Do List"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:359 ../ocm-gtk/gtk-gui/MainWindow.cs:360
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:410 ../ocm-gtk/gtk-gui/MainWindow.cs:411
+msgid "Traditional..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:362 ../ocm-gtk/gtk-gui/MainWindow.cs:363
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:413 ../ocm-gtk/gtk-gui/MainWindow.cs:414
+msgid "Locationless..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:365 ../ocm-gtk/gtk-gui/MainWindow.cs:366
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:386 ../ocm-gtk/gtk-gui/MainWindow.cs:387
+msgid "_NaviCache.com"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:371 ../ocm-gtk/gtk-gui/MainWindow.cs:372
+msgid "_My NaviCache..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:374 ../ocm-gtk/gtk-gui/MainWindow.cs:375
+msgid "All Caches"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:377 ../ocm-gtk/gtk-gui/MainWindow.cs:378
+msgid "_Web"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:419 ../ocm-gtk/gtk-gui/MainWindow.cs:420
+msgid "_My NaviCache"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:422 ../ocm-gtk/gtk-gui/MainWindow.cs:424
+msgid "M_odify Cache..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:426 ../ocm-gtk/gtk-gui/MainWindow.cs:428
+msgid "_To Do"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:430 ../ocm-gtk/gtk-gui/MainWindow.cs:432
+msgid "_Done"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:434 ../ocm-gtk/gtk-gui/MainWindow.cs:435
+msgid "_Solved Puzzles"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:437 ../ocm-gtk/gtk-gui/MainWindow.cs:438
+msgid "Clear _All Filters"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:440
+msgid "_Add Cache..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:441
+msgid "Add Cache..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:443 ../ocm-gtk/gtk-gui/MainWindow.cs:444
+msgid "_Quick Filter"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:452 ../ocm-gtk/gtk-gui/MainWindow.cs:453
+msgid "Delete All Visible Caches..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:455 ../ocm-gtk/gtk-gui/MainWindow.cs:456
+msgid "Use GPSD as Centre"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:458 ../ocm-gtk/gtk-gui/MainWindow.cs:459
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSDConfig.cs:37
+msgid "Configure GPSD..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:461 ../ocm-gtk/gtk-gui/MainWindow.cs:462
+msgid "G_PSBabel Home Page..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:464 ../ocm-gtk/gtk-gui/MainWindow.cs:465
+msgid "GPS_D Home Page..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:467 ../ocm-gtk/gtk-gui/MainWindow.cs:468
+msgid "OCM Home Page..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:470 ../ocm-gtk/gtk-gui/MainWindow.cs:471
+msgid "Deselect"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:473 ../ocm-gtk/gtk-gui/MainWindow.cs:474
+msgid "Deselect Cache"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:476 ../ocm-gtk/gtk-gui/MainWindow.cs:477
+msgid "_Tools"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:479 ../ocm-gtk/gtk-gui/MainWindow.cs:480
+msgid "_View All in QLandkarte GT..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:482 ../ocm-gtk/gtk-gui/MainWindow.cs:483
+msgid "View Selected _Cache in QLandkarte GT..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:491
+msgid "_Save Current View as Quick Filter"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:492
+msgid "_Save Current as Quick Filter"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:494 ../ocm-gtk/gtk-gui/MainWindow.cs:495
+msgid "_Delete Quick Filter..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:497 ../ocm-gtk/gtk-gui/MainWindow.cs:498
+msgid "OCM Wiki..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:500 ../ocm-gtk/gtk-gui/MainWindow.cs:501
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:506 ../ocm-gtk/gtk-gui/MainWindow.cs:507
+msgid "Compact Database"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:503 ../ocm-gtk/gtk-gui/MainWindow.cs:504
+msgid "Database Tools"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:509 ../ocm-gtk/gtk-gui/MainWindow.cs:510
+msgid "Copy Visible Caches..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:512 ../ocm-gtk/gtk-gui/MainWindow.cs:513
+msgid "Move Visible Caches..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:515 ../ocm-gtk/gtk-gui/MainWindow.cs:516
+msgid "_Mark"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:518 ../ocm-gtk/gtk-gui/MainWindow.cs:519
+msgid "Mark _Unfound"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:521 ../ocm-gtk/gtk-gui/MainWindow.cs:522
+msgid "Mark _Disabled"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:524 ../ocm-gtk/gtk-gui/MainWindow.cs:525
+msgid "Mark _Archived"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:527 ../ocm-gtk/gtk-gui/MainWindow.cs:528
+msgid "Mark A_vailable"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:530 ../ocm-gtk/gtk-gui/MainWindow.cs:531
+msgid "Mark _Found"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:536
+msgid "OCM"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:586
+msgid "Not Set"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:201
+msgid "Log My Find..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:215
+msgid "View Online..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:241
+msgid "<country>"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:250
+msgid "<b>Last Log By You:</b>"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:280
+msgid "<b>A cache by:</b>"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:305
+msgid "<b>Hidden on:</b>"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:328
+msgid "<b>Last Update:</b>"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:358
+msgid "<b>Cache Size:</b>"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:380
+msgid "<b>Difficulty:</b>"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:432
+msgid "<b>Terrain:</b>"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:69
+msgid "Quick Info"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:82
+msgid "Description"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:95
+msgid "Logs"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:108
+msgid "Waypoints"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:121
+msgid "Notes"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:67
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:68
+msgid "Filter"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:147
+msgid "km"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:182
+msgid "Archived"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:197
+msgid "Not Found"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:210
+msgid "Available"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:223
+msgid "Found"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:247
+msgid "Disabled"
+msgstr ""
+
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:57
 msgid "Add/Edit Waypoint..."
 msgstr ""
@@ -733,7 +1032,6 @@ msgid "Trailhead"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:98
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:117
 msgid "Other"
 msgstr ""
 
@@ -761,163 +1059,21 @@ msgstr ""
 msgid "Description:"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/WaypointWidget.cs:52
-msgid "Location"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/WaypointWidget.cs:54
-#: ../ocm-gtk/Widgets/DescriptionWidget.cs:67
-msgid "Name"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:282 ../ocm-gtk/UIMonitor.cs:288
-#: ../ocm-gtk/UIMonitor.cs:463 ../ocm-gtk/UIMonitor.cs:465
-#: ../ocm-gtk/UIMonitor.cs:1140
-msgid "Home"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:375
-msgid ""
-"OCM needs to upgrade your database.\n"
-"Would you like to backup your database first?"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:382
-msgid "Upgrade complete"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:512 ../ocm-gtk/UIMonitor.cs:532
-msgid "<b>A cache by:</b> "
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:512 ../ocm-gtk/UIMonitor.cs:532
-msgid "<br><b>Hidden on: </b>"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:569
-msgid ""
-"Showing {0} of {1} caches, {2} found, {3} unavailable/archived, {4} placed "
-"by me"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:571
-msgid ""
-"Showing {0} of {1} caches from {2}, {3} found, {4} unavailable/archived, {5} "
-"placed by me"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:580
-msgid "Centred on {0} ({1})"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:725
-msgid "Create database"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:725 ../ocm-gtk/UIMonitor.cs:754
-#: ../ocm-gtk/UIMonitor.cs:780 ../ocm-gtk/UIMonitor.cs:861
-#: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
-#: ../ocm-gtk/Widgets/GPXWidget.cs:110
-#: ../ocm-gtk/Widgets/GenericGPSWidget.cs:113
-msgid "Cancel"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:725
-msgid "Save"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:754
-msgid "Open Database"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:754 ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
-msgid "Open"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:780
-msgid "Save GPX File"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:780
-msgid "Export"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:861
-msgid "Import GPX File"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:861
-msgid "Import"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:975
-msgid "Are you sure you want to delete {0}?"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:997
-msgid "Are you sure you want to clear all advanced filters?"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:1219
-msgid "{0} added to {1}"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:1230
-msgid "{0} caches added to {1}"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:1236
-msgid "Are you sure you want to remove {0} from {1}?"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:1306
-msgid ""
-"Are you sure you want to delete these {0} caches?\n"
-"This operation cannot be undone."
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:1413 ../ocm-gtk/UIMonitor.cs:1429
-msgid "Preparing to send to QLandKarte GT"
-msgstr ""
-
-#: ../ocm-gtk/UIMonitor.cs:1450
-msgid "Save QuickFilter"
-msgstr ""
-
-#: ../ocm-gtk/Dialogs/ProgressDialog.cs:41
-#: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:78
-#: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:73
-msgid "Complete"
-msgstr ""
-
-#: ../ocm-gtk/Dialogs/ProgressDialog.cs:42
-msgid "<i>Import complete, {0} waypoints processed</i>"
-msgstr ""
-
-#: ../ocm-gtk/Dialogs/ProgressDialog.cs:57
-#: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:59
-msgid "<b>File: </b>"
-msgstr ""
-
-#: ../ocm-gtk/Dialogs/ProgressDialog.cs:86
-msgid "Import cancelled, all changes reverted."
-msgstr ""
-
 #: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:34
 msgid "Open GPX File..."
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:52
+#: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:50
 msgid "<big><b>Importing GPX data</b></big>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:61
-#: ../ocm-gtk/gtk-gui/ocmgtk.ExportProgressDialog.cs:61
+#: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:59
+#: ../ocm-gtk/gtk-gui/ocmgtk.ExportProgressDialog.cs:60
 msgid "<b>File:</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:89
-#: ../ocm-gtk/gtk-gui/ocmgtk.SendWaypointsDialog.cs:72
+#: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:87
+#: ../ocm-gtk/gtk-gui/ocmgtk.SendWaypointsDialog.cs:70
 msgid "<i>Initializing</i>"
 msgstr ""
 
@@ -994,10 +1150,6 @@ msgstr ""
 msgid "U.S./Imperial"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CoordinateWidget.cs:89
-msgid "Invalid Coordinate"
-msgstr ""
-
 #: ../ocm-gtk/gtk-gui/ocmgtk.CoordinateWidget.cs:58
 msgid "°"
 msgstr ""
@@ -1015,26 +1167,6 @@ msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage1.cs:49
 msgid "Sign Up for an Account..."
-msgstr ""
-
-#: ../ocm-gtk/Dialogs/SetupAssistant.cs:41
-msgid "Setup Assistant"
-msgstr ""
-
-#: ../ocm-gtk/Dialogs/SetupAssistant.cs:42
-msgid "Welcome"
-msgstr ""
-
-#: ../ocm-gtk/Dialogs/SetupAssistant.cs:45
-msgid "Setup a Database"
-msgstr ""
-
-#: ../ocm-gtk/Dialogs/SetupAssistant.cs:47
-msgid "User Details"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
-msgid "Choose Database Location"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage2.cs:49
@@ -1083,34 +1215,16 @@ msgstr ""
 msgid "Home Longitude:"
 msgstr ""
 
-#: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:77
-msgid "<i>{0} Geocaches exported.</i>"
-msgstr ""
-
-#: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:104
-msgid ""
-"Cancelling an export will result in an invalid GPX file.\n"
-"Are you sure?"
-msgstr ""
-
 #: ../ocm-gtk/gtk-gui/ocmgtk.ExportProgressDialog.cs:32
 msgid "Saving File..."
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.ExportProgressDialog.cs:49
+#: ../ocm-gtk/gtk-gui/ocmgtk.ExportProgressDialog.cs:48
 msgid "<big><b>Generating GPX File</b></big>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.ExportProgressDialog.cs:81
+#: ../ocm-gtk/gtk-gui/ocmgtk.ExportProgressDialog.cs:80
 msgid "<i>Intializing</i>"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/DescriptionWidget.cs:46
-msgid "<b>NO CACHE SELECTED</b>"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/DescriptionWidget.cs:66
-msgid "Ref"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DescriptionWidget.cs:55
@@ -1344,37 +1458,40 @@ msgstr ""
 msgid "Selected Container Types"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:45
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:41
 msgid "GPS Configuration..."
 msgstr ""
 
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:67
+msgid "Garmin GPX (Colorado/Oregon/Dakota/Nuvi/Map62)"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:68
+msgid "Garmin USB (eTrex/GPSMap60/StreetPiot)"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:69
+msgid "Garmin Serial (original eTrex/eTrex H/Gecko)"
+msgstr ""
+
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:70
-msgid "Garmin Colorado/Oregon/Dakota/Nuvi"
+msgid "Other GPX based GPS"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:71
+msgid "Other GPS"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:94
-msgid "Garmin eTrex/GPSMap/Street Pilot"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:111
 msgid "Select a GPS Type:"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:135
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:103
 msgid "Device"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:148
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:116
 msgid "Waypoint Symbols"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/GPXWidget.cs:110
-msgid "Select GPX location"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/GPXWidget.cs:110
-#: ../ocm-gtk/Widgets/GenericGPSWidget.cs:113
-msgid "Select"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPXWidget.cs:61
@@ -1389,7 +1506,7 @@ msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPXWidget.cs:88
 #: ../ocm-gtk/gtk-gui/ocmgtk.MagellanExploristWidget.cs:51
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:61
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:122
 msgid "Limit Number of Caches"
 msgstr ""
 
@@ -1403,22 +1520,28 @@ msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:60
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:137
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:71
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:83
 msgid "Cache Name"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:61
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:84
 msgid "Cache Code/Size/Hint"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:62
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:85
 msgid "Cache Code/Size/Type"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:92
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:100
 msgid "Waypoint Name Format:"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:103
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:111
 msgid "Waypoint Description Format:"
 msgstr ""
 
@@ -1427,6 +1550,7 @@ msgid "Limit Number of Geocaches"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:136
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:70
 msgid "Cache Code"
 msgstr ""
 
@@ -1437,23 +1561,15 @@ msgid ""
 "<span fgcolor=\"blue\">http://www.gpsbabel.org/os/Linux_Hotplug.html</span>"
 msgstr ""
 
-#: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:74
-msgid "<i>Send Complete:{0} geocaches transferred</i>"
-msgstr ""
-
-#: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:81
-msgid "<i>Sending Geocaches to Device</i>"
-msgstr ""
-
 #: ../ocm-gtk/gtk-gui/ocmgtk.SendWaypointsDialog.cs:32
 msgid "Sending Caches..."
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.SendWaypointsDialog.cs:52
+#: ../ocm-gtk/gtk-gui/ocmgtk.SendWaypointsDialog.cs:50
 msgid "<big><b>Sending Caches To GPS</b></big>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.SendWaypointsDialog.cs:108
+#: ../ocm-gtk/gtk-gui/ocmgtk.SendWaypointsDialog.cs:106
 msgid "Close"
 msgstr ""
 
@@ -1461,21 +1577,17 @@ msgstr ""
 msgid "Serial Port or File:"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/GenericGPSWidget.cs:113
-msgid "Select File location"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:93
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:165
 msgid ""
 "Read the GPSBabel Documentation to choose the right values for these fields "
 "<span fgcolor=\"blue\">http://www.gpsbabel.org/readme.html</span>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:111
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:183
 msgid "Output Format:"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:140
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:212
 msgid "Output FIle:"
 msgstr ""
 
@@ -1507,20 +1619,12 @@ msgstr ""
 msgid "Change History..."
 msgstr ""
 
-#: ../ocm-gtk/Widgets/NotesWidget.cs:46
-msgid "You have unsaved notes, do you wish to save them?"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:81
+#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:82
 msgid "_Save"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.AddBookMarkDialog.cs:29
 msgid "Create Bookmark List..."
-msgstr ""
-
-#: ../ocm-gtk/Dialogs/DeleteBookmark.cs:40
-msgid "Quick Filter:"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DeleteBookmark.cs:29
@@ -2255,10 +2359,6 @@ msgstr ""
 msgid "Water Source"
 msgstr ""
 
-#: ../ocm-gtk/QuickFilters.cs:55
-msgid "Are you sure you wish to overwrite \"{0}\"?"
-msgstr ""
-
 #: ../ocm-gtk/gtk-gui/ocmgtk.ProcessLogs.cs:63
 msgid "GtkButton"
 msgstr ""
@@ -2275,4 +2375,32 @@ msgid ""
 "NaviCache\". You can find links to all of these under the Web menu.\n"
 "\n"
 "Visit the OCM wiki for help and how to guides by click on Help>OCM Wiki...\n"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.CopyMoveDialog.cs:29
+msgid "Copy/Move"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.CopyMoveDialog.cs:43
+msgid "Target Database:"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.CopyMoveDialog.cs:50
+msgid "Select A File"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.CopyingProgress.cs:37
+msgid "Copy Geocaches..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.CopyingProgress.cs:49
+msgid "<big><b>Copying Geocaches</b></big>"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.CopyingProgress.cs:67
+msgid "<b>Target:</b>"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.CopyingProgress.cs:91
+msgid "0%"
 msgstr ""

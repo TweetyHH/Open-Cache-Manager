@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Gtk;
 using ocmengine;
@@ -305,6 +306,21 @@ namespace ocmgtk
 		protected virtual void OnStopActionActivated (object sender, System.EventArgs e)
 		{
 		}
+		
+		public void GrabWaypoints()
+		{
+			Geocache cache = m_mon.SelectedCache;
+			String expr = @"[NnSs].[0-9]*. [0-9]*\.[0-9]*. [WwEe].[0-9]*. [0-9]*\.[0-9]*";
+			MatchCollection matches = Regex.Matches(cache.LongDesc, expr);
+			System.Console.WriteLine(matches.Count);
+
+		}
+		
+		protected virtual void OnGrabClick (object sender, System.EventArgs e)
+		{
+			GrabWaypoints();
+		}
+		
 		
 	}
 }

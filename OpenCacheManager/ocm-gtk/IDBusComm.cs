@@ -24,5 +24,6 @@ namespace ocmgtk
 	public interface IDBusComm
 	{
 		void ImportGPX(String file);
+		void ShowOCM();
 	}
 }

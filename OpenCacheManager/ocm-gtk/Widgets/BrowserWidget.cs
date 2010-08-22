@@ -52,12 +52,13 @@ namespace ocmgtk
 
 		void HandleM_browserLoadProgressChanged (object o, LoadProgressChangedArgs args)
 		{	
-			m_monitor.SetProgress(args.Progress);
+				m_monitor.SetProgress(args.Progress, 100, String.Format(Catalog.GetString("Loading Map {0}"), ((double)args.Progress/(double)100).ToString("0%")));
+		
 		}
 
 		void HandleM_browserLoadStarted (object o, LoadStartedArgs args)
 		{
-			m_monitor.StartProgressLoad();
+			m_monitor.StartProgressLoad(Catalog.GetString("Loading Map"));
 			loaded = false;
 		}
 

@@ -37,7 +37,6 @@ namespace ocmgtk {
             this.Resizable = false;
             this.AllowGrow = false;
             this.SkipPagerHint = true;
-            this.SkipTaskbarHint = true;
             // Internal child ocmgtk.ExportProgressDialog.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";
@@ -122,7 +121,7 @@ namespace ocmgtk {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 402;
-            this.DefaultHeight = 219;
+            this.DefaultHeight = 225;
             this.okButton.Hide();
             this.Show();
             this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);

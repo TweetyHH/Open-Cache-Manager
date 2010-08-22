@@ -29,5 +29,9 @@ namespace ocmgtk
 		{
 			UIMonitor.getInstance().ImportGPXFile(filename);
 		}
+		
+		public void ShowOCM()
+		{
+		}
 	}
 }
