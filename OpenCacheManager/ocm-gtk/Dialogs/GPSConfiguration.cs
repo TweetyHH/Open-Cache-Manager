@@ -23,30 +23,22 @@ namespace ocmgtk
 	{
 		GarminUSBWidget gusbwidet = new GarminUSBWidget ();
 		GenericGPSWidget gpswidget = new GenericGPSWidget();
-
-
-		protected virtual void OnGUSBToggle (object sender, System.EventArgs e)
-		{
-			/*if (gusbRadio.Active) {
-				table1.Remove (gpxwidget);
-				table1.Remove(gpswidget);
-				table1.Add (gusbwidet);
-				Gtk.Table.TableChild props = ((Gtk.Table.TableChild)(this.table1[this.gusbwidet]));
-				props.TopAttach = 2;
-				props.RightAttach = 2;
-				props.BottomAttach = 3;
-				gusbwidet.Show ();
-			}*/
-		}
+		GarminSerialWidget garswidget = new GarminSerialWidget();
 
 		public IGPSConfig GPSConfig {
-			get {
-				/*if (gusbRadio.Active)
-					return gusbwidet;
-				else if (otherRadio.Active)
-					return gpswidget;
-				else*/
-					return gpxwidget;
+			get
+			{
+				switch (deviceCombo.Active)
+				{
+					case 0:
+						return gpxwidget;
+					case 1:
+						return gusbwidet;
+					case 2:
+						return garswidget;
+					default:
+						return gpswidget;
+				}
 			}
 		}
 		
@@ -60,32 +52,40 @@ namespace ocmgtk
 			this.Build ();
 			try
 			{
-				//waypointWidget.PopulateMappings(config);
-				//waypointWidget.ShowAll();
+				waypointWidget.PopulateMappings(config);
+				waypointWidget.ShowAll();
 				SavedGPSConf saved = new SavedGPSConf(config);
-				if (saved.GetBabelFormat() == "garmin")
+				if ((saved.GetBabelFormat() == "garmin") && (saved.GetOutputFile() == "usb:"))
 				{
-					//gusbRadio.Active = true;
 					gusbwidet.SetCacheLimit(saved.GetCacheLimit());
 					gusbwidet.SetGeocacheOverride(saved.IgnoreGeocacheOverrides());
 					gusbwidet.SetIgnoreWaypoint(saved.IgnoreWaypointOverrides());
 					gusbwidet.SetNameMode(saved.GetNameMode());
 					gusbwidet.SetDescMode(saved.GetDescMode());
+					deviceCombo.Active = 1;
+				}
+				else if (saved.GetBabelFormat() == "garmin")
+				{
+					garswidget.SetCacheLimit(saved.GetCacheLimit());
+					garswidget.SetOutputFile(saved.GetOutputFile());
+					garswidget.SetNameMode(saved.GetNameMode());
+					deviceCombo.Active = 2;
 				}
 				else if (saved.GetBabelFormat()== "OCM_GPX")
 				{
-				//	gpxRadio.Active = true;
 					gpxwidget.SetCacheLimit(saved.GetCacheLimit());
 					gpxwidget.SetOutputFile(saved.GetOutputFile());
 					gpxwidget.SetLogLimit(saved.GetLogLimit());
+					deviceCombo.Active = 0;
 				}
-				else
-				{
-				//	otherRadio.Active = true;
-					
+				else 
+				{	
 					gpswidget.SetCacheLimit(saved.GetCacheLimit());
 					gpswidget.SetOutputFile(saved.GetOutputFile());
 					gpswidget.SetBabelFormat(saved.GetBabelFormat());
+					gpswidget.SetDescMode(saved.GetDescMode());
+					gpswidget.SetNameMode(saved.GetNameMode());
+					deviceCombo.Active = 3;
 				}
 				
 			}
@@ -95,37 +95,12 @@ namespace ocmgtk
 			}
 		}
 
-		protected virtual void OnGPXToggled (object sender, System.EventArgs e)
-		{
-			/*if (gpxRadio.Active) {
-				table1.Remove (gusbwidet);
-				table1.Remove (gpswidget);
-				table1.Add (gpxwidget);
-				Gtk.Table.TableChild props = ((Gtk.Table.TableChild)(this.table1[this.gpxwidget]));
-				props.TopAttach = 2;
-				props.RightAttach = 2;
-				props.BottomAttach = 3;
-				gpxwidget.Show ();
-			}*/
-		}
 
 		protected virtual void OnButtonClick (object sender, System.EventArgs e)
 		{
 			this.Hide ();
 		}
-		protected virtual void OnOtherToggle (object sender, System.EventArgs e)
-		{
-			/*if (otherRadio.Active) {
-				table1.Remove (gpxwidget);
-				table1.Remove (gusbwidet);
-				table1.Add (gpswidget);
-				Gtk.Table.TableChild props = ((Gtk.Table.TableChild)(this.table1[this.gpswidget]));
-				props.TopAttach = 2;
-				props.RightAttach = 2;
-				props.BottomAttach = 3;
-				gpswidget.Show ();
-			}*/
-		}
+		
 		
 		protected virtual void OnComboChange (object sender, System.EventArgs e)
 		{
@@ -135,6 +110,7 @@ namespace ocmgtk
 				case 0:
 					table1.Remove (gusbwidet);
 					table1.Remove (gpswidget);
+					table1.Remove(garswidget);
 					table1.Add (gpxwidget);
 					props = ((Gtk.Table.TableChild)(this.table1[this.gpxwidget]));
 					props.TopAttach = 2;
@@ -145,6 +121,7 @@ namespace ocmgtk
 				case 1:
 					table1.Remove (gpxwidget);
 					table1.Remove(gpswidget);
+					table1.Remove(garswidget);
 					table1.Add (gusbwidet);
 					props = ((Gtk.Table.TableChild)(this.table1[this.gusbwidet]));
 					props.TopAttach = 2;
@@ -153,20 +130,20 @@ namespace ocmgtk
 					gusbwidet.Show ();
 					break;
 				case 2:
-					break;
-				case 3:
-					table1.Remove (gusbwidet);
-					table1.Remove (gpswidget);
-					table1.Add (gpxwidget);
-					props = ((Gtk.Table.TableChild)(this.table1[this.gpxwidget]));
+					table1.Remove (gpxwidget);
+					table1.Remove(gpswidget);
+					table1.Remove(gusbwidet);
+					table1.Add (garswidget);
+					props = ((Gtk.Table.TableChild)(this.table1[this.garswidget]));
 					props.TopAttach = 2;
 					props.RightAttach = 2;
 					props.BottomAttach = 3;
-					gpxwidget.Show ();
+					garswidget.Show ();
 					break;
 				default:
 					table1.Remove (gpxwidget);
 					table1.Remove (gusbwidet);
+					table1.Remove (garswidget);
 					table1.Add (gpswidget);
 					props = ((Gtk.Table.TableChild)(this.table1[this.gpswidget]));
 					props.TopAttach = 2;

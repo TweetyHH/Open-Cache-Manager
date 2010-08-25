@@ -16,6 +16,7 @@
 using System;
 using Mono.Unix;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace ocmengine
 {
@@ -23,7 +24,11 @@ namespace ocmengine
 	
 	public class Utilities
 	{
-				
+		const string DEGREE_MINUTES = "^\\s*([N|S]){1}\\W*([0-9]+)\\W*([0-9]+\\.[0-9]+)\\s+([E|W]){1}\\W*([0-9]+)\\W*([0-9]+\\.[0-9]+)\\s*$";
+		const string DEC_DEGREES_1= "^\\s*([N|S]){1}\\s*([0-9]+\\.[0-9]+)\\W*\\s+([E|W]){1}\\s*([0-9]+\\.[0-9]+)\\W*\\s*$";
+		const string DEC_DEGREES_2 = "^\\s*([-0-9]+\\.[0-9]+)\\s+([-0-9]+\\.[0-9]+)\\s*$";
+		const string DMS = "^\\s*([N|S]){1}\\s*([0-9]+)\\W*([0-9]+)\\W*([0-9]+)\\W*([E|W]){1}\\W*([0-9]+)\\W*([0-9]+)\\W*([0-9]+)\\W*\\s*$";
+
 		
 		/// <summary>
 		/// See http://www.movable-type.co.uk/scripts/latlong.html
@@ -132,10 +137,134 @@ namespace ocmengine
 			return co_ordinate;
 		}
 		
-		public float[] ParseCoordString(String val)
+		public static DegreeMinutes[] ParseCoordString(String val)
 		{
-			float[] vals = new float[2];
-			return vals;
+			DegreeMinutes[] coord = new DegreeMinutes[2];
+			if (Regex.IsMatch(val, DEGREE_MINUTES))
+			{
+				Match match = Regex.Match(val, DEGREE_MINUTES);
+				int degLat = int.Parse(match.Groups[2].Value, CultureInfo.InvariantCulture);
+				if (match.Groups[1].Value == "S")
+					degLat = degLat * -1;
+				double minLat = double.Parse(match.Groups[3].Value, CultureInfo.InvariantCulture);
+				DegreeMinutes lat = new DegreeMinutes(degLat, minLat);
+				int degLon = int.Parse(match.Groups[5].Value, CultureInfo.InvariantCulture);
+				if (match.Groups[4].Value == "W")
+					degLon = degLon * -1;
+				System.Console.WriteLine(degLon);
+				double minLon = double.Parse(match.Groups[6].Value, CultureInfo.InvariantCulture);
+				DegreeMinutes lon = new DegreeMinutes(degLon, minLon);
+				
+				coord[0] = lat;
+				coord[1] = lon;		
+			}
+			else if (Regex.IsMatch(val, DEC_DEGREES_1))
+			{
+				throw new Exception("NOT_YET_IMPLEMENTED");
+			}
+			else if (Regex.IsMatch(val, DEC_DEGREES_2))
+			{
+				throw new Exception("NOT_YET_IMPLEMENTED");
+			}
+			else if (Regex.IsMatch(val, DMS))
+			{
+				throw new Exception("NOT_YET_IMPLEMENTED");
+			}
+			else
+			{
+				throw new Exception(Catalog.GetString("Unknown Coordinate Format"));
+			}
+			return coord;
+					
+				/* bool signLat    = re1.cap(1) == "S";
+        int degLat      = re1.cap(2).toInt();
+        float minLat    = re1.cap(3).toDouble();
+
+        GPS_Math_DegMin_To_Deg(signLat, degLat, minLat, lat);
+
+        bool signLon    = re1.cap(4) == "W";
+        int degLon      = re1.cap(5).toInt();
+        float minLon    = re1.cap(6).toDouble();
+
+        GPS_Math_DegMin_To_Deg(signLon, degLon, minLon, lon);
+			}
+			
+			
+			DegreeMinutes val = new DegreeMinutes(0.0);
+			return val;
+			/*
+			 * bool GPS_Math_Str_To_Deg(const QString& str, float& lon, float& lat, bool silent)
+{
+    QRegExp re1("^\\s*([N|S]){1}\\W*([0-9]+)\\W*([0-9]+\\.[0-9]+)\\s+([E|W]){1}\\W*([0-9]+)\\W*([0-9]+\\.[0-9]+)\\s*$");
+
+    QRegExp re2("^\\s*([N|S]){1}\\s*([0-9]+\\.[0-9]+)\\W*\\s+([E|W]){1}\\s*([0-9]+\\.[0-9]+)\\W*\\s*$");
+
+    QRegExp re3("^\\s*([-0-9]+\\.[0-9]+)\\s+([-0-9]+\\.[0-9]+)\\s*$");
+
+    QRegExp re4("^\\s*([N|S]){1}\\s*([0-9]+)\\W*([0-9]+)\\W*([0-9]+)\\W*([E|W]){1}\\W*([0-9]+)\\W*([0-9]+)\\W*([0-9]+)\\W*\\s*$");
+
+    if(re2.exactMatch(str))
+    {
+        bool signLat    = re2.cap(1) == "S";
+        float absLat    = re2.cap(2).toDouble();
+        lat = signLat ? -absLat : absLat;
+
+        bool signLon    = re2.cap(3) == "W";
+        float absLon    = re2.cap(4).toDouble();
+        lon = signLon ? -absLon : absLon;
+    }
+    else if(re1.exactMatch(str))
+    {
+
+        bool signLat    = re1.cap(1) == "S";
+        int degLat      = re1.cap(2).toInt();
+        float minLat    = re1.cap(3).toDouble();
+
+        GPS_Math_DegMin_To_Deg(signLat, degLat, minLat, lat);
+
+        bool signLon    = re1.cap(4) == "W";
+        int degLon      = re1.cap(5).toInt();
+        float minLon    = re1.cap(6).toDouble();
+
+        GPS_Math_DegMin_To_Deg(signLon, degLon, minLon, lon);
+    }
+    else if(re3.exactMatch(str))
+    {
+        lat             = re3.cap(1).toDouble();
+        lon             = re3.cap(2).toDouble();
+    }
+    else if(re4.exactMatch(str))
+    {
+        bool signLat    = re4.cap(1) == "S";
+        int degLat    = re4.cap(2).toInt();
+        int minLat    = re4.cap(3).toInt();
+        int secLat    = re4.cap(4).toInt();
+
+        GPS_Math_DegMinSec_To_Deg(signLat, degLat, minLat, secLat, lat);
+
+        bool signLon    = re4.cap(5) == "W";
+        int degLon    = re4.cap(6).toInt();
+        int minLon    = re4.cap(7).toInt();
+        int secLon    = re4.cap(8).toInt();
+
+        GPS_Math_DegMinSec_To_Deg(signLon, degLon, minLon, secLon, lon);
+
+
+    }
+    else
+    {
+        if(!silent) QMessageBox::warning(0,QObject::tr("Error"),QObject::tr("Bad position format. Must be: \"[N|S] ddd mm.sss [W|E] ddd mm.sss\" or \"[N|S] ddd.ddd [W|E] ddd.ddd\""),QMessageBox::Ok,QMessageBox::NoButton);
+        return false;
+    }
+
+    if(fabs(lon) > 180.0 || fabs(lat) > 90.0)
+    {
+        if(!silent) QMessageBox::warning(0,QObject::tr("Error"),QObject::tr("Position values out of bounds. "),QMessageBox::Ok,QMessageBox::NoButton);
+        return false;
+    }
+
+    return true;
+}*/
 		}
 		
 		public static double KmToMiles(double km)

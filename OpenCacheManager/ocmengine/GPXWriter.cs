@@ -20,7 +20,7 @@ using System.IO;
 
 namespace ocmengine
 {
-	public enum WaypointNameMode{CODE,NAME};
+	public enum WaypointNameMode{CODE,NAME,SHORTCODE};
 	public enum WaypointDescMode{DESC,CODESIZEANDHINT,CODESIZETYPE};
 	
 	public class WriteEventArgs:EventArgs

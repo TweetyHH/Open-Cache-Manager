@@ -131,6 +131,8 @@ namespace ocmengine
 			writer.WriteElementString("time", this.Time.ToString("o"));
 			if (cache != null && gpx.NameMode == WaypointNameMode.NAME)
 				writer.WriteElementString("name", cache.CacheName);
+			else if (cache != null && gpx.NameMode == WaypointNameMode.SHORTCODE)
+				writer.WriteElementString("name", this.Name.Substring(2));
 			else
 				writer.WriteElementString("name", this.Name);
 			if (cache != null && gpx.DescriptionMode == WaypointDescMode.CODESIZEANDHINT)

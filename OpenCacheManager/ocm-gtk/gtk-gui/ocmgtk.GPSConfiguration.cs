@@ -68,7 +68,6 @@ namespace ocmgtk {
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Garmin GPX (Colorado/Oregon/Dakota/Nuvi/Map62)"));
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Garmin USB (eTrex/GPSMap60/StreetPiot)"));
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Garmin Serial (original eTrex/eTrex H/Gecko)"));
-            this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Other GPX based GPS"));
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Other GPS"));
             this.deviceCombo.Name = "deviceCombo";
             this.deviceCombo.Active = 0;
@@ -155,7 +154,7 @@ namespace ocmgtk {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 502;
-            this.DefaultHeight = 529;
+            this.DefaultHeight = 533;
             this.buttonOk.HasDefault = true;
             this.Show();
             this.deviceCombo.Changed += new System.EventHandler(this.OnComboChange);

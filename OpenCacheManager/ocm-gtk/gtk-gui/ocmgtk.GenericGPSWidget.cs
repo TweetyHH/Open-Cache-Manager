@@ -17,9 +17,7 @@ namespace ocmgtk {
         
         private Gtk.Table table1;
         
-        private Gtk.ComboBox combobox1;
-        
-        private Gtk.ComboBox combobox2;
+        private Gtk.ComboBox descCombo;
         
         private Gtk.Label label1;
         
@@ -28,6 +26,8 @@ namespace ocmgtk {
         private Gtk.CheckButton limitCheck;
         
         private Gtk.Entry limitEntry;
+        
+        private Gtk.ComboBox nameCombo;
         
         private Gtk.HSeparator hseparator1;
         
@@ -67,55 +67,42 @@ namespace ocmgtk {
             this.table1.RowSpacing = ((uint)(6));
             this.table1.ColumnSpacing = ((uint)(6));
             // Container child table1.Gtk.Table+TableChild
-            this.combobox1 = Gtk.ComboBox.NewText();
-            this.combobox1.AppendText(Mono.Unix.Catalog.GetString("Cache Code"));
-            this.combobox1.AppendText(Mono.Unix.Catalog.GetString("Cache Name"));
-            this.combobox1.Name = "combobox1";
-            this.combobox1.Active = 0;
-            this.table1.Add(this.combobox1);
-            Gtk.Table.TableChild w1 = ((Gtk.Table.TableChild)(this.table1[this.combobox1]));
-            w1.TopAttach = ((uint)(1));
-            w1.BottomAttach = ((uint)(2));
+            this.descCombo = Gtk.ComboBox.NewText();
+            this.descCombo.AppendText(Mono.Unix.Catalog.GetString("Cache Name"));
+            this.descCombo.AppendText(Mono.Unix.Catalog.GetString("Cache Code/Size/Hint"));
+            this.descCombo.AppendText(Mono.Unix.Catalog.GetString("Cache Code/Size/Type"));
+            this.descCombo.Name = "descCombo";
+            this.descCombo.Active = 0;
+            this.table1.Add(this.descCombo);
+            Gtk.Table.TableChild w1 = ((Gtk.Table.TableChild)(this.table1[this.descCombo]));
+            w1.TopAttach = ((uint)(2));
+            w1.BottomAttach = ((uint)(3));
             w1.LeftAttach = ((uint)(1));
             w1.RightAttach = ((uint)(2));
+            w1.XOptions = ((Gtk.AttachOptions)(4));
             w1.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table1.Gtk.Table+TableChild
-            this.combobox2 = Gtk.ComboBox.NewText();
-            this.combobox2.AppendText(Mono.Unix.Catalog.GetString("Cache Name"));
-            this.combobox2.AppendText(Mono.Unix.Catalog.GetString("Cache Code/Size/Hint"));
-            this.combobox2.AppendText(Mono.Unix.Catalog.GetString("Cache Code/Size/Type"));
-            this.combobox2.Name = "combobox2";
-            this.combobox2.Active = 0;
-            this.table1.Add(this.combobox2);
-            Gtk.Table.TableChild w2 = ((Gtk.Table.TableChild)(this.table1[this.combobox2]));
-            w2.TopAttach = ((uint)(2));
-            w2.BottomAttach = ((uint)(3));
-            w2.LeftAttach = ((uint)(1));
-            w2.RightAttach = ((uint)(2));
-            w2.XOptions = ((Gtk.AttachOptions)(4));
-            w2.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.label1 = new Gtk.Label();
             this.label1.Name = "label1";
             this.label1.Xalign = 0F;
             this.label1.LabelProp = Mono.Unix.Catalog.GetString("Waypoint Name Format:");
             this.table1.Add(this.label1);
-            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table1[this.label1]));
-            w3.TopAttach = ((uint)(1));
-            w3.BottomAttach = ((uint)(2));
-            w3.XOptions = ((Gtk.AttachOptions)(4));
-            w3.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w2 = ((Gtk.Table.TableChild)(this.table1[this.label1]));
+            w2.TopAttach = ((uint)(1));
+            w2.BottomAttach = ((uint)(2));
+            w2.XOptions = ((Gtk.AttachOptions)(4));
+            w2.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.label2 = new Gtk.Label();
             this.label2.Name = "label2";
             this.label2.Xalign = 0F;
             this.label2.LabelProp = Mono.Unix.Catalog.GetString("Waypoint Description Format:");
             this.table1.Add(this.label2);
-            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table1[this.label2]));
-            w4.TopAttach = ((uint)(2));
-            w4.BottomAttach = ((uint)(3));
-            w4.XOptions = ((Gtk.AttachOptions)(4));
-            w4.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table1[this.label2]));
+            w3.TopAttach = ((uint)(2));
+            w3.BottomAttach = ((uint)(3));
+            w3.XOptions = ((Gtk.AttachOptions)(4));
+            w3.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.limitCheck = new Gtk.CheckButton();
             this.limitCheck.CanFocus = true;
@@ -124,9 +111,9 @@ namespace ocmgtk {
             this.limitCheck.DrawIndicator = true;
             this.limitCheck.UseUnderline = true;
             this.table1.Add(this.limitCheck);
-            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table1[this.limitCheck]));
-            w5.XOptions = ((Gtk.AttachOptions)(4));
-            w5.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table1[this.limitCheck]));
+            w4.XOptions = ((Gtk.AttachOptions)(4));
+            w4.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.limitEntry = new Gtk.Entry();
             this.limitEntry.Sensitive = false;
@@ -136,10 +123,24 @@ namespace ocmgtk {
             this.limitEntry.IsEditable = true;
             this.limitEntry.InvisibleChar = '•';
             this.table1.Add(this.limitEntry);
-            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table1[this.limitEntry]));
+            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table1[this.limitEntry]));
+            w5.LeftAttach = ((uint)(1));
+            w5.RightAttach = ((uint)(2));
+            w5.XOptions = ((Gtk.AttachOptions)(4));
+            w5.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.nameCombo = Gtk.ComboBox.NewText();
+            this.nameCombo.AppendText(Mono.Unix.Catalog.GetString("Cache Code"));
+            this.nameCombo.AppendText(Mono.Unix.Catalog.GetString("Cache Name"));
+            this.nameCombo.AppendText(Mono.Unix.Catalog.GetString("Shot Cache Code"));
+            this.nameCombo.Name = "nameCombo";
+            this.nameCombo.Active = 0;
+            this.table1.Add(this.nameCombo);
+            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table1[this.nameCombo]));
+            w6.TopAttach = ((uint)(1));
+            w6.BottomAttach = ((uint)(2));
             w6.LeftAttach = ((uint)(1));
             w6.RightAttach = ((uint)(2));
-            w6.XOptions = ((Gtk.AttachOptions)(4));
             w6.YOptions = ((Gtk.AttachOptions)(4));
             this.vbox3.Add(this.table1);
             Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox3[this.table1]));

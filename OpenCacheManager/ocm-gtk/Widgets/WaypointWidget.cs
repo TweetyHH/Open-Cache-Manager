@@ -312,8 +312,43 @@ namespace ocmgtk
 			Geocache cache = m_mon.SelectedCache;
 			String expr = @"[NnSs].[0-9]*. [0-9]*\.[0-9]*. [WwEe].[0-9]*. [0-9]*\.[0-9]*";
 			MatchCollection matches = Regex.Matches(cache.LongDesc, expr);
-			System.Console.WriteLine(matches.Count);
-
+			m_mon.StartProgressLoad(Catalog.GetString("Grabbing Waypoints"));
+			if (matches.Count > 0)
+			{
+				ScanWaypointsDialog dlg = new ScanWaypointsDialog(matches.Count, this, matches);
+				dlg.Run();
+				UpdateCacheInfo ();
+			}
+			m_mon.SetProgressDone();
+		}
+		
+		public void AutoGenerateChildren (MatchCollection matches)
+		{
+			int count = 0;
+			foreach (Match match in matches)
+			{
+				m_mon.SetProgress((double) count, (double) matches.Count, Catalog.GetString("Processing Children..."));
+				DegreeMinutes[] coord =  Utilities.ParseCoordString(match.Captures[0].Value);
+				System.Console.WriteLine(Utilities.getCoordString(coord[0], coord[1]));
+				
+				Waypoint newPoint = new Waypoint ();
+				Geocache parent = m_mon.SelectedCache;
+				newPoint.Symbol = "Reference Point";
+				newPoint.Parent = parent.Name;
+				newPoint.Lat = coord[0].GetDecimalDegrees();
+				newPoint.Lon = coord[1].GetDecimalDegrees();
+				newPoint.Desc = Catalog.GetString("Grabbed Waypoint");
+				String name = "RP" + parent.Name.Substring (2);
+				if ((bool) m_mon.Configuration.Get("/apps/ocm/noprefixes", false))
+				{
+					name = parent.Name;
+				}
+				name = Engine.getInstance().Store.GenerateNewName(name);
+				newPoint.Name = name;
+				CacheStore store = Engine.getInstance ().Store;
+				store.AddWaypointAtomic (newPoint);
+				count++;
+			}
 		}
 		
 		protected virtual void OnGrabClick (object sender, System.EventArgs e)

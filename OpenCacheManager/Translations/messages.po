@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2010-08-17 22:32:36-0400\n"
-"PO-Revision-Date: 2010-08-17 22:32:37-0400\n"
+"POT-Creation-Date: 2010-08-22 08:21:10-0400\n"
+"PO-Revision-Date: 2010-08-22 08:21:10-0400\n"
 "Last-Translator: Kyle Campbell\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,17 +38,17 @@ msgstr ""
 msgid "_Remove Selected Cache from Bookmark List"
 msgstr ""
 
-#: ../ocm-gtk/MainWindow.cs:401
+#: ../ocm-gtk/MainWindow.cs:417
 msgid "None"
 msgstr ""
 
 #: ../ocm-gtk/Widgets/CacheList.cs:75
-#: ../ocm-gtk/Widgets/WaypointWidget.cs:48
+#: ../ocm-gtk/Widgets/WaypointWidget.cs:49
 msgid "Type"
 msgstr ""
 
 #: ../ocm-gtk/Widgets/CacheList.cs:76
-#: ../ocm-gtk/Widgets/WaypointWidget.cs:50
+#: ../ocm-gtk/Widgets/WaypointWidget.cs:51
 msgid "Code"
 msgstr ""
 
@@ -70,55 +70,55 @@ msgstr ""
 msgid "Miles"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:208
+#: ../ocm-gtk/Widgets/CacheList.cs:209
 msgid "Loading Caches {0}"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:461
+#: ../ocm-gtk/Widgets/CacheList.cs:462
 msgid "Set As Map Centre"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:462
+#: ../ocm-gtk/Widgets/CacheList.cs:463
 msgid "View Cache Online"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:463
+#: ../ocm-gtk/Widgets/CacheList.cs:464
 msgid "Mark"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:465
+#: ../ocm-gtk/Widgets/CacheList.cs:466
 msgid "Mark Found"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:466
+#: ../ocm-gtk/Widgets/CacheList.cs:467
 msgid "Mark Unfound"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:467
+#: ../ocm-gtk/Widgets/CacheList.cs:468
 msgid "Mark Disabled"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:468
+#: ../ocm-gtk/Widgets/CacheList.cs:469
 msgid "Mark Archived"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:469
+#: ../ocm-gtk/Widgets/CacheList.cs:470
 msgid "Mark Available"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:470
+#: ../ocm-gtk/Widgets/CacheList.cs:471
 msgid "Delete..."
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:471
+#: ../ocm-gtk/Widgets/CacheList.cs:472
 msgid "Add to Bookmark List"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:472
+#: ../ocm-gtk/Widgets/CacheList.cs:473
 msgid "View in QLandkarte GT..."
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:526
+#: ../ocm-gtk/Widgets/CacheList.cs:527
 msgid "Remove From Bookmark List"
 msgstr ""
 
@@ -298,11 +298,11 @@ msgstr ""
 msgid "Geocache"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/WaypointWidget.cs:52
+#: ../ocm-gtk/Widgets/WaypointWidget.cs:53
 msgid "Location"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/WaypointWidget.cs:54
+#: ../ocm-gtk/Widgets/WaypointWidget.cs:55
 #: ../ocm-gtk/Widgets/DescriptionWidget.cs:67
 msgid "Name"
 msgstr ""
@@ -369,7 +369,7 @@ msgstr ""
 #: ../ocm-gtk/UIMonitor.cs:728
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
 #: ../ocm-gtk/Widgets/GPXWidget.cs:110
-#: ../ocm-gtk/Widgets/GenericGPSWidget.cs:113
+#: ../ocm-gtk/Widgets/GenericGPSWidget.cs:160
 msgid "Cancel"
 msgstr ""
 
@@ -512,7 +512,7 @@ msgid "Select GPX location"
 msgstr ""
 
 #: ../ocm-gtk/Widgets/GPXWidget.cs:110
-#: ../ocm-gtk/Widgets/GenericGPSWidget.cs:113
+#: ../ocm-gtk/Widgets/GenericGPSWidget.cs:160
 msgid "Select"
 msgstr ""
 
@@ -528,7 +528,7 @@ msgstr ""
 msgid "Are you sure you want to cancel?"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/GenericGPSWidget.cs:113
+#: ../ocm-gtk/Widgets/GenericGPSWidget.cs:160
 msgid "Select File location"
 msgstr ""
 
@@ -1108,6 +1108,10 @@ msgstr ""
 msgid "Disabled"
 msgstr ""
 
+#: ../ocm-gtk/gtk-gui/ocmgtk.WaypointWidget.cs:114
+msgid "_Grab Waypoints..."
+msgstr ""
+
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:57
 msgid "Add/Edit Waypoint..."
 msgstr ""
@@ -1581,22 +1585,18 @@ msgid "Garmin Serial (original eTrex/eTrex H/Gecko)"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:70
-msgid "Other GPX based GPS"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:71
 msgid "Other GPS"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:94
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:93
 msgid "Select a GPS Type:"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:103
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:102
 msgid "Device"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:116
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:115
 msgid "Waypoint Symbols"
 msgstr ""
 
@@ -1612,7 +1612,7 @@ msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPXWidget.cs:88
 #: ../ocm-gtk/gtk-gui/ocmgtk.MagellanExploristWidget.cs:51
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:122
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:109
 msgid "Limit Number of Caches"
 msgstr ""
 
@@ -1626,37 +1626,41 @@ msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:60
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:137
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:71
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:83
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:70
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:133
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:104
 msgid "Cache Name"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:61
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:84
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:71
 msgid "Cache Code/Size/Hint"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:62
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:85
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:72
 msgid "Cache Code/Size/Type"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:92
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:100
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:87
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:59
 msgid "Waypoint Name Format:"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:103
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:111
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:98
 msgid "Waypoint Description Format:"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:114
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:81
 msgid "Limit Number of Geocaches"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:136
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:70
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:132
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:103
 msgid "Cache Code"
 msgstr ""
 
@@ -1683,17 +1687,21 @@ msgstr ""
 msgid "Serial Port or File:"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:165
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:134
+msgid "Shot Cache Code"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:166
 msgid ""
 "Read the GPSBabel Documentation to choose the right values for these fields "
 "<span fgcolor=\"blue\">http://www.gpsbabel.org/readme.html</span>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:183
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:184
 msgid "Output Format:"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:212
+#: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:213
 msgid "Output FIle:"
 msgstr ""
 
@@ -2509,5 +2517,39 @@ msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CopyingProgress.cs:91
 msgid "0%"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:27
+msgid "Grab Waypoints..."
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:37
+msgid ""
+"OCM found {0} waypoints in the cache description. You can add them all "
+"automatically, or review the matches one by one. "
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:67
+msgid "_Add All"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:79
+msgid "_Review"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:44
+msgid "/dev/tty0"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:70
+msgid "Serial Port:"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:93
+msgid "500"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:105
+msgid "Short Cache Code"
 msgstr ""
 

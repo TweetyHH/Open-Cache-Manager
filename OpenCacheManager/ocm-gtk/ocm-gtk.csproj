@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.18.2</ReleaseVersion>
+    <ReleaseVersion>0.19</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -194,6 +194,12 @@
     <Compile Include="gtk-gui\ocmgtk.CopyingProgress.cs" />
     <Compile Include="Dialogs\ScanWaypointsDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.ScanWaypointsDialog.cs" />
+    <Compile Include="Widgets\GarminSerialWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.GarminSerialWidget.cs" />
+    <Compile Include="Widgets\ReviewWaypointWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.ReviewWaypointWidget.cs" />
+    <Compile Include="Dialogs\ReviewWaypointDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.ReviewWaypointDialog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

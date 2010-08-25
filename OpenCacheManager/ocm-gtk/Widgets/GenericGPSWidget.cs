@@ -86,16 +86,63 @@ namespace ocmgtk
 			return m_geocacheOverrides;
 		}
 		
-		ocmengine.WaypointNameMode m_namemode;
 		public ocmengine.WaypointNameMode GetNameMode()
 		{
-			return m_namemode;
+			switch (nameCombo.Active)
+			{
+				case 0:
+					return ocmengine.WaypointNameMode.CODE;
+				case 1:
+					return ocmengine.WaypointNameMode.NAME;
+				default:
+					return ocmengine.WaypointNameMode.SHORTCODE;
+			}
 		}
 		
-		ocmengine.WaypointDescMode m_descmode;
+		public void SetNameMode(ocmengine.WaypointNameMode mode)
+		{
+			switch (mode)
+			{
+				case ocmengine.WaypointNameMode.CODE:
+					nameCombo.Active = 0;
+					break;
+				case ocmengine.WaypointNameMode.NAME:
+					nameCombo.Active = 1;
+					break;
+				default:
+					nameCombo.Active = 2;
+					break;
+			}
+		}
+		
 		public ocmengine.WaypointDescMode GetDescMode()
 		{
-			return m_descmode;
+			switch (descCombo.Active)
+			{
+				case 0:
+					return ocmengine.WaypointDescMode.DESC;
+				case 1:
+					return ocmengine.WaypointDescMode.CODESIZEANDHINT;
+				default:
+					return ocmengine.WaypointDescMode.CODESIZETYPE;
+			}
+		}
+		
+		public void SetDescMode(ocmengine.WaypointDescMode mode)
+		{
+			switch (mode)
+			{
+				case ocmengine.WaypointDescMode.DESC:
+					descCombo.Active = 0;
+					break;
+				case ocmengine.WaypointDescMode.CODESIZEANDHINT:
+					descCombo.Active = 1;
+					break;
+				default:
+					descCombo.Active = 2;
+					break;
+					
+			}
 		}
 		
 		protected virtual void OnInfoClick (object sender, System.EventArgs e)
