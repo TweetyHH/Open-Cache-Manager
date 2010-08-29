@@ -42,6 +42,7 @@ namespace ocmgtk
 		private double m_loadTotal = 0;
 		private double m_intervalCount = 0;
 		private double m_loadCount = 0;
+		private OCMTreeView treeview1 = null;
 		TreeViewColumn m_distanceCol;
 
 		private Timer refreshTimer;
@@ -49,23 +50,15 @@ namespace ocmgtk
 		public CacheList ()
 		{
 			this.Build ();
+			treeview1 = new OCMTreeView();
+			treeview1.ButtonPressEvent += DoButtonPress;
+			cachescroll.Add(treeview1);
 			BuildList ();
 			m_monitor = UIMonitor.getInstance ();
 			m_monitor.CacheListPane = this;
 			refreshTimer = new Timer ();
 			refreshTimer.AutoReset = false;
 			refreshTimer.Elapsed += HandleRefreshTimerElapsed;
-			treeview1.DragDataReceived += HandleTreeview1DragDataReceived;
-			treeview1.DragBegin += HandleTreeview1DragBegin;
-		}
-
-		void HandleTreeview1DragBegin (object o, DragBeginArgs args)
-		{
-			args.RetVal = null;
-		}
-
-		void HandleTreeview1DragDataReceived (object o, DragDataReceivedArgs args)
-		{
 		}
 
 		void HandleRefreshTimerElapsed (object sender, ElapsedEventArgs e)

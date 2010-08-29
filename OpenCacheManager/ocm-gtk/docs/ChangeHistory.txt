@@ -1,3 +1,28 @@
+Version 0.19
+------------
+- Add Support for eTrex H/Legend. The Short Code name option removes the "GC" prefix on
+cache codes to fit better within the 6 character limit.
+- Performance improvements
+- Add Mark Found without logging
+- Show progress when loading large databases
+- Grab Waypoints: On the waypoint tab you can now click Grab Waypoints. OCM will
+scan the cache description and try to extract any waypoint pairs it finds. You can
+have OCM add the waypoints automatically, or review the matches and set the correct 
+waypoint time and a better description
+- Fix bug that prevented cancelling transfer waypoints to GPS
+- Fix bug that allowed a user to run OCM without a database, causing a crash
+- Improve centering of map on startup
+- Underline caches that have user notes in the cache lists
+- Associate .ocm DB files with OCM
+- New Database Tools section: You can now copy/move waypoints to another OCM database. You
+can also compact your existing database
+- Fix "You own this cache" message missing if you use username instead of account ID
+- Fix found caches being sent to GPS as unfound
+- Add Danish Tranlation thanks to Thor Dekov Buur
+- OCM Desktop catagory changes from "Network" to "GTK;Geography". This means in Gnome OCM appears
+under Applications->Other
+
+
 Version 0.18.1
 --------------
 - Fix crash on splash screen on Ubuntu 10.04

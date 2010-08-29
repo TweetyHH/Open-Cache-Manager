@@ -200,6 +200,7 @@
     <Compile Include="gtk-gui\ocmgtk.ReviewWaypointWidget.cs" />
     <Compile Include="Dialogs\ReviewWaypointDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.ReviewWaypointDialog.cs" />
+    <Compile Include="Widgets\OCMTreeView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

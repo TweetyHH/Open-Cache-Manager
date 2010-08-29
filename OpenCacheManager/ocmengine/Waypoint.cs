@@ -159,7 +159,9 @@ namespace ocmengine
 				writer.WriteElementString("sym", this.Symbol);
 			else
 			{
-					if (cache != null && cache.TypeOfCache != Geocache.CacheType.GENERIC)
+					if (cache.Symbol == "Geocache Found")
+						writer.WriteElementString("sym", gpx.Mappings[this.Symbol]);					
+					else if (cache != null && cache.TypeOfCache != Geocache.CacheType.GENERIC)
 					{
 						string key = "Geocache|" + Geocache.GetCTypeString(cache.TypeOfCache);
 						writer.WriteElementString("sym", gpx.Mappings[key]);

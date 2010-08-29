@@ -393,6 +393,7 @@ namespace ocmgtk
 		/// </param>
 		public void SetSelectedCache (Geocache cache)
 		{
+			Geocache origCache = m_selectedCache;
 			m_selectedCache = cache;
 			m_pane.SetCacheSelected ();
 			if (cache == null)
@@ -400,9 +401,9 @@ namespace ocmgtk
 				m_cachelist.SelectCache(null);
 			}
 			m_mainWin.SetSelectedCache(cache);
-			if (m_showNearby)
+			if (m_showNearby && (cache == null && origCache != null))
 			{
-				//GetNearByCaches(m_mapLat, m_mapLon);
+				AddOtherCacheToMap(origCache);
 			}
 			ZoomToSelected();		
 		}

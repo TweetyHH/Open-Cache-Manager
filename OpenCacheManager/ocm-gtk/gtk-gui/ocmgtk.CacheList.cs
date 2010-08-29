@@ -55,9 +55,7 @@ namespace ocmgtk {
         
         private Gtk.CheckButton UnavailableButton;
         
-        private Gtk.ScrolledWindow GtkScrolledWindow;
-        
-        private Gtk.TreeView treeview1;
+        private Gtk.ScrolledWindow cachescroll;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -262,18 +260,13 @@ namespace ocmgtk {
             w20.Expand = false;
             w20.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
-            this.GtkScrolledWindow = new Gtk.ScrolledWindow();
-            this.GtkScrolledWindow.Name = "GtkScrolledWindow";
-            this.GtkScrolledWindow.ShadowType = ((Gtk.ShadowType)(1));
-            // Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-            this.treeview1 = new Gtk.TreeView();
-            this.treeview1.CanFocus = true;
-            this.treeview1.Name = "treeview1";
-            this.treeview1.Reorderable = true;
-            this.GtkScrolledWindow.Add(this.treeview1);
-            this.vbox2.Add(this.GtkScrolledWindow);
-            Gtk.Box.BoxChild w22 = ((Gtk.Box.BoxChild)(this.vbox2[this.GtkScrolledWindow]));
-            w22.Position = 3;
+            this.cachescroll = new Gtk.ScrolledWindow();
+            this.cachescroll.CanFocus = true;
+            this.cachescroll.Name = "cachescroll";
+            this.cachescroll.ShadowType = ((Gtk.ShadowType)(1));
+            this.vbox2.Add(this.cachescroll);
+            Gtk.Box.BoxChild w21 = ((Gtk.Box.BoxChild)(this.vbox2[this.cachescroll]));
+            w21.Position = 3;
             this.Add(this.vbox2);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
@@ -288,7 +281,6 @@ namespace ocmgtk {
             this.checkbutton2.Toggled += new System.EventHandler(this.OnAvailableToggle);
             this.checkbutton1.Toggled += new System.EventHandler(this.OnNotFoundToggled);
             this.ArchivedButton.Toggled += new System.EventHandler(this.OnArchivedButtonToggled);
-            this.treeview1.ButtonPressEvent += new Gtk.ButtonPressEventHandler(this.DoButtonPress);
         }
     }
 }

@@ -1765,16 +1765,17 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+          <widget class="Gtk.ScrolledWindow" id="cachescroll">
             <property name="MemberName" />
+            <property name="CanFocus">True</property>
             <property name="ShadowType">In</property>
             <child>
-              <widget class="Gtk.TreeView" id="treeview1">
+              <widget class="Gtk.Viewport" id="GtkViewport">
                 <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="ShowScrollbars">True</property>
-                <property name="Reorderable">True</property>
-                <signal name="ButtonPressEvent" handler="DoButtonPress" />
+                <property name="ShadowType">None</property>
+                <child>
+                  <placeholder />
+                </child>
               </widget>
             </child>
           </widget>

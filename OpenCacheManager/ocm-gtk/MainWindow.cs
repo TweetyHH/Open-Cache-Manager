@@ -125,7 +125,7 @@ public partial class MainWindow : Gtk.Window
 		
 		reader.Close();
 		
-		dialog.Authors = new String[] { "Kyle Campbell - Programming", "Madelayne DeGrâce - Icons", "Harrie Klomp - Dutch Translation" };
+		dialog.Authors = new String[] { "Kyle Campbell - Programming", "Madelayne DeGrâce - Icons", "Harrie Klomp - Dutch Translation" , "Thor Dekov Buur - Danish Translation"};
 		
 		dialog.Run ();
 		dialog.Hide();
