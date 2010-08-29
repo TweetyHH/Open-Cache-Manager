@@ -5,13 +5,13 @@
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E733B1D3-94EF-4B2D-B99D-6896FC4118EC}</ProjectGuid>
-    <packageName>ocm</packageName>
-    <outputType>RelativeToOutput</outputType>
+    <packageName>opencachemanager</packageName>
+    <outputType>SystemPath</outputType>
     <relPath>locale</relPath>
     <ReleaseVersion>0.19</ReleaseVersion>
     <projectInformations>
       <projectInformations>
-        <TranslationProjectInformation projectName="ocmengine" isIncluded="false" />
+        <TranslationProjectInformation projectName="ocmengine" isIncluded="true" />
         <TranslationProjectInformation projectName="ocm-gtk" isIncluded="true" />
       </projectInformations>
     </projectInformations>

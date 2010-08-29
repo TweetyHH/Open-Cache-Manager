@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2010-08-22 08:19:56-0400\n"
+"POT-Creation-Date: 2010-08-28 21:50:23-0400\n"
 "PO-Revision-Date: 2010-08-17 14:46+0100\n"
 "Last-Translator: Thor Dekov Buur <thor@dekov-buur.dk>\n"
 "Language-Team: \n"
@@ -10,116 +10,136 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: MonoDevelop Gettext addin\n"
 
-#: ../ocm-gtk/MainWindow.cs:52
+#: ../ocmengine/Utilities.cs:120
+msgid "N {0}° {1}"
+msgstr ""
+
+#: ../ocmengine/Utilities.cs:122
+msgid "S {0}° {1}"
+msgstr ""
+
+#: ../ocmengine/Utilities.cs:132
+msgid "  E {0}° {1}"
+msgstr ""
+
+#: ../ocmengine/Utilities.cs:134
+msgid "  W {0}° {1}"
+msgstr ""
+
+#: ../ocmengine/Utilities.cs:175
+msgid "Unknown Coordinate Format"
+msgstr ""
+
+#: ../ocm-gtk/MainWindow.cs:51
 msgid "_Bookmarks"
 msgstr "_Bogmærker"
 
-#: ../ocm-gtk/MainWindow.cs:55
+#: ../ocm-gtk/MainWindow.cs:54
 msgid "_Create Bookmark List..."
 msgstr "_Opret bogmærkeliste"
 
-#: ../ocm-gtk/MainWindow.cs:56
+#: ../ocm-gtk/MainWindow.cs:55
 msgid "_Delete Bookmark List..."
 msgstr "_Slet bogmærkeliste..."
 
-#: ../ocm-gtk/MainWindow.cs:57
+#: ../ocm-gtk/MainWindow.cs:56
 msgid "Bookmark _List"
 msgstr "Bogmærke_liste"
 
-#: ../ocm-gtk/MainWindow.cs:58
+#: ../ocm-gtk/MainWindow.cs:57
 msgid "_Add All Visible Caches to"
 msgstr "_Tilføj alle synlige caches til"
 
-#: ../ocm-gtk/MainWindow.cs:59
+#: ../ocm-gtk/MainWindow.cs:58
 msgid "Add _Selected Cache to"
 msgstr "Tilføj _valgt cache til"
 
-#: ../ocm-gtk/MainWindow.cs:61
+#: ../ocm-gtk/MainWindow.cs:60
 msgid "_Remove Selected Cache from Bookmark List"
 msgstr "_Fjern valgt cache fra bogmærkeliste"
 
-#: ../ocm-gtk/MainWindow.cs:417
+#: ../ocm-gtk/MainWindow.cs:416
 msgid "None"
 msgstr "Ingen"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:75 ../ocm-gtk/Widgets/WaypointWidget.cs:49
+#: ../ocm-gtk/Widgets/CacheList.cs:86 ../ocm-gtk/Widgets/WaypointWidget.cs:49
 msgid "Type"
 msgstr "Type"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:76 ../ocm-gtk/Widgets/WaypointWidget.cs:51
+#: ../ocm-gtk/Widgets/CacheList.cs:87 ../ocm-gtk/Widgets/WaypointWidget.cs:51
 msgid "Code"
 msgstr "Kode"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:77 ../ocm-gtk/Widgets/CacheList.cs:128
-#: ../ocm-gtk/Widgets/CacheList.cs:129
+#: ../ocm-gtk/Widgets/CacheList.cs:88 ../ocm-gtk/Widgets/CacheList.cs:139
+#: ../ocm-gtk/Widgets/CacheList.cs:140
 msgid "Km"
 msgstr "Km"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:78
+#: ../ocm-gtk/Widgets/CacheList.cs:89
 msgid "Title"
 msgstr "Titel"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:122
+#: ../ocm-gtk/Widgets/CacheList.cs:133
 msgid "Mi"
 msgstr "Mi"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:123
+#: ../ocm-gtk/Widgets/CacheList.cs:134
 msgid "Miles"
 msgstr "Miles"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:209
+#: ../ocm-gtk/Widgets/CacheList.cs:220
 #, fuzzy
 msgid "Loading Caches {0}"
 msgstr "Sender caches..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:462
+#: ../ocm-gtk/Widgets/CacheList.cs:479
 msgid "Set As Map Centre"
 msgstr "Sæt som kortcenter"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:463
+#: ../ocm-gtk/Widgets/CacheList.cs:480
 msgid "View Cache Online"
 msgstr "Vis cache online"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:464
+#: ../ocm-gtk/Widgets/CacheList.cs:481
 #, fuzzy
 msgid "Mark"
 msgstr "Park"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:466
+#: ../ocm-gtk/Widgets/CacheList.cs:483
 #, fuzzy
 msgid "Mark Found"
 msgstr "_Marker som ikke fundet"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:467
+#: ../ocm-gtk/Widgets/CacheList.cs:484
 #, fuzzy
 msgid "Mark Unfound"
 msgstr "_Marker som ikke fundet"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:468
+#: ../ocm-gtk/Widgets/CacheList.cs:485
 msgid "Mark Disabled"
 msgstr "Marker som deaktiveret"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:469
+#: ../ocm-gtk/Widgets/CacheList.cs:486
 msgid "Mark Archived"
 msgstr "Angiv som arkiveret"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:470
+#: ../ocm-gtk/Widgets/CacheList.cs:487
 msgid "Mark Available"
 msgstr "Angiv som tilgængelig"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:471
+#: ../ocm-gtk/Widgets/CacheList.cs:488
 msgid "Delete..."
 msgstr "Slet..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:472
+#: ../ocm-gtk/Widgets/CacheList.cs:489
 msgid "Add to Bookmark List"
 msgstr "Tilføj til bogmærkeliste..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:473
+#: ../ocm-gtk/Widgets/CacheList.cs:490
 msgid "View in QLandkarte GT..."
 msgstr "Vis i QLandkarte GT..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:527
+#: ../ocm-gtk/Widgets/CacheList.cs:544
 msgid "Remove From Bookmark List"
 msgstr "Fjerne som bogmærkeliste"
 
@@ -321,6 +341,25 @@ msgstr "Placering"
 msgid "Name"
 msgstr "Navn"
 
+#: ../ocm-gtk/Widgets/WaypointWidget.cs:316
+#, fuzzy
+msgid "Grabbing Waypoints"
+msgstr "Waypoints"
+
+#: ../ocm-gtk/Widgets/WaypointWidget.cs:325
+msgid "OCM was unable to find any child waypoints."
+msgstr ""
+
+#: ../ocm-gtk/Widgets/WaypointWidget.cs:337
+msgid "Processing Children..."
+msgstr ""
+
+#: ../ocm-gtk/Widgets/WaypointWidget.cs:347
+#: ../ocm-gtk/Widgets/ReviewWaypointWidget.cs:62
+#, fuzzy
+msgid "Grabbed Waypoint"
+msgstr "Waypoints"
+
 #: ../ocm-gtk/Widgets/BrowserWidget.cs:54
 msgid "Loading Map {0}"
 msgstr ""
@@ -329,13 +368,13 @@ msgstr ""
 msgid "Loading Map"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:246 ../ocm-gtk/UIMonitor.cs:252
-#: ../ocm-gtk/UIMonitor.cs:439 ../ocm-gtk/UIMonitor.cs:441
-#: ../ocm-gtk/UIMonitor.cs:1013
+#: ../ocm-gtk/UIMonitor.cs:248 ../ocm-gtk/UIMonitor.cs:254
+#: ../ocm-gtk/UIMonitor.cs:451 ../ocm-gtk/UIMonitor.cs:453
+#: ../ocm-gtk/UIMonitor.cs:1025
 msgid "Home"
 msgstr "Hjem"
 
-#: ../ocm-gtk/UIMonitor.cs:351
+#: ../ocm-gtk/UIMonitor.cs:356
 msgid ""
 "OCM needs to upgrade your database.\n"
 "Would you like to backup your database first?"
@@ -343,19 +382,19 @@ msgstr ""
 "OCM skal opgradere din database.\n"
 "Ønsker du at lave en backup først?"
 
-#: ../ocm-gtk/UIMonitor.cs:358
+#: ../ocm-gtk/UIMonitor.cs:363
 msgid "Upgrade complete"
 msgstr "Opgradering fuldført"
 
-#: ../ocm-gtk/UIMonitor.cs:488 ../ocm-gtk/UIMonitor.cs:508
+#: ../ocm-gtk/UIMonitor.cs:500 ../ocm-gtk/UIMonitor.cs:520
 msgid "<b>A cache by:</b> "
 msgstr "<b>En cache af:</b> "
 
-#: ../ocm-gtk/UIMonitor.cs:488 ../ocm-gtk/UIMonitor.cs:508
+#: ../ocm-gtk/UIMonitor.cs:500 ../ocm-gtk/UIMonitor.cs:520
 msgid "<br><b>Hidden on: </b>"
 msgstr "<br><b>Gemt d.: </b>"
 
-#: ../ocm-gtk/UIMonitor.cs:545
+#: ../ocm-gtk/UIMonitor.cs:557
 msgid ""
 "Showing {0} of {1} caches, {2} found, {3} unavailable/archived, {4} placed "
 "by me"
@@ -363,7 +402,7 @@ msgstr ""
 "Viser {0} af {1} caches, {2} fundet, {3} utilgængelige/arkiverede, {4} gemt "
 "af mig"
 
-#: ../ocm-gtk/UIMonitor.cs:547
+#: ../ocm-gtk/UIMonitor.cs:559
 msgid ""
 "Showing {0} of {1} caches from {2}, {3} found, {4} unavailable/archived, {5} "
 "placed by me"
@@ -371,71 +410,71 @@ msgstr ""
 "Viser {0} af {1} caches fra {2}, {3} fundet, {4} unavailable/archived, {5} "
 "placed by me"
 
-#: ../ocm-gtk/UIMonitor.cs:556
+#: ../ocm-gtk/UIMonitor.cs:568
 msgid "Centred on {0} ({1})"
 msgstr "Centreret på {0} ({1})"
 
-#: ../ocm-gtk/UIMonitor.cs:576
+#: ../ocm-gtk/UIMonitor.cs:588
 msgid "Create database"
 msgstr "Opret database"
 
-#: ../ocm-gtk/UIMonitor.cs:576 ../ocm-gtk/UIMonitor.cs:608
-#: ../ocm-gtk/UIMonitor.cs:647 ../ocm-gtk/UIMonitor.cs:728
+#: ../ocm-gtk/UIMonitor.cs:588 ../ocm-gtk/UIMonitor.cs:620
+#: ../ocm-gtk/UIMonitor.cs:659 ../ocm-gtk/UIMonitor.cs:740
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
 #: ../ocm-gtk/Widgets/GPXWidget.cs:110
 #: ../ocm-gtk/Widgets/GenericGPSWidget.cs:160
 msgid "Cancel"
 msgstr "Annuller"
 
-#: ../ocm-gtk/UIMonitor.cs:576
+#: ../ocm-gtk/UIMonitor.cs:588
 msgid "Save"
 msgstr "Gem"
 
-#: ../ocm-gtk/UIMonitor.cs:606
+#: ../ocm-gtk/UIMonitor.cs:618
 msgid "Open Database"
 msgstr "Åbn database"
 
-#: ../ocm-gtk/UIMonitor.cs:610 ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
+#: ../ocm-gtk/UIMonitor.cs:622 ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
 msgid "Open"
 msgstr "Åbn"
 
-#: ../ocm-gtk/UIMonitor.cs:647
+#: ../ocm-gtk/UIMonitor.cs:659
 msgid "Save GPX File"
 msgstr "Gem GPX-fil"
 
-#: ../ocm-gtk/UIMonitor.cs:647
+#: ../ocm-gtk/UIMonitor.cs:659
 msgid "Export"
 msgstr "Eksporter"
 
-#: ../ocm-gtk/UIMonitor.cs:728
+#: ../ocm-gtk/UIMonitor.cs:740
 msgid "Import GPX File"
 msgstr "Importer GPX-fil"
 
-#: ../ocm-gtk/UIMonitor.cs:728
+#: ../ocm-gtk/UIMonitor.cs:740
 msgid "Import"
 msgstr "Importer"
 
-#: ../ocm-gtk/UIMonitor.cs:844
+#: ../ocm-gtk/UIMonitor.cs:856
 msgid "Are you sure you want to delete {0}?"
 msgstr "Er du sikker på, du vil slette {0}?"
 
-#: ../ocm-gtk/UIMonitor.cs:868
+#: ../ocm-gtk/UIMonitor.cs:880
 msgid "Are you sure you want to clear all advanced filters?"
 msgstr "Er du sikker på du vil fjerne alle avancerede filtre?"
 
-#: ../ocm-gtk/UIMonitor.cs:1092
+#: ../ocm-gtk/UIMonitor.cs:1104
 msgid "{0} added to {1}"
 msgstr "{0} tilføjet til {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1103
+#: ../ocm-gtk/UIMonitor.cs:1115
 msgid "{0} caches added to {1}"
 msgstr "{0} caches tilføjet til {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1109
+#: ../ocm-gtk/UIMonitor.cs:1121
 msgid "Are you sure you want to remove {0} from {1}?"
 msgstr "Er du sikker på du vil fjerne {0} fra {1}?"
 
-#: ../ocm-gtk/UIMonitor.cs:1179
+#: ../ocm-gtk/UIMonitor.cs:1191
 msgid ""
 "Are you sure you want to delete these {0} caches?\n"
 "This operation cannot be undone."
@@ -443,19 +482,19 @@ msgstr ""
 "Er du sikker på, du vil slette disse {0} caches?\n"
 "Denne opreration kan ikke fortrydes."
 
-#: ../ocm-gtk/UIMonitor.cs:1286 ../ocm-gtk/UIMonitor.cs:1302
+#: ../ocm-gtk/UIMonitor.cs:1298 ../ocm-gtk/UIMonitor.cs:1314
 msgid "Preparing to send to QLandKarte GT"
 msgstr "Gør klar ti lat sende til QLandKarte GT"
 
-#: ../ocm-gtk/UIMonitor.cs:1323
+#: ../ocm-gtk/UIMonitor.cs:1335
 msgid "Save QuickFilter"
 msgstr "Gem KvikFilter"
 
-#: ../ocm-gtk/UIMonitor.cs:1350
+#: ../ocm-gtk/UIMonitor.cs:1362
 msgid "Database Compacted."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1368
+#: ../ocm-gtk/UIMonitor.cs:1380
 #, fuzzy
 msgid "Move Geocaches..."
 msgstr "Tilføj/rediger Geocache..."
@@ -1053,36 +1092,44 @@ msgid "Add/Edit Waypoint..."
 msgstr "Tilføj/rediger waypoint..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:92
+#: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:63
 msgid "Final Location"
 msgstr "Sidste placering"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:93
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:112
+#: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:64
 msgid "Parking Area"
 msgstr "Parkeringsplads"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:94
+#: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:65
 msgid "Question To Answer"
 msgstr "Spørgsmål, der skal besvares"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:95
+#: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:66
 msgid "Reference Point"
 msgstr "Referencepunkt"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:96
+#: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:67
 msgid "Stages of a Multicache"
 msgstr "Stages of a Multicache"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:97
+#: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:68
 msgid "Trailhead"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:98
+#: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:69
 msgid "Other"
 msgstr "Andet"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:174
 #: ../ocm-gtk/gtk-gui/ocmgtk.AddBookMarkDialog.cs:43
+#: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:122
 msgid "Name:"
 msgstr "Navn:"
 
@@ -1102,6 +1149,7 @@ msgstr "Synbol:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:222
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:209
+#: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:145
 msgid "Description:"
 msgstr "Beskrivelse:"
 
@@ -1544,15 +1592,15 @@ msgstr ""
 msgid "Other GPS"
 msgstr "Andet"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:93
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:94
 msgid "Select a GPS Type:"
 msgstr "Vælg en GPS-type:"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:102
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:103
 msgid "Device"
 msgstr "Enhed"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:115
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:116
 msgid "Waypoint Symbols"
 msgstr "Waypoint-symboler"
 
@@ -1697,7 +1745,7 @@ msgstr ""
 msgid "Change History..."
 msgstr "Ændringshistorik..."
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:82
+#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:81
 msgid "_Save"
 msgstr "_Gem"
 
@@ -2498,22 +2546,28 @@ msgstr "<b>Fil:</b>"
 msgid "0%"
 msgstr ""
 
+#: ../ocm-gtk/Dialogs/ScanWaypointsDialog.cs:32
+msgid ""
+"OCM found {0} waypoints in the cache description. You can add them all "
+"automatically, or review the matches one by one."
+msgstr ""
+
 #: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:27
 #, fuzzy
 msgid "Grab Waypoints..."
 msgstr "Waypoints"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:37
+#: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:42
 msgid ""
 "OCM found {0} waypoints in the cache description. You can add them all "
 "automatically, or review the matches one by one. "
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:67
+#: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:73
 msgid "_Add All"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:79
+#: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:85
 #, fuzzy
 msgid "_Review"
 msgstr "Enhed"
@@ -2535,3 +2589,30 @@ msgstr ""
 #, fuzzy
 msgid "Short Cache Code"
 msgstr "Cachekode"
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:101
+#, fuzzy
+msgid "Coordinate:"
+msgstr "Hjemmekoordinater"
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:111
+msgid "Source:"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:133
+#, fuzzy
+msgid "Type:"
+msgstr "Type"
+
+#: ../ocm-gtk/Dialogs/ReviewWaypointDialog.cs:35
+#: ../ocm-gtk/Dialogs/ReviewWaypointDialog.cs:56
+msgid "Reviewing Waypoint {0} of {1}"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointDialog.cs:28
+msgid "Review Waypoint (0 of 0)"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointDialog.cs:67
+msgid "_Skip"
+msgstr ""
