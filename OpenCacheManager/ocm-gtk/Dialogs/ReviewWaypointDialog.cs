@@ -16,6 +16,7 @@
 using System;
 using System.Text.RegularExpressions;
 using Mono.Unix;
+using ocmengine;
 
 namespace ocmgtk
 {
@@ -23,20 +24,59 @@ namespace ocmgtk
 
 	public partial class ReviewWaypointDialog : Gtk.Dialog
 	{
+		MatchCollection m_matches = null;
+		int m_pos = 0;
 		public MatchCollection Matches
 		{
 			set 
 			{
-				Title = String.Format(Catalog.GetString("Review Waypoint ({0} or {1})"), 0, value.Count);
-				reviewWidget.WaypointMatch = value[0];
+				m_matches = value;
+				m_pos = 0;
+				reviewWidget.WaypointMatch = m_matches[0];
+				this.Title = String.Format(Catalog.GetString("Reviewing Waypoint {0} of {1}"), m_pos + 1, m_matches.Count);
 			}
 		}
 		
+		protected virtual void OnAddClick (object sender, System.EventArgs e)
+		{
+			ocmengine.Waypoint pt = reviewWidget.GetPoint();
+			Engine.getInstance().Store.AddWaypointAtomic(pt);
+			NextMatch();
+		}
 		
-		public ReviewWaypointDialog ()
+		public void NextMatch()
+		{
+			m_pos++;
+			if (m_pos == m_matches.Count)
+			{
+				this.Hide();
+				m_widget.UpdateCacheInfo();
+				return;
+			}
+			reviewWidget.WaypointMatch = m_matches[m_pos];
+			this.Title = String.Format(Catalog.GetString("Reviewing Waypoint {0} of {1}"), m_pos + 1, m_matches.Count);
+		}
+		
+		private WaypointWidget m_widget;
+		public ReviewWaypointDialog (WaypointWidget widget)
 		{
 			this.Build ();
+			m_widget = widget;
 		}
+		
+		protected virtual void OnSkipClick (object sender, System.EventArgs e)
+		{
+			NextMatch();
+		}
+		
+		
+		protected virtual void OnCancelClick (object sender, System.EventArgs e)
+		{
+			this.Hide();
+		}
+		
+		
+		
 		
 		
 	}

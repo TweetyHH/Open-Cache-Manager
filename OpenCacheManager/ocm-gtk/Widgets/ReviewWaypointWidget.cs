@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using System.Text;
 using System.Text.RegularExpressions;
 using ocmengine;
 using Mono.Unix;
@@ -25,24 +26,120 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class ReviewWaypointWidget : Gtk.Bin
 	{
+		
+		Geocache m_parent = null;
+		DegreeMinutes m_lat = null;
+		DegreeMinutes m_lon = null;
 		public Match WaypointMatch
 		{
 			set
 			{
-				Geocache parent = UIMonitor.getInstance().SelectedCache;
+				m_parent = UIMonitor.getInstance().SelectedCache;
 				DegreeMinutes[] coord =  Utilities.ParseCoordString(value.Captures[0].Value);	
-				coordLabel.Text = Utilities.getCoordString(coord[0], coord[1]);
-				sourceText.Buffer.Text = parent.LongDesc.Substring(value.Index - 100, value.Length + 100);
-				String name = "RP" + parent.Name.Substring (2);
-				if ((bool) UIMonitor.getInstance().Configuration.Get("/apps/ocm/noprefixes", false))
+				m_lat = coord[0];
+				m_lon = coord[1];
+				StringBuilder builder = new StringBuilder(m_parent.ShortDesc + m_parent.LongDesc);
+				builder.Insert(value.Index + value.Length, "</span>");
+				builder.Insert(value.Index, "<span style='background-color:green; color=white;'><a name='spot'>");
+				builder.Insert(0, "<HTML><HEAD><TITLE>ignore</TITLE>" +
+					"<SCRIPT>function gotoSpot(){ window.location.href='#spot';}</SCRIPT>" +
+					"</HEAD><BODY onLoad='gotoSpot()'>");
+				builder.Append("</BODY></HTML>");
+				coordLabel.Text = Utilities.getCoordString(m_lat, m_lon);
+				sourceText.HTML = builder.ToString();
+				sourceText.ExecuteFunction("gotoSpot()");
+				String name = nameEntry.Text;
+				if (String.IsNullOrEmpty(name))
 				{
-					name = parent.Name;
+					name = "RP" + m_parent.Name.Substring (2);
+					if ((bool) UIMonitor.getInstance().Configuration.Get("/apps/ocm/noprefixes", false))
+					{
+						name = m_parent.Name;
+					}
 				}
 				name = Engine.getInstance().Store.GenerateNewName(name);
 				nameEntry.Text = name;
 				descriptionText.Buffer.Text = Catalog.GetString("Grabbed Waypoint");
 			}
 		}
+		
+		public bool IgnorePrefix
+		{
+			get
+			{
+				return ((bool) UIMonitor.getInstance().Configuration.Get("/apps/ocm/noprefixes", false));
+			}
+		}
+		
+		public ocmengine.Waypoint GetPoint()
+		{
+			Waypoint pt = new Waypoint();
+			pt.Name = nameEntry.Text;
+			pt.Lat = m_lat.GetDecimalDegrees();
+			pt.Lon = m_lon.GetDecimalDegrees();
+			pt.Parent = m_parent.Name;
+			pt.Symbol = GetPTType(flagEntry.Active);
+			pt.Desc = descriptionText.Buffer.Text;
+			return pt;
+		}
+		
+		private string GetPTType(int code)
+		{
+			switch (code)
+			{
+			case 0:
+				return "Final Location";
+			case 1:
+				return "Parking Area";
+			case 2:
+				return "Question to Answer";
+			case 3:
+				return "Reference Point";
+			case 4:
+				return "Stages of a Multicache";
+			case 5:
+				return "Trailhead";
+			default:
+				return "Other";
+			}
+		}
+		
+		
+		protected virtual void OnComboChanged (object sender, System.EventArgs e)
+		{
+			String prefix = "OT";
+			switch (flagEntry.Active)
+			{
+				case 0:
+					prefix = "FL";
+					break;
+				case 1:
+					prefix = "PK";
+					break;
+				case 2:
+					prefix = "QA";
+					break;
+				case 3:
+					prefix = "RP";
+					break;
+				case 4:
+					prefix = "SM";
+					break;
+				case 5:
+					prefix = "TR";
+					break;
+				default:
+					break;
+			}
+			String name = nameEntry.Text;
+			if (IgnorePrefix)
+				 name = m_parent.Name;
+			else
+				 name = prefix + m_parent.Name.Substring(2);
+			name = Engine.getInstance().Store.GenerateNewName(name);
+			nameEntry.Text = name;
+		}
+		
 		
 		
 		public ReviewWaypointWidget ()

@@ -172,6 +172,7 @@ namespace ocmengine
 			}
 			else
 			{
+				System.Console.WriteLine(val);
 				throw new Exception(Catalog.GetString("Unknown Coordinate Format"));
 			}
 			return coord;

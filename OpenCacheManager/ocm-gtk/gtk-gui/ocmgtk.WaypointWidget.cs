@@ -33,7 +33,7 @@ namespace ocmgtk {
         
         private Gtk.Button deleteButton;
         
-        private Gtk.Button button414;
+        private Gtk.Button grabButton;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -108,13 +108,13 @@ namespace ocmgtk {
             w7.Expand = false;
             w7.Fill = false;
             // Container child vbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-            this.button414 = new Gtk.Button();
-            this.button414.CanFocus = true;
-            this.button414.Name = "button414";
-            this.button414.UseUnderline = true;
-            this.button414.Label = Mono.Unix.Catalog.GetString("_Grab Waypoints...");
-            this.vbuttonbox1.Add(this.button414);
-            Gtk.ButtonBox.ButtonBoxChild w8 = ((Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox1[this.button414]));
+            this.grabButton = new Gtk.Button();
+            this.grabButton.CanFocus = true;
+            this.grabButton.Name = "grabButton";
+            this.grabButton.UseUnderline = true;
+            this.grabButton.Label = Mono.Unix.Catalog.GetString("_Grab Waypoints...");
+            this.vbuttonbox1.Add(this.grabButton);
+            Gtk.ButtonBox.ButtonBoxChild w8 = ((Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox1[this.grabButton]));
             w8.Position = 3;
             w8.Expand = false;
             w8.Fill = false;
@@ -135,7 +135,7 @@ namespace ocmgtk {
             this.addButton.Clicked += new System.EventHandler(this.doAdd);
             this.editButton.Clicked += new System.EventHandler(this.DoEdit);
             this.deleteButton.Clicked += new System.EventHandler(this.doRemove);
-            this.button414.Clicked += new System.EventHandler(this.OnGrabClick);
+            this.grabButton.Clicked += new System.EventHandler(this.OnGrabClick);
         }
     }
 }

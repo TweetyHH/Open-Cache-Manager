@@ -45,7 +45,6 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.StatusBar = statusbar1;
 		m_monitor.CacheListPane = cacheList;
 		m_monitor.CentreLabel = coordLabel;
-		m_monitor.Map = cachePane.CacheMap;
 	}
 
 	protected void BuildBookMarkMenu()

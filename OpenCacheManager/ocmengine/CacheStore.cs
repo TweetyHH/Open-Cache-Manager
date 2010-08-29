@@ -47,7 +47,7 @@ namespace ocmengine
 		public event ReadCompleteEventHandler Complete;
 		public delegate void ReadCacheEventHandler(object sender, ReadCacheArgs args);
 		public delegate void ReadCompleteEventHandler(object sender, EventArgs args);
-		
+
 		
 		private IDbConnection m_conn = null;
 		private String m_dbFile = null;

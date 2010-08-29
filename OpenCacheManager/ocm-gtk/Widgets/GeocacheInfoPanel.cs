@@ -104,7 +104,7 @@ namespace ocmgtk
 					statusLabel.Markup = ARCHIVED; 
 				else if (!cache.Available)
 					statusLabel.Markup = UNAVAILABLE;
-				else if (cache.OwnerID == m_monitor.OwnerID)
+				else if (cache.OwnerID == m_monitor.OwnerID || cache.CacheOwner == m_monitor.OwnerID)
 					statusLabel.Markup = MINE;
 				else if (cache.CheckNotes)
 					statusLabel.Markup = CHECK_LOGS;

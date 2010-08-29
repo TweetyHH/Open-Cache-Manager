@@ -59,7 +59,7 @@ namespace ocmgtk
 				if (args.Length > 0)
 					m_file = args[0];
 			
-			Mono.Unix.Catalog.Init ("ocm", "./locale");
+			Mono.Unix.Catalog.Init ("opencachemanager", "./locale");
 			bool runWizard = false;
 			try {
 				GConf.Client client = new GConf.Client ();

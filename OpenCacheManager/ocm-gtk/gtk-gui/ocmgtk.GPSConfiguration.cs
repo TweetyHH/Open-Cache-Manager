@@ -36,7 +36,7 @@ namespace ocmgtk {
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget ocmgtk.GPSConfiguration
-            this.WidthRequest = 500;
+            this.WidthRequest = 600;
             this.HeightRequest = 500;
             this.Name = "ocmgtk.GPSConfiguration";
             this.Title = Mono.Unix.Catalog.GetString("GPS Configuration...");
@@ -91,6 +91,7 @@ namespace ocmgtk {
             // Container child table1.Gtk.Table+TableChild
             this.label1 = new Gtk.Label();
             this.label1.Name = "label1";
+            this.label1.Xalign = 0F;
             this.label1.LabelProp = Mono.Unix.Catalog.GetString("Select a GPS Type:");
             this.table1.Add(this.label1);
             Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table1[this.label1]));
@@ -153,7 +154,7 @@ namespace ocmgtk {
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 502;
+            this.DefaultWidth = 602;
             this.DefaultHeight = 533;
             this.buttonOk.HasDefault = true;
             this.Show();

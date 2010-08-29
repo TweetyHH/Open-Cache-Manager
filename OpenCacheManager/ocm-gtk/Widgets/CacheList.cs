@@ -55,6 +55,17 @@ namespace ocmgtk
 			refreshTimer = new Timer ();
 			refreshTimer.AutoReset = false;
 			refreshTimer.Elapsed += HandleRefreshTimerElapsed;
+			treeview1.DragDataReceived += HandleTreeview1DragDataReceived;
+			treeview1.DragBegin += HandleTreeview1DragBegin;
+		}
+
+		void HandleTreeview1DragBegin (object o, DragBeginArgs args)
+		{
+			args.RetVal = null;
+		}
+
+		void HandleTreeview1DragDataReceived (object o, DragDataReceivedArgs args)
+		{
 		}
 
 		void HandleRefreshTimerElapsed (object sender, ElapsedEventArgs e)
@@ -324,6 +335,8 @@ namespace ocmgtk
 		{
 			Geocache cacheA = (Geocache)model.GetValue (tia, 0);
 			Geocache cacheB = (Geocache)model.GetValue (tib, 0);
+			if (cacheA == null || cacheB == null)
+				return 0 ;
 			return String.Compare (cacheA.CacheName, cacheB.CacheName);
 		}
 
@@ -331,6 +344,8 @@ namespace ocmgtk
 		{
 			Geocache cacheA = (Geocache)model.GetValue (tia, 0);
 			Geocache cacheB = (Geocache)model.GetValue (tib, 0);
+			if (cacheA == null || cacheB == null)
+				return 0;
 			double compare = getDistanceFromHome (cacheA) - getDistanceFromHome (cacheB);
 			if (compare > 0)
 				return 1; else if (compare == 0)
@@ -343,6 +358,8 @@ namespace ocmgtk
 		{
 			Geocache cacheA = (Geocache)model.GetValue (tia, 0);
 			Geocache cacheB = (Geocache)model.GetValue (tib, 0);
+			if (cacheA == null || cacheB == null)
+				return 0;
 			return String.Compare (cacheA.TypeOfCache.ToString (), cacheB.TypeOfCache.ToString ());
 		}
 
@@ -671,6 +688,12 @@ namespace ocmgtk
 
 		public void SelectCache (string code)
 		{
+			if (code == null)
+			{
+				treeview1.Selection.UnselectAll();
+				return;
+			}
+			
 			TreeIter itr;
 			TreeModel model = treeview1.Model;
 			treeview1.Model.GetIterFirst(out itr);

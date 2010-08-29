@@ -40,6 +40,7 @@ namespace ocmgtk
 		{
 			this.Hide();
 			m_widget.AutoGenerateChildren(m_matches);
+			m_widget.UpdateCacheInfo();
 		}
 		
 		protected virtual void OnCancelClicked (object sender, System.EventArgs e)
@@ -49,10 +50,13 @@ namespace ocmgtk
 		
 		protected virtual void OnReviewClicked (object sender, System.EventArgs e)
 		{
-			ReviewWaypointDialog dlg = new ReviewWaypointDialog();
-			dlg.Matches = m_matches;
 			this.Hide();
-			dlg.Run();
+			ReviewWaypointDialog dlg = new ReviewWaypointDialog(m_widget);
+			UIMonitor mon = UIMonitor.getInstance();
+			dlg.Parent = mon.Main;
+			dlg.Icon = mon.Main.Icon;
+			dlg.Matches = m_matches;
+			dlg.Run();		
 		}
 	}
 }

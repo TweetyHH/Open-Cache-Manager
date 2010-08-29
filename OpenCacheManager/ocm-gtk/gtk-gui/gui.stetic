@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
-    <widget-library name="../bind/ocm-gtk.exe" internal="true" />
+    <widget-library name="../bin/Release_Translated/ocm-gtk.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="1284 1201">
     <action-group name="Default">
@@ -648,8 +648,9 @@
                   <node type="Menuitem" action="MarkAvailableAction1" />
                 </node>
                 <node type="Separator" />
-                <node type="Menuitem" action="AddCacheAction" />
                 <node type="Menuitem" action="DeselectCacheAction" />
+                <node type="Separator" />
+                <node type="Menuitem" action="AddCacheAction" />
                 <node type="Menuitem" action="ModifyCacheAction" />
                 <node type="Menuitem" action="DeleteCacheAction" />
                 <node type="Menuitem" action="DeleteAllVisibleCachesAction" />
@@ -1876,7 +1877,7 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Button" id="button414">
+                  <widget class="Gtk.Button" id="grabButton">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
@@ -4859,9 +4860,9 @@ Less Than</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.GPSConfiguration" design-size="502 533">
+  <widget class="Gtk.Dialog" id="ocmgtk.GPSConfiguration" design-size="602 533">
     <property name="MemberName" />
-    <property name="WidthRequest">500</property>
+    <property name="WidthRequest">600</property>
     <property name="HeightRequest">500</property>
     <property name="Title" translatable="yes">GPS Configuration...</property>
     <property name="TypeHint">Dialog</property>
@@ -4939,6 +4940,7 @@ Other GPS</property>
                 <child>
                   <widget class="Gtk.Label" id="label1">
                     <property name="MemberName" />
+                    <property name="Xalign">0</property>
                     <property name="LabelProp" translatable="yes">Select a GPS Type:</property>
                   </widget>
                   <packing>
@@ -6803,7 +6805,7 @@ Shot Cache Code</property>
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">0</property>
+            <property name="CurrentPage">1</property>
             <child>
               <widget class="Gtk.Table" id="table2">
                 <property name="MemberName" />
@@ -7225,13 +7227,12 @@ Mega Event Cache</property>
                     <property name="BottomAttach">5</property>
                     <property name="LeftAttach">1</property>
                     <property name="RightAttach">2</property>
-                    <property name="AutoSize">True</property>
+                    <property name="AutoSize">False</property>
                     <property name="XOptions">Fill</property>
-                    <property name="YOptions">Fill</property>
                     <property name="XExpand">False</property>
                     <property name="XFill">True</property>
                     <property name="XShrink">False</property>
-                    <property name="YExpand">False</property>
+                    <property name="YExpand">True</property>
                     <property name="YFill">True</property>
                     <property name="YShrink">False</property>
                   </packing>
@@ -7650,7 +7651,7 @@ Mega Event Cache</property>
           </widget>
           <packing>
             <property name="Position">0</property>
-            <property name="AutoSize">True</property>
+            <property name="AutoSize">False</property>
             <property name="Padding">6</property>
           </packing>
         </child>
@@ -8891,7 +8892,7 @@ Short Cache Code</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="ocmgtk.ReviewWaypointWidget" design-size="300 300">
+  <widget class="Gtk.Bin" id="ocmgtk.ReviewWaypointWidget" design-size="300 334">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -8901,35 +8902,7 @@ Short Cache Code</property>
         <property name="NColumns">2</property>
         <property name="RowSpacing">6</property>
         <property name="ColumnSpacing">6</property>
-        <child>
-          <widget class="Gtk.ComboBox" id="combobox1">
-            <property name="MemberName" />
-            <property name="IsTextCombo">True</property>
-            <property name="Items" translatable="yes">Final Location
-Parking Area
-Question To Answer
-Reference Point
-Stages of a Multicache
-Trailhead
-Other</property>
-            <property name="Active">3</property>
-          </widget>
-          <packing>
-            <property name="TopAttach">3</property>
-            <property name="BottomAttach">4</property>
-            <property name="LeftAttach">1</property>
-            <property name="RightAttach">2</property>
-            <property name="AutoSize">True</property>
-            <property name="XOptions">Fill</property>
-            <property name="YOptions">Fill</property>
-            <property name="XExpand">False</property>
-            <property name="XFill">True</property>
-            <property name="XShrink">False</property>
-            <property name="YExpand">False</property>
-            <property name="YFill">True</property>
-            <property name="YShrink">False</property>
-          </packing>
-        </child>
+        <property name="BorderWidth">6</property>
         <child>
           <widget class="Gtk.Label" id="coordLabel">
             <property name="MemberName" />
@@ -8951,27 +8924,28 @@ Other</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+          <widget class="Gtk.ComboBox" id="flagEntry">
             <property name="MemberName" />
-            <property name="ShadowType">In</property>
-            <child>
-              <widget class="Gtk.TextView" id="sourceText">
-                <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="ShowScrollbars">True</property>
-                <property name="Editable">False</property>
-                <property name="Text" translatable="yes" />
-              </widget>
-            </child>
+            <property name="IsTextCombo">True</property>
+            <property name="Items" translatable="yes">Final Location
+Parking Area
+Question To Answer
+Reference Point
+Stages of a Multicache
+Trailhead
+Other</property>
+            <property name="Active">3</property>
+            <signal name="Changed" handler="OnComboChanged" />
           </widget>
           <packing>
-            <property name="TopAttach">1</property>
-            <property name="BottomAttach">2</property>
+            <property name="TopAttach">2</property>
+            <property name="BottomAttach">3</property>
             <property name="LeftAttach">1</property>
             <property name="RightAttach">2</property>
-            <property name="AutoSize">False</property>
+            <property name="AutoSize">True</property>
+            <property name="XOptions">Fill</property>
             <property name="YOptions">Fill</property>
-            <property name="XExpand">True</property>
+            <property name="XExpand">False</property>
             <property name="XFill">True</property>
             <property name="XShrink">False</property>
             <property name="YExpand">False</property>
@@ -8993,8 +8967,8 @@ Other</property>
             </child>
           </widget>
           <packing>
-            <property name="TopAttach">4</property>
-            <property name="BottomAttach">5</property>
+            <property name="TopAttach">3</property>
+            <property name="BottomAttach">4</property>
             <property name="LeftAttach">1</property>
             <property name="RightAttach">2</property>
             <property name="AutoSize">True</property>
@@ -9034,8 +9008,8 @@ Other</property>
             <property name="LabelProp" translatable="yes">Source:</property>
           </widget>
           <packing>
-            <property name="TopAttach">1</property>
-            <property name="BottomAttach">2</property>
+            <property name="TopAttach">4</property>
+            <property name="BottomAttach">5</property>
             <property name="AutoSize">True</property>
             <property name="XOptions">Fill</property>
             <property name="YOptions">Fill</property>
@@ -9054,8 +9028,8 @@ Other</property>
             <property name="LabelProp" translatable="yes">Name:</property>
           </widget>
           <packing>
-            <property name="TopAttach">2</property>
-            <property name="BottomAttach">3</property>
+            <property name="TopAttach">1</property>
+            <property name="BottomAttach">2</property>
             <property name="AutoSize">True</property>
             <property name="XOptions">Fill</property>
             <property name="YOptions">Fill</property>
@@ -9074,8 +9048,8 @@ Other</property>
             <property name="LabelProp" translatable="yes">Type:</property>
           </widget>
           <packing>
-            <property name="TopAttach">3</property>
-            <property name="BottomAttach">4</property>
+            <property name="TopAttach">2</property>
+            <property name="BottomAttach">3</property>
             <property name="AutoSize">True</property>
             <property name="XOptions">Fill</property>
             <property name="YOptions">Fill</property>
@@ -9095,8 +9069,8 @@ Other</property>
             <property name="LabelProp" translatable="yes">Description:</property>
           </widget>
           <packing>
-            <property name="TopAttach">4</property>
-            <property name="BottomAttach">5</property>
+            <property name="TopAttach">3</property>
+            <property name="BottomAttach">4</property>
             <property name="AutoSize">True</property>
             <property name="XOptions">Fill</property>
             <property name="YOptions">Fill</property>
@@ -9116,8 +9090,8 @@ Other</property>
             <property name="InvisibleChar">•</property>
           </widget>
           <packing>
-            <property name="TopAttach">2</property>
-            <property name="BottomAttach">3</property>
+            <property name="TopAttach">1</property>
+            <property name="BottomAttach">2</property>
             <property name="LeftAttach">1</property>
             <property name="RightAttach">2</property>
             <property name="AutoSize">True</property>
@@ -9131,17 +9105,37 @@ Other</property>
             <property name="YShrink">False</property>
           </packing>
         </child>
+        <child>
+          <widget class="ocmgtk.HTMLWidget" id="sourceText">
+            <property name="MemberName" />
+            <property name="Events">ButtonPressMask</property>
+          </widget>
+          <packing>
+            <property name="TopAttach">4</property>
+            <property name="BottomAttach">5</property>
+            <property name="LeftAttach">1</property>
+            <property name="RightAttach">2</property>
+            <property name="AutoSize">False</property>
+            <property name="XExpand">True</property>
+            <property name="XFill">True</property>
+            <property name="XShrink">False</property>
+            <property name="YExpand">True</property>
+            <property name="YFill">True</property>
+            <property name="YShrink">False</property>
+          </packing>
+        </child>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.ReviewWaypointDialog" design-size="400 389">
+  <widget class="Gtk.Dialog" id="ocmgtk.ReviewWaypointDialog" design-size="502 389">
     <property name="MemberName" />
+    <property name="WidthRequest">500</property>
     <property name="Title" translatable="yes">Review Waypoint (0 of 0)</property>
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">6</property>
-    <property name="Buttons">4</property>
+    <property name="Buttons">3</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
       <widget class="Gtk.VBox" id="dialog1_VBox">
@@ -9154,9 +9148,7 @@ Other</property>
           </widget>
           <packing>
             <property name="Position">0</property>
-            <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
+            <property name="AutoSize">False</property>
           </packing>
         </child>
       </widget>
@@ -9166,7 +9158,7 @@ Other</property>
         <property name="MemberName" />
         <property name="Spacing">10</property>
         <property name="BorderWidth">5</property>
-        <property name="Size">4</property>
+        <property name="Size">3</property>
         <property name="LayoutStyle">End</property>
         <child>
           <widget class="Gtk.Button" id="buttonCancel">
@@ -9177,6 +9169,7 @@ Other</property>
             <property name="Type">StockItem</property>
             <property name="StockId">gtk-cancel</property>
             <property name="ResponseId">-6</property>
+            <signal name="Clicked" handler="OnCancelClick" />
             <property name="label">gtk-cancel</property>
           </widget>
           <packing>
@@ -9192,6 +9185,7 @@ Other</property>
             <property name="Label" translatable="yes">_Skip</property>
             <property name="UseUnderline">True</property>
             <property name="ResponseId">0</property>
+            <signal name="Clicked" handler="OnSkipClick" />
           </widget>
           <packing>
             <property name="Position">1</property>
@@ -9208,25 +9202,11 @@ Other</property>
             <property name="Type">StockItem</property>
             <property name="StockId">gtk-add</property>
             <property name="ResponseId">0</property>
+            <signal name="Clicked" handler="OnAddClick" />
             <property name="label">gtk-add</property>
           </widget>
           <packing>
             <property name="Position">2</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
-          </packing>
-        </child>
-        <child>
-          <widget class="Gtk.Button" id="button603">
-            <property name="MemberName" />
-            <property name="CanFocus">True</property>
-            <property name="Type">TextOnly</property>
-            <property name="Label" translatable="yes">_Close</property>
-            <property name="UseUnderline">True</property>
-            <property name="ResponseId">0</property>
-          </widget>
-          <packing>
-            <property name="Position">3</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>

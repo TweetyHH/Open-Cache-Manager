@@ -122,7 +122,7 @@ namespace ocmgtk {
             this.notebook1 = new Gtk.Notebook();
             this.notebook1.CanFocus = true;
             this.notebook1.Name = "notebook1";
-            this.notebook1.CurrentPage = 0;
+            this.notebook1.CurrentPage = 1;
             // Container child notebook1.Gtk.Notebook+NotebookChild
             this.table2 = new Gtk.Table(((uint)(7)), ((uint)(2)), false);
             this.table2.Name = "table2";
@@ -382,7 +382,6 @@ namespace ocmgtk {
             w22.LeftAttach = ((uint)(1));
             w22.RightAttach = ((uint)(2));
             w22.XOptions = ((Gtk.AttachOptions)(4));
-            w22.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table3.Gtk.Table+TableChild
             this.GtkScrolledWindow3 = new Gtk.ScrolledWindow();
             this.GtkScrolledWindow3.Name = "GtkScrolledWindow3";

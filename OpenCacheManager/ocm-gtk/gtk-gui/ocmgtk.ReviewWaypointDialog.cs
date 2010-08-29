@@ -21,11 +21,10 @@ namespace ocmgtk {
         
         private Gtk.Button buttonOk;
         
-        private Gtk.Button button603;
-        
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget ocmgtk.ReviewWaypointDialog
+            this.WidthRequest = 500;
             this.Name = "ocmgtk.ReviewWaypointDialog";
             this.Title = Mono.Unix.Catalog.GetString("Review Waypoint (0 of 0)");
             this.TypeHint = ((Gdk.WindowTypeHint)(1));
@@ -43,8 +42,6 @@ namespace ocmgtk {
             w1.Add(this.reviewWidget);
             Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(w1[this.reviewWidget]));
             w2.Position = 0;
-            w2.Expand = false;
-            w2.Fill = false;
             // Internal child ocmgtk.ReviewWaypointDialog.ActionArea
             Gtk.HButtonBox w3 = this.ActionArea;
             w3.Name = "dialog1_ActionArea";
@@ -87,23 +84,15 @@ namespace ocmgtk {
             w6.Position = 2;
             w6.Expand = false;
             w6.Fill = false;
-            // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-            this.button603 = new Gtk.Button();
-            this.button603.CanFocus = true;
-            this.button603.Name = "button603";
-            this.button603.UseUnderline = true;
-            this.button603.Label = Mono.Unix.Catalog.GetString("_Close");
-            this.AddActionWidget(this.button603, 0);
-            Gtk.ButtonBox.ButtonBoxChild w7 = ((Gtk.ButtonBox.ButtonBoxChild)(w3[this.button603]));
-            w7.Position = 3;
-            w7.Expand = false;
-            w7.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 400;
+            this.DefaultWidth = 502;
             this.DefaultHeight = 389;
             this.Show();
+            this.buttonCancel.Clicked += new System.EventHandler(this.OnCancelClick);
+            this.button595.Clicked += new System.EventHandler(this.OnSkipClick);
+            this.buttonOk.Clicked += new System.EventHandler(this.OnAddClick);
         }
     }
 }

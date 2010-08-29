@@ -242,6 +242,8 @@ namespace ocmgtk
 		/// </summary>
 		public void LoadConfig (bool refreshNow)
 		{
+			Map = GeoPane.CacheMap;
+	
 			CentreLat = (double) m_conf.Get ("/apps/ocm/lastlat", 0.0);
 			CentreLon = (double)m_conf.Get ("/apps/ocm/lastlon", 0.0);
 			CenterName = (string) m_conf.Get("/apps/ocm/lastname", Catalog.GetString("Home"));
@@ -270,6 +272,7 @@ namespace ocmgtk
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (false);
 			SetCurrentDB (dbName, refreshNow);
+	
 			LoadMap (map);
 			SetSelectedCache(null);
 			BuildWaypointMappings();
@@ -309,6 +312,8 @@ namespace ocmgtk
 				HandleNoDB ();
 				return;
 			}
+			
+			SetSelectedCache(null);
 			
 			String[] dbSplit = dbName.Split ('/');
 			String dBShort = dbSplit[dbSplit.Length - 1];
@@ -390,7 +395,16 @@ namespace ocmgtk
 		{
 			m_selectedCache = cache;
 			m_pane.SetCacheSelected ();
+			if (cache == null)
+			{
+				m_cachelist.SelectCache(null);
+			}
 			m_mainWin.SetSelectedCache(cache);
+			if (m_showNearby)
+			{
+				//GetNearByCaches(m_mapLat, m_mapLon);
+			}
+			ZoomToSelected();		
 		}
 
 		/// <summary>

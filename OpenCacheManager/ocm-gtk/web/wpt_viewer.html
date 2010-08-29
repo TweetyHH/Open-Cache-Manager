@@ -145,7 +145,6 @@ body {
 		var marker = feature.createMarker();
 		marker.events.register('mousedown',feature,mousedown);
 		pois.addMarker(marker);
-	   	map.setCenter (lonlat, 14);
 	}
 	
 	function addExtraMarker(lat, lon, icon, wptName, wptFullName, wptDescription, mode)

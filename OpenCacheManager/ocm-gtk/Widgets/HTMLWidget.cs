@@ -57,5 +57,10 @@ namespace ocmgtk
 				m_view.LoadHtmlString(value, "http://www.geocaching.com");
 			}
 		}
+		
+		public void ExecuteFunction(string func)
+		{
+			m_view.ExecuteScript(func);
+		}
 	}
 }

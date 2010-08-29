@@ -153,17 +153,27 @@ namespace ocmgtk
 			m_childPoints.Clear ();
 			m_mon.ClearMarkers ();
 			if (cache == null)
+			{
+				addButton.Sensitive = false;
+				grabButton.Sensitive = false;
 				return;
-			IEnumerator<Waypoint> wptenum = Engine.getInstance ().GetChildWaypoints (cache.Name);
+			}
+			else
+			{
+				addButton.Sensitive = true;
+				grabButton.Sensitive = true;
+			}
+			List<Waypoint> wpt = Engine.getInstance ().Store.GetChildren(cache.Name);
+			IEnumerator<Waypoint> wptenum = wpt.GetEnumerator();
 			m_childPoints.AppendValues (cache);
 			m_mon.AddMapCache (cache);
+			int iCount = 0;
 			while (wptenum.MoveNext ()) {
 				m_childPoints.AppendValues (wptenum.Current);
-				m_mon.AddMapWayPoint (wptenum.Current);
-				
+				m_mon.AddMapWayPoint (wptenum.Current);			
 			}
+			m_mon.SetProgressDone();
 			m_ListSort.SetSortColumnId (1, SortType.Ascending);
-			m_mon.ZoomToPoint (cache.Lat, cache.Lon);
 		}
 
 
@@ -310,14 +320,21 @@ namespace ocmgtk
 		public void GrabWaypoints()
 		{
 			Geocache cache = m_mon.SelectedCache;
-			String expr = @"[NnSs].[0-9]*. [0-9]*\.[0-9]*. [WwEe].[0-9]*. [0-9]*\.[0-9]*";
-			MatchCollection matches = Regex.Matches(cache.LongDesc, expr);
+			String expr = @"\b[NnSs] ?[0-9]+.? ?[0-9]*\.[0-9]*\s[WwEe] ?[0-9]+.? ?[0-9]*\.[0-9]*";
+			String desc = cache.ShortDesc + cache.LongDesc;
+			MatchCollection matches = Regex.Matches(desc, expr);
 			m_mon.StartProgressLoad(Catalog.GetString("Grabbing Waypoints"));
 			if (matches.Count > 0)
 			{
 				ScanWaypointsDialog dlg = new ScanWaypointsDialog(matches.Count, this, matches);
 				dlg.Run();
-				UpdateCacheInfo ();
+			}
+			else
+			{
+				MessageDialog dlg = new MessageDialog(m_mon.Main, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok,
+				                                      Catalog.GetString("OCM was unable to find any child waypoints."));
+				dlg.Run();
+				dlg.Hide();
 			}
 			m_mon.SetProgressDone();
 		}
