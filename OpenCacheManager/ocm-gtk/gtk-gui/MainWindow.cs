@@ -216,7 +216,11 @@ public partial class MainWindow {
     
     private ocmgtk.CacheList cacheList;
     
+    private Gtk.VPaned vPane;
+    
     private ocmgtk.GeoCachePane cachePane;
+    
+    private ocmgtk.BrowserWidget mapPane;
     
     private Gtk.Statusbar statusbar1;
     
@@ -566,14 +570,26 @@ public partial class MainWindow {
         Gtk.Paned.PanedChild w3 = ((Gtk.Paned.PanedChild)(this.hSplitPane[this.cacheList]));
         w3.Resize = false;
         // Container child hSplitPane.Gtk.Paned+PanedChild
+        this.vPane = new Gtk.VPaned();
+        this.vPane.CanFocus = true;
+        this.vPane.Name = "vPane";
+        this.vPane.Position = 385;
+        // Container child vPane.Gtk.Paned+PanedChild
         this.cachePane = new ocmgtk.GeoCachePane();
         this.cachePane.Events = ((Gdk.EventMask)(256));
         this.cachePane.Name = "cachePane";
-        this.cachePane.VPos = 0;
-        this.hSplitPane.Add(this.cachePane);
+        this.vPane.Add(this.cachePane);
+        Gtk.Paned.PanedChild w4 = ((Gtk.Paned.PanedChild)(this.vPane[this.cachePane]));
+        w4.Resize = false;
+        // Container child vPane.Gtk.Paned+PanedChild
+        this.mapPane = new ocmgtk.BrowserWidget();
+        this.mapPane.Events = ((Gdk.EventMask)(256));
+        this.mapPane.Name = "mapPane";
+        this.vPane.Add(this.mapPane);
+        this.hSplitPane.Add(this.vPane);
         this.vbox1.Add(this.hSplitPane);
-        Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.vbox1[this.hSplitPane]));
-        w5.Position = 1;
+        Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox1[this.hSplitPane]));
+        w7.Position = 1;
         // Container child vbox1.Gtk.Box+BoxChild
         this.statusbar1 = new Gtk.Statusbar();
         this.statusbar1.Name = "statusbar1";
@@ -586,25 +602,25 @@ public partial class MainWindow {
         this.coordLabel.Xalign = 1F;
         this.coordLabel.LabelProp = Mono.Unix.Catalog.GetString("Not Set");
         this.statusbar1.Add(this.coordLabel);
-        Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.statusbar1[this.coordLabel]));
-        w6.Position = 1;
-        w6.Expand = false;
-        w6.Fill = false;
+        Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.statusbar1[this.coordLabel]));
+        w8.Position = 1;
+        w8.Expand = false;
+        w8.Fill = false;
         // Container child statusbar1.Gtk.Box+BoxChild
         this.statProgBar = new Gtk.ProgressBar();
         this.statProgBar.WidthRequest = 200;
         this.statProgBar.HeightRequest = 5;
         this.statProgBar.Name = "statProgBar";
         this.statusbar1.Add(this.statProgBar);
-        Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.statusbar1[this.statProgBar]));
-        w7.Position = 2;
-        w7.Expand = false;
+        Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.statusbar1[this.statProgBar]));
+        w9.Position = 2;
+        w9.Expand = false;
         this.vbox1.Add(this.statusbar1);
-        Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.vbox1[this.statusbar1]));
-        w8.PackType = ((Gtk.PackType)(1));
-        w8.Position = 2;
-        w8.Expand = false;
-        w8.Fill = false;
+        Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.vbox1[this.statusbar1]));
+        w10.PackType = ((Gtk.PackType)(1));
+        w10.Position = 2;
+        w10.Expand = false;
+        w10.Fill = false;
         this.Add(this.vbox1);
         if ((this.Child != null)) {
             this.Child.ShowAll();

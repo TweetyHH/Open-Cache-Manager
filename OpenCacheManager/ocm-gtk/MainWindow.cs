@@ -34,6 +34,12 @@ public partial class MainWindow : Gtk.Window
 		set { hSplitPane.Position = value;}
 	}
 	
+	public int VPos
+	{
+		get { return vPane.Position;}
+		set { vPane.Position = value;}
+	}
+	
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{	
 		Build ();
@@ -45,6 +51,7 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.StatusBar = statusbar1;
 		m_monitor.CacheListPane = cacheList;
 		m_monitor.CentreLabel = coordLabel;
+		m_monitor.Map = mapPane;
 	}
 
 	protected void BuildBookMarkMenu()

@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
-    <widget-library name="../bin/Release_Translated/ocm-gtk.exe" internal="true" />
+    <widget-library name="../bind/ocm-gtk.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="1284 1201">
     <action-group name="Default">
@@ -743,10 +743,25 @@
               </packing>
             </child>
             <child>
-              <widget class="ocmgtk.GeoCachePane" id="cachePane">
+              <widget class="Gtk.VPaned" id="vPane">
                 <property name="MemberName" />
-                <property name="Events">ButtonPressMask</property>
-                <property name="VPos">0</property>
+                <property name="CanFocus">True</property>
+                <property name="Position">385</property>
+                <child>
+                  <widget class="ocmgtk.GeoCachePane" id="cachePane">
+                    <property name="MemberName" />
+                    <property name="Events">ButtonPressMask</property>
+                  </widget>
+                  <packing>
+                    <property name="Resize">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="ocmgtk.BrowserWidget" id="mapPane">
+                    <property name="MemberName" />
+                    <property name="Events">ButtonPressMask</property>
+                  </widget>
+                </child>
               </widget>
             </child>
           </widget>
@@ -1347,114 +1362,96 @@
       <widget class="Gtk.Alignment" id="alignment1">
         <property name="MemberName" />
         <child>
-          <widget class="Gtk.VPaned" id="vpaned1">
+          <widget class="Gtk.Notebook" id="notebook2">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="Position">300</property>
+            <property name="CurrentPage">0</property>
             <child>
-              <widget class="Gtk.Notebook" id="notebook2">
+              <widget class="ocmgtk.GeocacheInfoPanel" id="cacheInfo">
                 <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="CurrentPage">4</property>
-                <child>
-                  <widget class="ocmgtk.GeocacheInfoPanel" id="cacheInfo">
-                    <property name="MemberName" />
-                    <property name="Events">ButtonPressMask</property>
-                  </widget>
-                </child>
-                <child>
-                  <widget class="Gtk.Label" id="label7">
-                    <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">Quick Info</property>
-                  </widget>
-                  <packing>
-                    <property name="type">tab</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="ocmgtk.DescriptionWidget" id="descWidget">
-                    <property name="MemberName" />
-                    <property name="Events">ButtonPressMask</property>
-                  </widget>
-                  <packing>
-                    <property name="Position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Label" id="label6">
-                    <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">Description</property>
-                  </widget>
-                  <packing>
-                    <property name="type">tab</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="ocmgtk.LogViewerWidget" id="logView">
-                    <property name="MemberName" />
-                    <property name="Events">ButtonPressMask</property>
-                  </widget>
-                  <packing>
-                    <property name="Position">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Label" id="label8">
-                    <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">Logs</property>
-                  </widget>
-                  <packing>
-                    <property name="type">tab</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="ocmgtk.WaypointWidget" id="waypointView">
-                    <property name="MemberName" />
-                    <property name="Events">ButtonPressMask</property>
-                  </widget>
-                  <packing>
-                    <property name="Position">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Label" id="label9">
-                    <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">Waypoints</property>
-                  </widget>
-                  <packing>
-                    <property name="type">tab</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="ocmgtk.NotesWidget" id="notesWidget">
-                    <property name="MemberName" />
-                    <property name="Events">ButtonPressMask</property>
-                  </widget>
-                  <packing>
-                    <property name="Position">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Label" id="label10">
-                    <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">Notes</property>
-                  </widget>
-                  <packing>
-                    <property name="type">tab</property>
-                  </packing>
-                </child>
+                <property name="Events">ButtonPressMask</property>
+              </widget>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="label7">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Quick Info</property>
               </widget>
               <packing>
-                <property name="Resize">False</property>
+                <property name="type">tab</property>
               </packing>
             </child>
             <child>
-              <widget class="ocmgtk.BrowserWidget" id="mapWidget1">
+              <widget class="ocmgtk.DescriptionWidget" id="descWidget">
                 <property name="MemberName" />
-                <property name="WidthRequest">300</property>
-                <property name="HeightRequest">150</property>
                 <property name="Events">ButtonPressMask</property>
               </widget>
+              <packing>
+                <property name="Position">1</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="label8">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Description</property>
+              </widget>
+              <packing>
+                <property name="type">tab</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ocmgtk.LogViewerWidget" id="logView">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="label9">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Logs</property>
+              </widget>
+              <packing>
+                <property name="type">tab</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ocmgtk.WaypointWidget" id="waypointView">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+              </widget>
+              <packing>
+                <property name="Position">3</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="label10">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Waypoints</property>
+              </widget>
+              <packing>
+                <property name="type">tab</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ocmgtk.NotesWidget" id="notesWidget">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+              </widget>
+              <packing>
+                <property name="Position">4</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="label11">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Notes</property>
+              </widget>
+              <packing>
+                <property name="type">tab</property>
+              </packing>
             </child>
           </widget>
         </child>

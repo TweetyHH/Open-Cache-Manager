@@ -13,11 +13,6 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class GeoCachePane : Gtk.Bin
 	{		
-		public BrowserWidget CacheMap
-		{
-			get { return mapWidget1;}
-		}
-		
 		public GeoCachePane()
 		{
 			this.Build();
@@ -30,13 +25,6 @@ namespace ocmgtk
 			waypointView.UpdateCacheInfo();
 			descWidget.UpdateCacheInfo();
 			notesWidget.UpdateCacheInfo();
-			
-		}
-		
-		public int VPos
-		{
-			get { return vpaned1.Position;}
-			set { vpaned1.Position = value;}
 		}
 	}
 }

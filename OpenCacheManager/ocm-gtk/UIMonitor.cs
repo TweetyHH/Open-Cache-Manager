@@ -242,8 +242,6 @@ namespace ocmgtk
 		/// </summary>
 		public void LoadConfig (bool refreshNow)
 		{
-			Map = GeoPane.CacheMap;
-	
 			CentreLat = (double) m_conf.Get ("/apps/ocm/lastlat", 0.0);
 			CentreLon = (double)m_conf.Get ("/apps/ocm/lastlon", 0.0);
 			CenterName = (string) m_conf.Get("/apps/ocm/lastname", Catalog.GetString("Home"));
@@ -260,7 +258,7 @@ namespace ocmgtk
 			m_useImperial = (Boolean) m_conf.Get("/apps/ocm/imperial", false);
 			int win_width = (int) m_conf.Get("/apps/ocm/winwidth", 1024);
 			int win_height = (int) m_conf.Get("/apps/ocm/winheight", 768);
-			m_pane.VPos = (int) m_conf.Get("/apps/ocm/vpos", 300);
+			m_mainWin.VPos = (int) m_conf.Get("/apps/ocm/vpos", 300);
 			m_mainWin.HPos = (int) m_conf.Get("/apps/ocm/hpos", 400);
 			m_mainWin.Resize(win_width, win_height);
 			string map = (string) m_conf.Get("/apps/ocm/defmap", "osm");
@@ -1259,7 +1257,7 @@ namespace ocmgtk
 			m_conf.Set("/apps/ocm/winwidth", m_width);
 			m_conf.Set("/apps/ocm/winheight",m_height);
 			m_conf.Set("/apps/ocm/hpos", m_mainWin.HPos);
-			m_conf.Set("/apps/ocm/vpos",m_pane.VPos);
+			m_conf.Set("/apps/ocm/vpos",m_mainWin.VPos);
 		}
 		
 		public void ConfigureGPSD()
