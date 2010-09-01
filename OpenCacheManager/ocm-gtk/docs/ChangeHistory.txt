@@ -1,3 +1,7 @@
+Version 0.19.1
+--------------
+- Fix null pointer error on send to GPS when a cache has child waypoints
+
 Version 0.19
 ------------
 - Add Support for eTrex H/Legend. The Short Code name option removes the "GC" prefix on
