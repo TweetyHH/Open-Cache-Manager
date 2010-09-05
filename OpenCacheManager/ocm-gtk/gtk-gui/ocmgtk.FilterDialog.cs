@@ -79,6 +79,9 @@ namespace ocmgtk {
             this.datePage.PlaceAfter = new System.DateTime(0);
             this.datePage.InfoAfter = new System.DateTime(0);
             this.datePage.InfoBefore = new System.DateTime(0);
+            this.datePage.FoundOn = new System.DateTime(0);
+            this.datePage.FoundBefore = new System.DateTime(0);
+            this.datePage.FoundAfter = new System.DateTime(0);
             this.notebook1.Add(this.datePage);
             Gtk.Notebook.NotebookChild w4 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.datePage]));
             w4.Position = 2;
@@ -125,7 +128,7 @@ namespace ocmgtk {
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 460;
+            this.DefaultWidth = 471;
             this.DefaultHeight = 430;
             this.buttonOk.HasDefault = true;
             this.Show();

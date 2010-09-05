@@ -19,6 +19,14 @@ namespace ocmgtk {
         
         private Gtk.Entry countryEntry;
         
+        private ocmgtk.DateWidget foundDateEntry;
+        
+        private Gtk.HBox hbox8;
+        
+        private Gtk.CheckButton foundCheck;
+        
+        private Gtk.ComboBox foundCombo;
+        
         private Gtk.HSeparator hseparator1;
         
         private Gtk.CheckButton infoAfterCheck;
@@ -47,7 +55,7 @@ namespace ocmgtk {
             Stetic.BinContainer.Attach(this);
             this.Name = "ocmgtk.OCMQueryPage3";
             // Container child ocmgtk.OCMQueryPage3.Gtk.Container+ContainerChild
-            this.table2 = new Gtk.Table(((uint)(8)), ((uint)(2)), false);
+            this.table2 = new Gtk.Table(((uint)(9)), ((uint)(2)), false);
             this.table2.Name = "table2";
             this.table2.RowSpacing = ((uint)(6));
             this.table2.ColumnSpacing = ((uint)(6));
@@ -61,8 +69,8 @@ namespace ocmgtk {
             this.countryCheck.UseUnderline = true;
             this.table2.Add(this.countryCheck);
             Gtk.Table.TableChild w1 = ((Gtk.Table.TableChild)(this.table2[this.countryCheck]));
-            w1.TopAttach = ((uint)(5));
-            w1.BottomAttach = ((uint)(6));
+            w1.TopAttach = ((uint)(6));
+            w1.BottomAttach = ((uint)(7));
             w1.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.countryEntry = new Gtk.Entry();
@@ -73,21 +81,67 @@ namespace ocmgtk {
             this.countryEntry.InvisibleChar = '•';
             this.table2.Add(this.countryEntry);
             Gtk.Table.TableChild w2 = ((Gtk.Table.TableChild)(this.table2[this.countryEntry]));
-            w2.TopAttach = ((uint)(5));
-            w2.BottomAttach = ((uint)(6));
+            w2.TopAttach = ((uint)(6));
+            w2.BottomAttach = ((uint)(7));
             w2.LeftAttach = ((uint)(1));
             w2.RightAttach = ((uint)(2));
             w2.XOptions = ((Gtk.AttachOptions)(4));
             w2.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
+            this.foundDateEntry = new ocmgtk.DateWidget();
+            this.foundDateEntry.Sensitive = false;
+            this.foundDateEntry.Events = ((Gdk.EventMask)(256));
+            this.foundDateEntry.Name = "foundDateEntry";
+            this.foundDateEntry.Date = new System.DateTime(0);
+            this.table2.Add(this.foundDateEntry);
+            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table2[this.foundDateEntry]));
+            w3.TopAttach = ((uint)(4));
+            w3.BottomAttach = ((uint)(5));
+            w3.LeftAttach = ((uint)(1));
+            w3.RightAttach = ((uint)(2));
+            w3.XOptions = ((Gtk.AttachOptions)(4));
+            w3.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.hbox8 = new Gtk.HBox();
+            this.hbox8.Name = "hbox8";
+            this.hbox8.Spacing = 6;
+            // Container child hbox8.Gtk.Box+BoxChild
+            this.foundCheck = new Gtk.CheckButton();
+            this.foundCheck.CanFocus = true;
+            this.foundCheck.Name = "foundCheck";
+            this.foundCheck.Label = Mono.Unix.Catalog.GetString("Last found by you");
+            this.foundCheck.DrawIndicator = true;
+            this.foundCheck.UseUnderline = true;
+            this.hbox8.Add(this.foundCheck);
+            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.hbox8[this.foundCheck]));
+            w4.Position = 0;
+            // Container child hbox8.Gtk.Box+BoxChild
+            this.foundCombo = Gtk.ComboBox.NewText();
+            this.foundCombo.AppendText(Mono.Unix.Catalog.GetString("on:"));
+            this.foundCombo.AppendText(Mono.Unix.Catalog.GetString("on or after:"));
+            this.foundCombo.AppendText(Mono.Unix.Catalog.GetString("on or before:"));
+            this.foundCombo.Sensitive = false;
+            this.foundCombo.Name = "foundCombo";
+            this.foundCombo.Active = 0;
+            this.hbox8.Add(this.foundCombo);
+            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.hbox8[this.foundCombo]));
+            w5.Position = 1;
+            w5.Expand = false;
+            w5.Fill = false;
+            this.table2.Add(this.hbox8);
+            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table2[this.hbox8]));
+            w6.TopAttach = ((uint)(4));
+            w6.BottomAttach = ((uint)(5));
+            w6.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
             this.hseparator1 = new Gtk.HSeparator();
             this.hseparator1.Name = "hseparator1";
             this.table2.Add(this.hseparator1);
-            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table2[this.hseparator1]));
-            w3.TopAttach = ((uint)(4));
-            w3.BottomAttach = ((uint)(5));
-            w3.RightAttach = ((uint)(2));
-            w3.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table2[this.hseparator1]));
+            w7.TopAttach = ((uint)(5));
+            w7.BottomAttach = ((uint)(6));
+            w7.RightAttach = ((uint)(2));
+            w7.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.infoAfterCheck = new Gtk.CheckButton();
             this.infoAfterCheck.CanFocus = true;
@@ -96,10 +150,10 @@ namespace ocmgtk {
             this.infoAfterCheck.DrawIndicator = true;
             this.infoAfterCheck.UseUnderline = true;
             this.table2.Add(this.infoAfterCheck);
-            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table2[this.infoAfterCheck]));
-            w4.TopAttach = ((uint)(2));
-            w4.BottomAttach = ((uint)(3));
-            w4.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table2[this.infoAfterCheck]));
+            w8.TopAttach = ((uint)(2));
+            w8.BottomAttach = ((uint)(3));
+            w8.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.infoAfterEntry1 = new ocmgtk.DateWidget();
             this.infoAfterEntry1.Sensitive = false;
@@ -107,13 +161,13 @@ namespace ocmgtk {
             this.infoAfterEntry1.Name = "infoAfterEntry1";
             this.infoAfterEntry1.Date = new System.DateTime(0);
             this.table2.Add(this.infoAfterEntry1);
-            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table2[this.infoAfterEntry1]));
-            w5.TopAttach = ((uint)(2));
-            w5.BottomAttach = ((uint)(3));
-            w5.LeftAttach = ((uint)(1));
-            w5.RightAttach = ((uint)(2));
-            w5.XOptions = ((Gtk.AttachOptions)(4));
-            w5.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table2[this.infoAfterEntry1]));
+            w9.TopAttach = ((uint)(2));
+            w9.BottomAttach = ((uint)(3));
+            w9.LeftAttach = ((uint)(1));
+            w9.RightAttach = ((uint)(2));
+            w9.XOptions = ((Gtk.AttachOptions)(4));
+            w9.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.infoBeforeCheck = new Gtk.CheckButton();
             this.infoBeforeCheck.CanFocus = true;
@@ -122,10 +176,10 @@ namespace ocmgtk {
             this.infoBeforeCheck.DrawIndicator = true;
             this.infoBeforeCheck.UseUnderline = true;
             this.table2.Add(this.infoBeforeCheck);
-            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table2[this.infoBeforeCheck]));
-            w6.TopAttach = ((uint)(3));
-            w6.BottomAttach = ((uint)(4));
-            w6.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.table2[this.infoBeforeCheck]));
+            w10.TopAttach = ((uint)(3));
+            w10.BottomAttach = ((uint)(4));
+            w10.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.infoBeforeEntry = new ocmgtk.DateWidget();
             this.infoBeforeEntry.Sensitive = false;
@@ -133,13 +187,13 @@ namespace ocmgtk {
             this.infoBeforeEntry.Name = "infoBeforeEntry";
             this.infoBeforeEntry.Date = new System.DateTime(0);
             this.table2.Add(this.infoBeforeEntry);
-            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table2[this.infoBeforeEntry]));
-            w7.TopAttach = ((uint)(3));
-            w7.BottomAttach = ((uint)(4));
-            w7.LeftAttach = ((uint)(1));
-            w7.RightAttach = ((uint)(2));
-            w7.XOptions = ((Gtk.AttachOptions)(4));
-            w7.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w11 = ((Gtk.Table.TableChild)(this.table2[this.infoBeforeEntry]));
+            w11.TopAttach = ((uint)(3));
+            w11.BottomAttach = ((uint)(4));
+            w11.LeftAttach = ((uint)(1));
+            w11.RightAttach = ((uint)(2));
+            w11.XOptions = ((Gtk.AttachOptions)(4));
+            w11.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.placeAfterCheck = new Gtk.CheckButton();
             this.placeAfterCheck.CanFocus = true;
@@ -148,8 +202,8 @@ namespace ocmgtk {
             this.placeAfterCheck.DrawIndicator = true;
             this.placeAfterCheck.UseUnderline = true;
             this.table2.Add(this.placeAfterCheck);
-            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table2[this.placeAfterCheck]));
-            w8.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w12 = ((Gtk.Table.TableChild)(this.table2[this.placeAfterCheck]));
+            w12.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.placeAfterEntry = new ocmgtk.DateWidget();
             this.placeAfterEntry.Sensitive = false;
@@ -157,11 +211,11 @@ namespace ocmgtk {
             this.placeAfterEntry.Name = "placeAfterEntry";
             this.placeAfterEntry.Date = new System.DateTime(0);
             this.table2.Add(this.placeAfterEntry);
-            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table2[this.placeAfterEntry]));
-            w9.LeftAttach = ((uint)(1));
-            w9.RightAttach = ((uint)(2));
-            w9.XOptions = ((Gtk.AttachOptions)(4));
-            w9.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w13 = ((Gtk.Table.TableChild)(this.table2[this.placeAfterEntry]));
+            w13.LeftAttach = ((uint)(1));
+            w13.RightAttach = ((uint)(2));
+            w13.XOptions = ((Gtk.AttachOptions)(4));
+            w13.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.placeBeforeCheck = new Gtk.CheckButton();
             this.placeBeforeCheck.CanFocus = true;
@@ -170,10 +224,10 @@ namespace ocmgtk {
             this.placeBeforeCheck.DrawIndicator = true;
             this.placeBeforeCheck.UseUnderline = true;
             this.table2.Add(this.placeBeforeCheck);
-            Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.table2[this.placeBeforeCheck]));
-            w10.TopAttach = ((uint)(1));
-            w10.BottomAttach = ((uint)(2));
-            w10.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w14 = ((Gtk.Table.TableChild)(this.table2[this.placeBeforeCheck]));
+            w14.TopAttach = ((uint)(1));
+            w14.BottomAttach = ((uint)(2));
+            w14.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.placeBeforeEntry = new ocmgtk.DateWidget();
             this.placeBeforeEntry.Sensitive = false;
@@ -181,13 +235,13 @@ namespace ocmgtk {
             this.placeBeforeEntry.Name = "placeBeforeEntry";
             this.placeBeforeEntry.Date = new System.DateTime(0);
             this.table2.Add(this.placeBeforeEntry);
-            Gtk.Table.TableChild w11 = ((Gtk.Table.TableChild)(this.table2[this.placeBeforeEntry]));
-            w11.TopAttach = ((uint)(1));
-            w11.BottomAttach = ((uint)(2));
-            w11.LeftAttach = ((uint)(1));
-            w11.RightAttach = ((uint)(2));
-            w11.XOptions = ((Gtk.AttachOptions)(4));
-            w11.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w15 = ((Gtk.Table.TableChild)(this.table2[this.placeBeforeEntry]));
+            w15.TopAttach = ((uint)(1));
+            w15.BottomAttach = ((uint)(2));
+            w15.LeftAttach = ((uint)(1));
+            w15.RightAttach = ((uint)(2));
+            w15.XOptions = ((Gtk.AttachOptions)(4));
+            w15.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.stateCheck = new Gtk.CheckButton();
             this.stateCheck.CanFocus = true;
@@ -196,10 +250,10 @@ namespace ocmgtk {
             this.stateCheck.DrawIndicator = true;
             this.stateCheck.UseUnderline = true;
             this.table2.Add(this.stateCheck);
-            Gtk.Table.TableChild w12 = ((Gtk.Table.TableChild)(this.table2[this.stateCheck]));
-            w12.TopAttach = ((uint)(6));
-            w12.BottomAttach = ((uint)(7));
-            w12.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w16 = ((Gtk.Table.TableChild)(this.table2[this.stateCheck]));
+            w16.TopAttach = ((uint)(7));
+            w16.BottomAttach = ((uint)(8));
+            w16.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.stateEntry = new Gtk.Entry();
             this.stateEntry.Sensitive = false;
@@ -208,13 +262,13 @@ namespace ocmgtk {
             this.stateEntry.IsEditable = true;
             this.stateEntry.InvisibleChar = '•';
             this.table2.Add(this.stateEntry);
-            Gtk.Table.TableChild w13 = ((Gtk.Table.TableChild)(this.table2[this.stateEntry]));
-            w13.TopAttach = ((uint)(6));
-            w13.BottomAttach = ((uint)(7));
-            w13.LeftAttach = ((uint)(1));
-            w13.RightAttach = ((uint)(2));
-            w13.XOptions = ((Gtk.AttachOptions)(4));
-            w13.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w17 = ((Gtk.Table.TableChild)(this.table2[this.stateEntry]));
+            w17.TopAttach = ((uint)(7));
+            w17.BottomAttach = ((uint)(8));
+            w17.LeftAttach = ((uint)(1));
+            w17.RightAttach = ((uint)(2));
+            w17.XOptions = ((Gtk.AttachOptions)(4));
+            w17.YOptions = ((Gtk.AttachOptions)(4));
             this.Add(this.table2);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
@@ -225,6 +279,7 @@ namespace ocmgtk {
             this.placeAfterCheck.Toggled += new System.EventHandler(this.OnPlaceAfterCheck);
             this.infoBeforeCheck.Toggled += new System.EventHandler(this.OnInfoBeforeTog);
             this.infoAfterCheck.Toggled += new System.EventHandler(this.OnInfoAfterTog);
+            this.foundCheck.Toggled += new System.EventHandler(this.OnFoundCheckToggle);
             this.countryCheck.Toggled += new System.EventHandler(this.OnCountryToggle);
         }
     }

@@ -42,6 +42,10 @@ namespace ocmengine
 		public const String KEY_INFOBEFORE = "infobefore";
 		public const String KEY_COUNTRY = "country";
 		public const String KEY_STATE = "state";
+		public const String KEY_FOUNDON = "foundon";
+		public const String KEY_FOUNDBEFORE = "foundafter";
+		public const String KEY_FOUNDAFTER = "foundbefore";
+		public const String KEY_OWNERID = "ownerID";
 		public FilterList ()
 		{
 			
@@ -199,6 +203,12 @@ namespace ocmengine
 				builder.Append(" AND GEOCACHE.state LIKE '");
 				builder.Append(m_criteria[KEY_STATE] as string);
 				builder.Append("'");
+			}
+			
+			if (m_criteria.ContainsKey(KEY_FOUNDAFTER) || m_criteria.ContainsKey(KEY_FOUNDBEFORE) 
+			    || m_criteria.ContainsKey(KEY_FOUNDON))
+			{
+				builder.Append(" AND WAYPOINT.symbol == 'Geocache Found'");
 			}
 
 			 

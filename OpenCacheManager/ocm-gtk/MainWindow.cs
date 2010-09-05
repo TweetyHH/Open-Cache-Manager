@@ -28,6 +28,11 @@ public partial class MainWindow : Gtk.Window
 	MenuItem addCacheTo;
 	MenuItem removeSelected;
 	
+	public MenuBar MenuBar
+	{
+		get { return mainmenubar;}
+	}
+	
 	public int HPos
 	{
 		get { return hSplitPane.Position;}

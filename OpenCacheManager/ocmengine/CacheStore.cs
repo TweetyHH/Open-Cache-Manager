@@ -423,7 +423,9 @@ namespace ocmengine
 			IDataReader reader = command.ExecuteReader();
 			while (reader.Read())
 			{
-				pts.Add(BuildCache(reader));
+				Geocache cache = BuildCache(reader);
+				if (cache != null)
+					pts.Add(cache);
 			}
 			
 			CloseConnection (ref reader, ref command, ref conn);
@@ -506,10 +508,72 @@ namespace ocmengine
 				cache.Children = true;
 			else
 				cache.Children = false;
+			
+			
+			
+			
 			if (this.ReadCache != null)
+			{
+				if (!DoNonDBFilter(cache))
+				{
+					this.ReadCache(this, new ReadCacheArgs(null));
+					return null;
+				}
 				this.ReadCache(this, new ReadCacheArgs(cache));
+			}
 			return cache;
 			
+		}
+		
+		private bool DoNonDBFilter (Geocache cache)
+		{
+			if (m_filter != null)
+			{
+				string ownerID = m_filter.GetCriteria(FilterList.KEY_OWNERID) as String;
+				if (m_filter.Contains(FilterList.KEY_PLACEBEFORE))
+					if (cache.Time >= ((DateTime) m_filter.GetCriteria(FilterList.KEY_PLACEBEFORE)))
+						return false;
+				if (m_filter.Contains(FilterList.KEY_PLACEAFTER))
+					if (cache.Time <= ((DateTime) m_filter.GetCriteria(FilterList.KEY_PLACEAFTER)))
+						return false;
+				if (m_filter.Contains(FilterList.KEY_INFOBEFORE))
+					if (cache.Updated >= ((DateTime) m_filter.GetCriteria(FilterList.KEY_INFOBEFORE)))
+						return false;
+				if (m_filter.Contains(FilterList.KEY_INFOAFTER))
+					if (cache.Updated <= ((DateTime) m_filter.GetCriteria(FilterList.KEY_INFOAFTER)))
+						return false;
+				if (m_filter.Contains(FilterList.KEY_FOUNDON))
+				{
+					if (cache.Found)
+					{
+						if (Engine.getInstance().Store.GetLastFindByYou(cache, ownerID).Date != ((DateTime) m_filter.GetCriteria(FilterList.KEY_FOUNDON)).Date)
+							return false;
+					}
+					else 
+						return false;
+				}
+				if (m_filter.Contains(FilterList.KEY_FOUNDBEFORE))
+				{
+					if (cache.Found)
+					{
+						if (Engine.getInstance().Store.GetLastFindByYou(cache, ownerID).Date > ((DateTime) m_filter.GetCriteria(FilterList.KEY_FOUNDBEFORE)).Date)
+							return false;
+					}
+					else 
+						return false;
+				}
+				if (m_filter.Contains(FilterList.KEY_FOUNDAFTER))
+				{
+					if (cache.Found)
+					{
+						if (Engine.getInstance().Store.GetLastFindByYou(cache, ownerID).Date < ((DateTime) m_filter.GetCriteria(FilterList.KEY_FOUNDAFTER)).Date)
+							return false;
+					}
+					else 
+						return false;
+				}
+			}
+			return true;
 		}
 		
 		public void ClearLogs(String cachename)

@@ -8,7 +8,7 @@
     <packageName>opencachemanager</packageName>
     <outputType>SystemPath</outputType>
     <relPath>locale</relPath>
-    <ReleaseVersion>0.19.1</ReleaseVersion>
+    <ReleaseVersion>0.20</ReleaseVersion>
     <projectInformations>
       <projectInformations>
         <TranslationProjectInformation projectName="ocmengine" isIncluded="true" />
@@ -20,6 +20,7 @@
         <Translation isoCode="nl" />
         <Translation isoCode="fr" />
         <Translation isoCode="da" />
+        <Translation isoCode="de" />
       </translations>
     </translations>
     <Configuration Condition=" '$(Configuration)' == '' ">Release_Translated</Configuration>

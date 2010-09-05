@@ -167,7 +167,6 @@ namespace ocmgtk
 			IEnumerator<Waypoint> wptenum = wpt.GetEnumerator();
 			m_childPoints.AppendValues (cache);
 			m_mon.AddMapCache (cache);
-			int iCount = 0;
 			while (wptenum.MoveNext ()) {
 				m_childPoints.AppendValues (wptenum.Current);
 				m_mon.AddMapWayPoint (wptenum.Current);			

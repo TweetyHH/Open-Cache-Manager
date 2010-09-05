@@ -43,6 +43,7 @@ namespace ocmgtk
 		private double m_intervalCount = 0;
 		private double m_loadCount = 0;
 		private OCMTreeView treeview1 = null;
+		private bool m_pulseMode = false;
 		TreeViewColumn m_distanceCol;
 
 		private Timer refreshTimer;
@@ -187,13 +188,20 @@ namespace ocmgtk
 			m_loadCount = 0;
 			m_intervalCount = 0;
 			treeview1.Model = null;
+			System.Console.WriteLine("Filter:" + store.Filter);
+			if (store.Filter != null)
+				m_pulseMode = true;
+			else
+				m_pulseMode = false;
 			m_ListSort.SetSortColumnId (-1, SortType.Ascending);
-			m_monitor.StartProgressLoad("Loading Caches");
+			m_monitor.StartProgressLoad(Catalog.GetString("Loading Caches"));
 			store.ReadCache += HandleStoreReadCache;
 			store.Complete += HandleStoreComplete;
 			store.GetCaches();
 			treeview1.Model = m_ListSort;
 			m_ListSort.SetSortColumnId (2, SortType.Ascending);
+			System.Console.WriteLine(Engine.getInstance().Store.Filter);
+		
 			
 		}
 
@@ -206,14 +214,27 @@ namespace ocmgtk
 
 		void HandleStoreReadCache (object sender, CacheStore.ReadCacheArgs args)
 		{
-			m_cacheModel.AppendValues(args.Cache);
-			m_loadCount ++;
 			m_intervalCount ++;
-			if (m_intervalCount == 50)
+			if (m_pulseMode)
 			{
-				m_monitor.SetProgress(m_loadCount, m_loadTotal, String.Format(Catalog.GetString("Loading Caches {0}"), (m_loadCount/m_loadTotal).ToString("0%")));
-				m_intervalCount = 0;
+				if (m_intervalCount == 15)
+				{
+					m_monitor.SetProgressPulse();
+					m_intervalCount = 0;
+				}
+			}	
+			else
+			{
+				m_loadCount ++;
+				
+				if (m_intervalCount == 50)
+				{
+					m_monitor.SetProgress(m_loadCount, m_loadTotal, String.Format(Catalog.GetString("Loading Caches {0}"), (m_loadCount/m_loadTotal).ToString("0%")));
+					m_intervalCount = 0;
+				}
 			}
+			if (args.Cache != null)
+				m_cacheModel.AppendValues(args.Cache);	
 		}	
 
 		private void RenderCacheCode (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
@@ -364,8 +385,6 @@ namespace ocmgtk
 				return false;
 			String filterVal = filterEntry.Text.ToLower ();
 			
-			//TODO : PUSH THESE FILTERS TO DATABASE OR CACHESTORE TO IMPROVE
-			// PERFORMANCE
 			if (!m_showArchived && cache.Archived)
 				return false;
 			
@@ -377,24 +396,6 @@ namespace ocmgtk
 					return true;
 				else
 					return false;
-			
-			FilterList list = Engine.getInstance().Store.Filter;
-			if (list != null)
-			{
-				if (list.Contains(FilterList.KEY_PLACEBEFORE))
-					if (cache.Time >= ((DateTime) list.GetCriteria(FilterList.KEY_PLACEBEFORE)))
-						return false;
-				if (list.Contains(FilterList.KEY_PLACEAFTER))
-					if (cache.Time <= ((DateTime) list.GetCriteria(FilterList.KEY_PLACEAFTER)))
-						return false;
-				if (list.Contains(FilterList.KEY_INFOBEFORE))
-					if (cache.Updated >= ((DateTime) list.GetCriteria(FilterList.KEY_INFOBEFORE)))
-						return false;
-				if (list.Contains(FilterList.KEY_INFOAFTER))
-					if (cache.Updated <= ((DateTime) list.GetCriteria(FilterList.KEY_INFOAFTER)))
-						return false;
-			}
-			
 			
 			if (!m_showUnavailble && !cache.Available && !cache.Archived)
 				return false;

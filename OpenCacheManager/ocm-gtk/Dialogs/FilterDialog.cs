@@ -41,6 +41,10 @@ namespace ocmgtk
 				string state = datePage.Province;
 				if (!String.IsNullOrEmpty(state))
 					filter.AddFilterCriteria(FilterList.KEY_STATE, datePage.Province);
+				GetFoundOnFilter (filter);
+				GetFoundBeforeFilter (filter);
+				GetFoundAfterFilter (filter);
+				filter.AddFilterCriteria(FilterList.KEY_OWNERID, UIMonitor.getInstance().OwnerID);
 				return filter;
 			}
 			set {
@@ -69,8 +73,38 @@ namespace ocmgtk
 					datePage.Country = value.GetCriteria(FilterList.KEY_COUNTRY) as string;
 				if (value.Contains(FilterList.KEY_STATE))
 					datePage.Province = value.GetCriteria(FilterList.KEY_STATE) as string;
+				if (value.Contains(FilterList.KEY_FOUNDON))
+					datePage.FoundOn = (DateTime) value.GetCriteria(FilterList.KEY_FOUNDON);
+				if (value.Contains(FilterList.KEY_FOUNDBEFORE))
+					datePage.FoundBefore = (DateTime) value.GetCriteria(FilterList.KEY_FOUNDBEFORE);
+				if (value.Contains(FilterList.KEY_FOUNDAFTER))
+					datePage.FoundAfter = (DateTime) value.GetCriteria(FilterList.KEY_FOUNDAFTER);
 				
 			}
+		}
+		
+		private void GetFoundAfterFilter (FilterList filter)
+		{
+			if (datePage.FoundAfter != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_FOUNDAFTER, datePage.FoundAfter);
+				else
+					filter.RemoveCriteria(FilterList.KEY_FOUNDAFTER);
+		}
+		
+		private void GetFoundBeforeFilter (FilterList filter)
+		{
+			if (datePage.FoundBefore != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_FOUNDBEFORE, datePage.FoundBefore);
+				else 
+					filter.RemoveCriteria(FilterList.KEY_FOUNDBEFORE);
+		}
+		
+		private void GetFoundOnFilter (FilterList filter)
+		{
+			if (datePage.FoundOn != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_FOUNDON, datePage.FoundOn);
+				else
+					filter.RemoveCriteria(FilterList.KEY_FOUNDON);
 		}
 		
 		private void GetDateFilter (FilterList filter)

@@ -370,11 +370,28 @@ namespace ocmgtk
 		public void RefreshCaches ()
 		{
 			m_mainWin.GdkWindow.Cursor = new Cursor (Gdk.CursorType.Watch);
+			SetInsensitive ();
 			m_statusbar.Push (m_statusbar.GetContextId ("refilter"), "Retrieving caches, please wait..");
 			UpdateCentrePointStatus ();
 			DoGUIUpdate ();
 			m_cachelist.PopulateList ();
 			UpdateStatusBar ();
+		}
+		
+		private void SetInsensitive ()
+		{
+			m_cachelist.Sensitive = false;
+			m_mainWin.MenuBar.Sensitive = false;
+			m_pane.Sensitive = false;
+			m_map.Sensitive = false;
+		}
+		
+		private void SetSensitive ()
+		{
+			m_cachelist.Sensitive = true;
+			m_mainWin.MenuBar.Sensitive = true;
+			m_pane.Sensitive = true;
+			m_map.Sensitive = true;
 		}
 
 		public static void DoGUIUpdate ()
@@ -563,6 +580,7 @@ namespace ocmgtk
 			UpdateCentrePointStatus ();
 			DoGUIUpdate ();
 			m_cachelist.ScrollToSelected();
+			SetSensitive();
 		}
 
 		public void UpdateCentrePointStatus ()
@@ -904,6 +922,14 @@ namespace ocmgtk
 				m_progress.Show();
 			m_progress.Fraction = (progress / total);
 			m_progress.Text = String.Format (msg, progress.ToString ());
+			DoGUIUpdate ();
+		}
+		
+		public void SetProgressPulse ()
+		{
+			if (!m_progress.Visible)
+				m_progress.Show();
+			m_progress.Pulse();
 			DoGUIUpdate ();
 		}
 
