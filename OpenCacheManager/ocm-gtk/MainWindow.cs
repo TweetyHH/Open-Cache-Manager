@@ -647,10 +647,10 @@ public partial class MainWindow : Gtk.Window
 	{
 		m_monitor.MarkCacheAvailable();
 	}
-	
-	
-	
-	
+	protected virtual void OnConfigureETools (object sender, System.EventArgs e)
+	{
+		m_monitor.ConfigureETools();
+	}
 	
 	
 }

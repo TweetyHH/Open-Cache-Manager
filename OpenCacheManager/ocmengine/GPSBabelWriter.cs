@@ -76,7 +76,10 @@ namespace ocmengine
 				return;
 			}
 			
-			writer.IncludeGroundSpeakExtensions = false;
+			if (m_format == "garmin")
+				writer.IncludeGroundSpeakExtensions = false;
+			else
+				writer.IncludeGroundSpeakExtensions = true;
 			writer.UseOCMPtTypes = true;
 			writer.Complete += HandleWriterComplete;
 			String tempFile = Path.GetTempFileName ();
@@ -94,6 +97,7 @@ namespace ocmengine
 			{
 				throw new Exception ("Aborted");
 			}
+			System.Console.WriteLine(builder.ToString());
 			Process babel = Process.Start (builder.ToString ());
 			babel.WaitForExit ();
 			if (babel.ExitCode != 0)

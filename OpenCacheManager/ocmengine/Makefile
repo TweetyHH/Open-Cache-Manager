@@ -106,10 +106,10 @@ ECHO_T =
 GCONF_SHARP_20_CFLAGS =  
 GCONF_SHARP_20_LIBS = -r:/usr/lib/cli/gconf-sharp-2.0/gconf-sharp.dll  
 GLIB_SHARP_20_CFLAGS = -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
-GLIB_SHARP_20_LIBS = -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
+GLIB_SHARP_20_LIBS = -r:/usr/lib/pkgconfig/../../lib/cli/glib-sharp-2.0/glib-sharp.dll  
 GMCS = /usr/bin/gmcs
 GTK_SHARP_20_CFLAGS = -I:/usr/lib/pkgconfig/../../share/gapi-2.0/pango-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/atk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gdk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gtk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
-GTK_SHARP_20_LIBS = -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/pango-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/atk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gdk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gtk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
+GTK_SHARP_20_LIBS = -r:/usr/lib/pkgconfig/../../lib/cli/pango-sharp-2.0/pango-sharp.dll -r:/usr/lib/pkgconfig/../../lib/cli/atk-sharp-2.0/atk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/cli/gdk-sharp-2.0/gdk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/cli/gtk-sharp-2.0/gtk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/cli/glib-sharp-2.0/glib-sharp.dll  
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
@@ -118,13 +118,13 @@ INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAINT = 
+MAINT = #
 MAKEINFO = ${SHELL} /home/campbelk/ocm_source/OpenCacheManager/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 NDESK_DBUS_10_CFLAGS =  
-NDESK_DBUS_10_LIBS = -r:/usr/lib/cli/ndesk-dbus-1.0/NDesk.DBus.dll  
+NDESK_DBUS_10_LIBS = -r:/usr/lib/cli/NDesk.DBus-1.0/NDesk.DBus.dll  
 NDESK_DBUS_GLIB_10_CFLAGS =  
-NDESK_DBUS_GLIB_10_LIBS = -r:/usr/lib/cli/ndesk-dbus-glib-1.0/NDesk.DBus.GLib.dll -r:/usr/lib/cli/ndesk-dbus-1.0/NDesk.DBus.dll  
+NDESK_DBUS_GLIB_10_LIBS = -r:/usr/lib/cli/NDesk.DBus.GLib-1.0/NDesk.DBus.GLib.dll -r:/usr/lib/cli/NDesk.DBus-1.0/NDesk.DBus.dll  
 PACKAGE = opencachemanager
 PACKAGE_BUGREPORT = 
 PACKAGE_NAME = OpenCacheManager
@@ -139,7 +139,7 @@ SHELL = /bin/bash
 STRIP = 
 VERSION = 0.18
 WEBKIT_SHARP_10_CFLAGS = -I:/usr/lib/pkgconfig/../../share/gapi-2.0/pango-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/atk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gdk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/gtk-api.xml -I:/usr/lib/pkgconfig/../../share/gapi-2.0/glib-api.xml  
-WEBKIT_SHARP_10_LIBS = -r:/usr/lib/cli/webkit-sharp-1.0/webkit-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/pango-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/atk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gdk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/gtk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/mono/gtk-sharp-2.0/glib-sharp.dll  
+WEBKIT_SHARP_10_LIBS = -r:/usr/lib/cli/webkit-sharp-1.1/webkit-sharp.dll -r:/usr/lib/pkgconfig/../../lib/cli/pango-sharp-2.0/pango-sharp.dll -r:/usr/lib/pkgconfig/../../lib/cli/atk-sharp-2.0/atk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/cli/gdk-sharp-2.0/gdk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/cli/gtk-sharp-2.0/gtk-sharp.dll -r:/usr/lib/pkgconfig/../../lib/cli/glib-sharp-2.0/glib-sharp.dll  
 abs_builddir = /home/campbelk/ocm_source/OpenCacheManager/ocmengine
 abs_srcdir = /home/campbelk/ocm_source/OpenCacheManager/ocmengine
 abs_top_builddir = /home/campbelk/ocm_source/OpenCacheManager
@@ -343,7 +343,7 @@ OCMENGINE_PC = $(BUILD_DIR)/ocmengine.pc
 all: all-am
 
 .SUFFIXES:
-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/Makefile.include $(am__configure_deps)
+$(srcdir)/Makefile.in: # $(srcdir)/Makefile.am $(top_srcdir)/Makefile.include $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -368,9 +368,9 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 
-$(top_srcdir)/configure:  $(am__configure_deps)
+$(top_srcdir)/configure: # $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
+$(ACLOCAL_M4): # $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
 ocmengine.pc: $(top_builddir)/config.status $(srcdir)/ocmengine.pc.in

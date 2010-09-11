@@ -65,9 +65,9 @@ namespace ocmgtk
 			CellRendererText tbref_cell = new CellRendererText ();
 			CellRendererText tbname_cell = new CellRendererText ();
 			TreeViewColumn tbref_col = new TreeViewColumn (Catalog.GetString ("Ref"), tbref_cell);
-			TreeViewColumn tbname_col = new TreeViewColumn (Catalog.GetString ("Name"), tbname_cell);
-			tbref_col.SetCellDataFunc (tbref_cell, RenderRefCell);
-			tbname_col.SetCellDataFunc (tbname_cell, RenderNameCell);
+			TreeViewColumn tbname_col = new TreeViewColumn (Catalog.GetString ("Name"),tbname_cell);
+			tbref_col.SetCellDataFunc (tbref_cell, new TreeCellDataFunc(RenderRefCell));
+			tbname_col.SetCellDataFunc (tbname_cell, new TreeCellDataFunc(RenderNameCell));
 			tbugView.AppendColumn (tbref_col);
 			tbugView.AppendColumn (tbname_col);
 			tbugView.Model = tbStore;

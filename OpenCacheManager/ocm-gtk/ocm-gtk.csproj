@@ -201,6 +201,14 @@
     <Compile Include="Dialogs\ReviewWaypointDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.ReviewWaypointDialog.cs" />
     <Compile Include="Widgets\OCMTreeView.cs" />
+    <Compile Include="Dialogs\ConfigureEToolsDlg.cs" />
+    <Compile Include="gtk-gui\ocmgtk.ConfigureEToolsDlg.cs" />
+    <Compile Include="ExternalTool.cs" />
+    <Compile Include="Widgets\OCMQueryPage4.cs" />
+    <Compile Include="gtk-gui\ocmgtk.OCMQueryPage4.cs" />
+    <Compile Include="EToolList.cs" />
+    <Compile Include="Widgets\DeLormeWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.DeLormeWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -586,6 +594,9 @@
       <DeployService-TargetDirectoryId>CommonApplicationDataRoot</DeployService-TargetDirectoryId>
     </None>
     <None Include="icons\scalable\greenpin.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="web\nomap.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

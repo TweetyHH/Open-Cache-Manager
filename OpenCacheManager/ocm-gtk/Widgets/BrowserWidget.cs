@@ -75,6 +75,14 @@ namespace ocmgtk
 				{
 					m_monitor.GetNearByCaches(double.Parse(request[1], System.Globalization.CultureInfo.InvariantCulture), double.Parse(request[2], System.Globalization.CultureInfo.InvariantCulture));
 				}
+				else if (request[0].Equals("setcentre"))
+				{
+					m_monitor.SetMapCentre(double.Parse(request[1], System.Globalization.CultureInfo.InvariantCulture), double.Parse(request[2], System.Globalization.CultureInfo.InvariantCulture));
+				}
+				else if (request[0].Equals("sethome"))
+				{
+					m_monitor.SetHome(double.Parse(request[1], System.Globalization.CultureInfo.InvariantCulture), double.Parse(request[2], System.Globalization.CultureInfo.InvariantCulture));
+				}
 				args.Frame.StopLoading();
 			}
 		}

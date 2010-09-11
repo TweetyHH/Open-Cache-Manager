@@ -30,6 +30,19 @@ OCMENGINE_DLL_MDB=
 
 endif
 
+if ENABLE_RELEASE_TRANSLATED
+ASSEMBLY_COMPILER_COMMAND = gmcs
+ASSEMBLY_COMPILER_FLAGS =  -noconfig -codepage:utf8 -warn:4 -optimize-
+ASSEMBLY = bin/Release_Translated/ocmengine.dll
+ASSEMBLY_MDB = 
+COMPILE_TARGET = library
+PROJECT_REFERENCES = 
+BUILD_DIR = bin/Release_Translated
+
+OCMENGINE_DLL_MDB=
+
+endif
+
 AL=al2
 SATELLITE_ASSEMBLY_NAME=$(notdir $(basename $(ASSEMBLY))).resources.dll
 
@@ -54,7 +67,6 @@ FILES = \
 	Geocache.cs \
 	CacheStore.cs \
 	Engine.cs \
-	OLMarkerGenerator.cs \
 	GPXWriter.cs \
 	TravelBug.cs \
 	WaypointEnumerator.cs \

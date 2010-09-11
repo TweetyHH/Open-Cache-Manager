@@ -46,6 +46,9 @@ namespace ocmengine
 		public const String KEY_FOUNDBEFORE = "foundafter";
 		public const String KEY_FOUNDAFTER = "foundbefore";
 		public const String KEY_OWNERID = "ownerID";
+		public const String KEY_CHILDREN = "children";
+		public const String KEY_NOCHILDREN = "nochildren";
+		public const String KEY_NOTES = "notes";
 		public FilterList ()
 		{
 			
@@ -210,11 +213,33 @@ namespace ocmengine
 			{
 				builder.Append(" AND WAYPOINT.symbol == 'Geocache Found'");
 			}
+			
+			string childTypes = m_criteria[KEY_CHILDREN] as string;
+			if (!String.IsNullOrEmpty(childTypes))
+			{
+				builder.Append( " AND (SELECT 1 FROM WAYPOINT WHERE WAYPOINT.parent == GEOCACHE.name AND WAYPOINT.symbol == ");
+				builder.Append("'");
+				builder.Append(childTypes);
+				builder.Append("')");
+			}
+			
+			string nochildTypes = m_criteria[KEY_NOCHILDREN] as string;
+			if (!String.IsNullOrEmpty(nochildTypes))
+			{
+				builder.Append( " AND (SELECT COUNT(WAYPOINT.symbol) FROM WAYPOINT WHERE WAYPOINT.parent == GEOCACHE.name AND WAYPOINT.symbol == ");
+				builder.Append("'");
+				builder.Append(nochildTypes);
+				builder.Append("') == 0");
+			}
+			
+			if (m_criteria.Contains(KEY_NOTES))
+			{
+				builder.Append(" AND GEOCACHE.notes NOT NULL AND GEOCACHE.notes != ''");
+			}
 
 			 
-			//System.Console.WriteLine(builder.ToString());
+			System.Console.WriteLine(builder.ToString());
 			return builder.ToString ();
 		}
-		
 	}
 }

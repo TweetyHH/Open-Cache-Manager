@@ -44,6 +44,19 @@ namespace ocmgtk
 				GetFoundOnFilter (filter);
 				GetFoundBeforeFilter (filter);
 				GetFoundAfterFilter (filter);
+				if (childrenPage.HasNotes)
+					filter.AddFilterCriteria(FilterList.KEY_NOTES, childrenPage.HasNotes);
+				else
+					filter.RemoveCriteria(FilterList.KEY_NOTES);
+				if (childrenPage.ChildrenFilter != null)
+					filter.AddFilterCriteria(FilterList.KEY_CHILDREN, childrenPage.ChildrenFilter);
+				else
+					filter.RemoveCriteria(FilterList.KEY_CHILDREN);
+				if (childrenPage.NoChildrenFilter != null)
+					filter.AddFilterCriteria(FilterList.KEY_NOCHILDREN, childrenPage.NoChildrenFilter);
+				else
+					filter.RemoveCriteria(FilterList.KEY_NOCHILDREN);
+				
 				filter.AddFilterCriteria(FilterList.KEY_OWNERID, UIMonitor.getInstance().OwnerID);
 				return filter;
 			}
@@ -79,7 +92,12 @@ namespace ocmgtk
 					datePage.FoundBefore = (DateTime) value.GetCriteria(FilterList.KEY_FOUNDBEFORE);
 				if (value.Contains(FilterList.KEY_FOUNDAFTER))
 					datePage.FoundAfter = (DateTime) value.GetCriteria(FilterList.KEY_FOUNDAFTER);
-				
+				if (value.Contains(FilterList.KEY_CHILDREN))
+					childrenPage.ChildrenFilter = value.GetCriteria(FilterList.KEY_CHILDREN) as string;
+				if (value.Contains(FilterList.KEY_NOCHILDREN))
+					childrenPage.NoChildrenFilter = value.GetCriteria(FilterList.KEY_NOCHILDREN) as string;
+				if (value.Contains(FilterList.KEY_NOTES))
+					childrenPage.HasNotes = (Boolean) value.GetCriteria(FilterList.KEY_NOTES);
 			}
 		}
 		

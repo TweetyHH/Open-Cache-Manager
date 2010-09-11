@@ -24,6 +24,7 @@ namespace ocmgtk
 		GarminUSBWidget gusbwidet = new GarminUSBWidget ();
 		GenericGPSWidget gpswidget = new GenericGPSWidget();
 		GarminSerialWidget garswidget = new GarminSerialWidget();
+		DeLormeWidget delwidget = new DeLormeWidget();
 
 		public IGPSConfig GPSConfig {
 			get
@@ -36,6 +37,8 @@ namespace ocmgtk
 						return gusbwidet;
 					case 2:
 						return garswidget;
+					case 3:
+						return delwidget;
 					default:
 						return gpswidget;
 				}
@@ -78,6 +81,12 @@ namespace ocmgtk
 					gpxwidget.SetLogLimit(saved.GetLogLimit());
 					deviceCombo.Active = 0;
 				}
+				else if (saved.GetBabelFormat().StartsWith("delbin"))
+				{
+					delwidget.SetCacheLimit(saved.GetCacheLimit());
+					delwidget.SetLogLimit(saved.GetLogLimit());
+					deviceCombo.Active = 3;
+				}
 				else 
 				{	
 					gpswidget.SetCacheLimit(saved.GetCacheLimit());
@@ -111,6 +120,7 @@ namespace ocmgtk
 					table1.Remove (gusbwidet);
 					table1.Remove (gpswidget);
 					table1.Remove(garswidget);
+					table1.Remove(delwidget);
 					table1.Add (gpxwidget);
 					props = ((Gtk.Table.TableChild)(this.table1[this.gpxwidget]));
 					props.TopAttach = 2;
@@ -122,6 +132,7 @@ namespace ocmgtk
 					table1.Remove (gpxwidget);
 					table1.Remove(gpswidget);
 					table1.Remove(garswidget);
+					table1.Remove(delwidget);
 					table1.Add (gusbwidet);
 					props = ((Gtk.Table.TableChild)(this.table1[this.gusbwidet]));
 					props.TopAttach = 2;
@@ -133,6 +144,7 @@ namespace ocmgtk
 					table1.Remove (gpxwidget);
 					table1.Remove(gpswidget);
 					table1.Remove(gusbwidet);
+					table1.Remove(delwidget);
 					table1.Add (garswidget);
 					props = ((Gtk.Table.TableChild)(this.table1[this.garswidget]));
 					props.TopAttach = 2;
@@ -140,10 +152,23 @@ namespace ocmgtk
 					props.BottomAttach = 3;
 					garswidget.Show ();
 					break;
+				case 3:
+					table1.Remove(gpswidget);
+					table1.Remove(garswidget);
+					table1.Remove(gusbwidet);
+					table1.Remove(gpxwidget);
+					table1.Add(delwidget);
+					props = ((Gtk.Table.TableChild)(this.table1[this.delwidget]));
+					props.TopAttach = 2;
+					props.RightAttach = 2;
+					props.BottomAttach = 3;
+					delwidget.Show ();
+					break;
 				default:
 					table1.Remove (gpxwidget);
 					table1.Remove (gusbwidet);
 					table1.Remove (garswidget);
+					table1.Remove(delwidget);
 					table1.Add (gpswidget);
 					props = ((Gtk.Table.TableChild)(this.table1[this.gpswidget]));
 					props.TopAttach = 2;

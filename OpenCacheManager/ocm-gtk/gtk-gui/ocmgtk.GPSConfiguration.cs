@@ -68,6 +68,7 @@ namespace ocmgtk {
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Garmin GPX (Colorado/Oregon/Dakota/Nuvi/Map62)"));
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Garmin USB (eTrex/GPSMap60/StreetPiot)"));
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Garmin Serial (original eTrex/eTrex H/Gecko)"));
+            this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("DeLorme USB (PN-20/PN-30/PN-40)"));
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Other GPS"));
             this.deviceCombo.Name = "deviceCombo";
             this.deviceCombo.Active = 0;

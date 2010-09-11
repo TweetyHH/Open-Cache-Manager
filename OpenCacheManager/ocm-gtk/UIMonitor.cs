@@ -1415,9 +1415,40 @@ namespace ocmgtk
 			
 		}
 		
+		public void ConfigureETools()
+		{
+			ConfigureEToolsDlg dlg = new ConfigureEToolsDlg();
+			dlg.Run();
+		}
+		
 		public static void ViewOCMWiki()
 		{
 			Process.Start("http://sourceforge.net/apps/mediawiki/opencachemanage/");
+		}
+		
+		public void SetMapCentre(double lat, double lon)
+		{
+			CentreLat = lat;
+			CentreLon = lon;
+			CenterName = Catalog.GetString("Map Point");
+			m_conf.Set("/apps/ocm/lastlat", m_home_lat);
+			m_conf.Set("/apps/ocm/lastlon", m_home_lon);
+			m_conf.Set("/apps/ocm/lastname", m_centreName);
+			m_mainWin.EnableResetCentre();
+			m_cachelist.RefilterList();
+		}
+		
+		public void SetHome(double lat, double lon)
+		{
+			CentreLat = lat;
+			CentreLon = lon;
+			CenterName = Catalog.GetString("Home");
+			m_conf.Set ("/apps/ocm/homelat", lat);
+			m_conf.Set ("/apps/ocm/homelon", lon);
+			m_conf.Set("/apps/ocm/lastlat", m_home_lat);
+			m_conf.Set("/apps/ocm/lastlon", m_home_lon);
+			m_conf.Set("/apps/ocm/lastname", m_centreName);
+			m_cachelist.RefilterList();
 		}
 
 	}
