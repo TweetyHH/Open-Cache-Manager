@@ -268,7 +268,7 @@ namespace ocmgtk
 				m_mainWin.SetGPSDOn();
 			m_mainWin.SizeAllocated += HandleM_mainWinSizeAllocated;
 			while (Gtk.Application.EventsPending ())
-				Gtk.Application.RunIteration (false);
+				Gtk.Application.RunIteration (true);
 			SetCurrentDB (dbName, refreshNow);
 	
 			LoadMap (map);

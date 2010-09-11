@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.20</ReleaseVersion>
+    <ReleaseVersion>0.19.9</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -86,7 +86,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.cs" />
-    <Compile Include="Main.cs" />
+    <Compile Include="Main.cs">
+      <DeployService-Deploy>true</DeployService-Deploy>
+      <DeployService-HasPathReferences>true</DeployService-HasPathReferences>
+    </Compile>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Widgets\CacheList.cs" />
     <Compile Include="Widgets\GeocacheInfoPanel.cs" />

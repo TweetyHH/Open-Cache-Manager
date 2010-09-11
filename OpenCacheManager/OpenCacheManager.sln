@@ -41,7 +41,7 @@ Global
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		description = @Open Cache Manger\n\nAn easy to use Geocache Manager
-		version = 0.20
+		version = 0.19.9
 		outputpath = bin
 		StartupItem = ocm-gtk\ocm-gtk.csproj
 		Policies = $0
