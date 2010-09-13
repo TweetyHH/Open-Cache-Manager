@@ -88,6 +88,9 @@ namespace ocmengine
 		public void WriteToGPX(XmlWriter writer)
 		{
 			writer.WriteStartElement(LOG_PREFIX,"log", GPXWriter.NS_CACHE);
+			Random rand = new Random();
+			rand.Next(50000);
+			writer.WriteAttributeString("id", rand.Next(50000).ToString());
 			writer.WriteElementString(LOG_PREFIX,"date", GPXWriter.NS_CACHE, this.LogDate.ToString("o"));
 			writer.WriteElementString(LOG_PREFIX,"type", GPXWriter.NS_CACHE, this.LogStatus);
 			writer.WriteStartElement(LOG_PREFIX,"finder", GPXWriter.NS_CACHE);

@@ -167,12 +167,15 @@ namespace ocmgtk
 			IEnumerator<Waypoint> wptenum = wpt.GetEnumerator();
 			m_childPoints.AppendValues (cache);
 			m_mon.AddMapCache (cache);
+			cache.Children = false;
 			while (wptenum.MoveNext ()) {
 				m_childPoints.AppendValues (wptenum.Current);
-				m_mon.AddMapWayPoint (wptenum.Current);			
+				m_mon.AddMapWayPoint (wptenum.Current);
+				cache.Children = true;		
 			}
 			m_mon.SetProgressDone();
 			m_ListSort.SetSortColumnId (1, SortType.Ascending);
+			m_mon.Main.Show();
 		}
 
 
@@ -250,7 +253,7 @@ namespace ocmgtk
 				newPoint.Symbol = "Final Location";
 				newPoint.Parent = parent.Name;
 				newPoint.Lat = parent.Lat;
-				newPoint.Lon = parent.Lon;		
+				newPoint.Lon = parent.Lon;	
 				String name = "FL" + parent.Name.Substring (2);
 				WaypointDialog dlg = new WaypointDialog ();
 				if ((bool) m_mon.Configuration.Get("/apps/ocm/noprefixes", false))

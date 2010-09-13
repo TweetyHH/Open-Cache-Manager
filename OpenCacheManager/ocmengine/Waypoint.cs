@@ -106,15 +106,17 @@ namespace ocmengine
 			
 		}
 		
-		public void WriteToGPX(XmlWriter writer, GPXWriter gpx)
+		public void WriteToGPX(XmlWriter writer, GPXWriter gpx, bool includeChildren)
 		{
 			writer.WriteStartElement("wpt", GPXWriter.NS_GPX);
 			WriteWPTDetails(writer, gpx);
 			writer.WriteEndElement();
+			if (!includeChildren)
+				return;
 			IEnumerator<Waypoint> itr = Engine.getInstance().GetChildWaypoints(this.Name);
 			while (itr.MoveNext())
 			{
-				itr.Current.WriteToGPX(writer, gpx);
+				itr.Current.WriteToGPX(writer, gpx, false);
 			}                          
 		}
 		

@@ -267,15 +267,25 @@ namespace ocmengine
 			writer.WriteElementString(CACHE_PREFIX,"long_description", GPXWriter.NS_CACHE,  LongDesc);
 			writer.WriteElementString(CACHE_PREFIX,"encoded_hints", GPXWriter.NS_CACHE,  Hint);
 			writer.WriteStartElement(CACHE_PREFIX,"logs", GPXWriter.NS_CACHE);
-			IEnumerator<CacheLog> itr = Engine.getInstance().GetLogs(this.Name);
-			int iCount = 0;
-			while (itr.MoveNext())
+			if (gpx.IsMyFinds)
 			{
-				if ((iCount >= gpx.LogLimit) && (gpx.LogLimit != -1))
-					break;
-				else
-					itr.Current.WriteToGPX(writer);
-				iCount++;
+				CacheLog log = Engine.getInstance().Store.GetLastFindLogByYou(this, gpx.MyFindsOwner);
+				if (log.LogStatus == "find")
+					log.LogStatus = "Found it";
+				log.WriteToGPX(writer);
+			}
+			else
+			{				
+				IEnumerator<CacheLog> itr = Engine.getInstance().GetLogs(this.Name);
+				int iCount = 0;
+				while (itr.MoveNext())
+				{
+					if ((iCount >= gpx.LogLimit) && (gpx.LogLimit != -1))
+						break;
+					else
+						itr.Current.WriteToGPX(writer);
+					iCount++;
+			}
 			}
 			writer.WriteEndElement();
 			writer.WriteStartElement(CACHE_PREFIX,"travelbugs", GPXWriter.NS_CACHE);

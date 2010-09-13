@@ -212,6 +212,8 @@
     <Compile Include="EToolList.cs" />
     <Compile Include="Widgets\DeLormeWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.DeLormeWidget.cs" />
+    <Compile Include="Dialogs\AddCommandDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.AddCommandDialog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

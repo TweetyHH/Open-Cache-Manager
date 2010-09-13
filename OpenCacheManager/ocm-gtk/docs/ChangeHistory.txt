@@ -1,3 +1,22 @@
+Version 0.20
+------------
+- Add Support for DeLorme USB (PN-20/PN-30,PN-40)
+- Add external tools support. You can now configure OCM to run external programs such as Viking, and
+have OCM pass a GPX file to that target program
+- Add Finds export, which exports the finds from the OCM database in a GC.com style "My Finds" format, which
+can be used with programs like  GCStatistic (http://www.macdefender.org/products/GCStatistic/index.html)
+- Fix compile error on Ubuntu Jaunty
+- Fix bug where cache list ended up being duplicated if another filter was set while the filter
+results were still being processed from a previous filter
+- Fix map centering bug on startup in non-english locales
+- Add found on/before/after filter
+- Add cache notes filter
+- Add child waypoint filters
+- Add "No Map" mode to cache map for offline use
+- Right-clicking on the map now provides a context menu
+- Fix timing issue with right-click menu on cache list where mark options were not 
+being populated correctly. 
+
 Version 0.19.1
 --------------
 - Fix null pointer error on send to GPS when a cache has child waypoints

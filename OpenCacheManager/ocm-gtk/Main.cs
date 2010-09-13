@@ -128,8 +128,6 @@ namespace ocmgtk
 			{
 				UIMonitor.getInstance().LoadConfig(true);
 			}
-				
-			win.ShowAll();
 		}		
 	}
 }

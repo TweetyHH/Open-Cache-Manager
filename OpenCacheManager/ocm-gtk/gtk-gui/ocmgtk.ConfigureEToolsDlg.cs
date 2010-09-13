@@ -27,17 +27,19 @@ namespace ocmgtk {
         
         private Gtk.Button removeButton;
         
-        private Gtk.Button buttonCancel;
-        
-        private Gtk.Button buttonOk;
+        private Gtk.Button buttonClose;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget ocmgtk.ConfigureEToolsDlg
             this.Name = "ocmgtk.ConfigureEToolsDlg";
             this.Title = Mono.Unix.Catalog.GetString("External Tools...");
+            this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.WindowPosition = ((Gtk.WindowPosition)(4));
+            this.Modal = true;
             this.BorderWidth = ((uint)(6));
+            this.SkipPagerHint = true;
+            this.SkipTaskbarHint = true;
             // Internal child ocmgtk.ConfigureEToolsDlg.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";
@@ -75,6 +77,7 @@ namespace ocmgtk {
             w4.Fill = false;
             // Container child vbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
             this.editButton = new Gtk.Button();
+            this.editButton.Sensitive = false;
             this.editButton.CanFocus = true;
             this.editButton.Name = "editButton";
             this.editButton.UseUnderline = true;
@@ -86,10 +89,11 @@ namespace ocmgtk {
             w5.Fill = false;
             // Container child vbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
             this.removeButton = new Gtk.Button();
+            this.removeButton.Sensitive = false;
             this.removeButton.CanFocus = true;
             this.removeButton.Name = "removeButton";
             this.removeButton.UseUnderline = true;
-            this.removeButton.Label = Mono.Unix.Catalog.GetString("Remove");
+            this.removeButton.Label = Mono.Unix.Catalog.GetString("Delete");
             this.vbuttonbox1.Add(this.removeButton);
             Gtk.ButtonBox.ButtonBoxChild w6 = ((Gtk.ButtonBox.ButtonBoxChild)(this.vbuttonbox1[this.removeButton]));
             w6.Position = 2;
@@ -110,36 +114,27 @@ namespace ocmgtk {
             w9.BorderWidth = ((uint)(5));
             w9.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-            this.buttonCancel = new Gtk.Button();
-            this.buttonCancel.CanDefault = true;
-            this.buttonCancel.CanFocus = true;
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.UseStock = true;
-            this.buttonCancel.UseUnderline = true;
-            this.buttonCancel.Label = "gtk-cancel";
-            this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w10 = ((Gtk.ButtonBox.ButtonBoxChild)(w9[this.buttonCancel]));
+            this.buttonClose = new Gtk.Button();
+            this.buttonClose.CanDefault = true;
+            this.buttonClose.CanFocus = true;
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.UseStock = true;
+            this.buttonClose.UseUnderline = true;
+            this.buttonClose.Label = "gtk-close";
+            this.AddActionWidget(this.buttonClose, -7);
+            Gtk.ButtonBox.ButtonBoxChild w10 = ((Gtk.ButtonBox.ButtonBoxChild)(w9[this.buttonClose]));
             w10.Expand = false;
             w10.Fill = false;
-            // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
-            this.buttonOk = new Gtk.Button();
-            this.buttonOk.CanDefault = true;
-            this.buttonOk.CanFocus = true;
-            this.buttonOk.Name = "buttonOk";
-            this.buttonOk.UseStock = true;
-            this.buttonOk.UseUnderline = true;
-            this.buttonOk.Label = "gtk-ok";
-            this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w11 = ((Gtk.ButtonBox.ButtonBoxChild)(w9[this.buttonOk]));
-            w11.Position = 1;
-            w11.Expand = false;
-            w11.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 400;
             this.DefaultHeight = 300;
             this.Show();
+            this.addButton.Clicked += new System.EventHandler(this.OnAddTool);
+            this.editButton.Clicked += new System.EventHandler(this.OnEditClicked);
+            this.removeButton.Clicked += new System.EventHandler(this.OnDeleteClicked);
+            this.buttonClose.Clicked += new System.EventHandler(this.OnCloseClick);
         }
     }
 }

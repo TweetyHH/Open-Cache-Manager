@@ -57,6 +57,32 @@ namespace ocmengine
 			get { return m_UseOCMPtTypes;}
 		}
 		
+		bool m_includeChildren = false;
+		public Boolean IncludeChildWaypoints
+		{
+			get { return m_includeChildren;}
+			set { m_includeChildren = value;}
+		}
+		
+		bool m_isMyFinds = false;
+		public Boolean IsMyFinds
+		{
+			get { return m_isMyFinds;}
+			set { m_isMyFinds = value;
+				if (value)
+				{
+					m_includeChildren = false;
+				}
+			}
+		}
+		
+		string m_findsOwner = "ocm";
+		public string MyFindsOwner
+		{
+			get { return m_findsOwner;}
+			set { m_findsOwner = value;}
+		}
+		
 		public int GetNextGUID()
 		{
 			return guidStart++;
@@ -124,7 +150,10 @@ namespace ocmengine
 			try {
 				writer.WriteStartElement ("gpx", NS_GPX);
 				writer.WriteAttributeString("creator", "OCM");
-				writer.WriteElementString ("name", NS_GPX, "Cache Listing from OCM");
+				if (IsMyFinds)
+					writer.WriteElementString("name", NS_GPX, "My Finds Pocket Query");
+				else
+					writer.WriteElementString ("name", NS_GPX, "Cache Listing from OCM");
 				writer.WriteElementString ("desc", NS_GPX, "Cache Listing from OCM");
 				writer.WriteElementString ("author", NS_GPX, "Open Cache Manager");
 				writer.WriteElementString ("email", NS_GPX, "kmcamp_ott@yahoo.com");
@@ -136,7 +165,7 @@ namespace ocmengine
 						return;
 					m_Count++;
 					this.WriteWaypoint(this, new WriteEventArgs(String.Format("Writing {0}", cache.Name)));
-					cache.WriteToGPX (writer, this);
+					cache.WriteToGPX (writer, this, false);
 				}
 				writer.WriteEndElement ();
 				this.Complete(this, new WriteEventArgs("Done"));

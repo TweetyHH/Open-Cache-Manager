@@ -460,15 +460,15 @@ namespace ocmgtk
 			return Utilities.calculateDistance (m_monitor.CentreLat, cache.Lat, m_monitor.CentreLon, cache.Lon);
 		}
 
-		[GLib.ConnectBefore]
+		[GLib.ConnectBeforeAttribute]
 		protected virtual void DoButtonPress (object o, Gtk.ButtonPressEventArgs args)
 		{
 			if (args.Event.Button == 3) {
-				CreatePopup ();
+				CreatePopup (args);
 			}
 		}
 
-		private void CreatePopup ()
+		private void CreatePopup (Gtk.ButtonPressEventArgs args)
 		{
 			Menu popup = new Menu ();
 			MenuItem setCenterItem = new MenuItem (Catalog.GetString("Set As Map Centre"));
@@ -484,7 +484,11 @@ namespace ocmgtk
 			MenuItem bookmark = new MenuItem(Catalog.GetString("Add to Bookmark List"));
 			MenuItem qlandkarte = new MenuItem(Catalog.GetString("View in QLandkarte GT..."));
 			
-			Geocache cache = UIMonitor.getInstance().SelectedCache;
+			TreePath path;
+			TreeIter itr;
+			treeview1.GetPathAtPos((int) args.Event.X,(int) args.Event.Y, out path);
+			treeview1.Model.GetIter(out itr, path);
+			Geocache cache = (Geocache)treeview1.Model.GetValue (itr, 0);
 			
 			if (cache != null)
 			{

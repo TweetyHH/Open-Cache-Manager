@@ -186,6 +186,15 @@ namespace ocmengine
 			return caches;
 		}
 		
+		public List<Geocache> GetFinds()
+		{
+			String sql = GET_GC + FOUND_ONLY;
+			List<Geocache> caches =  GetCacheList(sql);
+			if (this.Complete != null)
+				this.Complete(this, new EventArgs());
+			return caches;
+		}
+		
 		public void AddBookmark(String name)
 		{
 			IDbTransaction trans = StartUpdate();
@@ -382,6 +391,28 @@ namespace ocmengine
 			}
 			CloseConnection(ref reader, ref command, ref conn);
 			return date;
+		}
+		
+		public CacheLog GetLastFindLogByYou(Geocache cache, String ownerID)
+		{
+			IDbConnection conn = OpenConnection();
+			IDbCommand command = conn.CreateCommand();
+			command.CommandText = String.Format(LAST_FIND_BY_YOU, cache.Name, ownerID);
+			IDataReader rdr = command.ExecuteReader();
+			CacheLog log = new CacheLog();
+			while (rdr.Read())
+			{
+				log.LogDate = DateTime.Parse(rdr.GetString(0));
+				log.LoggedBy = rdr.GetString(1);
+				log.LogMessage = rdr.GetString(2);
+				log.LogStatus = rdr.GetString(3);
+				log.FinderID = rdr.GetString(4);
+				String encoded = rdr.GetString(5);
+				log.Encoded = Boolean.Parse(encoded);
+					
+			}
+			CloseConnection(ref rdr, ref command, ref conn);
+			return log;
 		}
 		
 		public List<string> GetBookmarkLists()

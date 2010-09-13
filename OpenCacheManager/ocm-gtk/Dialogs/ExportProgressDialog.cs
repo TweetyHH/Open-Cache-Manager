@@ -29,7 +29,7 @@ namespace ocmgtk
 		double count = 0;
 		GPXWriter m_writer =null;
 		
-		private bool m_autoClose =false;
+		private bool m_autoClose = false;
 		public bool AutoClose
 		{
 			set { m_autoClose = value;}

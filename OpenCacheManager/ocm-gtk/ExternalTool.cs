@@ -15,6 +15,8 @@
 
 using System;
 using System.Diagnostics;
+using ocmengine;
+using Mono.Unix;
 
 namespace ocmgtk
 {
@@ -48,7 +50,39 @@ namespace ocmgtk
 		
 		public void RunCommand()
 		{
-			Process.Start("gnome-terminal -e /home/campbelk/geotoad-3.12.0/geotoad.rb");
+			string cmd = m_command;
+			if (cmd.Contains("%gpx%"))
+			{
+				UIMonitor mon = UIMonitor.getInstance();
+				GPXWriter writer = new GPXWriter();
+				String tempPath = System.IO.Path.GetTempPath();
+				String tempFile = tempPath + "ocm_export.gpx";
+				ExportProgressDialog dlg = new ExportProgressDialog(writer);	
+				dlg.AutoClose = true;
+				dlg.Title = Catalog.GetString("Preparing GPX File");
+				dlg.WaypointsOnly = true;
+				dlg.CompleteCommand = m_command.Replace("%gpx%", tempFile);
+				dlg.Start(tempFile, mon.GetVisibleCacheList(), mon.WaypointMappings);
+			}
+			else if (cmd.Contains("%finds%"))
+			{
+				UIMonitor mon = UIMonitor.getInstance();
+				GPXWriter writer = new GPXWriter();
+				writer.IsMyFinds = true;
+				writer.MyFindsOwner = mon.OwnerID;
+				String tempPath = System.IO.Path.GetTempPath();
+				String tempFile = tempPath + "ocm_finds.gpx";
+				ExportProgressDialog dlg = new ExportProgressDialog(writer);	
+				dlg.AutoClose = true;
+				dlg.Title = Catalog.GetString("Preparing GPX File");
+				dlg.WaypointsOnly = true;
+				dlg.CompleteCommand = m_command.Replace("%finds%", tempFile);
+				dlg.Start(tempFile, Engine.getInstance().Store.GetFinds(), mon.WaypointMappings);
+			}
+			else
+			{
+				Process.Start(m_command);
+			}
 		}
 	}
 }

@@ -100,5 +100,25 @@ namespace ocmgtk
 			ser.Serialize(fs, this);
 			fs.Close();
 		}
+		
+		public Menu BuildEToolMenu()
+		{
+			Menu etMenu = new Menu();
+			int iCount = 0;
+			foreach (ExternalTool tool in m_tools.Values)
+			{
+				Gtk.Action action = new Gtk.Action(tool.Name, tool.Name);
+				etMenu.Append(action.CreateMenuItem());
+				action.Activated += HandleActionActivated;
+				iCount ++;
+				
+			}
+			return etMenu;
+		}
+		
+		void HandleActionActivated (object sender, EventArgs e)
+		{
+			m_tools[((sender) as Gtk.Action).Name].RunCommand();
+		}
 	}
 }

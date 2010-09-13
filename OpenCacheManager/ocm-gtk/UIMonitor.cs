@@ -267,15 +267,17 @@ namespace ocmgtk
 			if (enableGPS)
 				m_mainWin.SetGPSDOn();
 			m_mainWin.SizeAllocated += HandleM_mainWinSizeAllocated;
+			m_mainWin.ShowNow();
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (true);
 			SetCurrentDB (dbName, refreshNow);
-	
-			LoadMap (map);
 			SetSelectedCache(null);
+			LoadMap (map);
 			BuildWaypointMappings();
 			m_filters = QuickFilters.LoadQuickFilters();
 			m_mainWin.RebuildQuickFilterMenu(m_filters);
+			EToolList tools = EToolList.LoadEToolList();
+			m_mainWin.RebuildEToolMenu(tools);
 			bool showNearby = (Boolean) m_conf.Get("/apps/ocm/shownearby", true);
 			if (showNearby)
 			{
@@ -300,7 +302,7 @@ namespace ocmgtk
 		private void LoadMap (string map)
 		{
 			System.Console.WriteLine("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_home_lat + "&lon=" + m_home_lon);
-			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_home_lat + "&lon=" + m_home_lon);
+			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_home_lat.ToString(CultureInfo.InvariantCulture) + "&lon=" + m_home_lon.ToString(CultureInfo.InvariantCulture));
 		}
 
 		public void SetCurrentDB (string dbName, bool loadNow)
@@ -397,7 +399,7 @@ namespace ocmgtk
 		public static void DoGUIUpdate ()
 		{
 			while (Gtk.Application.EventsPending ())
-				Gtk.Application.RunIteration (false);
+				Gtk.Application.RunIteration (true);
 		}
 
 		/// <summary>
@@ -498,7 +500,11 @@ namespace ocmgtk
 		/// </param>
 		public void AddMapWayPoint (Waypoint pt)
 		{
-			m_map.LoadScript ("addMarker(" + pt.Lat.ToString(CultureInfo.InvariantCulture) + "," + pt.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" + IconManager.GetMapIcon (pt.Symbol) + "',\"" + pt.Name + "\",\"" + pt.Desc.Replace("\"","''") + "\")");
+			string desc = pt.Desc.Replace("\"","''");
+			desc = desc.Replace("\n", "<br/>");
+			m_map.LoadScript ("addMarker(" + pt.Lat.ToString(CultureInfo.InvariantCulture) + "," 
+			                  + pt.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/"
+			                  + IconManager.GetMapIcon (pt.Symbol) + "',\"" + pt.Name + "\",\"\",\"" + desc + "\")");
 		}
 
 		/// <summary>
@@ -557,7 +563,7 @@ namespace ocmgtk
 			m_mainWin.GdkWindow.Cursor = new Cursor (Gdk.CursorType.Watch);
 			m_statusbar.Push (m_statusbar.GetContextId ("refilter"), "Refiltering, please wait..");
 			while (Gtk.Application.EventsPending ())
-				Gtk.Application.RunIteration (false);
+				Gtk.Application.RunIteration (true);
 		}
 
 		/// <summary>
@@ -692,7 +698,38 @@ namespace ocmgtk
 					RecentManager manager = RecentManager.Default;
 					manager.AddItem("file://" + dlg.Filename);
 				}
-				edlg.Destroy();
+				dlg.Destroy ();
+			} catch (Exception e) {
+				ShowException (e);
+				edlg.Hide ();
+			}
+		}
+		
+		public void ExportFindsGPX ()
+		{
+			GPXWriter writer = new GPXWriter();
+			writer.IsMyFinds = true;
+			writer.MyFindsOwner = m_ownerid;
+			ExportProgressDialog edlg = new ExportProgressDialog (writer);
+			edlg.AutoClose = false;
+			
+			try {
+				FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString (" Export Finds GPX File"), m_mainWin, FileChooserAction.Save, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Export"), ResponseType.Accept);
+				dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
+				dlg.CurrentName = "finds.gpx";
+				FileFilter filter = new FileFilter ();
+				filter.Name = "GPX Files";
+				filter.AddPattern ("*.gpx");
+				
+				dlg.AddFilter (filter);
+				
+				if (dlg.Run () == (int)ResponseType.Accept) {
+					dlg.Hide ();
+					edlg.Icon = m_mainWin.Icon;
+					edlg.Start (dlg.Filename, Engine.getInstance().Store.GetFinds(), m_WaypointMappings);
+					RecentManager manager = RecentManager.Default;
+					manager.AddItem("file://" + dlg.Filename);
+				}
 				dlg.Destroy ();
 			} catch (Exception e) {
 				ShowException (e);

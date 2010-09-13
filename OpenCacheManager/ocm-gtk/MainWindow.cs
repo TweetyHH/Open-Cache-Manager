@@ -601,6 +601,13 @@ public partial class MainWindow : Gtk.Window
 			(QuickFilterAction.Proxies[0] as MenuItem).Submenu = qmenu;
 	}
 	
+	public void RebuildEToolMenu(EToolList tools)
+	{
+			Menu emenu = tools.BuildEToolMenu();
+			(ExternalToolsAction.Proxies[0] as MenuItem).Submenu = emenu;
+	}
+	
+	
 	protected virtual void OnSaveQuickFilter (object sender, System.EventArgs e)
 	{
 		m_monitor.SaveQuickFilter();
@@ -651,6 +658,11 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OnConfigureETools (object sender, System.EventArgs e)
 	{
 		m_monitor.ConfigureETools();
+	}
+	
+	protected virtual void OnFindsClicked (object sender, System.EventArgs e)
+	{
+		m_monitor.ExportFindsGPX();
 	}
 	
 	

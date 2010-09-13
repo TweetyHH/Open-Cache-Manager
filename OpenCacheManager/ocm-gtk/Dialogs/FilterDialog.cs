@@ -81,7 +81,7 @@ namespace ocmgtk
 				if (value.Contains(FilterList.KEY_INFOBEFORE))
 					datePage.InfoBefore = (DateTime) value.GetCriteria(FilterList.KEY_INFOBEFORE);
 				if (value.Contains(FilterList.KEY_INFOAFTER))
-					datePage.PlaceBefore = (DateTime) value.GetCriteria(FilterList.KEY_INFOAFTER);
+					datePage.InfoAfter = (DateTime) value.GetCriteria(FilterList.KEY_INFOAFTER);
 				if (value.Contains(FilterList.KEY_COUNTRY))
 					datePage.Country = value.GetCriteria(FilterList.KEY_COUNTRY) as string;
 				if (value.Contains(FilterList.KEY_STATE))
@@ -232,7 +232,6 @@ namespace ocmgtk
 		
 		protected virtual void OnDeleteClick (object o, Gtk.DeleteEventArgs args)
 		{
-			System.Console.WriteLine("HERE");
 			this.Respond (ResponseType.Cancel);
 			this.Hide ();
 		}

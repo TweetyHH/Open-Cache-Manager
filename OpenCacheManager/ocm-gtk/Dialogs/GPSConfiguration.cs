@@ -94,7 +94,7 @@ namespace ocmgtk
 					gpswidget.SetBabelFormat(saved.GetBabelFormat());
 					gpswidget.SetDescMode(saved.GetDescMode());
 					gpswidget.SetNameMode(saved.GetNameMode());
-					deviceCombo.Active = 3;
+					deviceCombo.Active = 4;
 				}
 				
 			}

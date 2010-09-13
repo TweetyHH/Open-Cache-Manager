@@ -2,7 +2,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Name=OCM Geocache Manger
+Name=OCM Geocache Manager
 Exec=ocm-gtk
 Terminal=false
 Path=@expanded_libdir@/opencachemanager
