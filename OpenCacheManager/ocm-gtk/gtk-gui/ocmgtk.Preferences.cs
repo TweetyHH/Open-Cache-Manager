@@ -206,7 +206,7 @@ namespace ocmgtk {
             // Container child table1.Gtk.Table+TableChild
             this.modeCombo = Gtk.ComboBox.NewText();
             this.modeCombo.AppendText(Mono.Unix.Catalog.GetString("Prefix with Type (e.g. PKABCD01)"));
-            this.modeCombo.AppendText(Mono.Unix.Catalog.GetString("Use GC name (e.d. GCABCD01)"));
+            this.modeCombo.AppendText(Mono.Unix.Catalog.GetString("Use GC name (e.g. GCABCD01)"));
             this.modeCombo.Name = "modeCombo";
             this.modeCombo.Active = 0;
             this.table1.Add(this.modeCombo);

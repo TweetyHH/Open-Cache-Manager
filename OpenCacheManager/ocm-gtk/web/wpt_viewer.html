@@ -59,6 +59,7 @@ body {
 	var ghyb;
 	var gphy;
 	var osm;
+	var mouse;
 	
 	var popup_no_cache = "<div onmousedown='doSetCentre()' onmouseover='doHighlight(this)' onmouseout='doNohighlight(this)'>"
 					+ "Set as Centre</div>"
@@ -310,7 +311,8 @@ body {
 		popup.style.top = e.clientY + "px";
 		popup.style.display = "inline";
 		popup.innerHTML = popup_no_cache;
-	
+		var point = new OpenLayers.Pixel(e.pageX, e.pageY);
+		mouse = map.getLonLatFromViewPortPx(point);	
 	}
 	
 	function doHighlight(obj)
@@ -332,7 +334,7 @@ body {
 	function doSetCentre()
 	{
 		doHidePopup();
-		var lonlat = map.getCenter().transform(map.projection, map.displayProjection);
+		var lonlat = mouse.transform(map.projection, map.displayProjection);
 		hidden.innerHTML = "<iframe src='ocm://setcentre/" + lonlat.lat + "/" + lonlat.lon + "'/>";
 	}
 	
@@ -340,7 +342,7 @@ body {
 	function doSetHome()
 	{
 		doHidePopup();
-		var lonlat = map.getCenter().transform(map.projection, map.displayProjection);
+		var lonlat = mouse.transform(map.projection, map.displayProjection);
 		hidden.innerHTML = "<iframe src='ocm://sethome/" + lonlat.lat + "/" + lonlat.lon + "'/>";
 	}
 	

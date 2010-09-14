@@ -2746,7 +2746,7 @@ Google Terrain</property>
                 <property name="MemberName" />
                 <property name="IsTextCombo">True</property>
                 <property name="Items" translatable="yes">Prefix with Type (e.g. PKABCD01)
-Use GC name (e.d. GCABCD01)</property>
+Use GC name (e.g. GCABCD01)</property>
                 <property name="Active">0</property>
               </widget>
               <packing>
