@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.19.9</ReleaseVersion>
+    <ReleaseVersion>0.20</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -68,6 +68,11 @@
     </Reference>
     <Reference Include="NDesk.DBus.GLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f6716e4f9b2ed099">
       <Package>ndesk-dbus-glib-1.0</Package>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="Mono.Cairo" />
+    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +219,8 @@
     <Compile Include="gtk-gui\ocmgtk.DeLormeWidget.cs" />
     <Compile Include="Dialogs\AddCommandDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.AddCommandDialog.cs" />
+    <Compile Include="UpdateChecker.cs" />
+    <Compile Include="printing\CachePrinter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -232,6 +239,7 @@
     <Folder Include="docs\" />
     <Folder Include="licence\" />
     <Folder Include="version\" />
+    <Folder Include="printing\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

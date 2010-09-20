@@ -86,7 +86,8 @@ REFERENCES =  \
 	System.Xml \
 	Mono.Posix \
 	System.Data \
-	Mono.Data.Sqlite
+	Mono.Data.Sqlite \
+	System.Web
 
 DLL_REFERENCES = 
 

@@ -183,6 +183,7 @@ public partial class MainWindow : Gtk.Window
 				this.removeSelected.Sensitive = true;
 			ViewOnlineAction.Sensitive = true;
 			LogFindAction.Sensitive = true;
+			printAction.Sensitive = true;
 			if (cache.Symbol.Contains("Found"))
 			{
 				MarkFoundAction.Sensitive = false;
@@ -224,6 +225,7 @@ public partial class MainWindow : Gtk.Window
 			ModifyCacheAction.Sensitive = false;
 			DeleteCacheAction.Sensitive = false;
 			ViewSelectedCacheInQLandkarteGTAction.Sensitive = false;
+			printAction.Sensitive = false;
 		}
 	}
 
@@ -667,5 +669,12 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.ExportFindsGPX();
 	}
 	
-	
+	protected virtual void OnUpdateCheck (object sender, System.EventArgs e)
+	{
+		m_monitor.CheckForUpdates();
+	}
+	protected virtual void OnPrintClick (object sender, System.EventArgs e)
+	{
+		m_monitor.PrintCache();
+	}
 }

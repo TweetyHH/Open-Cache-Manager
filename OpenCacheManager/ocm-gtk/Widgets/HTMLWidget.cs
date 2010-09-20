@@ -54,6 +54,7 @@ namespace ocmgtk
 			//set { int i=1;}
 			set {
 				contentLoaded = false;
+				//string content = value.Replace("\n", "<br/>");
 				m_view.LoadHtmlString(value, "http://www.geocaching.com");
 			}
 		}

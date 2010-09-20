@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
-    <widget-library name="../bin/Release_Translated/ocm-gtk.exe" internal="true" />
+    <widget-library name="../bind/ocm-gtk.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="1284 1201">
     <action-group name="Default">
@@ -620,6 +620,20 @@
         <property name="ShortLabel" translatable="yes">Export _Finds GPX...</property>
         <signal name="Activated" handler="OnFindsClicked" />
       </action>
+      <action id="CheckForUpdatesAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Check For Updates...</property>
+        <property name="ShortLabel" translatable="yes">Check For Updates...</property>
+        <signal name="Activated" handler="OnUpdateCheck" />
+      </action>
+      <action id="printAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Print...</property>
+        <property name="Sensitive">False</property>
+        <property name="ShortLabel" translatable="yes">Print...</property>
+        <property name="StockId">gtk-print</property>
+        <signal name="Activated" handler="OnPrintClick" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">OCM</property>
@@ -643,6 +657,8 @@
                 <node type="Menuitem" action="openAction" />
                 <node type="Menuitem" action="saveAsAction" />
                 <node type="Menuitem" action="ExportFindsGPXAction" />
+                <node type="Separator" />
+                <node type="Menuitem" action="printAction" />
                 <node type="Separator" />
                 <node type="Menuitem" action="QuitAction" />
               </node>
@@ -739,6 +755,8 @@
                 <node type="Separator" />
                 <node type="Menuitem" action="aboutAction" />
                 <node type="Menuitem" action="ChangeHistoryAction" />
+                <node type="Separator" />
+                <node type="Menuitem" action="CheckForUpdatesAction" />
               </node>
               <node type="Menu">
                 <node type="Menuitem" />

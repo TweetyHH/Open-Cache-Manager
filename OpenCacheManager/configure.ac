@@ -25,7 +25,7 @@ fi
 
 AC_ARG_ENABLE(debug,
 	AC_HELP_STRING([--enable-debug],
-		[Use 'DEBUG' Configuration [default=YES]]),
+		[Use 'DEBUG' Configuration [default=NO]]),
 		enable_debug=yes, enable_debug=no)
 AM_CONDITIONAL(ENABLE_DEBUG, test x$enable_debug = xyes)
 if test "x$enable_debug" = "xyes" ; then
@@ -41,15 +41,15 @@ if test "x$enable_release" = "xyes" ; then
 fi
 AC_ARG_ENABLE(release_translated,
 	AC_HELP_STRING([--enable-release_translated],
-		[Use 'RELEASE_TRANSLATED' Configuration [default=NO]]),
+		[Use 'RELEASE_TRANSLATED' Configuration [default=YES]]),
 		enable_release_translated=yes, enable_release_translated=no)
 AM_CONDITIONAL(ENABLE_RELEASE_TRANSLATED, test x$enable_release_translated = xyes)
 if test "x$enable_release_translated" = "xyes" ; then
 	CONFIG_REQUESTED="yes"
 fi
 if test -z "$CONFIG_REQUESTED" ; then
-	AM_CONDITIONAL(ENABLE_DEBUG, true)
-	enable_debug=yes
+	AM_CONDITIONAL(ENABLE_RELEASE_TRANSLATED, true)
+	enable_release_translated=yes
 fi
 
 
@@ -67,6 +67,7 @@ dnl package checks, per config
 AC_CONFIG_FILES([
 ocmengine/ocmengine.pc
 ocmengine/Makefile
+ocm-gtk/Main.cs
 ocm-gtk/ocm-gtk
 ocm-gtk/OCM.desktop
 ocm-gtk/Makefile

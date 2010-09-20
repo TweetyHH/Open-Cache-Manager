@@ -14,6 +14,7 @@ using System;
 using System.Xml;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Web;
 
 namespace ocmengine
 {
@@ -263,9 +264,15 @@ namespace ocmengine
 				shortDescription += ShortDesc;
 				
 			}
-			writer.WriteElementString(CACHE_PREFIX,"short_description", GPXWriter.NS_CACHE,  shortDescription);
-			writer.WriteElementString(CACHE_PREFIX,"long_description", GPXWriter.NS_CACHE,  LongDesc);
-			writer.WriteElementString(CACHE_PREFIX,"encoded_hints", GPXWriter.NS_CACHE,  Hint);
+			writer.WriteStartElement(CACHE_PREFIX,"short_description", GPXWriter.NS_CACHE);
+			writer.WriteCData(HttpUtility.HtmlDecode(shortDescription));
+			writer.WriteEndElement();
+			writer.WriteStartElement(CACHE_PREFIX,"long_description", GPXWriter.NS_CACHE);
+			writer.WriteCData(HttpUtility.HtmlDecode(LongDesc));
+			writer.WriteEndElement();
+			writer.WriteStartElement(CACHE_PREFIX,"encoded_hints", GPXWriter.NS_CACHE);
+			writer.WriteCData(HttpUtility.HtmlDecode(Hint));
+			writer.WriteEndElement();
 			writer.WriteStartElement(CACHE_PREFIX,"logs", GPXWriter.NS_CACHE);
 			if (gpx.IsMyFinds)
 			{
@@ -337,7 +344,5 @@ namespace ocmengine
 				throw new Exception("UNHANDLED CACHE TYPE");
 			}
 		}
-		
-		
 	}
 }

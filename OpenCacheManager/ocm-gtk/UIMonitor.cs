@@ -1487,6 +1487,51 @@ namespace ocmgtk
 			m_conf.Set("/apps/ocm/lastname", m_centreName);
 			m_cachelist.RefilterList();
 		}
-
+		
+		public void PrintCache()
+		{
+			printing.CachePrinter printer = new printing.CachePrinter();
+			printer.StartPrinting(m_selectedCache, m_mainWin);
+		}
+		
+		public void CheckForUpdates()
+		{
+			try
+			{
+				string ver = UpdateChecker.GetLatestVer();
+				if (ver != GetOCMVersion())
+				{
+					MessageDialog dlg = new MessageDialog(m_mainWin, DialogFlags.Modal,
+					                                      MessageType.Info, ButtonsType.YesNo,
+					                                      Catalog.GetString("A new version \"{0}\" of OCM is available" +
+					                                                        "\nWould you like to go to the download page now?"),
+					                                      					ver);
+					if ((int)ResponseType.Yes == dlg.Run())
+					{
+						dlg.Hide();
+						Process.Start("http://sourceforge.net/projects/opencachemanage/files/");
+					}
+					else
+						dlg.Hide();
+				}
+				else
+				{
+					MessageDialog dlg = new MessageDialog(m_mainWin, DialogFlags.Modal,
+					                                      MessageType.Info, ButtonsType.Ok,
+					                                      Catalog.GetString("OCM is at the latest version."));
+					dlg.Run();
+					dlg.Hide();
+				}
+			}
+			catch (Exception e)
+			{
+				MessageDialog dlg = new MessageDialog(m_mainWin, DialogFlags.Modal,
+					                                      MessageType.Error, ButtonsType.Ok,
+					                                      Catalog.GetString("Unable to check for updates, check your " +
+					                                      	"network connection."));
+				dlg.Run();
+				dlg.Hide();
+			}
+		}
 	}
 }

@@ -16,7 +16,8 @@ FILES = \
 	nl.po\
 	fr.po\
 	da.po\
-	de.po
+	de.po\
+	cs.po
 
 GMO_FILES = $(patsubst %.po,$(BUILD_DIR)/%.gmo,$(FILES))
 MO_FILES = $(foreach po,$(FILES), $(INSTALL_DIR)/$(basename $(po))/LC_MESSAGES/$(PACKAGE).mo)
