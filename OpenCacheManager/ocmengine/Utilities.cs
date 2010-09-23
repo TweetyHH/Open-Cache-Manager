@@ -284,6 +284,8 @@ namespace ocmengine
 		public static string HTMLtoText(String src)
 		{
 			src = System.Web.HttpUtility.HtmlDecode(src);
+			if (src.Contains("<br"))
+				src = src.Replace("\n","");
 			src = Regex.Replace(src, END_P, "\n");
 			src = Regex.Replace(src, BR, "\n");
 			src = Regex.Replace(src, IMG, "[Image]");
