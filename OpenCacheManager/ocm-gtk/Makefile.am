@@ -683,7 +683,9 @@ FILES = \
 	Dialogs/AddCommandDialog.cs \
 	gtk-gui/ocmgtk.AddCommandDialog.cs \
 	UpdateChecker.cs \
-	printing/CachePrinter.cs 
+	printing/CachePrinter.cs \
+	Widgets/GarminEdgeWidget.cs \
+	gtk-gui/ocmgtk.GarminEdgeWidget.cs 
 
 DATA_FILES = 
 

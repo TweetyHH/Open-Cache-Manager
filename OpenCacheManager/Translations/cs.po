@@ -1,403 +1,422 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2010-09-19 13:59:31-0400\n"
-"PO-Revision-Date: 2010-09-12 20:46:53-0400\n"
-"Last-Translator: Kyle Campbell\n"
+"POT-Creation-Date: 2010-10-02 11:48:25-0400\n"
+"PO-Revision-Date: 2010-09-28 19:31+0100\n"
+"Last-Translator: Josef Kulhánek <jok@sendme.cz>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: MonoDevelop Gettext addin\n"
 
-#: ../ocmengine/Utilities.cs:123
-msgid "N {0}° {1}"
-msgstr ""
-
 #: ../ocmengine/Utilities.cs:125
-msgid "S {0}° {1}"
-msgstr ""
+msgid "N {0}° {1}"
+msgstr "N {0}° {1}"
 
-#: ../ocmengine/Utilities.cs:135
-msgid "  E {0}° {1}"
-msgstr ""
+#: ../ocmengine/Utilities.cs:127
+msgid "S {0}° {1}"
+msgstr "S {0}° {1}"
 
 #: ../ocmengine/Utilities.cs:137
-msgid "  W {0}° {1}"
-msgstr ""
+msgid "  E {0}° {1}"
+msgstr "  E {0}° {1}"
 
-#: ../ocmengine/Utilities.cs:178
+#: ../ocmengine/Utilities.cs:139
+msgid "  W {0}° {1}"
+msgstr "  W {0}° {1}"
+
+#: ../ocmengine/Utilities.cs:180
 msgid "Unknown Coordinate Format"
-msgstr ""
+msgstr "Neznámý formát souřadnic"
 
 #: ../ocm-gtk/MainWindow.cs:64
 msgid "_Bookmarks"
-msgstr ""
+msgstr "_Záložky"
 
 #: ../ocm-gtk/MainWindow.cs:67
 msgid "_Create Bookmark List..."
-msgstr ""
+msgstr "_Vytvořit seznam záložek"
 
 #: ../ocm-gtk/MainWindow.cs:68
 msgid "_Delete Bookmark List..."
-msgstr ""
+msgstr "_Smazat seznam záložek"
 
 #: ../ocm-gtk/MainWindow.cs:69
 msgid "Bookmark _List"
-msgstr ""
+msgstr "Seznam záložek"
 
 #: ../ocm-gtk/MainWindow.cs:70
 msgid "_Add All Visible Caches to"
-msgstr ""
+msgstr "_Přidat všechny viditelné keše do"
 
 #: ../ocm-gtk/MainWindow.cs:71
 msgid "Add _Selected Cache to"
-msgstr ""
+msgstr "Př_idat vybranou keš do"
 
 #: ../ocm-gtk/MainWindow.cs:73
 msgid "_Remove Selected Cache from Bookmark List"
-msgstr ""
+msgstr "_Odstranit vybranou keš ze seznamu záložek"
 
-#: ../ocm-gtk/MainWindow.cs:433 ../ocm-gtk/gtk-gui/MainWindow.cs:552
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:554
+#: ../ocm-gtk/MainWindow.cs:433 ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:83
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:552 ../ocm-gtk/gtk-gui/MainWindow.cs:554
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:526
 msgid "None"
-msgstr ""
+msgstr "Není"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:80 ../ocm-gtk/Widgets/WaypointWidget.cs:49
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:81 ../ocm-gtk/Widgets/WaypointWidget.cs:51
 msgid "Code"
-msgstr ""
+msgstr "Kód"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:82 ../ocm-gtk/Widgets/CacheList.cs:133
 #: ../ocm-gtk/Widgets/CacheList.cs:134
 msgid "Km"
-msgstr ""
+msgstr "Km"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:83
 msgid "Title"
-msgstr ""
+msgstr "Hlavička"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:127
 msgid "Mi"
-msgstr ""
+msgstr "Mi"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:128
 msgid "Miles"
-msgstr ""
+msgstr "Míle"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:196
 msgid "Loading Caches"
-msgstr ""
+msgstr "Nahrávám keše"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:231
 msgid "Loading Caches {0}"
-msgstr ""
+msgstr "Nahrávám keše {0}"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:473
 msgid "Set As Map Centre"
-msgstr ""
+msgstr "Nastav jako střed mapy"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:474
 msgid "View Cache Online"
-msgstr ""
+msgstr "Zobraz keš online"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:475
 msgid "Mark"
-msgstr ""
+msgstr "Označit"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:477
 msgid "Mark Found"
-msgstr ""
+msgstr "Nalezeno"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:478
 msgid "Mark Unfound"
-msgstr ""
+msgstr "Nenalezeno"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:479
 msgid "Mark Disabled"
-msgstr ""
+msgstr "Zablokováno"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:480
 msgid "Mark Archived"
-msgstr ""
+msgstr "Archivováno"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:481
 msgid "Mark Available"
-msgstr ""
+msgstr "Dostupné"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:482
 msgid "Delete..."
-msgstr ""
+msgstr "Smazat"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:483
 msgid "Add to Bookmark List"
-msgstr ""
+msgstr "Přidat na seznam oblíbených"
 
 #: ../ocm-gtk/Widgets/CacheList.cs:484
 msgid "View in QLandkarte GT..."
-msgstr ""
+msgstr "Zobrazit v QLandkarte GT..."
 
 #: ../ocm-gtk/Widgets/CacheList.cs:542
 msgid "Remove From Bookmark List"
-msgstr ""
+msgstr "Odstranit ze seznamu oblíbených"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:28
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:30
 msgid ""
 "<span font='bold italic 10' fgcolor='darkgreen'>You have already found this "
 "cache on {0}</span>"
 msgstr ""
+"<span font='bold italic 10' fgcolor='darkgreen'>Tuto keš už jste nalezli {0}"
+"</span>"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:29
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:31
 msgid ""
 "<span font='bold italic 10' fgcolor='darkgreen'>You have already found this "
 "cache</span>"
 msgstr ""
+"<span font='bold italic 10' fgcolor='darkgreen'>Tuto keš už jste nalezli</"
+"span>"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:30
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:32
 msgid ""
 "<span font='bold italic 10' fgcolor='darkgreen'>You own this cache</span>"
 msgstr ""
+"<span font='bold italic 10' fgcolor='darkgreen'>Jste vlastníkem této keše</"
+"span>"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:31
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:33
 msgid ""
 "<span font='bold italic 10' fgcolor='red'>This cache is temporarily "
 "unavailable, check the logs for more information.</span>"
 msgstr ""
+"<span font='bold italic 10' fgcolor='red'>Tato keš je dočasně nedostupná, "
+"nahlédněte do logu pro více informací</span>"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:32
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:34
 msgid ""
 "<span font='bold italic 10' fgcolor='red'>This cache has been archived, "
 "check the logs for more information.</span>"
 msgstr ""
+"<span font='bold italic 10' fgcolor='red'>Tato keš byla archivována, "
+"nahlédněte do logu pro více informací.</span>"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:33
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:35
 msgid ""
 "<span font='bold italic 10' fgcolor='darkorange'>This cache has a recent DNF "
 "or requires maintenance, check the logs for more information</span>"
 msgstr ""
+"<span font='bold italic 10' fgcolor='darkorange'>Tato keš byla nedávno DNF "
+"nebo vyžaduje údržbu, nahlédněte do logu pro více informací.</span>"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:68
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:70
 #: ../ocm-gtk/Widgets/LogViewerWidget.cs:51
 msgid "NO CACHE SELECTED"
-msgstr ""
+msgstr "NENÍ VYBRÁNA KEŠ"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:94
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:260
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:97
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:284
 msgid "Never"
-msgstr ""
+msgstr "Nikdy"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:118
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:121
 msgid "<b>Location: </b> {0},{1}"
-msgstr ""
+msgstr "<b>Umístění: </b> {0},{1}"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:122
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:125
 msgid "<b>Location: </b> {0}"
-msgstr ""
+msgstr "<b>Umístění: </b> {0}"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:251
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:276
 #: ../ocm-gtk/Widgets/CoordinateWidget.cs:64
 msgid "N"
-msgstr ""
+msgstr "N"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:253
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:278
 msgid "NE"
-msgstr ""
+msgstr "NE"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:254
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:279
 #: ../ocm-gtk/Widgets/CoordinateWidget.cs:69
 msgid "E"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:255
-msgid "SE"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:256
-#: ../ocm-gtk/Widgets/CoordinateWidget.cs:65
-msgid "S"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:257
-msgid "SW"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:258
-#: ../ocm-gtk/Widgets/CoordinateWidget.cs:70
-msgid "W"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:259
-msgid "NW"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:265
-msgid ""
-"<span font='bold italic 10'>({0} miles {1} from your home coordinates)</span>"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:269
-msgid ""
-"<span font='bold italic 10'>({0} km {1} from your home coordinates)</span>"
-msgstr ""
-
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:277
-msgid "Project A.P.E"
-msgstr ""
+msgstr "E"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:280
-#: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:275
-msgid "Cache In Trash Out Event"
-msgstr ""
+msgid "SE"
+msgstr "SE"
+
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:281
+#: ../ocm-gtk/Widgets/CoordinateWidget.cs:65
+msgid "S"
+msgstr "S"
+
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:282
+msgid "SW"
+msgstr "SW"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:283
+#: ../ocm-gtk/Widgets/CoordinateWidget.cs:70
+msgid "W"
+msgstr "W"
+
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:284
+msgid "NW"
+msgstr "NW"
+
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:290
+msgid ""
+"<span font='bold italic 10'>({0} miles {1} from your home coordinates)</span>"
+msgstr "<span font='bold italic 10'>({0} mil {1} od vašeho domova)</span>"
+
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:294
+msgid ""
+"<span font='bold italic 10'>({0} km {1} from your home coordinates)</span>"
+msgstr "<span font='bold italic 10'>({0} km {1} od vašeho domova)</span>"
+
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:302
+msgid "Project A.P.E"
+msgstr "Projekt A.P.E"
+
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:305
+#: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:275
+msgid "Cache In Trash Out Event"
+msgstr "Cache In Trash Out Event"
+
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:308
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:211
 msgid "Earth Cache"
-msgstr ""
+msgstr "Earth Cache"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:286
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:311
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:225
 msgid "Event Cache"
-msgstr ""
+msgstr "Event Cache"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:289
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:314
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:237
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:268
 msgid "Letterbox Hybrid"
-msgstr ""
+msgstr "Letterbox Hybrid"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:292
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:317
 msgid "Geo Adventures Maze"
-msgstr ""
+msgstr "Geo Adventures Maze"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:295
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:320
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:263
 msgid "Mega Event"
-msgstr ""
+msgstr "Mega Event"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:298
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:323
 msgid "Multi Cache"
-msgstr ""
+msgstr "Multina"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:301
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:326
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:264
 msgid "Unknown Cache"
-msgstr ""
+msgstr "Neznámý typ"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:304
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:329
 msgid "Undefined Cache Type"
-msgstr ""
+msgstr "Nedefinovaný typ"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:307
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:332
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:271
 msgid "Locationless Cache"
-msgstr ""
+msgstr "Locationless Cache"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:310
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:335
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:263
 msgid "Traditional Cache"
-msgstr ""
+msgstr "Tradicionálka"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:313
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:338
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:272
 msgid "Virtual Cache"
-msgstr ""
+msgstr "Virtuálka"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:316
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:341
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:273
 msgid "Webcam Cache"
-msgstr ""
+msgstr "Webcam keš"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:319
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:344
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:274
 msgid "Wherigo Cache"
-msgstr ""
+msgstr "Wherigo keš"
 
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:322
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:347
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:43
 msgid "Geocache"
-msgstr ""
+msgstr "Geocache"
 
 #: ../ocm-gtk/Widgets/WaypointWidget.cs:53
 msgid "Location"
-msgstr ""
+msgstr "Umístění"
 
 #: ../ocm-gtk/Widgets/WaypointWidget.cs:55
 #: ../ocm-gtk/Widgets/DescriptionWidget.cs:67
 #: ../ocm-gtk/Dialogs/ConfigureEToolsDlg.cs:40
 msgid "Name"
-msgstr ""
+msgstr "Jméno"
 
 #: ../ocm-gtk/Widgets/WaypointWidget.cs:327
 msgid "Grabbing Waypoints"
-msgstr ""
+msgstr "Grabbing Waypoints"
 
 #: ../ocm-gtk/Widgets/WaypointWidget.cs:336
 msgid "OCM was unable to find any child waypoints."
-msgstr ""
+msgstr "OCM nenalezl žádné child waypointy."
 
 #: ../ocm-gtk/Widgets/WaypointWidget.cs:348
 msgid "Processing Children..."
-msgstr ""
+msgstr "Zpracovávám Children..."
 
 #: ../ocm-gtk/Widgets/WaypointWidget.cs:358
 #: ../ocm-gtk/Widgets/ReviewWaypointWidget.cs:61
 msgid "Grabbed Waypoint"
-msgstr ""
+msgstr "Grabbed Waypoint"
 
 #: ../ocm-gtk/Widgets/BrowserWidget.cs:54
 msgid "Loading Map {0}"
-msgstr ""
+msgstr "Nahrávám mapu {0}"
 
-#: ../ocm-gtk/Widgets/BrowserWidget.cs:60
+#: ../ocm-gtk/Widgets/BrowserWidget.cs:61
 msgid "Loading Map"
-msgstr ""
+msgstr "Nahrávám mapu"
 
 #: ../ocm-gtk/UIMonitor.cs:246 ../ocm-gtk/UIMonitor.cs:252
 #: ../ocm-gtk/UIMonitor.cs:471 ../ocm-gtk/UIMonitor.cs:473
-#: ../ocm-gtk/UIMonitor.cs:1089 ../ocm-gtk/UIMonitor.cs:1481
+#: ../ocm-gtk/UIMonitor.cs:1098 ../ocm-gtk/UIMonitor.cs:1490
 msgid "Home"
-msgstr ""
+msgstr "Domov"
 
 #: ../ocm-gtk/UIMonitor.cs:356
 msgid ""
 "OCM needs to upgrade your database.\n"
 "Would you like to backup your database first?"
 msgstr ""
+"OCM potřebuje aktualizovat databázi.\n"
+"Checete databázi nejdříve zazálohovat?"
 
 #: ../ocm-gtk/UIMonitor.cs:363
 msgid "Upgrade complete"
-msgstr ""
+msgstr "Upgrade dokončen"
 
 #: ../ocm-gtk/UIMonitor.cs:524 ../ocm-gtk/UIMonitor.cs:544
 msgid "<b>A cache by:</b> "
-msgstr ""
+msgstr "<b>Keš od:</b> "
 
 #: ../ocm-gtk/UIMonitor.cs:524 ../ocm-gtk/UIMonitor.cs:544
 msgid "<br><b>Hidden on: </b>"
-msgstr ""
+msgstr "<br><b>Skryta: </b>"
 
 #: ../ocm-gtk/UIMonitor.cs:581
 msgid ""
 "Showing {0} of {1} caches, {2} found, {3} unavailable/archived, {4} placed "
 "by me"
 msgstr ""
+"Zobrazeno {0} z {1} keší, {2} nalezeno, {3} nedostupných/archivovaných, {4} "
+"mnou založených"
 
 #: ../ocm-gtk/UIMonitor.cs:583
 msgid ""
 "Showing {0} of {1} caches from {2}, {3} found, {4} unavailable/archived, {5} "
 "placed by me"
 msgstr ""
+"Zobrazeno {0} z {1} keší z {2}, {3} nalezeno, {4} nedostupných/"
+"archivovaných, {5} mnou založených"
 
 #: ../ocm-gtk/UIMonitor.cs:593
 msgid "Centred on {0} ({1})"
-msgstr ""
+msgstr "Vystředěno na {0} ({1})"
 
 #: ../ocm-gtk/UIMonitor.cs:613
 msgid "Create database"
-msgstr ""
+msgstr "Vytvořit  databázi"
 
 #: ../ocm-gtk/UIMonitor.cs:613 ../ocm-gtk/UIMonitor.cs:645
 #: ../ocm-gtk/UIMonitor.cs:684 ../ocm-gtk/UIMonitor.cs:716
@@ -405,393 +424,406 @@ msgstr ""
 #: ../ocm-gtk/Widgets/GPXWidget.cs:110
 #: ../ocm-gtk/Widgets/GenericGPSWidget.cs:160
 #: ../ocm-gtk/Dialogs/AddCommandDialog.cs:56
+#: ../ocm-gtk/Widgets/GarminEdgeWidget.cs:120
 msgid "Cancel"
-msgstr ""
+msgstr "Ukončit"
 
 #: ../ocm-gtk/UIMonitor.cs:613
 msgid "Save"
-msgstr ""
+msgstr "Uložit"
 
 #: ../ocm-gtk/UIMonitor.cs:643
 msgid "Open Database"
-msgstr ""
+msgstr "Otevřít databázi"
 
 #: ../ocm-gtk/UIMonitor.cs:647 ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
 msgid "Open"
-msgstr ""
+msgstr "Otevřít"
 
 #: ../ocm-gtk/UIMonitor.cs:684
 msgid "Save GPX File"
-msgstr ""
+msgstr "Uložit GPX soubor"
 
 #: ../ocm-gtk/UIMonitor.cs:684 ../ocm-gtk/UIMonitor.cs:716
 msgid "Export"
-msgstr ""
+msgstr "Exportovat"
 
 #: ../ocm-gtk/UIMonitor.cs:716
 msgid " Export Finds GPX File"
-msgstr ""
+msgstr "Exportovat GPX s nálezy"
 
 #: ../ocm-gtk/UIMonitor.cs:796
 msgid "Import GPX File"
-msgstr ""
+msgstr "Importovat GPX soubor"
 
 #: ../ocm-gtk/UIMonitor.cs:796
 msgid "Import"
-msgstr ""
+msgstr "Importovat"
 
-#: ../ocm-gtk/UIMonitor.cs:912
+#: ../ocm-gtk/UIMonitor.cs:914
 msgid "Are you sure you want to delete {0}?"
-msgstr ""
+msgstr "Jste si jist že chcete smazat {0}?"
 
-#: ../ocm-gtk/UIMonitor.cs:936
+#: ../ocm-gtk/UIMonitor.cs:938
 msgid "Are you sure you want to clear all advanced filters?"
-msgstr ""
+msgstr "Jste si jist že chcete smazat všechny rozšířené filtry?"
 
-#: ../ocm-gtk/UIMonitor.cs:1168
+#: ../ocm-gtk/UIMonitor.cs:1177
 msgid "{0} added to {1}"
-msgstr ""
+msgstr "{0} přidáno do {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1179
+#: ../ocm-gtk/UIMonitor.cs:1188
 msgid "{0} caches added to {1}"
-msgstr ""
+msgstr "{0} keší přidáno do {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1185
+#: ../ocm-gtk/UIMonitor.cs:1194
 msgid "Are you sure you want to remove {0} from {1}?"
-msgstr ""
+msgstr "Jste si jisti že chcete vyjmout {0} z {1}?"
 
-#: ../ocm-gtk/UIMonitor.cs:1255
+#: ../ocm-gtk/UIMonitor.cs:1264
 msgid ""
 "Are you sure you want to delete these {0} caches?\n"
 "This operation cannot be undone."
 msgstr ""
+"Jste si jist že chcete smazat těchto {0} keší?\n"
+"Tuto operaci nelze vrátit."
 
-#: ../ocm-gtk/UIMonitor.cs:1362 ../ocm-gtk/UIMonitor.cs:1378
+#: ../ocm-gtk/UIMonitor.cs:1371 ../ocm-gtk/UIMonitor.cs:1387
 msgid "Preparing to send to QLandKarte GT"
-msgstr ""
+msgstr "Připravuji k odeslání do QLandKarte GT"
 
-#: ../ocm-gtk/UIMonitor.cs:1399
+#: ../ocm-gtk/UIMonitor.cs:1408
 msgid "Save QuickFilter"
-msgstr ""
+msgstr "Ulož Rychlý filtr"
 
-#: ../ocm-gtk/UIMonitor.cs:1426
+#: ../ocm-gtk/UIMonitor.cs:1435
 msgid "Database Compacted."
-msgstr ""
+msgstr "Databáze komprimována."
 
-#: ../ocm-gtk/UIMonitor.cs:1444
+#: ../ocm-gtk/UIMonitor.cs:1453
 msgid "Move Geocaches..."
-msgstr ""
+msgstr "Přesunout keše..."
 
-#: ../ocm-gtk/UIMonitor.cs:1469
+#: ../ocm-gtk/UIMonitor.cs:1478
 msgid "Map Point"
-msgstr ""
+msgstr "Mapový bod"
 
-#: ../ocm-gtk/UIMonitor.cs:1505
+#: ../ocm-gtk/UIMonitor.cs:1521 ../ocm-gtk/UIMonitor.cs:1555
 msgid ""
 "A new version \"{0}\" of OCM is available\n"
 "Would you like to go to the download page now?"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1520
-msgid "OCM is at the latest version."
+#: ../ocm-gtk/UIMonitor.cs:1539 ../ocm-gtk/UIMonitor.cs:1579
+msgid "Unable to check for updates, check your network connection."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1529
-msgid "Unable to check for updates, check your network connection."
+#: ../ocm-gtk/UIMonitor.cs:1570
+msgid "OCM is at the latest version."
 msgstr ""
 
 #: ../ocm-gtk/Dialogs/ProgressDialog.cs:41
 #: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:78
 #: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:82
-#: ../ocm-gtk/Dialogs/CopyingProgress.cs:83
+#: ../ocm-gtk/Dialogs/CopyingProgress.cs:93
 msgid "Complete"
-msgstr ""
+msgstr "Dokončeno"
 
 #: ../ocm-gtk/Dialogs/ProgressDialog.cs:42
 msgid "<i>Import complete, {0} waypoints processed</i>"
-msgstr ""
+msgstr "<i>Import dokončen, zpracován {0} waypointů</i>"
 
-#: ../ocm-gtk/Dialogs/ProgressDialog.cs:57
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:58
 #: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:59
 msgid "<b>File: </b>"
-msgstr ""
+msgstr "<b>Soubor: </b>"
 
-#: ../ocm-gtk/Dialogs/ProgressDialog.cs:86
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:87
 msgid "Import cancelled, all changes reverted."
-msgstr ""
+msgstr "Import přerušen, všechny změny vráceny."
 
 #: ../ocm-gtk/Widgets/CoordinateWidget.cs:89
 msgid "Invalid Coordinate"
-msgstr ""
+msgstr "Vadná souřadnice"
 
 #: ../ocm-gtk/Dialogs/SetupAssistant.cs:41
 msgid "Setup Assistant"
-msgstr ""
+msgstr "Asistent nastavení"
 
 #: ../ocm-gtk/Dialogs/SetupAssistant.cs:42
 msgid "Welcome"
-msgstr ""
+msgstr "Vítejte"
 
 #: ../ocm-gtk/Dialogs/SetupAssistant.cs:45
 msgid "Setup a Database"
-msgstr ""
+msgstr "Nastavit databázi"
 
 #: ../ocm-gtk/Dialogs/SetupAssistant.cs:47
 msgid "User Details"
-msgstr ""
+msgstr "Uživatelské detaily"
 
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
 msgid "Choose Database Location"
-msgstr ""
+msgstr "Vyberte umístění databáze"
 
 #: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:77
 msgid "<i>{0} Geocaches exported.</i>"
-msgstr ""
+msgstr "<i>{0} keší exportováno.</i>"
 
 #: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:104
 msgid ""
 "Cancelling an export will result in an invalid GPX file.\n"
 "Are you sure?"
 msgstr ""
+"Ukončení exportu způsobí, že výsledný GPX soubor bude vadný.\n"
+"Jste si jist?"
 
 #: ../ocm-gtk/Widgets/DescriptionWidget.cs:46
 msgid "<b>NO CACHE SELECTED</b>"
-msgstr ""
+msgstr "<b>NENÍ VYBRÁNA ŽÁDNÁ KEŠ</b>"
 
 #: ../ocm-gtk/Widgets/DescriptionWidget.cs:66
 msgid "Ref"
-msgstr ""
+msgstr "Ref"
 
 #: ../ocm-gtk/Widgets/GPXWidget.cs:110
+#: ../ocm-gtk/Widgets/GarminEdgeWidget.cs:120
 msgid "Select GPX location"
-msgstr ""
+msgstr "Vyberte umístění GPS"
 
 #: ../ocm-gtk/Widgets/GPXWidget.cs:110
 #: ../ocm-gtk/Widgets/GenericGPSWidget.cs:160
+#: ../ocm-gtk/Widgets/GarminEdgeWidget.cs:120
 msgid "Select"
-msgstr ""
+msgstr "Vybrat"
 
 #: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:84
 msgid "<i>Send Complete:{0} geocaches transferred</i>"
-msgstr ""
+msgstr "<i>Odeslání dokončeno:{0} keší přeneseno</i>"
 
 #: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:91
 msgid "<i>Sending Geocaches to Device</i>"
-msgstr ""
+msgstr "<i>Posílám keše do zařízení</i>"
 
 #: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:112
 msgid "Are you sure you want to cancel?"
-msgstr ""
+msgstr "Jste si jist že chcete skončit?"
 
 #: ../ocm-gtk/Widgets/GenericGPSWidget.cs:160
 msgid "Select File location"
-msgstr ""
+msgstr "Vyberte umístění souboru"
 
 #: ../ocm-gtk/Widgets/NotesWidget.cs:46
 msgid "You have unsaved notes, do you wish to save them?"
-msgstr ""
+msgstr "Nemáte uloženy poznámky, chcete je uložit?"
 
 #: ../ocm-gtk/Dialogs/DeleteBookmark.cs:40
 msgid "Quick Filter:"
-msgstr ""
+msgstr "Rychlý filtr:"
 
 #: ../ocm-gtk/QuickFilter.cs:122 ../ocm-gtk/gtk-gui/MainWindow.cs:465
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:466
 msgid "Done"
-msgstr ""
+msgstr "Hotovo"
 
 #: ../ocm-gtk/QuickFilter.cs:134 ../ocm-gtk/gtk-gui/MainWindow.cs:462
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:463
 msgid "To Do"
-msgstr ""
+msgstr "To Do"
 
 #: ../ocm-gtk/QuickFilter.cs:146 ../ocm-gtk/gtk-gui/MainWindow.cs:501
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:502
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:232
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:126
 msgid "Mine"
-msgstr ""
+msgstr "Moje"
 
 #: ../ocm-gtk/QuickFilter.cs:158 ../ocm-gtk/gtk-gui/MainWindow.cs:504
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:505
 msgid "All"
-msgstr ""
+msgstr "Vše"
 
 #: ../ocm-gtk/QuickFilters.cs:55 ../ocm-gtk/EToolList.cs:54
 msgid "Are you sure you wish to overwrite \"{0}\"?"
-msgstr ""
-
-#: ../ocm-gtk/Dialogs/CopyingProgress.cs:39
-msgid "Move Caches..."
-msgstr ""
+msgstr "Opravdu chcete přepsat \"{0}\"?"
 
 #: ../ocm-gtk/Dialogs/CopyingProgress.cs:40
+msgid "Move Caches..."
+msgstr "Přesunout keše..."
+
+#: ../ocm-gtk/Dialogs/CopyingProgress.cs:41
 msgid "Moving Geocaches"
+msgstr "Přesunuji keše"
+
+#: ../ocm-gtk/Dialogs/CopyingProgress.cs:53
+msgid ""
+"The target database needs to be upgraded. Please open the target database "
+"before trying to copy/move caches."
 msgstr ""
 
-#: ../ocm-gtk/Dialogs/CopyingProgress.cs:82
+#: ../ocm-gtk/Dialogs/CopyingProgress.cs:92
 msgid "<i>Complete</i>"
-msgstr ""
+msgstr "<i>Dokončeno</i>"
 
-#: ../ocm-gtk/Dialogs/CopyingProgress.cs:94
+#: ../ocm-gtk/Dialogs/CopyingProgress.cs:104
 msgid "<i>Copying:{0}</i>"
-msgstr ""
+msgstr "<i>Kopíruji:{0}</i>"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:247 ../ocm-gtk/gtk-gui/MainWindow.cs:248
 msgid "_File"
-msgstr ""
+msgstr "_Soubor"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:250 ../ocm-gtk/gtk-gui/MainWindow.cs:251
 msgid "_Quit"
-msgstr ""
+msgstr "_Ukončit"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:253 ../ocm-gtk/gtk-gui/MainWindow.cs:254
 msgid "_Edit"
-msgstr ""
+msgstr "_Editovat"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:256 ../ocm-gtk/gtk-gui/MainWindow.cs:257
 msgid "_Help"
-msgstr ""
+msgstr "_Pomoc"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:259 ../ocm-gtk/gtk-gui/MainWindow.cs:260
 msgid "_About"
-msgstr ""
+msgstr "_O programu"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:262 ../ocm-gtk/gtk-gui/MainWindow.cs:263
 msgid "Clear All Filters"
-msgstr ""
+msgstr "Vymazat všechny filtry"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:265 ../ocm-gtk/gtk-gui/MainWindow.cs:266
 msgid "G_PS"
-msgstr ""
+msgstr "_GPS"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:268 ../ocm-gtk/gtk-gui/MainWindow.cs:269
 msgid "_Cache"
-msgstr ""
+msgstr "_Keš"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:271 ../ocm-gtk/gtk-gui/MainWindow.cs:273
 msgid "_View Online"
-msgstr ""
+msgstr "_Zobrazit online"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:275 ../ocm-gtk/gtk-gui/MainWindow.cs:276
 msgid "_Delete"
-msgstr ""
+msgstr "_Smazat"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:278 ../ocm-gtk/gtk-gui/MainWindow.cs:279
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:299 ../ocm-gtk/gtk-gui/MainWindow.cs:300
 msgid "_New Database..."
-msgstr ""
+msgstr "_Nová databáze"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:281 ../ocm-gtk/gtk-gui/MainWindow.cs:282
 #: ../ocm-gtk/gtk-gui/ocmgtk.NoDBDialog.cs:87
 msgid "Open Database..."
-msgstr ""
+msgstr "Otevřít databázi"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:284 ../ocm-gtk/gtk-gui/MainWindow.cs:285
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:396 ../ocm-gtk/gtk-gui/MainWindow.cs:397
 msgid "_Geocaching.com"
-msgstr ""
+msgstr "_Geocaching.com"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:287 ../ocm-gtk/gtk-gui/MainWindow.cs:288
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:408 ../ocm-gtk/gtk-gui/MainWindow.cs:409
 msgid "_View My Profile..."
-msgstr ""
+msgstr "Zo_brazit můj profil..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:290 ../ocm-gtk/gtk-gui/MainWindow.cs:291
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:411 ../ocm-gtk/gtk-gui/MainWindow.cs:412
 msgid "_Create Pocket Queries..."
-msgstr ""
+msgstr "Vy_tvořit PQ"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:293 ../ocm-gtk/gtk-gui/MainWindow.cs:294
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:417 ../ocm-gtk/gtk-gui/MainWindow.cs:418
 msgid "_Find a Cache..."
-msgstr ""
+msgstr "_Hledat keš"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:296 ../ocm-gtk/gtk-gui/MainWindow.cs:297
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:414 ../ocm-gtk/gtk-gui/MainWindow.cs:415
 msgid "_My Account Details..."
-msgstr ""
+msgstr "_Detaily mého účtu"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:302 ../ocm-gtk/gtk-gui/MainWindow.cs:303
 msgid "Open _Database..."
-msgstr ""
+msgstr "Otevřít _databázi"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:305 ../ocm-gtk/gtk-gui/MainWindow.cs:306
 msgid "_Import GPX/Loc File..."
-msgstr ""
+msgstr "_Importovat soubor GPX/Loc..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:308 ../ocm-gtk/gtk-gui/MainWindow.cs:309
 msgid "_Export GPX..."
-msgstr ""
+msgstr "_Exportovat soubor GPX..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:311 ../ocm-gtk/gtk-gui/MainWindow.cs:313
 msgid "_Log Find"
-msgstr ""
+msgstr "_Zaloguj nález"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:315 ../ocm-gtk/gtk-gui/MainWindow.cs:317
 msgid "_Mark Unfound"
-msgstr ""
+msgstr "_Označ Nenalezeno"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:319 ../ocm-gtk/gtk-gui/MainWindow.cs:321
 msgid "_Delete Cache..."
-msgstr ""
+msgstr "_Smazat keš..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:323 ../ocm-gtk/gtk-gui/MainWindow.cs:324
 msgid "F_ilter"
-msgstr ""
+msgstr "F_ilter"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:326 ../ocm-gtk/gtk-gui/MainWindow.cs:327
 msgid "_Advanced Filters..."
-msgstr ""
+msgstr "_Rozšířené filtry..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:329 ../ocm-gtk/gtk-gui/MainWindow.cs:331
 msgid "_Clear Advanced Filters"
-msgstr ""
+msgstr "_Vymaž rozšířené filtry"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:333 ../ocm-gtk/gtk-gui/MainWindow.cs:334
 msgid "_Preferences..."
-msgstr ""
+msgstr "_Nastavení"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:336 ../ocm-gtk/gtk-gui/MainWindow.cs:337
 msgid "_Map"
-msgstr ""
+msgstr "_Mapa"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:339 ../ocm-gtk/gtk-gui/MainWindow.cs:340
 msgid "_Zoom to Centre"
-msgstr ""
+msgstr "_Zoom na střed"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:342 ../ocm-gtk/gtk-gui/MainWindow.cs:344
 msgid "Zoom to Selected _Cache"
-msgstr ""
+msgstr "Zoom na vybranou keš"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:346 ../ocm-gtk/gtk-gui/MainWindow.cs:347
 msgid "_Configure GPS..."
-msgstr ""
+msgstr "_Konfigurovat GPS..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:349 ../ocm-gtk/gtk-gui/MainWindow.cs:350
 msgid "_Transfer Caches..."
-msgstr ""
+msgstr "_Přenos keší..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:352 ../ocm-gtk/gtk-gui/MainWindow.cs:353
 msgid "_Change History..."
-msgstr ""
+msgstr "_Historie změn"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:355 ../ocm-gtk/gtk-gui/MainWindow.cs:357
 msgid "Set Selected Cache As Centre"
-msgstr ""
+msgstr "Nastav vybranou keš jako střed"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:359 ../ocm-gtk/gtk-gui/MainWindow.cs:361
 msgid "_Reset Centre to Home"
-msgstr ""
+msgstr "_Střed zpět na Domov"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:363 ../ocm-gtk/gtk-gui/MainWindow.cs:364
 msgid "_Show Nearby Caches"
-msgstr ""
+msgstr "_Zobraz keše v blízkosti"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:366 ../ocm-gtk/gtk-gui/MainWindow.cs:367
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:399 ../ocm-gtk/gtk-gui/MainWindow.cs:400
 msgid "_TerraCaching.com"
-msgstr ""
+msgstr "_TerraCaching.com"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:369 ../ocm-gtk/gtk-gui/MainWindow.cs:370
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:384 ../ocm-gtk/gtk-gui/MainWindow.cs:385
@@ -799,189 +831,189 @@ msgstr ""
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:420 ../ocm-gtk/gtk-gui/MainWindow.cs:421
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:432 ../ocm-gtk/gtk-gui/MainWindow.cs:433
 msgid "_Home Page..."
-msgstr ""
+msgstr "_Domovská stránka"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:372 ../ocm-gtk/gtk-gui/MainWindow.cs:373
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:423 ../ocm-gtk/gtk-gui/MainWindow.cs:424
 msgid "To _Do List"
-msgstr ""
+msgstr "To _Do seznam"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:375 ../ocm-gtk/gtk-gui/MainWindow.cs:376
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:426 ../ocm-gtk/gtk-gui/MainWindow.cs:427
 msgid "Traditional..."
-msgstr ""
+msgstr "Tradicionálka..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:378 ../ocm-gtk/gtk-gui/MainWindow.cs:379
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:429 ../ocm-gtk/gtk-gui/MainWindow.cs:430
 msgid "Locationless..."
-msgstr ""
+msgstr "Bez umístění..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:381 ../ocm-gtk/gtk-gui/MainWindow.cs:382
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:402 ../ocm-gtk/gtk-gui/MainWindow.cs:403
 msgid "_NaviCache.com"
-msgstr ""
+msgstr "_NaviCache.com"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:387 ../ocm-gtk/gtk-gui/MainWindow.cs:388
 msgid "_My NaviCache..."
-msgstr ""
+msgstr "_My NaviCache..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:390 ../ocm-gtk/gtk-gui/MainWindow.cs:391
 msgid "All Caches"
-msgstr ""
+msgstr "Všechny keše"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:393 ../ocm-gtk/gtk-gui/MainWindow.cs:394
 msgid "_Web"
-msgstr ""
+msgstr "_Web"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:435 ../ocm-gtk/gtk-gui/MainWindow.cs:436
 msgid "_My NaviCache"
-msgstr ""
+msgstr "_Má Navicache"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:438 ../ocm-gtk/gtk-gui/MainWindow.cs:440
 msgid "M_odify Cache..."
-msgstr ""
+msgstr "_Změnit keš"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:442 ../ocm-gtk/gtk-gui/MainWindow.cs:444
 msgid "_To Do"
-msgstr ""
+msgstr "_To Do"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:446 ../ocm-gtk/gtk-gui/MainWindow.cs:448
 msgid "_Done"
-msgstr ""
+msgstr "_Hotovo"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:450 ../ocm-gtk/gtk-gui/MainWindow.cs:451
 msgid "_Solved Puzzles"
-msgstr ""
+msgstr "_Vyřešené puzzle"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:453 ../ocm-gtk/gtk-gui/MainWindow.cs:454
 msgid "Clear _All Filters"
-msgstr ""
+msgstr "Vyčistit _všechny filtry"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:456
 msgid "_Add Cache..."
-msgstr ""
+msgstr "_Přidat keš..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:457
 msgid "Add Cache..."
-msgstr ""
+msgstr "Přidat keš..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:459 ../ocm-gtk/gtk-gui/MainWindow.cs:460
 msgid "_Quick Filter"
-msgstr ""
+msgstr "_Rychlý filtr"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:468 ../ocm-gtk/gtk-gui/MainWindow.cs:469
 msgid "Delete All Visible Caches..."
-msgstr ""
+msgstr "Smaž všechny viditelné keše"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:471 ../ocm-gtk/gtk-gui/MainWindow.cs:472
 msgid "Use GPSD as Centre"
-msgstr ""
+msgstr "Použij GPSD jako střed"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:474 ../ocm-gtk/gtk-gui/MainWindow.cs:475
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSDConfig.cs:37
 msgid "Configure GPSD..."
-msgstr ""
+msgstr "Konfigurace GPSD"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:477 ../ocm-gtk/gtk-gui/MainWindow.cs:478
 msgid "G_PSBabel Home Page..."
-msgstr ""
+msgstr "G_PSBabel domovská stránka"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:480 ../ocm-gtk/gtk-gui/MainWindow.cs:481
 msgid "GPS_D Home Page..."
-msgstr ""
+msgstr "GPS_D domovská stránka"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:483 ../ocm-gtk/gtk-gui/MainWindow.cs:484
 msgid "OCM Home Page..."
-msgstr ""
+msgstr "OCM domovská stránka"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:486 ../ocm-gtk/gtk-gui/MainWindow.cs:487
 msgid "Deselect"
-msgstr ""
+msgstr "Odebrat"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:489 ../ocm-gtk/gtk-gui/MainWindow.cs:490
 msgid "Deselect Cache"
-msgstr ""
+msgstr "Odebrat keš"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:492 ../ocm-gtk/gtk-gui/MainWindow.cs:493
 msgid "_Tools"
-msgstr ""
+msgstr "_Nástroje"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:495 ../ocm-gtk/gtk-gui/MainWindow.cs:496
 msgid "_View All in QLandkarte GT..."
-msgstr ""
+msgstr "_Zobrazit všechny keše v QLandkarte GT"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:498 ../ocm-gtk/gtk-gui/MainWindow.cs:499
 msgid "View Selected _Cache in QLandkarte GT..."
-msgstr ""
+msgstr "_Zobrazit vybrané keše v QLandkarte GT"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:507
 msgid "_Save Current View as Quick Filter"
-msgstr ""
+msgstr "_Uložit aktuální zobrazení jako rychlý filtr"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:508
 msgid "_Save Current as Quick Filter"
-msgstr ""
+msgstr "_Uložit aktuální jako rychlý filtr"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:510 ../ocm-gtk/gtk-gui/MainWindow.cs:511
 msgid "_Delete Quick Filter..."
-msgstr ""
+msgstr "_Smazat rychlý filtr"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:513 ../ocm-gtk/gtk-gui/MainWindow.cs:514
 msgid "OCM Wiki..."
-msgstr ""
+msgstr "OCM Wiki..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:516 ../ocm-gtk/gtk-gui/MainWindow.cs:517
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:522 ../ocm-gtk/gtk-gui/MainWindow.cs:523
 msgid "Compact Database"
-msgstr ""
+msgstr "Komprimovat databázi"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:519 ../ocm-gtk/gtk-gui/MainWindow.cs:520
 msgid "Database Tools"
-msgstr ""
+msgstr "Databázové nástroje"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:525 ../ocm-gtk/gtk-gui/MainWindow.cs:526
 msgid "Copy Visible Caches..."
-msgstr ""
+msgstr "Kopíruj viditelné keše"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:528 ../ocm-gtk/gtk-gui/MainWindow.cs:529
 msgid "Move Visible Caches..."
-msgstr ""
+msgstr "Přesuň viditelné keše"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:531 ../ocm-gtk/gtk-gui/MainWindow.cs:532
 msgid "_Mark"
-msgstr ""
+msgstr "_Označ"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:534 ../ocm-gtk/gtk-gui/MainWindow.cs:535
 msgid "Mark _Unfound"
-msgstr ""
+msgstr "_Nenalezeno"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:537 ../ocm-gtk/gtk-gui/MainWindow.cs:538
 msgid "Mark _Disabled"
-msgstr ""
+msgstr "_Zamknuto"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:540 ../ocm-gtk/gtk-gui/MainWindow.cs:541
 msgid "Mark _Archived"
-msgstr ""
+msgstr "_Archivováno"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:543 ../ocm-gtk/gtk-gui/MainWindow.cs:544
 msgid "Mark A_vailable"
-msgstr ""
+msgstr "_Dostupné"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:546 ../ocm-gtk/gtk-gui/MainWindow.cs:547
 msgid "Mark _Found"
-msgstr ""
+msgstr "_Nalezeno"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:549 ../ocm-gtk/gtk-gui/MainWindow.cs:550
 msgid "External Tools"
-msgstr ""
+msgstr "Externí nástroje"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:556 ../ocm-gtk/gtk-gui/MainWindow.cs:557
 msgid "Configure External Tools..."
-msgstr ""
+msgstr "Konfigurace externích nástrojů"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:559 ../ocm-gtk/gtk-gui/MainWindow.cs:560
 msgid "Export _Finds GPX..."
-msgstr ""
+msgstr "E_xportovat nálezy do GPX..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:562 ../ocm-gtk/gtk-gui/MainWindow.cs:563
 msgid "Check For Updates..."
@@ -993,115 +1025,125 @@ msgstr ""
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:572
 msgid "OCM"
-msgstr ""
+msgstr "OCM"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:634
 msgid "Not Set"
-msgstr ""
+msgstr "Nenastaveno"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:201
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:225
 msgid "Log My Find..."
-msgstr ""
+msgstr "Loguj nález..."
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:215
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:239
 msgid "View Online..."
-msgstr ""
+msgstr "Zobrazit online..."
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:241
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:265
 msgid "<country>"
-msgstr ""
+msgstr "<Země>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:250
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:274
 msgid "<b>Last Log By You:</b>"
-msgstr ""
+msgstr "<b>Můj poslední log:</b>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:280
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:304
+#: ../ocm-gtk/printing/CachePrinter.cs:114
 msgid "<b>A cache by:</b>"
-msgstr ""
+msgstr "<b>Založil:</b>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:305
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:329
+#: ../ocm-gtk/printing/CachePrinter.cs:118
 msgid "<b>Hidden on:</b>"
-msgstr ""
+msgstr "<b>Dne:</b>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:328
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:352
 msgid "<b>Last Update:</b>"
-msgstr ""
+msgstr "<b>Poslední aktualizace:</b>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:358
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:382
+#: ../ocm-gtk/printing/CachePrinter.cs:122
 msgid "<b>Cache Size:</b>"
-msgstr ""
+msgstr "<b>Velikost keše:</b>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:380
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:404
+#: ../ocm-gtk/printing/CachePrinter.cs:126
 msgid "<b>Difficulty:</b>"
-msgstr ""
+msgstr "<b>Obtížnost:</b>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:432
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:456
+#: ../ocm-gtk/printing/CachePrinter.cs:130
 msgid "<b>Terrain:</b>"
-msgstr ""
+msgstr "<b>Terén:</b>"
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:535
+#, fuzzy
+msgid "<b>Attributes:</b>"
+msgstr "<b>Soubor:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:60
 msgid "Quick Info"
-msgstr ""
+msgstr "Informace"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:73
 msgid "Description"
-msgstr ""
+msgstr "Popis"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:86
 msgid "Logs"
-msgstr ""
+msgstr "Logy"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:99
 msgid "Waypoints"
-msgstr ""
+msgstr "Waypointy"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:112
 msgid "Notes"
-msgstr ""
+msgstr "Poznámky"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:65
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:66
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:145
 msgid "km"
-msgstr ""
+msgstr "km"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:180
 msgid "Archived"
-msgstr ""
+msgstr "Archivované"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:195
 msgid "Not Found"
-msgstr ""
+msgstr "Nenalezené"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:208
 msgid "Available"
-msgstr ""
+msgstr "Dostupné"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:221
 msgid "Found"
-msgstr ""
+msgstr "Nalezené"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:245
 msgid "Disabled"
-msgstr ""
+msgstr "Zablokované"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointWidget.cs:114
 msgid "_Grab Waypoints..."
-msgstr ""
+msgstr "_Grab Waypointy..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:57
 msgid "Add/Edit Waypoint..."
-msgstr ""
+msgstr "Přidat/Upravit Waipoint..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:92
 #: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:63
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:40
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:93
 msgid "Final Location"
-msgstr ""
+msgstr "Finální umístění"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:93
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:112
@@ -1109,164 +1151,190 @@ msgstr ""
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:41
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:94
 msgid "Parking Area"
-msgstr ""
+msgstr "Parkovací oblast"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:94
 #: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:65
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:42
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:95
 msgid "Question To Answer"
-msgstr ""
+msgstr "Odpověď na otázku"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:95
 #: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:66
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:43
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:96
 msgid "Reference Point"
-msgstr ""
+msgstr "Referenční bod"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:96
 #: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:67
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:44
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:97
 msgid "Stages of a Multicache"
-msgstr ""
+msgstr "Stage multiny"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:97
 #: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:68
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:45
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:98
 msgid "Trailhead"
-msgstr ""
+msgstr "Trailhead"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:98
 #: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:69
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:46
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:99
 msgid "Other"
-msgstr ""
+msgstr "Ostatní"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:174
 #: ../ocm-gtk/gtk-gui/ocmgtk.AddBookMarkDialog.cs:43
 #: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:122
 #: ../ocm-gtk/gtk-gui/ocmgtk.AddCommandDialog.cs:129
 msgid "Name:"
-msgstr ""
+msgstr "Jméno:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:184
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:185
 msgid "Latitude:"
-msgstr ""
+msgstr "Zeměpisná šířka:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:196
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:196
 msgid "Longitude:"
-msgstr ""
+msgstr "Zeměpisná délka:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:208
 msgid "Symbol:"
-msgstr ""
+msgstr "Symbol:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:222
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:209
 #: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:145
 msgid "Description:"
-msgstr ""
+msgstr "Popis:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:34
 msgid "Open GPX File..."
-msgstr ""
+msgstr "Otevřít soubor GPX:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:50
 msgid "<big><b>Importing GPX data</b></big>"
-msgstr ""
+msgstr "<big><b>Importuji GPX data</b></big>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:59
 #: ../ocm-gtk/gtk-gui/ocmgtk.ExportProgressDialog.cs:60
 msgid "<b>File:</b>"
-msgstr ""
+msgstr "<b>Soubor:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:87
 #: ../ocm-gtk/gtk-gui/ocmgtk.SendWaypointsDialog.cs:70
 msgid "<i>Initializing</i>"
-msgstr ""
+msgstr "<i>Inicializuji</i>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:55
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:69
 msgid "Preferences..."
-msgstr ""
+msgstr "Vlastnosti..."
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:74
-msgid "Child Waypoints:"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:105
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:94
 msgid "Home Coordinates:"
-msgstr ""
+msgstr "Domací souřadnice:"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:113
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:102
 msgid "User name or Account ID:"
+msgstr "Už. jméno nebo Account ID:"
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:149
+msgid "Home/Account"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:124
-msgid "Units:"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:135
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:161
 msgid "Default Map:"
-msgstr ""
+msgstr "Vychozí mapa:"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:146
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:172
 msgid "Nearby Caches on Map:"
-msgstr ""
+msgstr "Blízké keše na mapě:"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:177
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:183
+msgid "Units:"
+msgstr "Jednotky:"
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:190
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage2.cs:114
 msgid "Open Street Maps"
-msgstr ""
+msgstr "Open Street Maps"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:178
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:191
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage2.cs:115
 msgid "Google Hybrid"
-msgstr ""
+msgstr "Google Hybrid"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:179
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:192
 msgid "Google Street"
-msgstr ""
+msgstr "Google Street"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:180
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:193
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage2.cs:117
 msgid "Google Terrain"
-msgstr ""
+msgstr "Google Terrain"
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:206
+msgid "Enabled on Startup"
+msgstr "Povolit při startu"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:207
-msgid "Prefix with Type (e.g. PKABCD01)"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:208
-msgid "Use GC name (e.g. GCABCD01)"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:221
-msgid "Enabled on Startup"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:222
 msgid "Disabled on Startup"
-msgstr ""
+msgstr "Zakázat při startu"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:235
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:220
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage2.cs:130
 msgid "Metric"
-msgstr ""
+msgstr "Metrické"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:236
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:221
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage2.cs:131
 msgid "U.S./Imperial"
+msgstr "Angloamerické"
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:236
+#, fuzzy
+msgid "Map/Units"
+msgstr "Jednotky:"
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:248
+msgid "Child Waypoints:"
+msgstr "Child Waypointy:"
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:256
+msgid "days"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:267
+msgid "Prefix with Type (e.g. PKABCD01)"
+msgstr "Prefix s typem (pod. PKABCD01)"
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:268
+#, fuzzy
+msgid "Use GC name (e.g. GCABCD01)"
+msgstr "Použít GC jméno (pod. GCABCD01)"
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:280
+msgid "Check for updates every"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:294
+msgid "7"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:311
+msgid "Formats/Update"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CoordinateWidget.cs:58
 msgid "°"
-msgstr ""
+msgstr "°"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage1.cs:36
 msgid ""
@@ -1278,28 +1346,38 @@ msgid ""
 "to use all of the features of OCM. If you don't have an account, click on "
 "the button below to sign up to Geocaching.com"
 msgstr ""
+"Vítejte v OCM! Tento asistent vám pomůže s nastavením, které je potřeba "
+"provést před prvním použitím programu OCM. Budete potřebovat zjistit vaše "
+"domovské souřadnice, např. z vaší GPS a informace z vašich oblíbených "
+"stránek o geocachingu. \n"
+"\n"
+"Pro uživatele Geocaching.com a Terracaching, budete potřebovat prémiový "
+"účet, abyste mohli využít všech vlastností OCM. Pokud účet nemáte, klikněte "
+"na tlačítko níže k vytvoření účtu na Geocaching.com"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage1.cs:49
 msgid "Sign Up for an Account..."
-msgstr ""
+msgstr "Zaregistrovat účet"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage2.cs:49
 msgid ""
 "You will need to create a database to use OCM, or open an existing OCM "
 "database if you already have one from somewhere else. "
 msgstr ""
+"Pro používáni OCM je potřeba vytvořit databázi, nebo nějakou otevřít nějakou "
+"existující, pokud už nějakou máte."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage2.cs:96
 msgid "OCM should report distances in "
-msgstr ""
+msgstr "OCM by měl zobrazovat vzdálenost v"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage2.cs:105
 msgid "Default map that OCM should use"
-msgstr ""
+msgstr "Výchozí mapa kterou by měl OCM používat"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage2.cs:116
 msgid "Google Street Maps"
-msgstr ""
+msgstr "Google Street Maps"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage3.cs:51
 msgid ""
@@ -1310,133 +1388,141 @@ msgid ""
 "If you don't know these settings and are a Geocaching.com user, click on "
 "\"View Account Online...\" to see your information from Geocaching.com"
 msgstr ""
+"Nakonec, musíte zadat vaše domácí souřadnice a uživatelské ID, takže OCM pak "
+"může správně vypočítat vzdálenost keší od vašeho domova a rozpoznat které "
+"keše jsou vaše. \n"
+"\n"
+"Pokud neznáte tato nastavení a máte účet na Geocaching.com, klikněte na  "
+"\"Zobrazit účet online\" kde se vám tyto informace zobrazí."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage3.cs:73
 msgid "View Account Online..."
-msgstr ""
+msgstr "Zobarzit účet online..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage3.cs:83
 msgid ""
 "You can enter either your account ID or user name to help OCM identify your "
 "caches and finds"
 msgstr ""
+"Můžete také vložit ID vašeho účtu nebo uživatelské jméno, což zajistí že OCM "
+"identifikuje vaše keše a nálezy."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage3.cs:97
 msgid "Home Latitude:"
-msgstr ""
+msgstr "Domovská zeměpisná šířka:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage3.cs:108
 msgid "Home Longitude:"
-msgstr ""
+msgstr "Domovská zeměpisná délka:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ExportProgressDialog.cs:32
 msgid "Saving File..."
-msgstr ""
+msgstr "Ukládám soubor..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ExportProgressDialog.cs:48
 msgid "<big><b>Generating GPX File</b></big>"
-msgstr ""
+msgstr "<big><b>Vytvářím soubor GPX</b></big>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ExportProgressDialog.cs:80
 msgid "<i>Intializing</i>"
-msgstr ""
+msgstr "<i>Inicializuji</i>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DescriptionWidget.cs:55
 msgid "<b>Hint</b>"
-msgstr ""
+msgstr "<b>Hint</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DescriptionWidget.cs:84
 msgid "<b>Trackables</b>"
-msgstr ""
+msgstr "<b>Trackables</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:87
 msgid "All Cache Types"
-msgstr ""
+msgstr "Všechyn typy keší"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:104
 msgid "Difficulty"
-msgstr ""
+msgstr "Obtížnost"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:115
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:386
 msgid "Greater Than"
-msgstr ""
+msgstr "Větší než"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:116
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:387
 msgid "Greater Than or Equal To"
-msgstr ""
+msgstr "Větší než nebo roven"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:117
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:388
 msgid "Equal To"
-msgstr ""
+msgstr "Roven"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:118
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:389
 msgid "Less Than or Equal To"
-msgstr ""
+msgstr "Méně než nebo roven"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:119
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:390
 msgid "Less Than"
-msgstr ""
+msgstr "Méně než"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:133
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:402
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:330
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:485
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:134
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:403
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:331
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:486
 msgid "1.5"
-msgstr ""
+msgstr "1.5"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:135
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:404
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:332
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:487
 msgid "2"
-msgstr ""
+msgstr "2"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:136
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:405
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:333
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:488
 msgid "2.5"
-msgstr ""
+msgstr "2.5"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:137
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:406
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:334
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:489
 msgid "3"
-msgstr ""
+msgstr "3"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:138
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:407
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:335
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:490
 msgid "3.5"
-msgstr ""
+msgstr "3.5"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:139
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:408
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:336
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:491
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:140
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:409
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:337
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:492
 msgid "4.5"
-msgstr ""
+msgstr "4.5"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:141
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:410
@@ -1445,1068 +1531,1085 @@ msgstr ""
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:493
 #: ../ocm-gtk/gtk-gui/ocmgtk.DeLormeWidget.cs:121
 msgid "5"
-msgstr ""
+msgstr "5"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:171
 msgid "Adventure Maze"
-msgstr ""
+msgstr "Adventure Maze"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:185
 msgid "A.P.E."
-msgstr ""
+msgstr "A.P.E."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:197
 msgid "CITO"
-msgstr ""
+msgstr "CITO"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:249
 msgid "Locationless"
-msgstr ""
+msgstr "Locationless"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:277
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:265
 msgid "Multi-Cache"
-msgstr ""
+msgstr "Multina"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:289
 msgid "Traditional"
-msgstr ""
+msgstr "Tradicionálka"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:299
 msgid "Unknown"
-msgstr ""
+msgstr "Neznámá"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:311
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:152
 msgid "Virtual"
-msgstr ""
+msgstr "Virtuálka"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:323
 msgid "Webcam"
-msgstr ""
+msgstr "Webcam"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:337
 msgid "Wherigo"
-msgstr ""
+msgstr "Wherigo"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:351
 msgid "<b>Cache Types</b>"
-msgstr ""
+msgstr "<b>Typy keší</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:361
 msgid "Selected Cache Types"
-msgstr ""
+msgstr "Vybrané typy keší"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:377
 msgid "Terrain"
-msgstr ""
+msgstr "Terén"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMSplash.cs:45
 msgid "OCMSplash"
-msgstr ""
+msgstr "OCMSplash"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMSplash.cs:144
 msgid "Includes:"
-msgstr ""
+msgstr "Načítám:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:41
 msgid "Advanced Filters..."
-msgstr ""
+msgstr "Rozšířené filtry"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:61
 msgid "Difficulty/Type"
-msgstr ""
+msgstr "Obtížnost/typ"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:75
 msgid "Container/Description/Placed By"
-msgstr ""
+msgstr "Schránka/Popis/Založil"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:95
 msgid "Dates/Location"
-msgstr ""
+msgstr "Datum/Umístění"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:109
 msgid "Notes/Children"
-msgstr ""
+msgstr "Poznámky/Children"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:65
 msgid "Any Container"
-msgstr ""
+msgstr "Jakákoliv schránka"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:92
 msgid "Large"
-msgstr ""
+msgstr "Velká"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:104
 msgid "Micro"
-msgstr ""
+msgstr "Mikro"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:114
 msgid "Not Chosen"
-msgstr ""
+msgstr "Nevybráno"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:128
 msgid "Regular"
-msgstr ""
+msgstr "Obvyklá"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:140
 msgid "Small"
-msgstr ""
+msgstr "Malá"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:166
 msgid "<b>Container Types</b>"
-msgstr ""
+msgstr "<b>Typy schránek</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:179
 msgid "Description Keywords:"
-msgstr ""
+msgstr "Klíčové slovo:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:204
 msgid "Placed by anyone"
-msgstr ""
+msgstr "Založeno kýmkoliv"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:217
 msgid "Placed by:"
-msgstr ""
+msgstr "Založil:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:245
 msgid "Placed by me"
-msgstr ""
+msgstr "Založeno mnou"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:258
 msgid "Selected Container Types"
-msgstr ""
+msgstr "Vyberte typ schránky"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:41
 msgid "GPS Configuration..."
-msgstr ""
+msgstr "Konfigurace GPS..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:67
 msgid "Garmin GPX (Colorado/Oregon/Dakota/Nuvi/Map62)"
-msgstr ""
+msgstr "Garmin GPX (Colorado/Oregon/Dakota/Nuvi/Map62)"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:68
 msgid "Garmin USB (eTrex/GPSMap60/StreetPiot)"
-msgstr ""
+msgstr "Garmin USB (eTrex/GPSMap60/StreetPilot)"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:69
 msgid "Garmin Serial (original eTrex/eTrex H/Gecko)"
-msgstr ""
+msgstr "Garmin Serial (original eTrex/eTrex H/Gecko)"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:70
-msgid "DeLorme USB (PN-20/PN-30/PN-40)"
+msgid "Garmin Edge (605/705)"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:71
+msgid "DeLorme USB (PN-20/PN-30/PN-40)"
+msgstr "DeLorme USB (PN-20/PN-30/PN-40)"
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:72
 msgid "Other GPS"
-msgstr ""
+msgstr "Ostatní GPS"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:95
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:96
 msgid "Select a GPS Type:"
-msgstr ""
+msgstr "Vyberte typ GPS:"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:104
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:105
 msgid "Device"
-msgstr ""
+msgstr "Zařízení"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:117
+#: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:118
 msgid "Waypoint Symbols"
-msgstr ""
+msgstr "Symboly Waypointů"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPXWidget.cs:61
-#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:78
 msgid "Ignore User Defined Geocache Symbols"
-msgstr ""
+msgstr "Ignorovat uživatelsky definované symboly keší"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPXWidget.cs:75
-#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:153
 msgid "Ignore User Defined Waypoint Symbols"
-msgstr ""
+msgstr "Ignorovat uživatelsky definované symboly waypointů"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPXWidget.cs:88
 #: ../ocm-gtk/gtk-gui/ocmgtk.MagellanExploristWidget.cs:51
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:109
 msgid "Limit Number of Caches"
-msgstr ""
+msgstr "Limit počtu keší"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPXWidget.cs:111
 #: ../ocm-gtk/gtk-gui/ocmgtk.DeLormeWidget.cs:108
 msgid "Limit Number of Logs"
-msgstr ""
+msgstr "Limit počtu logů"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPXWidget.cs:146
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminEdgeWidget.cs:120
 msgid "GPX Output File:"
-msgstr ""
+msgstr "Výstupní soubor GPX:"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:60
-#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:137
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:56
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:118
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:70
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:133
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:104
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminEdgeWidget.cs:49
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminEdgeWidget.cs:154
 msgid "Cache Name"
-msgstr ""
+msgstr "Jméno keše"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:61
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:57
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:71
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminEdgeWidget.cs:50
 msgid "Cache Code/Size/Hint"
-msgstr ""
+msgstr "Kód keše/Velikost/Hint"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:62
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:58
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:72
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminEdgeWidget.cs:51
 msgid "Cache Code/Size/Type"
-msgstr ""
+msgstr "Kód keše/Velikost/Typ"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:92
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:73
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:87
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:59
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminEdgeWidget.cs:98
 msgid "Waypoint Name Format:"
-msgstr ""
+msgstr "Formát jména Waypointu:"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:103
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:84
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:98
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminEdgeWidget.cs:109
 msgid "Waypoint Description Format:"
-msgstr ""
+msgstr "Formát popisu Waypointu:"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:114
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:95
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:81
 #: ../ocm-gtk/gtk-gui/ocmgtk.DeLormeWidget.cs:84
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminEdgeWidget.cs:131
 msgid "Limit Number of Geocaches"
-msgstr ""
+msgstr "Limit počtu keší"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:136
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:117
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:132
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:103
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminEdgeWidget.cs:153
 msgid "Cache Code"
-msgstr ""
+msgstr "Kód keše"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:189
+#: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:155
 msgid ""
 "<b>Important:</b>  You may need to configure non-root access to\n"
 "USB to allow OCM to write to your Garmin Device. See:\n"
 "<span fgcolor=\"blue\">http://www.gpsbabel.org/os/Linux_Hotplug.html</span>"
 msgstr ""
+"<b>Důležité:</b>  Možná bude potřeba nakonfigurovat ne-rootovský přístupk\n"
+"USB, aby OCM mohl zapisovat do vaší Garmin navigace . Více na:\n"
+"<span fgcolor=\"blue\">http://www.gpsbabel.org/os/Linux_Hotplug.html</span>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SendWaypointsDialog.cs:32
 msgid "Sending Caches..."
-msgstr ""
+msgstr "Odesílám keše..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SendWaypointsDialog.cs:50
 msgid "<big><b>Sending Caches To GPS</b></big>"
-msgstr ""
+msgstr "<big><b>Posílám keše do GPS</b></big>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SendWaypointsDialog.cs:106
 msgid "Close"
-msgstr ""
+msgstr "Zavřít"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.MagellanExploristWidget.cs:81
 msgid "Serial Port or File:"
-msgstr ""
+msgstr "Sériový port nebo soubor:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:134
 msgid "Shot Cache Code"
-msgstr ""
+msgstr "Krátký kód keše"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:166
 msgid ""
 "Read the GPSBabel Documentation to choose the right values for these fields "
 "<span fgcolor=\"blue\">http://www.gpsbabel.org/readme.html</span>"
 msgstr ""
+"Abyste vybrali správné hodnoty pro tato pole, přečtěte si dokumentaci "
+"programu GPSBabel<span fgcolor=\"blue\">http://www.gpsbabel.org/readme.html</"
+"span>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:184
 msgid "Output Format:"
-msgstr ""
+msgstr "Výstupní formát:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:213
 msgid "Output FIle:"
-msgstr ""
+msgstr "Výstupní soubor:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:66
 msgid "Country"
-msgstr ""
+msgstr "Země"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:111
 msgid "Last found by you"
-msgstr ""
+msgstr "Naposledy mnou nalezené"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:119
 msgid "on:"
-msgstr ""
+msgstr "v:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:120
 msgid "on or after:"
-msgstr ""
+msgstr "v nebo po:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:121
 msgid "on or before:"
-msgstr ""
+msgstr "v nebo před:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:148
 msgid "Last updated on or after:"
-msgstr ""
+msgstr "Naposledy aktualizováno v nebo po:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:174
 msgid "Last updated on or before:"
-msgstr ""
+msgstr "Naposledy aktualizováno v nebo před:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:200
 msgid "Placed on or after:"
-msgstr ""
+msgstr "Založeno v nebo po:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:222
 msgid "Placed on or before:"
-msgstr ""
+msgstr "Založeno v nebo před:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:248
 msgid "State/Province"
-msgstr ""
+msgstr "Stát/Provincie"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ChangeHistory.cs:25
 msgid "Change History..."
-msgstr ""
+msgstr "Historie změn..."
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:82
+#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:81
 msgid "_Save"
-msgstr ""
+msgstr "_Uložit"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.AddBookMarkDialog.cs:29
 msgid "Create Bookmark List..."
-msgstr ""
+msgstr "Vytvořit seznam záložek..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DeleteBookmark.cs:29
 msgid "Delete Bookmark List..."
-msgstr ""
+msgstr "Smazat seznam záložek..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DeleteBookmark.cs:43
 msgid "Bookmark List:"
-msgstr ""
+msgstr "Seznam záložek:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:113
 msgid "Add/Modify Geocache..."
-msgstr ""
+msgstr "Přidat/Upravit keše..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:163
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:174
 msgid "URL Name:"
-msgstr ""
+msgstr "URL jméno:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:220
 msgid "Cache Type:"
-msgstr ""
+msgstr "Typ keše:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:231
 msgid "Cache Code:"
-msgstr ""
+msgstr "Kód keše:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:262
 msgid "Generic"
-msgstr ""
+msgstr "Obecný"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:266
 msgid "Earthcache"
-msgstr ""
+msgstr "Earthcache"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:267
 msgid "Eventcache"
-msgstr ""
+msgstr "Eventcache"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:269
 msgid "Project A.P.E Cache"
-msgstr ""
+msgstr "Project A.P.E Cache"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:270
 msgid "GPS Adventures Exhibit"
-msgstr ""
+msgstr "GPS Adventures Exhibit"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:276
 msgid "Mega Event Cache"
-msgstr ""
+msgstr "Mega Event Cache"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:319
 msgid "Waypoint Properties"
-msgstr ""
+msgstr "Vlastnosti Waypointu"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:405
 msgid "Cache Name:"
-msgstr ""
+msgstr "Jméno keše:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:414
 msgid "Difficulty:"
-msgstr ""
+msgstr "Obtížnost:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:425
 msgid "Terrain:"
-msgstr ""
+msgstr "Terén:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:438
 msgid "Short Description:"
-msgstr ""
+msgstr "Krátký popis:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:451
 msgid "Long Description:"
-msgstr ""
+msgstr "Popis:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:464
 msgid "Hint:"
-msgstr ""
+msgstr "Hint:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:510
 msgid "Cache Details"
-msgstr ""
+msgstr "Detaily keše:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:536
 msgid "Owner:"
-msgstr ""
+msgstr "Vlastník:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:545
 msgid "Owner ID:"
-msgstr ""
+msgstr "ID vlastníka:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:556
 msgid "Placed By:"
-msgstr ""
+msgstr "Založil:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:567
 msgid "Cache ID:"
-msgstr ""
+msgstr "ID keše:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:617
 msgid "Other Properties"
-msgstr ""
+msgstr "Ostatní vlastnosti"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.NoDBDialog.cs:31
 msgid "Error"
-msgstr ""
+msgstr "Chyba"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.NoDBDialog.cs:54
 msgid "Unable to open database"
-msgstr ""
+msgstr "Nemohu otevřít databázi"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.NoDBDialog.cs:77
 msgid "New Database..."
-msgstr ""
+msgstr "Nová databáze..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.NoDBDialog.cs:98
 msgid "Quit"
-msgstr ""
+msgstr "Ukončit"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSDConfig.cs:62
 msgid "Poll Interval:"
-msgstr ""
+msgstr "Interval zjišťování:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSDConfig.cs:72
 msgid "seconds"
-msgstr ""
+msgstr "sekund"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSDConfig.cs:85
 msgid "30"
-msgstr ""
+msgstr "30"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSDConfig.cs:99
 msgid "Continuously Recenter Map"
-msgstr ""
+msgstr "Nepřetržitě centrovat mapu"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSDConfig.cs:114
 msgid "Enable On Startup"
-msgstr ""
+msgstr "Povolit při startu"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:34
 msgid "label4"
-msgstr ""
+msgstr "label4"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:44
 msgid "Geocache Found"
-msgstr ""
+msgstr "Keška nalezena"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:45
 msgid "Flag, Red"
-msgstr ""
+msgstr "Flag, Red"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:46
 msgid "Flag, Blue"
-msgstr ""
+msgstr "Flag, Blue"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:47
 msgid "Flag, Green"
-msgstr ""
+msgstr "Flag, Green"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:48
 msgid "Pin, Red"
-msgstr ""
+msgstr "Pin, Red"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:49
 msgid "Pin, Blue"
-msgstr ""
+msgstr "Pin, Blue"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:50
 msgid "Pin, Green"
-msgstr ""
+msgstr "Pin, Green"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:51
 msgid "Block, Red"
-msgstr ""
+msgstr "Block, Red"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:52
 msgid "Block, Blue"
-msgstr ""
+msgstr "Block, Blue"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:53
 msgid "Block, Green"
-msgstr ""
+msgstr "Block, Green"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:54
 msgid "Custom 0"
-msgstr ""
+msgstr "Vlastní 0"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:55
 msgid "Custom 1"
-msgstr ""
+msgstr "Vlastní 1"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:56
 msgid "Custom 2"
-msgstr ""
+msgstr "Vlastní 2"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:57
 msgid "Custom 3"
-msgstr ""
+msgstr "Vlastní 3"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:58
 msgid "Custom 4"
-msgstr ""
+msgstr "Vlastní 4"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:59
 msgid "Custom 5"
-msgstr ""
+msgstr "Vlastní 5"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:60
 msgid "Custom 6"
-msgstr ""
+msgstr "Vlastní 6"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:61
 msgid "Custom 7"
-msgstr ""
+msgstr "Vlastní 7"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:62
 msgid "Custom 8"
-msgstr ""
+msgstr "Vlastní 8"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:63
 msgid "Custom 9"
-msgstr ""
+msgstr "Vlastní 9"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:64
 msgid "Custom 10"
-msgstr ""
+msgstr "Vlastní 10"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:65
 msgid "Custom 11"
-msgstr ""
+msgstr "Vlastní 11"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:66
 msgid "Custom 12"
-msgstr ""
+msgstr "Vlastní 12"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:67
 msgid "Custom 13"
-msgstr ""
+msgstr "Vlastní 13"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:68
 msgid "Custom 14"
-msgstr ""
+msgstr "Vlastní 14"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:69
 msgid "Custom 15"
-msgstr ""
+msgstr "Vlastní 15"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:70
 msgid "Custom 16"
-msgstr ""
+msgstr "Vlastní 16"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:71
 msgid "Custom 17"
-msgstr ""
+msgstr "Vlastní 17"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:72
 msgid "Custom 18"
-msgstr ""
+msgstr "Vlastní 18"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:73
 msgid "Custom 19"
-msgstr ""
+msgstr "Vlastní 19"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:74
 msgid "Custom 20"
-msgstr ""
+msgstr "Vlastní 20"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:75
 msgid "Custom 21"
-msgstr ""
+msgstr "Vlastní 21"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:76
 msgid "Custom 22"
-msgstr ""
+msgstr "Vlastní 22"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:77
 msgid "Custom 23"
-msgstr ""
+msgstr "Vlastní 23"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:78
 msgid "Custom 24"
-msgstr ""
+msgstr "Vlastní 24"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:79
 msgid "Anchor"
-msgstr ""
+msgstr "Kotva"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:80
 msgid "Bell"
-msgstr ""
+msgstr "Zvon"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:81
 msgid "Diver Down Flag 1"
-msgstr ""
+msgstr "Diver Down Flag 1"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:82
 msgid "Diver Down Flag 2"
-msgstr ""
+msgstr "Diver Down Flag 2"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:83
 msgid "Bank"
-msgstr ""
+msgstr "Banka"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:84
 msgid "Fishing Area"
-msgstr ""
+msgstr "Rybářská oblast"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:85
 msgid "Gas Station"
-msgstr ""
+msgstr "Plynová stanice"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:86
 msgid "Horn"
-msgstr ""
+msgstr "Horn"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:87
 msgid "Residence"
-msgstr ""
+msgstr "Sídlo"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:88
 msgid "Restaurant"
-msgstr ""
+msgstr "Restaurace"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:89
 msgid "Light"
-msgstr ""
+msgstr "Světlo"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:90
 msgid "Bar"
-msgstr ""
+msgstr "Bar"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:91
 msgid "Skull and Crossbones"
-msgstr ""
+msgstr "Lebka a skřížené hnáty"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:92
 msgid "Buoy, White"
-msgstr ""
+msgstr "Buoy, White"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:93
 msgid "Shipwreck"
-msgstr ""
+msgstr "Shipwreck"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:94
 msgid "Man Overboard"
-msgstr ""
+msgstr "Man Overboard"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:95
 msgid "Navaid, Amber"
-msgstr ""
+msgstr "Navaid, Amber"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:96
 msgid "Navaid, Black"
-msgstr ""
+msgstr "Navaid, Black"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:97
 msgid "Navaid, Blue"
-msgstr ""
+msgstr "Navaid, Blue"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:98
 msgid "Navaid, Green"
-msgstr ""
+msgstr "Navaid, Green"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:99
 msgid "Navaid, Orange"
-msgstr ""
+msgstr "Navaid, Orange"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:100
 msgid "Navaid, Red"
-msgstr ""
+msgstr "Navaid, Red"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:101
 msgid "Navaid, Violet"
-msgstr ""
+msgstr "Navaid, Violet"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:102
 msgid "Navaid, White"
-msgstr ""
+msgstr "Navaid, White"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:103
 msgid "Radio Beacon"
-msgstr ""
+msgstr "Radiomaják"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:104
 msgid "Boat Ramp"
-msgstr ""
+msgstr "Boat Ramp"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:105
 msgid "Campground"
-msgstr ""
+msgstr "Campground"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:106
 msgid "Restroom"
-msgstr ""
+msgstr "Restroom"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:107
 msgid "Shower"
-msgstr ""
+msgstr "Sprcha"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:108
 msgid "Drinking Water"
-msgstr ""
+msgstr "Pitná voda"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:109
 msgid "Telephone"
-msgstr ""
+msgstr "Telefon"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:110
 msgid "Medical Facility"
-msgstr ""
+msgstr "Medical Facility"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:111
 msgid "Information"
-msgstr ""
+msgstr "Informace"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:113
 msgid "Park"
-msgstr ""
+msgstr "Park"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:114
 msgid "Picnic Area"
-msgstr ""
+msgstr "Picnic Area"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:115
 msgid "Scenic Area"
-msgstr ""
+msgstr "Scenic Area"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:116
 msgid "Skiing Area"
-msgstr ""
+msgstr "Skiing Area"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:117
 msgid "Swimming Area"
-msgstr ""
+msgstr "Swimming Area"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:118
 msgid "Dam"
-msgstr ""
+msgstr "Dam"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:119
 msgid "Controlled Area"
-msgstr ""
+msgstr "Controlled Area"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:120
 msgid "Danger Area"
-msgstr ""
+msgstr "Nebezpečná oblast"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:121
 msgid "Restricted Area"
-msgstr ""
+msgstr "Zakázaná oblast"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:122
 msgid "Ball Park"
-msgstr ""
+msgstr "Ball Park"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:123
 msgid "Car"
-msgstr ""
+msgstr "Auto"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:124
 msgid "Shopping Center"
-msgstr ""
+msgstr "Nákupní centrum"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:125
 msgid "Lodging"
-msgstr ""
+msgstr "Lodging"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:127
 msgid "Trail Head"
-msgstr ""
+msgstr "Trail Head"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:128
 msgid "Truck Stop"
-msgstr ""
+msgstr "Truck Stop"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:129
 msgid "Golf Course"
-msgstr ""
+msgstr "Golfové hřiště"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:130
 msgid "City (Small)"
-msgstr ""
+msgstr "Město (malé)"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:131
 msgid "City (Medium)"
-msgstr ""
+msgstr "Město (střední)"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:132
 msgid "City (Large)"
-msgstr ""
+msgstr "Město (velké)"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:133
 msgid "Amusement Park"
-msgstr ""
+msgstr "Amusement Park"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:134
 msgid "Bowling"
-msgstr ""
+msgstr "Bowling"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:135
 msgid "Car Rental"
-msgstr ""
+msgstr "Půjčovna aut"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:136
 msgid "Car Repair"
-msgstr ""
+msgstr "Autoservis"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:137
 msgid "Fast Food"
-msgstr ""
+msgstr "Rychlé občerstvení"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:138
 msgid "Fitness Center"
-msgstr ""
+msgstr "Fitness centrum"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:139
 msgid "Movie Theater"
-msgstr ""
+msgstr "Kino"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:140
 msgid "Museum"
-msgstr ""
+msgstr "Museum"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:141
 msgid "Pharmacy"
-msgstr ""
+msgstr "Lékárna"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:142
 msgid "Pizza"
-msgstr ""
+msgstr "Pizza"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:143
 msgid "Post Office"
-msgstr ""
+msgstr "Pošta"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:144
 msgid "RV Park"
-msgstr ""
+msgstr "RV Park"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:145
 msgid "School"
-msgstr ""
+msgstr "Škola"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:146
 msgid "Stadium"
-msgstr ""
+msgstr "Stadion"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:147
 msgid "Department Store"
-msgstr ""
+msgstr "Department Store"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:148
 msgid "Zoo"
-msgstr ""
+msgstr "Zoo"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:149
 msgid "Convenience Store"
-msgstr ""
+msgstr "Convenience Store"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:150
 msgid "Live Theater"
-msgstr ""
+msgstr "Divadlo"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:151
 msgid "Scales"
-msgstr ""
+msgstr "Scales"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:152
 msgid "Toll Booth"
-msgstr ""
+msgstr "Toll Booth"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:153
 msgid "Bridge"
-msgstr ""
+msgstr "Most"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:154
 msgid "Building"
-msgstr ""
+msgstr "Budova"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:155
 msgid "Cemetery"
-msgstr ""
+msgstr "Hřbitov"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:156
 msgid "Church"
-msgstr ""
+msgstr "Kostel"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:157
 msgid "Civil"
-msgstr ""
+msgstr "Civil"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:158
 msgid "Crossing"
-msgstr ""
+msgstr "Křižovatka"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:159
 msgid "Oil Field"
-msgstr ""
+msgstr "Ropné pole"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:160
 msgid "Tunnel"
-msgstr ""
+msgstr "Tunel"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:161
 msgid "Beach"
-msgstr ""
+msgstr "Pláž"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:162
 msgid "Forest"
-msgstr ""
+msgstr "Les"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:163
 msgid "Summit"
-msgstr ""
+msgstr "Summit"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:164
 msgid "Airport"
-msgstr ""
+msgstr "Letiště"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:165
 msgid "Tall Tower"
-msgstr ""
+msgstr "Vysoká věž"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:166
 msgid "Short Tower"
-msgstr ""
+msgstr "Short Tower"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:167
 msgid "Glider Area"
-msgstr ""
+msgstr "Glider Area"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:168
 msgid "Ultralight Area"
-msgstr ""
+msgstr "Ultralight Area"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:169
 msgid "Parachute Area"
-msgstr ""
+msgstr "Parachute Area"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:170
 msgid "Bike Trail"
-msgstr ""
+msgstr "Bike Trail"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:171
 msgid "Fishing Hot Spot Facility"
-msgstr ""
+msgstr "Fishing Hot Spot Facility"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:172
 msgid "Police Station"
-msgstr ""
+msgstr "Policejní stanice"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:173
 msgid "Ski Resort"
-msgstr ""
+msgstr "Lyžařské středisko"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:174
 msgid "Ice Skating"
-msgstr ""
+msgstr "Ice Skating"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:175
 msgid "Wrecker"
-msgstr ""
+msgstr "Wrecker"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:176
 msgid "ATV"
-msgstr ""
+msgstr "ATV"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:177
 msgid "Big Game"
-msgstr ""
+msgstr "Velká hra"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:178
 msgid "Blind"
-msgstr ""
+msgstr "Blind"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:179
 msgid "Blood Trail"
-msgstr ""
+msgstr "Krvavá stopa"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:180
 msgid "Cover"
-msgstr ""
+msgstr "Cover"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:181
 msgid "Covey"
-msgstr ""
+msgstr "Covey"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:182
 msgid "Food Source"
-msgstr ""
+msgstr "Food Source"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:183
 msgid "Furbearer"
-msgstr ""
+msgstr "Furbearer"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:184
 msgid "Lodge"
-msgstr ""
+msgstr "Bouda"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:185
 msgid "Small Game"
-msgstr ""
+msgstr "Malá hra"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:186
 msgid "Animal Tracks"
-msgstr ""
+msgstr "Zvířecí stezky"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:187
 msgid "Treed Quarry"
-msgstr ""
+msgstr "Treed Quarry"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:188
 msgid "Tree Stand"
-msgstr ""
+msgstr "Posed"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:189
 msgid "Truck"
-msgstr ""
+msgstr "Kamion"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:190
 msgid "Upland Game"
-msgstr ""
+msgstr "Upland game"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:191
 msgid "Waterfowl"
-msgstr ""
+msgstr "Vodní ptactvo?"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:192
 msgid "Water Source"
-msgstr ""
+msgstr "Vodní zdroj"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ProcessLogs.cs:63
 msgid "GtkButton"
-msgstr ""
+msgstr "GtkTlačítko"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage4.cs:29
 msgid ""
@@ -2521,166 +2624,209 @@ msgid ""
 "\n"
 "Visit the OCM wiki for help and how to guides by click on Help>OCM Wiki...\n"
 msgstr ""
+"OCM je nyní připraveno. Klikněte na Zavřít k ukončení průvodce a začněte "
+"používat OCM.\n"
+"\n"
+"Budete potřebovat GPX nebo LOC soubor k naplnění databáze keškami. Na "
+"stránkách Geocaching.com můžete, pokud máte prémiový účet, vytvořit GPX PQ "
+"soubor. Pro Terraching, jděte do \"Seznam nedokončených\" na Terracaching."
+"com. Pro Navicache, použijte rozšířené hledání a stáhněte keše z \"Mé "
+"NaviCache\".  Linky na všechny uvedené odkazy najdete pod Web menu.\n"
+"\n"
+"Navštivte OCM wiki kliknutím na Help>OCM Wiki pro další pomoc a online "
+"příručku...\n"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CopyMoveDialog.cs:29
 msgid "Copy/Move"
-msgstr ""
+msgstr "Kopírovat/Přesunout"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CopyMoveDialog.cs:43
 msgid "Target Database:"
-msgstr ""
+msgstr "Cílová databáze:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CopyMoveDialog.cs:50
 msgid "Select A File"
-msgstr ""
+msgstr "Vybrat soubor"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CopyingProgress.cs:37
 msgid "Copy Geocaches..."
-msgstr ""
+msgstr "Kopírovat keše..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CopyingProgress.cs:49
 msgid "<big><b>Copying Geocaches</b></big>"
-msgstr ""
+msgstr "<big><b>Kopíruji keše</b></big>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CopyingProgress.cs:67
 msgid "<b>Target:</b>"
-msgstr ""
+msgstr "<b>Cíl:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CopyingProgress.cs:91
 msgid "0%"
-msgstr ""
+msgstr "0%"
 
 #: ../ocm-gtk/Dialogs/ScanWaypointsDialog.cs:32
 msgid ""
 "OCM found {0} waypoints in the cache description. You can add them all "
 "automatically, or review the matches one by one."
 msgstr ""
+"OCM nalezl {0} waypointů v popisu keše. Můžete je všechny přidat "
+"automaticky, nebo prohlédnout jeden po druhém."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:27
 msgid "Grab Waypoints..."
-msgstr ""
+msgstr "Grabnout waipointy..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:42
 msgid ""
 "OCM found {0} waypoints in the cache description. You can add them all "
 "automatically, or review the matches one by one. "
 msgstr ""
+"OCM nalezl {0} waypointů v popisu keše. Můžete je všechny přidat "
+"automaticky, nebo prohlédnout jeden po druhém."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:73
 msgid "_Add All"
-msgstr ""
+msgstr "Př_idat vše"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ScanWaypointsDialog.cs:85
 msgid "_Review"
-msgstr ""
+msgstr "_Zobrazit"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:44
 msgid "/dev/tty0"
-msgstr ""
+msgstr "/dev/tty0"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:70
 msgid "Serial Port:"
-msgstr ""
+msgstr "Sériový port:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:93
 msgid "500"
-msgstr ""
+msgstr "500"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminSerialWidget.cs:105
 msgid "Short Cache Code"
-msgstr ""
+msgstr "Krátký kód keše"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:101
 msgid "Coordinate:"
-msgstr ""
+msgstr "Souřadnice:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:111
 msgid "Source:"
-msgstr ""
+msgstr "Zdroj:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointWidget.cs:133
 msgid "Type:"
-msgstr ""
+msgstr "Typ:"
 
 #: ../ocm-gtk/Dialogs/ReviewWaypointDialog.cs:35
 #: ../ocm-gtk/Dialogs/ReviewWaypointDialog.cs:56
 msgid "Reviewing Waypoint {0} of {1}"
-msgstr ""
+msgstr "Prohlížím Waypointy {0} z {1}"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointDialog.cs:28
 msgid "Review Waypoint (0 of 0)"
-msgstr ""
+msgstr "Prohlédnout Waypointy (0 z 0)"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ReviewWaypointDialog.cs:67
 msgid "_Skip"
-msgstr ""
+msgstr "_Přeskočit"
 
 #: ../ocm-gtk/Dialogs/ConfigureEToolsDlg.cs:41
 msgid "Exec"
-msgstr ""
+msgstr "Program"
 
 #: ../ocm-gtk/Dialogs/ConfigureEToolsDlg.cs:116
 msgid "Are you sure you wish to delete '{0}'"
-msgstr ""
+msgstr "Jste si jist, že chcete smazat '{0}'"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ConfigureEToolsDlg.cs:35
 msgid "External Tools..."
-msgstr ""
+msgstr "Externí nástroje..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ConfigureEToolsDlg.cs:72
 msgid "Add"
-msgstr ""
+msgstr "Přidat"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ConfigureEToolsDlg.cs:83
 msgid "Edit"
-msgstr ""
+msgstr "Editovat"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ConfigureEToolsDlg.cs:95
 msgid "Delete"
-msgstr ""
+msgstr "Smazat"
 
 #: ../ocm-gtk/ExternalTool.cs:61 ../ocm-gtk/ExternalTool.cs:76
 msgid "Preparing GPX File"
-msgstr ""
+msgstr "Připravuji soubor GPX"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:61
 msgid "Has at least one child of type:"
-msgstr ""
+msgstr "Má nejméně jeden typ chldren:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:73
 msgid "Does not have any children of type:"
-msgstr ""
+msgstr "Nemá žádný typ children:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:85
 msgid "Has Notes"
-msgstr ""
+msgstr "Má poznámku"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DeLormeWidget.cs:64
 msgid "<b>Important:</b>DeLorme USB format is only available in GPSBabel 1.4"
-msgstr ""
+msgstr "<b>Důležité:</b>DeLorme USB formát je dostupný pouze v GPSBabel 1.4"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DeLormeWidget.cs:96
 msgid "1000"
-msgstr ""
+msgstr "1000"
 
 #: ../ocm-gtk/Dialogs/AddCommandDialog.cs:55
 msgid "Choose Executable or Script"
-msgstr ""
+msgstr "Vyberte spustitelný skript"
 
 #: ../ocm-gtk/Dialogs/AddCommandDialog.cs:57
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.AddCommandDialog.cs:43
 msgid "Add External Tool"
-msgstr ""
+msgstr "Přidat externí nástroj"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.AddCommandDialog.cs:111
 msgid ""
 "You can use %gpx% to have OCM send a GPX file to the external program. You "
 "may also use %finds% to generate a Geocaching.com \"My Finds\" style GPX. "
 msgstr ""
+"Můžete použít %gpx% aby OCM odeslal GPX soubor externímu programu. Také "
+"můžete použít %finds% k vygenerování GPX ve stylu Geocaching.com \"Mé nálezy"
+"\"."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.AddCommandDialog.cs:138
 msgid "Exec Path:"
-msgstr ""
+msgstr "Cesta k programu"
+
+#: ../ocm-gtk/printing/CachePrinter.cs:136
+#, fuzzy
+msgid "<b>Short Description:</b>"
+msgstr "Krátký popis:"
+
+#: ../ocm-gtk/printing/CachePrinter.cs:141
+#, fuzzy
+msgid "<b>Long Description:</b>"
+msgstr "Popis:"
+
+#: ../ocm-gtk/printing/CachePrinter.cs:147
+#, fuzzy
+msgid "<b>Notes:</b>"
+msgstr "<b>Soubor:</b>"
+
+#: ../ocm-gtk/printing/CachePrinter.cs:154
+#, fuzzy
+msgid "<b>Hint:</b>"
+msgstr "<b>Hint</b>"
+
+#: ../ocm-gtk/printing/CachePrinter.cs:242
+#, fuzzy
+msgid "Page {0} of {1}"
+msgstr "N {0}° {1}"

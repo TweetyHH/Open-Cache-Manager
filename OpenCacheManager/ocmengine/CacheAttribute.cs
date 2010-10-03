@@ -15,17 +15,38 @@
 
 using System;
 
-namespace ocmgtk
+namespace ocmengine
 {
 
 
-	public interface IGPSConfig
+	public class CacheAttribute
 	{
-		int GetCacheLimit();
-		string GetOutputFile();
-		string GetBabelFormat();
-		int GetLogLimit();
-		ocmengine.WaypointNameMode GetNameMode();
-		ocmengine.WaypointDescMode GetDescMode();
+	
+		string m_ID;
+		bool m_include;
+		string m_value;
+		
+		public string ID
+		{
+			get { return m_ID;}
+			set { m_ID = value;}
+		}
+		
+		public bool Include
+		{
+			get { return m_include;}
+			set { m_include = value;}
+		}
+		
+		public string AttrValue
+		{
+			get { return m_value;}
+			set { m_value = value;}
+		}
+		
+		
+		public CacheAttribute ()
+		{
+		}
 	}
 }

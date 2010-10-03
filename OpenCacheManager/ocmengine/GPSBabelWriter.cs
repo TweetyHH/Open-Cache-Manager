@@ -71,8 +71,18 @@ namespace ocmengine
 			writer.DescriptionMode = m_descMode;
 			writer.Limit = m_Limit;
 			writer.LogLimit = m_LogLimit;
+			writer.IncludeChildWaypoints = true;
 			if (m_format == "OCM_GPX") {
-				WriteFullGPX (cacheList, waypointmappings);
+				writer.GarminHTML = true;
+				WriteGPXFile (cacheList, waypointmappings);
+				return;
+			}
+			
+			if (m_format == "edge")
+			{
+				writer.UseOCMPtTypes = true;
+				writer.IncludeGroundSpeakExtensions = false;
+				WriteGPXFile (cacheList, waypointmappings);
 				return;
 			}
 			
@@ -105,10 +115,8 @@ namespace ocmengine
 			this.Complete (this, new WriteEventArgs ("Complete"));
 		}
 		
-		private void WriteFullGPX (List<Geocache> cacheList, Dictionary<string,string> waypointmappings)
+		private void WriteGPXFile (List<Geocache> cacheList, Dictionary<string,string> waypointmappings)
 		{
-			writer.IncludeGroundSpeakExtensions = true;
-			writer.UseOCMPtTypes = true;
 			writer.Complete += HandleWriterComplete;
 			writer.WriteWaypoint += HandleWriterWriteWaypoint;
 			writer.WriteGPXFile (m_file, cacheList, waypointmappings);

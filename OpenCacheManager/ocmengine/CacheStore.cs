@@ -409,6 +409,9 @@ namespace ocmengine
 				log.FinderID = rdr.GetString(4);
 				String encoded = rdr.GetString(5);
 				log.Encoded = Boolean.Parse(encoded);
+				object logid = rdr.GetValue(6);
+				if (logid is string)
+					log.LogID = logid as string;
 					
 			}
 			CloseConnection(ref rdr, ref command, ref conn);
@@ -626,7 +629,9 @@ namespace ocmengine
 		public void AddLog(String cachename, CacheLog log)
 		{
 			IDbCommand cmd = m_conn.CreateCommand();
-			cmd.CommandText = String.Format(ADD_LOG, cachename, log.LogDate.ToString("o"), SQLEscape(log.LoggedBy), SQLEscape(log.LogMessage), SQLEscape(log.LogStatus), log.FinderID, log.Encoded.ToString());
+			cmd.CommandText = String.Format(ADD_LOG, cachename, log.LogDate.ToString("o"), SQLEscape(log.LoggedBy),
+			                                SQLEscape(log.LogMessage), SQLEscape(log.LogStatus), log.FinderID, 
+			                                log.Encoded.ToString(), log.LogID);
 			cmd.ExecuteNonQuery();
 			cmd.Dispose();
 			cmd = null;
@@ -692,6 +697,9 @@ namespace ocmengine
 				log.FinderID = rdr.GetString(4);
 				String encoded = rdr.GetString(5);
 				log.Encoded = Boolean.Parse(encoded);
+				object val = rdr.GetValue(6);
+				if (val is string)
+					log.LogID = val as string;
 				logs.Add(log);
 			}
 			CloseConnection(ref rdr, ref cmd, ref conn);
@@ -719,6 +727,44 @@ namespace ocmengine
 			return bugs;			
 		}
 		
+		public void ClearAttributes(String cachename)
+		{
+			IDbCommand cmd = m_conn.CreateCommand();
+			cmd.CommandText = String.Format(DELETE_ATTRIBUTES, cachename);
+			cmd.ExecuteNonQuery();
+			cmd.Dispose();
+			cmd = null;
+		}
+		
+		public void AddAttribute(CacheAttribute attr, String name)
+		{
+			IDbCommand cmd = m_conn.CreateCommand();
+			cmd.CommandText = String.Format(ADD_ATTRIBUTE, name, attr.ID, attr.Include.ToString(), attr.AttrValue);
+			cmd.ExecuteNonQuery();
+			cmd.Dispose();
+			cmd = null;
+		}
+		
+		public List<CacheAttribute> GetAttributes(String name)
+		{
+			List<CacheAttribute> list = new List<CacheAttribute>();
+			IDbConnection conn = OpenConnection();
+			IDbCommand cmd = conn.CreateCommand();	
+			cmd.CommandText = String.Format(GET_ATTRIBUTES, name);
+			IDataReader rdr = cmd.ExecuteReader();
+			while (rdr.Read())
+			{
+				CacheAttribute attr = new CacheAttribute();
+				attr.ID = rdr.GetString(0);
+				string val = rdr.GetString(1);
+				attr.Include = bool.Parse(val);
+				attr.AttrValue = rdr.GetString(2);
+				list.Add(attr);
+			}
+			CloseConnection(ref rdr, ref cmd, ref conn);
+			return list;
+		}
+		
 		private static String SQLEscape(String unescapedString)
 		{
 			return unescapedString.Replace("'", "''");
@@ -737,7 +783,7 @@ namespace ocmengine
 			{
 				int ver =0;
 				ver = GetDBVersion ();
-				if (ver < 2)
+				if (ver < 3)
 					return true;
 				return false;
 			}
@@ -767,13 +813,19 @@ namespace ocmengine
 			}
 			cmd.CommandText = CLEAR_DB_VER;
 			cmd.ExecuteNonQuery();
-			cmd.CommandText = UPGRADE_GEOCACHE_V1_V2;
+			if (ver == 1)
+			{
+				cmd.CommandText = UPGRADE_GEOCACHE_V1_V2;
+				cmd.ExecuteNonQuery();
+			}
+			cmd.CommandText = UPGRADE_GEOCACHE_V2_V3;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = CREATE_ATTRS_TABLE;
 			cmd.ExecuteNonQuery();
 			cmd.CommandText = SET_DB_VER;
 			cmd.ExecuteNonQuery();
 			cmd.Dispose();
 			conn.Close();
-		//	ScanLogs();
 		}
 		
 		public void Compact()
@@ -822,6 +874,8 @@ namespace ocmengine
 			cmd.CommandText = CREATE_TABLE_BMRK;
 			cmd.ExecuteNonQuery();
 			cmd.CommandText = CREATE_TABLE_BMRK_CACHES;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = CREATE_ATTRS_TABLE;
 			cmd.ExecuteNonQuery();
 			cmd.CommandText = CREATE_DB_VER;
 			cmd.ExecuteNonQuery();

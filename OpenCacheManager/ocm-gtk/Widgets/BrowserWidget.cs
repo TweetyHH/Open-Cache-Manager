@@ -52,7 +52,8 @@ namespace ocmgtk
 
 		void HandleM_browserLoadProgressChanged (object o, LoadProgressChangedArgs args)
 		{	
-				m_monitor.SetProgress(args.Progress, 100, String.Format(Catalog.GetString("Loading Map {0}"), ((double)args.Progress/(double)100).ToString("0%")));
+				m_monitor.SetProgress(args.Progress, 100, String.Format(Catalog.GetString("Loading Map {0}"), 
+			                                                        ((double)args.Progress/(double)100).ToString("0%")));
 		
 		}
 
@@ -97,6 +98,7 @@ namespace ocmgtk
 			if (loaded)
 				m_view.ExecuteScript(script);
 			else
-				pending_actions.Add(script);		}
+				pending_actions.Add(script);
+		}
 	}
 }

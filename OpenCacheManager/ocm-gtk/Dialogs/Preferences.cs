@@ -138,6 +138,18 @@ namespace ocmgtk
 			}
 		}
 		
+		public bool CheckForUpdates
+		{
+			get { return updateCheck.Active;}
+			set { updateCheck.Active = value;}
+		}
+		
+		public int UpdateInterval
+		{
+			get { return int.Parse(updateEntry.Text);}
+			set { updateEntry.Text = value.ToString();}
+		}
+		
 		
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
@@ -147,6 +159,12 @@ namespace ocmgtk
 		{
 			this.Hide();
 		}
+		
+		protected virtual void OnUpdateCheckToggle (object sender, System.EventArgs e)
+		{
+			updateEntry.Sensitive = updateCheck.Active;
+		}
+		
 		
 		
 	}

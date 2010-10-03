@@ -76,8 +76,8 @@ namespace ocmgtk
 		{
 			try
 			{
-				int degrees = int.Parse(degreeEntry.Text);
-				double minutes = double.Parse(minuteEntry.Text);
+				int degrees = int.Parse(degreeEntry.Text, CultureInfo.InvariantCulture);
+				double minutes = double.Parse(minuteEntry.Text, CultureInfo.InvariantCulture);
 				
 				if (degrees < 0 || minutes < 0)
 					throw new Exception();

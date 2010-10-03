@@ -25,6 +25,7 @@ namespace ocmengine
 		string m_logmessage;
 		string m_status;
 		string m_finder_id;
+		string m_logID = null;
 		bool m_encoded;
 		
 		public DateTime LogDate
@@ -38,7 +39,6 @@ namespace ocmengine
 			get { return m_logged_by;}
 			set { m_logged_by = value;}
 		}
-		
 		
 		
 		public string LogMessage
@@ -57,6 +57,12 @@ namespace ocmengine
 		{
 			get { return m_finder_id;}
 			set { m_finder_id = value;}
+		}
+		
+		public string LogID
+		{
+			get { return m_logID;}
+			set { m_logID = value;}
 		}
 		
 		public bool Encoded
@@ -89,8 +95,13 @@ namespace ocmengine
 		{
 			writer.WriteStartElement(LOG_PREFIX,"log", GPXWriter.NS_CACHE);
 			Random rand = new Random();
-			rand.Next(50000);
-			writer.WriteAttributeString("id", rand.Next(50000).ToString());
+			if (!String.IsNullOrEmpty(m_logID))
+				writer.WriteAttributeString("id", m_logID);
+			else
+			{
+				rand.Next(50000);
+				writer.WriteAttributeString("id", rand.Next(50000).ToString());
+			}
 			writer.WriteElementString(LOG_PREFIX,"date", GPXWriter.NS_CACHE, this.LogDate.ToString("o"));
 			writer.WriteElementString(LOG_PREFIX,"type", GPXWriter.NS_CACHE, this.LogStatus);
 			writer.WriteStartElement(LOG_PREFIX,"finder", GPXWriter.NS_CACHE);

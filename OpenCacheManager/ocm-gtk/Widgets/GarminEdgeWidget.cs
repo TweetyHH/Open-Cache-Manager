@@ -14,27 +14,25 @@
 //    limitations under the License.
 
 using System;
+using Gtk;
+using Mono.Unix;
 
 namespace ocmgtk
 {
 
 
 	[System.ComponentModel.ToolboxItem(true)]
-	public partial class GarminUSBWidget : Gtk.Bin, IGPSConfig
+	public partial class GarminEdgeWidget : Gtk.Bin, IGPSConfig
 	{
-		protected virtual void OnHotplugClick (object sender, System.EventArgs e)
-		{
-			System.Diagnostics.Process.Start("http://www.gpsbabel.org/os/Linux_Hotplug.html");
-		}			
 
-		public GarminUSBWidget ()
+		public GarminEdgeWidget ()
 		{
 			this.Build ();
 		}
 		
 		public string GetBabelFormat ()
 		{
-			return "garmin";
+			return "edge";
 		}
 		
 		public int GetCacheLimit ()
@@ -118,17 +116,39 @@ namespace ocmgtk
 			}
 		}
 		
+		protected virtual void OnFileClick (object sender, System.EventArgs e)
+		{
+			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Select GPX location"), null, FileChooserAction.Save, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Select"), ResponseType.Accept);
+			dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
+			dlg.CurrentName = "geocaches.gpx";
+			FileFilter filter = new FileFilter ();
+			filter.Name = "GPS Exchange Files";
+			filter.AddMimeType ("text/xml");
+			filter.AddMimeType ("application/xml");
+			filter.AddMimeType ("application/x-gpx");
+			filter.AddPattern ("*.gpx");
+			
+			dlg.AddFilter (filter);
+			
+			if (dlg.Run () == (int)ResponseType.Accept) {
+				fileEntry.Text = dlg.Filename;
+			}
+			dlg.Destroy ();
+		}
+		
+		public void SetOutputFile(String str)
+		{
+			fileEntry.Text = str;
+		}
+		
 		public string GetOutputFile ()
 		{
-			return "usb:";
+			return fileEntry.Text;
 		}
 
 		protected virtual void OnLimitToggle (object sender, System.EventArgs e)
 		{
 			limitEntry.Sensitive = limitCheck.Active;
 		}
-		
-		
-
 	}
 }

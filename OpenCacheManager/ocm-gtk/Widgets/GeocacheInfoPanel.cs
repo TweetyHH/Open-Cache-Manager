@@ -18,6 +18,8 @@ using Gtk;
 using Gdk;
 using Mono.Unix;
 using ocmengine;
+using System.Text;
+
 namespace ocmgtk
 {
 	[System.ComponentModel.ToolboxItem(true)]
@@ -79,6 +81,7 @@ namespace ocmgtk
 					distance_label.Text = String.Empty;
 					cacheTypeLabel.Text = String.Empty;
 					countryLabel.Text = String.Empty;
+					attrLabel.Markup = Catalog.GetString("None");
 					return;
 				}
 				this.Sensitive = true;
@@ -128,6 +131,28 @@ namespace ocmgtk
 				}
 				
 				setCoordinate (cache);
+				
+				List<CacheAttribute> attrs = Engine.getInstance().Store.GetAttributes(cache.Name);
+				StringBuilder bldr = new StringBuilder();
+				bool isFirst = true;
+				foreach (CacheAttribute attr in attrs)
+				{
+					if (isFirst)
+						isFirst = false;
+					else
+						bldr.Append(", ");					
+					if (!attr.Include)
+					{
+						bldr.Append("<span fgcolor='red' strikethrough='true'>");
+						bldr.Append(attr.AttrValue);
+						bldr.Append("</span>");
+					}
+					else
+					{
+						bldr.Append(attr.AttrValue);
+					}
+				}
+				attrLabel.Markup = bldr.ToString();
 			} catch (Exception e) {
 				UIMonitor.ShowException(e);
 			}

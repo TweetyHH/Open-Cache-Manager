@@ -429,78 +429,90 @@ namespace ocmengine
 		private Geocache ParseGroundSpeakCache (XmlReader reader, ref Geocache cache)
 		{
 			if (reader.LocalName == "cache")
-				{
-					string avail = reader.GetAttribute("available");
-					string arch = reader.GetAttribute("archived");
-					if (!String.IsNullOrEmpty(avail))
-						cache.Available = Boolean.Parse(avail);
-					else
-						cache.Available = true;
-					if (!String.IsNullOrEmpty(arch))
-						cache.Archived = Boolean.Parse(arch);
-					else
-						cache.Archived = false;
-					cache.CacheID = reader.GetAttribute("id");
-				}
-				else if (reader.LocalName == "name")
-				{
-					cache.CacheName = reader.ReadElementContentAsString();
-				}
-				else if (reader.LocalName == "placed_by")
-				{
-					cache.PlacedBy = reader.ReadElementContentAsString();
-				}
-				else if (reader.LocalName == "owner")
-				{
-					cache.OwnerID = reader.GetAttribute("id");
-					cache.CacheOwner = reader.ReadElementContentAsString();					
-				}
-				else if (reader.LocalName == "type")
-				{
-					ParseCacheType(reader.ReadElementContentAsString(), ref cache);
-				}
-				else if (reader.LocalName == "difficulty")
-				{
-					string diff = reader.ReadElementContentAsString();
-					cache.Difficulty = float.Parse(diff, CultureInfo.InvariantCulture);
-				}
-				else if (reader.LocalName == "terrain")
-				{
-					string terr = reader.ReadElementContentAsString();
-					cache.Terrain = float.Parse(terr, CultureInfo.InvariantCulture);
-				}
-				else if (reader.LocalName == "short_description")
-				{
-					cache.ShortDesc = reader.ReadElementContentAsString();
-				}
-				else if (reader.LocalName == "long_description")
-				{
-					cache.LongDesc = reader.ReadElementContentAsString();
-				}
-				else if (reader.LocalName == "encoded_hints")
-				{
-					cache.Hint = reader.ReadElementContentAsString();
-				}
-				else if (reader.LocalName == "container")
-				{
-					cache.Container = reader.ReadElementContentAsString();
-				}
-				else if (reader.LocalName == "logs" && !reader.IsEmptyElement)
-				{
-					parseCacheLogs(ref cache, reader);
-				}
-				else if (reader.LocalName == "travelbugs" && !reader.IsEmptyElement)
-				{
-					ParseTravelBugs(ref cache, reader);
-				}
-				else if (reader.LocalName == "country")
-				{
-					cache.Country = reader.ReadElementContentAsString();
-				}
-				else if (reader.LocalName == "state")
-				{
-					cache.State = reader.ReadElementContentAsString();
-				}
+			{
+				string avail = reader.GetAttribute("available");
+				string arch = reader.GetAttribute("archived");
+				if (!String.IsNullOrEmpty(avail))
+					cache.Available = Boolean.Parse(avail);
+				else
+					cache.Available = true;
+				if (!String.IsNullOrEmpty(arch))
+					cache.Archived = Boolean.Parse(arch);
+				else
+					cache.Archived = false;
+				cache.CacheID = reader.GetAttribute("id");
+			}
+			else if (reader.LocalName == "name")
+			{
+				cache.CacheName = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "placed_by")
+			{
+				cache.PlacedBy = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "owner")
+			{
+				cache.OwnerID = reader.GetAttribute("id");
+				cache.CacheOwner = reader.ReadElementContentAsString();					
+			}
+			else if (reader.LocalName == "type")
+			{
+				ParseCacheType(reader.ReadElementContentAsString(), ref cache);
+			}
+			else if (reader.LocalName == "difficulty")
+			{
+				string diff = reader.ReadElementContentAsString();
+				cache.Difficulty = float.Parse(diff, CultureInfo.InvariantCulture);
+			}
+			else if (reader.LocalName == "terrain")
+			{
+				string terr = reader.ReadElementContentAsString();
+				cache.Terrain = float.Parse(terr, CultureInfo.InvariantCulture);
+			}
+			else if (reader.LocalName == "short_description")
+			{
+				string html = reader.GetAttribute("html");
+				string val = reader.ReadElementContentAsString();
+				if (html.Equals("False", StringComparison.InvariantCultureIgnoreCase))
+					val = val.Replace("\n", "<br/>");
+				cache.ShortDesc = val;
+			}
+			else if (reader.LocalName == "long_description")
+			{
+				string html = reader.GetAttribute("html");	
+				string val = reader.ReadElementContentAsString();
+				if (html.Equals("False", StringComparison.InvariantCultureIgnoreCase))
+					val = val.Replace("\n", "<br/>");
+				cache.LongDesc = val;
+			}
+			else if (reader.LocalName == "encoded_hints")
+			{
+				cache.Hint = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "container")
+			{
+				cache.Container = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "logs" && !reader.IsEmptyElement)
+			{
+				parseCacheLogs(ref cache, reader);
+			}
+			else if (reader.LocalName == "travelbugs" && !reader.IsEmptyElement)
+			{
+				ParseTravelBugs(ref cache, reader);
+			}
+			else if (reader.LocalName == "country")
+			{
+				cache.Country = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "state")
+			{
+				cache.State = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "attributes")
+			{
+				parseCacheAttrs(ref cache, reader);
+			}
 			return cache;
 		}
 		
@@ -556,6 +568,7 @@ namespace ocmengine
 		private void parseCacheLog(ref Geocache cache, XmlReader reader, ref bool logsChecked)
 		{
 			CacheLog log = new CacheLog();
+			log.LogID = reader.GetAttribute("id");
 			bool breakLoop = false;
 			while (reader.Read() && !breakLoop)
 			{
@@ -671,6 +684,38 @@ namespace ocmengine
 				}
 			}
 			m_store.AddLog(cache.Name, log);			
+		}
+		
+		private void parseCacheAttrs(ref Geocache cache, XmlReader reader)
+		{
+			m_store.ClearAttributes(cache.Name);
+			if (reader.IsEmptyElement)
+				return;
+			while (reader.Read())
+			{
+				if (reader.LocalName == "attribute")
+				{
+					parseCacheAttribute(ref cache, reader);
+				}
+				if (reader.LocalName == "attributes")
+				{
+					return;
+				}
+			}
+		}
+		
+		private void parseCacheAttribute(ref Geocache cache, XmlReader reader)
+		{
+			CacheAttribute attr = new CacheAttribute();
+			attr.ID = reader.GetAttribute("id");
+			string inc = reader.GetAttribute("inc");
+			if (inc == "1")
+				attr.Include = true;
+			else
+				attr.Include = false;
+			attr.AttrValue = reader.ReadElementContentAsString();
+			m_store.AddAttribute(attr, cache.Name);
+			return;
 		}
 		
 		

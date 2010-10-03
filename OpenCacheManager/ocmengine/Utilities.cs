@@ -30,6 +30,8 @@ namespace ocmengine
 		const string DMS = "^\\s*([N|S]){1}\\s*([0-9]+)\\W*([0-9]+)\\W*([0-9]+)\\W*([E|W]){1}\\W*([0-9]+)\\W*([0-9]+)\\W*([0-9]+)\\W*\\s*$";
 		const string HTML =@"<[^>]*>";
 		const string BR = @"<[Bb][Rr]\s?/?>";
+		const string END_TR = @"</\s?[Tt][Rr]>";
+		const string END_LI = @"</\s?[Ll][Ii]>";
 		const string END_P = @"</\s?[Pp]>";
 		const string IMG = @"<[Ii][Mm][Gg][^>]*>";
 		
@@ -281,15 +283,25 @@ namespace ocmengine
 			return mi / 0.6214;
 		}
 		
+
 		public static string HTMLtoText(String src)
 		{
 			src = System.Web.HttpUtility.HtmlDecode(src);
 			if (src.Contains("<br"))
-				src = src.Replace("\n","");
-			src = Regex.Replace(src, END_P, "\n");
+				src = src.Replace("\n"," ");
+			src.Replace("<hr noshade/>", "----------\n\n");
+			src = Regex.Replace(src, END_P, "\n\n");
+			src = Regex.Replace(src, END_LI, "\n");
+			src = Regex.Replace(src, END_TR, "\n");
 			src = Regex.Replace(src, BR, "\n");
 			src = Regex.Replace(src, IMG, "[Image]");
-			return Regex.Replace(src, HTML, String.Empty);
+			src = Regex.Replace(src, HTML, String.Empty);
+			return src;
 		}
-	}
+		
+		public static string HTMLtoGarmin(String src)
+		{
+			return Utilities.HTMLtoText(src).Replace("\n", "<br/>");
+		}
+	}	
 }

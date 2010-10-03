@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.20</ReleaseVersion>
+    <ReleaseVersion>0.21</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -221,6 +221,8 @@
     <Compile Include="gtk-gui\ocmgtk.AddCommandDialog.cs" />
     <Compile Include="UpdateChecker.cs" />
     <Compile Include="printing\CachePrinter.cs" />
+    <Compile Include="Widgets\GarminEdgeWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.GarminEdgeWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

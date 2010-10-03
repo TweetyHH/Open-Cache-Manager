@@ -72,7 +72,8 @@ FILES = \
 	WaypointEnumerator.cs \
 	CacheStoreDefs.cs \
 	FilterList.cs \
-	GPSBabelWriter.cs 
+	GPSBabelWriter.cs \
+	CacheAttribute.cs 
 
 DATA_FILES = 
 

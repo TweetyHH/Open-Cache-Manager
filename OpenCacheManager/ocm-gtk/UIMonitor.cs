@@ -290,7 +290,7 @@ namespace ocmgtk
 				Engine.getInstance().Mode = UserMode.OWNER_ID;
 			else
 				Engine.getInstance().Mode = UserMode.USERNAME;
-				
+			AutoCheckForUpdates();				
 		}
 
 		void HandleM_mainWinSizeAllocated (object o, SizeAllocatedArgs args)
@@ -859,6 +859,7 @@ namespace ocmgtk
 			Engine.getInstance ().Store.UpdateWaypointAtomic (m_selectedCache);
 			Engine.getInstance ().Store.AddLogAtomic (m_selectedCache.Name, log);
 			SetSelectedCache(m_selectedCache);
+			UpdateStatusBar();
 		}
 
 		public void MarkCacheUnfound ()
@@ -868,6 +869,7 @@ namespace ocmgtk
 				m_selectedCache.Symbol = "Geocache";
 				Engine.getInstance ().Store.UpdateWaypointAtomic (m_selectedCache);
 				SetSelectedCache(m_selectedCache);
+				UpdateStatusBar();
 			}
 			dlg.Hide ();
 		}
@@ -1040,8 +1042,6 @@ namespace ocmgtk
 				m_conf.Set("/apps/ocm/gps/namemode", dlg.GPSConfig.GetNameMode().ToString());
 				m_conf.Set("/apps/ocm/gps/descmode", dlg.GPSConfig.GetDescMode().ToString());
 				m_conf.Set("/apps/ocm/gps/loglimit", dlg.GPSConfig.GetLogLimit());
-				m_conf.Set("/apps/ocm/gps/ignorewaypointsym", dlg.GPSConfig.IgnoreWaypointOverrides());
-				m_conf.Set("/apps/ocm/gps/ignoregeocachesym", dlg.GPSConfig.IgnoreGeocacheOverrides());
 				dlg.UpdateWaypointSymbols(m_conf);
 				BuildWaypointMappings();
 			}
@@ -1075,7 +1075,10 @@ namespace ocmgtk
 			dlg.DefaultMap = (String) m_conf.Get("/apps/ocm/defmap", "osm");
 			dlg.ShowNearby = (Boolean) m_conf.Get("/apps/ocm/shownearby", true);
 			dlg.UsePrefixesForChildWaypoints = !((bool) m_conf.Get("/apps/ocm/noprefixes", false));
+			dlg.CheckForUpdates = (Boolean) m_conf.Get("/apps/ocm/update/checkForUpdates", true);
+			dlg.UpdateInterval = (int) m_conf.Get("/apps/ocm/update/updateInterval", 7);
 			dlg.Icon = m_mainWin.Icon;
+			int oldInterval = dlg.UpdateInterval;
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
 				m_conf.Set ("/apps/ocm/memberid", dlg.MemberID);
@@ -1085,6 +1088,12 @@ namespace ocmgtk
 				m_conf.Set ("/apps/ocm/defmap", dlg.DefaultMap);
 				m_conf.Set ("/apps/ocm/shownearby", dlg.ShowNearby);
 				m_conf.Set ("/apps/ocm/noprefixes", !dlg.UsePrefixesForChildWaypoints);
+				m_conf.Set ("/apps/ocm/update/checkForUpdates", dlg.CheckForUpdates);
+				m_conf.Set ("/apps/ocm/update/updateInterval", dlg.UpdateInterval);
+				if (dlg.UpdateInterval != oldInterval)
+				{
+					m_conf.Set("/apps/ocm/update/nextcheck", DateTime.Now.AddDays(dlg.UpdateInterval).ToString("o"));			
+				}
 				m_home_lat = dlg.Lat;
 				m_home_lon = dlg.Lon;
 				m_centreLabel.Text = Catalog.GetString("Home");
@@ -1492,6 +1501,47 @@ namespace ocmgtk
 		{
 			printing.CachePrinter printer = new printing.CachePrinter();
 			printer.StartPrinting(m_selectedCache, m_mainWin);
+		}
+		
+		public void AutoCheckForUpdates()
+		{
+			try
+			{
+				bool check = (bool) m_conf.Get("/apps/ocm/update/checkForUpdates", true);
+				if (!check)
+					return;
+				string nextTime = (string) m_conf.Get("/apps/ocm/update/nextcheck", DateTime.Today.ToString("o"));
+				DateTime next = DateTime.Parse(nextTime);
+				if (DateTime.Now < next)
+						return;
+				string ver = UpdateChecker.GetLatestVer();
+				if (ver != GetOCMVersion())
+				{
+					MessageDialog dlg = new MessageDialog(m_mainWin, DialogFlags.Modal,
+					                                      MessageType.Info, ButtonsType.YesNo,
+					                                      Catalog.GetString("A new version \"{0}\" of OCM is available" +
+					                                                        "\nWould you like to go to the download page now?"),
+					                                      					ver);
+					if ((int)ResponseType.Yes == dlg.Run())
+					{
+						dlg.Hide();
+						Process.Start("http://sourceforge.net/projects/opencachemanage/files/");
+					}
+					else
+						dlg.Hide();
+				}
+				int nextCheck = (int) m_conf.Get("/apps/ocm/update/updateInterval",7);
+				m_conf.Set("/apps/ocm/update/nextcheck", DateTime.Now.AddDays(nextCheck).ToString("o"));
+			}
+			catch (Exception e)
+			{
+				MessageDialog dlg = new MessageDialog(m_mainWin, DialogFlags.Modal,
+					                                      MessageType.Error, ButtonsType.Ok,
+					                                      Catalog.GetString("Unable to check for updates, check your " +
+					                                      	"network connection."));
+				dlg.Run();
+				dlg.Hide();
+			}
 		}
 		
 		public void CheckForUpdates()

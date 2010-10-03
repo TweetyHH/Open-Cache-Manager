@@ -57,11 +57,18 @@ namespace ocmengine
 			get { return m_UseOCMPtTypes;}
 		}
 		
-		bool m_includeChildren = false;
+		bool m_includeChildren = true;
 		public Boolean IncludeChildWaypoints
 		{
 			get { return m_includeChildren;}
 			set { m_includeChildren = value;}
+		}
+		
+		bool m_garminHTML = false;
+		public Boolean GarminHTML
+		{
+			get { return m_garminHTML;}
+			set { m_garminHTML = value;}
 		}
 		
 		bool m_isMyFinds = false;
@@ -165,7 +172,7 @@ namespace ocmengine
 						return;
 					m_Count++;
 					this.WriteWaypoint(this, new WriteEventArgs(String.Format("Writing {0}", cache.Name)));
-					cache.WriteToGPX (writer, this, false);
+					cache.WriteToGPX (writer, this);
 				}
 				writer.WriteEndElement ();
 				this.Complete(this, new WriteEventArgs("Done"));

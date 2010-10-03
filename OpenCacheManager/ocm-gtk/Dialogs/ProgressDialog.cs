@@ -40,7 +40,8 @@ namespace ocmgtk
 		void HandleParserComplete (object sender, EventArgs args)
 		{
 			progressbar6.Text = Catalog.GetString("Complete");
-			waypointName.Markup =  String.Format (Catalog.GetString("<i>Import complete, {0} waypoints processed</i>"), m_progress);
+			waypointName.Markup =  String.Format (Catalog.GetString("<i>Import complete, {0} waypoints processed</i>"), 
+			                                      m_progress);
 			okButton.Sensitive = true;
 			okButton.Show();
 			buttonCancel.Hide();
@@ -85,7 +86,8 @@ namespace ocmgtk
 			m_parser.Cancel = true;
 			this.Hide ();
 			String message = Catalog.GetString("Import cancelled, all changes reverted.");
-			Gtk.MessageDialog dlg = new Gtk.MessageDialog (this, Gtk.DialogFlags.Modal, Gtk.MessageType.Info, Gtk.ButtonsType.Ok, message);
+			Gtk.MessageDialog dlg = new Gtk.MessageDialog (this, Gtk.DialogFlags.Modal, Gtk.MessageType.Info, 
+			                                               Gtk.ButtonsType.Ok, message);
 			dlg.Run ();
 			dlg.Hide ();
 			dlg.Dispose ();

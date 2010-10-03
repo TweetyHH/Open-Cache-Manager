@@ -1,3 +1,18 @@
+Version 0.21
+------------
+- Add Support for Garmin Edge
+- Add Printing support
+- Display cache attributes for GPX 1.0.1
+- Fix text formatting of plaintext caches
+- Send caches to Garmin GPX devices like Colorado/Oregon as plaintext. This reduces a number
+of issues with GPX and Garmin such as non-english characters and problems with the GPX being too
+large
+- Keep track of log ids for future use
+- QuickInfo pane is now scrollable which allows the map to be resized without making information
+inaccessible
+- Fix cache count statistics were'nt being updated on mark found/unfound
+
+
 Version 0.20
 ------------
 - Add Support for DeLorme USB (PN-20/PN-30,PN-40)

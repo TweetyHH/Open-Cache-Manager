@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using ocmengine;
 using Mono.Unix;
+using Gtk;
 using System.Data;
 
 namespace ocmgtk
@@ -46,8 +47,17 @@ namespace ocmgtk
 			targetDBLabel.Text = targetDB;
 			double count = 0;
 			total = caches.Count;
-			System.Console.WriteLine(targetDB);
 			target.SetDB(targetDB);
+			if (target.NeedsUpgrade())
+			{
+				MessageDialog dlg = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok,
+				                                      Catalog.GetString("The target database needs to be upgraded. " +
+				                                      	"Please open the target database before trying to copy/move caches."));
+				dlg.Run();
+				dlg.Hide();
+				this.Hide();
+				return;
+			}
 			buttonOk.Visible = false;
 			IDbTransaction trans = target.StartUpdate();
 			foreach(Geocache cache in caches)
