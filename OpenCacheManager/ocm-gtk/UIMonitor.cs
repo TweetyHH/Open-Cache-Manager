@@ -61,6 +61,7 @@ namespace ocmgtk
 		private int m_width;
 		private int m_height;
 		private QuickFilters m_filters;
+		private DateTime m_loggingdate = DateTime.Now;
 		#endregion
 
 		#region Properties
@@ -841,18 +842,20 @@ namespace ocmgtk
 
 		public void MarkCacheFound ()
 		{
-			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, 
-			                                       String.Format("Do you wish to mark {0} as found?", m_selectedCache.Name));
-			if ((int)ResponseType.No == dlg.Run ()) 
+			MarkFoundDialog dlg = new MarkFoundDialog();
+			dlg.CacheName = m_selectedCache.Name;
+			dlg.LogDate = m_loggingdate;
+			if ((int)ResponseType.Cancel == dlg.Run ()) 
 			{
 				dlg.Hide();
 				return;
 			}
 			dlg.Hide();
+			m_loggingdate = dlg.LogDate;
 			m_selectedCache.Symbol = "Geocache Found";
 			CacheLog log = new CacheLog ();
 			log.FinderID = OwnerID;
-			log.LogDate = System.DateTime.Now;
+			log.LogDate = dlg.LogDate;
 			log.LoggedBy = "OCM";
 			log.LogStatus = "Found it";
 			log.LogMessage = "AUTO LOG: OCM";
@@ -1533,7 +1536,7 @@ namespace ocmgtk
 				int nextCheck = (int) m_conf.Get("/apps/ocm/update/updateInterval",7);
 				m_conf.Set("/apps/ocm/update/nextcheck", DateTime.Now.AddDays(nextCheck).ToString("o"));
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				MessageDialog dlg = new MessageDialog(m_mainWin, DialogFlags.Modal,
 					                                      MessageType.Error, ButtonsType.Ok,
@@ -1573,7 +1576,7 @@ namespace ocmgtk
 					dlg.Hide();
 				}
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				MessageDialog dlg = new MessageDialog(m_mainWin, DialogFlags.Modal,
 					                                      MessageType.Error, ButtonsType.Ok,

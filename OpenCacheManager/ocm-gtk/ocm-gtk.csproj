@@ -223,6 +223,10 @@
     <Compile Include="printing\CachePrinter.cs" />
     <Compile Include="Widgets\GarminEdgeWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.GarminEdgeWidget.cs" />
+    <Compile Include="Widgets\DelormeGPXWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.DelormeGPXWidget.cs" />
+    <Compile Include="Dialogs\MarkFoundDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.MarkFoundDialog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -140,8 +140,8 @@ public partial class MainWindow : Gtk.Window
 		
 		dialog.Authors = new String[] { "Kyle Campbell - Programming", "Madelayne DeGrâce - Icons",
 			"Harrie Klomp - Dutch Translation" , "Thor Dekov Buur - Danish Translation",
-			"Michael Massoth - German Translation"};
-		
+			"Michael Massoth - German Translation",
+			"Josef Kulhánek - Czech Translation"};		
 		dialog.Run ();
 		dialog.Hide();
 		

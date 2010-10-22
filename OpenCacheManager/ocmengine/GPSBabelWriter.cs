@@ -73,7 +73,22 @@ namespace ocmengine
 			writer.LogLimit = m_LogLimit;
 			writer.IncludeChildWaypoints = true;
 			if (m_format == "OCM_GPX") {
-				writer.GarminHTML = true;
+				writer.HTMLOutput = HTMLMode.GARMIN;
+				WriteGPXFile (cacheList, waypointmappings);
+				return;
+			}
+			else if (m_format == "delgpx")
+			{
+				writer.HTMLOutput = HTMLMode.PLAINTEXT;
+				if (m_file == "%auto%")
+				{
+					String dbName = Engine.getInstance().Store.DBFile;
+					String[] dbSplit = dbName.Split ('/');
+					String dBShort = dbSplit[dbSplit.Length - 1];
+					dBShort = dBShort.Substring(0, dBShort.Length - 4);
+					dBShort+= ".gpx";
+					m_file = "/media/EM_USERMAPS/waypoints/" + dBShort;
+				}
 				WriteGPXFile (cacheList, waypointmappings);
 				return;
 			}

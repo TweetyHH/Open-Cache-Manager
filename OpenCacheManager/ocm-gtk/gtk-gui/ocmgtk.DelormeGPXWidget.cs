@@ -11,9 +11,9 @@
 namespace ocmgtk {
     
     
-    public partial class GPXWidget {
+    public partial class DelormeGPXWidget {
         
-        private Gtk.VBox vbox3;
+        private Gtk.VBox vbox1;
         
         private Gtk.Table table1;
         
@@ -25,27 +25,28 @@ namespace ocmgtk {
         
         private Gtk.Entry logLimitEntry;
         
-        private Gtk.HBox hbox4;
+        private Gtk.Table table2;
         
-        private Gtk.Label label3;
-        
-        private Gtk.Entry fileEntry;
+        private Gtk.RadioButton autoNameRado;
         
         private Gtk.Button fileButton;
         
         private Gtk.Image image3;
         
+        private Gtk.Entry fileEntry;
+        
+        private Gtk.RadioButton useFileRadio;
+        
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
-            // Widget ocmgtk.GPXWidget
+            // Widget ocmgtk.DelormeGPXWidget
             Stetic.BinContainer.Attach(this);
-            this.Name = "ocmgtk.GPXWidget";
-            // Container child ocmgtk.GPXWidget.Gtk.Container+ContainerChild
-            this.vbox3 = new Gtk.VBox();
-            this.vbox3.Name = "vbox3";
-            this.vbox3.Spacing = 6;
-            this.vbox3.BorderWidth = ((uint)(6));
-            // Container child vbox3.Gtk.Box+BoxChild
+            this.Name = "ocmgtk.DelormeGPXWidget";
+            // Container child ocmgtk.DelormeGPXWidget.Gtk.Container+ContainerChild
+            this.vbox1 = new Gtk.VBox();
+            this.vbox1.Name = "vbox1";
+            this.vbox1.Spacing = 6;
+            // Container child vbox1.Gtk.Box+BoxChild
             this.table1 = new Gtk.Table(((uint)(2)), ((uint)(2)), false);
             this.table1.Name = "table1";
             this.table1.RowSpacing = ((uint)(6));
@@ -55,6 +56,7 @@ namespace ocmgtk {
             this.limitCheck.CanFocus = true;
             this.limitCheck.Name = "limitCheck";
             this.limitCheck.Label = Mono.Unix.Catalog.GetString("Limit Number of Caches");
+            this.limitCheck.Active = true;
             this.limitCheck.DrawIndicator = true;
             this.limitCheck.UseUnderline = true;
             this.table1.Add(this.limitCheck);
@@ -62,7 +64,6 @@ namespace ocmgtk {
             w1.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.limitEntry = new Gtk.Entry();
-            this.limitEntry.Sensitive = false;
             this.limitEntry.CanFocus = true;
             this.limitEntry.Name = "limitEntry";
             this.limitEntry.Text = "1000";
@@ -78,7 +79,6 @@ namespace ocmgtk {
             this.logLimitCheck.CanFocus = true;
             this.logLimitCheck.Name = "logLimitCheck";
             this.logLimitCheck.Label = Mono.Unix.Catalog.GetString("Limit Number of Logs");
-            this.logLimitCheck.Active = true;
             this.logLimitCheck.DrawIndicator = true;
             this.logLimitCheck.UseUnderline = true;
             this.table1.Add(this.logLimitCheck);
@@ -88,6 +88,7 @@ namespace ocmgtk {
             w3.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.logLimitEntry = new Gtk.Entry();
+            this.logLimitEntry.Sensitive = false;
             this.logLimitEntry.CanFocus = true;
             this.logLimitEntry.Name = "logLimitEntry";
             this.logLimitEntry.Text = Mono.Unix.Catalog.GetString("5");
@@ -100,35 +101,29 @@ namespace ocmgtk {
             w4.LeftAttach = ((uint)(1));
             w4.RightAttach = ((uint)(2));
             w4.YOptions = ((Gtk.AttachOptions)(4));
-            this.vbox3.Add(this.table1);
-            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.vbox3[this.table1]));
+            this.vbox1.Add(this.table1);
+            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.vbox1[this.table1]));
             w5.Position = 0;
             w5.Expand = false;
             w5.Fill = false;
-            // Container child vbox3.Gtk.Box+BoxChild
-            this.hbox4 = new Gtk.HBox();
-            this.hbox4.Name = "hbox4";
-            this.hbox4.Spacing = 6;
-            // Container child hbox4.Gtk.Box+BoxChild
-            this.label3 = new Gtk.Label();
-            this.label3.Name = "label3";
-            this.label3.LabelProp = Mono.Unix.Catalog.GetString("GPX Output File:");
-            this.hbox4.Add(this.label3);
-            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.hbox4[this.label3]));
-            w6.Position = 0;
-            w6.Expand = false;
-            w6.Fill = false;
-            // Container child hbox4.Gtk.Box+BoxChild
-            this.fileEntry = new Gtk.Entry();
-            this.fileEntry.CanFocus = true;
-            this.fileEntry.Name = "fileEntry";
-            this.fileEntry.Text = "/media/GARMIN/Garmin/GPX/geocaches.gpx";
-            this.fileEntry.IsEditable = true;
-            this.fileEntry.InvisibleChar = '•';
-            this.hbox4.Add(this.fileEntry);
-            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.hbox4[this.fileEntry]));
-            w7.Position = 1;
-            // Container child hbox4.Gtk.Box+BoxChild
+            // Container child vbox1.Gtk.Box+BoxChild
+            this.table2 = new Gtk.Table(((uint)(2)), ((uint)(3)), false);
+            this.table2.Name = "table2";
+            this.table2.RowSpacing = ((uint)(6));
+            this.table2.ColumnSpacing = ((uint)(6));
+            // Container child table2.Gtk.Table+TableChild
+            this.autoNameRado = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Auto name on internal drive"));
+            this.autoNameRado.CanFocus = true;
+            this.autoNameRado.Name = "autoNameRado";
+            this.autoNameRado.Active = true;
+            this.autoNameRado.DrawIndicator = true;
+            this.autoNameRado.UseUnderline = true;
+            this.autoNameRado.Group = new GLib.SList(System.IntPtr.Zero);
+            this.table2.Add(this.autoNameRado);
+            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table2[this.autoNameRado]));
+            w6.XOptions = ((Gtk.AttachOptions)(4));
+            w6.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
             this.fileButton = new Gtk.Button();
             this.fileButton.CanFocus = true;
             this.fileButton.Name = "fileButton";
@@ -138,23 +133,55 @@ namespace ocmgtk {
             this.image3.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-open", Gtk.IconSize.Menu, 16);
             this.fileButton.Add(this.image3);
             this.fileButton.Label = null;
-            this.hbox4.Add(this.fileButton);
-            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.hbox4[this.fileButton]));
-            w9.Position = 2;
-            w9.Expand = false;
-            w9.Fill = false;
-            this.vbox3.Add(this.hbox4);
-            Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.vbox3[this.hbox4]));
-            w10.Position = 1;
-            w10.Expand = false;
-            w10.Fill = false;
-            this.Add(this.vbox3);
+            this.table2.Add(this.fileButton);
+            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table2[this.fileButton]));
+            w8.TopAttach = ((uint)(1));
+            w8.BottomAttach = ((uint)(2));
+            w8.LeftAttach = ((uint)(2));
+            w8.RightAttach = ((uint)(3));
+            w8.XOptions = ((Gtk.AttachOptions)(4));
+            w8.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.fileEntry = new Gtk.Entry();
+            this.fileEntry.Sensitive = false;
+            this.fileEntry.CanFocus = true;
+            this.fileEntry.Name = "fileEntry";
+            this.fileEntry.Text = "/media/EM_USERMAPS/waypoints/geocaches.gpx";
+            this.fileEntry.IsEditable = true;
+            this.fileEntry.InvisibleChar = '•';
+            this.table2.Add(this.fileEntry);
+            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table2[this.fileEntry]));
+            w9.TopAttach = ((uint)(1));
+            w9.BottomAttach = ((uint)(2));
+            w9.LeftAttach = ((uint)(1));
+            w9.RightAttach = ((uint)(2));
+            w9.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.useFileRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Use specified file:"));
+            this.useFileRadio.CanFocus = true;
+            this.useFileRadio.Name = "useFileRadio";
+            this.useFileRadio.DrawIndicator = true;
+            this.useFileRadio.UseUnderline = true;
+            this.useFileRadio.Group = this.autoNameRado.Group;
+            this.table2.Add(this.useFileRadio);
+            Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.table2[this.useFileRadio]));
+            w10.TopAttach = ((uint)(1));
+            w10.BottomAttach = ((uint)(2));
+            w10.XOptions = ((Gtk.AttachOptions)(4));
+            w10.YOptions = ((Gtk.AttachOptions)(4));
+            this.vbox1.Add(this.table2);
+            Gtk.Box.BoxChild w11 = ((Gtk.Box.BoxChild)(this.vbox1[this.table2]));
+            w11.Position = 1;
+            w11.Expand = false;
+            w11.Fill = false;
+            this.Add(this.vbox1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.Hide();
             this.logLimitCheck.Toggled += new System.EventHandler(this.OnLogLimitToggle);
             this.limitCheck.Toggled += new System.EventHandler(this.OnLimitToggle);
+            this.useFileRadio.Toggled += new System.EventHandler(this.OnFileToggle);
             this.fileButton.Clicked += new System.EventHandler(this.OnFileClick);
         }
     }

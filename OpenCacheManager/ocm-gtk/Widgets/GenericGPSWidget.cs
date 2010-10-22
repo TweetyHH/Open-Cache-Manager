@@ -68,22 +68,9 @@ namespace ocmgtk
 			fileEntry.Text = file;
 		}
 		
-		int m_LogLimit;
 		public int GetLogLimit()
 		{
-			return m_LogLimit;
-		}
-		
-		bool m_waypointOverrides;
-		public bool IgnoreWaypointOverrides()
-		{
-			return m_waypointOverrides;
-		}
-		
-		bool m_geocacheOverrides;
-		public bool IgnoreGeocacheOverrides()
-		{
-			return m_geocacheOverrides;
+			return -1;
 		}
 		
 		public ocmengine.WaypointNameMode GetNameMode()

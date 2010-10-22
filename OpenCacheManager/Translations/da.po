@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2010-10-02 11:48:25-0400\n"
+"POT-Creation-Date: 2010-10-05 07:43:48-0400\n"
 "PO-Revision-Date: 2010-08-17 14:46+0100\n"
 "Last-Translator: Thor Dekov Buur <thor@dekov-buur.dk>\n"
 "Language-Team: \n"
@@ -60,7 +60,7 @@ msgstr "_Fjern valgt cache fra bogmærkeliste"
 
 #: ../ocm-gtk/MainWindow.cs:433 ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:83
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:552 ../ocm-gtk/gtk-gui/MainWindow.cs:554
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:526
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:527
 msgid "None"
 msgstr "Ingen"
 
@@ -202,7 +202,7 @@ msgid "NO CACHE SELECTED"
 msgstr "INGEN CAHCE VALGT"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:97
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:284
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:285
 msgid "Never"
 msgstr "Aldrig"
 
@@ -1056,52 +1056,52 @@ msgstr "OCM"
 msgid "Not Set"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:225
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:226
 msgid "Log My Find..."
 msgstr "Log mit fund..."
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:239
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:240
 msgid "View Online..."
 msgstr "Vis online..."
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:265
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:266
 msgid "<country>"
 msgstr "<country>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:274
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:275
 msgid "<b>Last Log By You:</b>"
 msgstr "<b>Din seneste log:</b>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:304
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:305
 #: ../ocm-gtk/printing/CachePrinter.cs:114
 msgid "<b>A cache by:</b>"
 msgstr "<b>En cache af:</b>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:329
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:330
 #: ../ocm-gtk/printing/CachePrinter.cs:118
 msgid "<b>Hidden on:</b>"
 msgstr "<b>Gemt den:</b>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:352
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:353
 msgid "<b>Last Update:</b>"
 msgstr "<b>Senest opdateret:</b>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:382
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:383
 #: ../ocm-gtk/printing/CachePrinter.cs:122
 msgid "<b>Cache Size:</b>"
 msgstr "<b>Cache størrelse:</b>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:404
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:405
 #: ../ocm-gtk/printing/CachePrinter.cs:126
 msgid "<b>Difficulty:</b>"
 msgstr "<b>Sværhedsgrad:</b>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:456
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:457
 #: ../ocm-gtk/printing/CachePrinter.cs:130
 msgid "<b>Terrain:</b>"
 msgstr "<b>Terræn:</b>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:535
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:536
 #, fuzzy
 msgid "<b>Attributes:</b>"
 msgstr "<b>Fil:</b>"

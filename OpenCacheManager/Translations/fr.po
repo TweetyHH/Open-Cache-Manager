@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2010-10-02 11:48:25-0400\n"
+"POT-Creation-Date: 2010-10-05 07:43:48-0400\n"
 "PO-Revision-Date: 2010-07-13 19:23:29-0400\n"
 "Last-Translator: Kyle Campbell <kmcamp_ott@yahoo.com>\n"
 "Language-Team: \n"
@@ -64,7 +64,7 @@ msgstr ""
 
 #: ../ocm-gtk/MainWindow.cs:433 ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:83
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:552 ../ocm-gtk/gtk-gui/MainWindow.cs:554
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:526
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:527
 msgid "None"
 msgstr ""
 
@@ -193,7 +193,7 @@ msgid "NO CACHE SELECTED"
 msgstr ""
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:97
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:284
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:285
 msgid "Never"
 msgstr ""
 
@@ -1025,52 +1025,52 @@ msgstr ""
 msgid "Not Set"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:225
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:226
 msgid "Log My Find..."
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:239
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:240
 msgid "View Online..."
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:265
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:266
 msgid "<country>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:274
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:275
 msgid "<b>Last Log By You:</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:304
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:305
 #: ../ocm-gtk/printing/CachePrinter.cs:114
 msgid "<b>A cache by:</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:329
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:330
 #: ../ocm-gtk/printing/CachePrinter.cs:118
 msgid "<b>Hidden on:</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:352
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:353
 msgid "<b>Last Update:</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:382
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:383
 #: ../ocm-gtk/printing/CachePrinter.cs:122
 msgid "<b>Cache Size:</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:404
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:405
 #: ../ocm-gtk/printing/CachePrinter.cs:126
 msgid "<b>Difficulty:</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:456
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:457
 #: ../ocm-gtk/printing/CachePrinter.cs:130
 msgid "<b>Terrain:</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:535
+#: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:536
 msgid "<b>Attributes:</b>"
 msgstr ""
 

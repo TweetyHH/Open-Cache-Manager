@@ -22,6 +22,7 @@ namespace ocmengine
 {
 	public enum WaypointNameMode{CODE,NAME,SHORTCODE};
 	public enum WaypointDescMode{DESC,CODESIZEANDHINT,CODESIZETYPE};
+	public enum HTMLMode{HTML,GARMIN,PLAINTEXT};
 	
 	public class WriteEventArgs:EventArgs
 	{
@@ -64,11 +65,11 @@ namespace ocmengine
 			set { m_includeChildren = value;}
 		}
 		
-		bool m_garminHTML = false;
-		public Boolean GarminHTML
+		HTMLMode m_htmlMode = HTMLMode.HTML;
+		public HTMLMode HTMLOutput
 		{
-			get { return m_garminHTML;}
-			set { m_garminHTML = value;}
+			get { return m_htmlMode;}
+			set { m_htmlMode = value;}
 		}
 		
 		bool m_isMyFinds = false;
@@ -157,6 +158,7 @@ namespace ocmengine
 			try {
 				writer.WriteStartElement ("gpx", NS_GPX);
 				writer.WriteAttributeString("creator", "OCM");
+				writer.WriteAttributeString("version", "1.0");
 				if (IsMyFinds)
 					writer.WriteElementString("name", NS_GPX, "My Finds Pocket Query");
 				else

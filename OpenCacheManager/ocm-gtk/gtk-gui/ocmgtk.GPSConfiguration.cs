@@ -19,9 +19,7 @@ namespace ocmgtk {
         
         private Gtk.ComboBox deviceCombo;
         
-        private ocmgtk.GPXWidget gpxwidget;
-        
-        private Gtk.Label label1;
+        private Gtk.Label deviceLabel;
         
         private Gtk.Label label4;
         
@@ -70,6 +68,7 @@ namespace ocmgtk {
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Garmin Serial (original eTrex/eTrex H/Gecko)"));
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Garmin Edge (605/705)"));
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("DeLorme USB (PN-20/PN-30/PN-40)"));
+            this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("DeLorme GPX (PN-60/PN-40 v2.8+)"));
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Other GPS"));
             this.deviceCombo.Name = "deviceCombo";
             this.deviceCombo.Active = 0;
@@ -80,25 +79,14 @@ namespace ocmgtk {
             w2.XOptions = ((Gtk.AttachOptions)(4));
             w2.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
-            this.gpxwidget = new ocmgtk.GPXWidget();
-            this.gpxwidget.Events = ((Gdk.EventMask)(256));
-            this.gpxwidget.Name = "gpxwidget";
-            this.table1.Add(this.gpxwidget);
-            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table1[this.gpxwidget]));
-            w3.TopAttach = ((uint)(1));
-            w3.BottomAttach = ((uint)(2));
-            w3.RightAttach = ((uint)(2));
+            this.deviceLabel = new Gtk.Label();
+            this.deviceLabel.Name = "deviceLabel";
+            this.deviceLabel.Xalign = 0F;
+            this.deviceLabel.LabelProp = Mono.Unix.Catalog.GetString("Select a GPS Type:");
+            this.table1.Add(this.deviceLabel);
+            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table1[this.deviceLabel]));
             w3.XOptions = ((Gtk.AttachOptions)(4));
             w3.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table1.Gtk.Table+TableChild
-            this.label1 = new Gtk.Label();
-            this.label1.Name = "label1";
-            this.label1.Xalign = 0F;
-            this.label1.LabelProp = Mono.Unix.Catalog.GetString("Select a GPS Type:");
-            this.table1.Add(this.label1);
-            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table1[this.label1]));
-            w4.XOptions = ((Gtk.AttachOptions)(4));
-            w4.YOptions = ((Gtk.AttachOptions)(4));
             this.notebook1.Add(this.table1);
             // Notebook tab
             this.label4 = new Gtk.Label();
@@ -111,8 +99,8 @@ namespace ocmgtk {
             this.waypointWidget.Events = ((Gdk.EventMask)(256));
             this.waypointWidget.Name = "waypointWidget";
             this.notebook1.Add(this.waypointWidget);
-            Gtk.Notebook.NotebookChild w6 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.waypointWidget]));
-            w6.Position = 1;
+            Gtk.Notebook.NotebookChild w5 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.waypointWidget]));
+            w5.Position = 1;
             // Notebook tab
             this.label5 = new Gtk.Label();
             this.label5.Name = "label5";
@@ -120,14 +108,14 @@ namespace ocmgtk {
             this.notebook1.SetTabLabel(this.waypointWidget, this.label5);
             this.label5.ShowAll();
             w1.Add(this.notebook1);
-            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(w1[this.notebook1]));
-            w7.Position = 0;
+            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(w1[this.notebook1]));
+            w6.Position = 0;
             // Internal child ocmgtk.GPSConfiguration.ActionArea
-            Gtk.HButtonBox w8 = this.ActionArea;
-            w8.Name = "dialog1_ActionArea";
-            w8.Spacing = 10;
-            w8.BorderWidth = ((uint)(5));
-            w8.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            Gtk.HButtonBox w7 = this.ActionArea;
+            w7.Name = "dialog1_ActionArea";
+            w7.Spacing = 10;
+            w7.BorderWidth = ((uint)(5));
+            w7.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -137,9 +125,9 @@ namespace ocmgtk {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w9 = ((Gtk.ButtonBox.ButtonBoxChild)(w8[this.buttonCancel]));
-            w9.Expand = false;
-            w9.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w8 = ((Gtk.ButtonBox.ButtonBoxChild)(w7[this.buttonCancel]));
+            w8.Expand = false;
+            w8.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -149,10 +137,10 @@ namespace ocmgtk {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w10 = ((Gtk.ButtonBox.ButtonBoxChild)(w8[this.buttonOk]));
-            w10.Position = 1;
-            w10.Expand = false;
-            w10.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w9 = ((Gtk.ButtonBox.ButtonBoxChild)(w7[this.buttonOk]));
+            w9.Position = 1;
+            w9.Expand = false;
+            w9.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }

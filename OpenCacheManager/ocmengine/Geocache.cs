@@ -266,22 +266,26 @@ namespace ocmengine
 			}
 			writer.WriteStartElement(CACHE_PREFIX,"short_description", GPXWriter.NS_CACHE);
 			writer.WriteAttributeString("html", "True");
-			if (gpx.GarminHTML)
+			if (gpx.HTMLOutput == HTMLMode.GARMIN)
 				writer.WriteCData(Utilities.HTMLtoGarmin(shortDescription));
+			else if (gpx.HTMLOutput == HTMLMode.PLAINTEXT)
+				writer.WriteCData(Utilities.HTMLtoText(ShortDesc));
 			else
 				writer.WriteCData(shortDescription);
 			writer.WriteEndElement();
 			writer.WriteStartElement(CACHE_PREFIX,"long_description", GPXWriter.NS_CACHE);
 			writer.WriteAttributeString("html", "True");
-			if (gpx.GarminHTML)
+			if (gpx.HTMLOutput == HTMLMode.GARMIN)
 				writer.WriteCData(Utilities.HTMLtoGarmin(LongDesc));
+			else if (gpx.HTMLOutput == HTMLMode.PLAINTEXT)
+				writer.WriteCData(Utilities.HTMLtoText(LongDesc));
 			else
 				writer.WriteCData(LongDesc);
 			writer.WriteEndElement();
 			writer.WriteStartElement(CACHE_PREFIX,"encoded_hints", GPXWriter.NS_CACHE);
 			writer.WriteAttributeString("html", "True");
-			if (gpx.GarminHTML)
-				writer.WriteCData(Utilities.HTMLtoGarmin(Hint));
+			if (gpx.HTMLOutput == HTMLMode.GARMIN || gpx.HTMLOutput == HTMLMode.PLAINTEXT)
+				writer.WriteCData(Utilities.HTMLtoText(Hint));
 			else
 				writer.WriteCData(Hint);
 			writer.WriteEndElement();
