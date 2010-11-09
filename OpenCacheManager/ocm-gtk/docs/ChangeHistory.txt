@@ -1,3 +1,8 @@
+Version 0.22
+------------
+- Delorme GPX support for PN-60/PN-40v2.8+
+- Can now choose date when marking caches as found
+
 Version 0.21
 ------------
 - Add Support for Garmin Edge

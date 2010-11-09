@@ -21,8 +21,8 @@ namespace ocmengine
 	
 	public class Waypoint
 	{
-		private double m_lat = 0;
-		private double m_lon = 0;
+		protected double m_lat = 0;
+		protected double m_lon = 0;
 		private DateTime m_time = DateTime.Now;
 		private string m_name = "";
 		private string m_desc = "";
@@ -39,13 +39,13 @@ namespace ocmengine
 			set { m_name = value;}
 		}
 		
-		public double Lat
+		public virtual double Lat
 		{
 			get { return m_lat;}
 			set {m_lat = value;}
 		}
 		
-		public double Lon
+		public virtual double Lon
 		{
 			get { return m_lon;}
 			set { m_lon = value;}

@@ -78,8 +78,8 @@ namespace ocmgtk
 			else
 				urlEntry.Text = String.Empty;
 			urlNameEntry.Text = m_cache.URLName;
-			latEntry.SetCoordinate(m_cache.Lat, true);
-			lonEntry.SetCoordinate(m_cache.Lon, false);
+			latEntry.SetCoordinate(m_cache.OrigLat, true);
+			lonEntry.SetCoordinate(m_cache.OrigLon, false);
 			nameEntry.Text = m_cache.CacheName;
 			shortDescEntry.Buffer.Text = m_cache.ShortDesc;
 			longDescEntry.Buffer.Text = m_cache.LongDesc;

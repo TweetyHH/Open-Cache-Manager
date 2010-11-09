@@ -92,6 +92,12 @@ namespace ocmengine
 							gpx_date = reader.ReadElementContentAsDateTime();
 						if (reader.Name == "loc")
 							m_source = reader.GetAttribute("src");
+						if (reader.Name == "url")
+						{
+							string val = reader.ReadElementContentAsString();
+							if (val.Contains("opencaching"))
+								m_source = "opencaching";
+						}
 						if (reader.Name == "wpt")
 						{
 							Waypoint pt = processWaypoint(reader);
@@ -301,7 +307,12 @@ namespace ocmengine
 		{
 			Geocache cache = pt as Geocache;
 			m_store.ClearTBs(pt.Name);
-			if (reader.NamespaceURI.StartsWith("http://www.groundspeak.com/cache"))
+			if (m_source == "opencaching")
+			{
+				System.Console.WriteLine("OpenCache!");
+				cache = ParseOpenCache(reader, ref cache);
+			}
+			else if (reader.NamespaceURI.StartsWith("http://www.groundspeak.com/cache"))
 			{
 				cache = ParseGroundSpeakCache (reader, ref cache);
 			}
@@ -423,6 +434,98 @@ namespace ocmengine
 			//TEMP FIX THIS
 			cache.Difficulty = 1;
 			cache.Terrain = 1;
+			return cache;
+		}
+		
+		private Geocache ParseOpenCache (XmlReader reader, ref Geocache cache)
+		{
+			if (reader.LocalName == "cache")
+			{
+				System.Console.WriteLine("ReadingCache");
+				string avail = reader.GetAttribute("available");
+				string arch = reader.GetAttribute("archived");
+				if (!String.IsNullOrEmpty(avail))
+					cache.Available = Boolean.Parse(avail);
+				else
+					cache.Available = true;
+				if (!String.IsNullOrEmpty(arch))
+					cache.Archived = Boolean.Parse(arch);
+				else
+					cache.Archived = false;
+				cache.CacheID = reader.GetAttribute("id");
+			}
+			else if (reader.LocalName == "name")
+			{
+				cache.CacheName = reader.ReadElementContentAsString();
+				System.Console.WriteLine(cache.CacheName);
+			}
+			else if (reader.LocalName == "placed_by")
+			{
+				cache.PlacedBy = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "owner")
+			{
+				cache.OwnerID = reader.GetAttribute("id");
+				cache.CacheOwner = reader.ReadElementContentAsString();					
+			}
+			else if (reader.LocalName == "type")
+			{
+				ParseCacheType(reader.ReadElementContentAsString(), ref cache);
+			}
+			else if (reader.LocalName == "difficulty")
+			{
+				string diff = reader.ReadElementContentAsString();
+				cache.Difficulty = float.Parse(diff, CultureInfo.InvariantCulture);
+			}
+			else if (reader.LocalName == "terrain")
+			{
+				string terr = reader.ReadElementContentAsString();
+				cache.Terrain = float.Parse(terr, CultureInfo.InvariantCulture);
+			}
+			else if (reader.LocalName == "short_description")
+			{
+				string html = reader.GetAttribute("html");
+				string val = reader.ReadElementContentAsString();
+				if (html.Equals("False", StringComparison.InvariantCultureIgnoreCase))
+					val = val.Replace("\n", "<br/>");
+				cache.ShortDesc = val;
+			}
+			else if (reader.LocalName == "long_description")
+			{
+				string html = reader.GetAttribute("html");	
+				string val = reader.ReadElementContentAsString();
+				if (html.Equals("False", StringComparison.InvariantCultureIgnoreCase))
+					val = val.Replace("\n", "<br/>");
+				cache.LongDesc = val;
+			}
+			else if (reader.LocalName == "encoded_hints")
+			{
+				cache.Hint = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "container")
+			{
+				cache.Container = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "logs" && !reader.IsEmptyElement)
+			{
+			//	parseCacheLogs(ref cache, reader);
+			}
+			else if (reader.LocalName == "travelbugs" && !reader.IsEmptyElement)
+			{
+				ParseTravelBugs(ref cache, reader);
+			}
+			else if (reader.LocalName == "country")
+			{
+				cache.Country = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "state")
+			{
+				cache.State = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "attributes")
+			{
+				parseCacheAttrs(ref cache, reader);
+			}
 			return cache;
 		}
 		

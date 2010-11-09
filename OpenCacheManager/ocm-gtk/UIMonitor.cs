@@ -523,12 +523,20 @@ namespace ocmgtk
 				mode = "disabled";
 			else if (cache.CheckNotes)
 				mode = "checknotes";
+			
+			double lat = cache.Lat;
+			double lon = cache.Lon;
+			if (cache.HasCorrected)
+			{
+				lat = cache.CorrectedLat;
+				lon = cache.CorrectedLon;
+			}
 			string cachedesc = "<div style=font-size:10pt;>" + Catalog.GetString("<b>A cache by:</b> ") + cache.PlacedBy + Catalog.GetString("<br><b>Hidden on: </b>") 
 				+  cache.Time.ToShortDateString() + "<br><b>Difficulty: </b>" + cache.Difficulty + "<br><b>Terrain: </b>" + cache.Terrain +
 					"<br><b>Cache size: </b>" + cache.Container + "</div>";
 
-			m_map.LoadScript ("addMarker(" + cache.Lat.ToString(CultureInfo.InvariantCulture) + ","
-			                  + cache.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" 
+			m_map.LoadScript ("addMarker(" + lat.ToString(CultureInfo.InvariantCulture) + ","
+			                  + lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" 
 			                  + IconManager.GetMapIcon (cache, m_ownerid) + "',\"" 
 			                  + cache.Name + "\",\"" + cache.CacheName.Replace("\"","'") + "\",\"" 
 			                  + cachedesc.Replace("\"","''") + "\",\"" + mode + "\")");
@@ -543,12 +551,19 @@ namespace ocmgtk
 				mode = "disabled";
 			else if (cache.CheckNotes)
 				mode = "checknotes";
+			double lat = cache.Lat;
+			double lon = cache.Lon;
+			if (cache.HasCorrected)
+			{
+				lat = cache.CorrectedLat;
+				lon = cache.CorrectedLon;
+			}
 			string cachedesc = "<div style=font-size:10pt;>" + Catalog.GetString("<b>A cache by:</b> ") + cache.PlacedBy + Catalog.GetString("<br><b>Hidden on: </b>") 
 				+  cache.Time.ToShortDateString() + "<br><b>Difficulty: </b>" + cache.Difficulty + "<br><b>Terrain: </b>" + cache.Terrain +
 					"<br><b>Cache size: </b>" + cache.Container + "</div>";
 
-			m_map.LoadScript ("addExtraMarker(" + cache.Lat.ToString(CultureInfo.InvariantCulture) + ","
-			                  + cache.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" 
+			m_map.LoadScript ("addExtraMarker(" + lat.ToString(CultureInfo.InvariantCulture) + ","
+			                  + lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" 
 			                  + IconManager.GetMapIcon (cache, m_ownerid) + "',\"" 
 			                  + cache.Name + "\",\"" + cache.CacheName.Replace("\"","'") + "\",\"" 
 			                  + cachedesc.Replace("\"","''") + "\",\"" + mode + "\")");
@@ -1585,6 +1600,28 @@ namespace ocmgtk
 				dlg.Run();
 				dlg.Hide();
 			}
+		}
+		
+		public void CorrectCoordinates()
+		{
+		 	CorrectedCoordinatesDlg dlg = new CorrectedCoordinatesDlg();
+			dlg.SetCache(m_selectedCache);
+			if ((int) ResponseType.Ok == dlg.Run())
+			{
+				if (dlg.IsCorrected)
+				{
+					System.Console.WriteLine("HERE");
+					m_selectedCache.CorrectedLat = dlg.CorrectedLat;
+					m_selectedCache.CorrectedLon = dlg.CorrectedLon;
+				}
+				else
+				{
+					System.Console.WriteLine("HERE2");
+					m_selectedCache.HasCorrected = false;
+				}
+				Engine.getInstance().Store.UpdateCacheAtomic(m_selectedCache);
+			}
+			dlg.Hide();
 		}
 	}
 }

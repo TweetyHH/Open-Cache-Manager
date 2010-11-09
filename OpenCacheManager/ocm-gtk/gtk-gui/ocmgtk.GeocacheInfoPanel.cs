@@ -250,6 +250,7 @@ namespace ocmgtk {
             w18.Position = 2;
             w18.Expand = false;
             w18.Fill = false;
+            w18.Padding = ((uint)(10));
             this.vbox3.Add(this.hbox1);
             Gtk.Box.BoxChild w19 = ((Gtk.Box.BoxChild)(this.vbox3[this.hbox1]));
             w19.Position = 0;

@@ -85,6 +85,7 @@ namespace ocmgtk
 					gpxwidget.SetOutputFile(saved.GetOutputFile());
 					gpxwidget.SetLogLimit(saved.GetLogLimit());
 					deviceCombo.Active = 0;
+					ShowDeviceConfig();
 				}
 				else if (saved.GetBabelFormat().StartsWith("delbin"))
 				{

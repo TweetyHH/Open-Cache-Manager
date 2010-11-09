@@ -24,10 +24,33 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class CoordinateWidget : Gtk.Bin
 	{
+		public delegate void ChangedEventHandler(object sender, EventArgs args);
+		public event ChangedEventHandler Changed;
 		
 		public CoordinateWidget ()
 		{
 			this.Build ();
+			directionCombo.Changed += HandleDirectionComboChanged;
+			degreeEntry.Changed += HandleDegreeEntryChanged;
+			minuteEntry.Changed += HandleMinuteEntryChanged;
+		}
+
+		void HandleMinuteEntryChanged (object sender, EventArgs e)
+		{
+			if (Changed != null)
+				Changed(this, new EventArgs());
+		}
+
+		void HandleDegreeEntryChanged (object sender, EventArgs e)
+		{
+			if (Changed != null)
+				Changed(this, new EventArgs());
+		}
+
+		void HandleDirectionComboChanged (object sender, EventArgs e)
+		{
+			if (Changed != null)
+				Changed(this, new EventArgs());
 		}
 		
 		public void SetCoordinate(double coord, bool isLat)

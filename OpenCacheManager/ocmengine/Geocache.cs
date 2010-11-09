@@ -62,6 +62,8 @@ namespace ocmengine
 		private string m_ownerID = "";
 		private bool m_checkNotes = false;
 		private bool m_children = false;
+		private double m_correctedLat = -1;
+		private double m_correctedLon = -1;
 		
 		public string CacheName
 		{
@@ -186,6 +188,71 @@ namespace ocmengine
 		{
 			get { return m_children;}
 			set { m_children = value;}
+		}
+		
+		public bool HasCorrected
+		{
+			get
+			{
+				if (m_correctedLat != -1)
+					return true;
+				return false;
+			}
+			set 
+			{
+				if (value == false)
+				{
+					m_correctedLat = -1;
+					m_correctedLon = -1;
+				}
+			}
+		}
+		
+		public override double Lat {
+			get {
+				if (HasCorrected)
+					return m_correctedLat;
+				return base.Lat;
+			}
+			set {
+				base.Lat = value;
+			}
+		}
+		
+		public override double Lon {
+			get {
+				if (HasCorrected)
+					return m_correctedLon;
+				return base.Lon;
+			}
+			set {
+				base.Lon = value;
+			}
+		}
+		
+		public double OrigLat {
+			get {
+				return base.Lat;
+			}
+		}
+		
+		public double OrigLon {
+			get {
+				return base.Lon;
+			}
+		}
+
+		
+		public double CorrectedLat
+		{
+			get { return m_correctedLat;}
+			set { m_correctedLat = value;}
+		}
+		
+		public double CorrectedLon
+		{
+			get { return m_correctedLon;}
+			set { m_correctedLon = value;}
 		}
 					
 		

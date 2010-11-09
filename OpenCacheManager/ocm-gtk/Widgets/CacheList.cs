@@ -19,11 +19,13 @@ namespace ocmgtk
 		const string START_ARCHIVE = "<span fgcolor='red' strikethrough='true'>";
 		const string START_UNAVAIL = "<span fgcolor='red'>";
 		const string START_RECENT_DNF = "<span fgcolor='darkorange'>";
+		const string START_ITALICS = "<i>";
 		const string START_BOLD = "<b>";
 		const string END_BOLD = "</b>";
 		const string START_UNDERLINE = "<u>";
 		const string END_UNDERLINE = "</u>";
 		const string END_SPAN = "</span>";
+		const string END_ITALICS = "</i>";
 		const string FOUND_CACHE = "Geocache Found";
 
 		private TreeModelFilter m_QuickFilter;
@@ -258,6 +260,8 @@ namespace ocmgtk
 				builder.Append(START_BOLD);
 			if (!String.IsNullOrEmpty(cache.Notes))
 				builder.Append(START_UNDERLINE);
+			if (cache.HasCorrected)
+				builder.Append(START_ITALICS);
 			if (!cache.Available && !cache.Archived)
 				builder.Append(unavailText (cache.CacheName));
 			else if (cache.Archived)
@@ -266,6 +270,8 @@ namespace ocmgtk
 				builder.Append(START_RECENT_DNF + GLib.Markup.EscapeText (cache.CacheName) + END_SPAN);
 			else
 				builder.Append(GLib.Markup.EscapeText (cache.CacheName));
+			if (cache.HasCorrected)
+				builder.Append(END_ITALICS);
 			if (!String.IsNullOrEmpty(cache.Notes))
 				builder.Append(END_UNDERLINE);
 			if (cache.Children)

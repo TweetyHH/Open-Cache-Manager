@@ -677,4 +677,13 @@ public partial class MainWindow : Gtk.Window
 	{
 		m_monitor.PrintCache();
 	}
+	protected virtual void OnCorrectedClick (object sender, System.EventArgs e)
+	{
+		m_monitor.CorrectCoordinates();
+	}
+	
+	protected virtual void OnWorldOCClick (object sender, System.EventArgs e)
+	{
+		Process.Start("http://opencaching.eu");
+	}
 }
