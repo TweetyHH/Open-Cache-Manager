@@ -112,7 +112,7 @@ namespace ocmengine
 			writer.WriteGPXFile (tempFile, cacheList, waypointmappings);
 			this.StartSend (this, new WriteEventArgs ("Sending Waypoints to GPS"));
 			StringBuilder builder = new StringBuilder ();
-			builder.Append ("gpsbabel -i gpx -f ");
+			builder.Append ("-i gpx -f ");
 			builder.Append (tempFile);
 			builder.Append (" -o ");
 			builder.Append (m_format);
@@ -122,8 +122,10 @@ namespace ocmengine
 			{
 				throw new Exception ("Aborted");
 			}
-			System.Console.WriteLine(builder.ToString());
-			Process babel = Process.Start (builder.ToString ());
+			ProcessStartInfo sp = new ProcessStartInfo();
+			sp.Arguments = builder.ToString();
+			sp.FileName = "gpsbabel";
+			Process babel = Process.Start (sp);
 			babel.WaitForExit ();
 			if (babel.ExitCode != 0)
 				throw new Exception ("Failed to send caches to GPS");

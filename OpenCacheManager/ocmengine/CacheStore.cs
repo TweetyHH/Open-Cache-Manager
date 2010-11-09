@@ -335,14 +335,16 @@ namespace ocmengine
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
-			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString());
+			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString(),
+			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture));
 			string update = String.Format(ADD_EXISTING_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
 			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
-			                                cache.Available.ToString(), cache.CheckNotes.ToString());
+			                                cache.Available.ToString(), cache.CheckNotes.ToString(),
+			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture));
 			InsertOrUpdate (update, insert, cmd);
 		}
 		
