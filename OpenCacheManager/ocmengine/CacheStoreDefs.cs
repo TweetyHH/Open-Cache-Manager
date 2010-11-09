@@ -19,7 +19,7 @@ namespace ocmengine
 
 	public partial class CacheStore
 	{
-		const string CREATE_CACHE_TABLE = "CREATE TABLE GEOCACHE (available TEXT, archived TEXT, container TEXT, hint TEXT, longdesc TEXT, shortdesc TEXT, type TEXT, state TEXT, country TEXT, terrain TEXT, difficulty TEXT, placedby TEXT, name TEXT PRIMARY KEY, fullname TEXT, id TEXT, owner TEXT, ownerID TEXT, notes TEXT, checkNotes TEXT)";
+		const string CREATE_CACHE_TABLE = "CREATE TABLE GEOCACHE (available TEXT, archived TEXT, container TEXT, hint TEXT, longdesc TEXT, shortdesc TEXT, type TEXT, state TEXT, country TEXT, terrain TEXT, difficulty TEXT, placedby TEXT, name TEXT PRIMARY KEY, fullname TEXT, id TEXT, owner TEXT, ownerID TEXT, notes TEXT, checkNotes TEXT, corlat TEXT, corlon TEXT)";
 		const string CREATE_LOGS_TABLE = "CREATE TABLE LOGS(cache TEXT, date text, loggedby TEXT, message TEXT, status TEXT, finderID TEXT, encoded TEXT, id TEXT)";
 		const string CREATE_TABLE_TBUGS = "CREATE TABLE TBUGS (cache TEXT, id TEXT, ref TEXT, name TEXT)";
 		const string CREATE_TABLE_WPTS = "CREATE TABLE WAYPOINT (lastUpdate TEXT, parent TEXT, symbol TEXT, time TEXT, type TEXT, desc TEXT, urlname TEXT, url TEXT, lon TEXT, lat TEXT, name TEXT PRIMARY KEY)";
@@ -41,14 +41,14 @@ namespace ocmengine
 		const string UPDATE_GC_CHECKNOTE = "UPDATE GEOCACHE  SET checkNotes='{0}' WHERE name='{1}'";
 		const string LAST_LOG_BY_YOU = "SELECT date from LOGS WHERE cache='{0}' and (finderID='{1}' or loggedBy='{1}') and date=(SELECT MAX(date) FROM LOGS WHERE cache='{0}' and (finderID='{1}' or loggedBy='{1}'))";
 		const string LAST_FIND_BY_YOU = "SELECT date, loggedby, message, status, finderID, encoded, id from LOGS WHERE cache='{0}' and (finderID='{1}' or loggedBy='{1}') and (status='Found it' or status='find' or status='Attended')";
-		const string INSERT_GC = "INSERT INTO GEOCACHE (name, fullname, id, owner, ownerID, placedby, difficulty, terrain, country, state, type, shortdesc, longdesc, hint, container, archived, available, notes, checkNotes)" + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}', '{17}', '{18}')";
-		const string UPDATE_GC = "UPDATE GEOCACHE SET fullname='{1}', id='{2}', owner='{3}', ownerID='{4}',  placedby='{5}', difficulty='{6}', terrain='{7}', country='{8}',state='{9}',type='{10}',shortdesc='{11}',longdesc='{12}',hint='{13}',container='{14}',archived='{15}',available='{16}', notes='{17}', checkNotes='{18}' WHERE name='{0}'";
+		const string INSERT_GC = "INSERT INTO GEOCACHE (name, fullname, id, owner, ownerID, placedby, difficulty, terrain, country, state, type, shortdesc, longdesc, hint, container, archived, available, notes, checkNotes, corlat, corlon)" + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}', '{17}', '{18}', '{19}', '{20}')";
+		const string UPDATE_GC = "UPDATE GEOCACHE SET fullname='{1}', id='{2}', owner='{3}', ownerID='{4}',  placedby='{5}', difficulty='{6}', terrain='{7}', country='{8}',state='{9}',type='{10}',shortdesc='{11}',longdesc='{12}',hint='{13}',container='{14}',archived='{15}',available='{16}', notes='{17}', checkNotes='{18}', corlat='{19}', corlon='{20}' WHERE name='{0}'";
 		// SAME AS UPDATE, BUT DOESN't OVERWRITE CACHE NOTES
 		const string ADD_EXISTING_GC = "UPDATE GEOCACHE SET fullname='{1}', id='{2}', owner='{3}', ownerID='{4}',  placedby='{5}', difficulty='{6}', terrain='{7}', country='{8}',state='{9}',type='{10}',shortdesc='{11}',longdesc='{12}',hint='{13}',container='{14}',archived='{15}',available='{16}', checkNotes='{17}' WHERE name='{0}'";
 		const string GC_EXISTS_CHECK = "SELECT 1 FROM GEOCACHE WHERE name='{0}'";
 		const string GET_GC = "SELECT  WAYPOINT.name, WAYPOINT.lat, WAYPOINT.lon, WAYPOINT.url, WAYPOINT.urlname, WAYPOINT.desc, WAYPOINT.symbol, WAYPOINT.type, WAYPOINT.time," 
 			+ "GEOCACHE.fullname, GEOCACHE.id, GEOCACHE.owner, GEOCACHE.ownerID, GEOCACHE.placedby, GEOCACHE.difficulty, GEOCACHE.terrain, GEOCACHE.country, GEOCACHE.state,"
-			+ "GEOCACHE.type, GEOCACHE.shortdesc, GEOCACHE.longdesc, GEOCACHE.hint, GEOCACHE.container, GEOCACHE.archived, GEOCACHE.available, WAYPOINT.lastUpdate, GEOCACHE.notes, GEOCACHE.checkNotes, (SELECT 1 FROM WAYPOINT WHERE WAYPOINT.parent = GEOCACHE.name)"
+			+ "GEOCACHE.type, GEOCACHE.shortdesc, GEOCACHE.longdesc, GEOCACHE.hint, GEOCACHE.container, GEOCACHE.archived, GEOCACHE.available, WAYPOINT.lastUpdate, GEOCACHE.notes, GEOCACHE.checkNotes, GEOCACHE.corlat, GEOCACHE.corlon, (SELECT 1 FROM WAYPOINT WHERE WAYPOINT.parent = GEOCACHE.name)"
 			+ " FROM WAYPOINT, GEOCACHE WHERE GEOCACHE.name = WAYPOINT.name";
 		const string FOUND_ONLY = " AND WAYPOINT.symbol = 'Geocache Found'";
 		const string COUNT_GC = "SELECT COUNT(name) from GEOCACHE";
@@ -75,10 +75,12 @@ namespace ocmengine
 		const string GET_DB_VER = "SELECT VER FROM DB_VER";
 		const string CREATE_DB_VER = "CREATE TABLE DB_VER (VER INTEGER PRIMARY KEY)";
 		const string CLEAR_DB_VER = "DELETE FROM DB_VER";
-		const string SET_DB_VER = "INSERT INTO DB_VER (VER) VALUES (3)";
+		const string SET_DB_VER = "INSERT INTO DB_VER (VER) VALUES (4)";
 		const string UPGRADE_GEOCACHE_V0_V1 = "ALTER TABLE GEOCACHE ADD COLUMN notes TEXT";
 		const string UPGRADE_GEOCACHE_V1_V2 = "ALTER TABLE GEOCACHE ADD COLUMN checkNotes TEXT";
 		const string UPGRADE_GEOCACHE_V2_V3 = "ALTER TABLE LOGS ADD COLUMN id TEXT";
+		const string UPGRADE_GEOCACHE_V3_V4A = "ALTER TABLE GEOCACHE ADD COLUMN corlat TEXT";
+		const string UPGRADE_GEOCACHE_V3_V4B = "ALTER TABLE GEOCACHE ADD COLUMN corlon TEXT";
 		const string VACUUM = "VACUUM";
 	}
 }

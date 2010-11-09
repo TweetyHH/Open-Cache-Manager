@@ -39,7 +39,12 @@ namespace ocmgtk {
             this.Name = "ocmgtk.CorrectedCoordinatesDlg";
             this.Title = Mono.Unix.Catalog.GetString("Corrected Coordinates");
             this.WindowPosition = ((Gtk.WindowPosition)(4));
+            this.Modal = true;
             this.BorderWidth = ((uint)(6));
+            this.Resizable = false;
+            this.AllowGrow = false;
+            this.SkipPagerHint = true;
+            this.SkipTaskbarHint = true;
             // Internal child ocmgtk.CorrectedCoordinatesDlg.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";

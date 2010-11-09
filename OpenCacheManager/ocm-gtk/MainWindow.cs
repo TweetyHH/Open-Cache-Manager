@@ -194,7 +194,7 @@ public partial class MainWindow : Gtk.Window
 				MarkFoundAction.Sensitive = true;
 				MarkUnfoundAction1.Sensitive = false;	
 			}
-			
+			CorrectedCoordinatesAction.Sensitive = true;
 			MarkArchivedAction1.Sensitive = false;
 			MarkDisabledAction1.Sensitive = false;
 			MarkAvailableAction1.Sensitive = false;			
@@ -224,6 +224,7 @@ public partial class MainWindow : Gtk.Window
 			MarkUnfoundAction1.Sensitive = false;
 			ModifyCacheAction.Sensitive = false;
 			DeleteCacheAction.Sensitive = false;
+			CorrectedCoordinatesAction.Sensitive = false;
 			ViewSelectedCacheInQLandkarteGTAction.Sensitive = false;
 			printAction.Sensitive = false;
 		}

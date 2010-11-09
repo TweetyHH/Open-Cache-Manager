@@ -121,6 +121,18 @@ namespace ocmgtk
 			}
 		}
 		
+		public bool HasCorrectedCoords
+		{
+			get { return hasCorrectedCheck.Active;}
+			set { hasCorrectedCheck.Active = value;}
+		}
+		
+		public bool DoesNotHaveCorrectedCoords
+		{
+			get { return noCorrectCheck.Active;}
+			set { noCorrectCheck.Active = value;}
+		}
+		
 		
 
 		public OCMQueryPage4 ()

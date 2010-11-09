@@ -268,7 +268,12 @@ namespace ocmgtk
 		public void setCoordinate (Geocache cache)
 		{
 			
-			coordinateLabel.Markup = "<span font='bold 10'>" + Utilities.getCoordString (cache.Lat, cache.Lon) + "</span>";
+			
+			string markup  = "<span font='bold 10'>" + Utilities.getCoordString (cache.Lat, cache.Lon);
+			if (cache.HasCorrected)
+				markup += Catalog.GetString(" (Corrected)");
+			markup+="</span>";
+			coordinateLabel.Markup = markup;
 			
 			
 			double distance = Utilities.calculateDistance (m_monitor.CentreLat, cache.Lat, m_monitor.CentreLon, cache.Lon);

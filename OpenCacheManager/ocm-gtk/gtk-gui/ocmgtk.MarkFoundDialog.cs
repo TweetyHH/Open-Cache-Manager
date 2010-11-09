@@ -33,9 +33,15 @@ namespace ocmgtk {
             Stetic.Gui.Initialize(this);
             // Widget ocmgtk.MarkFoundDialog
             this.Name = "ocmgtk.MarkFoundDialog";
-            this.Title = "";
+            this.Title = Mono.Unix.Catalog.GetString("Mark Found");
+            this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.WindowPosition = ((Gtk.WindowPosition)(4));
+            this.Modal = true;
             this.BorderWidth = ((uint)(6));
+            this.Resizable = false;
+            this.AllowGrow = false;
+            this.SkipPagerHint = true;
+            this.SkipTaskbarHint = true;
             // Internal child ocmgtk.MarkFoundDialog.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";
@@ -135,7 +141,7 @@ namespace ocmgtk {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 287;
-            this.DefaultHeight = 161;
+            this.DefaultHeight = 153;
             this.buttonOk.HasDefault = true;
             this.Show();
         }

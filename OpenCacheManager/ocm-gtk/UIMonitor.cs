@@ -1620,6 +1620,7 @@ namespace ocmgtk
 					m_selectedCache.HasCorrected = false;
 				}
 				Engine.getInstance().Store.UpdateCacheAtomic(m_selectedCache);
+				SetSelectedCache(m_selectedCache);
 			}
 			dlg.Hide();
 		}

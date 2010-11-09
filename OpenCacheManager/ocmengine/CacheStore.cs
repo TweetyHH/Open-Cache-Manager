@@ -311,14 +311,16 @@ namespace ocmengine
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
-			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString());
+			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString(),
+			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture));
 			string update = String.Format(UPDATE_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
 			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
-			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString());
+			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString(),
+			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture));
 			InsertOrUpdate (update, insert, cmd);
 		}
 		
@@ -538,6 +540,12 @@ namespace ocmengine
 			else
 				cache.CheckNotes = false;
 			val = reader.GetValue(28);
+			if (val is string)
+				cache.CorrectedLat = Double.Parse(val as string, CultureInfo.InvariantCulture);
+			val = reader.GetValue(29);
+			if (val is string)
+				cache.CorrectedLon = Double.Parse(val as string, CultureInfo.InvariantCulture);
+			val = reader.GetValue(30);
 			if (val != DBNull.Value)
 				cache.Children = true;
 			else
@@ -783,7 +791,7 @@ namespace ocmengine
 			{
 				int ver =0;
 				ver = GetDBVersion ();
-				if (ver < 3)
+				if (ver < 4)
 					return true;
 				return false;
 			}
@@ -813,14 +821,21 @@ namespace ocmengine
 			}
 			cmd.CommandText = CLEAR_DB_VER;
 			cmd.ExecuteNonQuery();
-			if (ver == 1)
+			if (ver <= 1)
 			{
 				cmd.CommandText = UPGRADE_GEOCACHE_V1_V2;
 				cmd.ExecuteNonQuery();
 			}
-			cmd.CommandText = UPGRADE_GEOCACHE_V2_V3;
+			if (ver <= 2)
+			{
+				cmd.CommandText = UPGRADE_GEOCACHE_V2_V3;
+				cmd.ExecuteNonQuery();
+				cmd.CommandText = CREATE_ATTRS_TABLE;
+				cmd.ExecuteNonQuery();
+			}
+			cmd.CommandText = UPGRADE_GEOCACHE_V3_V4A;
 			cmd.ExecuteNonQuery();
-			cmd.CommandText = CREATE_ATTRS_TABLE;
+			cmd.CommandText = UPGRADE_GEOCACHE_V3_V4B;
 			cmd.ExecuteNonQuery();
 			cmd.CommandText = SET_DB_VER;
 			cmd.ExecuteNonQuery();

@@ -637,6 +637,7 @@
       <action id="CorrectedCoordinatesAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Corrected Coordinates...</property>
+        <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">Corrected Coordinates...</property>
         <signal name="Activated" handler="OnCorrectedClick" />
       </action>
@@ -3805,7 +3806,6 @@ If you don't know these settings and are a Geocaching.com user, click on "View A
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Label" translatable="yes">All Cache Types</property>
-                <property name="Active">True</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
@@ -4563,7 +4563,7 @@ Less Than</property>
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">2</property>
+            <property name="CurrentPage">3</property>
             <property name="TabPos">Left</property>
             <child>
               <widget class="ocmgtk.OCMQueryPage1" id="page1">
@@ -4629,6 +4629,8 @@ Less Than</property>
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
                 <property name="HasNotes">False</property>
+                <property name="HasCorrectedCoords">False</property>
+                <property name="DoesNotHaveCorrectedCoords">False</property>
               </widget>
               <packing>
                 <property name="Position">3</property>
@@ -4637,7 +4639,7 @@ Less Than</property>
             <child>
               <widget class="Gtk.Label" id="labelChildren">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Notes/Children</property>
+                <property name="LabelProp" translatable="yes">Notes/Children/Corrected</property>
               </widget>
               <packing>
                 <property name="type">tab</property>
@@ -6998,7 +7000,7 @@ on or before:</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.ModifyCacheDialog" design-size="672 520">
+  <widget class="Gtk.Dialog" id="ocmgtk.ModifyCacheDialog" design-size="756 649">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Add/Modify Geocache...</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -7013,11 +7015,11 @@ on or before:</property>
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">1</property>
+            <property name="CurrentPage">0</property>
             <child>
               <widget class="Gtk.Table" id="table2">
                 <property name="MemberName" />
-                <property name="NRows">7</property>
+                <property name="NRows">8</property>
                 <property name="NColumns">2</property>
                 <property name="RowSpacing">6</property>
                 <property name="ColumnSpacing">6</property>
@@ -7057,13 +7059,32 @@ on or before:</property>
                     </child>
                   </widget>
                   <packing>
-                    <property name="TopAttach">6</property>
-                    <property name="BottomAttach">7</property>
+                    <property name="TopAttach">7</property>
+                    <property name="BottomAttach">8</property>
                     <property name="LeftAttach">1</property>
                     <property name="RightAttach">2</property>
                     <property name="AutoSize">False</property>
                     <property name="YOptions">Fill</property>
                     <property name="XExpand">True</property>
+                    <property name="XFill">True</property>
+                    <property name="XShrink">False</property>
+                    <property name="YExpand">False</property>
+                    <property name="YFill">True</property>
+                    <property name="YShrink">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Image" id="image70">
+                    <property name="MemberName" />
+                    <property name="Pixbuf">stock:gtk-dialog-info Dnd</property>
+                  </widget>
+                  <packing>
+                    <property name="TopAttach">1</property>
+                    <property name="BottomAttach">2</property>
+                    <property name="AutoSize">True</property>
+                    <property name="XOptions">Fill</property>
+                    <property name="YOptions">Fill</property>
+                    <property name="XExpand">False</property>
                     <property name="XFill">True</property>
                     <property name="XShrink">False</property>
                     <property name="YExpand">False</property>
@@ -7078,8 +7099,8 @@ on or before:</property>
                     <property name="LabelProp" translatable="yes">URL:</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">4</property>
-                    <property name="BottomAttach">5</property>
+                    <property name="TopAttach">5</property>
+                    <property name="BottomAttach">6</property>
                     <property name="AutoSize">True</property>
                     <property name="XOptions">Fill</property>
                     <property name="YOptions">Fill</property>
@@ -7098,8 +7119,30 @@ on or before:</property>
                     <property name="LabelProp" translatable="yes">URL Name:</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">5</property>
-                    <property name="BottomAttach">6</property>
+                    <property name="TopAttach">6</property>
+                    <property name="BottomAttach">7</property>
+                    <property name="AutoSize">True</property>
+                    <property name="XOptions">Fill</property>
+                    <property name="YOptions">Fill</property>
+                    <property name="XExpand">False</property>
+                    <property name="XFill">True</property>
+                    <property name="XShrink">False</property>
+                    <property name="YExpand">False</property>
+                    <property name="YFill">True</property>
+                    <property name="YShrink">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="label3">
+                    <property name="MemberName" />
+                    <property name="Xalign">0</property>
+                    <property name="LabelProp" translatable="yes">To set corrected coordinates that will not be overriden by a GPX import, go to Cache-&gt;Corrected Coordinates.</property>
+                  </widget>
+                  <packing>
+                    <property name="TopAttach">1</property>
+                    <property name="BottomAttach">2</property>
+                    <property name="LeftAttach">1</property>
+                    <property name="RightAttach">2</property>
                     <property name="AutoSize">True</property>
                     <property name="XOptions">Fill</property>
                     <property name="YOptions">Fill</property>
@@ -7118,8 +7161,8 @@ on or before:</property>
                     <property name="LabelProp" translatable="yes">Latitude:</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">1</property>
-                    <property name="BottomAttach">2</property>
+                    <property name="TopAttach">2</property>
+                    <property name="BottomAttach">3</property>
                     <property name="AutoSize">True</property>
                     <property name="XOptions">Fill</property>
                     <property name="YOptions">Fill</property>
@@ -7138,8 +7181,8 @@ on or before:</property>
                     <property name="LabelProp" translatable="yes">Longitude:</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">2</property>
-                    <property name="BottomAttach">3</property>
+                    <property name="TopAttach">3</property>
+                    <property name="BottomAttach">4</property>
                     <property name="AutoSize">True</property>
                     <property name="XOptions">Fill</property>
                     <property name="YOptions">Fill</property>
@@ -7160,8 +7203,8 @@ on or before:</property>
                     <property name="LabelProp" translatable="yes">Description:</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">6</property>
-                    <property name="BottomAttach">7</property>
+                    <property name="TopAttach">7</property>
+                    <property name="BottomAttach">8</property>
                     <property name="AutoSize">True</property>
                     <property name="XOptions">Fill</property>
                     <property name="YOptions">Fill</property>
@@ -7180,8 +7223,8 @@ on or before:</property>
                     <property name="LabelProp" translatable="yes">Cache Type:</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">3</property>
-                    <property name="BottomAttach">4</property>
+                    <property name="TopAttach">4</property>
+                    <property name="BottomAttach">5</property>
                     <property name="AutoSize">True</property>
                     <property name="XOptions">Fill</property>
                     <property name="YOptions">Fill</property>
@@ -7217,8 +7260,8 @@ on or before:</property>
                     <property name="Events">ButtonPressMask</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">1</property>
-                    <property name="BottomAttach">2</property>
+                    <property name="TopAttach">2</property>
+                    <property name="BottomAttach">3</property>
                     <property name="LeftAttach">1</property>
                     <property name="RightAttach">2</property>
                     <property name="AutoSize">True</property>
@@ -7238,8 +7281,8 @@ on or before:</property>
                     <property name="Events">ButtonPressMask</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">2</property>
-                    <property name="BottomAttach">3</property>
+                    <property name="TopAttach">3</property>
+                    <property name="BottomAttach">4</property>
                     <property name="LeftAttach">1</property>
                     <property name="RightAttach">2</property>
                     <property name="AutoSize">True</property>
@@ -7275,8 +7318,8 @@ Mega Event Cache</property>
                     <property name="Active">0</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">3</property>
-                    <property name="BottomAttach">4</property>
+                    <property name="TopAttach">4</property>
+                    <property name="BottomAttach">5</property>
                     <property name="LeftAttach">1</property>
                     <property name="RightAttach">2</property>
                     <property name="AutoSize">True</property>
@@ -7298,8 +7341,8 @@ Mega Event Cache</property>
                     <property name="InvisibleChar">•</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">4</property>
-                    <property name="BottomAttach">5</property>
+                    <property name="TopAttach">5</property>
+                    <property name="BottomAttach">6</property>
                     <property name="LeftAttach">1</property>
                     <property name="RightAttach">2</property>
                     <property name="AutoSize">True</property>
@@ -7321,8 +7364,8 @@ Mega Event Cache</property>
                     <property name="InvisibleChar">•</property>
                   </widget>
                   <packing>
-                    <property name="TopAttach">5</property>
-                    <property name="BottomAttach">6</property>
+                    <property name="TopAttach">6</property>
+                    <property name="BottomAttach">7</property>
                     <property name="LeftAttach">1</property>
                     <property name="RightAttach">2</property>
                     <property name="AutoSize">True</property>
@@ -9553,13 +9596,13 @@ Other</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="ocmgtk.OCMQueryPage4" design-size="427 401">
+  <widget class="Gtk.Bin" id="ocmgtk.OCMQueryPage4" design-size="436 401">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
       <widget class="Gtk.Table" id="table1">
         <property name="MemberName" />
-        <property name="NRows">3</property>
+        <property name="NRows">5</property>
         <property name="NColumns">2</property>
         <property name="RowSpacing">6</property>
         <property name="ColumnSpacing">6</property>
@@ -9609,6 +9652,29 @@ Other</property>
           <packing>
             <property name="TopAttach">1</property>
             <property name="BottomAttach">2</property>
+            <property name="AutoSize">True</property>
+            <property name="YOptions">Fill</property>
+            <property name="XExpand">True</property>
+            <property name="XFill">True</property>
+            <property name="XShrink">False</property>
+            <property name="YExpand">False</property>
+            <property name="YFill">True</property>
+            <property name="YShrink">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.CheckButton" id="hasCorrectedCheck">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Label" translatable="yes">Has Corrected Coordinates</property>
+            <property name="DrawIndicator">True</property>
+            <property name="HasLabel">True</property>
+            <property name="UseUnderline">True</property>
+          </widget>
+          <packing>
+            <property name="TopAttach">3</property>
+            <property name="BottomAttach">4</property>
+            <property name="RightAttach">2</property>
             <property name="AutoSize">True</property>
             <property name="YOptions">Fill</property>
             <property name="XExpand">True</property>
@@ -9685,6 +9751,29 @@ Other</property>
             <property name="XOptions">Fill</property>
             <property name="YOptions">Fill</property>
             <property name="XExpand">False</property>
+            <property name="XFill">True</property>
+            <property name="XShrink">False</property>
+            <property name="YExpand">False</property>
+            <property name="YFill">True</property>
+            <property name="YShrink">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.CheckButton" id="noCorrectCheck">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Label" translatable="yes">Does not have Corrected Coordinates</property>
+            <property name="DrawIndicator">True</property>
+            <property name="HasLabel">True</property>
+            <property name="UseUnderline">True</property>
+          </widget>
+          <packing>
+            <property name="TopAttach">4</property>
+            <property name="BottomAttach">5</property>
+            <property name="RightAttach">2</property>
+            <property name="AutoSize">True</property>
+            <property name="YOptions">Fill</property>
+            <property name="XExpand">True</property>
             <property name="XFill">True</property>
             <property name="XShrink">False</property>
             <property name="YExpand">False</property>
@@ -10548,11 +10637,17 @@ Cache Name</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.MarkFoundDialog" design-size="287 161">
+  <widget class="Gtk.Dialog" id="ocmgtk.MarkFoundDialog" design-size="287 153">
     <property name="MemberName" />
-    <property name="Title" translatable="yes" />
+    <property name="Title" translatable="yes">Mark Found</property>
+    <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="Modal">True</property>
     <property name="BorderWidth">6</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
+    <property name="SkipPagerHint">True</property>
+    <property name="SkipTaskbarHint">True</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -10710,7 +10805,12 @@ Cache Name</property>
     <property name="MemberName" />
     <property name="Title" translatable="yes">Corrected Coordinates</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="Modal">True</property>
     <property name="BorderWidth">6</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
+    <property name="SkipPagerHint">True</property>
+    <property name="SkipTaskbarHint">True</property>
     <property name="Buttons">3</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">

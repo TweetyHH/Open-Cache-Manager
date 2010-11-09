@@ -2,6 +2,9 @@ Version 0.22
 ------------
 - Delorme GPX support for PN-60/PN-40v2.8+
 - Can now choose date when marking caches as found
+- Add Corrected Coordinate support. You can now specify GSAK-like corrected coordinates for a cache
+that will not be replaced on a GPX import. These caches will appear in italicized text in the cache list.
+- Add filters for has corrected/does not have corrected coordinates
 
 Version 0.21
 ------------

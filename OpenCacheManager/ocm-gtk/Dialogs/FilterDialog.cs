@@ -44,19 +44,17 @@ namespace ocmgtk
 				GetFoundOnFilter (filter);
 				GetFoundBeforeFilter (filter);
 				GetFoundAfterFilter (filter);
-				if (childrenPage.HasNotes)
-					filter.AddFilterCriteria(FilterList.KEY_NOTES, childrenPage.HasNotes);
+				HasNotesFilter (filter);
+				GetChildrenFilter (filter);
+				GetNoChildrenFilter (filter);
+				if (childrenPage.HasCorrectedCoords)
+					filter.AddFilterCriteria(FilterList.KEY_CORRECTED, true);
 				else
-					filter.RemoveCriteria(FilterList.KEY_NOTES);
-				if (childrenPage.ChildrenFilter != null)
-					filter.AddFilterCriteria(FilterList.KEY_CHILDREN, childrenPage.ChildrenFilter);
+					filter.RemoveCriteria(FilterList.KEY_CORRECTED);
+				if (childrenPage.DoesNotHaveCorrectedCoords)
+					filter.AddFilterCriteria(FilterList.KEY_NOCORRECTED, true);
 				else
-					filter.RemoveCriteria(FilterList.KEY_CHILDREN);
-				if (childrenPage.NoChildrenFilter != null)
-					filter.AddFilterCriteria(FilterList.KEY_NOCHILDREN, childrenPage.NoChildrenFilter);
-				else
-					filter.RemoveCriteria(FilterList.KEY_NOCHILDREN);
-				
+					filter.RemoveCriteria(FilterList.KEY_NOCORRECTED);
 				filter.AddFilterCriteria(FilterList.KEY_OWNERID, UIMonitor.getInstance().OwnerID);
 				return filter;
 			}
@@ -98,7 +96,35 @@ namespace ocmgtk
 					childrenPage.NoChildrenFilter = value.GetCriteria(FilterList.KEY_NOCHILDREN) as string;
 				if (value.Contains(FilterList.KEY_NOTES))
 					childrenPage.HasNotes = (Boolean) value.GetCriteria(FilterList.KEY_NOTES);
+				if (value.Contains(FilterList.KEY_CORRECTED))
+					childrenPage.HasCorrectedCoords = true;
+				if (value.Contains(FilterList.KEY_NOCORRECTED))
+					childrenPage.DoesNotHaveCorrectedCoords = true;
 			}
+		}
+		
+		private void GetNoChildrenFilter (FilterList filter)
+		{
+				if (childrenPage.NoChildrenFilter != null)
+					filter.AddFilterCriteria(FilterList.KEY_NOCHILDREN, childrenPage.NoChildrenFilter);
+				else
+					filter.RemoveCriteria(FilterList.KEY_NOCHILDREN);
+		}
+		
+		private void GetChildrenFilter (FilterList filter)
+		{
+			if (childrenPage.ChildrenFilter != null)
+					filter.AddFilterCriteria(FilterList.KEY_CHILDREN, childrenPage.ChildrenFilter);
+				else
+					filter.RemoveCriteria(FilterList.KEY_CHILDREN);
+		}
+		
+		private void HasNotesFilter (FilterList filter)
+		{
+			if (childrenPage.HasNotes)
+					filter.AddFilterCriteria(FilterList.KEY_NOTES, childrenPage.HasNotes);
+				else
+					filter.RemoveCriteria(FilterList.KEY_NOTES);
 		}
 		
 		private void GetFoundAfterFilter (FilterList filter)

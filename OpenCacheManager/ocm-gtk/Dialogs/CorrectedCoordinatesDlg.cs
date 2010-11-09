@@ -55,6 +55,7 @@ namespace ocmgtk
 			{
 				correctLat.SetCoordinate(cache.CorrectedLat, true);
 				correctLon.SetCoordinate(cache.CorrectedLon, false);
+				resetButton.Sensitive = true;
 			}
 			else
 			{
@@ -84,8 +85,8 @@ namespace ocmgtk
 		}
 		protected virtual void OnResetClick (object sender, System.EventArgs e)
 		{
-			correctLat.SetCoordinate(m_cache.Lat, true);
-			correctLon.SetCoordinate(m_cache.Lon, false);
+			correctLat.SetCoordinate(m_cache.OrigLat, true);
+			correctLon.SetCoordinate(m_cache.OrigLon, false);
 			m_IsCorrected = false;
 			resetButton.Sensitive = false;
 		}

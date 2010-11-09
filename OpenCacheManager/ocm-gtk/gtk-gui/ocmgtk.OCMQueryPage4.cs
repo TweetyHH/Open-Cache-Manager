@@ -19,11 +19,15 @@ namespace ocmgtk {
         
         private Gtk.CheckButton hasChildCheck;
         
+        private Gtk.CheckButton hasCorrectedCheck;
+        
         private Gtk.CheckButton hasNoChildCheck;
         
         private Gtk.CheckButton hasNotesCheck;
         
         private Gtk.ComboBox noChildCombo;
+        
+        private Gtk.CheckButton noCorrectCheck;
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
@@ -31,7 +35,7 @@ namespace ocmgtk {
             Stetic.BinContainer.Attach(this);
             this.Name = "ocmgtk.OCMQueryPage4";
             // Container child ocmgtk.OCMQueryPage4.Gtk.Container+ContainerChild
-            this.table1 = new Gtk.Table(((uint)(3)), ((uint)(2)), false);
+            this.table1 = new Gtk.Table(((uint)(5)), ((uint)(2)), false);
             this.table1.Name = "table1";
             this.table1.RowSpacing = ((uint)(6));
             this.table1.ColumnSpacing = ((uint)(6));
@@ -68,6 +72,19 @@ namespace ocmgtk {
             w2.BottomAttach = ((uint)(2));
             w2.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
+            this.hasCorrectedCheck = new Gtk.CheckButton();
+            this.hasCorrectedCheck.CanFocus = true;
+            this.hasCorrectedCheck.Name = "hasCorrectedCheck";
+            this.hasCorrectedCheck.Label = Mono.Unix.Catalog.GetString("Has Corrected Coordinates");
+            this.hasCorrectedCheck.DrawIndicator = true;
+            this.hasCorrectedCheck.UseUnderline = true;
+            this.table1.Add(this.hasCorrectedCheck);
+            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table1[this.hasCorrectedCheck]));
+            w3.TopAttach = ((uint)(3));
+            w3.BottomAttach = ((uint)(4));
+            w3.RightAttach = ((uint)(2));
+            w3.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
             this.hasNoChildCheck = new Gtk.CheckButton();
             this.hasNoChildCheck.CanFocus = true;
             this.hasNoChildCheck.Name = "hasNoChildCheck";
@@ -75,10 +92,10 @@ namespace ocmgtk {
             this.hasNoChildCheck.DrawIndicator = true;
             this.hasNoChildCheck.UseUnderline = true;
             this.table1.Add(this.hasNoChildCheck);
-            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table1[this.hasNoChildCheck]));
-            w3.TopAttach = ((uint)(2));
-            w3.BottomAttach = ((uint)(3));
-            w3.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table1[this.hasNoChildCheck]));
+            w4.TopAttach = ((uint)(2));
+            w4.BottomAttach = ((uint)(3));
+            w4.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.hasNotesCheck = new Gtk.CheckButton();
             this.hasNotesCheck.CanFocus = true;
@@ -87,8 +104,8 @@ namespace ocmgtk {
             this.hasNotesCheck.DrawIndicator = true;
             this.hasNotesCheck.UseUnderline = true;
             this.table1.Add(this.hasNotesCheck);
-            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table1[this.hasNotesCheck]));
-            w4.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table1[this.hasNotesCheck]));
+            w5.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.noChildCombo = Gtk.ComboBox.NewText();
             this.noChildCombo.AppendText(Mono.Unix.Catalog.GetString("Final Location"));
@@ -102,13 +119,26 @@ namespace ocmgtk {
             this.noChildCombo.Name = "noChildCombo";
             this.noChildCombo.Active = 0;
             this.table1.Add(this.noChildCombo);
-            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table1[this.noChildCombo]));
-            w5.TopAttach = ((uint)(2));
-            w5.BottomAttach = ((uint)(3));
-            w5.LeftAttach = ((uint)(1));
-            w5.RightAttach = ((uint)(2));
-            w5.XOptions = ((Gtk.AttachOptions)(4));
-            w5.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table1[this.noChildCombo]));
+            w6.TopAttach = ((uint)(2));
+            w6.BottomAttach = ((uint)(3));
+            w6.LeftAttach = ((uint)(1));
+            w6.RightAttach = ((uint)(2));
+            w6.XOptions = ((Gtk.AttachOptions)(4));
+            w6.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.noCorrectCheck = new Gtk.CheckButton();
+            this.noCorrectCheck.CanFocus = true;
+            this.noCorrectCheck.Name = "noCorrectCheck";
+            this.noCorrectCheck.Label = Mono.Unix.Catalog.GetString("Does not have Corrected Coordinates");
+            this.noCorrectCheck.DrawIndicator = true;
+            this.noCorrectCheck.UseUnderline = true;
+            this.table1.Add(this.noCorrectCheck);
+            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table1[this.noCorrectCheck]));
+            w7.TopAttach = ((uint)(4));
+            w7.BottomAttach = ((uint)(5));
+            w7.RightAttach = ((uint)(2));
+            w7.YOptions = ((Gtk.AttachOptions)(4));
             this.Add(this.table1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

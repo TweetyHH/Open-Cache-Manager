@@ -49,7 +49,7 @@ namespace ocmgtk {
             this.notebook1 = new Gtk.Notebook();
             this.notebook1.CanFocus = true;
             this.notebook1.Name = "notebook1";
-            this.notebook1.CurrentPage = 2;
+            this.notebook1.CurrentPage = 3;
             this.notebook1.TabPos = ((Gtk.PositionType)(0));
             // Container child notebook1.Gtk.Notebook+NotebookChild
             this.page1 = new ocmgtk.OCMQueryPage1();
@@ -101,13 +101,15 @@ namespace ocmgtk {
             this.childrenPage.Events = ((Gdk.EventMask)(256));
             this.childrenPage.Name = "childrenPage";
             this.childrenPage.HasNotes = false;
+            this.childrenPage.HasCorrectedCoords = false;
+            this.childrenPage.DoesNotHaveCorrectedCoords = false;
             this.notebook1.Add(this.childrenPage);
             Gtk.Notebook.NotebookChild w5 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.childrenPage]));
             w5.Position = 3;
             // Notebook tab
             this.labelChildren = new Gtk.Label();
             this.labelChildren.Name = "labelChildren";
-            this.labelChildren.LabelProp = Mono.Unix.Catalog.GetString("Notes/Children");
+            this.labelChildren.LabelProp = Mono.Unix.Catalog.GetString("Notes/Children/Corrected");
             this.notebook1.SetTabLabel(this.childrenPage, this.labelChildren);
             this.labelChildren.ShowAll();
             w1.Add(this.notebook1);

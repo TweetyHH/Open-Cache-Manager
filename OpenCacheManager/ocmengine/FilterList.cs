@@ -49,6 +49,8 @@ namespace ocmengine
 		public const String KEY_CHILDREN = "children";
 		public const String KEY_NOCHILDREN = "nochildren";
 		public const String KEY_NOTES = "notes";
+		public const String KEY_CORRECTED = "corrected";
+		public const String KEY_NOCORRECTED = "nocorreced";
 		public FilterList ()
 		{
 			
@@ -236,6 +238,17 @@ namespace ocmengine
 			{
 				builder.Append(" AND GEOCACHE.notes NOT NULL AND GEOCACHE.notes != ''");
 			}
+			
+			if (m_criteria.Contains(KEY_CORRECTED))
+			{
+				builder.Append(" AND GEOCACHE.corlat NOT NULL AND GEOCACHE.corlat != '-1'");
+			}
+			
+			if (m_criteria.Contains(KEY_NOCORRECTED))
+			{
+				builder.Append(" AND GEOCACHE.corlat IS NULL OR GEOCACHE.corlat = '-1'");
+			}
+
 
 			 
 			System.Console.WriteLine(builder.ToString());

@@ -574,6 +574,7 @@ public partial class MainWindow {
         this.printAction.ShortLabel = Mono.Unix.Catalog.GetString("Print...");
         w1.Add(this.printAction, null);
         this.CorrectedCoordinatesAction = new Gtk.Action("CorrectedCoordinatesAction", Mono.Unix.Catalog.GetString("Corrected Coordinates..."), null, null);
+        this.CorrectedCoordinatesAction.Sensitive = false;
         this.CorrectedCoordinatesAction.ShortLabel = Mono.Unix.Catalog.GetString("Corrected Coordinates...");
         w1.Add(this.CorrectedCoordinatesAction, null);
         this.OpencachingAction = new Gtk.Action("OpencachingAction", Mono.Unix.Catalog.GetString("O_pencaching"), null, null);

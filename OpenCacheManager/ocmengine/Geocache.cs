@@ -15,6 +15,8 @@ using System.Xml;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Web;
+using System.Text;
+using Mono.Unix;
 
 namespace ocmengine
 {
@@ -323,22 +325,27 @@ namespace ocmengine
 			writer.WriteElementString(CACHE_PREFIX,"terrain", GPXWriter.NS_CACHE, Terrain.ToString("0.#", CultureInfo.InvariantCulture));
 			writer.WriteElementString(CACHE_PREFIX,"country", GPXWriter.NS_CACHE,  Country);
 			writer.WriteElementString(CACHE_PREFIX,"state", GPXWriter.NS_CACHE,  State);
-			String shortDescription = ShortDesc;
+			StringBuilder shortDescription = new StringBuilder();
+			if (HasCorrected)
+			{
+				shortDescription.Append(Catalog.GetString("Original Coordinate:"));
+				shortDescription.Append(Utilities.getCoordString(OrigLat, OrigLon));
+				shortDescription.Append("<hr noshade/>");
+			}
 			if (!String.IsNullOrEmpty(Notes))
 			{
-				shortDescription = Notes;
-				shortDescription += "<hr noshade/>";
-				shortDescription += ShortDesc;
-				
+				shortDescription.Append(Notes);
+				shortDescription.Append("<hr noshade/>");					
 			}
+			shortDescription.Append(ShortDesc);	
 			writer.WriteStartElement(CACHE_PREFIX,"short_description", GPXWriter.NS_CACHE);
 			writer.WriteAttributeString("html", "True");
 			if (gpx.HTMLOutput == HTMLMode.GARMIN)
-				writer.WriteCData(Utilities.HTMLtoGarmin(shortDescription));
+				writer.WriteCData(Utilities.HTMLtoGarmin(shortDescription.ToString()));
 			else if (gpx.HTMLOutput == HTMLMode.PLAINTEXT)
-				writer.WriteCData(Utilities.HTMLtoText(ShortDesc));
+				writer.WriteCData(Utilities.HTMLtoText(shortDescription.ToString()));
 			else
-				writer.WriteCData(shortDescription);
+				writer.WriteCData(shortDescription.ToString());
 			writer.WriteEndElement();
 			writer.WriteStartElement(CACHE_PREFIX,"long_description", GPXWriter.NS_CACHE);
 			writer.WriteAttributeString("html", "True");
