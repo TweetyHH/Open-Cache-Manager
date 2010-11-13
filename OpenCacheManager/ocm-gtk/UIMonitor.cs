@@ -932,7 +932,7 @@ namespace ocmgtk
 		{
 			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, String.Format(Catalog.GetString("Are you sure you want to delete {0}?"), m_selectedCache.Name));
 			if ((int)ResponseType.Yes == dlg.Run ()) {
-				Engine.getInstance ().Store.DeleteGeocache (m_selectedCache);
+				Engine.getInstance ().Store.DeleteGeocacheAtomic (m_selectedCache);
 				RefreshCaches ();
 			}
 			dlg.Hide ();
@@ -1284,10 +1284,12 @@ namespace ocmgtk
 			if ((int)ResponseType.Yes == dlg.Run ()) {
 				dlg.Hide();
 				CacheStore store = Engine.getInstance().Store;
+				System.Data.IDbTransaction trans =  store.StartUpdate();
 				foreach(Geocache cache in list)
 				{
 					store.DeleteGeocache (cache);
 				}
+				store.EndUpdate(trans);
 				SetSelectedCache(null);
 				RefreshCaches ();
 			}

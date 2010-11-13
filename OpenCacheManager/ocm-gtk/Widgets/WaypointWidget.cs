@@ -173,6 +173,18 @@ namespace ocmgtk
 				m_mon.AddMapWayPoint (wptenum.Current);
 				cache.Children = true;		
 			}
+			if (cache.HasCorrected)
+			{
+				Waypoint Orig = new Waypoint();
+				Orig.Name = cache.Name + "-ORIG";
+				Orig.Lat = cache.OrigLat;
+				Orig.Lon = cache.OrigLon;
+				Orig.Symbol = "Geocache";
+				Orig.Type = "Geocache";
+				Orig.Desc = Catalog.GetString("Original Location");
+				m_mon.AddMapWayPoint (Orig);
+				m_childPoints.AppendValues(Orig);
+			}
 			m_mon.SetProgressDone();
 			m_ListSort.SetSortColumnId (1, SortType.Ascending);
 			m_mon.Main.Show();

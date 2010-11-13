@@ -278,7 +278,7 @@ namespace ocmengine
 			EndUpdate(trans);
 		}
 		
-		public void DeleteGeocache(Geocache cache)
+		public void DeleteGeocacheAtomic(Geocache cache)
 		{
 			IDbTransaction trans = StartUpdate();
 			String deleteGC = String.Format(DELETE_GC, SQLEscape(cache.Name));
@@ -291,6 +291,19 @@ namespace ocmengine
 			cmd.CommandText = deleteGC + SEPERATOR + deleteLogs + SEPERATOR + deleteTBS + SEPERATOR + deleteWpt; 
 			cmd.ExecuteNonQuery();		
 			EndUpdate(trans);
+		}
+		
+		public void DeleteGeocache(Geocache cache)
+		{
+			String deleteGC = String.Format(DELETE_GC, SQLEscape(cache.Name));
+			String deleteTBS = String.Format(DELETE_TBS, SQLEscape(cache.Name));
+			String deleteLogs = String.Format(DELETE_LOGS, SQLEscape(cache.Name));
+			String deleteWpt = String.Format(DELETE_WPT + OR_PARENT, SQLEscape(cache.Name));
+			if (m_conn == null)
+				throw new Exception("DB NOT OPEN");
+			IDbCommand cmd = m_conn.CreateCommand();
+			cmd.CommandText = deleteGC + SEPERATOR + deleteLogs + SEPERATOR + deleteTBS + SEPERATOR + deleteWpt; 
+			cmd.ExecuteNonQuery();		
 		}
 		
 		public void UpdateCacheAtomic(Geocache pt)

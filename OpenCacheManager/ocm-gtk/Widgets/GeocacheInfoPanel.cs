@@ -82,6 +82,7 @@ namespace ocmgtk
 					cacheTypeLabel.Text = String.Empty;
 					countryLabel.Text = String.Empty;
 					attrLabel.Markup = Catalog.GetString("None");
+					origCoord.Markup = String.Empty;
 					return;
 				}
 				this.Sensitive = true;
@@ -269,11 +270,11 @@ namespace ocmgtk
 		{
 			
 			
-			string markup  = "<span font='bold 10'>" + Utilities.getCoordString (cache.Lat, cache.Lon);
+			coordinateLabel.Markup  = "<span font='bold 10'>" + Utilities.getCoordString (cache.Lat, cache.Lon) + "</span>";
 			if (cache.HasCorrected)
-				markup += Catalog.GetString(" (Corrected)");
-			markup+="</span>";
-			coordinateLabel.Markup = markup;
+				origCoord.Markup =  Catalog.GetString("<i>Original: ") +  Utilities.getCoordString(cache.OrigLat, cache.OrigLon) + "</i>";
+			else 
+				origCoord.Markup = String.Empty;;
 			
 			
 			double distance = Utilities.calculateDistance (m_monitor.CentreLat, cache.Lat, m_monitor.CentreLon, cache.Lon);

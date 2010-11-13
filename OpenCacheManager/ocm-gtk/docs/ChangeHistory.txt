@@ -5,6 +5,7 @@ Version 0.22
 - Add Corrected Coordinate support. You can now specify GSAK-like corrected coordinates for a cache
 that will not be replaced on a GPX import. These caches will appear in italicized text in the cache list.
 - Add filters for has corrected/does not have corrected coordinates
+- Improve delete performance when deleting multiple caches
 
 Version 0.21
 ------------

@@ -107,6 +107,8 @@ namespace ocmgtk {
         
         private Gtk.Label distance_label;
         
+        private Gtk.Label origCoord;
+        
         private Gtk.HButtonBox hbuttonbox2;
         
         protected virtual void Build() {
@@ -573,19 +575,30 @@ namespace ocmgtk {
             w52.Position = 5;
             w52.Expand = false;
             w52.Fill = false;
+            // Container child vbox3.Gtk.Box+BoxChild
+            this.origCoord = new Gtk.Label();
+            this.origCoord.Name = "origCoord";
+            this.origCoord.Xpad = 6;
+            this.origCoord.Xalign = 0F;
+            this.origCoord.LabelProp = Mono.Unix.Catalog.GetString("label1");
+            this.vbox3.Add(this.origCoord);
+            Gtk.Box.BoxChild w53 = ((Gtk.Box.BoxChild)(this.vbox3[this.origCoord]));
+            w53.Position = 6;
+            w53.Expand = false;
+            w53.Fill = false;
             w2.Add(this.vbox3);
             this.scrolledwindow1.Add(w2);
             this.infoPanelVBOX.Add(this.scrolledwindow1);
-            Gtk.Box.BoxChild w55 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.scrolledwindow1]));
-            w55.Position = 1;
+            Gtk.Box.BoxChild w56 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.scrolledwindow1]));
+            w56.Position = 1;
             // Container child infoPanelVBOX.Gtk.Box+BoxChild
             this.hbuttonbox2 = new Gtk.HButtonBox();
             this.hbuttonbox2.Name = "hbuttonbox2";
             this.infoPanelVBOX.Add(this.hbuttonbox2);
-            Gtk.Box.BoxChild w56 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.hbuttonbox2]));
-            w56.Position = 2;
-            w56.Expand = false;
-            w56.Fill = false;
+            Gtk.Box.BoxChild w57 = ((Gtk.Box.BoxChild)(this.infoPanelVBOX[this.hbuttonbox2]));
+            w57.Position = 2;
+            w57.Expand = false;
+            w57.Fill = false;
             this.Add(this.infoPanelVBOX);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

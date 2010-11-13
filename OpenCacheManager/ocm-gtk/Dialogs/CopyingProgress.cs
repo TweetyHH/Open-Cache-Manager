@@ -88,7 +88,7 @@ namespace ocmgtk
 				}
 				
 				if (isMove)
-					source.DeleteGeocache(cache);
+					source.DeleteGeocacheAtomic(cache);
 			}
 			statusLabel.Markup = Catalog.GetString("<i>Complete</i>");
 			progressBar.Text = Catalog.GetString("Complete");
