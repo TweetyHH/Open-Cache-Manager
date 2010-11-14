@@ -253,7 +253,11 @@ namespace ocmengine
 		
 		private void processWptElement(ref Waypoint pt, XmlReader reader)
 		{
-			if (reader.Name == "name")
+			if (pt is Geocache)
+			{
+				parseGeocacheElement(ref pt, reader);
+			}
+			else if (reader.Name == "name")
 			{
 				pt.Name = reader.ReadElementContentAsString();
 				this.ParseWaypoint(this, new ParseEventArgs(String.Format("Processing Waypoint {0}", pt.Name)));
@@ -297,10 +301,6 @@ namespace ocmengine
 				if (pt.Type.StartsWith("Geocache") || pt.Type.StartsWith("TerraCache"))
 				    pt = Geocache.convertFromWaypoint(pt);
 			}
-			else if (pt is Geocache)
-			{
-				parseGeocacheElement(ref pt, reader);
-			}
 		}
 		
 		private void parseGeocacheElement(ref Waypoint pt, XmlReader reader)
@@ -309,7 +309,6 @@ namespace ocmengine
 			m_store.ClearTBs(pt.Name);
 			if (m_source == "opencaching")
 			{
-				System.Console.WriteLine("OpenCache!");
 				cache = ParseOpenCache(reader, ref cache);
 			}
 			else if (reader.NamespaceURI.StartsWith("http://www.groundspeak.com/cache"))
@@ -439,10 +438,10 @@ namespace ocmengine
 		
 		private Geocache ParseOpenCache (XmlReader reader, ref Geocache cache)
 		{
-			if (reader.LocalName == "cache")
+			if (reader.LocalName == "cache" || reader.LocalName == "geocache")
 			{
-				System.Console.WriteLine("ReadingCache");
 				string avail = reader.GetAttribute("available");
+				string status = reader.GetAttribute("status");
 				string arch = reader.GetAttribute("archived");
 				if (!String.IsNullOrEmpty(avail))
 					cache.Available = Boolean.Parse(avail);
@@ -508,7 +507,7 @@ namespace ocmengine
 			}
 			else if (reader.LocalName == "logs" && !reader.IsEmptyElement)
 			{
-			//	parseCacheLogs(ref cache, reader);
+				parseCacheLogs(ref cache, reader);
 			}
 			else if (reader.LocalName == "travelbugs" && !reader.IsEmptyElement)
 			{
@@ -690,7 +689,10 @@ namespace ocmengine
 				}
 				else if (reader.LocalName == "text")
 				{
-					log.Encoded = Boolean.Parse(reader.GetAttribute("encoded"));
+					if (reader.GetAttribute("encoded") != null)
+						log.Encoded = Boolean.Parse(reader.GetAttribute("encoded"));
+					else
+						log.Encoded = false;
 					log.LogMessage = reader.ReadElementContentAsString();
 				}
 				else if (reader.LocalName == "log")
