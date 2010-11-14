@@ -152,7 +152,10 @@ namespace ocmengine
 					writer.WriteElementString("desc", cache.Name + "/" + cache.TypeOfCache.ToString());
 			}
 			else
+			{
 				writer.WriteElementString("desc", this.Desc);	
+				writer.WriteElementString("cmt", this.Desc);
+			}
 			if (this.URL != null)
 				writer.WriteElementString("url", this.URL.ToString());
 			if (!String.IsNullOrEmpty(this.URLName))

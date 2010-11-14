@@ -74,12 +74,14 @@ namespace ocmengine
 			writer.IncludeChildWaypoints = true;
 			if (m_format == "OCM_GPX") {
 				writer.HTMLOutput = HTMLMode.GARMIN;
+				writer.UseOCMPtTypes = true;
 				WriteGPXFile (cacheList, waypointmappings);
 				return;
 			}
 			else if (m_format == "delgpx")
 			{
 				writer.HTMLOutput = HTMLMode.PLAINTEXT;
+				writer.UseOCMPtTypes = false;
 				if (m_file == "%auto%")
 				{
 					String dbName = Engine.getInstance().Store.DBFile;

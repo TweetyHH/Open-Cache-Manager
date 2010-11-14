@@ -155,6 +155,7 @@ namespace ocmgtk
 					props.RightAttach = 2;
 					props.BottomAttach = 3;
 					gpxwidget.Show ();
+					waypointWidget.Sensitive = true;
 					break;
 				case 1:
 					table1.Add (gusbwidet);
@@ -163,6 +164,7 @@ namespace ocmgtk
 					props.RightAttach = 2;
 					props.BottomAttach = 3;
 					gusbwidet.Show ();
+					waypointWidget.Sensitive = true;
 					break;
 				case 2:
 					table1.Add (garswidget);
@@ -171,6 +173,7 @@ namespace ocmgtk
 					props.RightAttach = 2;
 					props.BottomAttach = 3;
 					garswidget.Show ();
+					waypointWidget.Sensitive = true;
 					break;
 				case 3:
 					table1.Add (edgeWidget);
@@ -179,6 +182,7 @@ namespace ocmgtk
 					props.RightAttach = 2;
 					props.BottomAttach = 3;
 					edgeWidget.Show ();
+					waypointWidget.Sensitive = true;
 					break;
 				case 4:
 					table1.Add(delwidget);
@@ -187,6 +191,7 @@ namespace ocmgtk
 					props.RightAttach = 2;
 					props.BottomAttach = 3;
 					delwidget.Show ();
+					waypointWidget.Sensitive = false;
 					break;
 				case 5:
 					table1.Add(delgpxwidget);
@@ -195,6 +200,7 @@ namespace ocmgtk
 					props.RightAttach = 2;
 					props.BottomAttach = 3;
 					delgpxwidget.Show ();
+					waypointWidget.Sensitive = false;
 					break;
 				default:
 					table1.Add (gpswidget);
@@ -203,6 +209,7 @@ namespace ocmgtk
 					props.RightAttach = 2;
 					props.BottomAttach = 3;
 					gpswidget.Show ();
+					waypointWidget.Sensitive = true;
 					break;
 			}
 		}		
