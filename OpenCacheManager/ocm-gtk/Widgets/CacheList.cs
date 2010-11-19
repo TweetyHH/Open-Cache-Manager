@@ -53,6 +53,7 @@ namespace ocmgtk
 		public CacheList ()
 		{
 			this.Build ();
+			advancedBox.Remove(infoHbox);
 			treeview1 = new OCMTreeView();
 			treeview1.ButtonPressEvent += DoButtonPress;
 			cachescroll.Add(treeview1);
@@ -62,6 +63,18 @@ namespace ocmgtk
 			refreshTimer = new Timer ();
 			refreshTimer.AutoReset = false;
 			refreshTimer.Elapsed += HandleRefreshTimerElapsed;
+		}
+		
+		public void ShowInfoBox()
+		{
+			advancedBox.Add(infoHbox);
+			ShowAll();
+		}
+		
+		public void HideInfoBox()
+		{
+			advancedBox.Remove(infoHbox);
+			ShowAll();
 		}
 
 		void HandleRefreshTimerElapsed (object sender, ElapsedEventArgs e)
@@ -765,5 +778,9 @@ namespace ocmgtk
 			filter.NameFilter = filterEntry.Text;
 		}
 	
+		protected virtual void OnFilterClick (object sender, System.EventArgs e)
+		{
+			m_monitor.SetAdditonalFilters();
+		}	
 	}
 }

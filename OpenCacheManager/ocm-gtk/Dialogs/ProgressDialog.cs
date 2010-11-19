@@ -28,6 +28,14 @@ namespace ocmgtk
 		private GPXParser m_parser;
 		double m_total = 0;
 		double m_progress = 0;
+		
+		bool m_autoClose = false;
+		public bool AutoClose
+		{
+			get { return m_autoClose;}
+			set { m_autoClose = value;}
+		}
+		
 		public ProgressDialog (GPXParser parser, int total)
 		{
 			this.Build ();
@@ -47,6 +55,8 @@ namespace ocmgtk
 			buttonCancel.Hide();
 			buttonCancel.Sensitive = false;
 			okButton.GrabDefault();
+			if (m_autoClose)
+				this.Hide();
 		}
 		
 

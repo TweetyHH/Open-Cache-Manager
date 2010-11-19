@@ -41,6 +41,16 @@ namespace ocmgtk {
         
         private Gtk.Image image16;
         
+        private Gtk.EventBox advancedBox;
+        
+        private Gtk.HBox infoHbox;
+        
+        private Gtk.Image image2;
+        
+        private Gtk.Button infoPane;
+        
+        private Gtk.Label label2;
+        
         private Gtk.Table table1;
         
         private Gtk.CheckButton ArchivedButton;
@@ -170,6 +180,46 @@ namespace ocmgtk {
             w13.Expand = false;
             w13.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
+            this.advancedBox = new Gtk.EventBox();
+            this.advancedBox.Name = "advancedBox";
+            // Container child advancedBox.Gtk.Container+ContainerChild
+            this.infoHbox = new Gtk.HBox();
+            this.infoHbox.Name = "infoHbox";
+            this.infoHbox.Spacing = 6;
+            this.infoHbox.BorderWidth = ((uint)(6));
+            // Container child infoHbox.Gtk.Box+BoxChild
+            this.image2 = new Gtk.Image();
+            this.image2.Name = "image2";
+            this.image2.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-dialog-info", Gtk.IconSize.Button, 20);
+            this.infoHbox.Add(this.image2);
+            Gtk.Box.BoxChild w14 = ((Gtk.Box.BoxChild)(this.infoHbox[this.image2]));
+            w14.Position = 0;
+            w14.Expand = false;
+            w14.Fill = false;
+            // Container child infoHbox.Gtk.Box+BoxChild
+            this.infoPane = new Gtk.Button();
+            this.infoPane.CanFocus = true;
+            this.infoPane.Name = "infoPane";
+            this.infoPane.Relief = ((Gtk.ReliefStyle)(2));
+            // Container child infoPane.Gtk.Container+ContainerChild
+            this.label2 = new Gtk.Label();
+            this.label2.Name = "label2";
+            this.label2.LabelProp = Mono.Unix.Catalog.GetString("<span fgcolor=\"blue\">Advanced filters</span> have been applied.");
+            this.label2.UseMarkup = true;
+            this.infoPane.Add(this.label2);
+            this.infoPane.Label = null;
+            this.infoHbox.Add(this.infoPane);
+            Gtk.Box.BoxChild w16 = ((Gtk.Box.BoxChild)(this.infoHbox[this.infoPane]));
+            w16.Position = 1;
+            w16.Expand = false;
+            w16.Fill = false;
+            this.advancedBox.Add(this.infoHbox);
+            this.vbox2.Add(this.advancedBox);
+            Gtk.Box.BoxChild w18 = ((Gtk.Box.BoxChild)(this.vbox2[this.advancedBox]));
+            w18.Position = 2;
+            w18.Expand = false;
+            w18.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
             this.table1 = new Gtk.Table(((uint)(2)), ((uint)(3)), false);
             this.table1.Name = "table1";
             this.table1.RowSpacing = ((uint)(6));
@@ -183,12 +233,12 @@ namespace ocmgtk {
             this.ArchivedButton.DrawIndicator = true;
             this.ArchivedButton.UseUnderline = true;
             this.table1.Add(this.ArchivedButton);
-            Gtk.Table.TableChild w14 = ((Gtk.Table.TableChild)(this.table1[this.ArchivedButton]));
-            w14.TopAttach = ((uint)(1));
-            w14.BottomAttach = ((uint)(2));
-            w14.LeftAttach = ((uint)(2));
-            w14.RightAttach = ((uint)(3));
-            w14.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w19 = ((Gtk.Table.TableChild)(this.table1[this.ArchivedButton]));
+            w19.TopAttach = ((uint)(1));
+            w19.BottomAttach = ((uint)(2));
+            w19.LeftAttach = ((uint)(2));
+            w19.RightAttach = ((uint)(3));
+            w19.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.checkbutton1 = new Gtk.CheckButton();
             this.checkbutton1.CanFocus = true;
@@ -198,10 +248,10 @@ namespace ocmgtk {
             this.checkbutton1.DrawIndicator = true;
             this.checkbutton1.UseUnderline = true;
             this.table1.Add(this.checkbutton1);
-            Gtk.Table.TableChild w15 = ((Gtk.Table.TableChild)(this.table1[this.checkbutton1]));
-            w15.LeftAttach = ((uint)(1));
-            w15.RightAttach = ((uint)(2));
-            w15.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w20 = ((Gtk.Table.TableChild)(this.table1[this.checkbutton1]));
+            w20.LeftAttach = ((uint)(1));
+            w20.RightAttach = ((uint)(2));
+            w20.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.checkbutton2 = new Gtk.CheckButton();
             this.checkbutton2.CanFocus = true;
@@ -211,10 +261,10 @@ namespace ocmgtk {
             this.checkbutton2.DrawIndicator = true;
             this.checkbutton2.UseUnderline = true;
             this.table1.Add(this.checkbutton2);
-            Gtk.Table.TableChild w16 = ((Gtk.Table.TableChild)(this.table1[this.checkbutton2]));
-            w16.TopAttach = ((uint)(1));
-            w16.BottomAttach = ((uint)(2));
-            w16.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w21 = ((Gtk.Table.TableChild)(this.table1[this.checkbutton2]));
+            w21.TopAttach = ((uint)(1));
+            w21.BottomAttach = ((uint)(2));
+            w21.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.FoundButton = new Gtk.CheckButton();
             this.FoundButton.CanFocus = true;
@@ -224,8 +274,8 @@ namespace ocmgtk {
             this.FoundButton.DrawIndicator = true;
             this.FoundButton.UseUnderline = true;
             this.table1.Add(this.FoundButton);
-            Gtk.Table.TableChild w17 = ((Gtk.Table.TableChild)(this.table1[this.FoundButton]));
-            w17.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w22 = ((Gtk.Table.TableChild)(this.table1[this.FoundButton]));
+            w22.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.MineButton = new Gtk.CheckButton();
             this.MineButton.CanFocus = true;
@@ -235,10 +285,10 @@ namespace ocmgtk {
             this.MineButton.DrawIndicator = true;
             this.MineButton.UseUnderline = true;
             this.table1.Add(this.MineButton);
-            Gtk.Table.TableChild w18 = ((Gtk.Table.TableChild)(this.table1[this.MineButton]));
-            w18.LeftAttach = ((uint)(2));
-            w18.RightAttach = ((uint)(3));
-            w18.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w23 = ((Gtk.Table.TableChild)(this.table1[this.MineButton]));
+            w23.LeftAttach = ((uint)(2));
+            w23.RightAttach = ((uint)(3));
+            w23.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.UnavailableButton = new Gtk.CheckButton();
             this.UnavailableButton.CanFocus = true;
@@ -248,33 +298,35 @@ namespace ocmgtk {
             this.UnavailableButton.DrawIndicator = true;
             this.UnavailableButton.UseUnderline = true;
             this.table1.Add(this.UnavailableButton);
-            Gtk.Table.TableChild w19 = ((Gtk.Table.TableChild)(this.table1[this.UnavailableButton]));
-            w19.TopAttach = ((uint)(1));
-            w19.BottomAttach = ((uint)(2));
-            w19.LeftAttach = ((uint)(1));
-            w19.RightAttach = ((uint)(2));
-            w19.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w24 = ((Gtk.Table.TableChild)(this.table1[this.UnavailableButton]));
+            w24.TopAttach = ((uint)(1));
+            w24.BottomAttach = ((uint)(2));
+            w24.LeftAttach = ((uint)(1));
+            w24.RightAttach = ((uint)(2));
+            w24.YOptions = ((Gtk.AttachOptions)(4));
             this.vbox2.Add(this.table1);
-            Gtk.Box.BoxChild w20 = ((Gtk.Box.BoxChild)(this.vbox2[this.table1]));
-            w20.Position = 2;
-            w20.Expand = false;
-            w20.Fill = false;
+            Gtk.Box.BoxChild w25 = ((Gtk.Box.BoxChild)(this.vbox2[this.table1]));
+            w25.Position = 3;
+            w25.Expand = false;
+            w25.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
             this.cachescroll = new Gtk.ScrolledWindow();
             this.cachescroll.CanFocus = true;
             this.cachescroll.Name = "cachescroll";
             this.cachescroll.ShadowType = ((Gtk.ShadowType)(1));
             this.vbox2.Add(this.cachescroll);
-            Gtk.Box.BoxChild w21 = ((Gtk.Box.BoxChild)(this.vbox2[this.cachescroll]));
-            w21.Position = 3;
+            Gtk.Box.BoxChild w26 = ((Gtk.Box.BoxChild)(this.vbox2[this.cachescroll]));
+            w26.Position = 4;
             this.Add(this.vbox2);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             w1.SetUiManager(UIManager);
+            this.infoHbox.Hide();
             this.Hide();
             this.button154.Clicked += new System.EventHandler(this.OnClearClicked);
             this.button136.Clicked += new System.EventHandler(this.OnClearDistance);
+            this.infoPane.Clicked += new System.EventHandler(this.OnFilterClick);
             this.UnavailableButton.Toggled += new System.EventHandler(this.OnUnavailableToggled);
             this.MineButton.Toggled += new System.EventHandler(this.OnMineToggled);
             this.FoundButton.Toggled += new System.EventHandler(this.OnFoundButtonToggled);

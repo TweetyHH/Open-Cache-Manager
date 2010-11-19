@@ -290,5 +290,11 @@ namespace ocmgtk
 					break;
 			}
 		}
+		protected virtual void OnCorrClick (object sender, System.EventArgs e)
+		{
+			UIMonitor.getInstance().CorrectCoordinates();
+		}
+		
+		
 	}
 }

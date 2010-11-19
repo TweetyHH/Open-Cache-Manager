@@ -10,6 +10,10 @@ that will not be replaced on a GPX import. These caches will appear in italicize
 - Fix bug where waypoint symbol overrides were being ignored. Also disable waypoint symbol overrides for Delorme units,
 as Delorme units have a specific symbol set for Geocaching child waypoints. 
 - Set description and cmt fields to be the same for Orgeon units.
+- Add indication that advanced filters are applied to main cache pane
+- Fix crash on selecting original coordinate waypoint when using corrected coords
+- Add ability to import ZIP files
+- Fix GPSBabel bug with Ubuntu 10.10
 
 Version 0.21
 ------------

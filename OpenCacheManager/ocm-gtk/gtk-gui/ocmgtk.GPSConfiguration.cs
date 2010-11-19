@@ -63,10 +63,10 @@ namespace ocmgtk {
             this.table1.BorderWidth = ((uint)(6));
             // Container child table1.Gtk.Table+TableChild
             this.deviceCombo = Gtk.ComboBox.NewText();
-            this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Garmin GPX (Colorado/Oregon/Dakota/Nuvi/Map62)"));
+            this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Garmin GPX (Colorado/Oregon/Dakotai/Map62/Nuvi 5xx)"));
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Garmin USB (eTrex/GPSMap60/StreetPiot)"));
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Garmin Serial (original eTrex/eTrex H/Gecko)"));
-            this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Garmin Edge (605/705)"));
+            this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Garmin Edge (605/705)/Garmin Nuvi"));
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("DeLorme USB (PN-20/PN-30/PN-40)"));
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("DeLorme GPX (PN-60/PN-40 v2.8+)"));
             this.deviceCombo.AppendText(Mono.Unix.Catalog.GetString("Other GPS"));

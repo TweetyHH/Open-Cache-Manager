@@ -687,4 +687,10 @@ public partial class MainWindow : Gtk.Window
 	{
 		Process.Start("http://opencaching.eu");
 	}
+	protected virtual void OnZipClick (object sender, System.EventArgs e)
+	{
+		m_monitor.ImportZip();
+	}
+	
+	
 }

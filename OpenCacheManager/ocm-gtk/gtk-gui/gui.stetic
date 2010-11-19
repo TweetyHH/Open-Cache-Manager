@@ -652,6 +652,12 @@
         <property name="ShortLabel" translatable="yes">List Of Country Sites</property>
         <signal name="Activated" handler="OnWorldOCClick" />
       </action>
+      <action id="ImportZIPFileAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Import ZIP File...</property>
+        <property name="ShortLabel" translatable="yes">Import ZIP File...</property>
+        <signal name="Activated" handler="OnZipClick" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">OCM</property>
@@ -673,6 +679,7 @@
                 <node type="Menuitem" action="openAction2" />
                 <node type="Separator" />
                 <node type="Menuitem" action="openAction" />
+                <node type="Menuitem" action="ImportZIPFileAction" />
                 <node type="Menuitem" action="saveAsAction" />
                 <node type="Menuitem" action="ExportFindsGPXAction" />
                 <node type="Separator" />
@@ -1750,6 +1757,59 @@
           </packing>
         </child>
         <child>
+          <widget class="Gtk.EventBox" id="advancedBox">
+            <property name="MemberName" />
+            <child>
+              <widget class="Gtk.HBox" id="infoHbox">
+                <property name="MemberName" />
+                <property name="Visible">False</property>
+                <property name="Spacing">6</property>
+                <property name="BorderWidth">6</property>
+                <child>
+                  <widget class="Gtk.Image" id="image2">
+                    <property name="MemberName" />
+                    <property name="Pixbuf">stock:gtk-dialog-info Button</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="infoPane">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">Custom</property>
+                    <property name="Relief">None</property>
+                    <signal name="Clicked" handler="OnFilterClick" />
+                    <child>
+                      <widget class="Gtk.Label" id="label2">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">&lt;span fgcolor="blue"&gt;Advanced filters&lt;/span&gt; have been applied.</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
           <widget class="Gtk.Table" id="table1">
             <property name="MemberName" />
             <property name="NRows">2</property>
@@ -1904,7 +1964,7 @@
             </child>
           </widget>
           <packing>
-            <property name="Position">2</property>
+            <property name="Position">3</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -1926,7 +1986,7 @@
             </child>
           </widget>
           <packing>
-            <property name="Position">3</property>
+            <property name="Position">4</property>
             <property name="AutoSize">True</property>
           </packing>
         </child>
@@ -5163,10 +5223,10 @@ Less Than</property>
                   <widget class="Gtk.ComboBox" id="deviceCombo">
                     <property name="MemberName" />
                     <property name="IsTextCombo">True</property>
-                    <property name="Items" translatable="yes">Garmin GPX (Colorado/Oregon/Dakota/Nuvi/Map62)
+                    <property name="Items" translatable="yes">Garmin GPX (Colorado/Oregon/Dakotai/Map62/Nuvi 5xx)
 Garmin USB (eTrex/GPSMap60/StreetPiot)
 Garmin Serial (original eTrex/eTrex H/Gecko)
-Garmin Edge (605/705)
+Garmin Edge (605/705)/Garmin Nuvi
 DeLorme USB (PN-20/PN-30/PN-40)
 DeLorme GPX (PN-60/PN-40 v2.8+)
 Other GPS</property>
@@ -7015,7 +7075,7 @@ on or before:</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.ModifyCacheDialog" design-size="756 649">
+  <widget class="Gtk.Dialog" id="ocmgtk.ModifyCacheDialog" design-size="808 649">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Add/Modify Geocache...</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -7089,18 +7149,54 @@ on or before:</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Image" id="image70">
+                  <widget class="Gtk.HBox" id="hbox1">
                     <property name="MemberName" />
-                    <property name="Pixbuf">stock:gtk-dialog-info Dnd</property>
+                    <property name="Spacing">6</property>
+                    <child>
+                      <widget class="Gtk.Image" id="image46">
+                        <property name="MemberName" />
+                        <property name="Pixbuf">stock:gtk-dialog-info Button</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Button" id="corrButton">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Type">Custom</property>
+                        <property name="Relief">None</property>
+                        <signal name="Clicked" handler="OnCorrClick" />
+                        <child>
+                          <widget class="Gtk.Label" id="label3">
+                            <property name="MemberName" />
+                            <property name="Xalign">0</property>
+                            <property name="LabelProp" translatable="yes">Use &lt;span fgcolor="blue"&gt;corrected coordinates&lt;/span&gt; to prevent GPX imports from overwriting the cache location</property>
+                            <property name="UseMarkup">True</property>
+                          </widget>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
                   </widget>
                   <packing>
                     <property name="TopAttach">1</property>
                     <property name="BottomAttach">2</property>
+                    <property name="RightAttach">2</property>
                     <property name="AutoSize">True</property>
-                    <property name="XOptions">Fill</property>
+                    <property name="XOptions">0</property>
                     <property name="YOptions">Fill</property>
                     <property name="XExpand">False</property>
-                    <property name="XFill">True</property>
+                    <property name="XFill">False</property>
                     <property name="XShrink">False</property>
                     <property name="YExpand">False</property>
                     <property name="YFill">True</property>
@@ -7136,28 +7232,6 @@ on or before:</property>
                   <packing>
                     <property name="TopAttach">6</property>
                     <property name="BottomAttach">7</property>
-                    <property name="AutoSize">True</property>
-                    <property name="XOptions">Fill</property>
-                    <property name="YOptions">Fill</property>
-                    <property name="XExpand">False</property>
-                    <property name="XFill">True</property>
-                    <property name="XShrink">False</property>
-                    <property name="YExpand">False</property>
-                    <property name="YFill">True</property>
-                    <property name="YShrink">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Label" id="label3">
-                    <property name="MemberName" />
-                    <property name="Xalign">0</property>
-                    <property name="LabelProp" translatable="yes">To set corrected coordinates that will not be overriden by a GPX import, go to Cache-&gt;Corrected Coordinates.</property>
-                  </widget>
-                  <packing>
-                    <property name="TopAttach">1</property>
-                    <property name="BottomAttach">2</property>
-                    <property name="LeftAttach">1</property>
-                    <property name="RightAttach">2</property>
                     <property name="AutoSize">True</property>
                     <property name="XOptions">Fill</property>
                     <property name="YOptions">Fill</property>

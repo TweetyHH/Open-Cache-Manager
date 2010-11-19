@@ -134,10 +134,17 @@ namespace ocmgtk
 				Waypoint val = (Waypoint)model.GetValue (iter, 0);
 				if (val != null)
 					m_mon.ZoomToPoint (val.Lat, val.Lon);
-				if (val is Geocache) {
+				if (val is Geocache){
 					editButton.Sensitive = true;
 					deleteButton.Sensitive = false;
-				} else {
+				} 
+				else if (val.Type == "Geocache - Original")
+				{
+					editButton.Sensitive = false;
+					deleteButton.Sensitive = false;
+				}
+				else 
+				{
 					editButton.Sensitive = true;
 					deleteButton.Sensitive = true;
 				}
@@ -180,7 +187,7 @@ namespace ocmgtk
 				Orig.Lat = cache.OrigLat;
 				Orig.Lon = cache.OrigLon;
 				Orig.Symbol = "Geocache";
-				Orig.Type = "Geocache";
+				Orig.Type = "Geocache - Original";
 				Orig.Desc = Catalog.GetString("Original Location");
 				m_mon.AddMapWayPoint (Orig);
 				m_childPoints.AppendValues(Orig);

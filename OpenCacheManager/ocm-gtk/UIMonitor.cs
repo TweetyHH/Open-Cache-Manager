@@ -826,8 +826,13 @@ namespace ocmgtk
 			dlg.Destroy ();
 			;
 		}
-
+		
 		public void ImportGPXFile (String filename)
+		{
+			ImportGPXFile(filename, false);
+		}
+
+		public void ImportGPXFile (String filename, bool autoclose)
 		{
 			System.IO.FileStream fs = System.IO.File.OpenRead (filename);
 			GPXParser parser = new GPXParser ();
@@ -836,6 +841,7 @@ namespace ocmgtk
 			fs = System.IO.File.OpenRead (filename);
 			CacheStore store = Engine.getInstance ().Store;
 			ProgressDialog pdlg = new ProgressDialog (parser, total);
+			pdlg.AutoClose = autoclose;
 			pdlg.Icon = m_mainWin.Icon;
 			pdlg.Modal = true;
 			pdlg.Start (fs, store);
@@ -948,6 +954,7 @@ namespace ocmgtk
 			if (((int)ResponseType.Ok) == dlg.Run ()) {
 				store.Filter = dlg.Filter;
 				m_mainWin.SetAllowClearFilter (true);
+				m_cachelist.ShowInfoBox();
 				RefreshCaches ();
 			}
 		}
@@ -959,6 +966,7 @@ namespace ocmgtk
 				dlg.Hide ();
 				Engine.getInstance ().Store.Filter = null;
 				m_mainWin.SetAllowClearFilter (false);
+				m_cachelist.HideInfoBox();
 				RefreshCaches ();
 			} else
 				dlg.Hide ();
@@ -1612,19 +1620,56 @@ namespace ocmgtk
 			{
 				if (dlg.IsCorrected)
 				{
-					System.Console.WriteLine("HERE");
 					m_selectedCache.CorrectedLat = dlg.CorrectedLat;
 					m_selectedCache.CorrectedLon = dlg.CorrectedLon;
 				}
 				else
 				{
-					System.Console.WriteLine("HERE2");
 					m_selectedCache.HasCorrected = false;
 				}
 				Engine.getInstance().Store.UpdateCacheAtomic(m_selectedCache);
 				SetSelectedCache(m_selectedCache);
 			}
 			dlg.Hide();
+		}
+		
+		public void ImportZip()
+		{
+			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Import ZIP File"), m_mainWin, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Import"), ResponseType.Accept);
+			dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
+			FileFilter filter = new FileFilter ();
+			filter.Name = "ZIP Files";
+			filter.AddPattern ("*.zip");
+			dlg.AddFilter (filter);
+			
+			if (dlg.Run () == (int)ResponseType.Accept) {
+				RegisterRecentFile(dlg.Filename);
+				String tempPath = System.IO.Path.GetTempPath();
+				ProcessStartInfo start = new ProcessStartInfo();
+				start.FileName = "unzip";
+				start.Arguments = dlg.Filename + " -d " + tempPath + "/ocm_unzip";
+				Process unzip =  Process.Start(start);
+				dlg.Hide ();
+				while (!unzip.HasExited)
+				{
+					// Do nothing until exit	
+				}
+				
+				System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(tempPath + "/ocm_unzip");
+				System.IO.FileInfo[] files = info.GetFiles();
+				foreach(System.IO.FileInfo file in files)
+				{
+					ImportGPXFile(file.FullName, true);
+					file.Delete();
+				}
+				
+				MessageDialog mdlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok,
+				                                       	Catalog.GetString("Import complete."));
+				mdlg.Run();
+				mdlg.Hide();
+
+			}
+			dlg.Destroy ();
 		}
 	}
 }
