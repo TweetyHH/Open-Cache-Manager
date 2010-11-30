@@ -131,7 +131,14 @@ namespace ocmgtk
 			logLimitEntry.Sensitive = logLimitCheck.Active;
 		}
 		
+		public bool IncludeAttributes ()
+		{
+			return attrCheck.Active;
+		}
 		
-		
+		public void SetIncludeAttributes(bool val)
+		{
+			attrCheck.Active = val;
+		}
 	}
 }

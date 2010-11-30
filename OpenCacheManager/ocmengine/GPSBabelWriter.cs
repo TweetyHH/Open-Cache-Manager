@@ -56,6 +56,12 @@ namespace ocmengine
 			set { m_nameMode = value;}
 		}
 		
+		private bool m_incAttr = true;
+		public bool IncludeAttributes
+		{
+			set {m_incAttr = value;}
+		}
+		
 		private GPXWriter writer;
 
 		public event WriteEventHandler WriteWaypoint;
@@ -72,6 +78,7 @@ namespace ocmengine
 			writer.Limit = m_Limit;
 			writer.LogLimit = m_LogLimit;
 			writer.IncludeChildWaypoints = true;
+			writer.WriteAttributes = m_incAttr;
 			if (m_format == "OCM_GPX") {
 				writer.HTMLOutput = HTMLMode.GARMIN;
 				writer.UseOCMPtTypes = true;

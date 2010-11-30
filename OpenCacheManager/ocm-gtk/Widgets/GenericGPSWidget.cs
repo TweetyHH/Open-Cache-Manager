@@ -142,6 +142,11 @@ namespace ocmgtk
 			limitEntry.Sensitive = limitCheck.Active;
 		}
 		
+		public bool IncludeAttributes ()
+		{
+			return true;
+		}
+		
 		protected virtual void OnFileClick (object sender, System.EventArgs e)
 		{
 			

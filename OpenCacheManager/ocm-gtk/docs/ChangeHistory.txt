@@ -1,3 +1,10 @@
+Version 0.22.7
+--------------
+- Fixed bug where original coordinates were being overwritten if cache renamed
+- Display caches on GPSr with a (*) to indicate coorected coordinates
+- Add option to include attributes in cache description on paperless GPSrs
+
+
 Version 0.22.6
 --------------
 - Fixed bugs where placed by and found caches were not being set correctly for opencaching.de

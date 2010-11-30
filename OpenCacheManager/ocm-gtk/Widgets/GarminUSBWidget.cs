@@ -128,7 +128,10 @@ namespace ocmgtk
 			limitEntry.Sensitive = limitCheck.Active;
 		}
 		
+		public bool IncludeAttributes ()
+		{
+			return false;
+		}
 		
-
 	}
 }

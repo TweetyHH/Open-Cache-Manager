@@ -84,6 +84,7 @@ namespace ocmgtk
 					gpxwidget.SetCacheLimit(saved.GetCacheLimit());
 					gpxwidget.SetOutputFile(saved.GetOutputFile());
 					gpxwidget.SetLogLimit(saved.GetLogLimit());
+					gpxwidget.SetIncludeAttributes(saved.IncludeAttributes());
 					deviceCombo.Active = 0;
 					ShowDeviceConfig();
 				}
@@ -91,6 +92,7 @@ namespace ocmgtk
 				{
 					delwidget.SetCacheLimit(saved.GetCacheLimit());
 					delwidget.SetLogLimit(saved.GetLogLimit());
+					delwidget.SetIncludeAttributes(saved.IncludeAttributes());
 					deviceCombo.Active = 4;
 				}
 				else if (saved.GetBabelFormat() == "edge")
@@ -106,6 +108,7 @@ namespace ocmgtk
 					delgpxwidget.SetCacheLimit(saved.GetCacheLimit());
 					delgpxwidget.SetOutputFile(saved.GetOutputFile());
 					delgpxwidget.SetLogLimit(saved.GetLogLimit());
+					delgpxwidget.SetIncludeAttributes(saved.IncludeAttributes());
 					deviceCombo.Active = 5;
 				}
 				else 
@@ -115,7 +118,7 @@ namespace ocmgtk
 					gpswidget.SetBabelFormat(saved.GetBabelFormat());
 					gpswidget.SetDescMode(saved.GetDescMode());
 					gpswidget.SetNameMode(saved.GetNameMode());
-					deviceCombo.Active = 5;
+					deviceCombo.Active = 6;
 				}
 			}
 			catch (GConf.NoSuchKeyException)

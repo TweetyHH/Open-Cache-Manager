@@ -68,12 +68,19 @@ namespace ocmgtk
 		{
 			return m_descmode;
 		}
-
+		
+		bool m_incAttributes;
+		public bool IncludeAttributes ()
+		{
+			return m_incAttributes;
+		}
+		
 		public SavedGPSConf(Config client)
 		{
 			m_Format = client.Get("/apps/ocm/gps/type", "OCM_GPX") as String;
 			m_Limit = (int) client.Get("/apps/ocm/gps/limit", -1);
 			m_File = client.Get("/apps/ocm/gps/file", "geocaches.gpx") as String;
+			m_incAttributes= (Boolean) client.Get("/apps/ocm/gps/incattr", true);
 			m_namemode = (ocmengine.WaypointNameMode) Enum.Parse(typeof (ocmengine.WaypointNameMode), client.Get("/apps/ocm/gps/namemode", "CODE") as string);
 			m_descmode = (ocmengine.WaypointDescMode) Enum.Parse(typeof (ocmengine.WaypointDescMode), client.Get("/apps/ocm/gps/descmode", "DESC") as string);
 			m_LogLimit = (int) client.Get("/apps/ocm/gps/loglimit", 5);

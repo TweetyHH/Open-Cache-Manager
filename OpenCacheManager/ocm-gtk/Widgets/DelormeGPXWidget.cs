@@ -144,6 +144,15 @@ namespace ocmgtk
 			fileEntry.Sensitive = useFileRadio.Active;
 		}
 		
+		public bool IncludeAttributes ()
+		{
+			return attrCheck.Active;
+		}
+		
+		public void SetIncludeAttributes(bool val)
+		{
+			attrCheck.Active = val;
+		}
 		
 	}
 }

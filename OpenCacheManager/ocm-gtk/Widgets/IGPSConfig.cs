@@ -27,5 +27,6 @@ namespace ocmgtk
 		int GetLogLimit();
 		ocmengine.WaypointNameMode GetNameMode();
 		ocmengine.WaypointDescMode GetDescMode();
+		bool IncludeAttributes();
 	}
 }

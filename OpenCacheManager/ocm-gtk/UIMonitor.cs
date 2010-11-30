@@ -1081,6 +1081,7 @@ namespace ocmgtk
 				m_conf.Set("/apps/ocm/gps/namemode", dlg.GPSConfig.GetNameMode().ToString());
 				m_conf.Set("/apps/ocm/gps/descmode", dlg.GPSConfig.GetDescMode().ToString());
 				m_conf.Set("/apps/ocm/gps/loglimit", dlg.GPSConfig.GetLogLimit());
+				m_conf.Set("/apps/ocm/gps/incattr", dlg.GPSConfig.IncludeAttributes());
 				dlg.UpdateWaypointSymbols(m_conf);
 				BuildWaypointMappings();
 			}

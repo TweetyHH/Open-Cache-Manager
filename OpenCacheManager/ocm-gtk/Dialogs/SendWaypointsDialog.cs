@@ -53,6 +53,7 @@ namespace ocmgtk
 				writer.DescMode = config.GetDescMode();
 				writer.NameMode = config.GetNameMode();
 				writer.LogLimit = config.GetLogLimit();
+				writer.IncludeAttributes = config.IncludeAttributes();
 				writer.WriteToGPS (caches, wmappings);
 				this.Show ();
 			} catch (Exception e) {

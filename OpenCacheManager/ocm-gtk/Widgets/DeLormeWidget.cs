@@ -118,5 +118,15 @@ namespace ocmgtk
 		{
 			System.Diagnostics.Process.Start("http://www.gpsbabel.org/news/20100620.html");
 		}	
+		
+		public bool IncludeAttributes ()
+		{
+			return attrCheck.Active;
+		}
+		
+		public void SetIncludeAttributes(bool val)
+		{
+			attrCheck.Active = val;
+		}
 	}
 }
