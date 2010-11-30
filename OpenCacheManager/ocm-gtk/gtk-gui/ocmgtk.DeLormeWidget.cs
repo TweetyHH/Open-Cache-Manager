@@ -15,6 +15,8 @@ namespace ocmgtk {
         
         private Gtk.Table table1;
         
+        private Gtk.CheckButton attrCheck;
+        
         private Gtk.HBox hbox1;
         
         private Gtk.Image image3;
@@ -37,10 +39,25 @@ namespace ocmgtk {
             Stetic.BinContainer.Attach(this);
             this.Name = "ocmgtk.DeLormeWidget";
             // Container child ocmgtk.DeLormeWidget.Gtk.Container+ContainerChild
-            this.table1 = new Gtk.Table(((uint)(3)), ((uint)(2)), false);
+            this.table1 = new Gtk.Table(((uint)(4)), ((uint)(2)), false);
             this.table1.Name = "table1";
             this.table1.RowSpacing = ((uint)(6));
             this.table1.ColumnSpacing = ((uint)(6));
+            // Container child table1.Gtk.Table+TableChild
+            this.attrCheck = new Gtk.CheckButton();
+            this.attrCheck.CanFocus = true;
+            this.attrCheck.Name = "attrCheck";
+            this.attrCheck.Label = Mono.Unix.Catalog.GetString("Include Attributes in Description");
+            this.attrCheck.Active = true;
+            this.attrCheck.DrawIndicator = true;
+            this.attrCheck.UseUnderline = true;
+            this.table1.Add(this.attrCheck);
+            Gtk.Table.TableChild w1 = ((Gtk.Table.TableChild)(this.table1[this.attrCheck]));
+            w1.TopAttach = ((uint)(2));
+            w1.BottomAttach = ((uint)(3));
+            w1.RightAttach = ((uint)(2));
+            w1.XOptions = ((Gtk.AttachOptions)(4));
+            w1.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.hbox1 = new Gtk.HBox();
             this.hbox1.Name = "hbox1";
@@ -50,10 +67,10 @@ namespace ocmgtk {
             this.image3.Name = "image3";
             this.image3.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-dialog-warning", Gtk.IconSize.Menu, 16);
             this.hbox1.Add(this.image3);
-            Gtk.Box.BoxChild w1 = ((Gtk.Box.BoxChild)(this.hbox1[this.image3]));
-            w1.Position = 0;
-            w1.Expand = false;
-            w1.Fill = false;
+            Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.hbox1[this.image3]));
+            w2.Position = 0;
+            w2.Expand = false;
+            w2.Fill = false;
             // Container child hbox1.Gtk.Box+BoxChild
             this.button19 = new Gtk.Button();
             this.button19.CanFocus = true;
@@ -67,17 +84,17 @@ namespace ocmgtk {
             this.button19.Add(this.label1);
             this.button19.Label = null;
             this.hbox1.Add(this.button19);
-            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.hbox1[this.button19]));
-            w3.Position = 1;
-            w3.Expand = false;
-            w3.Fill = false;
+            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.hbox1[this.button19]));
+            w4.Position = 1;
+            w4.Expand = false;
+            w4.Fill = false;
             this.table1.Add(this.hbox1);
-            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table1[this.hbox1]));
-            w4.TopAttach = ((uint)(2));
-            w4.BottomAttach = ((uint)(3));
-            w4.RightAttach = ((uint)(2));
-            w4.XOptions = ((Gtk.AttachOptions)(0));
-            w4.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table1[this.hbox1]));
+            w5.TopAttach = ((uint)(3));
+            w5.BottomAttach = ((uint)(4));
+            w5.RightAttach = ((uint)(2));
+            w5.XOptions = ((Gtk.AttachOptions)(0));
+            w5.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.limitCheck = new Gtk.CheckButton();
             this.limitCheck.CanFocus = true;
@@ -87,9 +104,9 @@ namespace ocmgtk {
             this.limitCheck.DrawIndicator = true;
             this.limitCheck.UseUnderline = true;
             this.table1.Add(this.limitCheck);
-            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table1[this.limitCheck]));
-            w5.XOptions = ((Gtk.AttachOptions)(4));
-            w5.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table1[this.limitCheck]));
+            w6.XOptions = ((Gtk.AttachOptions)(4));
+            w6.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.limitEntry = new Gtk.Entry();
             this.limitEntry.CanFocus = true;
@@ -98,10 +115,10 @@ namespace ocmgtk {
             this.limitEntry.IsEditable = true;
             this.limitEntry.InvisibleChar = '•';
             this.table1.Add(this.limitEntry);
-            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table1[this.limitEntry]));
-            w6.LeftAttach = ((uint)(1));
-            w6.RightAttach = ((uint)(2));
-            w6.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table1[this.limitEntry]));
+            w7.LeftAttach = ((uint)(1));
+            w7.RightAttach = ((uint)(2));
+            w7.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.logCheck = new Gtk.CheckButton();
             this.logCheck.CanFocus = true;
@@ -110,11 +127,11 @@ namespace ocmgtk {
             this.logCheck.DrawIndicator = true;
             this.logCheck.UseUnderline = true;
             this.table1.Add(this.logCheck);
-            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table1[this.logCheck]));
-            w7.TopAttach = ((uint)(1));
-            w7.BottomAttach = ((uint)(2));
-            w7.XOptions = ((Gtk.AttachOptions)(4));
-            w7.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table1[this.logCheck]));
+            w8.TopAttach = ((uint)(1));
+            w8.BottomAttach = ((uint)(2));
+            w8.XOptions = ((Gtk.AttachOptions)(4));
+            w8.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.logEntry = new Gtk.Entry();
             this.logEntry.CanFocus = true;
@@ -123,13 +140,13 @@ namespace ocmgtk {
             this.logEntry.IsEditable = true;
             this.logEntry.InvisibleChar = '•';
             this.table1.Add(this.logEntry);
-            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table1[this.logEntry]));
-            w8.TopAttach = ((uint)(1));
-            w8.BottomAttach = ((uint)(2));
-            w8.LeftAttach = ((uint)(1));
-            w8.RightAttach = ((uint)(2));
-            w8.XOptions = ((Gtk.AttachOptions)(4));
-            w8.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table1[this.logEntry]));
+            w9.TopAttach = ((uint)(1));
+            w9.BottomAttach = ((uint)(2));
+            w9.LeftAttach = ((uint)(1));
+            w9.RightAttach = ((uint)(2));
+            w9.XOptions = ((Gtk.AttachOptions)(4));
+            w9.YOptions = ((Gtk.AttachOptions)(4));
             this.Add(this.table1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

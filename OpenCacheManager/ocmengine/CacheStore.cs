@@ -257,11 +257,20 @@ namespace ocmengine
 		{
 			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
+			double lat = pt.Lat;
+			double lon = pt.Lon;
+			if (pt is Geocache)
+			{
+				lat = (pt as Geocache).OrigLat;
+				lon = (pt as Geocache).OrigLon;
+			}
+			
+			
 			IDbCommand cmd = m_conn.CreateCommand();			
-			string insert = String.Format(INSERT_WPT, SQLEscape(pt.Name), pt.Lat.ToString(CultureInfo.InvariantCulture), pt.Lon.ToString(CultureInfo.InvariantCulture), pt.URL, 
+			string insert = String.Format(INSERT_WPT, SQLEscape(pt.Name), lat.ToString(CultureInfo.InvariantCulture), lon.ToString(CultureInfo.InvariantCulture), pt.URL, 
 			                                SQLEscape(pt.URLName), SQLEscape(pt.Desc), pt.Symbol, pt.Type,
 			                                pt.Time.ToString("o"), pt.Parent, pt.Updated.ToString("o"));
-			string update = String.Format(UPDATE_WPT, SQLEscape(pt.Name), pt.Lat.ToString(CultureInfo.InvariantCulture), pt.Lon.ToString(CultureInfo.InvariantCulture), pt.URL, 
+			string update = String.Format(UPDATE_WPT, SQLEscape(pt.Name), lat.ToString(CultureInfo.InvariantCulture), lon.ToString(CultureInfo.InvariantCulture), pt.URL, 
 			                                SQLEscape(pt.URLName), SQLEscape(pt.Desc), pt.Symbol, pt.Type,
 			                                pt.Time.ToString("o"), pt.Parent, pt.Updated.ToString("o"));			
 			InsertOrUpdate (update, insert, cmd);

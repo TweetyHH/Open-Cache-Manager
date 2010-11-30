@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2010-11-19 09:23:47-0500\n"
+"POT-Creation-Date: 2010-11-23 08:21:44-0500\n"
 "PO-Revision-Date: 2010-09-05 08:23:05-0400\n"
 "Last-Translator: Michael Massoth <massoth@googlemail.com>\n"
 "Language-Team: \n"
@@ -94,61 +94,61 @@ msgstr "Mi"
 msgid "Miles"
 msgstr "Meilen"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:211
+#: ../ocm-gtk/Widgets/CacheList.cs:210
 #, fuzzy
 msgid "Loading Caches"
 msgstr "Lade Caches {0}"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:246
+#: ../ocm-gtk/Widgets/CacheList.cs:245
 msgid "Loading Caches {0}"
 msgstr "Lade Caches {0}"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:492
+#: ../ocm-gtk/Widgets/CacheList.cs:491
 msgid "Set As Map Centre"
 msgstr "Zentriere auf Karte"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:493
+#: ../ocm-gtk/Widgets/CacheList.cs:492
 msgid "View Cache Online"
 msgstr "Cache online anzeigen"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:494
+#: ../ocm-gtk/Widgets/CacheList.cs:493
 msgid "Mark"
 msgstr "Markieren"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:496
+#: ../ocm-gtk/Widgets/CacheList.cs:495
 #: ../ocm-gtk/gtk-gui/ocmgtk.MarkFoundDialog.cs:35
 msgid "Mark Found"
 msgstr "Markiere gefunden"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:497
+#: ../ocm-gtk/Widgets/CacheList.cs:496
 msgid "Mark Unfound"
 msgstr "Markiere nicht gefunden"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:498
+#: ../ocm-gtk/Widgets/CacheList.cs:497
 msgid "Mark Disabled"
 msgstr "Markiere disabled"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:499
+#: ../ocm-gtk/Widgets/CacheList.cs:498
 msgid "Mark Archived"
 msgstr "Markiere archiviert"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:500
+#: ../ocm-gtk/Widgets/CacheList.cs:499
 msgid "Mark Available"
 msgstr "Markiere verfügbar"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:501
+#: ../ocm-gtk/Widgets/CacheList.cs:500
 msgid "Delete..."
 msgstr "Lösche..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:502
+#: ../ocm-gtk/Widgets/CacheList.cs:501
 msgid "Add to Bookmark List"
 msgstr "Füge zu Lesezeichenliste hinzu"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:503
+#: ../ocm-gtk/Widgets/CacheList.cs:502
 msgid "View in QLandkarte GT..."
 msgstr "Zeige in QLandkarte GT..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:561
+#: ../ocm-gtk/Widgets/CacheList.cs:560
 msgid "Remove From Bookmark List"
 msgstr "Lösche  aus Lesezeichenliste"
 
@@ -390,7 +390,7 @@ msgstr "Lade Karte"
 
 #: ../ocm-gtk/UIMonitor.cs:247 ../ocm-gtk/UIMonitor.cs:253
 #: ../ocm-gtk/UIMonitor.cs:472 ../ocm-gtk/UIMonitor.cs:474
-#: ../ocm-gtk/UIMonitor.cs:1124 ../ocm-gtk/UIMonitor.cs:1518
+#: ../ocm-gtk/UIMonitor.cs:1137 ../ocm-gtk/UIMonitor.cs:1528
 msgid "Home"
 msgstr "Home"
 
@@ -440,7 +440,7 @@ msgstr "Erzeuge Datenbank"
 
 #: ../ocm-gtk/UIMonitor.cs:629 ../ocm-gtk/UIMonitor.cs:661
 #: ../ocm-gtk/UIMonitor.cs:700 ../ocm-gtk/UIMonitor.cs:732
-#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1637
+#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1647
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
 #: ../ocm-gtk/Widgets/GPXWidget.cs:110
 #: ../ocm-gtk/Widgets/GenericGPSWidget.cs:147
@@ -479,7 +479,7 @@ msgstr "Import GPX-File"
 msgid "Import GPX File"
 msgstr "Import GPX-File"
 
-#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1637
+#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1647
 msgid "Import"
 msgstr "Import"
 
@@ -487,23 +487,23 @@ msgstr "Import"
 msgid "Are you sure you want to delete {0}?"
 msgstr "Wollen Sie {0} wirklich löschen?"
 
-#: ../ocm-gtk/UIMonitor.cs:963
+#: ../ocm-gtk/UIMonitor.cs:976
 msgid "Are you sure you want to clear all advanced filters?"
 msgstr "Wollen Sie alle erweiterten Filter löschen?"
 
-#: ../ocm-gtk/UIMonitor.cs:1203
+#: ../ocm-gtk/UIMonitor.cs:1216
 msgid "{0} added to {1}"
 msgstr "{0} hinzugefügt zu {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1214
+#: ../ocm-gtk/UIMonitor.cs:1227
 msgid "{0} caches added to {1}"
 msgstr "{0} Caches hinzugefügt zu {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1220
+#: ../ocm-gtk/UIMonitor.cs:1233
 msgid "Are you sure you want to remove {0} from {1}?"
 msgstr "Wollen Sie wirklich {0} aus {1} löschen?"
 
-#: ../ocm-gtk/UIMonitor.cs:1290
+#: ../ocm-gtk/UIMonitor.cs:1303
 msgid ""
 "Are you sure you want to delete these {0} caches?\n"
 "This operation cannot be undone."
@@ -511,47 +511,47 @@ msgstr ""
 "Wollen Sie wirklich {0} Caches löschen?\n"
 "Dies kann nicht rückgängig gemacht werden."
 
-#: ../ocm-gtk/UIMonitor.cs:1399 ../ocm-gtk/UIMonitor.cs:1415
+#: ../ocm-gtk/UIMonitor.cs:1412 ../ocm-gtk/UIMonitor.cs:1428
 msgid "Preparing to send to QLandKarte GT"
 msgstr "Bereite Senden an QLandKarte GT vor"
 
-#: ../ocm-gtk/UIMonitor.cs:1436
+#: ../ocm-gtk/UIMonitor.cs:1446
 msgid "Save QuickFilter"
 msgstr "Speichere QuickFilter"
 
-#: ../ocm-gtk/UIMonitor.cs:1463
+#: ../ocm-gtk/UIMonitor.cs:1473
 msgid "Database Compacted."
 msgstr "Datenbank komprimiert."
 
-#: ../ocm-gtk/UIMonitor.cs:1481
+#: ../ocm-gtk/UIMonitor.cs:1491
 msgid "Move Geocaches..."
 msgstr "Verschiebe Geocaches..."
 
-#: ../ocm-gtk/UIMonitor.cs:1506
+#: ../ocm-gtk/UIMonitor.cs:1516
 #, fuzzy
 msgid "Map Point"
 msgstr "Wegpunkte"
 
-#: ../ocm-gtk/UIMonitor.cs:1549 ../ocm-gtk/UIMonitor.cs:1583
+#: ../ocm-gtk/UIMonitor.cs:1559 ../ocm-gtk/UIMonitor.cs:1593
 msgid ""
 "A new version \"{0}\" of OCM is available\n"
 "Would you like to go to the download page now?"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1567 ../ocm-gtk/UIMonitor.cs:1607
+#: ../ocm-gtk/UIMonitor.cs:1577 ../ocm-gtk/UIMonitor.cs:1617
 msgid "Unable to check for updates, check your network connection."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1598
+#: ../ocm-gtk/UIMonitor.cs:1608
 msgid "OCM is at the latest version."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1637
+#: ../ocm-gtk/UIMonitor.cs:1647
 #, fuzzy
 msgid "Import ZIP File"
 msgstr "Import GPX-File"
 
-#: ../ocm-gtk/UIMonitor.cs:1666
+#: ../ocm-gtk/UIMonitor.cs:1676
 #, fuzzy
 msgid "Import complete."
 msgstr "Aktualisierung abgeschlossen"
@@ -1943,7 +1943,7 @@ msgstr "State/Province"
 msgid "Change History..."
 msgstr "Änderungshistorie..."
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:81
+#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:82
 msgid "_Save"
 msgstr "_Speichern"
 

@@ -12,6 +12,7 @@
 */
 using System;
 using System.Xml;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Web;
@@ -313,7 +314,11 @@ namespace ocmengine
 				writer.WriteAttributeString("id", CacheID);
 			writer.WriteAttributeString("available", Available.ToString());
 			writer.WriteAttributeString("archived", Archived.ToString());
-			writer.WriteElementString(CACHE_PREFIX,"name", GPXWriter.NS_CACHE, CacheName);
+			// Temp until smart-tag like support
+			if (HasCorrected)
+				writer.WriteElementString(CACHE_PREFIX,"name", GPXWriter.NS_CACHE, "(*) " + CacheName);
+			else
+				writer.WriteElementString(CACHE_PREFIX,"name", GPXWriter.NS_CACHE, CacheName);
 			writer.WriteElementString(CACHE_PREFIX,"placed_by", GPXWriter.NS_CACHE,  PlacedBy);
 			writer.WriteStartElement(CACHE_PREFIX,"owner", GPXWriter.NS_CACHE);
 			writer.WriteAttributeString("id", OwnerID);
@@ -330,12 +335,33 @@ namespace ocmengine
 			{
 				shortDescription.Append(Catalog.GetString("Original Coordinate:"));
 				shortDescription.Append(Utilities.getCoordString(OrigLat, OrigLon));
-				shortDescription.Append("<hr noshade/>");
+				shortDescription.Append("<br/>");
+			}
+			if (gpx.WriteAttributes)
+			{
+				List <CacheAttribute> attrs = Engine.getInstance().Store.GetAttributes(this.Name);
+				IEnumerator<CacheAttribute> attr = attrs.GetEnumerator();
+				while (attr.MoveNext())
+				{
+					CacheAttribute curr = attr.Current;
+					if (curr.Include)
+					{
+						shortDescription.Append(Catalog.GetString("Y:"));
+					}
+					else
+					{
+						shortDescription.Append(Catalog.GetString("N:"));
+					}
+					shortDescription.Append(curr.AttrValue);
+					shortDescription.Append("<br/>");
+				}
+				if (attrs.Count > 0)
+					shortDescription.Append("<hr noshade/>");
 			}
 			if (!String.IsNullOrEmpty(Notes))
 			{
-				shortDescription.Append(Notes);
-				shortDescription.Append("<hr noshade/>");					
+				shortDescription.Append(Notes);	
+				shortDescription.Append("<hr noshade/>");
 			}
 			shortDescription.Append(ShortDesc);	
 			writer.WriteStartElement(CACHE_PREFIX,"short_description", GPXWriter.NS_CACHE);

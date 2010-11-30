@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2010-11-19 09:23:47-0500\n"
+"POT-Creation-Date: 2010-11-23 08:21:44-0500\n"
 "PO-Revision-Date: 2010-09-28 19:31+0100\n"
 "Last-Translator: Josef Kulhánek <jok@sendme.cz>\n"
 "Language-Team: \n"
@@ -94,60 +94,60 @@ msgstr "Mi"
 msgid "Miles"
 msgstr "Míle"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:211
+#: ../ocm-gtk/Widgets/CacheList.cs:210
 msgid "Loading Caches"
 msgstr "Nahrávám keše"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:246
+#: ../ocm-gtk/Widgets/CacheList.cs:245
 msgid "Loading Caches {0}"
 msgstr "Nahrávám keše {0}"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:492
+#: ../ocm-gtk/Widgets/CacheList.cs:491
 msgid "Set As Map Centre"
 msgstr "Nastav jako střed mapy"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:493
+#: ../ocm-gtk/Widgets/CacheList.cs:492
 msgid "View Cache Online"
 msgstr "Zobraz keš online"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:494
+#: ../ocm-gtk/Widgets/CacheList.cs:493
 msgid "Mark"
 msgstr "Označit"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:496
+#: ../ocm-gtk/Widgets/CacheList.cs:495
 #: ../ocm-gtk/gtk-gui/ocmgtk.MarkFoundDialog.cs:35
 msgid "Mark Found"
 msgstr "Nalezeno"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:497
+#: ../ocm-gtk/Widgets/CacheList.cs:496
 msgid "Mark Unfound"
 msgstr "Nenalezeno"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:498
+#: ../ocm-gtk/Widgets/CacheList.cs:497
 msgid "Mark Disabled"
 msgstr "Zablokováno"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:499
+#: ../ocm-gtk/Widgets/CacheList.cs:498
 msgid "Mark Archived"
 msgstr "Archivováno"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:500
+#: ../ocm-gtk/Widgets/CacheList.cs:499
 msgid "Mark Available"
 msgstr "Dostupné"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:501
+#: ../ocm-gtk/Widgets/CacheList.cs:500
 msgid "Delete..."
 msgstr "Smazat"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:502
+#: ../ocm-gtk/Widgets/CacheList.cs:501
 msgid "Add to Bookmark List"
 msgstr "Přidat na seznam oblíbených"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:503
+#: ../ocm-gtk/Widgets/CacheList.cs:502
 msgid "View in QLandkarte GT..."
 msgstr "Zobrazit v QLandkarte GT..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:561
+#: ../ocm-gtk/Widgets/CacheList.cs:560
 msgid "Remove From Bookmark List"
 msgstr "Odstranit ze seznamu oblíbených"
 
@@ -385,7 +385,7 @@ msgstr "Nahrávám mapu"
 
 #: ../ocm-gtk/UIMonitor.cs:247 ../ocm-gtk/UIMonitor.cs:253
 #: ../ocm-gtk/UIMonitor.cs:472 ../ocm-gtk/UIMonitor.cs:474
-#: ../ocm-gtk/UIMonitor.cs:1124 ../ocm-gtk/UIMonitor.cs:1518
+#: ../ocm-gtk/UIMonitor.cs:1137 ../ocm-gtk/UIMonitor.cs:1528
 msgid "Home"
 msgstr "Domov"
 
@@ -435,7 +435,7 @@ msgstr "Vytvořit  databázi"
 
 #: ../ocm-gtk/UIMonitor.cs:629 ../ocm-gtk/UIMonitor.cs:661
 #: ../ocm-gtk/UIMonitor.cs:700 ../ocm-gtk/UIMonitor.cs:732
-#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1637
+#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1647
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
 #: ../ocm-gtk/Widgets/GPXWidget.cs:110
 #: ../ocm-gtk/Widgets/GenericGPSWidget.cs:147
@@ -473,7 +473,7 @@ msgstr "Exportovat GPX s nálezy"
 msgid "Import GPX File"
 msgstr "Importovat GPX soubor"
 
-#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1637
+#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1647
 msgid "Import"
 msgstr "Importovat"
 
@@ -481,23 +481,23 @@ msgstr "Importovat"
 msgid "Are you sure you want to delete {0}?"
 msgstr "Jste si jist že chcete smazat {0}?"
 
-#: ../ocm-gtk/UIMonitor.cs:963
+#: ../ocm-gtk/UIMonitor.cs:976
 msgid "Are you sure you want to clear all advanced filters?"
 msgstr "Jste si jist že chcete smazat všechny rozšířené filtry?"
 
-#: ../ocm-gtk/UIMonitor.cs:1203
+#: ../ocm-gtk/UIMonitor.cs:1216
 msgid "{0} added to {1}"
 msgstr "{0} přidáno do {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1214
+#: ../ocm-gtk/UIMonitor.cs:1227
 msgid "{0} caches added to {1}"
 msgstr "{0} keší přidáno do {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1220
+#: ../ocm-gtk/UIMonitor.cs:1233
 msgid "Are you sure you want to remove {0} from {1}?"
 msgstr "Jste si jisti že chcete vyjmout {0} z {1}?"
 
-#: ../ocm-gtk/UIMonitor.cs:1290
+#: ../ocm-gtk/UIMonitor.cs:1303
 msgid ""
 "Are you sure you want to delete these {0} caches?\n"
 "This operation cannot be undone."
@@ -505,46 +505,46 @@ msgstr ""
 "Jste si jist že chcete smazat těchto {0} keší?\n"
 "Tuto operaci nelze vrátit."
 
-#: ../ocm-gtk/UIMonitor.cs:1399 ../ocm-gtk/UIMonitor.cs:1415
+#: ../ocm-gtk/UIMonitor.cs:1412 ../ocm-gtk/UIMonitor.cs:1428
 msgid "Preparing to send to QLandKarte GT"
 msgstr "Připravuji k odeslání do QLandKarte GT"
 
-#: ../ocm-gtk/UIMonitor.cs:1436
+#: ../ocm-gtk/UIMonitor.cs:1446
 msgid "Save QuickFilter"
 msgstr "Ulož Rychlý filtr"
 
-#: ../ocm-gtk/UIMonitor.cs:1463
+#: ../ocm-gtk/UIMonitor.cs:1473
 msgid "Database Compacted."
 msgstr "Databáze komprimována."
 
-#: ../ocm-gtk/UIMonitor.cs:1481
+#: ../ocm-gtk/UIMonitor.cs:1491
 msgid "Move Geocaches..."
 msgstr "Přesunout keše..."
 
-#: ../ocm-gtk/UIMonitor.cs:1506
+#: ../ocm-gtk/UIMonitor.cs:1516
 msgid "Map Point"
 msgstr "Mapový bod"
 
-#: ../ocm-gtk/UIMonitor.cs:1549 ../ocm-gtk/UIMonitor.cs:1583
+#: ../ocm-gtk/UIMonitor.cs:1559 ../ocm-gtk/UIMonitor.cs:1593
 msgid ""
 "A new version \"{0}\" of OCM is available\n"
 "Would you like to go to the download page now?"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1567 ../ocm-gtk/UIMonitor.cs:1607
+#: ../ocm-gtk/UIMonitor.cs:1577 ../ocm-gtk/UIMonitor.cs:1617
 msgid "Unable to check for updates, check your network connection."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1598
+#: ../ocm-gtk/UIMonitor.cs:1608
 msgid "OCM is at the latest version."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1637
+#: ../ocm-gtk/UIMonitor.cs:1647
 #, fuzzy
 msgid "Import ZIP File"
 msgstr "Importovat GPX soubor"
 
-#: ../ocm-gtk/UIMonitor.cs:1666
+#: ../ocm-gtk/UIMonitor.cs:1676
 #, fuzzy
 msgid "Import complete."
 msgstr "Upgrade dokončen"
@@ -1926,7 +1926,7 @@ msgstr "Stát/Provincie"
 msgid "Change History..."
 msgstr "Historie změn..."
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:81
+#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:82
 msgid "_Save"
 msgstr "_Uložit"
 

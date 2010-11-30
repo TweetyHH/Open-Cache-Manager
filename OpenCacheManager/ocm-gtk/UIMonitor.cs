@@ -953,10 +953,23 @@ namespace ocmgtk
 			dlg.Icon = m_mainWin.Icon;
 			if (((int)ResponseType.Ok) == dlg.Run ()) {
 				store.Filter = dlg.Filter;
-				m_mainWin.SetAllowClearFilter (true);
-				m_cachelist.ShowInfoBox();
+				CheckAdvancedFilters (dlg.Filter);
 				RefreshCaches ();
 			}
+		}
+		
+		private void CheckAdvancedFilters (FilterList filters)
+		{
+			if (filters !=null && filters.GetCount() > 1)
+				{
+					m_cachelist.ShowInfoBox();
+					m_mainWin.SetAllowClearFilter (true);
+				}
+				else
+				{
+					m_cachelist.HideInfoBox();
+					m_mainWin.SetAllowClearFilter (false);
+				}
 		}
 
 		public void ClearFilters ()
@@ -1424,10 +1437,7 @@ namespace ocmgtk
 		{
 			m_cachelist.ApplyQuickFilter(filter);
 			Engine.getInstance().Store.Filter = filter.AdvancedFilters;
-			if (filter.AdvancedFilters != null)
-				m_mainWin.SetAllowClearFilter (true);
-			else
-				m_mainWin.SetAllowClearFilter(false);
+			CheckAdvancedFilters(filter.AdvancedFilters);
 			RefreshCaches();
 		}
 		

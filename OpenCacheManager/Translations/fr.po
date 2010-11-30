@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2010-11-19 09:23:47-0500\n"
+"POT-Creation-Date: 2010-11-23 08:21:44-0500\n"
 "PO-Revision-Date: 2010-07-13 19:23:29-0400\n"
 "Last-Translator: Kyle Campbell <kmcamp_ott@yahoo.com>\n"
 "Language-Team: \n"
@@ -97,63 +97,63 @@ msgstr ""
 msgid "Miles"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:211
+#: ../ocm-gtk/Widgets/CacheList.cs:210
 msgid "Loading Caches"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:246
+#: ../ocm-gtk/Widgets/CacheList.cs:245
 msgid "Loading Caches {0}"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:492
+#: ../ocm-gtk/Widgets/CacheList.cs:491
 msgid "Set As Map Centre"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:493
+#: ../ocm-gtk/Widgets/CacheList.cs:492
 msgid "View Cache Online"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:494
+#: ../ocm-gtk/Widgets/CacheList.cs:493
 msgid "Mark"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:496
+#: ../ocm-gtk/Widgets/CacheList.cs:495
 #: ../ocm-gtk/gtk-gui/ocmgtk.MarkFoundDialog.cs:35
 #, fuzzy
 msgid "Mark Found"
 msgstr "Trouvé"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:497
+#: ../ocm-gtk/Widgets/CacheList.cs:496
 msgid "Mark Unfound"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:498
+#: ../ocm-gtk/Widgets/CacheList.cs:497
 #, fuzzy
 msgid "Mark Disabled"
 msgstr "Pas Disponible"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:499
+#: ../ocm-gtk/Widgets/CacheList.cs:498
 msgid "Mark Archived"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:500
+#: ../ocm-gtk/Widgets/CacheList.cs:499
 #, fuzzy
 msgid "Mark Available"
 msgstr "Disponible"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:501
+#: ../ocm-gtk/Widgets/CacheList.cs:500
 msgid "Delete..."
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:502
+#: ../ocm-gtk/Widgets/CacheList.cs:501
 msgid "Add to Bookmark List"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:503
+#: ../ocm-gtk/Widgets/CacheList.cs:502
 msgid "View in QLandkarte GT..."
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:561
+#: ../ocm-gtk/Widgets/CacheList.cs:560
 msgid "Remove From Bookmark List"
 msgstr ""
 
@@ -380,7 +380,7 @@ msgstr ""
 
 #: ../ocm-gtk/UIMonitor.cs:247 ../ocm-gtk/UIMonitor.cs:253
 #: ../ocm-gtk/UIMonitor.cs:472 ../ocm-gtk/UIMonitor.cs:474
-#: ../ocm-gtk/UIMonitor.cs:1124 ../ocm-gtk/UIMonitor.cs:1518
+#: ../ocm-gtk/UIMonitor.cs:1137 ../ocm-gtk/UIMonitor.cs:1528
 msgid "Home"
 msgstr ""
 
@@ -424,7 +424,7 @@ msgstr ""
 
 #: ../ocm-gtk/UIMonitor.cs:629 ../ocm-gtk/UIMonitor.cs:661
 #: ../ocm-gtk/UIMonitor.cs:700 ../ocm-gtk/UIMonitor.cs:732
-#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1637
+#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1647
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
 #: ../ocm-gtk/Widgets/GPXWidget.cs:110
 #: ../ocm-gtk/Widgets/GenericGPSWidget.cs:147
@@ -462,7 +462,7 @@ msgstr ""
 msgid "Import GPX File"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1637
+#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1647
 msgid "Import"
 msgstr ""
 
@@ -470,67 +470,67 @@ msgstr ""
 msgid "Are you sure you want to delete {0}?"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:963
+#: ../ocm-gtk/UIMonitor.cs:976
 msgid "Are you sure you want to clear all advanced filters?"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1203
+#: ../ocm-gtk/UIMonitor.cs:1216
 msgid "{0} added to {1}"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1214
+#: ../ocm-gtk/UIMonitor.cs:1227
 msgid "{0} caches added to {1}"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1220
+#: ../ocm-gtk/UIMonitor.cs:1233
 msgid "Are you sure you want to remove {0} from {1}?"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1290
+#: ../ocm-gtk/UIMonitor.cs:1303
 msgid ""
 "Are you sure you want to delete these {0} caches?\n"
 "This operation cannot be undone."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1399 ../ocm-gtk/UIMonitor.cs:1415
+#: ../ocm-gtk/UIMonitor.cs:1412 ../ocm-gtk/UIMonitor.cs:1428
 msgid "Preparing to send to QLandKarte GT"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1436
+#: ../ocm-gtk/UIMonitor.cs:1446
 msgid "Save QuickFilter"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1463
+#: ../ocm-gtk/UIMonitor.cs:1473
 msgid "Database Compacted."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1481
+#: ../ocm-gtk/UIMonitor.cs:1491
 msgid "Move Geocaches..."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1506
+#: ../ocm-gtk/UIMonitor.cs:1516
 msgid "Map Point"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1549 ../ocm-gtk/UIMonitor.cs:1583
+#: ../ocm-gtk/UIMonitor.cs:1559 ../ocm-gtk/UIMonitor.cs:1593
 msgid ""
 "A new version \"{0}\" of OCM is available\n"
 "Would you like to go to the download page now?"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1567 ../ocm-gtk/UIMonitor.cs:1607
+#: ../ocm-gtk/UIMonitor.cs:1577 ../ocm-gtk/UIMonitor.cs:1617
 msgid "Unable to check for updates, check your network connection."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1598
+#: ../ocm-gtk/UIMonitor.cs:1608
 msgid "OCM is at the latest version."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1637
+#: ../ocm-gtk/UIMonitor.cs:1647
 msgid "Import ZIP File"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1666
+#: ../ocm-gtk/UIMonitor.cs:1676
 msgid "Import complete."
 msgstr ""
 
@@ -1886,7 +1886,7 @@ msgstr ""
 msgid "Change History..."
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:81
+#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:82
 msgid "_Save"
 msgstr ""
 

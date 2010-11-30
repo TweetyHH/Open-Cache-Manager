@@ -143,6 +143,13 @@ namespace ocmengine
 			get{return m_mappings;}
 		}
 		
+		bool m_writeAttributes = true;
+		public bool WriteAttributes
+		{
+			get { return m_writeAttributes;}
+			set { m_writeAttributes = value;}
+		}
+		
 		private int m_Count = 0;
 
 		public void WriteGPXFile (String name, List<Geocache> caches, Dictionary<string,string> waypointmappings)

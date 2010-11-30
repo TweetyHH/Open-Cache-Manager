@@ -36,8 +36,14 @@ namespace ocmgtk {
             // Widget ocmgtk.CopyingProgress
             this.Name = "ocmgtk.CopyingProgress";
             this.Title = Mono.Unix.Catalog.GetString("Copy Geocaches...");
+            this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.WindowPosition = ((Gtk.WindowPosition)(4));
+            this.Modal = true;
             this.BorderWidth = ((uint)(6));
+            this.Resizable = false;
+            this.AllowGrow = false;
+            this.SkipPagerHint = true;
+            this.SkipTaskbarHint = true;
             // Internal child ocmgtk.CopyingProgress.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";
@@ -145,7 +151,7 @@ namespace ocmgtk {
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 366;
+            this.DefaultWidth = 428;
             this.DefaultHeight = 199;
             this.Show();
             this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);

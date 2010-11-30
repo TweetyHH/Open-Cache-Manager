@@ -27,6 +27,8 @@ namespace ocmgtk {
         
         private Gtk.Table table2;
         
+        private Gtk.CheckButton attrCheck;
+        
         private Gtk.RadioButton autoNameRado;
         
         private Gtk.Button fileButton;
@@ -107,22 +109,36 @@ namespace ocmgtk {
             w5.Expand = false;
             w5.Fill = false;
             // Container child vbox1.Gtk.Box+BoxChild
-            this.table2 = new Gtk.Table(((uint)(2)), ((uint)(3)), false);
+            this.table2 = new Gtk.Table(((uint)(3)), ((uint)(3)), false);
             this.table2.Name = "table2";
             this.table2.RowSpacing = ((uint)(6));
             this.table2.ColumnSpacing = ((uint)(6));
             // Container child table2.Gtk.Table+TableChild
+            this.attrCheck = new Gtk.CheckButton();
+            this.attrCheck.CanFocus = true;
+            this.attrCheck.Name = "attrCheck";
+            this.attrCheck.Label = Mono.Unix.Catalog.GetString("Include Attributes in Description");
+            this.attrCheck.Active = true;
+            this.attrCheck.DrawIndicator = true;
+            this.attrCheck.UseUnderline = true;
+            this.table2.Add(this.attrCheck);
+            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table2[this.attrCheck]));
+            w6.RightAttach = ((uint)(2));
+            w6.XOptions = ((Gtk.AttachOptions)(4));
+            w6.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
             this.autoNameRado = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Auto name on internal drive"));
             this.autoNameRado.CanFocus = true;
             this.autoNameRado.Name = "autoNameRado";
-            this.autoNameRado.Active = true;
             this.autoNameRado.DrawIndicator = true;
             this.autoNameRado.UseUnderline = true;
             this.autoNameRado.Group = new GLib.SList(System.IntPtr.Zero);
             this.table2.Add(this.autoNameRado);
-            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table2[this.autoNameRado]));
-            w6.XOptions = ((Gtk.AttachOptions)(4));
-            w6.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table2[this.autoNameRado]));
+            w7.TopAttach = ((uint)(1));
+            w7.BottomAttach = ((uint)(2));
+            w7.XOptions = ((Gtk.AttachOptions)(4));
+            w7.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.fileButton = new Gtk.Button();
             this.fileButton.CanFocus = true;
@@ -134,13 +150,13 @@ namespace ocmgtk {
             this.fileButton.Add(this.image3);
             this.fileButton.Label = null;
             this.table2.Add(this.fileButton);
-            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table2[this.fileButton]));
-            w8.TopAttach = ((uint)(1));
-            w8.BottomAttach = ((uint)(2));
-            w8.LeftAttach = ((uint)(2));
-            w8.RightAttach = ((uint)(3));
-            w8.XOptions = ((Gtk.AttachOptions)(4));
-            w8.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table2[this.fileButton]));
+            w9.TopAttach = ((uint)(2));
+            w9.BottomAttach = ((uint)(3));
+            w9.LeftAttach = ((uint)(2));
+            w9.RightAttach = ((uint)(3));
+            w9.XOptions = ((Gtk.AttachOptions)(4));
+            w9.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.fileEntry = new Gtk.Entry();
             this.fileEntry.Sensitive = false;
@@ -150,12 +166,12 @@ namespace ocmgtk {
             this.fileEntry.IsEditable = true;
             this.fileEntry.InvisibleChar = '•';
             this.table2.Add(this.fileEntry);
-            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table2[this.fileEntry]));
-            w9.TopAttach = ((uint)(1));
-            w9.BottomAttach = ((uint)(2));
-            w9.LeftAttach = ((uint)(1));
-            w9.RightAttach = ((uint)(2));
-            w9.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.table2[this.fileEntry]));
+            w10.TopAttach = ((uint)(2));
+            w10.BottomAttach = ((uint)(3));
+            w10.LeftAttach = ((uint)(1));
+            w10.RightAttach = ((uint)(2));
+            w10.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.useFileRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Use specified file:"));
             this.useFileRadio.CanFocus = true;
@@ -164,16 +180,16 @@ namespace ocmgtk {
             this.useFileRadio.UseUnderline = true;
             this.useFileRadio.Group = this.autoNameRado.Group;
             this.table2.Add(this.useFileRadio);
-            Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.table2[this.useFileRadio]));
-            w10.TopAttach = ((uint)(1));
-            w10.BottomAttach = ((uint)(2));
-            w10.XOptions = ((Gtk.AttachOptions)(4));
-            w10.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w11 = ((Gtk.Table.TableChild)(this.table2[this.useFileRadio]));
+            w11.TopAttach = ((uint)(2));
+            w11.BottomAttach = ((uint)(3));
+            w11.XOptions = ((Gtk.AttachOptions)(4));
+            w11.YOptions = ((Gtk.AttachOptions)(4));
             this.vbox1.Add(this.table2);
-            Gtk.Box.BoxChild w11 = ((Gtk.Box.BoxChild)(this.vbox1[this.table2]));
-            w11.Position = 1;
-            w11.Expand = false;
-            w11.Fill = false;
+            Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.vbox1[this.table2]));
+            w12.Position = 1;
+            w12.Expand = false;
+            w12.Fill = false;
             this.Add(this.vbox1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2010-11-19 09:23:47-0500\n"
-"PO-Revision-Date: 2010-09-23 00:26+0100\n"
-"Last-Translator: harrie Klomp <harrie@harrieklomp.nl>\n"
+"POT-Creation-Date: 2010-11-23 08:21:44-0500\n"
+"PO-Revision-Date: 2010-11-21 10:16+0100\n"
+"Last-Translator: Harrie Klomp <Harrie@harrieklomp.nl>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,9 +31,8 @@ msgid "Unknown Coordinate Format"
 msgstr "Onbekende coördinaten stelsel"
 
 #: ../ocmengine/Geocache.cs:330
-#, fuzzy
 msgid "Original Coordinate:"
-msgstr "Verkeerde coördinaten"
+msgstr "Originele coördinaten:"
 
 #: ../ocm-gtk/MainWindow.cs:64
 msgid "_Bookmarks"
@@ -94,60 +93,60 @@ msgstr "Mi"
 msgid "Miles"
 msgstr "Mijlen"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:211
+#: ../ocm-gtk/Widgets/CacheList.cs:210
 msgid "Loading Caches"
 msgstr "Laden van {0}caches"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:246
+#: ../ocm-gtk/Widgets/CacheList.cs:245
 msgid "Loading Caches {0}"
 msgstr "Laden caches {0}"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:492
+#: ../ocm-gtk/Widgets/CacheList.cs:491
 msgid "Set As Map Centre"
 msgstr "Stel in als kaartcentrum"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:493
+#: ../ocm-gtk/Widgets/CacheList.cs:492
 msgid "View Cache Online"
 msgstr "Bekijk cache online"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:494
+#: ../ocm-gtk/Widgets/CacheList.cs:493
 msgid "Mark"
 msgstr "Markeren"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:496
+#: ../ocm-gtk/Widgets/CacheList.cs:495
 #: ../ocm-gtk/gtk-gui/ocmgtk.MarkFoundDialog.cs:35
 msgid "Mark Found"
 msgstr "Markeer gevonden"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:497
+#: ../ocm-gtk/Widgets/CacheList.cs:496
 msgid "Mark Unfound"
 msgstr "Markeer niet gevonden"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:498
+#: ../ocm-gtk/Widgets/CacheList.cs:497
 msgid "Mark Disabled"
 msgstr "Markeer niet beschikbaar"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:499
+#: ../ocm-gtk/Widgets/CacheList.cs:498
 msgid "Mark Archived"
 msgstr "Markeer gearchiveerd"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:500
+#: ../ocm-gtk/Widgets/CacheList.cs:499
 msgid "Mark Available"
 msgstr "Markeer beschikbaar"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:501
+#: ../ocm-gtk/Widgets/CacheList.cs:500
 msgid "Delete..."
 msgstr "Verwijderen..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:502
+#: ../ocm-gtk/Widgets/CacheList.cs:501
 msgid "Add to Bookmark List"
 msgstr "Voeg toe aan bladwijzer"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:503
+#: ../ocm-gtk/Widgets/CacheList.cs:502
 msgid "View in QLandkarte GT..."
 msgstr "Bekijk in QLandkarte GT..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:561
+#: ../ocm-gtk/Widgets/CacheList.cs:560
 msgid "Remove From Bookmark List"
 msgstr "Verwijder uit bladwijzer"
 
@@ -218,7 +217,7 @@ msgstr "<b>Land:</b> {0}"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:274
 msgid "<i>Original: "
-msgstr ""
+msgstr "<i>Orgineel:"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:282
 #: ../ocm-gtk/Widgets/CoordinateWidget.cs:87
@@ -356,9 +355,8 @@ msgid "Name"
 msgstr "Naam"
 
 #: ../ocm-gtk/Widgets/WaypointWidget.cs:190
-#, fuzzy
 msgid "Original Location"
-msgstr "Eindlocatie"
+msgstr "Originele locatie"
 
 #: ../ocm-gtk/Widgets/WaypointWidget.cs:346
 msgid "Grabbing Waypoints"
@@ -387,7 +385,7 @@ msgstr "Kaart laden"
 
 #: ../ocm-gtk/UIMonitor.cs:247 ../ocm-gtk/UIMonitor.cs:253
 #: ../ocm-gtk/UIMonitor.cs:472 ../ocm-gtk/UIMonitor.cs:474
-#: ../ocm-gtk/UIMonitor.cs:1124 ../ocm-gtk/UIMonitor.cs:1518
+#: ../ocm-gtk/UIMonitor.cs:1137 ../ocm-gtk/UIMonitor.cs:1528
 msgid "Home"
 msgstr "Thuis"
 
@@ -437,7 +435,7 @@ msgstr "Maak database"
 
 #: ../ocm-gtk/UIMonitor.cs:629 ../ocm-gtk/UIMonitor.cs:661
 #: ../ocm-gtk/UIMonitor.cs:700 ../ocm-gtk/UIMonitor.cs:732
-#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1637
+#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1647
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
 #: ../ocm-gtk/Widgets/GPXWidget.cs:110
 #: ../ocm-gtk/Widgets/GenericGPSWidget.cs:147
@@ -475,7 +473,7 @@ msgstr "Exporteren gevonden GPX bestand"
 msgid "Import GPX File"
 msgstr "GPX bestand importeren"
 
-#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1637
+#: ../ocm-gtk/UIMonitor.cs:812 ../ocm-gtk/UIMonitor.cs:1647
 msgid "Import"
 msgstr "Importeren"
 
@@ -483,23 +481,23 @@ msgstr "Importeren"
 msgid "Are you sure you want to delete {0}?"
 msgstr "Weet u zeker dat {0} verwijderd moet worden ?"
 
-#: ../ocm-gtk/UIMonitor.cs:963
+#: ../ocm-gtk/UIMonitor.cs:976
 msgid "Are you sure you want to clear all advanced filters?"
 msgstr "Weet u zeker om geavanceerde filters te herstellen?"
 
-#: ../ocm-gtk/UIMonitor.cs:1203
+#: ../ocm-gtk/UIMonitor.cs:1216
 msgid "{0} added to {1}"
 msgstr "{0} toegevoegd aan {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1214
+#: ../ocm-gtk/UIMonitor.cs:1227
 msgid "{0} caches added to {1}"
 msgstr "{0} caches toegevoegd aan {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1220
+#: ../ocm-gtk/UIMonitor.cs:1233
 msgid "Are you sure you want to remove {0} from {1}?"
 msgstr "Weet u zeker om {0} te verwijderen van {1}?"
 
-#: ../ocm-gtk/UIMonitor.cs:1290
+#: ../ocm-gtk/UIMonitor.cs:1303
 msgid ""
 "Are you sure you want to delete these {0} caches?\n"
 "This operation cannot be undone."
@@ -507,27 +505,27 @@ msgstr ""
 "Weet u zeker dat {0} verwijderd moet worden ?\n"
 "Dit kan niet meer ongedaan gemaakt worden."
 
-#: ../ocm-gtk/UIMonitor.cs:1399 ../ocm-gtk/UIMonitor.cs:1415
+#: ../ocm-gtk/UIMonitor.cs:1412 ../ocm-gtk/UIMonitor.cs:1428
 msgid "Preparing to send to QLandKarte GT"
 msgstr "Voorbereiden om naar QLandkarte GT te verzenden "
 
-#: ../ocm-gtk/UIMonitor.cs:1436
+#: ../ocm-gtk/UIMonitor.cs:1446
 msgid "Save QuickFilter"
 msgstr "Bewaar snelfilter"
 
-#: ../ocm-gtk/UIMonitor.cs:1463
+#: ../ocm-gtk/UIMonitor.cs:1473
 msgid "Database Compacted."
 msgstr "Database verkleind."
 
-#: ../ocm-gtk/UIMonitor.cs:1481
+#: ../ocm-gtk/UIMonitor.cs:1491
 msgid "Move Geocaches..."
 msgstr "Verplaats geocaches..."
 
-#: ../ocm-gtk/UIMonitor.cs:1506
+#: ../ocm-gtk/UIMonitor.cs:1516
 msgid "Map Point"
 msgstr "Kaartpunt"
 
-#: ../ocm-gtk/UIMonitor.cs:1549 ../ocm-gtk/UIMonitor.cs:1583
+#: ../ocm-gtk/UIMonitor.cs:1559 ../ocm-gtk/UIMonitor.cs:1593
 msgid ""
 "A new version \"{0}\" of OCM is available\n"
 "Would you like to go to the download page now?"
@@ -535,23 +533,21 @@ msgstr ""
 "Een nieuwe versie \"{0}\" van OCM is beschikbaar\n"
 "Wilt u naar de downloadpagina gaan?"
 
-#: ../ocm-gtk/UIMonitor.cs:1567 ../ocm-gtk/UIMonitor.cs:1607
+#: ../ocm-gtk/UIMonitor.cs:1577 ../ocm-gtk/UIMonitor.cs:1617
 msgid "Unable to check for updates, check your network connection."
 msgstr "Kan niet controleren voor updates, controleer uw netwerkverbinding."
 
-#: ../ocm-gtk/UIMonitor.cs:1598
+#: ../ocm-gtk/UIMonitor.cs:1608
 msgid "OCM is at the latest version."
 msgstr "Dit is de nieuwste OCM versie."
 
-#: ../ocm-gtk/UIMonitor.cs:1637
-#, fuzzy
+#: ../ocm-gtk/UIMonitor.cs:1647
 msgid "Import ZIP File"
-msgstr "GPX bestand importeren"
+msgstr "Importeren zip bestand"
 
-#: ../ocm-gtk/UIMonitor.cs:1666
-#, fuzzy
+#: ../ocm-gtk/UIMonitor.cs:1676
 msgid "Import complete."
-msgstr "Opwaardering compleet"
+msgstr "Imprteren compleet."
 
 #: ../ocm-gtk/Dialogs/ProgressDialog.cs:49
 #: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:78
@@ -693,6 +689,8 @@ msgid ""
 "The target database needs to be upgraded. Please open the target database "
 "before trying to copy/move caches."
 msgstr ""
+"De te openen database dient te worden opgewaardeerd. Open de database "
+"voordat er caches gekopieerd/verplaatst worden."
 
 #: ../ocm-gtk/Dialogs/CopyingProgress.cs:92
 msgid "<i>Complete</i>"
@@ -1057,23 +1055,20 @@ msgid "Print..."
 msgstr "Afdrukken..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:577 ../ocm-gtk/gtk-gui/MainWindow.cs:579
-#, fuzzy
 msgid "Corrected Coordinates..."
-msgstr "Thuis coördinaten:"
+msgstr "Gecorrigeerde  coördinaten..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:581 ../ocm-gtk/gtk-gui/MainWindow.cs:582
-#, fuzzy
 msgid "O_pencaching"
-msgstr "_Geocaching"
+msgstr "_Opencaching"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:584 ../ocm-gtk/gtk-gui/MainWindow.cs:585
 msgid "List Of Country Sites"
-msgstr ""
+msgstr "Lijst van deelnemende landen"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:587 ../ocm-gtk/gtk-gui/MainWindow.cs:588
-#, fuzzy
 msgid "Import ZIP File..."
-msgstr "GPX bestand importeren"
+msgstr "Importeren zip bestand..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:593
 msgid "OCM"
@@ -1129,14 +1124,12 @@ msgid "<b>Terrain:</b>"
 msgstr "<b>Terrein:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:539
-#, fuzzy
 msgid "<b>Attributes:</b>"
-msgstr "<b>Bestand</b>"
+msgstr "<b>Attributen:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:582
-#, fuzzy
 msgid "label1"
-msgstr "label4"
+msgstr "label1"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeoCachePane.cs:60
 msgid "Quick Info"
@@ -1169,7 +1162,7 @@ msgstr "km"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:206
 msgid "<span fgcolor=\"blue\">Advanced filters</span> have been applied."
-msgstr ""
+msgstr "<span fgcolor=\"blue\">Geavanceerde filters</span> zijn toegepast."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:230
 msgid "Archived"
@@ -1308,7 +1301,7 @@ msgstr "Gebruikernaam of Acound ID:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:149
 msgid "Home/Account"
-msgstr ""
+msgstr "Thuis/Account"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:161
 msgid "Default Map:"
@@ -1360,9 +1353,8 @@ msgid "U.S./Imperial"
 msgstr "U.S./Imperial"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:236
-#, fuzzy
 msgid "Map/Units"
-msgstr "Eenheden:"
+msgstr "Kaart/Eenheden:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:248
 msgid "Child Waypoints:"
@@ -1370,7 +1362,7 @@ msgstr "Child wegpunten"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:256
 msgid "days"
-msgstr ""
+msgstr "dagen"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:267
 msgid "Prefix with Type (e.g. PKABCD01)"
@@ -1381,17 +1373,16 @@ msgid "Use GC name (e.g. GCABCD01)"
 msgstr "Gebruik GC code (b.v. GCABCD01)"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:280
-#, fuzzy
 msgid "Check for updates every"
-msgstr "Controleer voor updates..."
+msgstr "Controleer voor updates elke"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:294
 msgid "7"
-msgstr ""
+msgstr "7"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:311
 msgid "Formats/Update"
-msgstr ""
+msgstr "Aanduiding/Update"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CoordinateWidget.cs:58
 msgid "°"
@@ -1666,9 +1657,8 @@ msgid "Dates/Location"
 msgstr "Datum/Locatie"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:111
-#, fuzzy
 msgid "Notes/Children/Corrected"
-msgstr "Notities/Children"
+msgstr "Notities/Children/Gecorrigeerd"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:65
 msgid "Any Container"
@@ -1723,9 +1713,8 @@ msgid "GPS Configuration..."
 msgstr "GPS configuratie..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:65
-#, fuzzy
 msgid "Garmin GPX (Colorado/Oregon/Dakotai/Map62/Nuvi 5xx)"
-msgstr "Garmin GPX (Colorado/Oregon/Dakota/Nuvi/Map62)"
+msgstr "Garmin GPX (Colorado/Oregon/Dakotai/Map62/Nuvi 5xx)"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:66
 msgid "Garmin USB (eTrex/GPSMap60/StreetPiot)"
@@ -1737,16 +1726,15 @@ msgstr "Garmin Serieel (origineel eTrex/eTrex H/Gecko)"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:68
 msgid "Garmin Edge (605/705)/Garmin Nuvi"
-msgstr ""
+msgstr "Garmin Edge (605/705)/Garmin Nuvi"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:69
 msgid "DeLorme USB (PN-20/PN-30/PN-40)"
 msgstr "DeLorme USB (PN-20/PN-30/PN-40)"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:70
-#, fuzzy
 msgid "DeLorme GPX (PN-60/PN-40 v2.8+)"
-msgstr "DeLorme USB (PN-20/PN-30/PN-40)"
+msgstr "DeLorme GPX (PN-60/PN-40 v2.8+)"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:71
 msgid "Other GPS"
@@ -1921,7 +1909,7 @@ msgstr "Staat/Provincie"
 msgid "Change History..."
 msgstr "Geschiedenis..."
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:81
+#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:82
 msgid "_Save"
 msgstr "_Opslaan"
 
@@ -1946,6 +1934,8 @@ msgid ""
 "Use <span fgcolor=\"blue\">corrected coordinates</span> to prevent GPX "
 "imports from overwriting the cache location"
 msgstr ""
+"Gebruik <span fgcolor=\"blue\">gecorrigeerde coördinaten</span> om te "
+"voorlomen dat een GPX import de locatie weer overschrijft"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:209
 msgid "URL:"
@@ -2817,9 +2807,8 @@ msgid "Has at least one child of type:"
 msgstr "Heeft minimaal 1 child wegpunt met:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:77
-#, fuzzy
 msgid "Has Corrected Coordinates"
-msgstr "Thuis coördinaten:"
+msgstr "Heeft gecorrigeerde coördinaten:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:90
 msgid "Does not have any children of type:"
@@ -2830,9 +2819,8 @@ msgid "Has Notes"
 msgstr "Heeft notities"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:132
-#, fuzzy
 msgid "Does not have Corrected Coordinates"
-msgstr "Thuis coördinaten:"
+msgstr "Heeft geen gecorrigeerde coördinaten "
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DeLormeWidget.cs:64
 msgid "<b>Important:</b>DeLorme USB format is only available in GPSBabel 1.4"
@@ -2868,65 +2856,56 @@ msgid "Exec Path:"
 msgstr "Starter locatie:"
 
 #: ../ocm-gtk/printing/CachePrinter.cs:136
-#, fuzzy
 msgid "<b>Short Description:</b>"
-msgstr "Korte omschrijving:"
+msgstr "<b>Korte omschrijving:</b>"
 
 #: ../ocm-gtk/printing/CachePrinter.cs:141
-#, fuzzy
 msgid "<b>Long Description:</b>"
-msgstr "Lange omschrijving:"
+msgstr "<b>Lange omschrijving:</b>"
 
 #: ../ocm-gtk/printing/CachePrinter.cs:147
-#, fuzzy
 msgid "<b>Notes:</b>"
-msgstr "<b>Bestand</b>"
+msgstr "<b>Notities:</b>"
 
 #: ../ocm-gtk/printing/CachePrinter.cs:154
-#, fuzzy
 msgid "<b>Hint:</b>"
-msgstr "<b>Hint</b>"
+msgstr "<b>Hint:</b>"
 
 #: ../ocm-gtk/printing/CachePrinter.cs:242
-#, fuzzy
 msgid "Page {0} of {1}"
-msgstr "N {0}° {1}"
+msgstr "Pagina {0}van {1}"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DelormeGPXWidget.cs:114
 msgid "Auto name on internal drive"
-msgstr ""
+msgstr "Autobenaming op schijf"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DelormeGPXWidget.cs:159
 msgid "Use specified file:"
-msgstr ""
+msgstr "Gebruik bestand:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.MarkFoundDialog.cs:96
-#, fuzzy
 msgid "Found date:"
-msgstr "Gevonden"
+msgstr "Datum gevonden:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CorrectedCoordinatesDlg.cs:39
-#, fuzzy
 msgid "Corrected Coordinates"
-msgstr "Thuis coördinaten:"
+msgstr "Gecorrigeerde coördinaten"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CorrectedCoordinatesDlg.cs:83
-#, fuzzy
 msgid "Original Coodinate:"
-msgstr "Verkeerde coördinaten"
+msgstr "Originele coördinaten:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CorrectedCoordinatesDlg.cs:92
 msgid "Corrected Lat:"
-msgstr ""
+msgstr "Gecorrigeerde lat:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CorrectedCoordinatesDlg.cs:103
 msgid "Corrected Lon:"
-msgstr ""
+msgstr "Gecorrigeerde lon:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CorrectedCoordinatesDlg.cs:150
-#, fuzzy
 msgid "Reset"
-msgstr "Deselecteer"
+msgstr "Herstellen"
 
 #~ msgid "Ignore User Defined Geocache Symbols"
 #~ msgstr "Negeer gekozen geocache symbolen"

@@ -31,6 +31,10 @@ namespace ocmgtk {
         
         private Gtk.Label labelChildren;
         
+        private ocmgtk.OCMQueryPage5 ocmquerypage51;
+        
+        private Gtk.Label label4;
+        
         private Gtk.Button buttonCancel;
         
         private Gtk.Button buttonOk;
@@ -112,15 +116,29 @@ namespace ocmgtk {
             this.labelChildren.LabelProp = Mono.Unix.Catalog.GetString("Notes/Children/Corrected");
             this.notebook1.SetTabLabel(this.childrenPage, this.labelChildren);
             this.labelChildren.ShowAll();
+            // Container child notebook1.Gtk.Notebook+NotebookChild
+            this.ocmquerypage51 = new ocmgtk.OCMQueryPage5();
+            this.ocmquerypage51.Sensitive = false;
+            this.ocmquerypage51.Events = ((Gdk.EventMask)(256));
+            this.ocmquerypage51.Name = "ocmquerypage51";
+            this.notebook1.Add(this.ocmquerypage51);
+            Gtk.Notebook.NotebookChild w6 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.ocmquerypage51]));
+            w6.Position = 4;
+            // Notebook tab
+            this.label4 = new Gtk.Label();
+            this.label4.Name = "label4";
+            this.label4.LabelProp = Mono.Unix.Catalog.GetString("Attributes");
+            this.notebook1.SetTabLabel(this.ocmquerypage51, this.label4);
+            this.label4.ShowAll();
             w1.Add(this.notebook1);
-            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(w1[this.notebook1]));
-            w6.Position = 0;
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(w1[this.notebook1]));
+            w7.Position = 0;
             // Internal child ocmgtk.FilterDialog.ActionArea
-            Gtk.HButtonBox w7 = this.ActionArea;
-            w7.Name = "dialog1_ActionArea";
-            w7.Spacing = 10;
-            w7.BorderWidth = ((uint)(5));
-            w7.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            Gtk.HButtonBox w8 = this.ActionArea;
+            w8.Name = "dialog1_ActionArea";
+            w8.Spacing = 10;
+            w8.BorderWidth = ((uint)(5));
+            w8.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -130,9 +148,9 @@ namespace ocmgtk {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w8 = ((Gtk.ButtonBox.ButtonBoxChild)(w7[this.buttonCancel]));
-            w8.Expand = false;
-            w8.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w9 = ((Gtk.ButtonBox.ButtonBoxChild)(w8[this.buttonCancel]));
+            w9.Expand = false;
+            w9.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -142,14 +160,14 @@ namespace ocmgtk {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w9 = ((Gtk.ButtonBox.ButtonBoxChild)(w7[this.buttonOk]));
-            w9.Position = 1;
-            w9.Expand = false;
-            w9.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w10 = ((Gtk.ButtonBox.ButtonBoxChild)(w8[this.buttonOk]));
+            w10.Position = 1;
+            w10.Expand = false;
+            w10.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 673;
+            this.DefaultWidth = 808;
             this.DefaultHeight = 453;
             this.buttonOk.HasDefault = true;
             this.Show();

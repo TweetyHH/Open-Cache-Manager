@@ -1,3 +1,11 @@
+Version 0.22.6
+--------------
+- Fixed bugs where placed by and found caches were not being set correctly for opencaching.de
+- Fixed issue with cache notes being sent to the device and without whitespace between the notes and the description
+- Updated Dutch translations
+- Fixed issue where external tools and View in QLandkarte GT not working with Ubuntu 10.10
+- Fixed bug with "advanced filters applied" notification still showing when advanced filters were cleared
+
 Version 0.22
 ------------
 - Delorme GPX support for PN-60/PN-40v2.8+

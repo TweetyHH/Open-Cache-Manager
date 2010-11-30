@@ -68,7 +68,7 @@ namespace ocmgtk
 				this.Hide();
 				if (m_command != null)
 				{
-					System.Diagnostics.Process.Start(m_command);
+					System.Diagnostics.Process.Start(Utilities.StringToStartInfo(m_command));
 				}
 				return;
 			}

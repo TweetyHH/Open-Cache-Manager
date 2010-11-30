@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.22.5</ReleaseVersion>
+    <ReleaseVersion>0.22.7</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -229,6 +229,8 @@
     <Compile Include="gtk-gui\ocmgtk.MarkFoundDialog.cs" />
     <Compile Include="Dialogs\CorrectedCoordinatesDlg.cs" />
     <Compile Include="gtk-gui\ocmgtk.CorrectedCoordinatesDlg.cs" />
+    <Compile Include="Widgets\OCMQueryPage5.cs" />
+    <Compile Include="gtk-gui\ocmgtk.OCMQueryPage5.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

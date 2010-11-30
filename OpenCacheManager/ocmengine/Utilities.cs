@@ -289,7 +289,7 @@ namespace ocmengine
 			src = System.Web.HttpUtility.HtmlDecode(src);
 			if (src.Contains("<br"))
 				src = src.Replace("\n"," ");
-			src.Replace("<hr noshade/>", "----------\n\n");
+			src = src.Replace("<hr noshade/>", "\n----------\n");
 			src = Regex.Replace(src, END_P, "\n\n");
 			src = Regex.Replace(src, END_LI, "\n");
 			src = Regex.Replace(src, END_TR, "\n");
@@ -302,6 +302,16 @@ namespace ocmengine
 		public static string HTMLtoGarmin(String src)
 		{
 			return Utilities.HTMLtoText(src).Replace("\n", "<br/>");
+		}
+		
+		public static System.Diagnostics.ProcessStartInfo StringToStartInfo(String cmd)
+		{
+			int index = cmd.IndexOf(" ");
+			string proc = cmd.Substring(0, index);
+			string args = cmd.Substring(index);
+			System.Console.WriteLine(proc);
+			System.Console.WriteLine(args);
+			return new System.Diagnostics.ProcessStartInfo(proc, args);
 		}
 	}	
 }

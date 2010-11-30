@@ -81,7 +81,7 @@ namespace ocmgtk
 			}
 			else
 			{
-				Process.Start(m_command);
+				Process.Start(Utilities.StringToStartInfo(m_command));
 			}
 		}
 	}

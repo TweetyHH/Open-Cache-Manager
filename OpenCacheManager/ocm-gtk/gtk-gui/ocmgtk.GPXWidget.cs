@@ -25,6 +25,8 @@ namespace ocmgtk {
         
         private Gtk.Entry logLimitEntry;
         
+        private Gtk.CheckButton attrCheck;
+        
         private Gtk.HBox hbox4;
         
         private Gtk.Label label3;
@@ -106,6 +108,19 @@ namespace ocmgtk {
             w5.Expand = false;
             w5.Fill = false;
             // Container child vbox3.Gtk.Box+BoxChild
+            this.attrCheck = new Gtk.CheckButton();
+            this.attrCheck.CanFocus = true;
+            this.attrCheck.Name = "attrCheck";
+            this.attrCheck.Label = Mono.Unix.Catalog.GetString("Include Attributes in Description");
+            this.attrCheck.Active = true;
+            this.attrCheck.DrawIndicator = true;
+            this.attrCheck.UseUnderline = true;
+            this.vbox3.Add(this.attrCheck);
+            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.vbox3[this.attrCheck]));
+            w6.Position = 1;
+            w6.Expand = false;
+            w6.Fill = false;
+            // Container child vbox3.Gtk.Box+BoxChild
             this.hbox4 = new Gtk.HBox();
             this.hbox4.Name = "hbox4";
             this.hbox4.Spacing = 6;
@@ -114,10 +129,10 @@ namespace ocmgtk {
             this.label3.Name = "label3";
             this.label3.LabelProp = Mono.Unix.Catalog.GetString("GPX Output File:");
             this.hbox4.Add(this.label3);
-            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.hbox4[this.label3]));
-            w6.Position = 0;
-            w6.Expand = false;
-            w6.Fill = false;
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.hbox4[this.label3]));
+            w7.Position = 0;
+            w7.Expand = false;
+            w7.Fill = false;
             // Container child hbox4.Gtk.Box+BoxChild
             this.fileEntry = new Gtk.Entry();
             this.fileEntry.CanFocus = true;
@@ -126,8 +141,8 @@ namespace ocmgtk {
             this.fileEntry.IsEditable = true;
             this.fileEntry.InvisibleChar = '•';
             this.hbox4.Add(this.fileEntry);
-            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.hbox4[this.fileEntry]));
-            w7.Position = 1;
+            Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.hbox4[this.fileEntry]));
+            w8.Position = 1;
             // Container child hbox4.Gtk.Box+BoxChild
             this.fileButton = new Gtk.Button();
             this.fileButton.CanFocus = true;
@@ -139,15 +154,15 @@ namespace ocmgtk {
             this.fileButton.Add(this.image3);
             this.fileButton.Label = null;
             this.hbox4.Add(this.fileButton);
-            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.hbox4[this.fileButton]));
-            w9.Position = 2;
-            w9.Expand = false;
-            w9.Fill = false;
-            this.vbox3.Add(this.hbox4);
-            Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.vbox3[this.hbox4]));
-            w10.Position = 1;
+            Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(this.hbox4[this.fileButton]));
+            w10.Position = 2;
             w10.Expand = false;
             w10.Fill = false;
+            this.vbox3.Add(this.hbox4);
+            Gtk.Box.BoxChild w11 = ((Gtk.Box.BoxChild)(this.vbox3[this.hbox4]));
+            w11.Position = 2;
+            w11.Expand = false;
+            w11.Fill = false;
             this.Add(this.vbox3);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

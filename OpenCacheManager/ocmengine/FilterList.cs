@@ -81,6 +81,11 @@ namespace ocmengine
 		{
 			m_criteria.Clear();
 		}
+		
+		public int GetCount()
+		{
+			return m_criteria.Count;
+		}
 
 		public String BuildWhereClause ()
 		{

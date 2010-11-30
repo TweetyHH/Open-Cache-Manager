@@ -458,14 +458,11 @@ namespace ocmengine
 				cache.CacheName = reader.ReadElementContentAsString();
 				System.Console.WriteLine(cache.CacheName);
 			}
-			else if (reader.LocalName == "placed_by")
-			{
-				cache.PlacedBy = reader.ReadElementContentAsString();
-			}
 			else if (reader.LocalName == "owner")
 			{
 				cache.OwnerID = reader.GetAttribute("id");
-				cache.CacheOwner = reader.ReadElementContentAsString();					
+				cache.CacheOwner = reader.ReadElementContentAsString();
+				cache.PlacedBy = cache.CacheOwner;
 			}
 			else if (reader.LocalName == "type")
 			{
@@ -681,6 +678,14 @@ namespace ocmengine
 				else if (reader.LocalName == "type")
 				{
 					log.LogStatus = reader.ReadElementContentAsString();
+					if (log.FinderID == m_ownid && log.LogStatus == "Found it")
+					{
+						cache.Symbol = "Geocache Found";
+					}
+					else if (log.LoggedBy == m_ownid && log.LogStatus == "Found it")
+					{
+						cache.Symbol = "Geocache Found";
+					}
 				}
 				else if (reader.LocalName == "finder")
 				{
