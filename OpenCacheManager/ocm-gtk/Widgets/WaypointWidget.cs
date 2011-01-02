@@ -170,16 +170,7 @@ namespace ocmgtk
 				addButton.Sensitive = true;
 				grabButton.Sensitive = true;
 			}
-			List<Waypoint> wpt = Engine.getInstance ().Store.GetChildren(cache.Name);
-			IEnumerator<Waypoint> wptenum = wpt.GetEnumerator();
-			m_childPoints.AppendValues (cache);
-			m_mon.AddMapCache (cache);
-			cache.Children = false;
-			while (wptenum.MoveNext ()) {
-				m_childPoints.AppendValues (wptenum.Current);
-				m_mon.AddMapWayPoint (wptenum.Current);
-				cache.Children = true;		
-			}
+			ShowChildWaypoints (cache);
 			if (cache.HasCorrected)
 			{
 				Waypoint Orig = new Waypoint();
@@ -195,6 +186,20 @@ namespace ocmgtk
 			m_mon.SetProgressDone();
 			m_ListSort.SetSortColumnId (1, SortType.Ascending);
 			m_mon.Main.Show();
+		}
+		
+		public void ShowChildWaypoints (Geocache cache)
+		{
+			List<Waypoint> wpt = Engine.getInstance ().Store.GetChildren(cache.Name);
+			IEnumerator<Waypoint> wptenum = wpt.GetEnumerator();
+			m_childPoints.AppendValues (cache);
+			m_mon.AddMapCache (cache);
+			cache.Children = false;
+			while (wptenum.MoveNext ()) {
+				m_childPoints.AppendValues (wptenum.Current);
+				m_mon.AddMapWayPoint (wptenum.Current);
+				cache.Children = true;		
+			}
 		}
 
 

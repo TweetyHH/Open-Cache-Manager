@@ -163,6 +163,27 @@ namespace ocmgtk
 			get{return m_WaypointMappings;}
 		}
 		
+		private bool m_ShowAllChildren = false;
+		public bool ShowAllChildren
+		{
+			get { return m_ShowAllChildren;}
+			set { 
+				m_ShowAllChildren = value;
+				if (m_showNearby)
+					GetNearByCaches(m_mapLat, m_mapLon);
+				else
+					m_map.LoadScript("clearExtraMarkers()");
+					
+			}
+		}
+		
+		private int m_MapPoints = 100;
+		public int MapPoints
+		{
+			get { return m_MapPoints;}
+			set { m_MapPoints = value;}
+		}
+		
 		private void BuildWaypointMappings()
 		{
 			Dictionary<string, string> mappings = new Dictionary<string, string>();
@@ -255,6 +276,7 @@ namespace ocmgtk
 			{
 				m_mainWin.EnableResetCentre();
 			}
+			MapPoints = (int) m_conf.Get("/apps/ocm/mappoints", 100);
 			OwnerID = (string)m_conf.Get ("/apps/ocm/memberid", String.Empty);
 			m_useImperial = (Boolean) m_conf.Get("/apps/ocm/imperial", false);
 			int win_width = (int) m_conf.Get("/apps/ocm/winwidth", 1024);
@@ -280,11 +302,16 @@ namespace ocmgtk
 			EToolList tools = EToolList.LoadEToolList();
 			m_mainWin.RebuildEToolMenu(tools);
 			bool showNearby = (Boolean) m_conf.Get("/apps/ocm/shownearby", true);
+			m_ShowAllChildren = (Boolean) m_conf.Get("/apps/ocm/showallchildren", false);
 			if (showNearby)
 			{
 				m_mainWin.SetNearbyEnabled();
 				GetNearByCaches(m_home_lat, m_home_lon);
-			}				
+			}	
+			if (m_ShowAllChildren)
+			{
+				m_mainWin.SetShowAllChildren();
+			}
 			if (m_useImperial)
 				m_cachelist.SetImperial();
 			if (true == (bool) m_conf.Get("/apps/ocm/userownerid", true))
@@ -419,11 +446,16 @@ namespace ocmgtk
 				m_cachelist.SelectCache(null);
 			}
 			m_mainWin.SetSelectedCache(cache);
+			ZoomToSelected();	
 			if (m_showNearby && (cache == null && origCache != null))
 			{
 				AddOtherCacheToMap(origCache);
 			}
-			ZoomToSelected();		
+			else if (cache != null)
+			{
+				GetNearByCaches(cache.Lat, cache.Lon);
+			}
+				
 		}
 
 		/// <summary>
@@ -567,6 +599,17 @@ namespace ocmgtk
 			                  + IconManager.GetMapIcon (cache, m_ownerid) + "',\"" 
 			                  + cache.Name + "\",\"" + cache.CacheName.Replace("\"","'") + "\",\"" 
 			                  + cachedesc.Replace("\"","''") + "\",\"" + mode + "\")");
+			if (m_ShowAllChildren)
+				ShowOtherChildWaypoints(cache);
+		}
+		
+		public void AddOtherMapWayPoint (Geocache cache, Waypoint pt)
+		{
+			string desc = pt.Desc.Replace("\"","''");
+			desc = desc.Replace("\n", "<br/>");
+			m_map.LoadScript ("addExtraMarker(" + pt.Lat.ToString(CultureInfo.InvariantCulture) + "," 
+			                  + pt.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/"
+			                  + IconManager.GetMapIcon (pt.Symbol) + "',\"" + cache.Name + "\",\""+ cache.CacheName.Replace("\"","'") +"\",\"" + pt.Name + "-" + desc + "\")");
 		}
 
 		/*public void AddMapOtherCache (Geocache cache)
@@ -1032,7 +1075,7 @@ namespace ocmgtk
 						continue;
 					else
 						AddOtherCacheToMap (cache.Current);
-					if (count < 100)
+					if (count < m_MapPoints)
 						count++;
 					else
 						return;
@@ -1117,6 +1160,8 @@ namespace ocmgtk
 			dlg.UsePrefixesForChildWaypoints = !((bool) m_conf.Get("/apps/ocm/noprefixes", false));
 			dlg.CheckForUpdates = (Boolean) m_conf.Get("/apps/ocm/update/checkForUpdates", true);
 			dlg.UpdateInterval = (int) m_conf.Get("/apps/ocm/update/updateInterval", 7);
+			dlg.ShowAllChildren = (Boolean) m_conf.Get("/apps/ocm/showallchildren", false);
+			dlg.MapPoints = (int) m_conf.Get("/apps/ocm/mappoints", 100);
 			dlg.Icon = m_mainWin.Icon;
 			int oldInterval = dlg.UpdateInterval;
 			if ((int) ResponseType.Ok == dlg.Run())
@@ -1130,14 +1175,17 @@ namespace ocmgtk
 				m_conf.Set ("/apps/ocm/noprefixes", !dlg.UsePrefixesForChildWaypoints);
 				m_conf.Set ("/apps/ocm/update/checkForUpdates", dlg.CheckForUpdates);
 				m_conf.Set ("/apps/ocm/update/updateInterval", dlg.UpdateInterval);
+				m_conf.Set ("/apps/ocm/showallchildren", dlg.ShowAllChildren);
+				m_conf.Set ("/apps/ocm/mappoints", dlg.MapPoints);
 				if (dlg.UpdateInterval != oldInterval)
 				{
 					m_conf.Set("/apps/ocm/update/nextcheck", DateTime.Now.AddDays(dlg.UpdateInterval).ToString("o"));			
 				}
-				m_home_lat = dlg.Lat;
-				m_home_lon = dlg.Lon;
-				m_centreLabel.Text = Catalog.GetString("Home");
 				m_useImperial = dlg.ImperialUnits;
+				m_ownerid = dlg.MemberID;
+				m_ShowAllChildren = dlg.ShowAllChildren;
+				m_MapPoints = dlg.MapPoints;
+				
 				if (dlg.ImperialUnits)
 				{
 					m_cachelist.SetImperial();
@@ -1146,10 +1194,30 @@ namespace ocmgtk
 				{
 					m_cachelist.SetMetric();
 				}
-				LoadMap(dlg.DefaultMap);
+				
 				RefreshCaches();
+				LoadMap(dlg.DefaultMap);
+				RecenterMap ();
+				if (m_showNearby)
+					GetNearByCaches(CentreLat, CentreLon);					
 			}
 			dlg.Dispose();
+		}
+		
+		public void RecenterMap ()
+		{
+			CentreLat = (double) m_conf.Get ("/apps/ocm/lastlat", 0.0);
+				CentreLon = (double)m_conf.Get ("/apps/ocm/lastlon", 0.0);
+				CenterName = (string) m_conf.Get("/apps/ocm/lastname", Catalog.GetString("Home"));
+				if (CentreLat == 0 && CentreLon == 0)
+				{
+					CentreLat = (double) m_conf.Get ("/apps/ocm/homelat", 0.0);
+					CentreLon = (double)m_conf.Get ("/apps/ocm/homelon", 0.0);
+				}
+				if (m_centreName != Catalog.GetString("Home"))
+				{
+					m_mainWin.EnableResetCentre();
+				}
 		}
 		
 		public static void TerraHome()
@@ -1681,6 +1749,15 @@ namespace ocmgtk
 
 			}
 			dlg.Destroy ();
+		}
+		
+		public void ShowOtherChildWaypoints (Geocache cache)
+		{
+			List<Waypoint> wpt = Engine.getInstance ().Store.GetChildren(cache.Name);
+			IEnumerator<Waypoint> wptenum = wpt.GetEnumerator();
+			while (wptenum.MoveNext ()) {
+				AddOtherMapWayPoint (cache, wptenum.Current);	
+			}
 		}
 	}
 }

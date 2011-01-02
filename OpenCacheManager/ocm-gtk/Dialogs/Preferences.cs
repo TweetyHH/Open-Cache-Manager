@@ -95,6 +95,24 @@ namespace ocmgtk
 			}		
 		}
 		
+		public bool ShowAllChildren
+		{
+			get 
+			{
+				if (childPointCombo.Active == 0)
+					return false;
+				else
+					return true;
+			}
+			set
+			{
+				if (value)
+					childPointCombo.Active = 1;
+				else
+					childPointCombo.Active = 0;
+			}
+		}
+		
 		public string DefaultMap
 		{
 			get {
@@ -120,6 +138,12 @@ namespace ocmgtk
 				else
 					mapsCombo.Active = 0;
 			}
+		}
+		
+		public int MapPoints
+		{
+			get { return Int16.Parse(mapPointEntry.Text);}
+			set { mapPointEntry.Text = value.ToString();}
 		}
 
 		public bool UsePrefixesForChildWaypoints

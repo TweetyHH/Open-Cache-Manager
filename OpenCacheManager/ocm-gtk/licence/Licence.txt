@@ -1,6 +1,6 @@
 _______________________________________________________________________
 Open Cache Manager
-Copyright 2010 Kyle Campbell
+Copyright (c) 2010-2011 Kyle Campbell
 _______________________________________________________________________
 
 Licensed under the Apache License, Version 2.0 (the "License"); 

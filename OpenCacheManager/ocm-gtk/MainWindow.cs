@@ -692,5 +692,18 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.ImportZip();
 	}
 	
+	protected virtual void OnSelectedChildClick (object sender, System.EventArgs e)
+	{
+		m_monitor.ShowAllChildren = false;
+	}
 	
+	protected virtual void OnAllChildrenClicked (object sender, System.EventArgs e)
+	{
+		m_monitor.ShowAllChildren = true;
+	}
+	
+	public void SetShowAllChildren()
+	{
+		AllWaypointsAction.Active = true;
+	}
 }

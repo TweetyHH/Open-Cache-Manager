@@ -501,6 +501,7 @@ namespace ocmgtk
 			MenuItem deleteItem = new MenuItem (Catalog.GetString("Delete..."));
 			MenuItem bookmark = new MenuItem(Catalog.GetString("Add to Bookmark List"));
 			MenuItem qlandkarte = new MenuItem(Catalog.GetString("View in QLandkarte GT..."));
+			MenuItem logCache = new MenuItem(Catalog.GetString("Log Find"));
 			
 			TreePath path;
 			TreeIter itr;
@@ -510,6 +511,7 @@ namespace ocmgtk
 			
 			if (cache != null)
 			{
+				logCache.Sensitive = true;
 				if (!cache.Available)
 				{
 					markAvailable.Sensitive = true;
@@ -536,6 +538,10 @@ namespace ocmgtk
 					markUnfound.Sensitive = false;
 					markFound.Sensitive = true;
 				}
+			}
+			else
+			{
+				logCache.Sensitive = false;
 			}
 			
 			CacheStore store = Engine.getInstance().Store;
@@ -572,11 +578,13 @@ namespace ocmgtk
 			markArchived.Activated += HandleMarkArchivedActivated;
 			markAvailable.Activated += HandleMarkAvailableActivated;
 			qlandkarte.Activated += HandleQlandkarteActivated;
+			logCache.Activated += HandleLogCacheActivated;
 		
 			
 			popup.Add (setCenterItem);
 			popup.Add (showOnline);
 			popup.Add (new MenuItem());
+			popup.Add (logCache);
 			popup.Add (mark);
 			markSub.Add(markFound);
 			markSub.Add(markUnfound);
@@ -592,6 +600,11 @@ namespace ocmgtk
 			popup.Add (deleteItem);
 			popup.ShowAll ();
 			popup.Popup ();
+		}
+
+		void HandleLogCacheActivated (object sender, EventArgs e)
+		{
+			m_monitor.LogFind();
 		}
 
 		void HandleMarkUnfoundActivated (object sender, EventArgs e)

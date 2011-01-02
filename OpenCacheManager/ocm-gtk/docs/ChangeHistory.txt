@@ -1,3 +1,11 @@
+Version 0.22.8
+--------------
+- Add option to show all child waypoints (not just selected cache). You can set it permanently in
+the preferences dialog, or change it just for the session from the Map menu
+- Fix bug where some preferences (such as changing user name) only takes effect after a restart of OCM.
+- Fix bug where marking cache as found/unfound made nearby caches on the map dissapear
+- Allow user to set number of caches on map in the preferences dialog
+
 Version 0.22.7
 --------------
 - Fixed bug where original coordinates were being overwritten if cache renamed
