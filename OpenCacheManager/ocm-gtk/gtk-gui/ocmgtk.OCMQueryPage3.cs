@@ -56,7 +56,6 @@ namespace ocmgtk {
             this.Name = "ocmgtk.OCMQueryPage3";
             // Container child ocmgtk.OCMQueryPage3.Gtk.Container+ContainerChild
             this.table2 = new Gtk.Table(((uint)(9)), ((uint)(2)), false);
-            this.table2.Name = "table2";
             this.table2.RowSpacing = ((uint)(6));
             this.table2.ColumnSpacing = ((uint)(6));
             this.table2.BorderWidth = ((uint)(6));

@@ -630,7 +630,6 @@ namespace ocmgtk
 		/// </summary>
 		public void UpdateStatusBar ()
 		{
-			GetNearByCaches(m_mapLat, m_mapLon);
 			Engine engine = Engine.getInstance ();
 			int visible = m_cachelist.getVisibleCaches ().Count;
 			int total = engine.Store.CacheCount;
@@ -706,7 +705,7 @@ namespace ocmgtk
 				                                               ResponseType.Cancel, 
 				                                               Catalog.GetString ("Open"), 
 				                                               ResponseType.Accept);
-				dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
+				dlg.SetCurrentFolder ((String) m_conf.Get("/apps/ocm/datadir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments)));
 				FileFilter filter = new FileFilter ();
 				filter.Name = "OCM Databases";
 				filter.AddPattern ("*.ocm");
@@ -854,7 +853,7 @@ namespace ocmgtk
 		public void ImportGPX ()
 		{
 			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Import GPX File"), m_mainWin, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Import"), ResponseType.Accept);
-			dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
+			dlg.SetCurrentFolder ((String) m_conf.Get("/apps/ocm/importdir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments)));
 			FileFilter filter = new FileFilter ();
 			filter.Name = "Waypoint Files";
 			filter.AddPattern ("*.gpx");
@@ -1163,6 +1162,9 @@ namespace ocmgtk
 			dlg.ShowAllChildren = (Boolean) m_conf.Get("/apps/ocm/showallchildren", false);
 			dlg.MapPoints = (int) m_conf.Get("/apps/ocm/mappoints", 100);
 			dlg.Icon = m_mainWin.Icon;
+			dlg.SetQuickFilters(m_filters, QuickFilter.ALL_FILTER);
+			dlg.DataDirectory = (String) m_conf.Get("/apps/ocm/datadir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
+			dlg.ImportDirectory = (String) m_conf.Get("/apps/ocm/importdir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
 			int oldInterval = dlg.UpdateInterval;
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
@@ -1177,6 +1179,8 @@ namespace ocmgtk
 				m_conf.Set ("/apps/ocm/update/updateInterval", dlg.UpdateInterval);
 				m_conf.Set ("/apps/ocm/showallchildren", dlg.ShowAllChildren);
 				m_conf.Set ("/apps/ocm/mappoints", dlg.MapPoints);
+				m_conf.Set ("/apps/ocm/datadir", dlg.DataDirectory);
+				m_conf.Set ("/apps/ocm/importdir", dlg.ImportDirectory);
 				if (dlg.UpdateInterval != oldInterval)
 				{
 					m_conf.Set("/apps/ocm/update/nextcheck", DateTime.Now.AddDays(dlg.UpdateInterval).ToString("o"));			
@@ -1715,7 +1719,7 @@ namespace ocmgtk
 		public void ImportZip()
 		{
 			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Import ZIP File"), m_mainWin, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Import"), ResponseType.Accept);
-			dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
+			dlg.SetCurrentFolder ((String) m_conf.Get("/apps/ocm/importdir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments)));
 			FileFilter filter = new FileFilter ();
 			filter.Name = "ZIP Files";
 			filter.AddPattern ("*.zip");

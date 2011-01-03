@@ -16,6 +16,7 @@
 using System;
 using ocmengine;
 using Gtk;
+using Mono.Unix;
 
 namespace ocmgtk
 {
@@ -113,6 +114,31 @@ namespace ocmgtk
 			}
 		}
 		
+		public String DataDirectory
+		{
+			set { dataDirEntry.Text = value;}
+			get { return dataDirEntry.Text;}
+		}
+		
+		public String ImportDirectory
+		{
+			set { importDirEntry.Text = value;}
+			get { return importDirEntry.Text;}
+		}
+		
+		public void SetQuickFilters(QuickFilters filterList, QuickFilter filter)
+		{
+			int i=0;
+			foreach(QuickFilter item in filterList.FilterArray)
+			{
+				startupFilterCombo.AppendText(item.Name);
+				System.Console.WriteLine("Adding filter..." + item.Name);
+				if (item.Name == filter.Name)
+					startupFilterCombo.Active = i;
+				i++;
+			}
+		}
+		
 		public string DefaultMap
 		{
 			get {
@@ -188,6 +214,29 @@ namespace ocmgtk
 		{
 			updateEntry.Sensitive = updateCheck.Active;
 		}
+		
+		protected virtual void OnDBDirClick (object sender, System.EventArgs e)
+		{
+			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Choose Directory"), this, FileChooserAction.SelectFolder, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("OK"), ResponseType.Accept);
+			dlg.SetCurrentFolder (dataDirEntry.Text);
+			if (dlg.Run () == (int)ResponseType.Accept) {
+				dataDirEntry.Text = dlg.Filename;
+			}
+			dlg.Destroy ();
+		}
+
+		protected virtual void OnImpDirClicked (object sender, System.EventArgs e)
+		{
+			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Choose Directory"), this, FileChooserAction.SelectFolder, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("OK"), ResponseType.Accept);
+			dlg.SetCurrentFolder (importDirEntry.Text);
+			if (dlg.Run () == (int)ResponseType.Accept) {
+				importDirEntry.Text = dlg.Filename;
+			}
+			dlg.Destroy ();
+		}
+		
+		
+		
 		
 		
 		
