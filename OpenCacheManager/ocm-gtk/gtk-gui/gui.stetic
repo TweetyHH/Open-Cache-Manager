@@ -688,6 +688,29 @@
         <property name="Group">group1</property>
         <signal name="Activated" handler="OnAllChildrenClicked" />
       </action>
+      <action id="DatabaseAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Database</property>
+        <property name="ShortLabel" translatable="yes">Database</property>
+      </action>
+      <action id="CopyCachesToAnotherDatabaseAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Copy Caches To Another Database...</property>
+        <property name="ShortLabel" translatable="yes">Copy Caches To Another Database...</property>
+        <signal name="Activated" handler="OnCopyVisibleCachesActionActivated" />
+      </action>
+      <action id="MoveCachesToAnotherDatabaseAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Move Caches To Another Database...</property>
+        <property name="ShortLabel" translatable="yes">Move Caches To Another Database...</property>
+        <signal name="Activated" handler="OnMove" />
+      </action>
+      <action id="CompactDatabaseAction2">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Compact Database</property>
+        <property name="ShortLabel" translatable="yes">Compact Database</property>
+        <signal name="Activated" handler="OnCompact" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">OCM</property>
@@ -750,6 +773,12 @@
                 <node type="Menuitem" action="DeleteCacheAction" />
                 <node type="Menuitem" action="DeleteAllVisibleCachesAction" />
               </node>
+              <node type="Menu" action="DatabaseAction">
+                <node type="Menuitem" action="CopyCachesToAnotherDatabaseAction" />
+                <node type="Menuitem" action="MoveCachesToAnotherDatabaseAction" />
+                <node type="Separator" />
+                <node type="Menuitem" action="CompactDatabaseAction2" />
+              </node>
               <node type="Menu" action="WebAction">
                 <node type="Menuitem" action="OCMHomePageAction" />
                 <node type="Separator" />
@@ -807,11 +836,6 @@
                 <node type="Menu" action="ExternalToolsAction" />
                 <node type="Menuitem" action="ConfigureExternalToolsAction" />
                 <node type="Separator" />
-                <node type="Menu" action="DatabaseToolsAction">
-                  <node type="Menuitem" action="CompactDatabaseAction1" />
-                  <node type="Menuitem" action="CopyVisibleCachesAction" />
-                  <node type="Menuitem" action="MoveVisibleCachesAction" />
-                </node>
               </node>
               <node type="Menu" action="HelpAction">
                 <node type="Menuitem" action="OCMWikiAction" />

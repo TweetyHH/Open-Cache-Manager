@@ -7,6 +7,7 @@ the preferences dialog, or change it just for the session from the Map menu
 - Allow user to set number of caches on map in the preferences dialog
 - Allow user to set default directory for databases in the preferences dialog
 - Allow user to set default directory for import in the preferences dialog
+- Move database tools to main menu bar
 
 Version 0.22.7
 --------------

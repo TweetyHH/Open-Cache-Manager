@@ -126,17 +126,24 @@ namespace ocmgtk
 			get { return importDirEntry.Text;}
 		}
 		
-		public void SetQuickFilters(QuickFilters filterList, QuickFilter filter)
+		public void SetQuickFilters(QuickFilters filterList, String  filterName)
 		{
 			int i=0;
 			foreach(QuickFilter item in filterList.FilterArray)
 			{
 				startupFilterCombo.AppendText(item.Name);
 				System.Console.WriteLine("Adding filter..." + item.Name);
-				if (item.Name == filter.Name)
+				if (item.Name == filterName)
 					startupFilterCombo.Active = i;
 				i++;
 			}
+			if (startupFilterCombo.Active < 0)
+				startupFilterCombo.Active = 0;
+		}
+		
+		public string StartupFilter
+		{
+			get { return startupFilterCombo.ActiveText; }
 		}
 		
 		public string DefaultMap

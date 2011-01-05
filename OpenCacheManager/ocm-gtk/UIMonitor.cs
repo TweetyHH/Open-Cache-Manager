@@ -293,11 +293,29 @@ namespace ocmgtk
 			m_mainWin.ShowNow();
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (true);
-			SetCurrentDB (dbName, refreshNow);
+			m_filters = QuickFilters.LoadQuickFilters();
+			String startFilter = (string)m_conf.Get ("/apps/ocm/startupfilter", String.Empty);
+			if (startFilter != String.Empty)
+			{
+				SetCurrentDB (dbName, false);
+				QuickFilter filter = m_filters.GetFilter(startFilter);
+				if (filter != null)
+				{
+					m_cachelist.ApplyQuickFilter(filter);
+					Engine.getInstance().Store.Filter = filter.AdvancedFilters;
+					CheckAdvancedFilters(filter.AdvancedFilters);
+				}
+				if (refreshNow)
+					RefreshCaches();
+			}
+			else
+			{
+				SetCurrentDB (dbName, refreshNow);
+			}
+			
 			SetSelectedCache(null);
 			LoadMap (map);
 			BuildWaypointMappings();
-			m_filters = QuickFilters.LoadQuickFilters();
 			m_mainWin.RebuildQuickFilterMenu(m_filters);
 			EToolList tools = EToolList.LoadEToolList();
 			m_mainWin.RebuildEToolMenu(tools);
@@ -1162,7 +1180,7 @@ namespace ocmgtk
 			dlg.ShowAllChildren = (Boolean) m_conf.Get("/apps/ocm/showallchildren", false);
 			dlg.MapPoints = (int) m_conf.Get("/apps/ocm/mappoints", 100);
 			dlg.Icon = m_mainWin.Icon;
-			dlg.SetQuickFilters(m_filters, QuickFilter.ALL_FILTER);
+			dlg.SetQuickFilters(m_filters, 	(string)m_conf.Get ("/apps/ocm/startupfilter", String.Empty));
 			dlg.DataDirectory = (String) m_conf.Get("/apps/ocm/datadir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
 			dlg.ImportDirectory = (String) m_conf.Get("/apps/ocm/importdir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
 			int oldInterval = dlg.UpdateInterval;
@@ -1181,6 +1199,7 @@ namespace ocmgtk
 				m_conf.Set ("/apps/ocm/mappoints", dlg.MapPoints);
 				m_conf.Set ("/apps/ocm/datadir", dlg.DataDirectory);
 				m_conf.Set ("/apps/ocm/importdir", dlg.ImportDirectory);
+				m_conf.Set ("/apps/ocm/startupfilter", dlg.StartupFilter);
 				if (dlg.UpdateInterval != oldInterval)
 				{
 					m_conf.Set("/apps/ocm/update/nextcheck", DateTime.Now.AddDays(dlg.UpdateInterval).ToString("o"));			

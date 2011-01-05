@@ -48,6 +48,13 @@ namespace ocmgtk
 		{
 		}
 		
+		public QuickFilter GetFilter(String name)
+		{
+			if (m_filters.ContainsKey(name))
+				return m_filters[name];
+			return null;
+		}
+		
 		public void AddFilter(QuickFilter filter)
 		{
 			if (m_filters.ContainsKey(filter.Name))
