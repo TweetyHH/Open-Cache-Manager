@@ -711,6 +711,12 @@
         <property name="ShortLabel" translatable="yes">Compact Database</property>
         <signal name="Activated" handler="OnCompact" />
       </action>
+      <action id="ImportDirectoryAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Import Directory...</property>
+        <property name="ShortLabel" translatable="yes">Import Directory...</property>
+        <signal name="Activated" handler="OnImportDirClicked" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">OCM</property>
@@ -733,6 +739,7 @@
                 <node type="Separator" />
                 <node type="Menuitem" action="openAction" />
                 <node type="Menuitem" action="ImportZIPFileAction" />
+                <node type="Menuitem" action="ImportDirectoryAction" />
                 <node type="Menuitem" action="saveAsAction" />
                 <node type="Menuitem" action="ExportFindsGPXAction" />
                 <node type="Separator" />
@@ -2585,7 +2592,7 @@ Other</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.ProgressDialog" design-size="402 185">
+  <widget class="Gtk.Dialog" id="ocmgtk.ProgressDialog" design-size="402 197">
     <property name="MemberName" />
     <property name="WidthRequest">400</property>
     <property name="Title" translatable="yes">Open GPX File...</property>
@@ -2617,6 +2624,19 @@ Other</property>
           </packing>
         </child>
         <child>
+          <widget class="Gtk.Label" id="multiFileLabel">
+            <property name="MemberName" />
+            <property name="Xalign">0</property>
+            <property name="LabelProp">File blah of blah</property>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
           <widget class="Gtk.Label" id="fileLabel">
             <property name="MemberName" />
             <property name="Xalign">0</property>
@@ -2624,7 +2644,7 @@ Other</property>
             <property name="UseMarkup">True</property>
           </widget>
           <packing>
-            <property name="Position">1</property>
+            <property name="Position">2</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -2646,7 +2666,7 @@ Other</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">2</property>
+            <property name="Position">3</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -2660,7 +2680,7 @@ Other</property>
             <property name="UseMarkup">True</property>
           </widget>
           <packing>
-            <property name="Position">3</property>
+            <property name="Position">4</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>

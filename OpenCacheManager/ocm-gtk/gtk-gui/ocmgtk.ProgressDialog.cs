@@ -15,6 +15,8 @@ namespace ocmgtk {
         
         private Gtk.Label label1;
         
+        private Gtk.Label multiFileLabel;
+        
         private Gtk.Label fileLabel;
         
         private Gtk.Alignment progressAlign;
@@ -54,16 +56,26 @@ namespace ocmgtk {
             Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(w1[this.label1]));
             w2.Position = 0;
             // Container child dialog1_VBox.Gtk.Box+BoxChild
+            this.multiFileLabel = new Gtk.Label();
+            this.multiFileLabel.Name = "multiFileLabel";
+            this.multiFileLabel.Xalign = 0F;
+            this.multiFileLabel.LabelProp = "File blah of blah";
+            w1.Add(this.multiFileLabel);
+            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(w1[this.multiFileLabel]));
+            w3.Position = 1;
+            w3.Expand = false;
+            w3.Fill = false;
+            // Container child dialog1_VBox.Gtk.Box+BoxChild
             this.fileLabel = new Gtk.Label();
             this.fileLabel.Name = "fileLabel";
             this.fileLabel.Xalign = 0F;
             this.fileLabel.LabelProp = Mono.Unix.Catalog.GetString("<b>File:</b>");
             this.fileLabel.UseMarkup = true;
             w1.Add(this.fileLabel);
-            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(w1[this.fileLabel]));
-            w3.Position = 1;
-            w3.Expand = false;
-            w3.Fill = false;
+            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(w1[this.fileLabel]));
+            w4.Position = 2;
+            w4.Expand = false;
+            w4.Fill = false;
             // Container child dialog1_VBox.Gtk.Box+BoxChild
             this.progressAlign = new Gtk.Alignment(0.5F, 1F, 1F, 1F);
             this.progressAlign.Name = "progressAlign";
@@ -77,10 +89,10 @@ namespace ocmgtk {
             this.progressbar6.Text = "0%";
             this.progressAlign.Add(this.progressbar6);
             w1.Add(this.progressAlign);
-            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(w1[this.progressAlign]));
-            w5.Position = 2;
-            w5.Expand = false;
-            w5.Fill = false;
+            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(w1[this.progressAlign]));
+            w6.Position = 3;
+            w6.Expand = false;
+            w6.Fill = false;
             // Container child dialog1_VBox.Gtk.Box+BoxChild
             this.waypointName = new Gtk.Label();
             this.waypointName.Name = "waypointName";
@@ -88,16 +100,16 @@ namespace ocmgtk {
             this.waypointName.LabelProp = Mono.Unix.Catalog.GetString("<i>Initializing</i>");
             this.waypointName.UseMarkup = true;
             w1.Add(this.waypointName);
-            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(w1[this.waypointName]));
-            w6.Position = 3;
-            w6.Expand = false;
-            w6.Fill = false;
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(w1[this.waypointName]));
+            w7.Position = 4;
+            w7.Expand = false;
+            w7.Fill = false;
             // Internal child ocmgtk.ProgressDialog.ActionArea
-            Gtk.HButtonBox w7 = this.ActionArea;
-            w7.Name = "dialog1_ActionArea";
-            w7.Spacing = 10;
-            w7.BorderWidth = ((uint)(5));
-            w7.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            Gtk.HButtonBox w8 = this.ActionArea;
+            w8.Name = "dialog1_ActionArea";
+            w8.Spacing = 10;
+            w8.BorderWidth = ((uint)(5));
+            w8.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -107,9 +119,9 @@ namespace ocmgtk {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w8 = ((Gtk.ButtonBox.ButtonBoxChild)(w7[this.buttonCancel]));
-            w8.Expand = false;
-            w8.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w9 = ((Gtk.ButtonBox.ButtonBoxChild)(w8[this.buttonCancel]));
+            w9.Expand = false;
+            w9.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.okButton = new Gtk.Button();
             this.okButton.Sensitive = false;
@@ -119,15 +131,15 @@ namespace ocmgtk {
             this.okButton.UseUnderline = true;
             this.okButton.Label = "gtk-ok";
             this.AddActionWidget(this.okButton, -5);
-            Gtk.ButtonBox.ButtonBoxChild w9 = ((Gtk.ButtonBox.ButtonBoxChild)(w7[this.okButton]));
-            w9.Position = 1;
-            w9.Expand = false;
-            w9.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w10 = ((Gtk.ButtonBox.ButtonBoxChild)(w8[this.okButton]));
+            w10.Position = 1;
+            w10.Expand = false;
+            w10.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 402;
-            this.DefaultHeight = 185;
+            this.DefaultHeight = 197;
             this.okButton.Hide();
             this.Show();
             this.Close += new System.EventHandler(this.OnCancel);

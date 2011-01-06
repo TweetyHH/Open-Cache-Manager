@@ -706,4 +706,10 @@ public partial class MainWindow : Gtk.Window
 	{
 		AllWaypointsAction.Active = true;
 	}
+	protected virtual void OnImportDirClicked (object o, System.EventArgs args)
+	{
+		m_monitor.ImportDirectory();
+	}
+	
+	
 }

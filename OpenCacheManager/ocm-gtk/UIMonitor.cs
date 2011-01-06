@@ -1782,5 +1782,27 @@ namespace ocmgtk
 				AddOtherMapWayPoint (cache, wptenum.Current);	
 			}
 		}
+		
+		public void ImportDirectory()
+		{
+			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Import Directory"), m_mainWin,
+			                                               FileChooserAction.SelectFolder, Catalog.GetString ("Cancel"), 
+			                                               ResponseType.Cancel, Catalog.GetString ("Import"), 
+			                                               ResponseType.Accept);
+			dlg.SetCurrentFolder ((String) m_conf.Get("/apps/ocm/importdir", 
+			                                          System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments)));
+			
+			if (dlg.Run () == (int)ResponseType.Accept) {
+				GPXParser parser = new GPXParser ();
+				parser.CacheOwner = OwnerID;
+				ProgressDialog pdlg = new ProgressDialog (parser, -1);
+				pdlg.Icon = m_mainWin.Icon;
+				pdlg.Modal = true;
+				pdlg.StartMulti(dlg.Filename, Engine.getInstance().Store, false);
+				RefreshCaches ();
+			}
+			dlg.Destroy ();
+	
+		}
 	}
 }

@@ -28,7 +28,7 @@ namespace ocmgtk
 		private GPXParser m_parser;
 		double m_total = 0;
 		double m_progress = 0;
-		
+		bool m_isMulti = false;
 		bool m_autoClose = false;
 		public bool AutoClose
 		{
@@ -43,9 +43,16 @@ namespace ocmgtk
 			parser.Complete += HandleParserComplete;
 			m_parser = parser;
 			m_total = total;
+			multiFileLabel.Visible = false;
 		}
 
 		void HandleParserComplete (object sender, EventArgs args)
+		{
+			if (!m_isMulti)
+				HandleCompletion ();
+		}
+		
+		private void HandleCompletion ()
 		{
 			progressbar6.Text = Catalog.GetString("Complete");
 			waypointName.Markup =  String.Format (Catalog.GetString("<i>Import complete, {0} waypoints processed</i>"), 
@@ -59,6 +66,45 @@ namespace ocmgtk
 				this.Hide();
 		}
 		
+		
+		public void StartMulti(String directoryPath, CacheStore store, bool deleteOnCompletion)
+		{
+			m_isMulti = true;
+			string[] files = Directory.GetFiles(directoryPath);
+			
+			// Count total files
+			m_progress = 0;
+			m_total = 0;
+			multiFileLabel.Visible = true;
+			
+			for (int i=0; i < files.Length; i++)
+			{
+				if (files[i].EndsWith(".gpx"))
+				{
+					FileStream fs =  System.IO.File.OpenRead (files[i]);
+					int total = m_parser.preParse(fs);
+					System.Console.WriteLine("RunningTOTAL:" + total);
+					m_total += total;
+					
+					fs.Close();
+				}
+			}
+			
+			System.Console.WriteLine("TOTAL:" + m_total);
+			for (int i=0; i < files.Length; i++)
+			{
+				if (files[i].EndsWith(".gpx"))
+				{
+					FileStream fs =  System.IO.File.OpenRead (files[i]);
+					// Need to reopen the file
+					fs =  System.IO.File.OpenRead (files[i]);
+					multiFileLabel.Text = String.Format(Catalog.GetString("Processing File {0} of {1}"), i + 1, files.Length);
+					ParseFile(fs, store);
+					fs.Close();
+				}
+			}
+			HandleCompletion();
+		}
 
 
 		public void Start (FileStream fs, CacheStore store)
@@ -66,13 +112,19 @@ namespace ocmgtk
 			this.Show ();
 			try {
 				m_progress = 0;
-				fileLabel.Markup = Catalog.GetString("<b>File: </b>") + fs.Name;
-				m_parser.parseGPXFile (fs, store);
+				ParseFile (fs, store);
 			} catch (Exception e) {
 				this.Hide ();
 				UIMonitor.ShowException(e);
 				this.Dispose ();
 			}
+		}
+		
+		private void ParseFile (FileStream fs, CacheStore store)
+		{
+			
+				fileLabel.Markup = Catalog.GetString("<b>File: </b>") + fs.Name;
+				m_parser.parseGPXFile (fs, store);
 		}
 
 		void HandleParserParseWaypoint (object sender, EventArgs args)
