@@ -361,12 +361,14 @@ namespace ocmgtk
 			
 			SetSelectedCache(null);
 			
+			
 			String[] dbSplit = dbName.Split ('/');
 			String dBShort = dbSplit[dbSplit.Length - 1];
 			m_mainWin.Title = dBShort + " - OCM";
 			m_conf.Set ("/apps/ocm/currentdb", dbName);
 			CacheStore store = Engine.getInstance().Store;
 			store.SetDB(dbName);
+			store.BookmarkList = null;
 			if (store.NeedsUpgrade())
 				UpgradeDB(dbName, store);
 			Engine.getInstance ().Store.SetDB (dbName);
@@ -1551,6 +1553,7 @@ namespace ocmgtk
 		public void DeleteQuickFilter()
 		{
 			DeleteBookmark dlg = new DeleteBookmark(m_filters);
+			dlg.Title = Catalog.GetString("Delete QuickFilter");
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
 				m_filters.DeleteFilter(dlg.Bookmark);

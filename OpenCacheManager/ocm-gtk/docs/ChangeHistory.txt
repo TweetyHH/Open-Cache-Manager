@@ -9,6 +9,12 @@ the preferences dialog, or change it just for the session from the Map menu
 - Allow user to set default directory for import in the preferences dialog
 - Move database tools to main menu bar
 - Add import directory feature
+- Fix bug where opening/creating another database while having a bookmark list applied required a restart of OCM
+- Fix bug on Mandriva where OCM could not be started again after quitting
+- Fix bug where window title for "Delete QuickFilter" dialog was wrong
+
+
+
 
 Version 0.22.7
 --------------

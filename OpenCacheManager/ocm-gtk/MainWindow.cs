@@ -19,6 +19,8 @@ using Gtk;
 using Mono.Unix;
 using ocmgtk;
 using ocmengine;
+using NDesk.DBus;
+using org.freedesktop.DBus;
 
 public partial class MainWindow : Gtk.Window
 {
@@ -104,13 +106,29 @@ public partial class MainWindow : Gtk.Window
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
 		m_monitor.SaveWinSettings();
+		DeregisterBus ();
 		Application.Quit ();
 		a.RetVal = true;
+	}
+	
+	private static void DeregisterBus ()
+	{
+		try
+		{
+			BusG.Init ();
+			Bus bus = Bus.Session;
+			bus.Unregister(new ObjectPath ("/org/ocm/dbus"));
+		}
+		catch 
+		{
+			System.Console.WriteLine("WARNING: Could not deregister from DBUS");
+		}
 	}
 
 	protected virtual void OnQuit (object sender, System.EventArgs e)
 	{
 		m_monitor.SaveWinSettings();
+		DeregisterBus ();
 		Application.Quit ();
 	}
 
