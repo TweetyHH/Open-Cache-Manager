@@ -15,8 +15,10 @@
 
 using System;
 using System.Diagnostics;
+using System.Collections.Generic;
 using ocmengine;
 using Mono.Unix;
+using Gtk;
 
 namespace ocmgtk
 {
@@ -63,6 +65,31 @@ namespace ocmgtk
 				dlg.WaypointsOnly = true;
 				dlg.CompleteCommand = m_command.Replace("%gpx%", tempFile);
 				dlg.Start(tempFile, mon.GetVisibleCacheList(), mon.WaypointMappings);
+			}
+			if (cmd.Contains("%selected%"))
+			{
+				UIMonitor mon = UIMonitor.getInstance();
+				if (mon.SelectedCache == null)
+				{
+					MessageDialog edlg = new MessageDialog(null, DialogFlags.Modal,
+					                                      MessageType.Error, ButtonsType.Ok, 
+					                                      Catalog.GetString("No cache selected."));
+					edlg.Run();
+					edlg.Hide();
+					edlg.Dispose();
+					return;
+				}
+				GPXWriter writer = new GPXWriter();
+				String tempPath = System.IO.Path.GetTempPath();
+				String tempFile = tempPath + "ocm_export.gpx";
+				ExportProgressDialog dlg = new ExportProgressDialog(writer);	
+				dlg.AutoClose = true;
+				dlg.Title = Catalog.GetString("Preparing GPX File");
+				dlg.WaypointsOnly = true;
+				dlg.CompleteCommand = m_command.Replace("%selected%", tempFile);
+				List<Geocache> cache = new List<Geocache>();
+				cache.Add(mon.SelectedCache);
+				dlg.Start(tempFile, cache, mon.WaypointMappings);
 			}
 			else if (cmd.Contains("%finds%"))
 			{

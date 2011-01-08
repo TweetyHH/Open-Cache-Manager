@@ -109,7 +109,7 @@ namespace ocmgtk {
             this.label3 = new Gtk.Label();
             this.label3.Name = "label3";
             this.label3.Xalign = 0F;
-            this.label3.LabelProp = Mono.Unix.Catalog.GetString("You can use %gpx% to have OCM send a GPX file to the external program. You may also use %finds% to generate a Geocaching.com \"My Finds\" style GPX. ");
+            this.label3.LabelProp = Mono.Unix.Catalog.GetString("You can use %gpx% to have OCM send a GPX file to the external program, or %selected% to send just the selected cache as a GPX. You may also use %finds% to generate a Geocaching.com \"My Finds\" style GPX. ");
             this.label3.Wrap = true;
             this.label3.WidthChars = 80;
             this.hbox1.Add(this.label3);
@@ -121,7 +121,7 @@ namespace ocmgtk {
             Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table1[this.hbox1]));
             w7.TopAttach = ((uint)(2));
             w7.BottomAttach = ((uint)(3));
-            w7.RightAttach = ((uint)(2));
+            w7.RightAttach = ((uint)(3));
             w7.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
             this.label1 = new Gtk.Label();
@@ -193,8 +193,8 @@ namespace ocmgtk {
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 634;
-            this.DefaultHeight = 195;
+            this.DefaultWidth = 600;
+            this.DefaultHeight = 209;
             this.Show();
             this.chooseButton.Clicked += new System.EventHandler(this.OnChooseClick);
             this.buttonCancel.Clicked += new System.EventHandler(this.OnCancelClick);

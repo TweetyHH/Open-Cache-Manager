@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2011-01-04 19:40:45-0500\n"
+"POT-Creation-Date: 2011-01-08 14:38:32-0500\n"
 "PO-Revision-Date: 2010-09-28 19:31+0100\n"
 "Last-Translator: Josef Kulhánek <jok@sendme.cz>\n"
 "Language-Team: \n"
@@ -44,36 +44,36 @@ msgstr ""
 msgid "N:"
 msgstr "N"
 
-#: ../ocm-gtk/MainWindow.cs:64
+#: ../ocm-gtk/MainWindow.cs:66
 msgid "_Bookmarks"
 msgstr "_Záložky"
 
-#: ../ocm-gtk/MainWindow.cs:67
+#: ../ocm-gtk/MainWindow.cs:69
 msgid "_Create Bookmark List..."
 msgstr "_Vytvořit seznam záložek"
 
-#: ../ocm-gtk/MainWindow.cs:68
+#: ../ocm-gtk/MainWindow.cs:70
 msgid "_Delete Bookmark List..."
 msgstr "_Smazat seznam záložek"
 
-#: ../ocm-gtk/MainWindow.cs:69
+#: ../ocm-gtk/MainWindow.cs:71
 msgid "Bookmark _List"
 msgstr "Seznam záložek"
 
-#: ../ocm-gtk/MainWindow.cs:70
+#: ../ocm-gtk/MainWindow.cs:72
 msgid "_Add All Visible Caches to"
 msgstr "_Přidat všechny viditelné keše do"
 
-#: ../ocm-gtk/MainWindow.cs:71
+#: ../ocm-gtk/MainWindow.cs:73
 msgid "Add _Selected Cache to"
 msgstr "Př_idat vybranou keš do"
 
-#: ../ocm-gtk/MainWindow.cs:73
+#: ../ocm-gtk/MainWindow.cs:75
 msgid "_Remove Selected Cache from Bookmark List"
 msgstr "_Odstranit vybranou keš ze seznamu záložek"
 
-#: ../ocm-gtk/MainWindow.cs:434 ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:83
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:576 ../ocm-gtk/gtk-gui/MainWindow.cs:578
+#: ../ocm-gtk/MainWindow.cs:453 ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:83
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:578 ../ocm-gtk/gtk-gui/MainWindow.cs:580
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:530
 msgid "None"
 msgstr "Není"
@@ -398,13 +398,13 @@ msgid "Loading Map"
 msgstr "Nahrávám mapu"
 
 #: ../ocm-gtk/UIMonitor.cs:268 ../ocm-gtk/UIMonitor.cs:274
-#: ../ocm-gtk/UIMonitor.cs:504 ../ocm-gtk/UIMonitor.cs:506
-#: ../ocm-gtk/UIMonitor.cs:1214 ../ocm-gtk/UIMonitor.cs:1220
-#: ../ocm-gtk/UIMonitor.cs:1601
+#: ../ocm-gtk/UIMonitor.cs:524 ../ocm-gtk/UIMonitor.cs:526
+#: ../ocm-gtk/UIMonitor.cs:1235 ../ocm-gtk/UIMonitor.cs:1241
+#: ../ocm-gtk/UIMonitor.cs:1623
 msgid "Home"
 msgstr "Domov"
 
-#: ../ocm-gtk/UIMonitor.cs:384
+#: ../ocm-gtk/UIMonitor.cs:404
 msgid ""
 "OCM needs to upgrade your database.\n"
 "Would you like to backup your database first?"
@@ -412,19 +412,19 @@ msgstr ""
 "OCM potřebuje aktualizovat databázi.\n"
 "Checete databázi nejdříve zazálohovat?"
 
-#: ../ocm-gtk/UIMonitor.cs:391
+#: ../ocm-gtk/UIMonitor.cs:411
 msgid "Upgrade complete"
 msgstr "Upgrade dokončen"
 
-#: ../ocm-gtk/UIMonitor.cs:565 ../ocm-gtk/UIMonitor.cs:592
+#: ../ocm-gtk/UIMonitor.cs:585 ../ocm-gtk/UIMonitor.cs:612
 msgid "<b>A cache by:</b> "
 msgstr "<b>Keš od:</b> "
 
-#: ../ocm-gtk/UIMonitor.cs:565 ../ocm-gtk/UIMonitor.cs:592
+#: ../ocm-gtk/UIMonitor.cs:585 ../ocm-gtk/UIMonitor.cs:612
 msgid "<br><b>Hidden on: </b>"
 msgstr "<br><b>Skryta: </b>"
 
-#: ../ocm-gtk/UIMonitor.cs:639
+#: ../ocm-gtk/UIMonitor.cs:659
 msgid ""
 "Showing {0} of {1} caches, {2} found, {3} unavailable/archived, {4} placed "
 "by me"
@@ -432,7 +432,7 @@ msgstr ""
 "Zobrazeno {0} z {1} keší, {2} nalezeno, {3} nedostupných/archivovaných, {4} "
 "mnou založených"
 
-#: ../ocm-gtk/UIMonitor.cs:641
+#: ../ocm-gtk/UIMonitor.cs:661
 msgid ""
 "Showing {0} of {1} caches from {2}, {3} found, {4} unavailable/archived, {5} "
 "placed by me"
@@ -440,18 +440,19 @@ msgstr ""
 "Zobrazeno {0} z {1} keší z {2}, {3} nalezeno, {4} nedostupných/"
 "archivovaných, {5} mnou založených"
 
-#: ../ocm-gtk/UIMonitor.cs:651
+#: ../ocm-gtk/UIMonitor.cs:671
 msgid "Centred on {0} ({1})"
 msgstr "Vystředěno na {0} ({1})"
 
-#: ../ocm-gtk/UIMonitor.cs:671
+#: ../ocm-gtk/UIMonitor.cs:691
 msgid "Create database"
 msgstr "Vytvořit  databázi"
 
-#: ../ocm-gtk/UIMonitor.cs:671 ../ocm-gtk/UIMonitor.cs:703
-#: ../ocm-gtk/UIMonitor.cs:742 ../ocm-gtk/UIMonitor.cs:774
-#: ../ocm-gtk/UIMonitor.cs:854 ../ocm-gtk/UIMonitor.cs:1720
-#: ../ocm-gtk/Dialogs/Preferences.cs:219 ../ocm-gtk/Dialogs/Preferences.cs:229
+#: ../ocm-gtk/UIMonitor.cs:691 ../ocm-gtk/UIMonitor.cs:723
+#: ../ocm-gtk/UIMonitor.cs:762 ../ocm-gtk/UIMonitor.cs:794
+#: ../ocm-gtk/UIMonitor.cs:874 ../ocm-gtk/UIMonitor.cs:1742
+#: ../ocm-gtk/UIMonitor.cs:1791 ../ocm-gtk/Dialogs/Preferences.cs:226
+#: ../ocm-gtk/Dialogs/Preferences.cs:236
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
 #: ../ocm-gtk/Widgets/GPXWidget.cs:110
 #: ../ocm-gtk/Widgets/GenericGPSWidget.cs:152
@@ -461,59 +462,60 @@ msgstr "Vytvořit  databázi"
 msgid "Cancel"
 msgstr "Ukončit"
 
-#: ../ocm-gtk/UIMonitor.cs:671
+#: ../ocm-gtk/UIMonitor.cs:691
 msgid "Save"
 msgstr "Uložit"
 
-#: ../ocm-gtk/UIMonitor.cs:701
+#: ../ocm-gtk/UIMonitor.cs:721
 msgid "Open Database"
 msgstr "Otevřít databázi"
 
-#: ../ocm-gtk/UIMonitor.cs:705 ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
+#: ../ocm-gtk/UIMonitor.cs:725 ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
 msgid "Open"
 msgstr "Otevřít"
 
-#: ../ocm-gtk/UIMonitor.cs:742
+#: ../ocm-gtk/UIMonitor.cs:762
 msgid "Save GPX File"
 msgstr "Uložit GPX soubor"
 
-#: ../ocm-gtk/UIMonitor.cs:742 ../ocm-gtk/UIMonitor.cs:774
+#: ../ocm-gtk/UIMonitor.cs:762 ../ocm-gtk/UIMonitor.cs:794
 msgid "Export"
 msgstr "Exportovat"
 
-#: ../ocm-gtk/UIMonitor.cs:774
+#: ../ocm-gtk/UIMonitor.cs:794
 msgid " Export Finds GPX File"
 msgstr "Exportovat GPX s nálezy"
 
-#: ../ocm-gtk/UIMonitor.cs:854
+#: ../ocm-gtk/UIMonitor.cs:874
 msgid "Import GPX File"
 msgstr "Importovat GPX soubor"
 
-#: ../ocm-gtk/UIMonitor.cs:854 ../ocm-gtk/UIMonitor.cs:1720
+#: ../ocm-gtk/UIMonitor.cs:874 ../ocm-gtk/UIMonitor.cs:1742
+#: ../ocm-gtk/UIMonitor.cs:1792
 msgid "Import"
 msgstr "Importovat"
 
-#: ../ocm-gtk/UIMonitor.cs:980
+#: ../ocm-gtk/UIMonitor.cs:1000
 msgid "Are you sure you want to delete {0}?"
 msgstr "Jste si jist že chcete smazat {0}?"
 
-#: ../ocm-gtk/UIMonitor.cs:1018
+#: ../ocm-gtk/UIMonitor.cs:1038
 msgid "Are you sure you want to clear all advanced filters?"
 msgstr "Jste si jist že chcete smazat všechny rozšířené filtry?"
 
-#: ../ocm-gtk/UIMonitor.cs:1289
+#: ../ocm-gtk/UIMonitor.cs:1310
 msgid "{0} added to {1}"
 msgstr "{0} přidáno do {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1300
+#: ../ocm-gtk/UIMonitor.cs:1321
 msgid "{0} caches added to {1}"
 msgstr "{0} keší přidáno do {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1306
+#: ../ocm-gtk/UIMonitor.cs:1327
 msgid "Are you sure you want to remove {0} from {1}?"
 msgstr "Jste si jisti že chcete vyjmout {0} z {1}?"
 
-#: ../ocm-gtk/UIMonitor.cs:1376
+#: ../ocm-gtk/UIMonitor.cs:1397
 msgid ""
 "Are you sure you want to delete these {0} caches?\n"
 "This operation cannot be undone."
@@ -521,76 +523,91 @@ msgstr ""
 "Jste si jist že chcete smazat těchto {0} keší?\n"
 "Tuto operaci nelze vrátit."
 
-#: ../ocm-gtk/UIMonitor.cs:1485 ../ocm-gtk/UIMonitor.cs:1501
+#: ../ocm-gtk/UIMonitor.cs:1506 ../ocm-gtk/UIMonitor.cs:1522
 msgid "Preparing to send to QLandKarte GT"
 msgstr "Připravuji k odeslání do QLandKarte GT"
 
-#: ../ocm-gtk/UIMonitor.cs:1519
+#: ../ocm-gtk/UIMonitor.cs:1540
 msgid "Save QuickFilter"
 msgstr "Ulož Rychlý filtr"
 
-#: ../ocm-gtk/UIMonitor.cs:1546
+#: ../ocm-gtk/UIMonitor.cs:1555
+#, fuzzy
+msgid "Delete QuickFilter"
+msgstr "_Smazat rychlý filtr"
+
+#: ../ocm-gtk/UIMonitor.cs:1568
 msgid "Database Compacted."
 msgstr "Databáze komprimována."
 
-#: ../ocm-gtk/UIMonitor.cs:1564
+#: ../ocm-gtk/UIMonitor.cs:1586
 msgid "Move Geocaches..."
 msgstr "Přesunout keše..."
 
-#: ../ocm-gtk/UIMonitor.cs:1589
+#: ../ocm-gtk/UIMonitor.cs:1611
 msgid "Map Point"
 msgstr "Mapový bod"
 
-#: ../ocm-gtk/UIMonitor.cs:1632 ../ocm-gtk/UIMonitor.cs:1666
+#: ../ocm-gtk/UIMonitor.cs:1654 ../ocm-gtk/UIMonitor.cs:1688
 msgid ""
 "A new version \"{0}\" of OCM is available\n"
 "Would you like to go to the download page now?"
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1650 ../ocm-gtk/UIMonitor.cs:1690
+#: ../ocm-gtk/UIMonitor.cs:1672 ../ocm-gtk/UIMonitor.cs:1712
 msgid "Unable to check for updates, check your network connection."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1681
+#: ../ocm-gtk/UIMonitor.cs:1703
 msgid "OCM is at the latest version."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1720
+#: ../ocm-gtk/UIMonitor.cs:1742
 #, fuzzy
 msgid "Import ZIP File"
 msgstr "Importovat GPX soubor"
 
-#: ../ocm-gtk/UIMonitor.cs:1749
+#: ../ocm-gtk/UIMonitor.cs:1771
 #, fuzzy
 msgid "Import complete."
 msgstr "Upgrade dokončen"
 
-#: ../ocm-gtk/Dialogs/ProgressDialog.cs:49
+#: ../ocm-gtk/UIMonitor.cs:1790
+#, fuzzy
+msgid "Import Directory"
+msgstr "Vyberte umístění databáze"
+
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:56
 #: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:78
 #: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:83
 #: ../ocm-gtk/Dialogs/CopyingProgress.cs:93
 msgid "Complete"
 msgstr "Dokončeno"
 
-#: ../ocm-gtk/Dialogs/ProgressDialog.cs:50
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:57
 msgid "<i>Import complete, {0} waypoints processed</i>"
 msgstr "<i>Import dokončen, zpracován {0} waypointů</i>"
 
-#: ../ocm-gtk/Dialogs/ProgressDialog.cs:68
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:100
+#, fuzzy
+msgid "Processing File {0} of {1}"
+msgstr "N {0}° {1}"
+
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:125
 #: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:59
 msgid "<b>File: </b>"
 msgstr "<b>Soubor: </b>"
 
-#: ../ocm-gtk/Dialogs/ProgressDialog.cs:97
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:149
 msgid "Import cancelled, all changes reverted."
 msgstr "Import přerušen, všechny změny vráceny."
 
-#: ../ocm-gtk/Dialogs/Preferences.cs:219 ../ocm-gtk/Dialogs/Preferences.cs:229
+#: ../ocm-gtk/Dialogs/Preferences.cs:226 ../ocm-gtk/Dialogs/Preferences.cs:236
 #, fuzzy
 msgid "Choose Directory"
 msgstr "Vyberte umístění databáze"
 
-#: ../ocm-gtk/Dialogs/Preferences.cs:219 ../ocm-gtk/Dialogs/Preferences.cs:229
+#: ../ocm-gtk/Dialogs/Preferences.cs:226 ../ocm-gtk/Dialogs/Preferences.cs:236
 #: ../ocm-gtk/Dialogs/AddCommandDialog.cs:57
 msgid "OK"
 msgstr "OK"
@@ -676,29 +693,29 @@ msgstr "Nemáte uloženy poznámky, chcete je uložit?"
 msgid "Quick Filter:"
 msgstr "Rychlý filtr:"
 
-#: ../ocm-gtk/QuickFilter.cs:122 ../ocm-gtk/gtk-gui/MainWindow.cs:489
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:490
+#: ../ocm-gtk/QuickFilter.cs:122 ../ocm-gtk/gtk-gui/MainWindow.cs:491
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:492
 msgid "Done"
 msgstr "Hotovo"
 
-#: ../ocm-gtk/QuickFilter.cs:134 ../ocm-gtk/gtk-gui/MainWindow.cs:486
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:487
+#: ../ocm-gtk/QuickFilter.cs:134 ../ocm-gtk/gtk-gui/MainWindow.cs:488
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:489
 msgid "To Do"
 msgstr "To Do"
 
-#: ../ocm-gtk/QuickFilter.cs:146 ../ocm-gtk/gtk-gui/MainWindow.cs:525
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:526
+#: ../ocm-gtk/QuickFilter.cs:146 ../ocm-gtk/gtk-gui/MainWindow.cs:527
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:528
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:282
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:126
 msgid "Mine"
 msgstr "Moje"
 
-#: ../ocm-gtk/QuickFilter.cs:158 ../ocm-gtk/gtk-gui/MainWindow.cs:528
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:529
+#: ../ocm-gtk/QuickFilter.cs:158 ../ocm-gtk/gtk-gui/MainWindow.cs:530
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:531
 msgid "All"
 msgstr "Vše"
 
-#: ../ocm-gtk/QuickFilters.cs:55 ../ocm-gtk/EToolList.cs:54
+#: ../ocm-gtk/QuickFilters.cs:62 ../ocm-gtk/EToolList.cs:54
 msgid "Are you sure you wish to overwrite \"{0}\"?"
 msgstr "Opravdu chcete přepsat \"{0}\"?"
 
@@ -724,417 +741,422 @@ msgstr "<i>Dokončeno</i>"
 msgid "<i>Copying:{0}</i>"
 msgstr "<i>Kopíruji:{0}</i>"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:271 ../ocm-gtk/gtk-gui/MainWindow.cs:272
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:273 ../ocm-gtk/gtk-gui/MainWindow.cs:274
 msgid "_File"
 msgstr "_Soubor"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:274 ../ocm-gtk/gtk-gui/MainWindow.cs:275
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:276 ../ocm-gtk/gtk-gui/MainWindow.cs:277
 msgid "_Quit"
 msgstr "_Ukončit"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:277 ../ocm-gtk/gtk-gui/MainWindow.cs:278
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:279 ../ocm-gtk/gtk-gui/MainWindow.cs:280
 msgid "_Edit"
 msgstr "_Editovat"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:280 ../ocm-gtk/gtk-gui/MainWindow.cs:281
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:282 ../ocm-gtk/gtk-gui/MainWindow.cs:283
 msgid "_Help"
 msgstr "_Pomoc"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:283 ../ocm-gtk/gtk-gui/MainWindow.cs:284
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:285 ../ocm-gtk/gtk-gui/MainWindow.cs:286
 msgid "_About"
 msgstr "_O programu"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:286 ../ocm-gtk/gtk-gui/MainWindow.cs:287
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:288 ../ocm-gtk/gtk-gui/MainWindow.cs:289
 msgid "Clear All Filters"
 msgstr "Vymazat všechny filtry"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:289 ../ocm-gtk/gtk-gui/MainWindow.cs:290
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:291 ../ocm-gtk/gtk-gui/MainWindow.cs:292
 msgid "G_PS"
 msgstr "_GPS"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:292 ../ocm-gtk/gtk-gui/MainWindow.cs:293
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:294 ../ocm-gtk/gtk-gui/MainWindow.cs:295
 msgid "_Cache"
 msgstr "_Keš"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:295 ../ocm-gtk/gtk-gui/MainWindow.cs:297
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:297 ../ocm-gtk/gtk-gui/MainWindow.cs:299
 msgid "_View Online"
 msgstr "_Zobrazit online"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:299 ../ocm-gtk/gtk-gui/MainWindow.cs:300
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:301 ../ocm-gtk/gtk-gui/MainWindow.cs:302
 msgid "_Delete"
 msgstr "_Smazat"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:302 ../ocm-gtk/gtk-gui/MainWindow.cs:303
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:323 ../ocm-gtk/gtk-gui/MainWindow.cs:324
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:304 ../ocm-gtk/gtk-gui/MainWindow.cs:305
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:325 ../ocm-gtk/gtk-gui/MainWindow.cs:326
 msgid "_New Database..."
 msgstr "_Nová databáze"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:305 ../ocm-gtk/gtk-gui/MainWindow.cs:306
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:307 ../ocm-gtk/gtk-gui/MainWindow.cs:308
 #: ../ocm-gtk/gtk-gui/ocmgtk.NoDBDialog.cs:87
 msgid "Open Database..."
 msgstr "Otevřít databázi"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:308 ../ocm-gtk/gtk-gui/MainWindow.cs:309
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:420 ../ocm-gtk/gtk-gui/MainWindow.cs:421
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:310 ../ocm-gtk/gtk-gui/MainWindow.cs:311
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:422 ../ocm-gtk/gtk-gui/MainWindow.cs:423
 msgid "_Geocaching.com"
 msgstr "_Geocaching.com"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:311 ../ocm-gtk/gtk-gui/MainWindow.cs:312
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:432 ../ocm-gtk/gtk-gui/MainWindow.cs:433
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:313 ../ocm-gtk/gtk-gui/MainWindow.cs:314
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:434 ../ocm-gtk/gtk-gui/MainWindow.cs:435
 msgid "_View My Profile..."
 msgstr "Zo_brazit můj profil..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:314 ../ocm-gtk/gtk-gui/MainWindow.cs:315
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:435 ../ocm-gtk/gtk-gui/MainWindow.cs:436
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:316 ../ocm-gtk/gtk-gui/MainWindow.cs:317
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:437 ../ocm-gtk/gtk-gui/MainWindow.cs:438
 msgid "_Create Pocket Queries..."
 msgstr "Vy_tvořit PQ"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:317 ../ocm-gtk/gtk-gui/MainWindow.cs:318
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:441 ../ocm-gtk/gtk-gui/MainWindow.cs:442
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:319 ../ocm-gtk/gtk-gui/MainWindow.cs:320
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:443 ../ocm-gtk/gtk-gui/MainWindow.cs:444
 msgid "_Find a Cache..."
 msgstr "_Hledat keš"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:320 ../ocm-gtk/gtk-gui/MainWindow.cs:321
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:438 ../ocm-gtk/gtk-gui/MainWindow.cs:439
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:322 ../ocm-gtk/gtk-gui/MainWindow.cs:323
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:440 ../ocm-gtk/gtk-gui/MainWindow.cs:441
 msgid "_My Account Details..."
 msgstr "_Detaily mého účtu"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:326 ../ocm-gtk/gtk-gui/MainWindow.cs:327
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:328 ../ocm-gtk/gtk-gui/MainWindow.cs:329
 msgid "Open _Database..."
 msgstr "Otevřít _databázi"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:329 ../ocm-gtk/gtk-gui/MainWindow.cs:330
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:331 ../ocm-gtk/gtk-gui/MainWindow.cs:332
 msgid "_Import GPX/Loc File..."
 msgstr "_Importovat soubor GPX/Loc..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:332 ../ocm-gtk/gtk-gui/MainWindow.cs:333
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:334 ../ocm-gtk/gtk-gui/MainWindow.cs:335
 msgid "_Export GPX..."
 msgstr "_Exportovat soubor GPX..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:335 ../ocm-gtk/gtk-gui/MainWindow.cs:337
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:337 ../ocm-gtk/gtk-gui/MainWindow.cs:339
 msgid "_Log Find"
 msgstr "_Zaloguj nález"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:339 ../ocm-gtk/gtk-gui/MainWindow.cs:341
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:341 ../ocm-gtk/gtk-gui/MainWindow.cs:343
 msgid "_Mark Unfound"
 msgstr "_Označ Nenalezeno"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:343 ../ocm-gtk/gtk-gui/MainWindow.cs:345
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:345 ../ocm-gtk/gtk-gui/MainWindow.cs:347
 msgid "_Delete Cache..."
 msgstr "_Smazat keš..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:347 ../ocm-gtk/gtk-gui/MainWindow.cs:348
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:349 ../ocm-gtk/gtk-gui/MainWindow.cs:350
 msgid "F_ilter"
 msgstr "F_ilter"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:350 ../ocm-gtk/gtk-gui/MainWindow.cs:351
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:352 ../ocm-gtk/gtk-gui/MainWindow.cs:353
 msgid "_Advanced Filters..."
 msgstr "_Rozšířené filtry..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:353 ../ocm-gtk/gtk-gui/MainWindow.cs:355
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:355 ../ocm-gtk/gtk-gui/MainWindow.cs:357
 msgid "_Clear Advanced Filters"
 msgstr "_Vymaž rozšířené filtry"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:357 ../ocm-gtk/gtk-gui/MainWindow.cs:358
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:359 ../ocm-gtk/gtk-gui/MainWindow.cs:360
 msgid "_Preferences..."
 msgstr "_Nastavení"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:360 ../ocm-gtk/gtk-gui/MainWindow.cs:361
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:362 ../ocm-gtk/gtk-gui/MainWindow.cs:363
 msgid "_Map"
 msgstr "_Mapa"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:363 ../ocm-gtk/gtk-gui/MainWindow.cs:364
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:365 ../ocm-gtk/gtk-gui/MainWindow.cs:366
 msgid "_Zoom to Centre"
 msgstr "_Zoom na střed"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:366 ../ocm-gtk/gtk-gui/MainWindow.cs:368
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:368 ../ocm-gtk/gtk-gui/MainWindow.cs:370
 msgid "Zoom to Selected _Cache"
 msgstr "Zoom na vybranou keš"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:370 ../ocm-gtk/gtk-gui/MainWindow.cs:371
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:372 ../ocm-gtk/gtk-gui/MainWindow.cs:373
 msgid "_Configure GPS..."
 msgstr "_Konfigurovat GPS..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:373 ../ocm-gtk/gtk-gui/MainWindow.cs:374
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:375 ../ocm-gtk/gtk-gui/MainWindow.cs:376
 msgid "_Transfer Caches..."
 msgstr "_Přenos keší..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:376 ../ocm-gtk/gtk-gui/MainWindow.cs:377
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:378 ../ocm-gtk/gtk-gui/MainWindow.cs:379
 msgid "_Change History..."
 msgstr "_Historie změn"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:379 ../ocm-gtk/gtk-gui/MainWindow.cs:381
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:381 ../ocm-gtk/gtk-gui/MainWindow.cs:383
 msgid "Set Selected Cache As Centre"
 msgstr "Nastav vybranou keš jako střed"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:383 ../ocm-gtk/gtk-gui/MainWindow.cs:385
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:385 ../ocm-gtk/gtk-gui/MainWindow.cs:387
 msgid "_Reset Centre to Home"
 msgstr "_Střed zpět na Domov"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:387 ../ocm-gtk/gtk-gui/MainWindow.cs:388
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:389 ../ocm-gtk/gtk-gui/MainWindow.cs:390
 msgid "_Show Nearby Caches"
 msgstr "_Zobraz keše v blízkosti"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:390 ../ocm-gtk/gtk-gui/MainWindow.cs:391
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:423 ../ocm-gtk/gtk-gui/MainWindow.cs:424
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:392 ../ocm-gtk/gtk-gui/MainWindow.cs:393
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:425 ../ocm-gtk/gtk-gui/MainWindow.cs:426
 msgid "_TerraCaching.com"
 msgstr "_TerraCaching.com"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:393 ../ocm-gtk/gtk-gui/MainWindow.cs:394
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:408 ../ocm-gtk/gtk-gui/MainWindow.cs:409
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:429 ../ocm-gtk/gtk-gui/MainWindow.cs:430
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:444 ../ocm-gtk/gtk-gui/MainWindow.cs:445
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:456 ../ocm-gtk/gtk-gui/MainWindow.cs:457
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:395 ../ocm-gtk/gtk-gui/MainWindow.cs:396
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:410 ../ocm-gtk/gtk-gui/MainWindow.cs:411
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:431 ../ocm-gtk/gtk-gui/MainWindow.cs:432
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:446 ../ocm-gtk/gtk-gui/MainWindow.cs:447
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:458 ../ocm-gtk/gtk-gui/MainWindow.cs:459
 msgid "_Home Page..."
 msgstr "_Domovská stránka"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:396 ../ocm-gtk/gtk-gui/MainWindow.cs:397
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:447 ../ocm-gtk/gtk-gui/MainWindow.cs:448
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:398 ../ocm-gtk/gtk-gui/MainWindow.cs:399
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:449 ../ocm-gtk/gtk-gui/MainWindow.cs:450
 msgid "To _Do List"
 msgstr "To _Do seznam"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:399 ../ocm-gtk/gtk-gui/MainWindow.cs:400
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:450 ../ocm-gtk/gtk-gui/MainWindow.cs:451
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:401 ../ocm-gtk/gtk-gui/MainWindow.cs:402
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:452 ../ocm-gtk/gtk-gui/MainWindow.cs:453
 msgid "Traditional..."
 msgstr "Tradicionálka..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:402 ../ocm-gtk/gtk-gui/MainWindow.cs:403
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:453 ../ocm-gtk/gtk-gui/MainWindow.cs:454
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:404 ../ocm-gtk/gtk-gui/MainWindow.cs:405
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:455 ../ocm-gtk/gtk-gui/MainWindow.cs:456
 msgid "Locationless..."
 msgstr "Bez umístění..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:405 ../ocm-gtk/gtk-gui/MainWindow.cs:406
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:426 ../ocm-gtk/gtk-gui/MainWindow.cs:427
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:407 ../ocm-gtk/gtk-gui/MainWindow.cs:408
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:428 ../ocm-gtk/gtk-gui/MainWindow.cs:429
 msgid "_NaviCache.com"
 msgstr "_NaviCache.com"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:411 ../ocm-gtk/gtk-gui/MainWindow.cs:412
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:413 ../ocm-gtk/gtk-gui/MainWindow.cs:414
 msgid "_My NaviCache..."
 msgstr "_My NaviCache..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:414 ../ocm-gtk/gtk-gui/MainWindow.cs:415
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:416 ../ocm-gtk/gtk-gui/MainWindow.cs:417
 msgid "All Caches"
 msgstr "Všechny keše"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:417 ../ocm-gtk/gtk-gui/MainWindow.cs:418
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:419 ../ocm-gtk/gtk-gui/MainWindow.cs:420
 msgid "_Web"
 msgstr "_Web"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:459 ../ocm-gtk/gtk-gui/MainWindow.cs:460
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:461 ../ocm-gtk/gtk-gui/MainWindow.cs:462
 msgid "_My NaviCache"
 msgstr "_Má Navicache"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:462 ../ocm-gtk/gtk-gui/MainWindow.cs:464
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:464 ../ocm-gtk/gtk-gui/MainWindow.cs:466
 msgid "M_odify Cache..."
 msgstr "_Změnit keš"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:466 ../ocm-gtk/gtk-gui/MainWindow.cs:468
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:468 ../ocm-gtk/gtk-gui/MainWindow.cs:470
 msgid "_To Do"
 msgstr "_To Do"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:470 ../ocm-gtk/gtk-gui/MainWindow.cs:472
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:472 ../ocm-gtk/gtk-gui/MainWindow.cs:474
 msgid "_Done"
 msgstr "_Hotovo"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:474 ../ocm-gtk/gtk-gui/MainWindow.cs:475
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:476 ../ocm-gtk/gtk-gui/MainWindow.cs:477
 msgid "_Solved Puzzles"
 msgstr "_Vyřešené puzzle"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:477 ../ocm-gtk/gtk-gui/MainWindow.cs:478
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:479 ../ocm-gtk/gtk-gui/MainWindow.cs:480
 msgid "Clear _All Filters"
 msgstr "Vyčistit _všechny filtry"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:480
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:482
 msgid "_Add Cache..."
 msgstr "_Přidat keš..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:481
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:483
 msgid "Add Cache..."
 msgstr "Přidat keš..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:483 ../ocm-gtk/gtk-gui/MainWindow.cs:484
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:485 ../ocm-gtk/gtk-gui/MainWindow.cs:486
 msgid "_Quick Filter"
 msgstr "_Rychlý filtr"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:492 ../ocm-gtk/gtk-gui/MainWindow.cs:493
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:494 ../ocm-gtk/gtk-gui/MainWindow.cs:495
 msgid "Delete All Visible Caches..."
 msgstr "Smaž všechny viditelné keše"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:495 ../ocm-gtk/gtk-gui/MainWindow.cs:496
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:497 ../ocm-gtk/gtk-gui/MainWindow.cs:498
 msgid "Use GPSD as Centre"
 msgstr "Použij GPSD jako střed"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:498 ../ocm-gtk/gtk-gui/MainWindow.cs:499
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:500 ../ocm-gtk/gtk-gui/MainWindow.cs:501
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSDConfig.cs:37
 msgid "Configure GPSD..."
 msgstr "Konfigurace GPSD"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:501 ../ocm-gtk/gtk-gui/MainWindow.cs:502
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:503 ../ocm-gtk/gtk-gui/MainWindow.cs:504
 msgid "G_PSBabel Home Page..."
 msgstr "G_PSBabel domovská stránka"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:504 ../ocm-gtk/gtk-gui/MainWindow.cs:505
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:506 ../ocm-gtk/gtk-gui/MainWindow.cs:507
 msgid "GPS_D Home Page..."
 msgstr "GPS_D domovská stránka"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:507 ../ocm-gtk/gtk-gui/MainWindow.cs:508
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:509 ../ocm-gtk/gtk-gui/MainWindow.cs:510
 msgid "OCM Home Page..."
 msgstr "OCM domovská stránka"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:510 ../ocm-gtk/gtk-gui/MainWindow.cs:511
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:512 ../ocm-gtk/gtk-gui/MainWindow.cs:513
 msgid "Deselect"
 msgstr "Odebrat"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:513 ../ocm-gtk/gtk-gui/MainWindow.cs:514
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:515 ../ocm-gtk/gtk-gui/MainWindow.cs:516
 msgid "Deselect Cache"
 msgstr "Odebrat keš"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:516 ../ocm-gtk/gtk-gui/MainWindow.cs:517
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:518 ../ocm-gtk/gtk-gui/MainWindow.cs:519
 msgid "_Tools"
 msgstr "_Nástroje"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:519 ../ocm-gtk/gtk-gui/MainWindow.cs:520
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:521 ../ocm-gtk/gtk-gui/MainWindow.cs:522
 msgid "_View All in QLandkarte GT..."
 msgstr "_Zobrazit všechny keše v QLandkarte GT"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:522 ../ocm-gtk/gtk-gui/MainWindow.cs:523
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:524 ../ocm-gtk/gtk-gui/MainWindow.cs:525
 msgid "View Selected _Cache in QLandkarte GT..."
 msgstr "_Zobrazit vybrané keše v QLandkarte GT"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:531
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:533
 msgid "_Save Current View as Quick Filter"
 msgstr "_Uložit aktuální zobrazení jako rychlý filtr"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:532
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:534
 msgid "_Save Current as Quick Filter"
 msgstr "_Uložit aktuální jako rychlý filtr"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:534 ../ocm-gtk/gtk-gui/MainWindow.cs:535
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:536 ../ocm-gtk/gtk-gui/MainWindow.cs:537
 msgid "_Delete Quick Filter..."
 msgstr "_Smazat rychlý filtr"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:537 ../ocm-gtk/gtk-gui/MainWindow.cs:538
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:539 ../ocm-gtk/gtk-gui/MainWindow.cs:540
 msgid "OCM Wiki..."
 msgstr "OCM Wiki..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:540 ../ocm-gtk/gtk-gui/MainWindow.cs:541
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:546 ../ocm-gtk/gtk-gui/MainWindow.cs:547
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:629 ../ocm-gtk/gtk-gui/MainWindow.cs:630
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:542 ../ocm-gtk/gtk-gui/MainWindow.cs:543
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:548 ../ocm-gtk/gtk-gui/MainWindow.cs:549
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:631 ../ocm-gtk/gtk-gui/MainWindow.cs:632
 msgid "Compact Database"
 msgstr "Komprimovat databázi"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:543 ../ocm-gtk/gtk-gui/MainWindow.cs:544
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:545 ../ocm-gtk/gtk-gui/MainWindow.cs:546
 msgid "Database Tools"
 msgstr "Databázové nástroje"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:549 ../ocm-gtk/gtk-gui/MainWindow.cs:550
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:551 ../ocm-gtk/gtk-gui/MainWindow.cs:552
 msgid "Copy Visible Caches..."
 msgstr "Kopíruj viditelné keše"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:552 ../ocm-gtk/gtk-gui/MainWindow.cs:553
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:554 ../ocm-gtk/gtk-gui/MainWindow.cs:555
 msgid "Move Visible Caches..."
 msgstr "Přesuň viditelné keše"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:555 ../ocm-gtk/gtk-gui/MainWindow.cs:556
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:557 ../ocm-gtk/gtk-gui/MainWindow.cs:558
 msgid "_Mark"
 msgstr "_Označ"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:558 ../ocm-gtk/gtk-gui/MainWindow.cs:559
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:560 ../ocm-gtk/gtk-gui/MainWindow.cs:561
 msgid "Mark _Unfound"
 msgstr "_Nenalezeno"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:561 ../ocm-gtk/gtk-gui/MainWindow.cs:562
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:563 ../ocm-gtk/gtk-gui/MainWindow.cs:564
 msgid "Mark _Disabled"
 msgstr "_Zamknuto"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:564 ../ocm-gtk/gtk-gui/MainWindow.cs:565
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:566 ../ocm-gtk/gtk-gui/MainWindow.cs:567
 msgid "Mark _Archived"
 msgstr "_Archivováno"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:567 ../ocm-gtk/gtk-gui/MainWindow.cs:568
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:569 ../ocm-gtk/gtk-gui/MainWindow.cs:570
 msgid "Mark A_vailable"
 msgstr "_Dostupné"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:570 ../ocm-gtk/gtk-gui/MainWindow.cs:571
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:572 ../ocm-gtk/gtk-gui/MainWindow.cs:573
 msgid "Mark _Found"
 msgstr "_Nalezeno"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:573 ../ocm-gtk/gtk-gui/MainWindow.cs:574
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:575 ../ocm-gtk/gtk-gui/MainWindow.cs:576
 msgid "External Tools"
 msgstr "Externí nástroje"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:580 ../ocm-gtk/gtk-gui/MainWindow.cs:581
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:582 ../ocm-gtk/gtk-gui/MainWindow.cs:583
 msgid "Configure External Tools..."
 msgstr "Konfigurace externích nástrojů"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:583 ../ocm-gtk/gtk-gui/MainWindow.cs:584
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:585 ../ocm-gtk/gtk-gui/MainWindow.cs:586
 msgid "Export _Finds GPX..."
 msgstr "E_xportovat nálezy do GPX..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:586 ../ocm-gtk/gtk-gui/MainWindow.cs:587
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:588 ../ocm-gtk/gtk-gui/MainWindow.cs:589
 msgid "Check For Updates..."
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:589 ../ocm-gtk/gtk-gui/MainWindow.cs:591
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:591 ../ocm-gtk/gtk-gui/MainWindow.cs:593
 msgid "Print..."
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:593 ../ocm-gtk/gtk-gui/MainWindow.cs:595
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:595 ../ocm-gtk/gtk-gui/MainWindow.cs:597
 #, fuzzy
 msgid "Corrected Coordinates..."
 msgstr "Domací souřadnice:"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:597 ../ocm-gtk/gtk-gui/MainWindow.cs:598
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:599 ../ocm-gtk/gtk-gui/MainWindow.cs:600
 #, fuzzy
 msgid "O_pencaching"
 msgstr "_Geocaching.com"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:600 ../ocm-gtk/gtk-gui/MainWindow.cs:601
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:602 ../ocm-gtk/gtk-gui/MainWindow.cs:603
 msgid "List Of Country Sites"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:603 ../ocm-gtk/gtk-gui/MainWindow.cs:604
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:605 ../ocm-gtk/gtk-gui/MainWindow.cs:606
 #, fuzzy
 msgid "Import ZIP File..."
 msgstr "Importovat GPX soubor"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:606 ../ocm-gtk/gtk-gui/MainWindow.cs:607
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:608 ../ocm-gtk/gtk-gui/MainWindow.cs:609
 #, fuzzy
 msgid "Child Waypoints"
 msgstr "Child Waypointy:"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:609 ../ocm-gtk/gtk-gui/MainWindow.cs:610
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:612 ../ocm-gtk/gtk-gui/MainWindow.cs:614
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:611 ../ocm-gtk/gtk-gui/MainWindow.cs:612
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:614 ../ocm-gtk/gtk-gui/MainWindow.cs:616
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:359
 #, fuzzy
 msgid "Selected Cache Only"
 msgstr "Vybrané typy keší"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:616 ../ocm-gtk/gtk-gui/MainWindow.cs:618
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:618 ../ocm-gtk/gtk-gui/MainWindow.cs:620
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:360
 #, fuzzy
 msgid "All Waypoints"
 msgstr "Waypointy"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:620 ../ocm-gtk/gtk-gui/MainWindow.cs:621
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:622 ../ocm-gtk/gtk-gui/MainWindow.cs:623
 #, fuzzy
 msgid "Database"
 msgstr "Otevřít databázi"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:623 ../ocm-gtk/gtk-gui/MainWindow.cs:624
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:625 ../ocm-gtk/gtk-gui/MainWindow.cs:626
 #, fuzzy
 msgid "Copy Caches To Another Database..."
 msgstr "Otevřít databázi"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:626 ../ocm-gtk/gtk-gui/MainWindow.cs:627
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:628 ../ocm-gtk/gtk-gui/MainWindow.cs:629
 msgid "Move Caches To Another Database..."
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:635
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:634 ../ocm-gtk/gtk-gui/MainWindow.cs:635
+#, fuzzy
+msgid "Import Directory..."
+msgstr "Importovat GPX soubor"
+
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:640
 msgid "OCM"
 msgstr "OCM"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:697
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:702
 msgid "Not Set"
 msgstr "Nenastaveno"
 
@@ -1331,20 +1353,20 @@ msgstr "Symbol:"
 msgid "Description:"
 msgstr "Popis:"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:34
+#: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:36
 msgid "Open GPX File..."
 msgstr "Otevřít soubor GPX:"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:50
+#: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:52
 msgid "<big><b>Importing GPX data</b></big>"
 msgstr "<big><b>Importuji GPX data</b></big>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:59
+#: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:71
 #: ../ocm-gtk/gtk-gui/ocmgtk.ExportProgressDialog.cs:60
 msgid "<b>File:</b>"
 msgstr "<b>Soubor:</b>"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:87
+#: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:99
 #: ../ocm-gtk/gtk-gui/ocmgtk.SendWaypointsDialog.cs:70
 msgid "<i>Initializing</i>"
 msgstr "<i>Inicializuji</i>"

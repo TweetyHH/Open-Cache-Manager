@@ -12,6 +12,10 @@ the preferences dialog, or change it just for the session from the Map menu
 - Fix bug where opening/creating another database while having a bookmark list applied required a restart of OCM
 - Fix bug on Mandriva where OCM could not be started again after quitting
 - Fix bug where window title for "Delete QuickFilter" dialog was wrong
+- Add new %selected% keyword for external tools that allows you to send just the selected cache to another
+program as a GPX file.
+- Add link to new statistics page on geocaching.com under Web->Geocaching.com
+
 
 
 

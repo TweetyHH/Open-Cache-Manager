@@ -717,6 +717,12 @@
         <property name="ShortLabel" translatable="yes">Import Directory...</property>
         <signal name="Activated" handler="OnImportDirClicked" />
       </action>
+      <action id="StatisticsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Statistics...</property>
+        <property name="ShortLabel" translatable="yes">Statistics...</property>
+        <signal name="Activated" handler="OnClickStatistics" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">OCM</property>
@@ -794,6 +800,7 @@
                   <node type="Menuitem" action="ViewMyProfileAction1" />
                   <node type="Menuitem" action="MyAccountDetailsAction1" />
                   <node type="Menuitem" action="CreatePocketQueriesAction1" />
+                  <node type="Menuitem" action="StatisticsAction" />
                   <node type="Separator" />
                   <node type="Menuitem" action="FindACacheAction1" />
                 </node>
@@ -10483,7 +10490,7 @@ Other</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.AddCommandDialog" design-size="634 195">
+  <widget class="Gtk.Dialog" id="ocmgtk.AddCommandDialog" design-size="600 209">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Add External Tool</property>
     <property name="TypeHint">Dialog</property>
@@ -10506,9 +10513,6 @@ Other</property>
             <property name="NColumns">3</property>
             <property name="RowSpacing">6</property>
             <property name="ColumnSpacing">6</property>
-            <child>
-              <placeholder />
-            </child>
             <child>
               <placeholder />
             </child>
@@ -10586,7 +10590,7 @@ Other</property>
                   <widget class="Gtk.Label" id="label3">
                     <property name="MemberName" />
                     <property name="Xalign">0</property>
-                    <property name="LabelProp" translatable="yes">You can use %gpx% to have OCM send a GPX file to the external program. You may also use %finds% to generate a Geocaching.com "My Finds" style GPX. </property>
+                    <property name="LabelProp" translatable="yes">You can use %gpx% to have OCM send a GPX file to the external program, or %selected% to send just the selected cache as a GPX. You may also use %finds% to generate a Geocaching.com "My Finds" style GPX. </property>
                     <property name="Wrap">True</property>
                     <property name="WidthChars">80</property>
                   </widget>
@@ -10601,7 +10605,7 @@ Other</property>
               <packing>
                 <property name="TopAttach">2</property>
                 <property name="BottomAttach">3</property>
-                <property name="RightAttach">2</property>
+                <property name="RightAttach">3</property>
                 <property name="AutoSize">False</property>
                 <property name="YOptions">Fill</property>
                 <property name="XExpand">True</property>

@@ -118,6 +118,7 @@ public partial class MainWindow : Gtk.Window
 			BusG.Init ();
 			Bus bus = Bus.Session;
 			bus.Unregister(new ObjectPath ("/org/ocm/dbus"));
+			bus.ReleaseName("org.ocm.dbus"); 
 		}
 		catch 
 		{
@@ -728,6 +729,12 @@ public partial class MainWindow : Gtk.Window
 	{
 		m_monitor.ImportDirectory();
 	}
+	
+	protected virtual void OnClickStatistics (object sender, System.EventArgs e)
+	{
+		Process.Start("http://www.geocaching.com/my/statistics.aspx");
+	}
+	
 	
 	
 }
