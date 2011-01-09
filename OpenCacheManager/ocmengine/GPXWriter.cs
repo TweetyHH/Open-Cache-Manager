@@ -107,6 +107,7 @@ namespace ocmengine
 		public int Limit
 		{
 			set { m_Limit = value;}
+			get { return m_Limit;}
 		}
 		
 		private int m_LogLimit = -1;
@@ -163,6 +164,8 @@ namespace ocmengine
 			writer.IndentChar = '\t';
 			
 			try {
+				// Write out XML processing directive, some applications expect this
+				writer.WriteRaw ("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 				writer.WriteStartElement ("gpx", NS_GPX);
 				writer.WriteAttributeString("creator", "OCM");
 				writer.WriteAttributeString("version", "1.0");
@@ -178,7 +181,10 @@ namespace ocmengine
 				writer.WriteElementString ("time", NS_GPX, System.DateTime.Now.ToString (XSD_DT));
 				foreach (Geocache cache in caches) {
 					if (m_cancel || ((m_Count >= m_Limit) && (m_Limit != -1)))
+					{
+						this.Complete(this, new WriteEventArgs("Done"));
 						return;
+					}
 					m_Count++;
 					this.WriteWaypoint(this, new WriteEventArgs(String.Format("Writing {0}", cache.Name)));
 					cache.WriteToGPX (writer, this);

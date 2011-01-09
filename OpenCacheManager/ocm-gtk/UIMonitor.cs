@@ -759,29 +759,42 @@ namespace ocmgtk
 		/// </summary>
 		public void ExportGPX ()
 		{
-			ExportProgressDialog edlg = new ExportProgressDialog (new GPXWriter ());
-			
+			GPXWriter writer = new GPXWriter();
+			ExportProgressDialog edlg = new ExportProgressDialog (writer);
 			try {
-				FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Save GPX File"), m_mainWin, FileChooserAction.Save, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Export"), ResponseType.Accept);
+				ExportGPXDialog dlg = new ExportGPXDialog ();
 				dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
 				dlg.CurrentName = "export.gpx";
 				FileFilter filter = new FileFilter ();
 				filter.Name = "GPX Files";
 				filter.AddPattern ("*.gpx");
-				
 				dlg.AddFilter (filter);
 				
-				if (dlg.Run () == (int)ResponseType.Accept) {
+				if (dlg.Run () == (int)ResponseType.Ok) {
 					dlg.Hide ();
+					writer.Limit = dlg.CacheLimit;
+					writer.IncludeGroundSpeakExtensions = dlg.IsPaperless;
+					writer.IncludeChildWaypoints = dlg.IncludeChildren;
+					writer.UseOCMPtTypes = dlg.UseMappings;
+					writer.NameMode = dlg.GetNameMode();
+					writer.DescriptionMode = dlg.GetDescMode();
+					if (dlg.UsePlainText)
+						writer.HTMLOutput = HTMLMode.PLAINTEXT;
+					writer.WriteAttributes = dlg.IncludeAttributes;
+					writer.LogLimit = dlg.LogLimit;
 					edlg.Icon = m_mainWin.Icon;
 					edlg.Start (dlg.Filename, GetVisibleCacheList (), m_WaypointMappings);
 					RecentManager manager = RecentManager.Default;
 					manager.AddItem("file://" + dlg.Filename);
 				}
+				else
+				{
+					edlg.Destroy();
+				}
 				dlg.Destroy ();
 			} catch (Exception e) {
 				ShowException (e);
-				edlg.Hide ();
+				edlg.Destroy ();
 			}
 		}
 		
@@ -809,6 +822,10 @@ namespace ocmgtk
 					edlg.Start (dlg.Filename, Engine.getInstance().Store.GetFinds(), m_WaypointMappings);
 					RecentManager manager = RecentManager.Default;
 					manager.AddItem("file://" + dlg.Filename);
+				}
+				else
+				{
+					edlg.Destroy();
 				}
 				dlg.Destroy ();
 			} catch (Exception e) {
@@ -1403,13 +1420,8 @@ namespace ocmgtk
 			                                      String.Format(Catalog.GetString("Are you sure you want to delete these {0} caches?\nThis operation cannot be undone."), list.Count));
 			if ((int)ResponseType.Yes == dlg.Run ()) {
 				dlg.Hide();
-				CacheStore store = Engine.getInstance().Store;
-				System.Data.IDbTransaction trans =  store.StartUpdate();
-				foreach(Geocache cache in list)
-				{
-					store.DeleteGeocache (cache);
-				}
-				store.EndUpdate(trans);
+				CopyingProgress ddlg = new CopyingProgress();
+				ddlg.StartDelete(GetVisibleCacheList());
 				SetSelectedCache(null);
 				RefreshCaches ();
 			}

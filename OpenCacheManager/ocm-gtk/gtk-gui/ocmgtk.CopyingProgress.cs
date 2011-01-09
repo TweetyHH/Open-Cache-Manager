@@ -19,7 +19,7 @@ namespace ocmgtk {
         
         private Gtk.HBox hbox2;
         
-        private Gtk.Label label5;
+        private Gtk.Label TargetLabel;
         
         private Gtk.Label targetDBLabel;
         
@@ -58,8 +58,6 @@ namespace ocmgtk {
             w1.Add(this.copyLabel);
             Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(w1[this.copyLabel]));
             w2.Position = 0;
-            w2.Expand = false;
-            w2.Fill = false;
             // Container child dialog1_VBox.Gtk.Box+BoxChild
             this.vbox2 = new Gtk.VBox();
             this.vbox2.Name = "vbox2";
@@ -69,12 +67,12 @@ namespace ocmgtk {
             this.hbox2.Name = "hbox2";
             this.hbox2.Spacing = 6;
             // Container child hbox2.Gtk.Box+BoxChild
-            this.label5 = new Gtk.Label();
-            this.label5.Name = "label5";
-            this.label5.LabelProp = Mono.Unix.Catalog.GetString("<b>Target:</b>");
-            this.label5.UseMarkup = true;
-            this.hbox2.Add(this.label5);
-            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.hbox2[this.label5]));
+            this.TargetLabel = new Gtk.Label();
+            this.TargetLabel.Name = "TargetLabel";
+            this.TargetLabel.LabelProp = Mono.Unix.Catalog.GetString("<b>Target:</b>");
+            this.TargetLabel.UseMarkup = true;
+            this.hbox2.Add(this.TargetLabel);
+            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.hbox2[this.TargetLabel]));
             w3.Position = 0;
             w3.Expand = false;
             w3.Fill = false;

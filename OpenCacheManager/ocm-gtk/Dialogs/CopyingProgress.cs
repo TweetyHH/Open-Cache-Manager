@@ -36,12 +36,43 @@ namespace ocmgtk
 			this.Build ();
 		}
 		
+		public void StartDelete(List<Geocache> caches)
+		{
+			this.copyLabel.Markup = Catalog.GetString("<big><b>Deleting Geocaches</b></big>");
+			this.Title = Catalog.GetString("Delete Caches....");
+			targetDBLabel.Visible = false;
+			TargetLabel.Visible = false;
+			CacheStore store = Engine.getInstance().Store;
+			IDbTransaction trans = store.StartUpdate();
+			double count = 0;
+			total = caches.Count;
+			foreach(Geocache cache in caches)
+			{
+				if (cancel)
+				{
+					store.CancelUpdate(trans);
+					this.Hide();
+					this.Dispose();
+					return;
+				}
+				count++;
+				DeleteProgress(count, cache.Name);
+				store.DeleteGeocache(cache);
+				
+			}
+			statusLabel.Markup = Catalog.GetString("<i>Complete</i>");
+			progressBar.Text = Catalog.GetString("Complete");
+			buttonOk.Visible = true;
+			buttonCancel.Visible = false;
+			store.EndUpdate(trans);			
+		}
+		
 		public void Start(String targetDB, bool isMove, ModeEnum modeType)
 		{
 			if (isMove)
 			{
 				Title = Catalog.GetString("Move Caches...");
-				copyLabel.Text = Catalog.GetString("Moving Geocaches");
+				copyLabel.Markup = Catalog.GetString("Moving Geocaches");
 			}
 			List <Geocache> caches;
 			if (modeType == CopyingProgress.ModeEnum.VISIBLE)
@@ -126,6 +157,17 @@ namespace ocmgtk
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (false);
 		}
+		
+		private void DeleteProgress(double count, string name)
+		{
+			double fraction = count/total;
+			progressBar.Fraction = fraction;
+			progressBar.Text = fraction.ToString("0%");
+			this.statusLabel.Markup = String.Format(Catalog.GetString("<i>Deleting:{0}</i>"), name);
+			while (Gtk.Application.EventsPending ())
+				Gtk.Application.RunIteration (false);
+		}
+		
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
 			this.Hide();

@@ -15,9 +15,12 @@ the preferences dialog, or change it just for the session from the Map menu
 - Add new %selected% keyword for external tools that allows you to send just the selected cache to another
 program as a GPX file.
 - Add link to new statistics page on geocaching.com under Web->Geocaching.com
-
-
-
+- Include xml processing directive in exported GPX files
+- For caches with corrected coordinates, export original coordinate as a waypoint
+- Show progress dialog when deleting multiple caches
+- Modify GPX export dialog to allow user to control export options
+- Fix bug where progress dialog would show if export was cancelled before choosing file
+- Associate ZIP files with OCM
 
 
 Version 0.22.7

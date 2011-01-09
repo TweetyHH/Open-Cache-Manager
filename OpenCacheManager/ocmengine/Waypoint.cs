@@ -14,6 +14,7 @@ using System;
 using System.Xml;
 using System.Collections.Generic;
 using System.Globalization;
+using Mono.Unix;
 
 namespace ocmengine
 {
@@ -117,7 +118,20 @@ namespace ocmengine
 			while (itr.MoveNext())
 			{
 				itr.Current.WriteToGPX(writer, gpx);
-			}                          
+			}    
+			
+			if ((this is Geocache) && ((this as Geocache).HasCorrected))
+			{
+				Geocache cache = this as Geocache;
+				Waypoint orig = new Waypoint();
+				orig.Name = cache.Name + "-ORIG";
+				orig.Lat = cache.OrigLat;
+				orig.Lon = cache.OrigLon;
+				orig.Symbol = "Reference Point";
+				orig.Type = "Waypoint|Reference Point";
+				orig.Desc = Catalog.GetString("Original Location") + " - " + cache.CacheName;
+				orig.WriteToGPX(writer, gpx);
+			}
 		}
 		
 		internal virtual void WriteWPTDetails(XmlWriter writer, GPXWriter gpx)

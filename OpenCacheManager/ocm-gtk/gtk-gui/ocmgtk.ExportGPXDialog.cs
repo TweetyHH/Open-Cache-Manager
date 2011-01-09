@@ -13,11 +13,21 @@ namespace ocmgtk {
     
     public partial class ExportGPXDialog {
         
-        private Gtk.Table table2;
+        private Gtk.Notebook notebook1;
         
-        private Gtk.FileChooserButton filechooserbutton3;
+        private Gtk.Alignment alignment1;
+        
+        private Gtk.FileChooserWidget fileChooser;
         
         private Gtk.Label label2;
+        
+        private Gtk.Table table2;
+        
+        private Gtk.RadioButton asPaperlessRadio;
+        
+        private Gtk.RadioButton asWaypointRadio;
+        
+        private Gtk.CheckButton includeChildrenCheck;
         
         private Gtk.CheckButton limitCheck;
         
@@ -39,9 +49,7 @@ namespace ocmgtk {
         
         private Gtk.Label GtkLabel7;
         
-        private Gtk.RadioButton radiobutton4;
-        
-        private Gtk.RadioButton radiobutton5;
+        private Gtk.CheckButton useMappingsCheck;
         
         private Gtk.Frame waypointFrame;
         
@@ -58,6 +66,8 @@ namespace ocmgtk {
         private Gtk.ComboBox nameMode;
         
         private Gtk.Label GtkLabel5;
+        
+        private Gtk.Label label4;
         
         private Gtk.Button buttonCancel;
         
@@ -76,56 +86,99 @@ namespace ocmgtk {
             w1.Name = "dialog1_VBox";
             w1.BorderWidth = ((uint)(2));
             // Container child dialog1_VBox.Gtk.Box+BoxChild
-            this.table2 = new Gtk.Table(((uint)(6)), ((uint)(2)), false);
+            this.notebook1 = new Gtk.Notebook();
+            this.notebook1.CanFocus = true;
+            this.notebook1.Name = "notebook1";
+            this.notebook1.CurrentPage = 1;
+            // Container child notebook1.Gtk.Notebook+NotebookChild
+            this.alignment1 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment1.Name = "alignment1";
+            this.alignment1.BorderWidth = ((uint)(6));
+            // Container child alignment1.Gtk.Container+ContainerChild
+            this.fileChooser = new Gtk.FileChooserWidget(((Gtk.FileChooserAction)(1)));
+            this.fileChooser.Name = "fileChooser";
+            this.alignment1.Add(this.fileChooser);
+            this.notebook1.Add(this.alignment1);
+            // Notebook tab
+            this.label2 = new Gtk.Label();
+            this.label2.Name = "label2";
+            this.label2.LabelProp = Mono.Unix.Catalog.GetString("File");
+            this.notebook1.SetTabLabel(this.alignment1, this.label2);
+            this.label2.ShowAll();
+            // Container child notebook1.Gtk.Notebook+NotebookChild
+            this.table2 = new Gtk.Table(((uint)(7)), ((uint)(2)), false);
             this.table2.Name = "table2";
             this.table2.RowSpacing = ((uint)(6));
             this.table2.ColumnSpacing = ((uint)(6));
+            this.table2.BorderWidth = ((uint)(6));
             // Container child table2.Gtk.Table+TableChild
-            this.filechooserbutton3 = new Gtk.FileChooserButton(Mono.Unix.Catalog.GetString("Select A File"), ((Gtk.FileChooserAction)(0)));
-            this.filechooserbutton3.Name = "filechooserbutton3";
-            this.table2.Add(this.filechooserbutton3);
-            Gtk.Table.TableChild w2 = ((Gtk.Table.TableChild)(this.table2[this.filechooserbutton3]));
-            w2.LeftAttach = ((uint)(1));
-            w2.RightAttach = ((uint)(2));
-            w2.YOptions = ((Gtk.AttachOptions)(4));
+            this.asPaperlessRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Export Paperless Caching Details"));
+            this.asPaperlessRadio.CanFocus = true;
+            this.asPaperlessRadio.Name = "asPaperlessRadio";
+            this.asPaperlessRadio.DrawIndicator = true;
+            this.asPaperlessRadio.UseUnderline = true;
+            this.asPaperlessRadio.Group = new GLib.SList(System.IntPtr.Zero);
+            this.table2.Add(this.asPaperlessRadio);
+            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table2[this.asPaperlessRadio]));
+            w4.TopAttach = ((uint)(3));
+            w4.BottomAttach = ((uint)(4));
+            w4.RightAttach = ((uint)(2));
+            w4.XOptions = ((Gtk.AttachOptions)(4));
+            w4.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
-            this.label2 = new Gtk.Label();
-            this.label2.Name = "label2";
-            this.label2.Xalign = 0F;
-            this.label2.LabelProp = Mono.Unix.Catalog.GetString("File:");
-            this.table2.Add(this.label2);
-            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table2[this.label2]));
-            w3.XOptions = ((Gtk.AttachOptions)(4));
-            w3.YOptions = ((Gtk.AttachOptions)(4));
+            this.asWaypointRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Export as Waypoints"));
+            this.asWaypointRadio.CanFocus = true;
+            this.asWaypointRadio.Name = "asWaypointRadio";
+            this.asWaypointRadio.DrawIndicator = true;
+            this.asWaypointRadio.UseUnderline = true;
+            this.asWaypointRadio.Group = this.asPaperlessRadio.Group;
+            this.table2.Add(this.asWaypointRadio);
+            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table2[this.asWaypointRadio]));
+            w5.TopAttach = ((uint)(4));
+            w5.BottomAttach = ((uint)(5));
+            w5.RightAttach = ((uint)(2));
+            w5.XOptions = ((Gtk.AttachOptions)(4));
+            w5.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.includeChildrenCheck = new Gtk.CheckButton();
+            this.includeChildrenCheck.CanFocus = true;
+            this.includeChildrenCheck.Name = "includeChildrenCheck";
+            this.includeChildrenCheck.Label = Mono.Unix.Catalog.GetString("Include Child Waypoints");
+            this.includeChildrenCheck.Active = true;
+            this.includeChildrenCheck.DrawIndicator = true;
+            this.includeChildrenCheck.UseUnderline = true;
+            this.table2.Add(this.includeChildrenCheck);
+            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table2[this.includeChildrenCheck]));
+            w6.TopAttach = ((uint)(1));
+            w6.BottomAttach = ((uint)(2));
+            w6.RightAttach = ((uint)(2));
+            w6.XOptions = ((Gtk.AttachOptions)(4));
+            w6.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.limitCheck = new Gtk.CheckButton();
             this.limitCheck.CanFocus = true;
             this.limitCheck.Name = "limitCheck";
             this.limitCheck.Label = Mono.Unix.Catalog.GetString("Limit Number of Geocaches");
-            this.limitCheck.Active = true;
             this.limitCheck.DrawIndicator = true;
             this.limitCheck.UseUnderline = true;
             this.table2.Add(this.limitCheck);
-            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table2[this.limitCheck]));
-            w4.TopAttach = ((uint)(1));
-            w4.BottomAttach = ((uint)(2));
-            w4.XOptions = ((Gtk.AttachOptions)(4));
-            w4.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table2[this.limitCheck]));
+            w7.XOptions = ((Gtk.AttachOptions)(4));
+            w7.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.limitEntry = new Gtk.Entry();
+            this.limitEntry.Sensitive = false;
             this.limitEntry.CanFocus = true;
             this.limitEntry.Name = "limitEntry";
             this.limitEntry.Text = "1000";
             this.limitEntry.IsEditable = true;
             this.limitEntry.InvisibleChar = '•';
             this.table2.Add(this.limitEntry);
-            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table2[this.limitEntry]));
-            w5.TopAttach = ((uint)(1));
-            w5.BottomAttach = ((uint)(2));
-            w5.LeftAttach = ((uint)(1));
-            w5.RightAttach = ((uint)(2));
-            w5.XOptions = ((Gtk.AttachOptions)(4));
-            w5.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table2[this.limitEntry]));
+            w8.LeftAttach = ((uint)(1));
+            w8.RightAttach = ((uint)(2));
+            w8.XOptions = ((Gtk.AttachOptions)(4));
+            w8.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.paperlessFrame = new Gtk.Frame();
             this.paperlessFrame.Name = "paperlessFrame";
@@ -145,40 +198,39 @@ namespace ocmgtk {
             this.attrCheck.CanFocus = true;
             this.attrCheck.Name = "attrCheck";
             this.attrCheck.Label = Mono.Unix.Catalog.GetString("Include Attributes in Description");
-            this.attrCheck.Active = true;
             this.attrCheck.DrawIndicator = true;
             this.attrCheck.UseUnderline = true;
             this.table5.Add(this.attrCheck);
-            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table5[this.attrCheck]));
-            w6.TopAttach = ((uint)(1));
-            w6.BottomAttach = ((uint)(2));
-            w6.RightAttach = ((uint)(2));
-            w6.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table5[this.attrCheck]));
+            w9.TopAttach = ((uint)(1));
+            w9.BottomAttach = ((uint)(2));
+            w9.RightAttach = ((uint)(2));
+            w9.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table5.Gtk.Table+TableChild
             this.logLimitCheck = new Gtk.CheckButton();
             this.logLimitCheck.CanFocus = true;
             this.logLimitCheck.Name = "logLimitCheck";
             this.logLimitCheck.Label = Mono.Unix.Catalog.GetString("Limit Number of Logs");
-            this.logLimitCheck.Active = true;
             this.logLimitCheck.DrawIndicator = true;
             this.logLimitCheck.UseUnderline = true;
             this.table5.Add(this.logLimitCheck);
-            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table5[this.logLimitCheck]));
-            w7.XOptions = ((Gtk.AttachOptions)(4));
-            w7.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.table5[this.logLimitCheck]));
+            w10.XOptions = ((Gtk.AttachOptions)(4));
+            w10.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table5.Gtk.Table+TableChild
             this.logLimitEntry = new Gtk.Entry();
+            this.logLimitEntry.Sensitive = false;
             this.logLimitEntry.CanFocus = true;
             this.logLimitEntry.Name = "logLimitEntry";
             this.logLimitEntry.Text = Mono.Unix.Catalog.GetString("5");
             this.logLimitEntry.IsEditable = true;
             this.logLimitEntry.InvisibleChar = '•';
             this.table5.Add(this.logLimitEntry);
-            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table5[this.logLimitEntry]));
-            w8.LeftAttach = ((uint)(1));
-            w8.RightAttach = ((uint)(2));
-            w8.XOptions = ((Gtk.AttachOptions)(4));
-            w8.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w11 = ((Gtk.Table.TableChild)(this.table5[this.logLimitEntry]));
+            w11.LeftAttach = ((uint)(1));
+            w11.RightAttach = ((uint)(2));
+            w11.XOptions = ((Gtk.AttachOptions)(4));
+            w11.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table5.Gtk.Table+TableChild
             this.usePlainTextCheck = new Gtk.CheckButton();
             this.usePlainTextCheck.CanFocus = true;
@@ -187,12 +239,12 @@ namespace ocmgtk {
             this.usePlainTextCheck.DrawIndicator = true;
             this.usePlainTextCheck.UseUnderline = true;
             this.table5.Add(this.usePlainTextCheck);
-            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table5[this.usePlainTextCheck]));
-            w9.TopAttach = ((uint)(2));
-            w9.BottomAttach = ((uint)(3));
-            w9.RightAttach = ((uint)(2));
-            w9.XOptions = ((Gtk.AttachOptions)(4));
-            w9.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w12 = ((Gtk.Table.TableChild)(this.table5[this.usePlainTextCheck]));
+            w12.TopAttach = ((uint)(2));
+            w12.BottomAttach = ((uint)(3));
+            w12.RightAttach = ((uint)(2));
+            w12.XOptions = ((Gtk.AttachOptions)(4));
+            w12.YOptions = ((Gtk.AttachOptions)(4));
             this.GtkAlignment3.Add(this.table5);
             this.paperlessFrame.Add(this.GtkAlignment3);
             this.GtkLabel7 = new Gtk.Label();
@@ -201,42 +253,29 @@ namespace ocmgtk {
             this.GtkLabel7.UseMarkup = true;
             this.paperlessFrame.LabelWidget = this.GtkLabel7;
             this.table2.Add(this.paperlessFrame);
-            Gtk.Table.TableChild w12 = ((Gtk.Table.TableChild)(this.table2[this.paperlessFrame]));
-            w12.TopAttach = ((uint)(5));
-            w12.BottomAttach = ((uint)(6));
-            w12.RightAttach = ((uint)(2));
-            w12.XOptions = ((Gtk.AttachOptions)(4));
-            w12.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w15 = ((Gtk.Table.TableChild)(this.table2[this.paperlessFrame]));
+            w15.TopAttach = ((uint)(6));
+            w15.BottomAttach = ((uint)(7));
+            w15.RightAttach = ((uint)(2));
+            w15.XOptions = ((Gtk.AttachOptions)(4));
+            w15.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
-            this.radiobutton4 = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Export Paperless Caching Details"));
-            this.radiobutton4.CanFocus = true;
-            this.radiobutton4.Name = "radiobutton4";
-            this.radiobutton4.DrawIndicator = true;
-            this.radiobutton4.UseUnderline = true;
-            this.radiobutton4.Group = new GLib.SList(System.IntPtr.Zero);
-            this.table2.Add(this.radiobutton4);
-            Gtk.Table.TableChild w13 = ((Gtk.Table.TableChild)(this.table2[this.radiobutton4]));
-            w13.TopAttach = ((uint)(2));
-            w13.BottomAttach = ((uint)(3));
-            w13.RightAttach = ((uint)(2));
-            w13.XOptions = ((Gtk.AttachOptions)(4));
-            w13.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table2.Gtk.Table+TableChild
-            this.radiobutton5 = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Export as Waypoints"));
-            this.radiobutton5.CanFocus = true;
-            this.radiobutton5.Name = "radiobutton5";
-            this.radiobutton5.DrawIndicator = true;
-            this.radiobutton5.UseUnderline = true;
-            this.radiobutton5.Group = this.radiobutton4.Group;
-            this.table2.Add(this.radiobutton5);
-            Gtk.Table.TableChild w14 = ((Gtk.Table.TableChild)(this.table2[this.radiobutton5]));
-            w14.TopAttach = ((uint)(3));
-            w14.BottomAttach = ((uint)(4));
-            w14.RightAttach = ((uint)(2));
-            w14.XOptions = ((Gtk.AttachOptions)(4));
-            w14.YOptions = ((Gtk.AttachOptions)(4));
+            this.useMappingsCheck = new Gtk.CheckButton();
+            this.useMappingsCheck.CanFocus = true;
+            this.useMappingsCheck.Name = "useMappingsCheck";
+            this.useMappingsCheck.Label = Mono.Unix.Catalog.GetString("Use GPS Waypoint Symbol Mappings");
+            this.useMappingsCheck.DrawIndicator = true;
+            this.useMappingsCheck.UseUnderline = true;
+            this.table2.Add(this.useMappingsCheck);
+            Gtk.Table.TableChild w16 = ((Gtk.Table.TableChild)(this.table2[this.useMappingsCheck]));
+            w16.TopAttach = ((uint)(2));
+            w16.BottomAttach = ((uint)(3));
+            w16.RightAttach = ((uint)(2));
+            w16.XOptions = ((Gtk.AttachOptions)(4));
+            w16.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.waypointFrame = new Gtk.Frame();
+            this.waypointFrame.Sensitive = false;
             this.waypointFrame.Name = "waypointFrame";
             this.waypointFrame.ShadowType = ((Gtk.ShadowType)(1));
             // Container child waypointFrame.Gtk.Container+ContainerChild
@@ -257,33 +296,33 @@ namespace ocmgtk {
             this.descMode.Name = "descMode";
             this.descMode.Active = 0;
             this.table3.Add(this.descMode);
-            Gtk.Table.TableChild w15 = ((Gtk.Table.TableChild)(this.table3[this.descMode]));
-            w15.TopAttach = ((uint)(1));
-            w15.BottomAttach = ((uint)(2));
-            w15.LeftAttach = ((uint)(1));
-            w15.RightAttach = ((uint)(2));
-            w15.XOptions = ((Gtk.AttachOptions)(4));
-            w15.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w17 = ((Gtk.Table.TableChild)(this.table3[this.descMode]));
+            w17.TopAttach = ((uint)(1));
+            w17.BottomAttach = ((uint)(2));
+            w17.LeftAttach = ((uint)(1));
+            w17.RightAttach = ((uint)(2));
+            w17.XOptions = ((Gtk.AttachOptions)(4));
+            w17.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table3.Gtk.Table+TableChild
             this.label1 = new Gtk.Label();
             this.label1.Name = "label1";
             this.label1.Xalign = 0F;
             this.label1.LabelProp = Mono.Unix.Catalog.GetString("Waypoint Name Format:");
             this.table3.Add(this.label1);
-            Gtk.Table.TableChild w16 = ((Gtk.Table.TableChild)(this.table3[this.label1]));
-            w16.XOptions = ((Gtk.AttachOptions)(4));
-            w16.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w18 = ((Gtk.Table.TableChild)(this.table3[this.label1]));
+            w18.XOptions = ((Gtk.AttachOptions)(4));
+            w18.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table3.Gtk.Table+TableChild
             this.label3 = new Gtk.Label();
             this.label3.Name = "label3";
             this.label3.Xalign = 0F;
             this.label3.LabelProp = Mono.Unix.Catalog.GetString("Waypoint Description Format:");
             this.table3.Add(this.label3);
-            Gtk.Table.TableChild w17 = ((Gtk.Table.TableChild)(this.table3[this.label3]));
-            w17.TopAttach = ((uint)(1));
-            w17.BottomAttach = ((uint)(2));
-            w17.XOptions = ((Gtk.AttachOptions)(4));
-            w17.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w19 = ((Gtk.Table.TableChild)(this.table3[this.label3]));
+            w19.TopAttach = ((uint)(1));
+            w19.BottomAttach = ((uint)(2));
+            w19.XOptions = ((Gtk.AttachOptions)(4));
+            w19.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table3.Gtk.Table+TableChild
             this.nameMode = Gtk.ComboBox.NewText();
             this.nameMode.AppendText(Mono.Unix.Catalog.GetString("Cache Code"));
@@ -291,11 +330,11 @@ namespace ocmgtk {
             this.nameMode.Name = "nameMode";
             this.nameMode.Active = 0;
             this.table3.Add(this.nameMode);
-            Gtk.Table.TableChild w18 = ((Gtk.Table.TableChild)(this.table3[this.nameMode]));
-            w18.LeftAttach = ((uint)(1));
-            w18.RightAttach = ((uint)(2));
-            w18.XOptions = ((Gtk.AttachOptions)(4));
-            w18.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w20 = ((Gtk.Table.TableChild)(this.table3[this.nameMode]));
+            w20.LeftAttach = ((uint)(1));
+            w20.RightAttach = ((uint)(2));
+            w20.XOptions = ((Gtk.AttachOptions)(4));
+            w20.YOptions = ((Gtk.AttachOptions)(4));
             this.GtkAlignment2.Add(this.table3);
             this.waypointFrame.Add(this.GtkAlignment2);
             this.GtkLabel5 = new Gtk.Label();
@@ -304,19 +343,28 @@ namespace ocmgtk {
             this.GtkLabel5.UseMarkup = true;
             this.waypointFrame.LabelWidget = this.GtkLabel5;
             this.table2.Add(this.waypointFrame);
-            Gtk.Table.TableChild w21 = ((Gtk.Table.TableChild)(this.table2[this.waypointFrame]));
-            w21.TopAttach = ((uint)(4));
-            w21.BottomAttach = ((uint)(5));
-            w21.RightAttach = ((uint)(2));
-            w1.Add(this.table2);
-            Gtk.Box.BoxChild w22 = ((Gtk.Box.BoxChild)(w1[this.table2]));
-            w22.Position = 0;
+            Gtk.Table.TableChild w23 = ((Gtk.Table.TableChild)(this.table2[this.waypointFrame]));
+            w23.TopAttach = ((uint)(5));
+            w23.BottomAttach = ((uint)(6));
+            w23.RightAttach = ((uint)(2));
+            this.notebook1.Add(this.table2);
+            Gtk.Notebook.NotebookChild w24 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.table2]));
+            w24.Position = 1;
+            // Notebook tab
+            this.label4 = new Gtk.Label();
+            this.label4.Name = "label4";
+            this.label4.LabelProp = Mono.Unix.Catalog.GetString("Options");
+            this.notebook1.SetTabLabel(this.table2, this.label4);
+            this.label4.ShowAll();
+            w1.Add(this.notebook1);
+            Gtk.Box.BoxChild w25 = ((Gtk.Box.BoxChild)(w1[this.notebook1]));
+            w25.Position = 0;
             // Internal child ocmgtk.ExportGPXDialog.ActionArea
-            Gtk.HButtonBox w23 = this.ActionArea;
-            w23.Name = "dialog1_ActionArea";
-            w23.Spacing = 10;
-            w23.BorderWidth = ((uint)(5));
-            w23.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            Gtk.HButtonBox w26 = this.ActionArea;
+            w26.Name = "dialog1_ActionArea";
+            w26.Spacing = 10;
+            w26.BorderWidth = ((uint)(5));
+            w26.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -326,9 +374,9 @@ namespace ocmgtk {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w24 = ((Gtk.ButtonBox.ButtonBoxChild)(w23[this.buttonCancel]));
-            w24.Expand = false;
-            w24.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w27 = ((Gtk.ButtonBox.ButtonBoxChild)(w26[this.buttonCancel]));
+            w27.Expand = false;
+            w27.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -338,16 +386,20 @@ namespace ocmgtk {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w25 = ((Gtk.ButtonBox.ButtonBoxChild)(w23[this.buttonOk]));
-            w25.Position = 1;
-            w25.Expand = false;
-            w25.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w28 = ((Gtk.ButtonBox.ButtonBoxChild)(w26[this.buttonOk]));
+            w28.Position = 1;
+            w28.Expand = false;
+            w28.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 408;
-            this.DefaultHeight = 435;
+            this.DefaultWidth = 710;
+            this.DefaultHeight = 503;
             this.Show();
+            this.logLimitCheck.Toggled += new System.EventHandler(this.OnLogLimitToggle);
+            this.limitCheck.Toggled += new System.EventHandler(this.OnLimitToggle);
+            this.asWaypointRadio.Toggled += new System.EventHandler(this.OnAsWaypointToggle);
+            this.asPaperlessRadio.Toggled += new System.EventHandler(this.OnPaperlessToggle);
         }
     }
 }

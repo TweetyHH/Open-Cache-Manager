@@ -57,6 +57,8 @@ namespace ocmgtk
 		public void Start(String filename, List<Geocache> list, Dictionary<string,string> wmappings)
 		{
 			total = list.Count;
+			if (m_writer.Limit != -1)
+				total = m_writer.Limit;
 			fileLabel.Markup = Catalog.GetString("<b>File: </b>") + filename;
 			m_writer.WriteGPXFile(filename, list, wmappings);
 		}

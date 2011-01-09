@@ -21,11 +21,123 @@ namespace ocmgtk
 
 	public partial class ExportGPXDialog : Gtk.Dialog
 	{
-
 		public ExportGPXDialog ()
 		{
 			this.Build ();
-			waypointFrame.Visible = false;
 		}
+		
+		public void SetCurrentFolder(String folder)
+		{
+			fileChooser.SetCurrentFolder(folder);
+		}
+		
+		public String CurrentName
+		{
+			set{ fileChooser.CurrentName = value;}
+		}
+		
+		public String Filename
+		{
+			get { return fileChooser.Filename;}
+		}
+		
+		public void AddFilter(Gtk.FileFilter filter)
+		{
+			fileChooser.AddFilter(filter);
+		}
+		
+		public bool IsPaperless
+		{
+			get { return asPaperlessRadio.Active;}
+		}
+		
+		public int CacheLimit
+		{
+			get {
+				if (limitCheck.Active)
+					return int.Parse(limitEntry.Text);
+				else
+					return -1;
+			}
+		}
+		
+		public bool IncludeChildren
+		{
+			get { return includeChildrenCheck.Active; }
+		}
+		
+		public bool UseMappings
+		{
+			get { return useMappingsCheck.Active;}
+		}
+		
+		public ocmengine.WaypointNameMode GetNameMode()
+		{
+			if (asPaperlessRadio.Active)
+				return ocmengine.WaypointNameMode.CODE;
+			switch (nameMode.Active)
+			{
+				case 0:
+					return ocmengine.WaypointNameMode.CODE;
+				default:
+					return ocmengine.WaypointNameMode.NAME;
+			}
+		}
+		
+		public ocmengine.WaypointDescMode GetDescMode()
+		{
+			if (asPaperlessRadio.Active)
+				return ocmengine.WaypointDescMode.DESC;
+			switch (descMode.Active)
+			{
+				case 0:
+					return ocmengine.WaypointDescMode.DESC;
+				case 1:
+					return ocmengine.WaypointDescMode.CODESIZEANDHINT;
+				default:
+					return ocmengine.WaypointDescMode.CODESIZETYPE;
+			}
+		}
+		
+		public int LogLimit
+		{
+			get { 
+				if (logLimitCheck.Active)
+				    return int.Parse(logLimitEntry.Text);
+				else
+					return -1;
+			}
+		}
+		
+		public bool IncludeAttributes
+		{
+			get {return attrCheck.Active;}
+		}
+		
+		public bool UsePlainText
+		{
+			get {return usePlainTextCheck.Active;}
+		}
+		
+		protected virtual void OnPaperlessToggle (object sender, System.EventArgs e)
+		{
+			paperlessFrame.Sensitive = asPaperlessRadio.Active;
+		}
+		
+		protected virtual void OnAsWaypointToggle (object sender, System.EventArgs e)
+		{
+			waypointFrame.Sensitive = asWaypointRadio.Active;
+		}
+		
+		protected virtual void OnLimitToggle (object sender, System.EventArgs e)
+		{
+			limitEntry.Sensitive = limitCheck.Active;
+		}
+		protected virtual void OnLogLimitToggle (object sender, System.EventArgs e)
+		{
+			logLimitEntry.Sensitive = logLimitCheck.Active;
+		}
+		
+		
 	}
 }
