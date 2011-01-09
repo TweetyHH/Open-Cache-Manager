@@ -13,6 +13,20 @@ namespace ocmgtk {
     
     public partial class CopyMoveDialog {
         
+        private Gtk.Frame frame1;
+        
+        private Gtk.Alignment GtkAlignment2;
+        
+        private Gtk.VBox vbox2;
+        
+        private Gtk.RadioButton visibleRadio;
+        
+        private Gtk.RadioButton selectedRadio;
+        
+        private Gtk.RadioButton entireRadio;
+        
+        private Gtk.Label GtkLabel3;
+        
         private Gtk.HBox hbox1;
         
         private Gtk.Label label3;
@@ -35,6 +49,70 @@ namespace ocmgtk {
             w1.Name = "dialog1_VBox";
             w1.BorderWidth = ((uint)(2));
             // Container child dialog1_VBox.Gtk.Box+BoxChild
+            this.frame1 = new Gtk.Frame();
+            this.frame1.Name = "frame1";
+            this.frame1.ShadowType = ((Gtk.ShadowType)(1));
+            this.frame1.BorderWidth = ((uint)(6));
+            // Container child frame1.Gtk.Container+ContainerChild
+            this.GtkAlignment2 = new Gtk.Alignment(0F, 0F, 1F, 1F);
+            this.GtkAlignment2.Name = "GtkAlignment2";
+            this.GtkAlignment2.LeftPadding = ((uint)(12));
+            // Container child GtkAlignment2.Gtk.Container+ContainerChild
+            this.vbox2 = new Gtk.VBox();
+            this.vbox2.Name = "vbox2";
+            this.vbox2.Spacing = 6;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.visibleRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Visible Caches"));
+            this.visibleRadio.CanFocus = true;
+            this.visibleRadio.Name = "visibleRadio";
+            this.visibleRadio.Active = true;
+            this.visibleRadio.DrawIndicator = true;
+            this.visibleRadio.UseUnderline = true;
+            this.visibleRadio.Group = new GLib.SList(System.IntPtr.Zero);
+            this.vbox2.Add(this.visibleRadio);
+            Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.vbox2[this.visibleRadio]));
+            w2.Position = 0;
+            w2.Expand = false;
+            w2.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.selectedRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Selected Cache"));
+            this.selectedRadio.Sensitive = false;
+            this.selectedRadio.CanFocus = true;
+            this.selectedRadio.Name = "selectedRadio";
+            this.selectedRadio.DrawIndicator = true;
+            this.selectedRadio.UseUnderline = true;
+            this.selectedRadio.Group = this.visibleRadio.Group;
+            this.vbox2.Add(this.selectedRadio);
+            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.vbox2[this.selectedRadio]));
+            w3.Position = 1;
+            w3.Expand = false;
+            w3.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.entireRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Entire Database"));
+            this.entireRadio.Sensitive = false;
+            this.entireRadio.CanFocus = true;
+            this.entireRadio.Name = "entireRadio";
+            this.entireRadio.DrawIndicator = true;
+            this.entireRadio.UseUnderline = true;
+            this.entireRadio.Group = this.visibleRadio.Group;
+            this.vbox2.Add(this.entireRadio);
+            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.vbox2[this.entireRadio]));
+            w4.Position = 2;
+            w4.Expand = false;
+            w4.Fill = false;
+            this.GtkAlignment2.Add(this.vbox2);
+            this.frame1.Add(this.GtkAlignment2);
+            this.GtkLabel3 = new Gtk.Label();
+            this.GtkLabel3.Name = "GtkLabel3";
+            this.GtkLabel3.LabelProp = Mono.Unix.Catalog.GetString("<b>Move Options</b>");
+            this.GtkLabel3.UseMarkup = true;
+            this.frame1.LabelWidget = this.GtkLabel3;
+            w1.Add(this.frame1);
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(w1[this.frame1]));
+            w7.Position = 0;
+            w7.Expand = false;
+            w7.Fill = false;
+            // Container child dialog1_VBox.Gtk.Box+BoxChild
             this.hbox1 = new Gtk.HBox();
             this.hbox1.Name = "hbox1";
             this.hbox1.Spacing = 6;
@@ -43,27 +121,27 @@ namespace ocmgtk {
             this.label3.Name = "label3";
             this.label3.LabelProp = Mono.Unix.Catalog.GetString("Target Database:");
             this.hbox1.Add(this.label3);
-            Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.hbox1[this.label3]));
-            w2.Position = 0;
-            w2.Expand = false;
-            w2.Fill = false;
+            Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.hbox1[this.label3]));
+            w8.Position = 0;
+            w8.Expand = false;
+            w8.Fill = false;
             // Container child hbox1.Gtk.Box+BoxChild
             this.chooser = new Gtk.FileChooserButton(Mono.Unix.Catalog.GetString("Select A File"), ((Gtk.FileChooserAction)(0)));
             this.chooser.Name = "chooser";
             this.hbox1.Add(this.chooser);
-            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.hbox1[this.chooser]));
-            w3.Position = 1;
+            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.hbox1[this.chooser]));
+            w9.Position = 1;
             w1.Add(this.hbox1);
-            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(w1[this.hbox1]));
-            w4.Position = 0;
-            w4.Expand = false;
-            w4.Fill = false;
+            Gtk.Box.BoxChild w10 = ((Gtk.Box.BoxChild)(w1[this.hbox1]));
+            w10.Position = 1;
+            w10.Expand = false;
+            w10.Fill = false;
             // Internal child ocmgtk.CopyMoveDialog.ActionArea
-            Gtk.HButtonBox w5 = this.ActionArea;
-            w5.Name = "dialog1_ActionArea";
-            w5.Spacing = 10;
-            w5.BorderWidth = ((uint)(5));
-            w5.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            Gtk.HButtonBox w11 = this.ActionArea;
+            w11.Name = "dialog1_ActionArea";
+            w11.Spacing = 10;
+            w11.BorderWidth = ((uint)(5));
+            w11.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -73,9 +151,9 @@ namespace ocmgtk {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w6 = ((Gtk.ButtonBox.ButtonBoxChild)(w5[this.buttonCancel]));
-            w6.Expand = false;
-            w6.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w12 = ((Gtk.ButtonBox.ButtonBoxChild)(w11[this.buttonCancel]));
+            w12.Expand = false;
+            w12.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -85,15 +163,15 @@ namespace ocmgtk {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w7 = ((Gtk.ButtonBox.ButtonBoxChild)(w5[this.buttonOk]));
-            w7.Position = 1;
-            w7.Expand = false;
-            w7.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w13 = ((Gtk.ButtonBox.ButtonBoxChild)(w11[this.buttonOk]));
+            w13.Position = 1;
+            w13.Expand = false;
+            w13.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 400;
-            this.DefaultHeight = 117;
+            this.DefaultHeight = 226;
             this.Show();
             this.buttonCancel.Clicked += new System.EventHandler(this.OnButtonCancelClicked);
             this.buttonOk.Clicked += new System.EventHandler(this.OKClicked);

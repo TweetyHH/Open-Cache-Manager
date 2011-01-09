@@ -130,7 +130,6 @@ namespace ocmgtk {
             this.autoNameRado = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Auto name on internal drive"));
             this.autoNameRado.CanFocus = true;
             this.autoNameRado.Name = "autoNameRado";
-            this.autoNameRado.Active = true;
             this.autoNameRado.DrawIndicator = true;
             this.autoNameRado.UseUnderline = true;
             this.autoNameRado.Group = new GLib.SList(System.IntPtr.Zero);

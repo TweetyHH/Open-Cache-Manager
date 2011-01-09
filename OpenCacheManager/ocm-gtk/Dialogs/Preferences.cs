@@ -126,6 +126,12 @@ namespace ocmgtk
 			get { return importDirEntry.Text;}
 		}
 		
+		public bool AutoCloseOnCompletion
+		{
+			set { autoCloseCheck.Active = value;}
+			get { return autoCloseCheck.Active;}
+		}
+		
 		public void SetQuickFilters(QuickFilters filterList, String  filterName)
 		{
 			int i=0;

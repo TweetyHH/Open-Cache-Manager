@@ -34,7 +34,7 @@ namespace ocmgtk {
             // Widget ocmgtk.ProgressDialog
             this.WidthRequest = 400;
             this.Name = "ocmgtk.ProgressDialog";
-            this.Title = Mono.Unix.Catalog.GetString("Open GPX File...");
+            this.Title = Mono.Unix.Catalog.GetString("Import Data...");
             this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.Modal = true;

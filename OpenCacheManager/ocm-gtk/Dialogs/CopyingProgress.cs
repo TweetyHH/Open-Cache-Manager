@@ -29,19 +29,34 @@ namespace ocmgtk
 		double total = 0;
 		bool cancel = false;
 		
+		public enum ModeEnum {VISIBLE, SELECTED, ALL}
+		
 		public CopyingProgress ()
 		{
 			this.Build ();
 		}
 		
-		public void Start(String targetDB, bool isMove)
+		public void Start(String targetDB, bool isMove, ModeEnum modeType)
 		{
 			if (isMove)
 			{
 				Title = Catalog.GetString("Move Caches...");
 				copyLabel.Text = Catalog.GetString("Moving Geocaches");
 			}
-			List<Geocache> caches = UIMonitor.getInstance().GetVisibleCacheList();
+			List <Geocache> caches;
+			if (modeType == CopyingProgress.ModeEnum.VISIBLE)
+			{
+				caches = UIMonitor.getInstance().GetVisibleCacheList();
+			}
+			else if (modeType == CopyingProgress.ModeEnum.SELECTED)
+			{
+				caches = new List<Geocache>();
+				caches.Add(UIMonitor.getInstance().SelectedCache);
+			}
+			else
+			{
+				caches = Engine.getInstance().Store.GetCaches();
+			}
 			CacheStore target = new CacheStore();
 			CacheStore source = Engine.getInstance().Store;
 			targetDBLabel.Text = targetDB;
@@ -60,6 +75,9 @@ namespace ocmgtk
 			}
 			buttonOk.Visible = false;
 			IDbTransaction trans = target.StartUpdate();
+			//IDbTransaction strans = null;
+			/*if (isMove)
+				strans = source.StartUpdate();*/
 			foreach(Geocache cache in caches)
 			{
 				if (cancel)
@@ -95,6 +113,8 @@ namespace ocmgtk
 			buttonOk.Visible = true;
 			buttonCancel.Visible = false;
 			target.EndUpdate(trans);
+		/*	if (isMove)
+				source.EndUpdate(strans);*/
 		}
 		
 		private void UpdateProgress(double count, string name)

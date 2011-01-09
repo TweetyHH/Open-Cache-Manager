@@ -231,6 +231,10 @@
     <Compile Include="gtk-gui\ocmgtk.CorrectedCoordinatesDlg.cs" />
     <Compile Include="Widgets\OCMQueryPage5.cs" />
     <Compile Include="gtk-gui\ocmgtk.OCMQueryPage5.cs" />
+    <Compile Include="Dialogs\ImportDirectoryDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.ImportDirectoryDialog.cs" />
+    <Compile Include="Dialogs\ExportGPXDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.ExportGPXDialog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

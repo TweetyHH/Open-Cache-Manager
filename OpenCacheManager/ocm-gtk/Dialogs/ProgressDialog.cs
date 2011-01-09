@@ -17,6 +17,7 @@ using System;
 using System.IO;
 using ocmengine;
 using Mono.Unix;
+using System.Diagnostics;
 
 namespace ocmgtk
 {
@@ -77,6 +78,30 @@ namespace ocmgtk
 			m_total = 0;
 			multiFileLabel.Visible = true;
 			
+			// Prescan for zip files and uncompress
+			for (int i=0; i < files.Length; i++)
+			{
+				if (files[i].EndsWith(".zip"))
+				{
+					ProcessStartInfo start = new ProcessStartInfo();
+					start.FileName = "unzip";
+					System.Console.WriteLine(files[i] + " -d \"" + directoryPath + "\"");
+					start.Arguments = "\"" + files[i] + "\" -d \"" + directoryPath + "\"";
+					Process unzip =  Process.Start(start);
+					while (!unzip.HasExited)
+					{
+						// Do nothing until exit	
+					}
+					if (deleteOnCompletion)
+					{
+						File.Delete(files[i]);
+					}
+				}
+			}
+			
+			// Rescan for all GPX files, including those uncompressed by ZIP files
+			files = Directory.GetFiles(directoryPath);
+			
 			for (int i=0; i < files.Length; i++)
 			{
 				if (files[i].EndsWith(".gpx"))
@@ -101,6 +126,8 @@ namespace ocmgtk
 					multiFileLabel.Text = String.Format(Catalog.GetString("Processing File {0} of {1}"), i + 1, files.Length);
 					ParseFile(fs, store);
 					fs.Close();
+					if (deleteOnCompletion)
+						File.Delete(files[i]);
 				}
 			}
 			HandleCompletion();

@@ -22,6 +22,7 @@
         <Translation isoCode="da" />
         <Translation isoCode="de" />
         <Translation isoCode="cs" />
+        <Translation isoCode="es" />
       </translations>
     </translations>
     <Configuration Condition=" '$(Configuration)' == '' ">Release_Translated</Configuration>

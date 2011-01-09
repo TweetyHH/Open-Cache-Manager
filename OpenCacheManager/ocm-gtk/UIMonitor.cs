@@ -690,7 +690,9 @@ namespace ocmgtk
 		public bool CreateDB ()
 		{
 			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Create database"), m_mainWin, FileChooserAction.Save, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Save"), ResponseType.Accept);
-			dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
+			dlg.SetCurrentFolder(((String) m_conf.Get("/apps/ocm/datadir", 
+			                                     System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments))));
+
 			dlg.CurrentName = "newdb.ocm";
 			FileFilter filter = new FileFilter ();
 			filter.Name = "OCM Databases";
@@ -1178,6 +1180,7 @@ namespace ocmgtk
 			dlg.ShowNearby = (Boolean) m_conf.Get("/apps/ocm/shownearby", true);
 			dlg.UsePrefixesForChildWaypoints = !((bool) m_conf.Get("/apps/ocm/noprefixes", false));
 			dlg.CheckForUpdates = (Boolean) m_conf.Get("/apps/ocm/update/checkForUpdates", true);
+			dlg.AutoCloseOnCompletion = (Boolean) m_conf.Get("/apps/ocm/autoclose", false);
 			dlg.UpdateInterval = (int) m_conf.Get("/apps/ocm/update/updateInterval", 7);
 			dlg.ShowAllChildren = (Boolean) m_conf.Get("/apps/ocm/showallchildren", false);
 			dlg.MapPoints = (int) m_conf.Get("/apps/ocm/mappoints", 100);
@@ -1202,6 +1205,8 @@ namespace ocmgtk
 				m_conf.Set ("/apps/ocm/datadir", dlg.DataDirectory);
 				m_conf.Set ("/apps/ocm/importdir", dlg.ImportDirectory);
 				m_conf.Set ("/apps/ocm/startupfilter", dlg.StartupFilter);
+				m_conf.Set ("/apps/ocm/autoclose", dlg.AutoCloseOnCompletion);
+				
 				if (dlg.UpdateInterval != oldInterval)
 				{
 					m_conf.Set("/apps/ocm/update/nextcheck", DateTime.Now.AddDays(dlg.UpdateInterval).ToString("o"));			
@@ -1574,10 +1579,14 @@ namespace ocmgtk
 		public void CopyToDB()
 		{
 			CopyMoveDialog dlg = new CopyMoveDialog();
+			dlg.Title = "Copy Caches to Another Database...";
+			dlg.Filename = 	((String) m_conf.Get("/apps/ocm/datadir", 
+			                                     System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments)));
+
 			if ((int)ResponseType.Ok == dlg.Run())
 			{
 				CopyingProgress cp = new CopyingProgress();
-				cp.Start(dlg.Filename, false);
+				cp.Start(dlg.Filename, false, CopyingProgress.ModeEnum.VISIBLE);
 			}
 		}
 		
@@ -1585,10 +1594,13 @@ namespace ocmgtk
 		{
 			CopyMoveDialog dlg = new CopyMoveDialog();
 			dlg.Title = Catalog.GetString("Move Geocaches...");
+			dlg.Title = "Move Caches to Another Database...";
+			dlg.Filename = 	((String) m_conf.Get("/apps/ocm/datadir", 
+			                                     System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments)));
 			if ((int)ResponseType.Ok == dlg.Run())
 			{
 				CopyingProgress cp = new CopyingProgress();
-				cp.Start(dlg.Filename, true);
+				cp.Start(dlg.Filename, true, CopyingProgress.ModeEnum.VISIBLE);
 				RefreshCaches();
 			}
 			
@@ -1752,7 +1764,7 @@ namespace ocmgtk
 				String tempPath = System.IO.Path.GetTempPath();
 				ProcessStartInfo start = new ProcessStartInfo();
 				start.FileName = "unzip";
-				start.Arguments = dlg.Filename + " -d " + tempPath + "/ocm_unzip";
+				start.Arguments = dlg.Filename + " -d " + tempPath + "ocm_unzip";
 				Process unzip =  Process.Start(start);
 				dlg.Hide ();
 				while (!unzip.HasExited)
@@ -1760,19 +1772,7 @@ namespace ocmgtk
 					// Do nothing until exit	
 				}
 				
-				System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(tempPath + "/ocm_unzip");
-				System.IO.FileInfo[] files = info.GetFiles();
-				foreach(System.IO.FileInfo file in files)
-				{
-					ImportGPXFile(file.FullName, true);
-					file.Delete();
-				}
-				
-				MessageDialog mdlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok,
-				                                       	Catalog.GetString("Import complete."));
-				mdlg.Run();
-				mdlg.Hide();
-
+				ImportDirectory(tempPath + "ocm_unzip", true);				
 			}
 			dlg.Destroy ();
 		}
@@ -1788,24 +1788,27 @@ namespace ocmgtk
 		
 		public void ImportDirectory()
 		{
-			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Import Directory"), m_mainWin,
-			                                               FileChooserAction.SelectFolder, Catalog.GetString ("Cancel"), 
-			                                               ResponseType.Cancel, Catalog.GetString ("Import"), 
-			                                               ResponseType.Accept);
-			dlg.SetCurrentFolder ((String) m_conf.Get("/apps/ocm/importdir", 
+			ImportDirectoryDialog dlg = new ImportDirectoryDialog();
+			dlg.Directory = ((String) m_conf.Get("/apps/ocm/importdir", 
 			                                          System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments)));
 			
-			if (dlg.Run () == (int)ResponseType.Accept) {
+			if (dlg.Run () == (int)ResponseType.Ok) {
+				dlg.Hide();
+				ImportDirectory(dlg.Directory, dlg.DeleteOnCompletion);
+			}
+			dlg.Destroy ();
+	
+		}
+		
+		private void ImportDirectory(String path, bool delete)
+		{
 				GPXParser parser = new GPXParser ();
 				parser.CacheOwner = OwnerID;
 				ProgressDialog pdlg = new ProgressDialog (parser, -1);
 				pdlg.Icon = m_mainWin.Icon;
 				pdlg.Modal = true;
-				pdlg.StartMulti(dlg.Filename, Engine.getInstance().Store, false);
+				pdlg.StartMulti(path, Engine.getInstance().Store, delete);
 				RefreshCaches ();
-			}
-			dlg.Destroy ();
-	
 		}
 	}
 }

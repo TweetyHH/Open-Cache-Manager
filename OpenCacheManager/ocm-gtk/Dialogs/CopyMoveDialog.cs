@@ -28,7 +28,9 @@ namespace ocmgtk
 		public string Filename
 		{
 			get { return chooser.Filename;}
+			set { chooser.SetCurrentFolder(value);}
 		}
+		
 		
 		public CopyMoveDialog ()
 		{
