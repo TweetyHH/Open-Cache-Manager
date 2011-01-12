@@ -235,6 +235,8 @@
     <Compile Include="gtk-gui\ocmgtk.ImportDirectoryDialog.cs" />
     <Compile Include="Dialogs\ExportGPXDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.ExportGPXDialog.cs" />
+    <Compile Include="Widgets\AttributeFilterWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.AttributeFilterWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -607,6 +609,42 @@
       <DeployService-Deploy>true</DeployService-Deploy>
       <DeployService-HasPathReferences>true</DeployService-HasPathReferences>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\yes_Recommended at night.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\yes_Needs maintenance.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\no_Recommended at night.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\no_Needs maintenance.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\dis_Recommended at night.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\dis_Needs maintenance.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\yes_Wireless Beacon.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\no_Wireless Beacon.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\dis_Wireless Beacon.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\yes_Available during winter.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\no_Available during winter.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\dis_Available during winter.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>

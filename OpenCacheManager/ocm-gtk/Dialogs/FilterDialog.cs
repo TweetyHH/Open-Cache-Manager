@@ -56,6 +56,14 @@ namespace ocmgtk
 				else
 					filter.RemoveCriteria(FilterList.KEY_NOCORRECTED);
 				filter.AddFilterCriteria(FilterList.KEY_OWNERID, UIMonitor.getInstance().OwnerID);
+				if (attributePage.IncludeAttributes.Count > 0)
+					filter.AddFilterCriteria(FilterList.KEY_INCATTRS, attributePage.IncludeAttributes);
+				else
+					filter.RemoveCriteria(FilterList.KEY_INCATTRS);
+				if (attributePage.ExcludeAttributes.Count > 0)
+					filter.AddFilterCriteria(FilterList.KEY_EXCATTRS, attributePage.ExcludeAttributes);
+				else
+					filter.RemoveCriteria(FilterList.KEY_EXCATTRS);
 				return filter;
 			}
 			set {
@@ -100,7 +108,11 @@ namespace ocmgtk
 					childrenPage.HasCorrectedCoords = true;
 				if (value.Contains(FilterList.KEY_NOCORRECTED))
 					childrenPage.DoesNotHaveCorrectedCoords = true;
-			}
+				if (value.Contains(FilterList.KEY_INCATTRS))
+					attributePage.IncludeAttributes = (List<String>) value.GetCriteria(FilterList.KEY_INCATTRS);
+				if (value.Contains(FilterList.KEY_EXCATTRS))
+					attributePage.ExcludeAttributes = (List<String>) value.GetCriteria(FilterList.KEY_EXCATTRS);
+ 			}
 		}
 		
 		private void GetNoChildrenFilter (FilterList filter)

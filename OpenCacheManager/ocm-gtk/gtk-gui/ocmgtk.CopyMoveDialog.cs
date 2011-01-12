@@ -65,6 +65,7 @@ namespace ocmgtk {
             this.visibleRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Visible Caches"));
             this.visibleRadio.CanFocus = true;
             this.visibleRadio.Name = "visibleRadio";
+            this.visibleRadio.Active = true;
             this.visibleRadio.DrawIndicator = true;
             this.visibleRadio.UseUnderline = true;
             this.visibleRadio.Group = new GLib.SList(System.IntPtr.Zero);

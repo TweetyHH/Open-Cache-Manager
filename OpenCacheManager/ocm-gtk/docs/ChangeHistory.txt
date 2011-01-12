@@ -21,6 +21,9 @@ program as a GPX file.
 - Modify GPX export dialog to allow user to control export options
 - Fix bug where progress dialog would show if export was cancelled before choosing file
 - Associate ZIP files with OCM
+- Implement attribute filters for winter friendly, chirp, recommended at night, and maintenance required.
+Further improvements to include more attributes and better performance will be coming.
+- Add in first set of Spanish translations
 
 
 Version 0.22.7

@@ -31,7 +31,7 @@ namespace ocmgtk {
         
         private Gtk.Label labelChildren;
         
-        private ocmgtk.OCMQueryPage5 ocmquerypage51;
+        private ocmgtk.OCMQueryPage5 attributePage;
         
         private Gtk.Label label4;
         
@@ -53,7 +53,7 @@ namespace ocmgtk {
             this.notebook1 = new Gtk.Notebook();
             this.notebook1.CanFocus = true;
             this.notebook1.Name = "notebook1";
-            this.notebook1.CurrentPage = 3;
+            this.notebook1.CurrentPage = 4;
             this.notebook1.TabPos = ((Gtk.PositionType)(0));
             // Container child notebook1.Gtk.Notebook+NotebookChild
             this.page1 = new ocmgtk.OCMQueryPage1();
@@ -117,18 +117,17 @@ namespace ocmgtk {
             this.notebook1.SetTabLabel(this.childrenPage, this.labelChildren);
             this.labelChildren.ShowAll();
             // Container child notebook1.Gtk.Notebook+NotebookChild
-            this.ocmquerypage51 = new ocmgtk.OCMQueryPage5();
-            this.ocmquerypage51.Sensitive = false;
-            this.ocmquerypage51.Events = ((Gdk.EventMask)(256));
-            this.ocmquerypage51.Name = "ocmquerypage51";
-            this.notebook1.Add(this.ocmquerypage51);
-            Gtk.Notebook.NotebookChild w6 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.ocmquerypage51]));
+            this.attributePage = new ocmgtk.OCMQueryPage5();
+            this.attributePage.Events = ((Gdk.EventMask)(256));
+            this.attributePage.Name = "attributePage";
+            this.notebook1.Add(this.attributePage);
+            Gtk.Notebook.NotebookChild w6 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.attributePage]));
             w6.Position = 4;
             // Notebook tab
             this.label4 = new Gtk.Label();
             this.label4.Name = "label4";
             this.label4.LabelProp = Mono.Unix.Catalog.GetString("Attributes");
-            this.notebook1.SetTabLabel(this.ocmquerypage51, this.label4);
+            this.notebook1.SetTabLabel(this.attributePage, this.label4);
             this.label4.ShowAll();
             w1.Add(this.notebook1);
             Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(w1[this.notebook1]));

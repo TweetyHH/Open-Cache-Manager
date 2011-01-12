@@ -88,7 +88,6 @@ namespace ocmgtk {
             this.allCacheRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("All Cache Types"));
             this.allCacheRadio.CanFocus = true;
             this.allCacheRadio.Name = "allCacheRadio";
-            this.allCacheRadio.Active = true;
             this.allCacheRadio.DrawIndicator = true;
             this.allCacheRadio.UseUnderline = true;
             this.allCacheRadio.Group = new GLib.SList(System.IntPtr.Zero);

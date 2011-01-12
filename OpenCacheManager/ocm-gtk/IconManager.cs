@@ -44,6 +44,7 @@ namespace ocmgtk
 		private static Pixbuf GREENPIN_S = new Pixbuf ("./icons/scalable/greenpin.svg", 24, 24);
 		private static Pixbuf BLUEPIN_S = new Pixbuf ("./icons/scalable/bluepin.svg", 24, 24);
 		private static Pixbuf REDPIN_S = new Pixbuf ("./icons/scalable/pushpin.svg", 24, 24);
+		
 
 		private static string TRAD_MI = "traditional.png";
 		private static string CITO_MI = "cito.png";
@@ -186,7 +187,19 @@ namespace ocmgtk
 			return "pushpin.png";
 		}
 		
+		public static Pixbuf GetYAttrIcon(String attrname)
+		{
+			return new Pixbuf ("./icons/scalable/attributes/yes_" + attrname + ".svg", 32, 32);
+		}
 		
+		public static Pixbuf GetNAttrIcon(String attrname)
+		{
+			return new Pixbuf ("./icons/scalable/attributes/no_" + attrname + ".svg", 32, 32);
+		}
 		
+		public static Pixbuf GetDisAttrIcon(String attrname)
+		{
+			return new Pixbuf ("./icons/scalable/attributes/dis_" + attrname + ".svg", 32, 32);
+		}
 	}
 }

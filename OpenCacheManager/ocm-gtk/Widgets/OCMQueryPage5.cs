@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using System.Collections.Generic;
 
 namespace ocmgtk
 {
@@ -27,5 +28,73 @@ namespace ocmgtk
 		{
 			this.Build ();
 		}
+		
+		public List<string> IncludeAttributes
+		{
+			get
+			{
+				List<string> attrs = new List<string>();
+				if (winterAttr.IsFiltered && winterAttr.IsIncluded)
+					attrs.Add(winterAttr.AttributeName);
+				if (maintenanceAttr.IsFiltered && maintenanceAttr.IsIncluded)
+					attrs.Add(maintenanceAttr.AttributeName);
+				if (nightAttr.IsFiltered && nightAttr.IsIncluded)
+					attrs.Add(nightAttr.AttributeName);
+				if (beaconFilt.IsFiltered && beaconFilt.IsIncluded)
+					attrs.Add(beaconFilt.AttributeName);
+				return attrs;
+			}
+			set
+			{
+				if (value.Contains(winterAttr.AttributeName))
+					winterAttr.IsIncluded = true;
+				if (value.Contains(maintenanceAttr.AttributeName))
+					maintenanceAttr.IsIncluded = true;
+				if (value.Contains(nightAttr.AttributeName))
+					nightAttr.IsIncluded = true;
+				if (value.Contains(beaconFilt.AttributeName))
+					beaconFilt.IsIncluded = true;	
+			}
+		}
+		
+		public List<string> ExcludeAttributes
+		{
+			get
+			{
+				List<string> attrs = new List<string>();
+				if (winterAttr.IsFiltered && !winterAttr.IsIncluded)
+					attrs.Add(winterAttr.AttributeName);
+				if (maintenanceAttr.IsFiltered && !maintenanceAttr.IsIncluded)
+					attrs.Add(maintenanceAttr.AttributeName);
+				if (nightAttr.IsFiltered && !nightAttr.IsIncluded)
+					attrs.Add(nightAttr.AttributeName);
+				if (beaconFilt.IsFiltered && !beaconFilt.IsIncluded)
+					attrs.Add(beaconFilt.AttributeName);
+				return attrs;
+			}
+			set
+			{	
+				if (value.Contains(winterAttr.AttributeName))
+					winterAttr.IsIncluded = false;
+				if (value.Contains(maintenanceAttr.AttributeName))
+					maintenanceAttr.IsIncluded = false;
+				if (value.Contains(nightAttr.AttributeName))
+					nightAttr.IsIncluded = false;
+				if (value.Contains(beaconFilt.AttributeName))
+					beaconFilt.IsIncluded = false;			
+			}
+		}
+		
+		/*public List<string> ExcludeAttributes
+		{
+			get
+			{
+				
+			}
+			set
+			{
+				
+			}
+		}*/
 	}
 }

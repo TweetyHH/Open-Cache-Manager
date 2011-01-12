@@ -51,6 +51,8 @@ namespace ocmengine
 		public const String KEY_NOTES = "notes";
 		public const String KEY_CORRECTED = "corrected";
 		public const String KEY_NOCORRECTED = "nocorreced";
+		public const String KEY_INCATTRS = "incattrs";
+		public const String KEY_EXCATTRS = "excattrs";
 		public FilterList ()
 		{
 			
@@ -253,8 +255,6 @@ namespace ocmengine
 			{
 				builder.Append(" AND GEOCACHE.corlat IS NULL OR GEOCACHE.corlat = '-1'");
 			}
-
-
 			 
 			System.Console.WriteLine(builder.ToString());
 			return builder.ToString ();

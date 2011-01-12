@@ -180,6 +180,7 @@ namespace ocmengine
 				sql += m_filter.BuildWhereClause();
 			if (null != m_bmrkList)
 				sql += String.Format(BMRK_FILTER, m_bmrkList);
+			System.Console.WriteLine(sql);
 			List<Geocache> caches =  GetCacheList(sql);
 			if (this.Complete != null)
 				this.Complete(this, new EventArgs());
@@ -638,6 +639,26 @@ namespace ocmengine
 					else 
 						return false;
 				}
+				if (m_filter.Contains(FilterList.KEY_INCATTRS))
+				{
+					List<String> filtattrs = m_filter.GetCriteria(FilterList.KEY_INCATTRS) as List<String>;
+					List<String> cacheattrs = this.GetIncAttributes(cache.Name);
+					foreach(String attribute in filtattrs)
+					{
+						if (!cacheattrs.Contains(attribute))
+							return false;
+					}
+				}
+				if (m_filter.Contains(FilterList.KEY_EXCATTRS))
+				{
+					List<String> filtattrs = m_filter.GetCriteria(FilterList.KEY_EXCATTRS) as List<String>;
+					List<String> cacheattrs = this.GetExcAttributes(cache.Name);
+					foreach(String attribute in filtattrs)
+					{
+						if (!cacheattrs.Contains(attribute))
+							return false;
+					}
+				}
 			}
 			return true;
 		}
@@ -792,6 +813,48 @@ namespace ocmengine
 				attr.Include = bool.Parse(val);
 				attr.AttrValue = rdr.GetString(2);
 				list.Add(attr);
+			}
+			CloseConnection(ref rdr, ref cmd, ref conn);
+			return list;
+		}
+		
+		public List<string> GetIncAttributes(String name)
+		{
+			List<string> list = new List<string>();
+			IDbConnection conn = OpenConnection();
+			IDbCommand cmd = conn.CreateCommand();	
+			cmd.CommandText = String.Format(GET_ATTRIBUTES, name);
+			IDataReader rdr = cmd.ExecuteReader();
+			while (rdr.Read())
+			{
+				string val = rdr.GetString(1);
+				bool include = bool.Parse(val);
+				if (include)
+				{
+					list.Add(rdr.GetString(2));
+				}
+				CacheAttribute attr = new CacheAttribute();
+			}
+			CloseConnection(ref rdr, ref cmd, ref conn);
+			return list;
+		}
+		
+		public List<string> GetExcAttributes(String name)
+		{
+			List<string> list = new List<string>();
+			IDbConnection conn = OpenConnection();
+			IDbCommand cmd = conn.CreateCommand();	
+			cmd.CommandText = String.Format(GET_ATTRIBUTES, name);
+			IDataReader rdr = cmd.ExecuteReader();
+			while (rdr.Read())
+			{
+				string val = rdr.GetString(1);
+				bool include = bool.Parse(val);
+				if (!include)
+				{
+					list.Add(rdr.GetString(2));
+				}
+				CacheAttribute attr = new CacheAttribute();
 			}
 			CloseConnection(ref rdr, ref cmd, ref conn);
 			return list;
