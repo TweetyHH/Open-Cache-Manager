@@ -24,7 +24,7 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class AttributeFilterWidget : Gtk.Bin
 	{
-		private enum AttrState { DIS, NO, YES}
+		public enum AttrState { DIS, NO, YES}
 		
 		AttrState m_attrState = AttrState.DIS;
 		string m_attribute;
@@ -32,9 +32,10 @@ namespace ocmgtk
 		{
 			set { 
 				m_attribute = value;
-				m_disicon = IconManager.GetDisAttrIcon(value);
-				m_noicon = IconManager.GetNAttrIcon(value);
-				m_yesicon = IconManager.GetYAttrIcon(value);
+				String iconName = m_attribute.Replace(' ', '_');
+				m_disicon = IconManager.GetDisAttrIcon(iconName);
+				m_noicon = IconManager.GetNAttrIcon(iconName);
+				m_yesicon = IconManager.GetYAttrIcon(iconName);
 				attrIcon.Pixbuf = m_disicon;
 				this.TooltipText = value;
 			}
@@ -59,23 +60,25 @@ namespace ocmgtk
 					return true;
 				return false;
 			}
-			set
-			{
-				System.Console.WriteLine("Calling set");
-				if (value)
-				{
-					m_attrState = AttributeFilterWidget.AttrState.YES;
-					attrIcon.Pixbuf = m_yesicon;
-				}
-				else
-				{
-					m_attrState = AttributeFilterWidget.AttrState.NO;
-					attrIcon.Pixbuf = m_noicon;
-				}
-			}
+		}
+		
+		public void SetState(AttrState state)
+		{
+			m_attrState = state;
+			if (m_attrState == AttributeFilterWidget.AttrState.DIS)
+				attrIcon.Pixbuf = m_disicon;
+			else if (m_attrState == AttributeFilterWidget.AttrState.YES)
+				attrIcon.Pixbuf = m_yesicon;
+			else
+				attrIcon.Pixbuf = m_noicon;
 		}
 		
 		protected virtual void OnClick (object sender, System.EventArgs e)
+		{
+			ToggleAttrState ();
+		}
+		
+		private void ToggleAttrState ()
 		{
 			if (m_attrState == AttributeFilterWidget.AttrState.DIS)
 			{
@@ -93,6 +96,7 @@ namespace ocmgtk
 				attrIcon.Pixbuf = m_disicon;
 			}
 		}
+		
 		
 		
 		private Pixbuf m_disicon;

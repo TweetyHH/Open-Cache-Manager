@@ -256,7 +256,7 @@ namespace ocmengine
 				builder.Append(" AND GEOCACHE.corlat IS NULL OR GEOCACHE.corlat = '-1'");
 			}
 			 
-			System.Console.WriteLine(builder.ToString());
+			//System.Console.WriteLine(builder.ToString());
 			return builder.ToString ();
 		}
 	}

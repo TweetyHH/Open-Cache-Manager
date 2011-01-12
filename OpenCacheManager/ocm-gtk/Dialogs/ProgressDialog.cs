@@ -76,6 +76,7 @@ namespace ocmgtk
 			// Count total files
 			m_progress = 0;
 			m_total = 0;
+			int fileCount = 0;
 			multiFileLabel.Visible = true;
 			
 			// Prescan for zip files and uncompress
@@ -108,14 +109,12 @@ namespace ocmgtk
 				{
 					FileStream fs =  System.IO.File.OpenRead (files[i]);
 					int total = m_parser.preParse(fs);
-					System.Console.WriteLine("RunningTOTAL:" + total);
 					m_total += total;
-					
+					fileCount ++;
 					fs.Close();
 				}
 			}
 			
-			System.Console.WriteLine("TOTAL:" + m_total);
 			for (int i=0; i < files.Length; i++)
 			{
 				if (files[i].EndsWith(".gpx"))
@@ -123,7 +122,7 @@ namespace ocmgtk
 					FileStream fs =  System.IO.File.OpenRead (files[i]);
 					// Need to reopen the file
 					fs =  System.IO.File.OpenRead (files[i]);
-					multiFileLabel.Text = String.Format(Catalog.GetString("Processing File {0} of {1}"), i + 1, files.Length);
+					multiFileLabel.Text = String.Format(Catalog.GetString("Processing File {0} of {1}"), i + 1, fileCount);
 					ParseFile(fs, store);
 					fs.Close();
 					if (deleteOnCompletion)

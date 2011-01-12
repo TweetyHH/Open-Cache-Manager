@@ -610,40 +610,40 @@
       <DeployService-HasPathReferences>true</DeployService-HasPathReferences>
       <DeployService-TargetDirectoryId>Binaries</DeployService-TargetDirectoryId>
     </Resource>
-    <Resource Include="icons\scalable\attributes\yes_Recommended at night.svg">
+    <Resource Include="icons\scalable\attributes\yes_Recommended_at_night.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\scalable\attributes\yes_Needs maintenance.svg">
+    <Resource Include="icons\scalable\attributes\yes_Needs_maintenance.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\scalable\attributes\no_Recommended at night.svg">
+    <Resource Include="icons\scalable\attributes\no_Recommended_at_night.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\scalable\attributes\no_Needs maintenance.svg">
+    <Resource Include="icons\scalable\attributes\no_Needs_maintenance.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\scalable\attributes\dis_Recommended at night.svg">
+    <Resource Include="icons\scalable\attributes\dis_Recommended_at_night.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\scalable\attributes\dis_Needs maintenance.svg">
+    <Resource Include="icons\scalable\attributes\dis_Needs_maintenance.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\scalable\attributes\yes_Wireless Beacon.svg">
+    <Resource Include="icons\scalable\attributes\yes_Wireless_Beacon.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\scalable\attributes\no_Wireless Beacon.svg">
+    <Resource Include="icons\scalable\attributes\no_Wireless_Beacon.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\scalable\attributes\dis_Wireless Beacon.svg">
+    <Resource Include="icons\scalable\attributes\dis_Wireless_Beacon.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\scalable\attributes\yes_Available during winter.svg">
+    <Resource Include="icons\scalable\attributes\yes_Available_during_winter.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\scalable\attributes\no_Available during winter.svg">
+    <Resource Include="icons\scalable\attributes\no_Available_during_winter.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\scalable\attributes\dis_Available during winter.svg">
+    <Resource Include="icons\scalable\attributes\dis_Available_during_winter.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

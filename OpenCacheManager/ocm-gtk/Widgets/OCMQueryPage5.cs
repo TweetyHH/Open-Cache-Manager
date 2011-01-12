@@ -47,13 +47,13 @@ namespace ocmgtk
 			set
 			{
 				if (value.Contains(winterAttr.AttributeName))
-					winterAttr.IsIncluded = true;
+					winterAttr.SetState(AttributeFilterWidget.AttrState.YES);
 				if (value.Contains(maintenanceAttr.AttributeName))
-					maintenanceAttr.IsIncluded = true;
+					maintenanceAttr.SetState(AttributeFilterWidget.AttrState.YES);
 				if (value.Contains(nightAttr.AttributeName))
-					nightAttr.IsIncluded = true;
+					nightAttr.SetState(AttributeFilterWidget.AttrState.YES);
 				if (value.Contains(beaconFilt.AttributeName))
-					beaconFilt.IsIncluded = true;	
+					beaconFilt.SetState(AttributeFilterWidget.AttrState.YES);	
 			}
 		}
 		
@@ -75,13 +75,13 @@ namespace ocmgtk
 			set
 			{	
 				if (value.Contains(winterAttr.AttributeName))
-					winterAttr.IsIncluded = false;
+					winterAttr.SetState(AttributeFilterWidget.AttrState.NO);
 				if (value.Contains(maintenanceAttr.AttributeName))
-					maintenanceAttr.IsIncluded = false;
+					maintenanceAttr.SetState(AttributeFilterWidget.AttrState.NO);
 				if (value.Contains(nightAttr.AttributeName))
-					nightAttr.IsIncluded = false;
+					nightAttr.SetState(AttributeFilterWidget.AttrState.NO);
 				if (value.Contains(beaconFilt.AttributeName))
-					beaconFilt.IsIncluded = false;			
+					beaconFilt.SetState(AttributeFilterWidget.AttrState.NO);		
 			}
 		}
 		

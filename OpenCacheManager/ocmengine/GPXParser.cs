@@ -285,7 +285,6 @@ namespace ocmengine
 			{
 				pt.URL = new Uri(reader.GetAttribute("href"));
 				pt.URLName = pt.Name;
-				System.Console.WriteLine(pt.URL);
 			}
 			else if (reader.Name == "urlname")
 			{
@@ -441,7 +440,6 @@ namespace ocmengine
 			if (reader.LocalName == "cache" || reader.LocalName == "geocache")
 			{
 				string avail = reader.GetAttribute("available");
-				string status = reader.GetAttribute("status");
 				string arch = reader.GetAttribute("archived");
 				if (!String.IsNullOrEmpty(avail))
 					cache.Available = Boolean.Parse(avail);
@@ -456,7 +454,6 @@ namespace ocmengine
 			else if (reader.LocalName == "name")
 			{
 				cache.CacheName = reader.ReadElementContentAsString();
-				System.Console.WriteLine(cache.CacheName);
 			}
 			else if (reader.LocalName == "owner")
 			{

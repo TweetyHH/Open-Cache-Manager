@@ -180,7 +180,6 @@ namespace ocmengine
 				sql += m_filter.BuildWhereClause();
 			if (null != m_bmrkList)
 				sql += String.Format(BMRK_FILTER, m_bmrkList);
-			System.Console.WriteLine(sql);
 			List<Geocache> caches =  GetCacheList(sql);
 			if (this.Complete != null)
 				this.Complete(this, new EventArgs());
@@ -833,7 +832,6 @@ namespace ocmengine
 				{
 					list.Add(rdr.GetString(2));
 				}
-				CacheAttribute attr = new CacheAttribute();
 			}
 			CloseConnection(ref rdr, ref cmd, ref conn);
 			return list;
@@ -854,7 +852,6 @@ namespace ocmengine
 				{
 					list.Add(rdr.GetString(2));
 				}
-				CacheAttribute attr = new CacheAttribute();
 			}
 			CloseConnection(ref rdr, ref cmd, ref conn);
 			return list;

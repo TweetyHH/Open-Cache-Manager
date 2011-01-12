@@ -156,7 +156,6 @@ namespace ocmengine
 				int degLon = int.Parse(match.Groups[5].Value, CultureInfo.InvariantCulture);
 				if (match.Groups[4].Value == "W")
 					degLon = degLon * -1;
-				System.Console.WriteLine(degLon);
 				double minLon = double.Parse(match.Groups[6].Value, CultureInfo.InvariantCulture);
 				DegreeMinutes lon = new DegreeMinutes(degLon, minLon);
 				
@@ -309,8 +308,6 @@ namespace ocmengine
 			int index = cmd.IndexOf(" ");
 			string proc = cmd.Substring(0, index);
 			string args = cmd.Substring(index);
-			System.Console.WriteLine(proc);
-			System.Console.WriteLine(args);
 			return new System.Diagnostics.ProcessStartInfo(proc, args);
 		}
 	}	
