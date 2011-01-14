@@ -361,6 +361,7 @@ namespace ocmgtk
 			m_monitor.StartFiltering ();
 			m_QuickFilter.Refilter ();
 			m_monitor.UpdateStatusBar ();
+			m_monitor.GetNearByCaches();
 		}
 
 		private int TitleCompare (TreeModel model, TreeIter tia, TreeIter tib)

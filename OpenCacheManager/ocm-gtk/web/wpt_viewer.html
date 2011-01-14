@@ -162,8 +162,12 @@ body {
 			pois.destroy();  
 		if (notify)	    
 			notify.destroy();
+		if (extra)
+			extra.destroy();
     	pois = new OpenLayers.Layer.Markers( "Waypoints" );
+    	extra = new OpenLayers.Layer.Markers("Other Geocaches");
     	map.addLayer(pois);
+    	map.addLayer(extra);
     }
 
 	function addMarker(lat, lon, icon, wptName, wptFullName, wptDescription, mode)

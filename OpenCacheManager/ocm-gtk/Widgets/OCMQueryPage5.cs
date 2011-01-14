@@ -29,7 +29,7 @@ namespace ocmgtk
 			this.Build ();
 		}
 		
-		public List<string> IncludeAttributes
+		public List<string> MustHaveIncludeAttributes
 		{
 			get
 			{
@@ -42,6 +42,18 @@ namespace ocmgtk
 					attrs.Add(nightAttr.AttributeName);
 				if (beaconFilt.IsFiltered && beaconFilt.IsIncluded)
 					attrs.Add(beaconFilt.AttributeName);
+				if (dogFilt.IsFiltered && dogFilt.IsIncluded)
+					attrs.Add(dogFilt.AttributeName);
+				if (bikeFilt.IsFiltered && bikeFilt.IsIncluded)
+					attrs.Add(bikeFilt.AttributeName);
+				if (feeFilt.IsFiltered && feeFilt.IsIncluded)
+					attrs.Add(feeFilt.AttributeName);
+				if (kidFilt.IsFiltered && kidFilt.IsIncluded)
+					attrs.Add(kidFilt.AttributeName);
+				if (fireFilt.IsFiltered && fireFilt.IsIncluded)
+					attrs.Add(fireFilt.AttributeName);
+				if (timeFilt.IsFiltered && timeFilt.IsIncluded)
+					attrs.Add(timeFilt.AttributeName);
 				return attrs;
 			}
 			set
@@ -54,22 +66,92 @@ namespace ocmgtk
 					nightAttr.SetState(AttributeFilterWidget.AttrState.YES);
 				if (value.Contains(beaconFilt.AttributeName))
 					beaconFilt.SetState(AttributeFilterWidget.AttrState.YES);	
+				if (value.Contains(dogFilt.AttributeName))
+					dogFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(bikeFilt.AttributeName))
+					bikeFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(feeFilt.AttributeName))
+					feeFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(kidFilt.AttributeName))
+					kidFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(fireFilt.AttributeName))
+					fireFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(timeFilt.AttributeName))
+					timeFilt.SetState(AttributeFilterWidget.AttrState.YES);
 			}
 		}
 		
-		public List<string> ExcludeAttributes
+		public List<string> MustNotHaveIncludeAttributes
+		{
+			get
+			{
+				List<string> attrs = new List<string>();
+				if (winterEAttr.IsFiltered && winterEAttr.IsIncluded)
+					attrs.Add(winterEAttr.AttributeName);
+				if (maintenanceEAttr.IsFiltered && maintenanceEAttr.IsIncluded)
+					attrs.Add(maintenanceEAttr.AttributeName);
+				if (nightEAttr.IsFiltered && nightEAttr.IsIncluded)
+					attrs.Add(nightEAttr.AttributeName);
+				if (beaconEFilt.IsFiltered && beaconEFilt.IsIncluded)
+					attrs.Add(beaconEFilt.AttributeName);
+				if (dogEFilt.IsFiltered && dogEFilt.IsIncluded)
+					attrs.Add(dogEFilt.AttributeName);
+				if (bikeEFilt.IsFiltered && bikeEFilt.IsIncluded)
+					attrs.Add(bikeEFilt.AttributeName);
+				if (feeEFilt.IsFiltered && feeEFilt.IsIncluded)
+					attrs.Add(feeEFilt.AttributeName);
+				if (kidEFilt.IsFiltered && kidEFilt.IsIncluded)
+					attrs.Add(kidEFilt.AttributeName);
+				if (fireEFilt.IsFiltered && fireEFilt.IsIncluded)
+					attrs.Add(fireEFilt.AttributeName);
+				if (timeEFilt.IsFiltered && timeEFilt.IsIncluded)
+					attrs.Add(timeEFilt.AttributeName);
+				return attrs;
+			}
+			set
+			{
+				if (value.Contains(winterEAttr.AttributeName))
+					winterEAttr.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(maintenanceEAttr.AttributeName))
+					maintenanceEAttr.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(nightEAttr.AttributeName))
+					nightEAttr.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(beaconEFilt.AttributeName))
+					beaconEFilt.SetState(AttributeFilterWidget.AttrState.YES);	
+				if (value.Contains(dogEFilt.AttributeName))
+					dogEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(bikeEFilt.AttributeName))
+					bikeEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(feeEFilt.AttributeName))
+					feeEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(kidEFilt.AttributeName))
+					kidEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(fireEFilt.AttributeName))
+					fireEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(timeEFilt.AttributeName))
+					timeEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+			}
+		}
+		
+		public List<string> ExcludeMustHaveAttributes
 		{
 			get
 			{
 				List<string> attrs = new List<string>();
 				if (winterAttr.IsFiltered && !winterAttr.IsIncluded)
 					attrs.Add(winterAttr.AttributeName);
-				if (maintenanceAttr.IsFiltered && !maintenanceAttr.IsIncluded)
-					attrs.Add(maintenanceAttr.AttributeName);
 				if (nightAttr.IsFiltered && !nightAttr.IsIncluded)
 					attrs.Add(nightAttr.AttributeName);
-				if (beaconFilt.IsFiltered && !beaconFilt.IsIncluded)
-					attrs.Add(beaconFilt.AttributeName);
+				if (dogFilt.IsFiltered && !dogFilt.IsIncluded)
+					attrs.Add(dogFilt.AttributeName);
+				if (bikeFilt.IsFiltered && !bikeFilt.IsIncluded)
+					attrs.Add(bikeFilt.AttributeName);
+				if (kidFilt.IsFiltered && !kidFilt.IsIncluded)
+					attrs.Add(kidFilt.AttributeName);
+				if (fireFilt.IsFiltered && !fireFilt.IsIncluded)
+					attrs.Add(fireFilt.AttributeName);
+				if (timeFilt.IsFiltered && !timeFilt.IsIncluded)
+					attrs.Add(timeFilt.AttributeName);
 				return attrs;
 			}
 			set
@@ -81,20 +163,58 @@ namespace ocmgtk
 				if (value.Contains(nightAttr.AttributeName))
 					nightAttr.SetState(AttributeFilterWidget.AttrState.NO);
 				if (value.Contains(beaconFilt.AttributeName))
-					beaconFilt.SetState(AttributeFilterWidget.AttrState.NO);		
+					beaconFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(dogFilt.AttributeName))
+					dogFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(bikeFilt.AttributeName))
+					bikeFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(timeFilt.AttributeName))
+					timeFilt.SetState(AttributeFilterWidget.AttrState.NO);
 			}
 		}
 		
-		/*public List<string> ExcludeAttributes
+		public List<string> ExcludeMustNotHaveAttributes
 		{
 			get
 			{
-				
+				List<string> attrs = new List<string>();
+				if (winterEAttr.IsFiltered && !winterEAttr.IsIncluded)
+					attrs.Add(winterEAttr.AttributeName);
+				if (nightEAttr.IsFiltered && !nightAttr.IsIncluded)
+					attrs.Add(nightEAttr.AttributeName);
+				if (dogEFilt.IsFiltered && !dogEFilt.IsIncluded)
+					attrs.Add(dogEFilt.AttributeName);
+				if (bikeEFilt.IsFiltered && !bikeEFilt.IsIncluded)
+					attrs.Add(bikeEFilt.AttributeName);
+				if (kidEFilt.IsFiltered && !kidEFilt.IsIncluded)
+					attrs.Add(kidEFilt.AttributeName);
+				if (fireEFilt.IsFiltered && !fireEFilt.IsIncluded)
+					attrs.Add(fireEFilt.AttributeName);
+				if (timeEFilt.IsFiltered && !timeEFilt.IsIncluded)
+					attrs.Add(timeEFilt.AttributeName);
+				return attrs;
 			}
 			set
-			{
-				
+			{	
+				if (value.Contains(winterEAttr.AttributeName))
+					winterEAttr.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(maintenanceEAttr.AttributeName))
+					maintenanceEAttr.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(nightEAttr.AttributeName))
+					nightEAttr.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(beaconEFilt.AttributeName))
+					beaconEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(dogEFilt.AttributeName))
+					dogEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(bikeEFilt.AttributeName))
+					bikeEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(kidEFilt.AttributeName))
+					kidEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(fireEFilt.AttributeName))
+					fireEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(timeEFilt.AttributeName))
+					timeEFilt.SetState(AttributeFilterWidget.AttrState.NO);
 			}
-		}*/
+		}
 	}
 }

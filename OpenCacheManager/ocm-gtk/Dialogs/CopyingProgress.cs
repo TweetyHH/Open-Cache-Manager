@@ -136,6 +136,12 @@ namespace ocmgtk
 					target.AddWaypoint(child);
 				}
 				
+				List<CacheAttribute> attributes = source.GetAttributes(cache.Name);
+				foreach (CacheAttribute attribute in attributes)
+				{
+					target.AddAttribute(attribute, cache.Name);
+				}
+				
 				if (isMove)
 					source.DeleteGeocacheAtomic(cache);
 			}

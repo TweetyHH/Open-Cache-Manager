@@ -26,6 +26,8 @@ namespace ocmengine
 	
 	public partial class CacheStore
 	{
+		private List<String> m_hasChildrenList = new List<String>();
+		
 		public class ReadCacheArgs:EventArgs
 		{
 			private Geocache m_cache;
@@ -180,6 +182,10 @@ namespace ocmengine
 				sql += m_filter.BuildWhereClause();
 			if (null != m_bmrkList)
 				sql += String.Format(BMRK_FILTER, m_bmrkList);
+			String prefilter = DoPrefilter();
+			if (null != prefilter)
+				sql += prefilter;
+			System.Console.WriteLine(sql);
 			List<Geocache> caches =  GetCacheList(sql);
 			if (this.Complete != null)
 				this.Complete(this, new EventArgs());
@@ -476,6 +482,7 @@ namespace ocmengine
 		
 		private List<Geocache> GetCacheList(String sql)
 		{
+			BuildHasChildrenList();
 			List<Geocache> pts = new List<Geocache>();
 			IDbConnection conn =  OpenConnection ();
 			IDbCommand command = conn.CreateCommand();
@@ -569,13 +576,7 @@ namespace ocmengine
 			val = reader.GetValue(29);
 			if (val is string)
 				cache.CorrectedLon = Double.Parse(val as string, CultureInfo.InvariantCulture);
-			val = reader.GetValue(30);
-			if (val != DBNull.Value)
-				cache.Children = true;
-			else
-				cache.Children = false;
-			
-			
+			cache.Children = m_hasChildrenList.Contains(cache.Name);
 			
 			
 			if (this.ReadCache != null)
@@ -589,6 +590,98 @@ namespace ocmengine
 			}
 			return cache;
 			
+		}
+		
+		private void BuildHasChildrenList()
+		{
+			m_hasChildrenList.Clear();
+			IDbConnection conn = OpenConnection();
+			IDbCommand cmd = conn.CreateCommand();	
+			cmd.CommandText = HASCHILDREN_LIST;
+			IDataReader rdr = cmd.ExecuteReader();
+			while (rdr.Read())
+			{
+				m_hasChildrenList.Add(rdr.GetString(0));
+			}
+			CloseConnection(ref rdr, ref cmd, ref conn);
+		}
+		
+		private string DoPrefilter()
+		{
+			if (m_filter == null)
+				return null;
+			
+			System.Text.StringBuilder preFilterList = new System.Text.StringBuilder();
+			bool atLeastOne = false;
+			preFilterList.Append(" AND GEOCACHE.name IN (");
+			if (m_filter.Contains(FilterList.KEY_INCATTRS))
+			{
+				BuildPreFilterList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='True' AND value IN (",
+				                    FilterList.KEY_INCATTRS,
+				                    preFilterList,
+				                    out atLeastOne);
+			}
+			if (m_filter.Contains(FilterList.KEY_EXCATTRS))
+			{
+				BuildPreFilterList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='False' AND value IN (", 
+				                    FilterList.KEY_EXCATTRS,
+				                    preFilterList,
+				                    out atLeastOne);
+				
+			}
+			/*if (m_filter.Contains(FilterList.KEY_INCNOATTRS))
+			{
+				BuildPreFilterList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='True' AND value IS NULL OR value NOT IN (", 
+				                    FilterList.KEY_INCNOATTRS,
+				                    preFilterList,
+				                    out atLeastOne);
+				
+			}*/
+			preFilterList.Append(")");
+			if (atLeastOne)
+				return preFilterList.ToString();
+			return null;
+		}
+		
+		private void BuildPreFilterList (String sql, String key, 
+		                                 System.Text.StringBuilder preFilterList, 
+		                                 out bool atLeastOne)
+		{
+				atLeastOne = true;
+				System.Text.StringBuilder builder = new System.Text.StringBuilder();
+				
+				List<String> incAttrs = m_filter.GetCriteria(key) as List<String>;
+				IEnumerator<String> ct = incAttrs.GetEnumerator();
+				builder.Append(sql);
+				bool firstDone = false;
+				while (ct.MoveNext())
+				{
+					if (!firstDone)
+						firstDone = true;
+					else
+						builder.Append(",");
+					builder.Append("'");
+					builder.Append(ct.Current);
+					builder.Append("'");
+				}
+				builder.Append(")");
+				
+				IDbConnection conn = OpenConnection();
+				IDbCommand cmd = conn.CreateCommand();	
+				cmd.CommandText = builder.ToString();
+				IDataReader rdr = cmd.ExecuteReader();
+				firstDone = false;
+				while (rdr.Read())
+				{
+					if (!firstDone)
+						firstDone = true;
+					else
+						preFilterList.Append(",");
+					preFilterList.Append("'");
+					preFilterList.Append(rdr.GetString(0));
+					preFilterList.Append("'");
+				}
+				CloseConnection(ref rdr, ref cmd, ref conn);
 		}
 		
 		private bool DoNonDBFilter (Geocache cache)
@@ -640,23 +733,64 @@ namespace ocmengine
 				}
 				if (m_filter.Contains(FilterList.KEY_INCATTRS))
 				{
+					// Don't do the additional filter processing if there's only one attribute filter,
+					// the prefilter stage would have already handled it.
 					List<String> filtattrs = m_filter.GetCriteria(FilterList.KEY_INCATTRS) as List<String>;
-					List<String> cacheattrs = this.GetIncAttributes(cache.Name);
-					foreach(String attribute in filtattrs)
+					if (filtattrs.Count > 1 || m_filter.Contains(FilterList.KEY_EXCATTRS))
 					{
-						if (!cacheattrs.Contains(attribute))
-							return false;
+						List<String> cacheattrs = this.GetIncAttributes(cache.Name);
+						foreach(String attribute in filtattrs)
+						{
+							if (!cacheattrs.Contains(attribute))
+								return false;
+						}
 					}
 				}
 				if (m_filter.Contains(FilterList.KEY_EXCATTRS))
 				{
 					List<String> filtattrs = m_filter.GetCriteria(FilterList.KEY_EXCATTRS) as List<String>;
-					List<String> cacheattrs = this.GetExcAttributes(cache.Name);
-					foreach(String attribute in filtattrs)
+					// Don't do the additional filter processing if there's only one attribute filter,
+					// the prefilter stage would have already handled it.
+					if (filtattrs.Count > 1 || m_filter.Contains(FilterList.KEY_INCATTRS))
 					{
-						if (!cacheattrs.Contains(attribute))
-							return false;
+						List<String> cacheattrs = this.GetExcAttributes(cache.Name);
+						foreach(String attribute in filtattrs)
+						{
+							if (!cacheattrs.Contains(attribute))
+								return false;
+						}
 					}
+					
+				}
+				if (m_filter.Contains(FilterList.KEY_INCNOATTRS))
+				{
+					// Don't do the additional filter processing if there's only one attribute filter,
+					// the prefilter stage would have already handled it.
+					List<String> filtattrs = m_filter.GetCriteria(FilterList.KEY_INCNOATTRS) as List<String>;
+					//if (filtattrs.Count > 1 || m_filter.Contains(FilterList.KEY_EXCATTRS))
+					//{
+						List<String> cacheattrs = this.GetIncAttributes(cache.Name);
+						foreach(String attribute in filtattrs)
+						{
+							if (cacheattrs.Contains(attribute))
+								return false;
+						}
+					//}
+				}
+				if (m_filter.Contains(FilterList.KEY_EXCNOATTRS))
+				{
+					// Don't do the additional filter processing if there's only one attribute filter,
+					// the prefilter stage would have already handled it.
+					List<String> filtattrs = m_filter.GetCriteria(FilterList.KEY_EXCNOATTRS) as List<String>;
+					//if (filtattrs.Count > 1 || m_filter.Contains(FilterList.KEY_EXCATTRS))
+					//{
+						List<String> cacheattrs = this.GetIncAttributes(cache.Name);
+						foreach(String attribute in filtattrs)
+						{
+							if (cacheattrs.Contains(attribute))
+								return false;
+						}
+					//}
 				}
 			}
 			return true;

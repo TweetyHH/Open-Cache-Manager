@@ -24,12 +24,12 @@ namespace ocmgtk {
             this.Name = "ocmgtk.AttributeFilterWidget";
             // Container child ocmgtk.AttributeFilterWidget.Gtk.Container+ContainerChild
             this.attrIconButton = new Gtk.Button();
-            this.attrIconButton.WidthRequest = 45;
-            this.attrIconButton.HeightRequest = 45;
+            this.attrIconButton.WidthRequest = 48;
+            this.attrIconButton.HeightRequest = 48;
             this.attrIconButton.CanFocus = true;
             this.attrIconButton.Name = "attrIconButton";
             this.attrIconButton.FocusOnClick = false;
-            this.attrIconButton.Relief = ((Gtk.ReliefStyle)(1));
+            this.attrIconButton.Relief = ((Gtk.ReliefStyle)(2));
             // Container child attrIconButton.Gtk.Container+ContainerChild
             this.attrIcon = new Gtk.Image();
             this.attrIcon.Name = "attrIcon";

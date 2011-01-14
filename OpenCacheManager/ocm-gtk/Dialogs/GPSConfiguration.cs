@@ -62,7 +62,6 @@ namespace ocmgtk
 			this.Build ();			
 			try
 			{
-				waypointWidget.PopulateMappings(config);
 				waypointWidget.ShowAll();
 				SavedGPSConf saved = new SavedGPSConf(config);
 				if ((saved.GetBabelFormat() == "garmin") && (saved.GetOutputFile() == "usb:"))

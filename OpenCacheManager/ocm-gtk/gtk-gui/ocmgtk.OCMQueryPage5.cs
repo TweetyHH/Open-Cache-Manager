@@ -27,11 +27,21 @@ namespace ocmgtk {
         
         private ocmgtk.AttributeFilterWidget beaconFilt;
         
+        private ocmgtk.AttributeFilterWidget bikeFilt;
+        
+        private ocmgtk.AttributeFilterWidget dogFilt;
+        
+        private ocmgtk.AttributeFilterWidget feeFilt;
+        
+        private ocmgtk.AttributeFilterWidget fireFilt;
+        
         private Gtk.HBox hbox1;
         
         private Gtk.Image image3;
         
         private Gtk.Label label1;
+        
+        private ocmgtk.AttributeFilterWidget kidFilt;
         
         private Gtk.Label label2;
         
@@ -39,9 +49,57 @@ namespace ocmgtk {
         
         private ocmgtk.AttributeFilterWidget nightAttr;
         
+        private ocmgtk.AttributeFilterWidget parkFilt;
+        
+        private ocmgtk.AttributeFilterWidget strollFilt;
+        
+        private ocmgtk.AttributeFilterWidget swimFilt;
+        
+        private ocmgtk.AttributeFilterWidget timeFilt;
+        
+        private ocmgtk.AttributeFilterWidget wchairFilt;
+        
         private ocmgtk.AttributeFilterWidget winterAttr;
         
         private Gtk.Label GtkLabel15;
+        
+        private Gtk.Frame frame1;
+        
+        private Gtk.Alignment GtkAlignment1;
+        
+        private Gtk.Table table1;
+        
+        private ocmgtk.AttributeFilterWidget beaconEFilt;
+        
+        private ocmgtk.AttributeFilterWidget bikeEFilt;
+        
+        private ocmgtk.AttributeFilterWidget dogEFilt;
+        
+        private ocmgtk.AttributeFilterWidget feeEFilt;
+        
+        private ocmgtk.AttributeFilterWidget fireEFilt;
+        
+        private Gtk.HBox hbox2;
+        
+        private Gtk.Image image4;
+        
+        private Gtk.Label label3;
+        
+        private ocmgtk.AttributeFilterWidget kidEFilt;
+        
+        private Gtk.Label label4;
+        
+        private ocmgtk.AttributeFilterWidget maintenanceEAttr;
+        
+        private ocmgtk.AttributeFilterWidget nightEAttr;
+        
+        private ocmgtk.AttributeFilterWidget swimEFilt;
+        
+        private ocmgtk.AttributeFilterWidget timeEFilt;
+        
+        private ocmgtk.AttributeFilterWidget winterEAttr;
+        
+        private Gtk.Label GtkLabel2;
         
         private Gtk.Table table3;
         
@@ -78,16 +136,14 @@ namespace ocmgtk {
             this.GtkAlignment.Name = "GtkAlignment";
             this.GtkAlignment.LeftPadding = ((uint)(12));
             // Container child GtkAlignment.Gtk.Container+ContainerChild
-            this.table2 = new Gtk.Table(((uint)(5)), ((uint)(5)), false);
-            this.table2.Name = "table2";
-            this.table2.RowSpacing = ((uint)(2));
-            this.table2.ColumnSpacing = ((uint)(2));
+            this.table2 = new Gtk.Table(((uint)(5)), ((uint)(12)), false);
             this.table2.BorderWidth = ((uint)(6));
             // Container child table2.Gtk.Table+TableChild
             this.beaconFilt = new ocmgtk.AttributeFilterWidget();
             this.beaconFilt.Events = ((Gdk.EventMask)(256));
             this.beaconFilt.Name = "beaconFilt";
             this.beaconFilt.AttributeName = "Wireless Beacon";
+            this.beaconFilt.CanExclude = false;
             this.table2.Add(this.beaconFilt);
             Gtk.Table.TableChild w1 = ((Gtk.Table.TableChild)(this.table2[this.beaconFilt]));
             w1.TopAttach = ((uint)(1));
@@ -97,6 +153,62 @@ namespace ocmgtk {
             w1.XOptions = ((Gtk.AttachOptions)(4));
             w1.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
+            this.bikeFilt = new ocmgtk.AttributeFilterWidget();
+            this.bikeFilt.Events = ((Gdk.EventMask)(256));
+            this.bikeFilt.Name = "bikeFilt";
+            this.bikeFilt.AttributeName = "Bicycles";
+            this.bikeFilt.CanExclude = true;
+            this.table2.Add(this.bikeFilt);
+            Gtk.Table.TableChild w2 = ((Gtk.Table.TableChild)(this.table2[this.bikeFilt]));
+            w2.TopAttach = ((uint)(1));
+            w2.BottomAttach = ((uint)(2));
+            w2.LeftAttach = ((uint)(5));
+            w2.RightAttach = ((uint)(6));
+            w2.XOptions = ((Gtk.AttachOptions)(4));
+            w2.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.dogFilt = new ocmgtk.AttributeFilterWidget();
+            this.dogFilt.Events = ((Gdk.EventMask)(256));
+            this.dogFilt.Name = "dogFilt";
+            this.dogFilt.AttributeName = "Dogs";
+            this.dogFilt.CanExclude = true;
+            this.table2.Add(this.dogFilt);
+            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table2[this.dogFilt]));
+            w3.TopAttach = ((uint)(1));
+            w3.BottomAttach = ((uint)(2));
+            w3.LeftAttach = ((uint)(4));
+            w3.RightAttach = ((uint)(5));
+            w3.XOptions = ((Gtk.AttachOptions)(4));
+            w3.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.feeFilt = new ocmgtk.AttributeFilterWidget();
+            this.feeFilt.Events = ((Gdk.EventMask)(256));
+            this.feeFilt.Name = "feeFilt";
+            this.feeFilt.AttributeName = "Access or parking fee";
+            this.feeFilt.CanExclude = false;
+            this.table2.Add(this.feeFilt);
+            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table2[this.feeFilt]));
+            w4.TopAttach = ((uint)(1));
+            w4.BottomAttach = ((uint)(2));
+            w4.LeftAttach = ((uint)(6));
+            w4.RightAttach = ((uint)(7));
+            w4.XOptions = ((Gtk.AttachOptions)(4));
+            w4.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.fireFilt = new ocmgtk.AttributeFilterWidget();
+            this.fireFilt.Events = ((Gdk.EventMask)(256));
+            this.fireFilt.Name = "fireFilt";
+            this.fireFilt.AttributeName = "Campfires";
+            this.fireFilt.CanExclude = true;
+            this.table2.Add(this.fireFilt);
+            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table2[this.fireFilt]));
+            w5.TopAttach = ((uint)(1));
+            w5.BottomAttach = ((uint)(2));
+            w5.LeftAttach = ((uint)(8));
+            w5.RightAttach = ((uint)(9));
+            w5.XOptions = ((Gtk.AttachOptions)(4));
+            w5.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
             this.hbox1 = new Gtk.HBox();
             this.hbox1.Name = "hbox1";
             this.hbox1.Spacing = 6;
@@ -105,81 +217,379 @@ namespace ocmgtk {
             this.image3.Name = "image3";
             this.image3.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-dialog-info", Gtk.IconSize.Button, 20);
             this.hbox1.Add(this.image3);
-            Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.hbox1[this.image3]));
-            w2.Position = 0;
-            w2.Expand = false;
-            w2.Fill = false;
+            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.hbox1[this.image3]));
+            w6.Position = 0;
+            w6.Expand = false;
+            w6.Fill = false;
             // Container child hbox1.Gtk.Box+BoxChild
             this.label1 = new Gtk.Label();
             this.label1.Name = "label1";
             this.label1.LabelProp = Mono.Unix.Catalog.GetString("Click on the attribute once to include it. Click twice to exclude it. Click three times to clear.");
             this.hbox1.Add(this.label1);
-            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.hbox1[this.label1]));
-            w3.Position = 1;
-            w3.Expand = false;
-            w3.Fill = false;
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.hbox1[this.label1]));
+            w7.Position = 1;
+            w7.Expand = false;
+            w7.Fill = false;
             this.table2.Add(this.hbox1);
-            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table2[this.hbox1]));
-            w4.RightAttach = ((uint)(5));
-            w4.XOptions = ((Gtk.AttachOptions)(0));
-            w4.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table2[this.hbox1]));
+            w8.RightAttach = ((uint)(12));
+            w8.XOptions = ((Gtk.AttachOptions)(0));
+            w8.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.kidFilt = new ocmgtk.AttributeFilterWidget();
+            this.kidFilt.Events = ((Gdk.EventMask)(256));
+            this.kidFilt.Name = "kidFilt";
+            this.kidFilt.AttributeName = "Recommended for kids";
+            this.kidFilt.CanExclude = true;
+            this.table2.Add(this.kidFilt);
+            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table2[this.kidFilt]));
+            w9.TopAttach = ((uint)(1));
+            w9.BottomAttach = ((uint)(2));
+            w9.LeftAttach = ((uint)(7));
+            w9.RightAttach = ((uint)(8));
+            w9.XOptions = ((Gtk.AttachOptions)(4));
+            w9.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.label2 = new Gtk.Label();
             this.label2.Name = "label2";
             this.table2.Add(this.label2);
-            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.table2[this.label2]));
-            w5.TopAttach = ((uint)(1));
-            w5.BottomAttach = ((uint)(2));
-            w5.LeftAttach = ((uint)(4));
-            w5.RightAttach = ((uint)(5));
-            w5.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.table2[this.label2]));
+            w10.TopAttach = ((uint)(1));
+            w10.BottomAttach = ((uint)(2));
+            w10.LeftAttach = ((uint)(11));
+            w10.RightAttach = ((uint)(12));
+            w10.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.maintenanceAttr = new ocmgtk.AttributeFilterWidget();
             this.maintenanceAttr.Events = ((Gdk.EventMask)(256));
             this.maintenanceAttr.Name = "maintenanceAttr";
             this.maintenanceAttr.AttributeName = "Needs maintenance";
+            this.maintenanceAttr.CanExclude = false;
             this.table2.Add(this.maintenanceAttr);
-            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.table2[this.maintenanceAttr]));
-            w6.TopAttach = ((uint)(1));
-            w6.BottomAttach = ((uint)(2));
-            w6.LeftAttach = ((uint)(1));
-            w6.RightAttach = ((uint)(2));
-            w6.XOptions = ((Gtk.AttachOptions)(4));
-            w6.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w11 = ((Gtk.Table.TableChild)(this.table2[this.maintenanceAttr]));
+            w11.TopAttach = ((uint)(1));
+            w11.BottomAttach = ((uint)(2));
+            w11.LeftAttach = ((uint)(1));
+            w11.RightAttach = ((uint)(2));
+            w11.XOptions = ((Gtk.AttachOptions)(4));
+            w11.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.nightAttr = new ocmgtk.AttributeFilterWidget();
             this.nightAttr.Events = ((Gdk.EventMask)(256));
             this.nightAttr.Name = "nightAttr";
             this.nightAttr.AttributeName = "Recommended at night";
+            this.nightAttr.CanExclude = true;
             this.table2.Add(this.nightAttr);
-            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.table2[this.nightAttr]));
-            w7.TopAttach = ((uint)(1));
-            w7.BottomAttach = ((uint)(2));
-            w7.LeftAttach = ((uint)(2));
-            w7.RightAttach = ((uint)(3));
-            w7.XOptions = ((Gtk.AttachOptions)(4));
-            w7.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w12 = ((Gtk.Table.TableChild)(this.table2[this.nightAttr]));
+            w12.TopAttach = ((uint)(1));
+            w12.BottomAttach = ((uint)(2));
+            w12.LeftAttach = ((uint)(2));
+            w12.RightAttach = ((uint)(3));
+            w12.XOptions = ((Gtk.AttachOptions)(4));
+            w12.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.parkFilt = new ocmgtk.AttributeFilterWidget();
+            this.parkFilt.Events = ((Gdk.EventMask)(256));
+            this.parkFilt.Name = "parkFilt";
+            this.parkFilt.AttributeName = "Parking available";
+            this.parkFilt.CanExclude = true;
+            this.table2.Add(this.parkFilt);
+            Gtk.Table.TableChild w13 = ((Gtk.Table.TableChild)(this.table2[this.parkFilt]));
+            w13.TopAttach = ((uint)(2));
+            w13.BottomAttach = ((uint)(3));
+            w13.XOptions = ((Gtk.AttachOptions)(4));
+            w13.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.strollFilt = new ocmgtk.AttributeFilterWidget();
+            this.strollFilt.Events = ((Gdk.EventMask)(256));
+            this.strollFilt.Name = "strollFilt";
+            this.strollFilt.AttributeName = "Stroller accessible";
+            this.strollFilt.CanExclude = true;
+            this.table2.Add(this.strollFilt);
+            Gtk.Table.TableChild w14 = ((Gtk.Table.TableChild)(this.table2[this.strollFilt]));
+            w14.TopAttach = ((uint)(2));
+            w14.BottomAttach = ((uint)(3));
+            w14.LeftAttach = ((uint)(1));
+            w14.RightAttach = ((uint)(2));
+            w14.XOptions = ((Gtk.AttachOptions)(4));
+            w14.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.swimFilt = new ocmgtk.AttributeFilterWidget();
+            this.swimFilt.Events = ((Gdk.EventMask)(256));
+            this.swimFilt.Name = "swimFilt";
+            this.swimFilt.AttributeName = "May require swimming";
+            this.swimFilt.CanExclude = false;
+            this.table2.Add(this.swimFilt);
+            Gtk.Table.TableChild w15 = ((Gtk.Table.TableChild)(this.table2[this.swimFilt]));
+            w15.TopAttach = ((uint)(1));
+            w15.BottomAttach = ((uint)(2));
+            w15.LeftAttach = ((uint)(10));
+            w15.RightAttach = ((uint)(11));
+            w15.XOptions = ((Gtk.AttachOptions)(4));
+            w15.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.timeFilt = new ocmgtk.AttributeFilterWidget();
+            this.timeFilt.Events = ((Gdk.EventMask)(256));
+            this.timeFilt.Name = "timeFilt";
+            this.timeFilt.AttributeName = "Takes less than an hour";
+            this.timeFilt.CanExclude = true;
+            this.table2.Add(this.timeFilt);
+            Gtk.Table.TableChild w16 = ((Gtk.Table.TableChild)(this.table2[this.timeFilt]));
+            w16.TopAttach = ((uint)(1));
+            w16.BottomAttach = ((uint)(2));
+            w16.LeftAttach = ((uint)(9));
+            w16.RightAttach = ((uint)(10));
+            w16.XOptions = ((Gtk.AttachOptions)(4));
+            w16.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.wchairFilt = new ocmgtk.AttributeFilterWidget();
+            this.wchairFilt.Events = ((Gdk.EventMask)(256));
+            this.wchairFilt.Name = "wchairFilt";
+            this.wchairFilt.AttributeName = "Wheelchair accessible";
+            this.wchairFilt.CanExclude = true;
+            this.table2.Add(this.wchairFilt);
+            Gtk.Table.TableChild w17 = ((Gtk.Table.TableChild)(this.table2[this.wchairFilt]));
+            w17.TopAttach = ((uint)(2));
+            w17.BottomAttach = ((uint)(3));
+            w17.LeftAttach = ((uint)(2));
+            w17.RightAttach = ((uint)(3));
+            w17.XOptions = ((Gtk.AttachOptions)(4));
+            w17.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.winterAttr = new ocmgtk.AttributeFilterWidget();
             this.winterAttr.Events = ((Gdk.EventMask)(256));
             this.winterAttr.Name = "winterAttr";
             this.winterAttr.AttributeName = "Available during winter";
+            this.winterAttr.CanExclude = true;
             this.table2.Add(this.winterAttr);
-            Gtk.Table.TableChild w8 = ((Gtk.Table.TableChild)(this.table2[this.winterAttr]));
-            w8.TopAttach = ((uint)(1));
-            w8.BottomAttach = ((uint)(2));
-            w8.XOptions = ((Gtk.AttachOptions)(0));
-            w8.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w18 = ((Gtk.Table.TableChild)(this.table2[this.winterAttr]));
+            w18.TopAttach = ((uint)(1));
+            w18.BottomAttach = ((uint)(2));
+            w18.XOptions = ((Gtk.AttachOptions)(0));
+            w18.YOptions = ((Gtk.AttachOptions)(4));
             this.GtkAlignment.Add(this.table2);
             this.inclAttrFrame.Add(this.GtkAlignment);
             this.GtkLabel15 = new Gtk.Label();
             this.GtkLabel15.Name = "GtkLabel15";
-            this.GtkLabel15.LabelProp = Mono.Unix.Catalog.GetString("Common Attributes");
+            this.GtkLabel15.LabelProp = Mono.Unix.Catalog.GetString("Must Have Attributes");
             this.GtkLabel15.UseMarkup = true;
             this.inclAttrFrame.LabelWidget = this.GtkLabel15;
             this.vbox3.Add(this.inclAttrFrame);
-            Gtk.Box.BoxChild w11 = ((Gtk.Box.BoxChild)(this.vbox3[this.inclAttrFrame]));
-            w11.Position = 0;
+            Gtk.Box.BoxChild w21 = ((Gtk.Box.BoxChild)(this.vbox3[this.inclAttrFrame]));
+            w21.Position = 0;
+            // Container child vbox3.Gtk.Box+BoxChild
+            this.frame1 = new Gtk.Frame();
+            this.frame1.Name = "frame1";
+            this.frame1.ShadowType = ((Gtk.ShadowType)(1));
+            this.frame1.BorderWidth = ((uint)(6));
+            // Container child frame1.Gtk.Container+ContainerChild
+            this.GtkAlignment1 = new Gtk.Alignment(0F, 0F, 1F, 1F);
+            this.GtkAlignment1.Name = "GtkAlignment1";
+            this.GtkAlignment1.LeftPadding = ((uint)(12));
+            // Container child GtkAlignment1.Gtk.Container+ContainerChild
+            this.table1 = new Gtk.Table(((uint)(4)), ((uint)(12)), false);
+            this.table1.Name = "table1";
+            this.table1.BorderWidth = ((uint)(6));
+            // Container child table1.Gtk.Table+TableChild
+            this.beaconEFilt = new ocmgtk.AttributeFilterWidget();
+            this.beaconEFilt.Events = ((Gdk.EventMask)(256));
+            this.beaconEFilt.Name = "beaconEFilt";
+            this.beaconEFilt.AttributeName = "Wireless Beacon";
+            this.beaconEFilt.CanExclude = false;
+            this.table1.Add(this.beaconEFilt);
+            Gtk.Table.TableChild w22 = ((Gtk.Table.TableChild)(this.table1[this.beaconEFilt]));
+            w22.TopAttach = ((uint)(1));
+            w22.BottomAttach = ((uint)(2));
+            w22.LeftAttach = ((uint)(3));
+            w22.RightAttach = ((uint)(4));
+            w22.XOptions = ((Gtk.AttachOptions)(4));
+            w22.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.bikeEFilt = new ocmgtk.AttributeFilterWidget();
+            this.bikeEFilt.Events = ((Gdk.EventMask)(256));
+            this.bikeEFilt.Name = "bikeEFilt";
+            this.bikeEFilt.AttributeName = "Bicycles";
+            this.bikeEFilt.CanExclude = true;
+            this.table1.Add(this.bikeEFilt);
+            Gtk.Table.TableChild w23 = ((Gtk.Table.TableChild)(this.table1[this.bikeEFilt]));
+            w23.TopAttach = ((uint)(1));
+            w23.BottomAttach = ((uint)(2));
+            w23.LeftAttach = ((uint)(5));
+            w23.RightAttach = ((uint)(6));
+            w23.XOptions = ((Gtk.AttachOptions)(4));
+            w23.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.dogEFilt = new ocmgtk.AttributeFilterWidget();
+            this.dogEFilt.Events = ((Gdk.EventMask)(256));
+            this.dogEFilt.Name = "dogEFilt";
+            this.dogEFilt.AttributeName = "Dogs";
+            this.dogEFilt.CanExclude = true;
+            this.table1.Add(this.dogEFilt);
+            Gtk.Table.TableChild w24 = ((Gtk.Table.TableChild)(this.table1[this.dogEFilt]));
+            w24.TopAttach = ((uint)(1));
+            w24.BottomAttach = ((uint)(2));
+            w24.LeftAttach = ((uint)(4));
+            w24.RightAttach = ((uint)(5));
+            w24.XOptions = ((Gtk.AttachOptions)(4));
+            w24.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.feeEFilt = new ocmgtk.AttributeFilterWidget();
+            this.feeEFilt.Events = ((Gdk.EventMask)(256));
+            this.feeEFilt.Name = "feeEFilt";
+            this.feeEFilt.AttributeName = "Access or parking fee";
+            this.feeEFilt.CanExclude = false;
+            this.table1.Add(this.feeEFilt);
+            Gtk.Table.TableChild w25 = ((Gtk.Table.TableChild)(this.table1[this.feeEFilt]));
+            w25.TopAttach = ((uint)(1));
+            w25.BottomAttach = ((uint)(2));
+            w25.LeftAttach = ((uint)(6));
+            w25.RightAttach = ((uint)(7));
+            w25.XOptions = ((Gtk.AttachOptions)(4));
+            w25.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.fireEFilt = new ocmgtk.AttributeFilterWidget();
+            this.fireEFilt.Events = ((Gdk.EventMask)(256));
+            this.fireEFilt.Name = "fireEFilt";
+            this.fireEFilt.AttributeName = "Campfires";
+            this.fireEFilt.CanExclude = true;
+            this.table1.Add(this.fireEFilt);
+            Gtk.Table.TableChild w26 = ((Gtk.Table.TableChild)(this.table1[this.fireEFilt]));
+            w26.TopAttach = ((uint)(1));
+            w26.BottomAttach = ((uint)(2));
+            w26.LeftAttach = ((uint)(8));
+            w26.RightAttach = ((uint)(9));
+            w26.XOptions = ((Gtk.AttachOptions)(4));
+            w26.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.hbox2 = new Gtk.HBox();
+            this.hbox2.Name = "hbox2";
+            this.hbox2.Spacing = 6;
+            // Container child hbox2.Gtk.Box+BoxChild
+            this.image4 = new Gtk.Image();
+            this.image4.Name = "image4";
+            this.image4.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-dialog-info", Gtk.IconSize.Button, 20);
+            this.hbox2.Add(this.image4);
+            Gtk.Box.BoxChild w27 = ((Gtk.Box.BoxChild)(this.hbox2[this.image4]));
+            w27.Position = 0;
+            w27.Expand = false;
+            w27.Fill = false;
+            // Container child hbox2.Gtk.Box+BoxChild
+            this.label3 = new Gtk.Label();
+            this.label3.Name = "label3";
+            this.label3.LabelProp = Mono.Unix.Catalog.GetString("Click on the attribute once to include it. Click twice to exclude it. Click three times to clear.");
+            this.hbox2.Add(this.label3);
+            Gtk.Box.BoxChild w28 = ((Gtk.Box.BoxChild)(this.hbox2[this.label3]));
+            w28.Position = 1;
+            w28.Expand = false;
+            w28.Fill = false;
+            this.table1.Add(this.hbox2);
+            Gtk.Table.TableChild w29 = ((Gtk.Table.TableChild)(this.table1[this.hbox2]));
+            w29.RightAttach = ((uint)(12));
+            w29.XOptions = ((Gtk.AttachOptions)(4));
+            w29.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.kidEFilt = new ocmgtk.AttributeFilterWidget();
+            this.kidEFilt.Events = ((Gdk.EventMask)(256));
+            this.kidEFilt.Name = "kidEFilt";
+            this.kidEFilt.AttributeName = "Recommended for kids";
+            this.kidEFilt.CanExclude = true;
+            this.table1.Add(this.kidEFilt);
+            Gtk.Table.TableChild w30 = ((Gtk.Table.TableChild)(this.table1[this.kidEFilt]));
+            w30.TopAttach = ((uint)(1));
+            w30.BottomAttach = ((uint)(2));
+            w30.LeftAttach = ((uint)(7));
+            w30.RightAttach = ((uint)(8));
+            w30.XOptions = ((Gtk.AttachOptions)(4));
+            w30.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.label4 = new Gtk.Label();
+            this.label4.Name = "label4";
+            this.table1.Add(this.label4);
+            Gtk.Table.TableChild w31 = ((Gtk.Table.TableChild)(this.table1[this.label4]));
+            w31.TopAttach = ((uint)(1));
+            w31.BottomAttach = ((uint)(2));
+            w31.LeftAttach = ((uint)(11));
+            w31.RightAttach = ((uint)(12));
+            w31.XOptions = ((Gtk.AttachOptions)(1));
+            w31.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.maintenanceEAttr = new ocmgtk.AttributeFilterWidget();
+            this.maintenanceEAttr.Events = ((Gdk.EventMask)(256));
+            this.maintenanceEAttr.Name = "maintenanceEAttr";
+            this.maintenanceEAttr.AttributeName = "Needs maintenance";
+            this.maintenanceEAttr.CanExclude = false;
+            this.table1.Add(this.maintenanceEAttr);
+            Gtk.Table.TableChild w32 = ((Gtk.Table.TableChild)(this.table1[this.maintenanceEAttr]));
+            w32.TopAttach = ((uint)(1));
+            w32.BottomAttach = ((uint)(2));
+            w32.LeftAttach = ((uint)(1));
+            w32.RightAttach = ((uint)(2));
+            w32.XOptions = ((Gtk.AttachOptions)(4));
+            w32.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.nightEAttr = new ocmgtk.AttributeFilterWidget();
+            this.nightEAttr.Events = ((Gdk.EventMask)(256));
+            this.nightEAttr.Name = "nightEAttr";
+            this.nightEAttr.AttributeName = "Recommended at night";
+            this.nightEAttr.CanExclude = true;
+            this.table1.Add(this.nightEAttr);
+            Gtk.Table.TableChild w33 = ((Gtk.Table.TableChild)(this.table1[this.nightEAttr]));
+            w33.TopAttach = ((uint)(1));
+            w33.BottomAttach = ((uint)(2));
+            w33.LeftAttach = ((uint)(2));
+            w33.RightAttach = ((uint)(3));
+            w33.XOptions = ((Gtk.AttachOptions)(4));
+            w33.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.swimEFilt = new ocmgtk.AttributeFilterWidget();
+            this.swimEFilt.Events = ((Gdk.EventMask)(256));
+            this.swimEFilt.Name = "swimEFilt";
+            this.swimEFilt.AttributeName = "May require swimming";
+            this.swimEFilt.CanExclude = false;
+            this.table1.Add(this.swimEFilt);
+            Gtk.Table.TableChild w34 = ((Gtk.Table.TableChild)(this.table1[this.swimEFilt]));
+            w34.TopAttach = ((uint)(1));
+            w34.BottomAttach = ((uint)(2));
+            w34.LeftAttach = ((uint)(10));
+            w34.RightAttach = ((uint)(11));
+            w34.XOptions = ((Gtk.AttachOptions)(4));
+            w34.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.timeEFilt = new ocmgtk.AttributeFilterWidget();
+            this.timeEFilt.Events = ((Gdk.EventMask)(256));
+            this.timeEFilt.Name = "timeEFilt";
+            this.timeEFilt.AttributeName = "Takes less than an hour";
+            this.timeEFilt.CanExclude = true;
+            this.table1.Add(this.timeEFilt);
+            Gtk.Table.TableChild w35 = ((Gtk.Table.TableChild)(this.table1[this.timeEFilt]));
+            w35.TopAttach = ((uint)(1));
+            w35.BottomAttach = ((uint)(2));
+            w35.LeftAttach = ((uint)(9));
+            w35.RightAttach = ((uint)(10));
+            w35.XOptions = ((Gtk.AttachOptions)(4));
+            w35.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table1.Gtk.Table+TableChild
+            this.winterEAttr = new ocmgtk.AttributeFilterWidget();
+            this.winterEAttr.Events = ((Gdk.EventMask)(256));
+            this.winterEAttr.Name = "winterEAttr";
+            this.winterEAttr.AttributeName = "Available during winter";
+            this.winterEAttr.CanExclude = true;
+            this.table1.Add(this.winterEAttr);
+            Gtk.Table.TableChild w36 = ((Gtk.Table.TableChild)(this.table1[this.winterEAttr]));
+            w36.TopAttach = ((uint)(1));
+            w36.BottomAttach = ((uint)(2));
+            w36.XOptions = ((Gtk.AttachOptions)(4));
+            w36.YOptions = ((Gtk.AttachOptions)(4));
+            this.GtkAlignment1.Add(this.table1);
+            this.frame1.Add(this.GtkAlignment1);
+            this.GtkLabel2 = new Gtk.Label();
+            this.GtkLabel2.Name = "GtkLabel2";
+            this.GtkLabel2.LabelProp = Mono.Unix.Catalog.GetString("Must Not Have Attributes:");
+            this.GtkLabel2.UseMarkup = true;
+            this.frame1.LabelWidget = this.GtkLabel2;
+            this.vbox3.Add(this.frame1);
+            Gtk.Box.BoxChild w39 = ((Gtk.Box.BoxChild)(this.vbox3[this.frame1]));
+            w39.Position = 1;
             // Container child vbox3.Gtk.Box+BoxChild
             this.table3 = new Gtk.Table(((uint)(2)), ((uint)(2)), false);
             this.table3.Name = "table3";
@@ -194,11 +604,11 @@ namespace ocmgtk {
             this.altExcludeCheck.DrawIndicator = true;
             this.altExcludeCheck.UseUnderline = true;
             this.table3.Add(this.altExcludeCheck);
-            Gtk.Table.TableChild w12 = ((Gtk.Table.TableChild)(this.table3[this.altExcludeCheck]));
-            w12.TopAttach = ((uint)(1));
-            w12.BottomAttach = ((uint)(2));
-            w12.XOptions = ((Gtk.AttachOptions)(4));
-            w12.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w40 = ((Gtk.Table.TableChild)(this.table3[this.altExcludeCheck]));
+            w40.TopAttach = ((uint)(1));
+            w40.BottomAttach = ((uint)(2));
+            w40.XOptions = ((Gtk.AttachOptions)(4));
+            w40.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table3.Gtk.Table+TableChild
             this.altIncludeCheck = new Gtk.CheckButton();
             this.altIncludeCheck.Sensitive = false;
@@ -208,9 +618,9 @@ namespace ocmgtk {
             this.altIncludeCheck.DrawIndicator = true;
             this.altIncludeCheck.UseUnderline = true;
             this.table3.Add(this.altIncludeCheck);
-            Gtk.Table.TableChild w13 = ((Gtk.Table.TableChild)(this.table3[this.altIncludeCheck]));
-            w13.XOptions = ((Gtk.AttachOptions)(4));
-            w13.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w41 = ((Gtk.Table.TableChild)(this.table3[this.altIncludeCheck]));
+            w41.XOptions = ((Gtk.AttachOptions)(4));
+            w41.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table3.Gtk.Table+TableChild
             this.entry1 = new Gtk.Entry();
             this.entry1.Sensitive = false;
@@ -219,10 +629,10 @@ namespace ocmgtk {
             this.entry1.IsEditable = true;
             this.entry1.InvisibleChar = '•';
             this.table3.Add(this.entry1);
-            Gtk.Table.TableChild w14 = ((Gtk.Table.TableChild)(this.table3[this.entry1]));
-            w14.LeftAttach = ((uint)(1));
-            w14.RightAttach = ((uint)(2));
-            w14.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w42 = ((Gtk.Table.TableChild)(this.table3[this.entry1]));
+            w42.LeftAttach = ((uint)(1));
+            w42.RightAttach = ((uint)(2));
+            w42.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table3.Gtk.Table+TableChild
             this.entry2 = new Gtk.Entry();
             this.entry2.Sensitive = false;
@@ -231,22 +641,22 @@ namespace ocmgtk {
             this.entry2.IsEditable = true;
             this.entry2.InvisibleChar = '•';
             this.table3.Add(this.entry2);
-            Gtk.Table.TableChild w15 = ((Gtk.Table.TableChild)(this.table3[this.entry2]));
-            w15.TopAttach = ((uint)(1));
-            w15.BottomAttach = ((uint)(2));
-            w15.LeftAttach = ((uint)(1));
-            w15.RightAttach = ((uint)(2));
-            w15.XOptions = ((Gtk.AttachOptions)(4));
-            w15.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w43 = ((Gtk.Table.TableChild)(this.table3[this.entry2]));
+            w43.TopAttach = ((uint)(1));
+            w43.BottomAttach = ((uint)(2));
+            w43.LeftAttach = ((uint)(1));
+            w43.RightAttach = ((uint)(2));
+            w43.XOptions = ((Gtk.AttachOptions)(4));
+            w43.YOptions = ((Gtk.AttachOptions)(4));
             this.vbox3.Add(this.table3);
-            Gtk.Box.BoxChild w16 = ((Gtk.Box.BoxChild)(this.vbox3[this.table3]));
-            w16.Position = 1;
-            w16.Expand = false;
-            w16.Fill = false;
+            Gtk.Box.BoxChild w44 = ((Gtk.Box.BoxChild)(this.vbox3[this.table3]));
+            w44.Position = 2;
+            w44.Expand = false;
+            w44.Fill = false;
             this.alignment1.Add(this.vbox3);
             this.vbox2.Add(this.alignment1);
-            Gtk.Box.BoxChild w18 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment1]));
-            w18.Position = 0;
+            Gtk.Box.BoxChild w46 = ((Gtk.Box.BoxChild)(this.vbox2[this.alignment1]));
+            w46.Position = 0;
             this.Add(this.vbox2);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

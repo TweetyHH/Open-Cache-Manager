@@ -53,6 +53,8 @@ namespace ocmengine
 		public const String KEY_NOCORRECTED = "nocorreced";
 		public const String KEY_INCATTRS = "incattrs";
 		public const String KEY_EXCATTRS = "excattrs";
+		public const String KEY_INCNOATTRS = "incnoattrs";
+		public const String KEY_EXCNOATTRS = "excnoattrs";
 		public FilterList ()
 		{
 			
@@ -253,7 +255,7 @@ namespace ocmengine
 			
 			if (m_criteria.Contains(KEY_NOCORRECTED))
 			{
-				builder.Append(" AND GEOCACHE.corlat IS NULL OR GEOCACHE.corlat = '-1'");
+				builder.Append(" AND GEOCACHE.corlat IN (NULL,'-1')");
 			}
 			 
 			//System.Console.WriteLine(builder.ToString());

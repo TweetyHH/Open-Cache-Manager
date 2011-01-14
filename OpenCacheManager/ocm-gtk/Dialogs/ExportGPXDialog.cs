@@ -109,7 +109,7 @@ namespace ocmgtk
 			}
 		}
 		
-		public bool IncludeAttributes
+		public bool MustHaveIncludeAttributes
 		{
 			get {return attrCheck.Active;}
 		}

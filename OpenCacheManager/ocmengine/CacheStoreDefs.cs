@@ -48,8 +48,9 @@ namespace ocmengine
 		const string GC_EXISTS_CHECK = "SELECT 1 FROM GEOCACHE WHERE name='{0}'";
 		const string GET_GC = "SELECT  WAYPOINT.name, WAYPOINT.lat, WAYPOINT.lon, WAYPOINT.url, WAYPOINT.urlname, WAYPOINT.desc, WAYPOINT.symbol, WAYPOINT.type, WAYPOINT.time," 
 			+ "GEOCACHE.fullname, GEOCACHE.id, GEOCACHE.owner, GEOCACHE.ownerID, GEOCACHE.placedby, GEOCACHE.difficulty, GEOCACHE.terrain, GEOCACHE.country, GEOCACHE.state,"
-			+ "GEOCACHE.type, GEOCACHE.shortdesc, GEOCACHE.longdesc, GEOCACHE.hint, GEOCACHE.container, GEOCACHE.archived, GEOCACHE.available, WAYPOINT.lastUpdate, GEOCACHE.notes, GEOCACHE.checkNotes, GEOCACHE.corlat, GEOCACHE.corlon, (SELECT 1 FROM WAYPOINT WHERE WAYPOINT.parent = GEOCACHE.name)"
+			+ "GEOCACHE.type, GEOCACHE.shortdesc, GEOCACHE.longdesc, GEOCACHE.hint, GEOCACHE.container, GEOCACHE.archived, GEOCACHE.available, WAYPOINT.lastUpdate, GEOCACHE.notes, GEOCACHE.checkNotes, GEOCACHE.corlat, GEOCACHE.corlon"
 			+ " FROM WAYPOINT, GEOCACHE WHERE GEOCACHE.name = WAYPOINT.name";
+		//
 		const string FOUND_ONLY = " AND WAYPOINT.symbol = 'Geocache Found'";
 		const string COUNT_GC = "SELECT COUNT(name) from GEOCACHE";
 		const string COUNT_WPT = "SELECT COUNT(name) from WAYPOINT";
@@ -82,5 +83,6 @@ namespace ocmengine
 		const string UPGRADE_GEOCACHE_V3_V4A = "ALTER TABLE GEOCACHE ADD COLUMN corlat TEXT";
 		const string UPGRADE_GEOCACHE_V3_V4B = "ALTER TABLE GEOCACHE ADD COLUMN corlon TEXT";
 		const string VACUUM = "VACUUM";
+		const string HASCHILDREN_LIST = "SELECT DISTINCT parent FROM WAYPOINT WHERE parent NOT NULL AND parent != ''";
 	}
 }

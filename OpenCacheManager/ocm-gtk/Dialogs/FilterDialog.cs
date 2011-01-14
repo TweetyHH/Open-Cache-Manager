@@ -56,14 +56,15 @@ namespace ocmgtk
 				else
 					filter.RemoveCriteria(FilterList.KEY_NOCORRECTED);
 				filter.AddFilterCriteria(FilterList.KEY_OWNERID, UIMonitor.getInstance().OwnerID);
-				if (attributePage.IncludeAttributes.Count > 0)
-					filter.AddFilterCriteria(FilterList.KEY_INCATTRS, attributePage.IncludeAttributes);
+				GetMustHaveAttributes (filter);
+				if (attributePage.MustNotHaveIncludeAttributes.Count > 0)
+					filter.AddFilterCriteria(FilterList.KEY_INCNOATTRS, attributePage.MustNotHaveIncludeAttributes);
 				else
-					filter.RemoveCriteria(FilterList.KEY_INCATTRS);
-				if (attributePage.ExcludeAttributes.Count > 0)
-					filter.AddFilterCriteria(FilterList.KEY_EXCATTRS, attributePage.ExcludeAttributes);
+					filter.RemoveCriteria(FilterList.KEY_INCNOATTRS);
+				if (attributePage.ExcludeMustNotHaveAttributes.Count > 0)
+					filter.AddFilterCriteria(FilterList.KEY_EXCNOATTRS, attributePage.ExcludeMustNotHaveAttributes);
 				else
-					filter.RemoveCriteria(FilterList.KEY_EXCATTRS);
+					filter.RemoveCriteria(FilterList.KEY_EXCNOATTRS);
 				return filter;
 			}
 			set {
@@ -109,10 +110,26 @@ namespace ocmgtk
 				if (value.Contains(FilterList.KEY_NOCORRECTED))
 					childrenPage.DoesNotHaveCorrectedCoords = true;
 				if (value.Contains(FilterList.KEY_INCATTRS))
-					attributePage.IncludeAttributes = (List<String>) value.GetCriteria(FilterList.KEY_INCATTRS);
+					attributePage.MustHaveIncludeAttributes = (List<String>) value.GetCriteria(FilterList.KEY_INCATTRS);
 				if (value.Contains(FilterList.KEY_EXCATTRS))
-					attributePage.ExcludeAttributes = (List<String>) value.GetCriteria(FilterList.KEY_EXCATTRS);
+					attributePage.ExcludeMustHaveAttributes = (List<String>) value.GetCriteria(FilterList.KEY_EXCATTRS);
+				if (value.Contains(FilterList.KEY_INCNOATTRS))
+					attributePage.MustNotHaveIncludeAttributes = (List<String>) value.GetCriteria(FilterList.KEY_INCNOATTRS);
+				if (value.Contains(FilterList.KEY_EXCNOATTRS))
+					attributePage.ExcludeMustNotHaveAttributes = (List<String>) value.GetCriteria(FilterList.KEY_EXCNOATTRS);
  			}
+		}
+		
+		private void GetMustHaveAttributes (FilterList filter)
+		{
+							if (attributePage.MustHaveIncludeAttributes.Count > 0)
+					filter.AddFilterCriteria(FilterList.KEY_INCATTRS, attributePage.MustHaveIncludeAttributes);
+				else
+					filter.RemoveCriteria(FilterList.KEY_INCATTRS);
+				if (attributePage.ExcludeMustHaveAttributes.Count > 0)
+					filter.AddFilterCriteria(FilterList.KEY_EXCATTRS, attributePage.ExcludeMustHaveAttributes);
+				else
+					filter.RemoveCriteria(FilterList.KEY_EXCATTRS);
 		}
 		
 		private void GetNoChildrenFilter (FilterList filter)

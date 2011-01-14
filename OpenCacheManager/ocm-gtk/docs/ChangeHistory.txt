@@ -1,3 +1,16 @@
+Version 0.22.9
+--------------
+- Fix "Does not have corrected coordinates" filter bugs
+- Fix a number of map refresh issues that caused OCM to crash
+- Fix issue where trying to overwrite an existing DB caused OCM to crash
+- Fix bug where GPS waypoint symbols could not be changed
+- Fix bug where attributes were not being copied/moved to another database when copying/moving caches
+- Add "Add Child Waypoint" and Ctrl+W to add a child waypoint to the current cache without needing to be on
+the waypoints tab
+- Add Ctrl+R shortcut for Corrected Coordinates
+- Add Ctrl+P shortcut for Printing
+- Add Ctrl+Alt+I shortcut for Import Directory
+
 Version 0.22.8
 --------------
 - Add option to show all child waypoints (not just selected cache). You can set it permanently in

@@ -227,6 +227,7 @@ public partial class MainWindow : Gtk.Window
 			ModifyCacheAction.Sensitive = true;
 			DeleteCacheAction.Sensitive = true;
 			ViewSelectedCacheInQLandkarteGTAction.Sensitive = true;
+			AddChildWaypointAction.Sensitive = true;
 		}
 		else
 		{
@@ -246,6 +247,7 @@ public partial class MainWindow : Gtk.Window
 			CorrectedCoordinatesAction.Sensitive = false;
 			ViewSelectedCacheInQLandkarteGTAction.Sensitive = false;
 			printAction.Sensitive = false;
+			AddChildWaypointAction.Sensitive = false;
 		}
 	}
 
@@ -734,6 +736,12 @@ public partial class MainWindow : Gtk.Window
 	{
 		Process.Start("http://www.geocaching.com/my/statistics.aspx");
 	}
+	
+	protected virtual void OnChildClick (object o, System.EventArgs args)
+	{
+		m_monitor.AddChildWaypoint();
+	}
+	
 	
 	
 	

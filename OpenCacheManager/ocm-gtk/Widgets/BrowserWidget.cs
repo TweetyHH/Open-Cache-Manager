@@ -74,7 +74,9 @@ namespace ocmgtk
 				}
 				else if (request[0].Equals("mapmoved"))
 				{
-					m_monitor.GetNearByCaches(double.Parse(request[1], System.Globalization.CultureInfo.InvariantCulture), double.Parse(request[2], System.Globalization.CultureInfo.InvariantCulture));
+					m_monitor.CurrLat = double.Parse(request[1], System.Globalization.CultureInfo.InvariantCulture);
+					m_monitor.CurrLon = double.Parse(request[2], System.Globalization.CultureInfo.InvariantCulture);
+					m_monitor.GetNearByCaches();
 				}
 				else if (request[0].Equals("setcentre"))
 				{

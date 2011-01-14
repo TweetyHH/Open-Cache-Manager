@@ -44,8 +44,6 @@ namespace ocmgtk
 
 		private double m_home_lat = 46.49;
 		private double m_home_lon = -81.01;
-		private double m_mapLat = 46.49;
-		private double m_mapLon = -81.01;
 		private String m_ownerid = "0";
 		private CacheList m_cachelist;
 		private Geocache m_selectedCache;
@@ -147,6 +145,19 @@ namespace ocmgtk
 		public Label CentreLabel {
 			set { m_centreLabel = value; }
 		}
+		
+		private double m_currLat;
+		public double CurrLat{
+			get { return m_currLat;}
+			set { m_currLat = value;}
+		}
+		
+		private double m_currLon;
+		public double CurrLon
+		{
+			get { return m_currLon;}
+			set { m_currLon = value;}
+		}
 
 		private string m_centreName = "Home";
 		public string CenterName {
@@ -170,7 +181,7 @@ namespace ocmgtk
 			set { 
 				m_ShowAllChildren = value;
 				if (m_showNearby)
-					GetNearByCaches(m_mapLat, m_mapLon);
+					GetNearByCaches();
 				else
 					m_map.LoadScript("clearExtraMarkers()");
 					
@@ -223,7 +234,7 @@ namespace ocmgtk
 				}
 				else
 				{
-					GetNearByCaches(m_mapLat, m_mapLon);
+					GetNearByCaches();
 				}
 			}
 		}
@@ -266,6 +277,8 @@ namespace ocmgtk
 		{
 			CentreLat = (double) m_conf.Get ("/apps/ocm/lastlat", 0.0);
 			CentreLon = (double)m_conf.Get ("/apps/ocm/lastlon", 0.0);
+			m_currLat = CentreLat;
+			m_currLon = CentreLon;
 			CenterName = (string) m_conf.Get("/apps/ocm/lastname", Catalog.GetString("Home"));
 			if (CentreLat == 0 && CentreLon == 0)
 			{
@@ -322,14 +335,9 @@ namespace ocmgtk
 			bool showNearby = (Boolean) m_conf.Get("/apps/ocm/shownearby", true);
 			m_ShowAllChildren = (Boolean) m_conf.Get("/apps/ocm/showallchildren", false);
 			if (showNearby)
-			{
 				m_mainWin.SetNearbyEnabled();
-				GetNearByCaches(m_home_lat, m_home_lon);
-			}	
 			if (m_ShowAllChildren)
-			{
 				m_mainWin.SetShowAllChildren();
-			}
 			if (m_useImperial)
 				m_cachelist.SetImperial();
 			if (true == (bool) m_conf.Get("/apps/ocm/userownerid", true))
@@ -425,6 +433,7 @@ namespace ocmgtk
 			UpdateCentrePointStatus ();
 			DoGUIUpdate ();
 			m_cachelist.PopulateList ();
+			GetNearByCaches();
 			UpdateStatusBar ();
 		}
 		
@@ -458,7 +467,6 @@ namespace ocmgtk
 		/// </param>
 		public void SetSelectedCache (Geocache cache)
 		{
-			Geocache origCache = m_selectedCache;
 			m_selectedCache = cache;
 			m_pane.SetCacheSelected ();
 			if (cache == null)
@@ -466,16 +474,7 @@ namespace ocmgtk
 				m_cachelist.SelectCache(null);
 			}
 			m_mainWin.SetSelectedCache(cache);
-			ZoomToSelected();	
-			if (m_showNearby && (cache == null && origCache != null))
-			{
-				AddOtherCacheToMap(origCache);
-			}
-			else if (cache != null)
-			{
-				GetNearByCaches(cache.Lat, cache.Lon);
-			}
-				
+			ZoomToSelected();
 		}
 
 		/// <summary>
@@ -502,8 +501,8 @@ namespace ocmgtk
 
 		public void GoHome ()
 		{
-			m_mapLat = CentreLat;
-			m_mapLat = CentreLon;
+			m_currLat = CentreLat;
+			m_currLon = CentreLon;
 			m_map.LoadScript ("goHome(" + CentreLat.ToString(CultureInfo.InvariantCulture) + "," + CentreLon.ToString(CultureInfo.InvariantCulture) + ")");
 		}
 		
@@ -511,8 +510,8 @@ namespace ocmgtk
 		{
 			if (m_selectedCache == null)
 				return;
-			m_mapLat = m_selectedCache.Lat;
-			m_mapLat = m_selectedCache.Lon;
+			m_currLat = m_selectedCache.Lat;
+			m_currLon = m_selectedCache.Lon;
 			m_map.LoadScript ("zoomToPoint(" + m_selectedCache.Lat.ToString(CultureInfo.InvariantCulture) + "," +  m_selectedCache.Lon.ToString(CultureInfo.InvariantCulture) + ")");
 		}
 		
@@ -699,6 +698,34 @@ namespace ocmgtk
 			filter.AddPattern ("*.ocm");
 			dlg.AddFilter (filter);			
 			if (dlg.Run () == (int)ResponseType.Accept) {
+				if (dlg.Filename == Engine.getInstance().Store.DBFile)
+				{
+					dlg.Hide();
+					MessageDialog mdlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Error,
+					                                       ButtonsType.Ok, Catalog.GetString("You cannot overwrite the " +
+					                                       	"currently open database."));
+					mdlg.Run();
+					mdlg.Destroy();
+					return false;
+				}
+				else if (System.IO.File.Exists(dlg.Filename))
+				{
+					dlg.Hide();
+					MessageDialog mdlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Warning,
+					                                       ButtonsType.YesNo, Catalog.GetString("Are you sure you want to overwrite '{0}'"),
+					                                       	dlg.Filename);
+					if ((int) ResponseType.No ==  mdlg.Run())
+					{
+						mdlg.Destroy();
+						return false;
+					}
+					else
+					{
+						mdlg.Destroy();
+						System.IO.File.Delete(dlg.Filename);
+					}
+				}
+				
 				RegisterRecentFile (dlg.Filename);
 				Engine.getInstance ().Store.CreateDB (dlg.Filename);
 				SetCurrentDB (dlg.Filename, true);
@@ -780,7 +807,7 @@ namespace ocmgtk
 					writer.DescriptionMode = dlg.GetDescMode();
 					if (dlg.UsePlainText)
 						writer.HTMLOutput = HTMLMode.PLAINTEXT;
-					writer.WriteAttributes = dlg.IncludeAttributes;
+					writer.WriteAttributes = dlg.MustHaveIncludeAttributes;
 					writer.LogLimit = dlg.LogLimit;
 					edlg.Icon = m_mainWin.Icon;
 					edlg.Start (dlg.Filename, GetVisibleCacheList (), m_WaypointMappings);
@@ -1098,14 +1125,15 @@ namespace ocmgtk
 			DoGUIUpdate ();
 		}
 
-		public void GetNearByCaches (double lat, double lon)
+		public void GetNearByCaches ()
 		{
-			m_mapLat = lat;
-			m_mapLon = lon;
 			if (m_showNearby) {
 				m_map.LoadScript ("clearExtraMarkers()");
 				List<Geocache> visibleCaches = GetVisibleCacheList ();
-				visibleCaches.Sort (new CacheDistanceSorter (lat, lon));
+				System.Console.WriteLine(visibleCaches.Count);
+				if (visibleCaches.Count <= 0)
+					return;
+				visibleCaches.Sort (new CacheDistanceSorter (m_currLat, m_currLon));
 				int count = 0;
 				IEnumerator<Geocache> cache = visibleCaches.GetEnumerator ();
 				while (cache.MoveNext ()) {
@@ -1241,12 +1269,9 @@ namespace ocmgtk
 				{
 					m_cachelist.SetMetric();
 				}
-				
-				RefreshCaches();
 				LoadMap(dlg.DefaultMap);
 				RecenterMap ();
-				if (m_showNearby)
-					GetNearByCaches(CentreLat, CentreLon);					
+				RefreshCaches();			
 			}
 			dlg.Dispose();
 		}
@@ -1420,6 +1445,7 @@ namespace ocmgtk
 			                                      String.Format(Catalog.GetString("Are you sure you want to delete these {0} caches?\nThis operation cannot be undone."), list.Count));
 			if ((int)ResponseType.Yes == dlg.Run ()) {
 				dlg.Hide();
+				DoGUIUpdate();
 				CopyingProgress ddlg = new CopyingProgress();
 				ddlg.StartDelete(GetVisibleCacheList());
 				SetSelectedCache(null);
@@ -1821,6 +1847,37 @@ namespace ocmgtk
 				pdlg.Modal = true;
 				pdlg.StartMulti(path, Engine.getInstance().Store, delete);
 				RefreshCaches ();
+		}
+		
+		public void AddChildWaypoint()
+		{
+			try {
+				Waypoint newPoint = new Waypoint ();
+				Geocache parent = m_selectedCache;
+				newPoint.Symbol = "Final Location";
+				newPoint.Parent = parent.Name;
+				newPoint.Lat = parent.Lat;
+				newPoint.Lon = parent.Lon;	
+				String name = "FL" + parent.Name.Substring (2);
+				WaypointDialog dlg = new WaypointDialog ();
+				if ((bool) m_conf.Get("/apps/ocm/noprefixes", false))
+				{
+					name = parent.Name;
+					dlg.IgnorePrefix = true;
+				}
+				name = Engine.getInstance().Store.GenerateNewName(name);
+				newPoint.Name = name;
+				dlg.SetPoint (newPoint);
+				if ((int)ResponseType.Ok == dlg.Run ()) {
+					newPoint = dlg.GetPoint ();
+					CacheStore store = Engine.getInstance ().Store;
+					store.AddWaypointAtomic (newPoint);
+					dlg.Dispose ();
+					m_pane.SetCacheSelected();
+				}
+			} catch (Exception ex) {
+				UIMonitor.ShowException (ex);
+			}
 		}
 	}
 }

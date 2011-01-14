@@ -189,17 +189,38 @@ namespace ocmgtk
 		
 		public static Pixbuf GetYAttrIcon(String attrname)
 		{
-			return new Pixbuf ("./icons/scalable/attributes/yes_" + attrname + ".svg", 32, 32);
+			try
+			{
+				return new Pixbuf ("./icons/scalable/attributes/yes_" + attrname + ".svg", 36, 36);
+			}
+			catch 
+			{
+				return null;
+			}
 		}
 		
 		public static Pixbuf GetNAttrIcon(String attrname)
 		{
-			return new Pixbuf ("./icons/scalable/attributes/no_" + attrname + ".svg", 32, 32);
+			try
+			{
+				return new Pixbuf ("./icons/scalable/attributes/no_" + attrname + ".svg", 36, 36);
+			}
+			catch 
+			{
+				return null;
+			}
 		}
 		
 		public static Pixbuf GetDisAttrIcon(String attrname)
 		{
-			return new Pixbuf ("./icons/scalable/attributes/dis_" + attrname + ".svg", 32, 32);
+			try
+			{
+				return new Pixbuf ("./icons/scalable/attributes/dis_" + attrname + ".svg", 36, 36);
+			}
+			catch 
+			{
+				return null;
+			}
 		}
 	}
 }

@@ -34,12 +34,20 @@ namespace ocmgtk
 				m_attribute = value;
 				String iconName = m_attribute.Replace(' ', '_');
 				m_disicon = IconManager.GetDisAttrIcon(iconName);
-				m_noicon = IconManager.GetNAttrIcon(iconName);
+				if (m_canExclude)
+					m_noicon = IconManager.GetNAttrIcon(iconName);
 				m_yesicon = IconManager.GetYAttrIcon(iconName);
 				attrIcon.Pixbuf = m_disicon;
 				this.TooltipText = value;
 			}
 			get { return m_attribute;}
+		}
+		
+		bool m_canExclude = true;
+		public bool CanExclude
+		{
+			get { return m_canExclude;}
+			set { m_canExclude = value;}
 		}
 		
 		public bool IsFiltered
@@ -85,7 +93,7 @@ namespace ocmgtk
 				m_attrState = AttributeFilterWidget.AttrState.YES;
 				attrIcon.Pixbuf = m_yesicon;
 			}
-			else if (m_attrState == AttributeFilterWidget.AttrState.YES)
+			else if ((m_attrState == AttributeFilterWidget.AttrState.YES) && m_canExclude)
 			{
 				m_attrState = AttributeFilterWidget.AttrState.NO;
 				attrIcon.Pixbuf = m_noicon;

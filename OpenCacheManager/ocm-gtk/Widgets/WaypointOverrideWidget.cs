@@ -32,6 +32,7 @@ namespace ocmgtk
 		
 		public void PopulateMappings(Config config)
 		{
+			System.Console.WriteLine("CALLED");
 			widgetBox.Add(new SymbolChooser("Geocache|Traditional Cache", config.Get("/apps/ocm/wmappings/Geocache_Traditional_Cache", "Geocache") as string));
 			widgetBox.Add(new SymbolChooser("Geocache|Unknown Cache",config.Get("/apps/ocm/wmappings/Geocache_Unknown_Cache", "Geocache") as string));
 			widgetBox.Add(new SymbolChooser("Geocache|Virtual Cache", config.Get("/apps/ocm/wmappings/Geocache_Virtual_Cache", "Geocache") as string));
@@ -62,10 +63,12 @@ namespace ocmgtk
 		
 		public void UpdateMappings(Config config)
 		{
+			System.Console.WriteLine("Update called");
 			foreach(SymbolChooser chooser in widgetBox.Children)
 			{
 				string newKey = chooser.Key.Replace('|','_');
 				newKey = newKey.Replace(' ','_');
+				System.Console.WriteLine(newKey + " " + chooser.SymbolName);
 				config.Set("/apps/ocm/wmappings/" + newKey, chooser.SymbolName);
 			}
 		}

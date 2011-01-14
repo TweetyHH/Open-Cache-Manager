@@ -24,7 +24,7 @@ namespace ocmgtk
 	{
 		public string SymbolName
 		{
-			get {return symbolCombo.ActiveText;}
+			get {return symbolCombo.Entry.Text;}
 			set { symbolCombo.Entry.Text = value;}
 		}
 		

@@ -628,6 +628,7 @@
       </action>
       <action id="printAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Control&gt;&lt;Mod2&gt;p</property>
         <property name="Label" translatable="yes">Print...</property>
         <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">Print...</property>
@@ -636,6 +637,7 @@
       </action>
       <action id="CorrectedCoordinatesAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Control&gt;&lt;Mod2&gt;r</property>
         <property name="Label" translatable="yes">Corrected Coordinates...</property>
         <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">Corrected Coordinates...</property>
@@ -713,6 +715,7 @@
       </action>
       <action id="ImportDirectoryAction">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Control&gt;&lt;Alt&gt;&lt;Mod2&gt;i</property>
         <property name="Label" translatable="yes">Import Directory...</property>
         <property name="ShortLabel" translatable="yes">Import Directory...</property>
         <signal name="Activated" handler="OnImportDirClicked" />
@@ -722,6 +725,14 @@
         <property name="Label" translatable="yes">Statistics...</property>
         <property name="ShortLabel" translatable="yes">Statistics...</property>
         <signal name="Activated" handler="OnClickStatistics" />
+      </action>
+      <action id="AddChildWaypointAction">
+        <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Control&gt;&lt;Mod2&gt;w</property>
+        <property name="Label" translatable="yes">Add Child _Waypoint...</property>
+        <property name="Sensitive">False</property>
+        <property name="ShortLabel" translatable="yes">Add Child _Waypoint...</property>
+        <signal name="Activated" handler="OnChildClick" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -781,6 +792,7 @@
                 <node type="Menuitem" action="DeselectCacheAction" />
                 <node type="Separator" />
                 <node type="Menuitem" action="AddCacheAction" />
+                <node type="Menuitem" action="AddChildWaypointAction" />
                 <node type="Menuitem" action="CorrectedCoordinatesAction" />
                 <node type="Menuitem" action="ModifyCacheAction" />
                 <node type="Menuitem" action="DeleteCacheAction" />
@@ -4311,7 +4323,6 @@ If you don't know these settings and are a Geocaching.com user, click on "View A
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Label" translatable="yes">All Cache Types</property>
-                <property name="Active">True</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
@@ -11712,7 +11723,7 @@ Cache Name</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="ocmgtk.OCMQueryPage5" design-size="594 347">
+  <widget class="Gtk.Bin" id="ocmgtk.OCMQueryPage5" design-size="628 384">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -11740,10 +11751,62 @@ Cache Name</property>
                           <widget class="Gtk.Table" id="table2">
                             <property name="MemberName" />
                             <property name="NRows">5</property>
-                            <property name="NColumns">5</property>
-                            <property name="RowSpacing">2</property>
-                            <property name="ColumnSpacing">2</property>
+                            <property name="NColumns">12</property>
                             <property name="BorderWidth">6</property>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
                             <child>
                               <placeholder />
                             </child>
@@ -11794,13 +11857,105 @@ Cache Name</property>
                                 <property name="MemberName" />
                                 <property name="Events">ButtonPressMask</property>
                                 <property name="AttributeName">Wireless Beacon</property>
-                                <property name="IsIncluded">False</property>
+                                <property name="CanExclude">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">1</property>
                                 <property name="BottomAttach">2</property>
                                 <property name="LeftAttach">3</property>
                                 <property name="RightAttach">4</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="bikeFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Bicycles</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">5</property>
+                                <property name="RightAttach">6</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="dogFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Dogs</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">4</property>
+                                <property name="RightAttach">5</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="feeFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Access or parking fee</property>
+                                <property name="CanExclude">False</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">6</property>
+                                <property name="RightAttach">7</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="fireFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Campfires</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">8</property>
+                                <property name="RightAttach">9</property>
                                 <property name="AutoSize">True</property>
                                 <property name="XOptions">Fill</property>
                                 <property name="YOptions">Fill</property>
@@ -11842,12 +11997,35 @@ Cache Name</property>
                                 </child>
                               </widget>
                               <packing>
-                                <property name="RightAttach">5</property>
+                                <property name="RightAttach">12</property>
                                 <property name="AutoSize">True</property>
                                 <property name="XOptions">0</property>
                                 <property name="YOptions">Fill</property>
                                 <property name="XExpand">False</property>
                                 <property name="XFill">False</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="kidFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Recommended for kids</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">7</property>
+                                <property name="RightAttach">8</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
                                 <property name="XShrink">False</property>
                                 <property name="YExpand">False</property>
                                 <property name="YFill">True</property>
@@ -11861,8 +12039,8 @@ Cache Name</property>
                               <packing>
                                 <property name="TopAttach">1</property>
                                 <property name="BottomAttach">2</property>
-                                <property name="LeftAttach">4</property>
-                                <property name="RightAttach">5</property>
+                                <property name="LeftAttach">11</property>
+                                <property name="RightAttach">12</property>
                                 <property name="AutoSize">False</property>
                                 <property name="YOptions">Fill</property>
                                 <property name="XExpand">True</property>
@@ -11878,7 +12056,7 @@ Cache Name</property>
                                 <property name="MemberName" />
                                 <property name="Events">ButtonPressMask</property>
                                 <property name="AttributeName">Needs maintenance</property>
-                                <property name="IsIncluded">False</property>
+                                <property name="CanExclude">False</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">1</property>
@@ -11901,7 +12079,7 @@ Cache Name</property>
                                 <property name="MemberName" />
                                 <property name="Events">ButtonPressMask</property>
                                 <property name="AttributeName">Recommended at night</property>
-                                <property name="IsIncluded">False</property>
+                                <property name="CanExclude">True</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">1</property>
@@ -11920,11 +12098,124 @@ Cache Name</property>
                               </packing>
                             </child>
                             <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="parkFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Parking available</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">2</property>
+                                <property name="BottomAttach">3</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="strollFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Stroller accessible</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">2</property>
+                                <property name="BottomAttach">3</property>
+                                <property name="LeftAttach">1</property>
+                                <property name="RightAttach">2</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="swimFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">May require swimming</property>
+                                <property name="CanExclude">False</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">10</property>
+                                <property name="RightAttach">11</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="timeFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Takes less than an hour</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">9</property>
+                                <property name="RightAttach">10</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="wchairFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Wheelchair accessible</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">2</property>
+                                <property name="BottomAttach">3</property>
+                                <property name="LeftAttach">2</property>
+                                <property name="RightAttach">3</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
                               <widget class="ocmgtk.AttributeFilterWidget" id="winterAttr">
                                 <property name="MemberName" />
                                 <property name="Events">ButtonPressMask</property>
                                 <property name="AttributeName">Available during winter</property>
-                                <property name="IsIncluded">False</property>
+                                <property name="CanExclude">True</property>
                               </widget>
                               <packing>
                                 <property name="TopAttach">1</property>
@@ -11947,7 +12238,7 @@ Cache Name</property>
                     <child>
                       <widget class="Gtk.Label" id="GtkLabel15">
                         <property name="MemberName" />
-                        <property name="LabelProp" translatable="yes">Common Attributes</property>
+                        <property name="LabelProp" translatable="yes">Must Have Attributes</property>
                         <property name="UseMarkup">True</property>
                       </widget>
                       <packing>
@@ -11957,6 +12248,428 @@ Cache Name</property>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Frame" id="frame1">
+                    <property name="MemberName" />
+                    <property name="ShadowType">In</property>
+                    <property name="BorderWidth">6</property>
+                    <child>
+                      <widget class="Gtk.Alignment" id="GtkAlignment1">
+                        <property name="MemberName" />
+                        <property name="Xalign">0</property>
+                        <property name="Yalign">0</property>
+                        <property name="LeftPadding">12</property>
+                        <child>
+                          <widget class="Gtk.Table" id="table1">
+                            <property name="MemberName" />
+                            <property name="NRows">4</property>
+                            <property name="NColumns">12</property>
+                            <property name="BorderWidth">6</property>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <placeholder />
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="beaconEFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Wireless Beacon</property>
+                                <property name="CanExclude">False</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">3</property>
+                                <property name="RightAttach">4</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="bikeEFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Bicycles</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">5</property>
+                                <property name="RightAttach">6</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="dogEFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Dogs</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">4</property>
+                                <property name="RightAttach">5</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="feeEFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Access or parking fee</property>
+                                <property name="CanExclude">False</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">6</property>
+                                <property name="RightAttach">7</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="fireEFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Campfires</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">8</property>
+                                <property name="RightAttach">9</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="Gtk.HBox" id="hbox2">
+                                <property name="MemberName" />
+                                <property name="Spacing">6</property>
+                                <child>
+                                  <widget class="Gtk.Image" id="image4">
+                                    <property name="MemberName" />
+                                    <property name="Pixbuf">stock:gtk-dialog-info Button</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="Position">0</property>
+                                    <property name="AutoSize">True</property>
+                                    <property name="Expand">False</property>
+                                    <property name="Fill">False</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="Gtk.Label" id="label3">
+                                    <property name="MemberName" />
+                                    <property name="LabelProp" translatable="yes">Click on the attribute once to include it. Click twice to exclude it. Click three times to clear.</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="Position">1</property>
+                                    <property name="AutoSize">True</property>
+                                    <property name="Expand">False</property>
+                                    <property name="Fill">False</property>
+                                  </packing>
+                                </child>
+                              </widget>
+                              <packing>
+                                <property name="RightAttach">12</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="kidEFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Recommended for kids</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">7</property>
+                                <property name="RightAttach">8</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="Gtk.Label" id="label4">
+                                <property name="MemberName" />
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">11</property>
+                                <property name="RightAttach">12</property>
+                                <property name="AutoSize">False</property>
+                                <property name="XOptions">Expand</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">True</property>
+                                <property name="XFill">False</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="maintenanceEAttr">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Needs maintenance</property>
+                                <property name="CanExclude">False</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">1</property>
+                                <property name="RightAttach">2</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="nightEAttr">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Recommended at night</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">2</property>
+                                <property name="RightAttach">3</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="swimEFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">May require swimming</property>
+                                <property name="CanExclude">False</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">10</property>
+                                <property name="RightAttach">11</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="timeEFilt">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Takes less than an hour</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="LeftAttach">9</property>
+                                <property name="RightAttach">10</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="ocmgtk.AttributeFilterWidget" id="winterEAttr">
+                                <property name="MemberName" />
+                                <property name="Events">ButtonPressMask</property>
+                                <property name="AttributeName">Available during winter</property>
+                                <property name="CanExclude">True</property>
+                              </widget>
+                              <packing>
+                                <property name="TopAttach">1</property>
+                                <property name="BottomAttach">2</property>
+                                <property name="AutoSize">True</property>
+                                <property name="XOptions">Fill</property>
+                                <property name="YOptions">Fill</property>
+                                <property name="XExpand">False</property>
+                                <property name="XFill">True</property>
+                                <property name="XShrink">False</property>
+                                <property name="YExpand">False</property>
+                                <property name="YFill">True</property>
+                                <property name="YShrink">False</property>
+                              </packing>
+                            </child>
+                          </widget>
+                        </child>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="GtkLabel2">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes">Must Not Have Attributes:</property>
+                        <property name="UseMarkup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="type">label_item</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
                     <property name="AutoSize">True</property>
                   </packing>
                 </child>
@@ -12060,7 +12773,7 @@ Cache Name</property>
                     </child>
                   </widget>
                   <packing>
-                    <property name="Position">1</property>
+                    <property name="Position">2</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
@@ -12745,12 +13458,12 @@ Cache Name</property>
     <child>
       <widget class="Gtk.Button" id="attrIconButton">
         <property name="MemberName" />
-        <property name="WidthRequest">45</property>
-        <property name="HeightRequest">45</property>
+        <property name="WidthRequest">48</property>
+        <property name="HeightRequest">48</property>
         <property name="CanFocus">True</property>
         <property name="Type">Custom</property>
         <property name="FocusOnClick">False</property>
-        <property name="Relief">Half</property>
+        <property name="Relief">None</property>
         <signal name="Clicked" handler="OnClick" />
         <child>
           <widget class="Gtk.Image" id="attrIcon">
