@@ -13,7 +13,7 @@ namespace ocmgtk {
     
     public partial class AttributeFilterWidget {
         
-        private Gtk.Button attrIconButton;
+        private Gtk.EventBox eventbox1;
         
         private Gtk.Image attrIcon;
         
@@ -23,24 +23,20 @@ namespace ocmgtk {
             Stetic.BinContainer.Attach(this);
             this.Name = "ocmgtk.AttributeFilterWidget";
             // Container child ocmgtk.AttributeFilterWidget.Gtk.Container+ContainerChild
-            this.attrIconButton = new Gtk.Button();
-            this.attrIconButton.WidthRequest = 48;
-            this.attrIconButton.HeightRequest = 48;
-            this.attrIconButton.CanFocus = true;
-            this.attrIconButton.Name = "attrIconButton";
-            this.attrIconButton.FocusOnClick = false;
-            this.attrIconButton.Relief = ((Gtk.ReliefStyle)(2));
-            // Container child attrIconButton.Gtk.Container+ContainerChild
+            this.eventbox1 = new Gtk.EventBox();
+            this.eventbox1.Name = "eventbox1";
+            // Container child eventbox1.Gtk.Container+ContainerChild
             this.attrIcon = new Gtk.Image();
             this.attrIcon.Name = "attrIcon";
-            this.attrIconButton.Add(this.attrIcon);
-            this.attrIconButton.Label = null;
-            this.Add(this.attrIconButton);
+            this.eventbox1.Add(this.attrIcon);
+            this.Add(this.eventbox1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.Hide();
-            this.attrIconButton.Clicked += new System.EventHandler(this.OnClick);
+            this.eventbox1.ButtonPressEvent += new Gtk.ButtonPressEventHandler(this.OnPress);
+            this.eventbox1.ButtonReleaseEvent += new Gtk.ButtonReleaseEventHandler(this.OnRelease);
+            this.attrIcon.ButtonReleaseEvent += new Gtk.ButtonReleaseEventHandler(this.OnRelease);
         }
     }
 }

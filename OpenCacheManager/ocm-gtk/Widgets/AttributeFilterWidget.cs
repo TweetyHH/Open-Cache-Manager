@@ -32,11 +32,10 @@ namespace ocmgtk
 		{
 			set { 
 				m_attribute = value;
-				String iconName = m_attribute.Replace(' ', '_');
-				m_disicon = IconManager.GetDisAttrIcon(iconName);
+				m_disicon = IconManager.GetDisAttrIcon(value);
 				if (m_canExclude)
-					m_noicon = IconManager.GetNAttrIcon(iconName);
-				m_yesicon = IconManager.GetYAttrIcon(iconName);
+					m_noicon = IconManager.GetNAttrIcon(value);
+				m_yesicon = IconManager.GetYAttrIcon(value);
 				attrIcon.Pixbuf = m_disicon;
 				this.TooltipText = value;
 			}
@@ -81,9 +80,9 @@ namespace ocmgtk
 				attrIcon.Pixbuf = m_noicon;
 		}
 		
-		protected virtual void OnClick (object sender, System.EventArgs e)
+		protected virtual void OnPress (object sender, System.EventArgs e)
 		{
-			ToggleAttrState ();
+			
 		}
 		
 		private void ToggleAttrState ()
@@ -115,6 +114,12 @@ namespace ocmgtk
 		{
 			this.Build ();
 		}
+		
+		protected virtual void OnRelease (object o, Gtk.ButtonReleaseEventArgs args)
+		{
+			ToggleAttrState ();
+		}
+		
 		
 	}
 }

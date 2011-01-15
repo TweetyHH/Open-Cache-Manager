@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.22.8.9</ReleaseVersion>
+    <ReleaseVersion>0.22.8.10</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -619,9 +619,6 @@
     <Resource Include="icons\scalable\attributes\no_Recommended_at_night.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\scalable\attributes\no_Needs_maintenance.svg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="icons\scalable\attributes\dis_Recommended_at_night.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -724,7 +721,46 @@
     <Resource Include="icons\scalable\attributes\yes_Stroller_accessible.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\scalable\attributes\yes_Wheelchar_accessible.svg">
+    <Resource Include="icons\scalable\attributes\yes_Wheelchair_accessible.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\dis_Field_Puzzle.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\yes_Field_Puzzle.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\dis_Significant_Hike.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\no_Significant_Hike.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\yes_Significant_Hike.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\dis_Scuba_gear.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\yes_Scuba_gear.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\dis_Abandoned_mines.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\yes_Abandoned_mines.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\dis_Cliff___falling_rocks.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\yes_Cliff___falling_rocks.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\dis_Climbing_gear.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\attributes\yes_Climbing_gear.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

@@ -44,6 +44,17 @@ namespace ocmgtk
 			TargetLabel.Visible = false;
 			CacheStore store = Engine.getInstance().Store;
 			IDbTransaction trans = store.StartUpdate();
+			
+			List<String> cacheNames = new List<String>();
+			foreach(Geocache cache in caches)
+			{
+				cacheNames.Add(cache.Name);
+			}
+			
+			store.ClearLogs(cacheNames);
+			store.ClearAttributes(cacheNames);
+			store.ClearTBs(cacheNames);
+			
 			double count = 0;
 			total = caches.Count;
 			foreach(Geocache cache in caches)
@@ -106,9 +117,6 @@ namespace ocmgtk
 			}
 			buttonOk.Visible = false;
 			IDbTransaction trans = target.StartUpdate();
-			//IDbTransaction strans = null;
-			/*if (isMove)
-				strans = source.StartUpdate();*/
 			foreach(Geocache cache in caches)
 			{
 				if (cancel)
@@ -124,7 +132,7 @@ namespace ocmgtk
 				target.AddCache(cache);
 				target.AddWaypoint(cache);
 				List<CacheLog> logs = source.GetCacheLogs(cache.Name);
-				target.ClearLogs(cache.Name);
+				//target.ClearLogs(cache.Name);
 				foreach(CacheLog log in logs)
 				{
 					target.AddLog(cache.Name, log);
@@ -150,8 +158,6 @@ namespace ocmgtk
 			buttonOk.Visible = true;
 			buttonCancel.Visible = false;
 			target.EndUpdate(trans);
-		/*	if (isMove)
-				source.EndUpdate(strans);*/
 		}
 		
 		private void UpdateProgress(double count, string name)

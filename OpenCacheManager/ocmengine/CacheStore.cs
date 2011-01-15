@@ -19,6 +19,7 @@ using System.IO;
 using Mono.Data.Sqlite;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 
 namespace ocmengine
 {
@@ -185,7 +186,7 @@ namespace ocmengine
 			String prefilter = DoPrefilter();
 			if (null != prefilter)
 				sql += prefilter;
-			System.Console.WriteLine(sql);
+			//System.Console.WriteLine(sql);
 			List<Geocache> caches =  GetCacheList(sql);
 			if (this.Complete != null)
 				this.Complete(this, new EventArgs());
@@ -296,14 +297,17 @@ namespace ocmengine
 		public void DeleteGeocacheAtomic(Geocache cache)
 		{
 			IDbTransaction trans = StartUpdate();
-			String deleteGC = String.Format(DELETE_GC, SQLEscape(cache.Name));
-			String deleteTBS = String.Format(DELETE_TBS, SQLEscape(cache.Name));
-			String deleteLogs = String.Format(DELETE_LOGS, SQLEscape(cache.Name));
+			String cacheName = "'" + SQLEscape(cache.Name) + "'";
+			String deleteGC = String.Format(DELETE_GC, cache.Name);
+			String deleteTBS = String.Format(DELETE_TBS, cacheName);
+			String deleteLogs = String.Format(DELETE_LOGS, cacheName);
+			String deleteAttrs = String.Format(DELETE_ATTRIBUTES, cacheName);
 			String deleteWpt = String.Format(DELETE_WPT + OR_PARENT, SQLEscape(cache.Name));
 			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
 			IDbCommand cmd = m_conn.CreateCommand();
-			cmd.CommandText = deleteGC + SEPERATOR + deleteLogs + SEPERATOR + deleteTBS + SEPERATOR + deleteWpt; 
+			cmd.CommandText = deleteGC + SEPERATOR + deleteLogs + SEPERATOR + deleteTBS + SEPERATOR + deleteAttrs 
+				+ SEPERATOR + deleteWpt; 
 			cmd.ExecuteNonQuery();		
 			EndUpdate(trans);
 		}
@@ -311,13 +315,11 @@ namespace ocmengine
 		public void DeleteGeocache(Geocache cache)
 		{
 			String deleteGC = String.Format(DELETE_GC, SQLEscape(cache.Name));
-			String deleteTBS = String.Format(DELETE_TBS, SQLEscape(cache.Name));
-			String deleteLogs = String.Format(DELETE_LOGS, SQLEscape(cache.Name));
 			String deleteWpt = String.Format(DELETE_WPT + OR_PARENT, SQLEscape(cache.Name));
 			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
 			IDbCommand cmd = m_conn.CreateCommand();
-			cmd.CommandText = deleteGC + SEPERATOR + deleteLogs + SEPERATOR + deleteTBS + SEPERATOR + deleteWpt; 
+			cmd.CommandText = deleteGC + SEPERATOR + deleteWpt; 
 			cmd.ExecuteNonQuery();		
 		}
 		
@@ -354,7 +356,7 @@ namespace ocmengine
 		
 		public void AddCache(Geocache cache)
 		{
-				if (m_conn == null)
+			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
 			IDbCommand cmd = m_conn.CreateCommand();
 			string insert = String.Format(INSERT_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
@@ -613,31 +615,47 @@ namespace ocmengine
 			
 			System.Text.StringBuilder preFilterList = new System.Text.StringBuilder();
 			bool atLeastOne = false;
-			preFilterList.Append(" AND GEOCACHE.name IN (");
-			if (m_filter.Contains(FilterList.KEY_INCATTRS))
+			if (m_filter.Contains(FilterList.KEY_INCATTRS) || m_filter.Contains(FilterList.KEY_EXCATTRS))
 			{
-				BuildPreFilterList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='True' AND value IN (",
-				                    FilterList.KEY_INCATTRS,
-				                    preFilterList,
-				                    out atLeastOne);
+				preFilterList.Append(" AND GEOCACHE.name IN (");
+				if (m_filter.Contains(FilterList.KEY_INCATTRS))
+				{
+					BuildPreFilterList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='True' AND value IN (",
+					                    FilterList.KEY_INCATTRS,
+					                    preFilterList,
+					                    out atLeastOne);
+				}
+				if (m_filter.Contains(FilterList.KEY_EXCATTRS))
+				{
+					BuildPreFilterList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='False' AND value IN (", 
+					                    FilterList.KEY_EXCATTRS,
+					                    preFilterList,
+					                    out atLeastOne);
+					
+				}
+				preFilterList.Append(")");
 			}
-			if (m_filter.Contains(FilterList.KEY_EXCATTRS))
+			if (m_filter.Contains(FilterList.KEY_INCNOATTRS) || m_filter.Contains(FilterList.KEY_EXCNOATTRS))
 			{
-				BuildPreFilterList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='False' AND value IN (", 
-				                    FilterList.KEY_EXCATTRS,
-				                    preFilterList,
-				                    out atLeastOne);
-				
+				preFilterList.Append(" AND GEOCACHE.name NOT IN (");
+				if (m_filter.Contains(FilterList.KEY_INCNOATTRS))
+				{
+					BuildPreFilterList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='True' AND value IN (", 
+					                    FilterList.KEY_INCNOATTRS,
+					                    preFilterList,
+					                    out atLeastOne);
+					
+				}
+				if (m_filter.Contains(FilterList.KEY_EXCNOATTRS))
+				{
+					BuildPreFilterList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='False' AND value IN (", 
+					                    FilterList.KEY_EXCNOATTRS,
+					                    preFilterList,
+					                    out atLeastOne);
+					
+				}
+				preFilterList.Append(")");
 			}
-			/*if (m_filter.Contains(FilterList.KEY_INCNOATTRS))
-			{
-				BuildPreFilterList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='True' AND value IS NULL OR value NOT IN (", 
-				                    FilterList.KEY_INCNOATTRS,
-				                    preFilterList,
-				                    out atLeastOne);
-				
-			}*/
-			preFilterList.Append(")");
 			if (atLeastOne)
 				return preFilterList.ToString();
 			return null;
@@ -731,7 +749,7 @@ namespace ocmengine
 					else 
 						return false;
 				}
-				if (m_filter.Contains(FilterList.KEY_INCATTRS))
+				/*if (m_filter.Contains(FilterList.KEY_INCATTRS))
 				{
 					// Don't do the additional filter processing if there's only one attribute filter,
 					// the prefilter stage would have already handled it.
@@ -791,15 +809,28 @@ namespace ocmengine
 								return false;
 						}
 					//}
-				}
+				}*/
 			}
 			return true;
 		}
 		
-		public void ClearLogs(String cachename)
+		public void ClearLogs(List<String> caches)
 		{
 			IDbCommand cmd = m_conn.CreateCommand();
-			cmd.CommandText = String.Format(DELETE_LOGS, cachename);
+			StringBuilder builder = new StringBuilder();
+			IEnumerator<String> ct = caches.GetEnumerator();
+			bool firstDone = false;
+			while (ct.MoveNext())
+			{
+				if (!firstDone)
+					firstDone = true;
+				else
+					builder.Append(",");
+				builder.Append("'");
+				builder.Append(ct.Current);
+				builder.Append("'");
+			}
+			cmd.CommandText = String.Format(DELETE_LOGS, builder.ToString());
 			cmd.ExecuteNonQuery();
 			cmd.Dispose();
 			cmd = null;
@@ -814,19 +845,34 @@ namespace ocmengine
 		
 		public void AddLog(String cachename, CacheLog log)
 		{
+			if (m_conn == null)
+				throw new Exception("DB NOT OPEN");
 			IDbCommand cmd = m_conn.CreateCommand();
-			cmd.CommandText = String.Format(ADD_LOG, cachename, log.LogDate.ToString("o"), SQLEscape(log.LoggedBy),
+			String insert = String.Format(ADD_LOG, cachename, log.LogDate.ToString("o"), SQLEscape(log.LoggedBy),
 			                                SQLEscape(log.LogMessage), SQLEscape(log.LogStatus), log.FinderID, 
 			                                log.Encoded.ToString(), log.LogID);
+			cmd.CommandText = insert;
 			cmd.ExecuteNonQuery();
 			cmd.Dispose();
-			cmd = null;
 		}
 		
-		public void ClearTBs(String cachename)
+		public void ClearTBs(List<String> caches)
 		{
 			IDbCommand cmd = m_conn.CreateCommand();
-			cmd.CommandText = String.Format(DELETE_TBS, cachename);
+			StringBuilder builder = new StringBuilder();
+			IEnumerator<String> ct = caches.GetEnumerator();
+			bool firstDone = false;
+			while (ct.MoveNext())
+			{
+				if (!firstDone)
+					firstDone = true;
+				else
+					builder.Append(",");
+				builder.Append("'");
+				builder.Append(ct.Current);
+				builder.Append("'");
+			}
+			cmd.CommandText = String.Format(DELETE_TBS, builder.ToString());
 			cmd.ExecuteNonQuery();
 			cmd.Dispose();
 			cmd = null;
@@ -847,6 +893,11 @@ namespace ocmengine
 			{
 				m_conn = OpenConnection();
 			}
+			IDbCommand cmd = m_conn.CreateCommand();
+			cmd.CommandText = "PRAGMA synchronous = 1";
+			cmd.ExecuteNonQuery();
+			cmd.Dispose();
+			cmd = null;
 			return m_conn.BeginTransaction();
 		}
 		
@@ -913,10 +964,23 @@ namespace ocmengine
 			return bugs;			
 		}
 		
-		public void ClearAttributes(String cachename)
+		public void ClearAttributes(List<String> caches)
 		{
 			IDbCommand cmd = m_conn.CreateCommand();
-			cmd.CommandText = String.Format(DELETE_ATTRIBUTES, cachename);
+			StringBuilder builder = new StringBuilder();
+			IEnumerator<String> ct = caches.GetEnumerator();
+			bool firstDone = false;
+			while (ct.MoveNext())
+			{
+				if (!firstDone)
+					firstDone = true;
+				else
+					builder.Append(",");
+				builder.Append("'");
+				builder.Append(ct.Current);
+				builder.Append("'");
+			}
+			cmd.CommandText = String.Format(DELETE_ATTRIBUTES, builder.ToString());
 			cmd.ExecuteNonQuery();
 			cmd.Dispose();
 			cmd = null;
@@ -991,7 +1055,7 @@ namespace ocmengine
 			return list;
 		}
 		
-		private static String SQLEscape(String unescapedString)
+		public static String SQLEscape(String unescapedString)
 		{
 			return unescapedString.Replace("'", "''");
 		}

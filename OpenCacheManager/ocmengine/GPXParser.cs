@@ -52,37 +52,96 @@ namespace ocmengine
 		private DateTime gpx_date;
 		
 		private Boolean m_cancel = false;
-		public bool Cancel
+		private System.Data.IDbTransaction m_trans = null;
+		public Boolean Cancel
 		{
 			set { m_cancel = true;}
+			get { return m_cancel;}
 		}
 		
+		public void StartUpdate(CacheStore store)
+		{
+			m_trans = store.StartUpdate();
+		}
 		
-		public int preParse(FileStream fs)
+		public void EndUpdate(CacheStore store)
+		{
+			store.EndUpdate(m_trans);
+		}
+		
+		public int PreParseForSingle(FileStream fs, CacheStore store)
+		{
+			XmlReader rdr = XmlReader.Create(fs);
+			int count = 0;
+			List<String> waypoints = new List<String>();
+			while (rdr.Read())
+			{
+				if (rdr.Name == "wpt" && rdr.IsStartElement())
+				{
+					count++;
+				}
+				else if (rdr.Name == "waypoint" && rdr.IsStartElement())
+				{
+					count++;
+				}
+				else if (rdr.LocalName == "name" && rdr.IsStartElement())
+				{
+					waypoints.Add(CacheStore.SQLEscape(rdr.ReadElementContentAsString()));
+				}
+			}
+			rdr.Close();
+			store.ClearTBs(waypoints);
+			store.ClearLogs(waypoints);
+			store.ClearAttributes(waypoints);
+			return count;
+		}
+		
+		public int parseTotal(FileStream fs, CacheStore store)
 		{
 			XmlReader rdr = XmlReader.Create(fs);
 			int count = 0;
 			while (rdr.Read())
 			{
 				if (rdr.Name == "wpt" && rdr.IsStartElement())
+				{
 					count++;
+				}
 				else if (rdr.Name == "waypoint" && rdr.IsStartElement())
+				{
 					count++;
+				}
 			}
 			rdr.Close();
 			return count;
+		}
+		
+		public void clearForImport(FileStream fs, CacheStore store)
+		{
+			XmlReader rdr = XmlReader.Create(fs);
+			List<String> waypoints = new List<String>();
+			while (rdr.Read())
+			{
+				if (rdr.LocalName == "name" && rdr.IsStartElement())
+				{
+					waypoints.Add(CacheStore.SQLEscape(rdr.ReadElementContentAsString()));
+				}
+			}
+			rdr.Close();
+			store.ClearTBs(waypoints);
+			store.ClearLogs(waypoints);
+			store.ClearAttributes(waypoints);
+			return;
 		}
 				
 		public void parseGPXFile(FileStream fs, CacheStore store)
 		{			
 			m_store = store;
-		 	System.Data.IDbTransaction trans =m_store.StartUpdate();
 			XmlReader reader = XmlReader.Create(fs);
 			while (reader.Read())
 			{
 				if (m_cancel)
 				{
-					m_store.CancelUpdate(trans);
+					m_store.CancelUpdate(m_trans);
 					return;
 				}
 				switch (reader.NodeType)
@@ -117,7 +176,6 @@ namespace ocmengine
 				}
 			}
 			reader.Close();
-			m_store.EndUpdate(trans);
 			this.Complete(this, EventArgs.Empty);
 		}
 		
@@ -305,7 +363,6 @@ namespace ocmengine
 		private void parseGeocacheElement(ref Waypoint pt, XmlReader reader)
 		{
 			Geocache cache = pt as Geocache;
-			m_store.ClearTBs(pt.Name);
 			if (m_source == "opencaching")
 			{
 				cache = ParseOpenCache(reader, ref cache);
@@ -614,7 +671,6 @@ namespace ocmengine
 		
 		private void ParseTravelBugs(ref Geocache cache, XmlReader reader)
 		{
-			m_store.ClearTBs(cache.Name);
 			while (reader.Read())
 			{
 				if (reader.LocalName == "travelbug")
@@ -646,7 +702,6 @@ namespace ocmengine
 		
 		private void parseCacheLogs(ref Geocache cache, XmlReader reader)
 		{
-			m_store.ClearLogs(cache.Name);
 			bool logsChecked = false;
 			while (reader.Read())
 			{
@@ -721,7 +776,6 @@ namespace ocmengine
 		
 		private void parseVCacheLogs(ref Geocache cache, XmlReader reader)
 		{
-			m_store.ClearLogs(cache.Name);
 			bool logsChecked = false;
 			while (reader.Read())
 			{
@@ -795,7 +849,6 @@ namespace ocmengine
 		
 		private void parseCacheAttrs(ref Geocache cache, XmlReader reader)
 		{
-			m_store.ClearAttributes(cache.Name);
 			if (reader.IsEmptyElement)
 				return;
 			while (reader.Read())

@@ -29,21 +29,22 @@ namespace ocmgtk
 		private GPXParser m_parser;
 		double m_total = 0;
 		double m_progress = 0;
+		double m_progressCount = 0;
 		bool m_isMulti = false;
 		bool m_autoClose = false;
+		DateTime m_timeStart;
 		public bool AutoClose
 		{
 			get { return m_autoClose;}
 			set { m_autoClose = value;}
 		}
 		
-		public ProgressDialog (GPXParser parser, int total)
+		public ProgressDialog (GPXParser parser)
 		{
 			this.Build ();
 			parser.ParseWaypoint += HandleParserParseWaypoint;
 			parser.Complete += HandleParserComplete;
 			m_parser = parser;
-			m_total = total;
 			multiFileLabel.Visible = false;
 		}
 
@@ -55,9 +56,11 @@ namespace ocmgtk
 		
 		private void HandleCompletion ()
 		{
+			DateTime end = DateTime.Now;
+			TimeSpan span = end.Subtract(m_timeStart);
 			progressbar6.Text = Catalog.GetString("Complete");
-			waypointName.Markup =  String.Format (Catalog.GetString("<i>Import complete, {0} waypoints processed</i>"), 
-			                                      m_progress);
+			waypointName.Markup =  String.Format (Catalog.GetString("<i>Import complete, {0} waypoints processed in {1}:{2}:{3}</i>"), 
+			                                      m_progress, span.Hours, span.Minutes, span.Seconds);
 			okButton.Sensitive = true;
 			okButton.Show();
 			buttonCancel.Hide();
@@ -71,10 +74,13 @@ namespace ocmgtk
 		public void StartMulti(String directoryPath, CacheStore store, bool deleteOnCompletion)
 		{
 			m_isMulti = true;
+			m_timeStart = DateTime.Now;
 			string[] files = Directory.GetFiles(directoryPath);
+			m_parser.StartUpdate(store);
 			
 			// Count total files
 			m_progress = 0;
+			m_progressCount = 0;
 			m_total = 0;
 			int fileCount = 0;
 			multiFileLabel.Visible = true;
@@ -108,7 +114,7 @@ namespace ocmgtk
 				if (files[i].EndsWith(".gpx"))
 				{
 					FileStream fs =  System.IO.File.OpenRead (files[i]);
-					int total = m_parser.preParse(fs);
+					int total = m_parser.parseTotal(fs, store);
 					m_total += total;
 					fileCount ++;
 					fs.Close();
@@ -119,7 +125,10 @@ namespace ocmgtk
 			{
 				if (files[i].EndsWith(".gpx"))
 				{
+					//Clean out attributes,tbs,and logs that will be overwritten
 					FileStream fs =  System.IO.File.OpenRead (files[i]);
+					m_parser.clearForImport(fs, store);
+					fs.Close();
 					// Need to reopen the file
 					fs =  System.IO.File.OpenRead (files[i]);
 					multiFileLabel.Text = String.Format(Catalog.GetString("Processing File {0} of {1}"), i + 1, fileCount);
@@ -129,16 +138,27 @@ namespace ocmgtk
 						File.Delete(files[i]);
 				}
 			}
+			m_parser.EndUpdate(store);
 			HandleCompletion();
 		}
 
 
-		public void Start (FileStream fs, CacheStore store)
+		public void Start (String filename, CacheStore store)
 		{
 			this.Show ();
 			try {
+				m_parser.StartUpdate(store);
+				FileStream stream = File.OpenRead(filename);
+				m_total = m_parser.PreParseForSingle(stream, store);
+				stream.Close();
+				stream = File.OpenRead(filename);
 				m_progress = 0;
-				ParseFile (fs, store);
+				m_progressCount = 0;
+				m_timeStart = DateTime.Now;
+				ParseFile (stream, store);
+				stream.Close();
+				if (!m_parser.Cancel)
+					m_parser.EndUpdate(store);
 			} catch (Exception e) {
 				this.Hide ();
 				UIMonitor.ShowException(e);
@@ -156,12 +176,14 @@ namespace ocmgtk
 		void HandleParserParseWaypoint (object sender, EventArgs args)
 		{
 			m_progress++;
+			m_progressCount++;
 			double fraction = (double)(m_progress / m_total);
 			this.progressbar6.Text = (fraction).ToString ("0%");
 			progressbar6.Fraction = fraction;
 			this.waypointName.Markup = "<i>" + (args as ParseEventArgs).Message + "</i>";
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (false);
+			m_progressCount = 0;
 		}
 
 		protected virtual void OnCancel (object sender, System.EventArgs e)

@@ -135,9 +135,42 @@ namespace ocmgtk
 				
 				List<CacheAttribute> attrs = Engine.getInstance().Store.GetAttributes(cache.Name);
 				StringBuilder bldr = new StringBuilder();
+				if (attrs.Count <= 0)
+					bldr.Append(Catalog.GetString("None"));
 				bool isFirst = true;
+				foreach (Gtk.Widget child in attrTable.Children)
+				{
+						attrTable.Remove(child);
+				}
+				Gtk.Table.TableChild props;
+				
+				uint colCount = 0;
+				uint rowCount = 0;
+				
 				foreach (CacheAttribute attr in attrs)
 				{
+					Pixbuf buf;
+					if (attr.Include)
+						buf = IconManager.GetYAttrIcon(attr.AttrValue);
+					else
+						buf = IconManager.GetNAttrIcon(attr.AttrValue);
+					if (buf != null)
+					{
+						Gtk.Image img = new Gtk.Image();
+						img.Pixbuf = buf;
+						img.TooltipText = Catalog.GetString(attr.AttrValue);
+						attrTable.Add(img);
+						props = ((Gtk.Table.TableChild)(this.attrTable[img]));
+						props.TopAttach = 0;
+						props.LeftAttach = colCount;
+						props.RightAttach = colCount + 1;
+						props.BottomAttach = 1;
+						props.XOptions = AttachOptions.Shrink;
+						img.Show();
+						colCount++;
+						continue;
+					}
+					
 					if (isFirst)
 						isFirst = false;
 					else
@@ -153,7 +186,24 @@ namespace ocmgtk
 						bldr.Append(attr.AttrValue);
 					}
 				}
+				Label filler = new Label("");
+				attrTable.Add(filler);
+				props = ((Gtk.Table.TableChild)(this.attrTable[filler]));
+				props.TopAttach = 0;
+				props.LeftAttach = colCount;
+				props.RightAttach = colCount + 1;
+				props.BottomAttach = 1;
+				props.XOptions = AttachOptions.Expand;
+				filler.Show();
+				
+				attrTable.Add(attrLabel);
+				props = ((Gtk.Table.TableChild)(this.attrTable[attrLabel]));
+				props.TopAttach = 1;
+				props.LeftAttach = 0;
+				props.RightAttach = colCount + 1;
+				props.BottomAttach = 2;
 				attrLabel.Markup = bldr.ToString();
+				attrLabel.Show();
 			} catch (Exception e) {
 				UIMonitor.ShowException(e);
 			}

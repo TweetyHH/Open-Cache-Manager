@@ -30,9 +30,11 @@ namespace ocmengine
 		const string UPDATE_WPT = "UPDATE WAYPOINT SET lat='{1}', lon='{2}',url='{3}', urlname='{4}', desc='{5}', symbol='{6}', type='{7}', time='{8}', parent='{9}', lastUpdate='{10}' WHERE name='{0}'";
 		const string WPT_EXISTS_CHECK = "SELECT COUNT(name) FROM WAYPOINT WHERE name='{0}'";
 		const string GET_WPTS = "SELECT name, lat, lon, url, urlname, desc, symbol, type, time, parent, lastUpdate FROM WAYPOINT";
-		const string DELETE_LOGS = "DELETE FROM LOGS where cache='{0}'";
-		const string DELETE_TBS = "DELETE FROM TBUGS where cache='{0}'";
+		const string DELETE_LOGS = "DELETE FROM LOGS where cache IN ({0})";
+		const string DELETE_TBS = "DELETE FROM TBUGS where cache IN ({0})";
 		const string ADD_LOG = "INSERT INTO LOGS (cache, date, loggedby, message, status, finderID, encoded, id) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}', '{7}')";
+		const string UPDATE_LOG = "UPDATE LOGS SET cache='{0}', date='{1}', loggedby='{2}', message='{3}', status='{4}', " +
+				" finderID ='{5}', encoded='{6}' where id='{7}'";
 		const string ADD_TB = "INSERT INTO TBUGS(cache, id, ref, name) VALUES('{0}','{1}','{2}','{3}')";
 		const string GET_TB = "SELECT id, ref, name FROM TBUGS WHERE cache='{0}'";
 		const string WHERE_PARENT = " WHERE parent='{0}'";
@@ -68,7 +70,7 @@ namespace ocmengine
 		const string GET_BMRKS = "SELECT name from BOOKMARKS";
 		const string GET_ATTRIBUTES = "SELECT id, inc, value FROM ATTRIBUTES WHERE cachename='{0}'";
 		const string ADD_ATTRIBUTE = "INSERT INTO ATTRIBUTES(cachename, id, inc, value) VALUES ('{0}','{1}','{2}','{3}')";
-		const string DELETE_ATTRIBUTES = "DELETE FROM ATTRIBUTES WHERE cachename='{0}'";
+		const string DELETE_ATTRIBUTES = "DELETE FROM ATTRIBUTES WHERE cachename IN ({0})";
 		const string ADD_BMRK = "INSERT INTO BOOKMARKS (name) VALUES ('{0}')";
 		const string BOOKMARK_CACHE = "INSERT INTO BOOKMARKED_CACHES (cachecode, bookmark) VALUES('{0}','{1}')";
 		const string REMOVE_CACHE_FROM_BOOKMARK = "DELETE FROM BOOKMARKED_CACHES WHERE cachecode='{0}' and bookmark = '{1}'";

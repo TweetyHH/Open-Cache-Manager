@@ -191,7 +191,9 @@ namespace ocmgtk
 		{
 			try
 			{
-				return new Pixbuf ("./icons/scalable/attributes/yes_" + attrname + ".svg", 36, 36);
+				String val = attrname.Replace(' ', '_');
+				val = val.Replace('/','_');
+				return new Pixbuf ("./icons/scalable/attributes/yes_" +  val + ".svg", 36, 36);
 			}
 			catch 
 			{
@@ -203,7 +205,9 @@ namespace ocmgtk
 		{
 			try
 			{
-				return new Pixbuf ("./icons/scalable/attributes/no_" + attrname + ".svg", 36, 36);
+				String val = attrname.Replace(' ', '_');
+				val = val.Replace('/','_');
+				return new Pixbuf ("./icons/scalable/attributes/no_" + val + ".svg", 36, 36);
 			}
 			catch 
 			{
@@ -215,7 +219,9 @@ namespace ocmgtk
 		{
 			try
 			{
-				return new Pixbuf ("./icons/scalable/attributes/dis_" + attrname + ".svg", 36, 36);
+				String val = attrname.Replace(' ', '_');
+				val = val.Replace('/','_');
+				return new Pixbuf ("./icons/scalable/attributes/dis_" + val + ".svg", 36, 36);
 			}
 			catch 
 			{

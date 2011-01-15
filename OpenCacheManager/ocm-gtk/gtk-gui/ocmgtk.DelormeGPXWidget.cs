@@ -110,6 +110,7 @@ namespace ocmgtk {
             w5.Fill = false;
             // Container child vbox1.Gtk.Box+BoxChild
             this.table2 = new Gtk.Table(((uint)(3)), ((uint)(3)), false);
+            this.table2.Name = "table2";
             this.table2.RowSpacing = ((uint)(6));
             this.table2.ColumnSpacing = ((uint)(6));
             // Container child table2.Gtk.Table+TableChild

@@ -945,14 +945,11 @@ namespace ocmgtk
 			System.IO.FileStream fs = System.IO.File.OpenRead (filename);
 			GPXParser parser = new GPXParser ();
 			parser.CacheOwner = OwnerID;
-			int total = parser.preParse (fs);
-			fs = System.IO.File.OpenRead (filename);
-			CacheStore store = Engine.getInstance ().Store;
-			ProgressDialog pdlg = new ProgressDialog (parser, total);
+			ProgressDialog pdlg = new ProgressDialog (parser);
 			pdlg.AutoClose = autoclose;
 			pdlg.Icon = m_mainWin.Icon;
 			pdlg.Modal = true;
-			pdlg.Start (fs, store);
+			pdlg.Start (filename, Engine.getInstance().Store);
 			RefreshCaches ();
 			fs.Close ();
 		}
@@ -1130,7 +1127,6 @@ namespace ocmgtk
 			if (m_showNearby) {
 				m_map.LoadScript ("clearExtraMarkers()");
 				List<Geocache> visibleCaches = GetVisibleCacheList ();
-				System.Console.WriteLine(visibleCaches.Count);
 				if (visibleCaches.Count <= 0)
 					return;
 				visibleCaches.Sort (new CacheDistanceSorter (m_currLat, m_currLon));
@@ -1842,7 +1838,7 @@ namespace ocmgtk
 		{
 				GPXParser parser = new GPXParser ();
 				parser.CacheOwner = OwnerID;
-				ProgressDialog pdlg = new ProgressDialog (parser, -1);
+				ProgressDialog pdlg = new ProgressDialog (parser);
 				pdlg.Icon = m_mainWin.Icon;
 				pdlg.Modal = true;
 				pdlg.StartMulti(path, Engine.getInstance().Store, delete);
