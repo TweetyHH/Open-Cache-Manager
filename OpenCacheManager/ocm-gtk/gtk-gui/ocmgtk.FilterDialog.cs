@@ -70,7 +70,6 @@ namespace ocmgtk {
             this.contPage = new ocmgtk.OCMQueryPage2();
             this.contPage.Events = ((Gdk.EventMask)(256));
             this.contPage.Name = "contPage";
-            this.contPage.PlacedByMe = false;
             this.notebook1.Add(this.contPage);
             Gtk.Notebook.NotebookChild w3 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.contPage]));
             w3.Position = 1;

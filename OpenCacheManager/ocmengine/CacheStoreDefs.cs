@@ -86,5 +86,7 @@ namespace ocmengine
 		const string UPGRADE_GEOCACHE_V3_V4B = "ALTER TABLE GEOCACHE ADD COLUMN corlon TEXT";
 		const string VACUUM = "VACUUM";
 		const string HASCHILDREN_LIST = "SELECT DISTINCT parent FROM WAYPOINT WHERE parent NOT NULL AND parent != ''";
+		const string HASFINAL_LIST = "SELECT DISTINCT parent FROM WAYPOINT WHERE symbol=='Final Location' AND parent NOT NULL AND parent != ''";
+		const string HAS_WPT_FILT= "SELECT DISTINCT parent FROM WAYPOINT WHERE symbol=='{0}' AND parent NOT NULL AND parent != ''";
 	}
 }

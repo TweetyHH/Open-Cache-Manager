@@ -40,17 +40,6 @@ namespace ocmgtk
 			}
 		}
 		
-		public bool PlacedByMe
-		{
-			get
-			{
-				return placedMeRadio.Active;
-			}
-			set
-			{
-				placedMeRadio.Active = value;
-			}
-		}
 		
 		public string DescriptionKeyWords
 		{

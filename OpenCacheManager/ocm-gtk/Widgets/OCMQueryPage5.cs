@@ -74,6 +74,82 @@ namespace ocmgtk
 					attrs.Add(cliffFilt.AttributeName);
 				if (climbGearFilt.IsFiltered && climbGearFilt.IsIncluded)
 					attrs.Add(climbGearFilt.AttributeName);
+				if (skiFilt.IsFiltered && skiFilt.IsIncluded)
+					attrs.Add(skiFilt.AttributeName);
+				if (dangerFilt.IsFiltered && dangerFilt.IsIncluded)
+					attrs.Add(dangerFilt.AttributeName);
+				if (busFilt.IsFiltered && busFilt.IsIncluded)
+					attrs.Add(busFilt.AttributeName);
+				if (cowFilt.IsFiltered && cowFilt.IsIncluded)
+					attrs.Add(cowFilt.AttributeName);
+				if (allTimeFilt.IsFiltered && allTimeFilt.IsIncluded)
+					attrs.Add(allTimeFilt.AttributeName);
+				if (spyFilt.IsFiltered && spyFilt.IsIncluded)
+					attrs.Add(spyFilt.AttributeName);
+				if (sshoeFilt.IsFiltered && sshoeFilt.IsIncluded)
+					attrs.Add(sshoeFilt.AttributeName);
+				if (toolFilt.IsFiltered && toolFilt.IsIncluded)
+					attrs.Add(toolFilt.AttributeName);
+				if (thornFilt.IsFiltered && thornFilt.IsIncluded)
+					attrs.Add(thornFilt.AttributeName);
+				if (uvFilt.IsFiltered && uvFilt.IsIncluded)
+					attrs.Add(uvFilt.AttributeName);
+				if (boatFilt.IsFiltered && boatFilt.IsIncluded)
+					attrs.Add(boatFilt.AttributeName);
+				if (abandFilt.IsFiltered && abandFilt.IsIncluded)
+					attrs.Add(abandFilt.AttributeName);
+				if (campFilt.IsFiltered && campFilt.IsIncluded)
+					attrs.Add(campFilt.AttributeName);
+				if (animalFilt.IsFiltered && animalFilt.IsIncluded)
+					attrs.Add(animalFilt.AttributeName);
+				if (dclimbFilt.IsFiltered && dclimbFilt.IsIncluded)
+					attrs.Add(dclimbFilt.AttributeName);
+				if (drinkFilt.IsFiltered && drinkFilt.IsIncluded)
+					attrs.Add(drinkFilt.AttributeName);
+				if (lightFilt.IsFiltered && lightFilt.IsIncluded)
+					attrs.Add(lightFilt.AttributeName);
+				if (foodFild.IsFiltered && foodFild.IsIncluded)
+					attrs.Add(foodFild.AttributeName);
+				if (fuelFilt.IsFiltered && fuelFilt.IsIncluded)
+					attrs.Add(fuelFilt.AttributeName);
+				if (horseFilt.IsFiltered && horseFilt.IsIncluded)
+					attrs.Add(horseFilt.AttributeName);
+				if (huntFilt.IsFiltered && huntFilt.IsIncluded)
+					attrs.Add(huntFilt.AttributeName);
+				if (wadeFilt.IsFiltered && wadeFilt.IsIncluded)
+					attrs.Add(wadeFilt.AttributeName);
+				if (motoFilt.IsFiltered && motoFilt.IsIncluded)
+					attrs.Add(motoFilt.AttributeName);
+				if (nightCFilt.IsFiltered && nightCFilt.IsIncluded)
+					attrs.Add(nightCFilt.AttributeName);
+				if (pgrabFilt.IsFiltered && pgrabFilt.IsIncluded)
+					attrs.Add(pgrabFilt.AttributeName);
+				if (viewFilt.IsFiltered && viewFilt.IsIncluded)
+					attrs.Add(viewFilt.AttributeName);
+				if (shortFilt.IsFiltered && shortFilt.IsIncluded)
+					attrs.Add(shortFilt.AttributeName);
+				if (mediumFilt.IsFiltered && mediumFilt.IsIncluded)
+					attrs.Add(mediumFilt.AttributeName);
+				if (longFilt.IsFiltered && longFilt.IsIncluded)
+					attrs.Add(longFilt.AttributeName);
+				if (plantFilt.IsFiltered && plantFilt.IsIncluded)
+					attrs.Add(plantFilt.AttributeName);
+				if (tickFilt.IsFiltered && tickFilt.IsIncluded)
+					attrs.Add(tickFilt.AttributeName);
+				if (picnicFilt.IsFiltered && picnicFilt.IsIncluded)
+					attrs.Add(picnicFilt.AttributeName);
+				if (washFilt.IsFiltered && washFilt.IsIncluded)
+					attrs.Add(washFilt.AttributeName);
+				if (phoneFilt.IsFiltered && phoneFilt.IsIncluded)
+					attrs.Add(phoneFilt.AttributeName);
+				if (rvFilt.IsFiltered && rvFilt.IsIncluded)
+					attrs.Add(rvFilt.AttributeName);
+				if (quadFilt.IsFiltered && quadFilt.IsIncluded)
+					attrs.Add(quadFilt.AttributeName);
+				if (offrFilt.IsFiltered && offrFilt.IsIncluded)
+					attrs.Add(offrFilt.AttributeName);
+				if (skidooFilt.IsFiltered && skidooFilt.IsIncluded)
+					attrs.Add(skidooFilt.AttributeName);
 				return attrs;
 			}
 			set
@@ -118,6 +194,80 @@ namespace ocmgtk
 					cliffFilt.SetState(AttributeFilterWidget.AttrState.YES);
 				if (value.Contains(climbGearFilt.AttributeName))
 					climbGearFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(skiFilt.AttributeName))
+					skiFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(dangerFilt.AttributeName))
+					dangerFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(busFilt.AttributeName))
+					busFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(cowFilt.AttributeName))
+					cowFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(allTimeFilt.AttributeName))
+					allTimeFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(spyFilt.AttributeName))
+					spyFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(sshoeFilt.AttributeName))
+					sshoeFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(toolFilt.AttributeName))
+					toolFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(thornFilt.AttributeName))
+					thornFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(uvFilt.AttributeName))
+					uvFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(boatFilt.AttributeName))
+					boatFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(abandFilt.AttributeName))
+					abandFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(campFilt.AttributeName))
+					campFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(animalFilt.AttributeName))
+					animalFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(dclimbFilt.AttributeName))
+					dclimbFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(drinkFilt.AttributeName))
+					drinkFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(lightFilt.AttributeName))
+					lightFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(foodFild.AttributeName))
+					foodFild.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(fuelFilt.AttributeName))
+					fuelFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(horseFilt.AttributeName))
+					horseFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(huntFilt.AttributeName))
+					huntFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(wadeFilt.AttributeName))
+					wadeFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(motoFilt.AttributeName))
+					motoFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(nightCFilt.AttributeName))
+					nightCFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(pgrabFilt.AttributeName))
+					pgrabFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(viewFilt.AttributeName))
+					viewFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(mediumFilt.AttributeName))
+					mediumFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(longFilt.AttributeName))
+					longFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(plantFilt.AttributeName))
+					plantFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(tickFilt.AttributeName))
+					tickFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(picnicFilt.AttributeName))
+					picnicFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(washFilt.AttributeName))
+					washFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(phoneFilt.AttributeName))
+					phoneFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(rvFilt.AttributeName))
+					rvFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(quadFilt.AttributeName))
+					quadFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(offrFilt.AttributeName))
+					offrFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(skidooFilt.AttributeName))
+					skidooFilt.SetState(AttributeFilterWidget.AttrState.YES);
 			}
 		}
 		
@@ -166,6 +316,82 @@ namespace ocmgtk
 					attrs.Add(cliffEFilt.AttributeName);
 				if (climbGearEFilt.IsFiltered && climbGearEFilt.IsIncluded)
 					attrs.Add(climbGearEFilt.AttributeName);
+				if (skiEFilt.IsFiltered && skiEFilt.IsIncluded)
+					attrs.Add(skiEFilt.AttributeName);
+				if (dangerEFilt.IsFiltered && dangerEFilt.IsIncluded)
+					attrs.Add(dangerEFilt.AttributeName);
+				if (busEFilt.IsFiltered && busEFilt.IsIncluded)
+					attrs.Add(busEFilt.AttributeName);
+				if (cowEFilt.IsFiltered && cowEFilt.IsIncluded)
+					attrs.Add(cowEFilt.AttributeName);
+				if (allTimeEFilt.IsFiltered && allTimeEFilt.IsIncluded)
+					attrs.Add(allTimeEFilt.AttributeName);
+				if (spyEFilt.IsFiltered && spyEFilt.IsIncluded)
+					attrs.Add(spyEFilt.AttributeName);
+				if (sshoeEFilt.IsFiltered && sshoeEFilt.IsIncluded)
+					attrs.Add(sshoeEFilt.AttributeName);
+				if (toolEFilt.IsFiltered && toolEFilt.IsIncluded)
+					attrs.Add(toolEFilt.AttributeName);
+				if (thornEFilt.IsFiltered && thornEFilt.IsIncluded)
+					attrs.Add(thornEFilt.AttributeName);
+				if (uvEFilt.IsFiltered && uvEFilt.IsIncluded)
+					attrs.Add(uvEFilt.AttributeName);
+				if (boatEFilt.IsFiltered && boatEFilt.IsIncluded)
+					attrs.Add(boatEFilt.AttributeName);
+				if (abandEFilt.IsFiltered && abandEFilt.IsIncluded)
+					attrs.Add(abandEFilt.AttributeName);
+				if (campEFilt.IsFiltered && campEFilt.IsIncluded)
+					attrs.Add(campEFilt.AttributeName);
+				if (animalEFilt.IsFiltered && animalEFilt.IsIncluded)
+					attrs.Add(animalEFilt.AttributeName);
+				if (dclimbEFilt.IsFiltered && dclimbEFilt.IsIncluded)
+					attrs.Add(dclimbEFilt.AttributeName);
+				if (drinkEFilt.IsFiltered && drinkEFilt.IsIncluded)
+					attrs.Add(drinkEFilt.AttributeName);
+				if (lightEFilt.IsFiltered && lightEFilt.IsIncluded)
+					attrs.Add(lightEFilt.AttributeName);
+				if (foodEFilt.IsFiltered && foodEFilt.IsIncluded)
+					attrs.Add(foodEFilt.AttributeName);
+				if (fuelEFilt.IsFiltered && fuelEFilt.IsIncluded)
+					attrs.Add(fuelEFilt.AttributeName);
+				if (horseEFilt.IsFiltered && horseEFilt.IsIncluded)
+					attrs.Add(horseEFilt.AttributeName);
+				if (huntEFilt.IsFiltered && huntEFilt.IsIncluded)
+					attrs.Add(huntEFilt.AttributeName);
+				if (wadeEFilt.IsFiltered && wadeEFilt.IsIncluded)
+					attrs.Add(wadeEFilt.AttributeName);
+				if (motoEFilt.IsFiltered && motoEFilt.IsIncluded)
+					attrs.Add(motoEFilt.AttributeName);
+				if (nightCEFilt.IsFiltered && nightCEFilt.IsIncluded)
+					attrs.Add(nightCEFilt.AttributeName);
+				if (pgrabEFilt1.IsFiltered && pgrabEFilt1.IsIncluded)
+					attrs.Add(pgrabEFilt1.AttributeName);
+				if (viewEFilt.IsFiltered && viewEFilt.IsIncluded)
+					attrs.Add(viewEFilt.AttributeName);
+				if (shortEFilt.IsFiltered && shortEFilt.IsIncluded)
+					attrs.Add(shortEFilt.AttributeName);
+				if (mediumEFilt.IsFiltered && mediumEFilt.IsIncluded)
+					attrs.Add(mediumEFilt.AttributeName);
+				if (longEFilt.IsFiltered && longEFilt.IsIncluded)
+					attrs.Add(longEFilt.AttributeName);
+				if (plantEFilt.IsFiltered && plantEFilt.IsIncluded)
+					attrs.Add(plantEFilt.AttributeName);
+				if (tickEFilt.IsFiltered && tickEFilt.IsIncluded)
+					attrs.Add(tickEFilt.AttributeName);
+				if (picnicEFilt.IsFiltered && picnicEFilt.IsIncluded)
+					attrs.Add(picnicEFilt.AttributeName);
+				if (washEFilt.IsFiltered && washEFilt.IsIncluded)
+					attrs.Add(washEFilt.AttributeName);
+				if (phoneEFilt.IsFiltered && phoneEFilt.IsIncluded)
+					attrs.Add(phoneEFilt.AttributeName);
+				if (rvEFilt.IsFiltered && rvEFilt.IsIncluded)
+					attrs.Add(rvEFilt.AttributeName);
+				if (quadEFilt.IsFiltered && quadEFilt.IsIncluded)
+					attrs.Add(quadEFilt.AttributeName);
+				if (offrEFilt.IsFiltered && offrEFilt.IsIncluded)
+					attrs.Add(offrEFilt.AttributeName);
+				if (skidooFilt1.IsFiltered && skidooFilt1.IsIncluded)
+					attrs.Add(skidooFilt1.AttributeName);
 				return attrs;
 			}
 			set
@@ -208,10 +434,84 @@ namespace ocmgtk
 					cliffEFilt.SetState(AttributeFilterWidget.AttrState.YES);
 				if (value.Contains(climbGearEFilt.AttributeName))
 					climbGearEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(skiEFilt.AttributeName))
+					skiEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(dangerEFilt.AttributeName))
+					dangerEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(busEFilt.AttributeName))
+					busEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(cowEFilt.AttributeName))
+					cowEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(allTimeEFilt.AttributeName))
+					allTimeEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(spyEFilt.AttributeName))
+					spyEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(sshoeEFilt.AttributeName))
+					sshoeEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(toolEFilt.AttributeName))
+					toolEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(thornEFilt.AttributeName))
+					thornEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(uvEFilt.AttributeName))
+					uvEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(boatEFilt.AttributeName))
+					boatEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(abandEFilt.AttributeName))
+					abandEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(campEFilt.AttributeName))
+					campEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(animalEFilt.AttributeName))
+					animalEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(dclimbEFilt.AttributeName))
+					dclimbEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(drinkEFilt.AttributeName))
+					drinkEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(foodEFilt.AttributeName))
+					foodEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(fuelEFilt.AttributeName))
+					fuelEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(horseEFilt.AttributeName))
+					horseEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(huntEFilt.AttributeName))
+					huntEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(wadeEFilt.AttributeName))
+					wadeEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(motoEFilt.AttributeName))
+					motoEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(nightCEFilt.AttributeName))
+					nightCEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(pgrabEFilt1.AttributeName))
+					pgrabEFilt1.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(viewEFilt.AttributeName))
+					viewEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(shortEFilt.AttributeName))
+					shortEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(mediumEFilt.AttributeName))
+					mediumEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(longEFilt.AttributeName))
+					longEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(plantEFilt.AttributeName))
+					plantEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(tickEFilt.AttributeName))
+					tickEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(picnicEFilt.AttributeName))
+					picnicEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(washEFilt.AttributeName))
+					washEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(phoneEFilt.AttributeName))
+					phoneEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(rvEFilt.AttributeName))
+					rvEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(quadEFilt.AttributeName))
+					quadEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(offrEFilt.AttributeName))
+					offrEFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(skidooFilt1.AttributeName))
+					skidooFilt1.SetState(AttributeFilterWidget.AttrState.YES);
 			}
 		}
 		
-		public List<string> ExcludeMustHaveAttributes
+		public List<string> MustHaveNegAttributes
 		{
 			get
 			{
@@ -240,6 +540,52 @@ namespace ocmgtk
 					attrs.Add(fpuzzFilt.AttributeName);
 				if (shikeFilt.IsFiltered && !shikeFilt.IsIncluded)
 					attrs.Add(shikeFilt.AttributeName);
+				if (allTimeFilt.IsFiltered && !allTimeFilt.IsIncluded)
+					attrs.Add(allTimeFilt.AttributeName);
+				if (spyFilt.IsFiltered && !spyFilt.IsIncluded)
+					attrs.Add(spyFilt.AttributeName);
+				if (abandFilt.IsFiltered && !abandFilt.IsIncluded)
+					attrs.Add(abandFilt.AttributeName);
+				if (campFilt.IsFiltered && !campFilt.IsIncluded)
+					attrs.Add(campFilt.AttributeName);
+				if (animalFilt.IsFiltered && !animalFilt.IsIncluded)
+					attrs.Add(animalFilt.AttributeName);
+				if (dclimbFilt.IsFiltered && !dclimbFilt.IsIncluded)
+					attrs.Add(dclimbFilt.AttributeName);
+				if (drinkFilt.IsFiltered && !drinkFilt.IsIncluded)
+					attrs.Add(drinkFilt.AttributeName);
+				if (foodFild.IsFiltered && !foodFild.IsIncluded)
+					attrs.Add(foodFild.AttributeName);
+				if (fuelFilt.IsFiltered && !fuelFilt.IsIncluded)
+					attrs.Add(fuelFilt.AttributeName);
+				if (horseFilt.IsFiltered && !horseFilt.IsIncluded)
+					attrs.Add(horseFilt.AttributeName);
+				if (motoFilt.IsFiltered && !motoFilt.IsIncluded)
+					attrs.Add(motoFilt.AttributeName);
+				if (viewFilt.IsFiltered && !viewFilt.IsIncluded)
+					attrs.Add(viewFilt.AttributeName);
+				if (shortFilt.IsFiltered && !shortFilt.IsIncluded)
+					attrs.Add(shortFilt.AttributeName);
+				if (mediumFilt.IsFiltered && !mediumFilt.IsIncluded)
+					attrs.Add(mediumFilt.AttributeName);
+				if (longFilt.IsFiltered && !longFilt.IsIncluded)
+					attrs.Add(longFilt.AttributeName);
+				if (plantFilt.IsFiltered && !plantFilt.IsIncluded)
+					attrs.Add(plantFilt.AttributeName);
+				if (picnicFilt.IsFiltered && !picnicFilt.IsIncluded)
+					attrs.Add(picnicFilt.AttributeName);
+				if (washFilt.IsFiltered && !washFilt.IsIncluded)
+					attrs.Add(washFilt.AttributeName);
+				if (phoneFilt.IsFiltered && !phoneFilt.IsIncluded)
+					attrs.Add(phoneFilt.AttributeName);
+				if (rvFilt.IsFiltered && !rvFilt.IsIncluded)
+					attrs.Add(rvFilt.AttributeName);
+				if (quadFilt.IsFiltered && !quadFilt.IsIncluded)
+					attrs.Add(quadFilt.AttributeName);
+				if (offrFilt.IsFiltered && !offrFilt.IsIncluded)
+					attrs.Add(offrFilt.AttributeName);
+				if (skidooFilt.IsFiltered && !skidooFilt.IsIncluded)
+					attrs.Add(skidooFilt.AttributeName);
 				return attrs;
 			}
 			set
@@ -270,10 +616,56 @@ namespace ocmgtk
 					fpuzzFilt.SetState(AttributeFilterWidget.AttrState.NO);
 				if (value.Contains(shikeFilt.AttributeName))
 					shikeFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(allTimeFilt.AttributeName))
+					allTimeFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(spyFilt.AttributeName))
+					spyFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(abandFilt.AttributeName))
+					abandFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(campFilt.AttributeName))
+					campFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(animalFilt.AttributeName))
+					animalFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(dclimbFilt.AttributeName))
+					dclimbFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(drinkFilt.AttributeName))
+					drinkFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(foodFild.AttributeName))
+					foodFild.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(fuelFilt.AttributeName))
+					fuelFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(horseFilt.AttributeName))
+					horseFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(motoFilt.AttributeName))
+					motoFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(viewFilt.AttributeName))
+					viewFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(shortFilt.AttributeName))
+					shortFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(mediumFilt.AttributeName))
+					mediumFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(longFilt.AttributeName))
+					longFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(plantFilt.AttributeName))
+					plantFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(picnicFilt.AttributeName))
+					picnicFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(washFilt.AttributeName))
+					washFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(phoneFilt.AttributeName))
+					phoneFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(rvFilt.AttributeName))
+					rvFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(quadFilt.AttributeName))
+					quadFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(offrFilt.AttributeName))
+					offrFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(skidooFilt.AttributeName))
+					skidooFilt.SetState(AttributeFilterWidget.AttrState.NO);
 			}
 		}
 		
-		public List<string> ExcludeMustNotHaveAttributes
+		public List<string> MustNotHaveNegAttributes
 		{
 			get
 			{
@@ -302,6 +694,52 @@ namespace ocmgtk
 					attrs.Add(fpuzzEFilt.AttributeName);
 				if (shikeEFilt1.IsFiltered && !shikeEFilt1.IsIncluded)
 					attrs.Add(shikeEFilt1.AttributeName);
+				if (allTimeEFilt.IsFiltered && !allTimeEFilt.IsIncluded)
+					attrs.Add(allTimeEFilt.AttributeName);
+				if (spyEFilt.IsFiltered && !spyEFilt.IsIncluded)
+					attrs.Add(spyEFilt.AttributeName);
+				if (abandEFilt.IsFiltered && !abandEFilt.IsIncluded)
+					attrs.Add(abandEFilt.AttributeName);
+				if (campEFilt.IsFiltered && !campEFilt.IsIncluded)
+					attrs.Add(campEFilt.AttributeName);
+				if (animalEFilt.IsFiltered && !animalEFilt.IsIncluded)
+					attrs.Add(animalEFilt.AttributeName);
+				if (dclimbEFilt.IsFiltered && !dclimbEFilt.IsIncluded)
+					attrs.Add(dclimbEFilt.AttributeName);
+				if (drinkEFilt.IsFiltered && !drinkEFilt.IsIncluded)
+					attrs.Add(drinkEFilt.AttributeName);
+				if (fuelEFilt.IsFiltered && !fuelEFilt.IsIncluded)
+					attrs.Add(fuelEFilt.AttributeName);
+				if (foodEFilt.IsFiltered && !foodEFilt.IsIncluded)
+					attrs.Add(foodEFilt.AttributeName);
+				if (horseEFilt.IsFiltered && !horseEFilt.IsIncluded)
+					attrs.Add(horseEFilt.AttributeName);
+				if (motoEFilt.IsFiltered && !motoEFilt.IsIncluded)
+					attrs.Add(motoEFilt.AttributeName);
+				if (viewEFilt.IsFiltered && !viewEFilt.IsIncluded)
+					attrs.Add(viewEFilt.AttributeName);
+				if (shortEFilt.IsFiltered && !shortEFilt.IsIncluded)
+					attrs.Add(shortEFilt.AttributeName);
+				if (mediumEFilt.IsFiltered && !mediumEFilt.IsIncluded)
+					attrs.Add(mediumEFilt.AttributeName);
+				if (longEFilt.IsFiltered && !longEFilt.IsIncluded)
+					attrs.Add(longEFilt.AttributeName);
+				if (plantEFilt.IsFiltered && !plantEFilt.IsIncluded)
+					attrs.Add(plantEFilt.AttributeName);
+				if (picnicEFilt.IsFiltered && !picnicEFilt.IsIncluded)
+					attrs.Add(picnicEFilt.AttributeName);
+				if (washEFilt.IsFiltered && !washEFilt.IsIncluded)
+					attrs.Add(washEFilt.AttributeName);
+				if (phoneEFilt.IsFiltered && !phoneEFilt.IsIncluded)
+					attrs.Add(phoneEFilt.AttributeName);
+				if (rvEFilt.IsFiltered && !rvEFilt.IsIncluded)
+					attrs.Add(rvEFilt.AttributeName);
+				if (quadEFilt.IsFiltered && !quadEFilt.IsIncluded)
+					attrs.Add(quadEFilt.AttributeName);
+				if (offrEFilt.IsFiltered && !offrEFilt.IsIncluded)
+					attrs.Add(offrEFilt.AttributeName);
+				if (skidooFilt1.IsFiltered && !skidooFilt1.IsIncluded)
+					attrs.Add(skidooFilt1.AttributeName);
 				return attrs;
 			}
 			set
@@ -334,6 +772,52 @@ namespace ocmgtk
 					fpuzzEFilt.SetState(AttributeFilterWidget.AttrState.NO);
 				if (value.Contains(shikeEFilt1.AttributeName))
 					shikeEFilt1.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(allTimeEFilt.AttributeName))
+					allTimeEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(spyEFilt.AttributeName))
+					spyEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(abandEFilt.AttributeName))
+					abandEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(campEFilt.AttributeName))
+					campEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(animalEFilt.AttributeName))
+					animalEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(dclimbEFilt.AttributeName))
+					dclimbEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(drinkEFilt.AttributeName))
+					drinkEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(foodEFilt.AttributeName))
+					foodEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(fuelEFilt.AttributeName))
+					fuelEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(horseEFilt.AttributeName))
+					horseEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(motoEFilt.AttributeName))
+					motoEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(viewEFilt.AttributeName))
+					viewEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(shortEFilt.AttributeName))
+					shortEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(mediumEFilt.AttributeName))
+					mediumEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(longEFilt.AttributeName))
+					longEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(plantEFilt.AttributeName))
+					plantEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(picnicEFilt.AttributeName))
+					picnicEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(washEFilt.AttributeName))
+					washEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(phoneEFilt.AttributeName))
+					phoneEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(rvEFilt.AttributeName))
+					rvEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(quadEFilt.AttributeName))
+					quadEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(offrEFilt.AttributeName))
+					offrEFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(skidooFilt1.AttributeName))
+					skidooFilt1.SetState(AttributeFilterWidget.AttrState.NO);
 			}
 		}
 	}

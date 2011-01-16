@@ -299,6 +299,8 @@ namespace ocmgtk
 				icon.Pixbuf = IconManager.GetSmallCacheIcon (Geocache.CacheType.FOUND);
 			else if ((cache.OwnerID == m_monitor.OwnerID  ) || (cache.CacheOwner == m_monitor.OwnerID))
 				icon.Pixbuf = IconManager.GetSmallCacheIcon (Geocache.CacheType.MINE);
+			else if (cache.HasCorrected || cache.HasFinal)
+				icon.Pixbuf = IconManager.CORRECTED_S;
 			else
 				icon.Pixbuf = IconManager.GetSmallCacheIcon (cache.TypeOfCache);
 		}

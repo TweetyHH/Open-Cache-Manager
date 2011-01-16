@@ -157,15 +157,6 @@ namespace ocmengine
 				builder.Append(placedBy);
 				builder.Append("'");
 			}
-			
-			String mine = m_criteria[KEY_MINE] as string;
-			if (null != mine)
-			{
-				
-				builder.Append(" AND GEOCACHE.ownerID == '");
-				builder.Append(mine);
-				builder.Append("'");
-			}
 		
 			string description = m_criteria[KEY_DESCRIPTION] as string;
 			if (null != description)
@@ -225,24 +216,6 @@ namespace ocmengine
 				builder.Append(" AND WAYPOINT.symbol == 'Geocache Found'");
 			}
 			
-			string childTypes = m_criteria[KEY_CHILDREN] as string;
-			if (!String.IsNullOrEmpty(childTypes))
-			{
-				builder.Append( " AND (SELECT 1 FROM WAYPOINT WHERE WAYPOINT.parent == GEOCACHE.name AND WAYPOINT.symbol == ");
-				builder.Append("'");
-				builder.Append(childTypes);
-				builder.Append("')");
-			}
-			
-			string nochildTypes = m_criteria[KEY_NOCHILDREN] as string;
-			if (!String.IsNullOrEmpty(nochildTypes))
-			{
-				builder.Append( " AND (SELECT COUNT(WAYPOINT.symbol) FROM WAYPOINT WHERE WAYPOINT.parent == GEOCACHE.name AND WAYPOINT.symbol == ");
-				builder.Append("'");
-				builder.Append(nochildTypes);
-				builder.Append("') == 0");
-			}
-			
 			if (m_criteria.Contains(KEY_NOTES))
 			{
 				builder.Append(" AND GEOCACHE.notes NOT NULL AND GEOCACHE.notes != ''");
@@ -255,7 +228,7 @@ namespace ocmengine
 			
 			if (m_criteria.Contains(KEY_NOCORRECTED))
 			{
-				builder.Append(" AND GEOCACHE.corlat IN (NULL,'-1')");
+				builder.Append(" AND  (GEOCACHE.corlat IS NULL OR GEOCACHE.corlat ='-1')");
 			}
 			 
 			//System.Console.WriteLine(builder.ToString());

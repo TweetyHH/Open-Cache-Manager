@@ -31,7 +31,6 @@ namespace ocmgtk
 				GetDifficultyFilter (filter);
 				GetCTypeFilter (filter);
 				GetPlacedByFilter (filter);
-				GetPlacedByMeFilter (filter);
 				GetKeyWordFilter (filter);
 				GetContainerFilter (filter);
 				GetDateFilter (filter);
@@ -61,8 +60,8 @@ namespace ocmgtk
 					filter.AddFilterCriteria(FilterList.KEY_INCNOATTRS, attributePage.MustNotHaveIncludeAttributes);
 				else
 					filter.RemoveCriteria(FilterList.KEY_INCNOATTRS);
-				if (attributePage.ExcludeMustNotHaveAttributes.Count > 0)
-					filter.AddFilterCriteria(FilterList.KEY_EXCNOATTRS, attributePage.ExcludeMustNotHaveAttributes);
+				if (attributePage.MustNotHaveNegAttributes.Count > 0)
+					filter.AddFilterCriteria(FilterList.KEY_EXCNOATTRS, attributePage.MustNotHaveNegAttributes);
 				else
 					filter.RemoveCriteria(FilterList.KEY_EXCNOATTRS);
 				return filter;
@@ -77,8 +76,6 @@ namespace ocmgtk
 				page1.DifficultyOperator = value.GetCriteria (FilterList.KEY_DIFF_OP) as string;
 				page1.SelectedCacheTypes = value.GetCriteria(FilterList.KEY_CACHETYPE) as List<string>;
 				contPage.PlacedBy = value.GetCriteria(FilterList.KEY_PLACEDBY) as string;
-				if (null != value.GetCriteria(FilterList.KEY_MINE))
-					contPage.PlacedByMe = true;
 				contPage.DescriptionKeyWords = value.GetCriteria(FilterList.KEY_DESCRIPTION) as string;
 				contPage.ContainerTypes = value.GetCriteria(FilterList.KEY_CONTAINER) as List<string>;
 				if (value.Contains(FilterList.KEY_PLACEBEFORE))
@@ -112,11 +109,11 @@ namespace ocmgtk
 				if (value.Contains(FilterList.KEY_INCATTRS))
 					attributePage.MustHaveIncludeAttributes = (List<String>) value.GetCriteria(FilterList.KEY_INCATTRS);
 				if (value.Contains(FilterList.KEY_EXCATTRS))
-					attributePage.ExcludeMustHaveAttributes = (List<String>) value.GetCriteria(FilterList.KEY_EXCATTRS);
+					attributePage.MustHaveNegAttributes = (List<String>) value.GetCriteria(FilterList.KEY_EXCATTRS);
 				if (value.Contains(FilterList.KEY_INCNOATTRS))
 					attributePage.MustNotHaveIncludeAttributes = (List<String>) value.GetCriteria(FilterList.KEY_INCNOATTRS);
 				if (value.Contains(FilterList.KEY_EXCNOATTRS))
-					attributePage.ExcludeMustNotHaveAttributes = (List<String>) value.GetCriteria(FilterList.KEY_EXCNOATTRS);
+					attributePage.MustNotHaveNegAttributes = (List<String>) value.GetCriteria(FilterList.KEY_EXCNOATTRS);
  			}
 		}
 		
@@ -126,8 +123,8 @@ namespace ocmgtk
 					filter.AddFilterCriteria(FilterList.KEY_INCATTRS, attributePage.MustHaveIncludeAttributes);
 				else
 					filter.RemoveCriteria(FilterList.KEY_INCATTRS);
-				if (attributePage.ExcludeMustHaveAttributes.Count > 0)
-					filter.AddFilterCriteria(FilterList.KEY_EXCATTRS, attributePage.ExcludeMustHaveAttributes);
+				if (attributePage.MustHaveNegAttributes.Count > 0)
+					filter.AddFilterCriteria(FilterList.KEY_EXCATTRS, attributePage.MustHaveNegAttributes);
 				else
 					filter.RemoveCriteria(FilterList.KEY_EXCATTRS);
 		}
@@ -214,14 +211,6 @@ namespace ocmgtk
 					filter.AddFilterCriteria(FilterList.KEY_DESCRIPTION, contPage.DescriptionKeyWords);
 				else
 					filter.RemoveCriteria(FilterList.KEY_DESCRIPTION);
-		}
-		
-		private void GetPlacedByMeFilter (FilterList filter)
-		{
-			if (contPage.PlacedByMe)
-					filter.AddFilterCriteria(FilterList.KEY_MINE, UIMonitor.getInstance().OwnerID);
-				else
-					filter.RemoveCriteria(FilterList.KEY_MINE);
 		}
 		
 		private void GetPlacedByFilter (FilterList filter)

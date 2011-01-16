@@ -44,6 +44,7 @@ namespace ocmgtk
 		private static Pixbuf GREENPIN_S = new Pixbuf ("./icons/scalable/greenpin.svg", 24, 24);
 		private static Pixbuf BLUEPIN_S = new Pixbuf ("./icons/scalable/bluepin.svg", 24, 24);
 		private static Pixbuf REDPIN_S = new Pixbuf ("./icons/scalable/pushpin.svg", 24, 24);
+		public static Pixbuf CORRECTED_S = new Pixbuf ("./icons/scalable/corrected.svg", 24, 24);
 		
 
 		private static string TRAD_MI = "traditional.png";
@@ -61,6 +62,7 @@ namespace ocmgtk
 		private static string WEBCAM_MI = "webcam.png";
 		private static string WHERIGO_MI = "wherigo.png";
 		private static string GENERIC_MI = "treasure.png";
+		private static string CORRECTED_MI = "corrected.png";
 		
 		/// <summary>
 		/// Returns a PixBuf containing the 16x16 icon for the specified cache type
@@ -135,6 +137,8 @@ namespace ocmgtk
 				return FOUND_MI;
 			if ((cache.OwnerID == ownerId) ||(cache.CacheOwner == ownerId))
 				return OWNED_MI;
+			if ((cache.HasCorrected || cache.HasFinal))
+				return CORRECTED_MI;
 			switch (cache.TypeOfCache) {
 				case Geocache.CacheType.TRADITIONAL:
 					return TRAD_MI;
@@ -193,7 +197,7 @@ namespace ocmgtk
 			{
 				String val = attrname.Replace(' ', '_');
 				val = val.Replace('/','_');
-				return new Pixbuf ("./icons/scalable/attributes/yes_" +  val + ".svg", 36, 36);
+				return new Pixbuf ("./icons/scalable/attributes/yes_" +  val + ".svg", 32, 32);
 			}
 			catch 
 			{
@@ -207,7 +211,7 @@ namespace ocmgtk
 			{
 				String val = attrname.Replace(' ', '_');
 				val = val.Replace('/','_');
-				return new Pixbuf ("./icons/scalable/attributes/no_" + val + ".svg", 36, 36);
+				return new Pixbuf ("./icons/scalable/attributes/no_" + val + ".svg", 32, 32);
 			}
 			catch 
 			{
@@ -221,7 +225,7 @@ namespace ocmgtk
 			{
 				String val = attrname.Replace(' ', '_');
 				val = val.Replace('/','_');
-				return new Pixbuf ("./icons/scalable/attributes/dis_" + val + ".svg", 36, 36);
+				return new Pixbuf ("./icons/scalable/attributes/dis_" + val + ".svg", 32, 32);
 			}
 			catch 
 			{

@@ -47,8 +47,6 @@ namespace ocmgtk {
         
         private Gtk.Entry placedEntry;
         
-        private Gtk.RadioButton placedMeRadio;
-        
         private Gtk.RadioButton selRado;
         
         protected virtual void Build() {
@@ -57,7 +55,7 @@ namespace ocmgtk {
             Stetic.BinContainer.Attach(this);
             this.Name = "ocmgtk.OCMQueryPage2";
             // Container child ocmgtk.OCMQueryPage2.Gtk.Container+ContainerChild
-            this.table1 = new Gtk.Table(((uint)(7)), ((uint)(2)), false);
+            this.table1 = new Gtk.Table(((uint)(6)), ((uint)(2)), false);
             this.table1.Name = "table1";
             this.table1.RowSpacing = ((uint)(6));
             this.table1.ColumnSpacing = ((uint)(6));
@@ -243,19 +241,6 @@ namespace ocmgtk {
             w15.XOptions = ((Gtk.AttachOptions)(4));
             w15.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table1.Gtk.Table+TableChild
-            this.placedMeRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Placed by me"));
-            this.placedMeRadio.CanFocus = true;
-            this.placedMeRadio.Name = "placedMeRadio";
-            this.placedMeRadio.DrawIndicator = true;
-            this.placedMeRadio.UseUnderline = true;
-            this.placedMeRadio.Group = this.placedAnyRadio.Group;
-            this.table1.Add(this.placedMeRadio);
-            Gtk.Table.TableChild w16 = ((Gtk.Table.TableChild)(this.table1[this.placedMeRadio]));
-            w16.TopAttach = ((uint)(6));
-            w16.BottomAttach = ((uint)(7));
-            w16.XOptions = ((Gtk.AttachOptions)(4));
-            w16.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table1.Gtk.Table+TableChild
             this.selRado = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Selected Container Types"));
             this.selRado.CanFocus = true;
             this.selRado.Name = "selRado";
@@ -263,11 +248,11 @@ namespace ocmgtk {
             this.selRado.UseUnderline = true;
             this.selRado.Group = this.allContRadio.Group;
             this.table1.Add(this.selRado);
-            Gtk.Table.TableChild w17 = ((Gtk.Table.TableChild)(this.table1[this.selRado]));
-            w17.TopAttach = ((uint)(1));
-            w17.BottomAttach = ((uint)(2));
-            w17.XOptions = ((Gtk.AttachOptions)(4));
-            w17.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w16 = ((Gtk.Table.TableChild)(this.table1[this.selRado]));
+            w16.TopAttach = ((uint)(1));
+            w16.BottomAttach = ((uint)(2));
+            w16.XOptions = ((Gtk.AttachOptions)(4));
+            w16.YOptions = ((Gtk.AttachOptions)(4));
             this.Add(this.table1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();

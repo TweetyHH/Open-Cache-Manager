@@ -211,6 +211,13 @@ namespace ocmengine
 			}
 		}
 		
+		private bool m_hasFinal = false;
+		public bool HasFinal
+		{
+			get { return m_hasFinal;}
+			set { m_hasFinal = value;}
+		}
+		
 		public override double Lat {
 			get {
 				if (HasCorrected)

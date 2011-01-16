@@ -145,7 +145,6 @@ namespace ocmgtk
 				Gtk.Table.TableChild props;
 				
 				uint colCount = 0;
-				uint rowCount = 0;
 				
 				foreach (CacheAttribute attr in attrs)
 				{

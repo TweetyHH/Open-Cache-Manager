@@ -11,6 +11,8 @@ the waypoints tab
 - Add Ctrl+P shortcut for Printing
 - Add Ctrl+Alt+I shortcut for Import Directory
 - Major performance improvements
+- Show solved puzzle icon if cache has final location waypoint or corrected coordinates
+- Remove "placed by me" from advanced filters as it's a duplicate
 
 Version 0.22.8
 --------------

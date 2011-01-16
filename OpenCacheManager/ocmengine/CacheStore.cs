@@ -28,6 +28,7 @@ namespace ocmengine
 	public partial class CacheStore
 	{
 		private List<String> m_hasChildrenList = new List<String>();
+		private List<String> m_hasFinalList = new List<String>();
 		
 		public class ReadCacheArgs:EventArgs
 		{
@@ -186,7 +187,7 @@ namespace ocmengine
 			String prefilter = DoPrefilter();
 			if (null != prefilter)
 				sql += prefilter;
-			//System.Console.WriteLine(sql);
+			System.Console.WriteLine(sql);
 			List<Geocache> caches =  GetCacheList(sql);
 			if (this.Complete != null)
 				this.Complete(this, new EventArgs());
@@ -579,6 +580,7 @@ namespace ocmengine
 			if (val is string)
 				cache.CorrectedLon = Double.Parse(val as string, CultureInfo.InvariantCulture);
 			cache.Children = m_hasChildrenList.Contains(cache.Name);
+			cache.HasFinal = m_hasFinalList.Contains(cache.Name);
 			
 			
 			if (this.ReadCache != null)
@@ -605,6 +607,15 @@ namespace ocmengine
 			{
 				m_hasChildrenList.Add(rdr.GetString(0));
 			}
+			
+			m_hasFinalList.Clear();
+			cmd = conn.CreateCommand();
+			cmd.CommandText = HASFINAL_LIST;
+			rdr = cmd.ExecuteReader();
+			while (rdr.Read())
+			{
+				m_hasFinalList.Add(rdr.GetString(0));
+			}
 			CloseConnection(ref rdr, ref cmd, ref conn);
 		}
 		
@@ -615,32 +626,55 @@ namespace ocmengine
 			
 			System.Text.StringBuilder preFilterList = new System.Text.StringBuilder();
 			bool atLeastOne = false;
-			if (m_filter.Contains(FilterList.KEY_INCATTRS) || m_filter.Contains(FilterList.KEY_EXCATTRS))
+			if (m_filter.Contains(FilterList.KEY_INCATTRS) || m_filter.Contains(FilterList.KEY_EXCATTRS)
+			    || m_filter.Contains(FilterList.KEY_CHILDREN))
 			{
 				preFilterList.Append(" AND GEOCACHE.name IN (");
 				if (m_filter.Contains(FilterList.KEY_INCATTRS))
 				{
-					BuildPreFilterList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='True' AND value IN (",
+					BuildInclusionList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='True' AND value == ",
 					                    FilterList.KEY_INCATTRS,
 					                    preFilterList,
 					                    out atLeastOne);
 				}
 				if (m_filter.Contains(FilterList.KEY_EXCATTRS))
 				{
-					BuildPreFilterList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='False' AND value IN (", 
+					BuildInclusionList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='False' AND value ==", 
 					                    FilterList.KEY_EXCATTRS,
 					                    preFilterList,
 					                    out atLeastOne);
 					
 				}
+				string childTypes = m_filter.GetCriteria(FilterList.KEY_CHILDREN) as string;
+				if (!String.IsNullOrEmpty(childTypes))
+				{
+					atLeastOne = true;
+					IDbConnection conn = OpenConnection();
+					IDbCommand cmd = conn.CreateCommand();	
+					cmd.CommandText = String.Format(HAS_WPT_FILT,childTypes);
+					IDataReader rdr = cmd.ExecuteReader();
+					bool firstDone = false;
+					while (rdr.Read())
+					{
+						if (!firstDone)
+							firstDone = true;
+						else
+							preFilterList.Append(",");
+						preFilterList.Append("'");
+						preFilterList.Append(rdr.GetString(0));
+						preFilterList.Append("'");
+					}
+				}
 				preFilterList.Append(")");
+				
 			}
-			if (m_filter.Contains(FilterList.KEY_INCNOATTRS) || m_filter.Contains(FilterList.KEY_EXCNOATTRS))
+			if (m_filter.Contains(FilterList.KEY_INCNOATTRS) || m_filter.Contains(FilterList.KEY_EXCNOATTRS) ||
+			    m_filter.Contains(FilterList.KEY_NOCHILDREN))
 			{
 				preFilterList.Append(" AND GEOCACHE.name NOT IN (");
 				if (m_filter.Contains(FilterList.KEY_INCNOATTRS))
 				{
-					BuildPreFilterList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='True' AND value IN (", 
+					BuildExclusionList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='True' AND value IN (", 
 					                    FilterList.KEY_INCNOATTRS,
 					                    preFilterList,
 					                    out atLeastOne);
@@ -648,11 +682,31 @@ namespace ocmengine
 				}
 				if (m_filter.Contains(FilterList.KEY_EXCNOATTRS))
 				{
-					BuildPreFilterList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='False' AND value IN (", 
+					BuildExclusionList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='False' AND value IN (", 
 					                    FilterList.KEY_EXCNOATTRS,
 					                    preFilterList,
 					                    out atLeastOne);
 					
+				}
+				string childTypes = m_filter.GetCriteria(FilterList.KEY_NOCHILDREN) as string;
+				if (!String.IsNullOrEmpty(childTypes))
+				{
+					atLeastOne = true;
+					IDbConnection conn = OpenConnection();
+					IDbCommand cmd = conn.CreateCommand();	
+					cmd.CommandText = String.Format(HAS_WPT_FILT,childTypes);
+					IDataReader rdr = cmd.ExecuteReader();
+					bool firstDone = false;
+					while (rdr.Read())
+					{
+						if (!firstDone)
+							firstDone = true;
+						else
+							preFilterList.Append(",");
+						preFilterList.Append("'");
+						preFilterList.Append(rdr.GetString(0));
+						preFilterList.Append("'");
+					}
 				}
 				preFilterList.Append(")");
 			}
@@ -661,7 +715,55 @@ namespace ocmengine
 			return null;
 		}
 		
-		private void BuildPreFilterList (String sql, String key, 
+		private void BuildInclusionList (String sql, String key, 
+		                                 System.Text.StringBuilder preFilterList, 
+		                                 out bool atLeastOne)
+		{
+				atLeastOne = true;
+				StringBuilder refineList = new StringBuilder();
+				List<String> incAttrs = m_filter.GetCriteria(key) as List<String>;
+				IEnumerator<String> ct = incAttrs.GetEnumerator();
+				bool firstDone = false;
+				IDbConnection conn = OpenConnection();
+				while (ct.MoveNext())
+				{	
+					
+					IDbCommand cmd = conn.CreateCommand();
+					string cmdTxt = sql + "'" + ct.Current + "'";
+					if (refineList.Length > 0)
+					{
+						cmdTxt += " AND cachename IN (";
+						cmdTxt += refineList;
+						cmdTxt += ")";
+						
+					}
+					if (!firstDone)
+						firstDone = true;
+					//System.Console.WriteLine(cmdTxt);
+					cmd.CommandText = cmdTxt;
+					IDataReader rdr = cmd.ExecuteReader();
+					refineList.Remove(0, refineList.Length);
+					firstDone = false;
+					while (rdr.Read())
+					{
+						if (!firstDone)
+							firstDone = true;
+						else
+							refineList.Append(",");
+						refineList.Append("'");
+						refineList.Append(rdr.GetString(0));
+						refineList.Append("'");
+					}
+					if (refineList.Length == 0)
+						refineList.Append("NULL");
+					rdr.Dispose();
+					cmd.Dispose();
+				}
+				conn.Close();
+				preFilterList.Append(refineList.ToString());
+		}
+		
+		private void BuildExclusionList (String sql, String key, 
 		                                 System.Text.StringBuilder preFilterList, 
 		                                 out bool atLeastOne)
 		{
@@ -749,67 +851,6 @@ namespace ocmengine
 					else 
 						return false;
 				}
-				/*if (m_filter.Contains(FilterList.KEY_INCATTRS))
-				{
-					// Don't do the additional filter processing if there's only one attribute filter,
-					// the prefilter stage would have already handled it.
-					List<String> filtattrs = m_filter.GetCriteria(FilterList.KEY_INCATTRS) as List<String>;
-					if (filtattrs.Count > 1 || m_filter.Contains(FilterList.KEY_EXCATTRS))
-					{
-						List<String> cacheattrs = this.GetIncAttributes(cache.Name);
-						foreach(String attribute in filtattrs)
-						{
-							if (!cacheattrs.Contains(attribute))
-								return false;
-						}
-					}
-				}
-				if (m_filter.Contains(FilterList.KEY_EXCATTRS))
-				{
-					List<String> filtattrs = m_filter.GetCriteria(FilterList.KEY_EXCATTRS) as List<String>;
-					// Don't do the additional filter processing if there's only one attribute filter,
-					// the prefilter stage would have already handled it.
-					if (filtattrs.Count > 1 || m_filter.Contains(FilterList.KEY_INCATTRS))
-					{
-						List<String> cacheattrs = this.GetExcAttributes(cache.Name);
-						foreach(String attribute in filtattrs)
-						{
-							if (!cacheattrs.Contains(attribute))
-								return false;
-						}
-					}
-					
-				}
-				if (m_filter.Contains(FilterList.KEY_INCNOATTRS))
-				{
-					// Don't do the additional filter processing if there's only one attribute filter,
-					// the prefilter stage would have already handled it.
-					List<String> filtattrs = m_filter.GetCriteria(FilterList.KEY_INCNOATTRS) as List<String>;
-					//if (filtattrs.Count > 1 || m_filter.Contains(FilterList.KEY_EXCATTRS))
-					//{
-						List<String> cacheattrs = this.GetIncAttributes(cache.Name);
-						foreach(String attribute in filtattrs)
-						{
-							if (cacheattrs.Contains(attribute))
-								return false;
-						}
-					//}
-				}
-				if (m_filter.Contains(FilterList.KEY_EXCNOATTRS))
-				{
-					// Don't do the additional filter processing if there's only one attribute filter,
-					// the prefilter stage would have already handled it.
-					List<String> filtattrs = m_filter.GetCriteria(FilterList.KEY_EXCNOATTRS) as List<String>;
-					//if (filtattrs.Count > 1 || m_filter.Contains(FilterList.KEY_EXCATTRS))
-					//{
-						List<String> cacheattrs = this.GetIncAttributes(cache.Name);
-						foreach(String attribute in filtattrs)
-						{
-							if (cacheattrs.Contains(attribute))
-								return false;
-						}
-					//}
-				}*/
 			}
 			return true;
 		}
@@ -893,11 +934,6 @@ namespace ocmengine
 			{
 				m_conn = OpenConnection();
 			}
-			IDbCommand cmd = m_conn.CreateCommand();
-			cmd.CommandText = "PRAGMA synchronous = 1";
-			cmd.ExecuteNonQuery();
-			cmd.Dispose();
-			cmd = null;
 			return m_conn.BeginTransaction();
 		}
 		
