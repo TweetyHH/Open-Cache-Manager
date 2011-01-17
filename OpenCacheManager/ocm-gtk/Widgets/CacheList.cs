@@ -211,7 +211,7 @@ namespace ocmgtk
 			m_monitor.StartProgressLoad(Catalog.GetString("Loading Caches"));
 			store.ReadCache += HandleStoreReadCache;
 			store.Complete += HandleStoreComplete;
-			store.GetCaches();
+			store.GetCaches(m_monitor.CentreLat, m_monitor.CentreLon);
 			treeview1.Model = m_ListSort;
 			m_ListSort.SetSortColumnId (2, SortType.Ascending);
 			System.Console.WriteLine(Engine.getInstance().Store.Filter);
@@ -231,7 +231,7 @@ namespace ocmgtk
 			m_intervalCount ++;
 			if (m_pulseMode)
 			{
-				if (m_intervalCount == 15)
+				if (m_intervalCount == 50)
 				{
 					m_monitor.SetProgressPulse();
 					m_intervalCount = 0;
@@ -241,7 +241,7 @@ namespace ocmgtk
 			{
 				m_loadCount ++;
 				
-				if (m_intervalCount == 50)
+				if (m_intervalCount == 100)
 				{
 					m_monitor.SetProgress(m_loadCount, m_loadTotal, String.Format(Catalog.GetString("Loading Caches {0}"), (m_loadCount/m_loadTotal).ToString("0%")));
 					m_intervalCount = 0;
@@ -310,7 +310,7 @@ namespace ocmgtk
 			Geocache cache = (Geocache)model.GetValue (iter, 0);
 			CellRendererText text = cell as CellRendererText;
 			try {
-				double dist = Utilities.calculateDistance (m_monitor.CentreLat, cache.Lat, m_monitor.CentreLon, cache.Lon);
+				double dist = cache.Distance;
 				if (m_monitor.UseImperial)
 					dist = Utilities.KmToMiles(dist);
 				text.Text = dist.ToString ("0.00");
@@ -381,7 +381,7 @@ namespace ocmgtk
 			Geocache cacheB = (Geocache)model.GetValue (tib, 0);
 			if (cacheA == null || cacheB == null)
 				return 0;
-			double compare = getDistanceFromHome (cacheA) - getDistanceFromHome (cacheB);
+			double compare = cacheA.Distance - cacheB.Distance;
 			if (compare > 0)
 				return 1; else if (compare == 0)
 				return 0;
@@ -431,7 +431,7 @@ namespace ocmgtk
 				return false;
 			
 			if (m_maxDistance > 0)
-				if (getDistanceFromHome (cache) > m_maxDistance)
+				if (cache.Distance > m_maxDistance)
 					return false;
 			
 			
@@ -476,10 +476,6 @@ namespace ocmgtk
 			RefilterList ();
 		}
 
-		public double getDistanceFromHome (Geocache cache)
-		{
-			return Utilities.calculateDistance (m_monitor.CentreLat, cache.Lat, m_monitor.CentreLon, cache.Lon);
-		}
 
 		[GLib.ConnectBeforeAttribute]
 		protected virtual void DoButtonPress (object o, Gtk.ButtonPressEventArgs args)

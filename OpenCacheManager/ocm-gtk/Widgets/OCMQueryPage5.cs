@@ -268,6 +268,8 @@ namespace ocmgtk
 					offrFilt.SetState(AttributeFilterWidget.AttrState.YES);
 				if (value.Contains(skidooFilt.AttributeName))
 					skidooFilt.SetState(AttributeFilterWidget.AttrState.YES);
+				if (value.Contains(shortFilt.AttributeName))
+					shortFilt.SetState(AttributeFilterWidget.AttrState.YES);
 			}
 		}
 		

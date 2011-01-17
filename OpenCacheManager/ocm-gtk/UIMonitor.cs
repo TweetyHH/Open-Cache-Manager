@@ -355,7 +355,7 @@ namespace ocmgtk
 
 		private void LoadMap (string map)
 		{
-			System.Console.WriteLine("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_home_lat + "&lon=" + m_home_lon);
+			//System.Console.WriteLine("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_home_lat + "&lon=" + m_home_lon);
 			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_home_lat.ToString(CultureInfo.InvariantCulture) + "&lon=" + m_home_lon.ToString(CultureInfo.InvariantCulture));
 		}
 
@@ -524,7 +524,7 @@ namespace ocmgtk
 			m_conf.Set("/apps/ocm/lastname", Catalog.GetString("Home"));
 			Geocache selected = m_selectedCache;
 			m_centreName = Catalog.GetString("Home");
-			m_cachelist.RefilterList();
+			RefreshCaches();
 			if (selected != null)
 				SelectCache(selected.Name);
 		}
@@ -957,7 +957,7 @@ namespace ocmgtk
 		public void LogFind ()
 		{
 			MarkCacheFound();
-			System.Console.WriteLine(m_selectedCache.URL);
+			//System.Console.WriteLine(m_selectedCache.URL);
 			if (m_selectedCache.URL == null)
 				return;
 			else if (!m_selectedCache.URL.ToString().Contains("geocaching"))
@@ -1569,9 +1569,16 @@ namespace ocmgtk
 		public void ApplyQuickFilter(QuickFilter filter)
 		{
 			m_cachelist.ApplyQuickFilter(filter);
-			Engine.getInstance().Store.Filter = filter.AdvancedFilters;
+			CacheStore store = Engine.getInstance().Store;
+			bool needsReload = false;
+			if (store.Filter != null)
+				needsReload = true;
+			store.Filter = filter.AdvancedFilters;
 			CheckAdvancedFilters(filter.AdvancedFilters);
-			RefreshCaches();
+			if (filter.AdvancedFilters != null || needsReload)
+				RefreshCaches();
+			else
+				m_cachelist.RefilterList();
 		}
 		
 		public void SaveQuickFilter()
@@ -1660,7 +1667,7 @@ namespace ocmgtk
 			m_conf.Set("/apps/ocm/lastlon", m_home_lon);
 			m_conf.Set("/apps/ocm/lastname", m_centreName);
 			m_mainWin.EnableResetCentre();
-			m_cachelist.RefilterList();
+			RefreshCaches();
 		}
 		
 		public void SetHome(double lat, double lon)
@@ -1673,7 +1680,7 @@ namespace ocmgtk
 			m_conf.Set("/apps/ocm/lastlat", m_home_lat);
 			m_conf.Set("/apps/ocm/lastlon", m_home_lon);
 			m_conf.Set("/apps/ocm/lastname", m_centreName);
-			m_cachelist.RefilterList();
+			RefreshCaches();
 		}
 		
 		public void PrintCache()
@@ -1794,21 +1801,27 @@ namespace ocmgtk
 			dlg.AddFilter (filter);
 			
 			if (dlg.Run () == (int)ResponseType.Accept) {
-				RegisterRecentFile(dlg.Filename);
-				String tempPath = System.IO.Path.GetTempPath();
-				ProcessStartInfo start = new ProcessStartInfo();
-				start.FileName = "unzip";
-				start.Arguments = dlg.Filename + " -d " + tempPath + "ocm_unzip";
-				Process unzip =  Process.Start(start);
 				dlg.Hide ();
-				while (!unzip.HasExited)
-				{
-					// Do nothing until exit	
-				}
-				
-				ImportDirectory(tempPath + "ocm_unzip", true);				
+				RegisterRecentFile(dlg.Filename);
+				ImportZip (dlg.Filename);				
 			}
 			dlg.Destroy ();
+		}
+		
+		public void ImportZip (string filename)
+		{
+			String tempPath = System.IO.Path.GetTempPath();
+			ProcessStartInfo start = new ProcessStartInfo();
+			start.FileName = "unzip";
+			start.Arguments = filename + " -d " + tempPath + "ocm_unzip";
+			Process unzip =  Process.Start(start);
+			
+			while (!unzip.HasExited)
+			{
+				// Do nothing until exit	
+			}
+			
+			ImportDirectory(tempPath + "ocm_unzip", true);
 		}
 		
 		public void ShowOtherChildWaypoints (Geocache cache)

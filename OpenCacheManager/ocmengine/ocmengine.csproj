@@ -10,7 +10,7 @@
     <AssemblyName>ocmengine</AssemblyName>
     <Description>The library provides the geocache library management</Description>
     <RootNamespace>ocmengine</RootNamespace>
-    <ReleaseVersion>0.22.8.11</ReleaseVersion>
+    <ReleaseVersion>0.22.8.12</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

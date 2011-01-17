@@ -90,6 +90,10 @@ namespace ocmgtk
 			{
 				if (files[i].EndsWith(".zip"))
 				{
+					this.progressbar6.Text = Catalog.GetString("Unzipping");
+					this.waypointName.Markup = "<i>" + Catalog.GetString("Unzipping") + ":" + files[i] + "</i>";
+					while (Gtk.Application.EventsPending ())
+						Gtk.Application.RunIteration (false);
 					ProcessStartInfo start = new ProcessStartInfo();
 					start.FileName = "unzip";
 					System.Console.WriteLine(files[i] + " -d \"" + directoryPath + "\"");
@@ -108,7 +112,6 @@ namespace ocmgtk
 			
 			// Rescan for all GPX files, including those uncompressed by ZIP files
 			files = Directory.GetFiles(directoryPath);
-			
 			for (int i=0; i < files.Length; i++)
 			{
 				if (files[i].EndsWith(".gpx"))
@@ -121,17 +124,21 @@ namespace ocmgtk
 				}
 			}
 			
+			int currCount = 0;
 			for (int i=0; i < files.Length; i++)
 			{
 				if (files[i].EndsWith(".gpx"))
 				{
+					currCount++;
 					//Clean out attributes,tbs,and logs that will be overwritten
+					if (m_parser.Cancel)
+						return;
 					FileStream fs =  System.IO.File.OpenRead (files[i]);
 					m_parser.clearForImport(fs, store);
 					fs.Close();
 					// Need to reopen the file
 					fs =  System.IO.File.OpenRead (files[i]);
-					multiFileLabel.Text = String.Format(Catalog.GetString("Processing File {0} of {1}"), i + 1, fileCount);
+					multiFileLabel.Text = String.Format(Catalog.GetString("Processing File {0} of {1}"), currCount, fileCount);
 					ParseFile(fs, store);
 					fs.Close();
 					if (deleteOnCompletion)

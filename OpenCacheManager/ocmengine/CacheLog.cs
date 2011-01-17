@@ -19,14 +19,14 @@ namespace ocmengine
 	
 	public class CacheLog
 	{
-		DateTime m_logdate;
+		DateTime m_logdate = DateTime.Now;
 		const string LOG_PREFIX="groundspeak";
-		string m_logged_by;
-		string m_logmessage;
-		string m_status;
-		string m_finder_id;
-		string m_logID = null;
-		bool m_encoded;
+		string m_logged_by = "Unknown";
+		string m_logmessage = "Unknown";
+		string m_status = "Unknown";
+		string m_finder_id = "Unknown";
+		string m_logID = "-1";
+		bool m_encoded = false;
 		
 		public DateTime LogDate
 		{

@@ -97,7 +97,7 @@ namespace ocmgtk
 			}
 			else
 			{
-				caches = Engine.getInstance().Store.GetCaches();
+				caches = Engine.getInstance().Store.GetCaches(0,0);
 			}
 			CacheStore target = new CacheStore();
 			CacheStore source = Engine.getInstance().Store;
@@ -116,7 +116,16 @@ namespace ocmgtk
 				return;
 			}
 			buttonOk.Visible = false;
+			List<String> str = new List<String>();
+			foreach(Geocache c in caches)
+			{
+				str.Add(c.Name);
+			}
+			
 			IDbTransaction trans = target.StartUpdate();
+			target.ClearAttributes(str);
+			target.ClearLogs(str);
+			target.ClearTBs(str);
 			foreach(Geocache cache in caches)
 			{
 				if (cancel)

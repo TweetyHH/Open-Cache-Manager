@@ -195,14 +195,17 @@ namespace ocmgtk
 				props.XOptions = AttachOptions.Expand;
 				filler.Show();
 				
-				attrTable.Add(attrLabel);
-				props = ((Gtk.Table.TableChild)(this.attrTable[attrLabel]));
-				props.TopAttach = 1;
-				props.LeftAttach = 0;
-				props.RightAttach = colCount + 1;
-				props.BottomAttach = 2;
-				attrLabel.Markup = bldr.ToString();
-				attrLabel.Show();
+				if(bldr.Length > 0)
+				{
+					attrTable.Add(attrLabel);
+					props = ((Gtk.Table.TableChild)(this.attrTable[attrLabel]));
+					props.TopAttach = 1;
+					props.LeftAttach = 0;
+					props.RightAttach = colCount + 1;
+					props.BottomAttach = 2;
+					attrLabel.Markup = bldr.ToString();
+					attrLabel.Show();
+				}
 			} catch (Exception e) {
 				UIMonitor.ShowException(e);
 			}

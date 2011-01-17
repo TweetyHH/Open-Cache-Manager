@@ -72,6 +72,7 @@ namespace ocmengine
 		public int PreParseForSingle(FileStream fs, CacheStore store)
 		{
 			XmlReader rdr = XmlReader.Create(fs);
+			rdr.Settings.IgnoreWhitespace = true;
 			int count = 0;
 			List<String> waypoints = new List<String>();
 			while (rdr.Read())
@@ -99,6 +100,7 @@ namespace ocmengine
 		public int parseTotal(FileStream fs, CacheStore store)
 		{
 			XmlReader rdr = XmlReader.Create(fs);
+			rdr.Settings.IgnoreWhitespace = true;
 			int count = 0;
 			while (rdr.Read())
 			{
@@ -118,6 +120,7 @@ namespace ocmengine
 		public void clearForImport(FileStream fs, CacheStore store)
 		{
 			XmlReader rdr = XmlReader.Create(fs);
+			rdr.Settings.IgnoreWhitespace = true;
 			List<String> waypoints = new List<String>();
 			while (rdr.Read())
 			{
@@ -137,6 +140,7 @@ namespace ocmengine
 		{			
 			m_store = store;
 			XmlReader reader = XmlReader.Create(fs);
+			reader.Settings.IgnoreWhitespace = true;
 			while (reader.Read())
 			{
 				if (m_cancel)
@@ -725,7 +729,11 @@ namespace ocmengine
 			{
 				if (reader.LocalName == "date")
 				{
-					log.LogDate = reader.ReadElementContentAsDateTime();
+					string date = reader.ReadElementContentAsString();
+					if (date.Contains("/"))
+						log.LogDate = DateTime.ParseExact(date, "MM/dd/yyyy'T'HH:mm:ss",CultureInfo.InvariantCulture);
+					else
+						log.LogDate = DateTime.Parse(date);
 				}
 				else if (reader.LocalName == "type")
 				{
@@ -739,7 +747,7 @@ namespace ocmengine
 						cache.Symbol = "Geocache Found";
 					}
 				}
-				else if (reader.LocalName == "finder")
+				else if (reader.LocalName == "finder" && reader.IsStartElement())
 				{
 					log.FinderID = reader.GetAttribute("id");
 					log.LoggedBy = reader.ReadElementContentAsString();

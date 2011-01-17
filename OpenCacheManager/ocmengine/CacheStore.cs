@@ -29,6 +29,8 @@ namespace ocmengine
 	{
 		private List<String> m_hasChildrenList = new List<String>();
 		private List<String> m_hasFinalList = new List<String>();
+		private double m_lat=-1;
+		private double m_lon=-1;
 		
 		public class ReadCacheArgs:EventArgs
 		{
@@ -177,8 +179,10 @@ namespace ocmengine
 		
 		
 		
-		public List<Geocache> GetCaches()
+		public List<Geocache> GetCaches(double lat, double lon)
 		{
+			m_lat = lat;
+			m_lon = lon;
 			String sql = GET_GC;
 			if (null != m_filter)
 				sql += m_filter.BuildWhereClause();
@@ -187,7 +191,7 @@ namespace ocmengine
 			String prefilter = DoPrefilter();
 			if (null != prefilter)
 				sql += prefilter;
-			System.Console.WriteLine(sql);
+			//System.Console.WriteLine(sql);
 			List<Geocache> caches =  GetCacheList(sql);
 			if (this.Complete != null)
 				this.Complete(this, new EventArgs());
@@ -581,7 +585,7 @@ namespace ocmengine
 				cache.CorrectedLon = Double.Parse(val as string, CultureInfo.InvariantCulture);
 			cache.Children = m_hasChildrenList.Contains(cache.Name);
 			cache.HasFinal = m_hasFinalList.Contains(cache.Name);
-			
+			cache.Distance = Utilities.calculateDistance(m_lat, cache.Lat, m_lon, cache.Lon);			
 			
 			if (this.ReadCache != null)
 			{

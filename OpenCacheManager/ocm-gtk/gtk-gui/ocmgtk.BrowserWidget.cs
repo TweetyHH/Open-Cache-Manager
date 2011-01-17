@@ -17,6 +17,20 @@ namespace ocmgtk {
         
         private Gtk.VBox widgetBox;
         
+        private Gtk.HBox hbox1;
+        
+        private Gtk.Label spacer;
+        
+        private Gtk.Button sizeUpButton;
+        
+        private Gtk.Image image1;
+        
+        private Gtk.Button sizeDownButton;
+        
+        private Gtk.Image image2;
+        
+        private Gtk.HButtonBox hbuttonbox2;
+        
         private Gtk.Frame browserFrame;
         
         private Gtk.Alignment browserAlign;
@@ -33,6 +47,65 @@ namespace ocmgtk {
             this.widgetBox = new Gtk.VBox();
             this.widgetBox.Name = "widgetBox";
             // Container child widgetBox.Gtk.Box+BoxChild
+            this.hbox1 = new Gtk.HBox();
+            this.hbox1.Name = "hbox1";
+            this.hbox1.Spacing = 6;
+            // Container child hbox1.Gtk.Box+BoxChild
+            this.spacer = new Gtk.Label();
+            this.spacer.Name = "spacer";
+            this.hbox1.Add(this.spacer);
+            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.hbox1[this.spacer]));
+            w3.Position = 0;
+            w3.Fill = false;
+            // Container child hbox1.Gtk.Box+BoxChild
+            this.sizeUpButton = new Gtk.Button();
+            this.sizeUpButton.CanFocus = true;
+            this.sizeUpButton.Name = "sizeUpButton";
+            this.sizeUpButton.FocusOnClick = false;
+            this.sizeUpButton.Relief = ((Gtk.ReliefStyle)(2));
+            // Container child sizeUpButton.Gtk.Container+ContainerChild
+            this.image1 = new Gtk.Image();
+            this.image1.Name = "image1";
+            this.image1.Pixbuf = Gdk.Pixbuf.LoadFromResource("ocmgtk.icons.scalable.up_icon.svg");
+            this.sizeUpButton.Add(this.image1);
+            this.sizeUpButton.Label = null;
+            this.hbox1.Add(this.sizeUpButton);
+            Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.hbox1[this.sizeUpButton]));
+            w5.Position = 1;
+            w5.Expand = false;
+            w5.Fill = false;
+            // Container child hbox1.Gtk.Box+BoxChild
+            this.sizeDownButton = new Gtk.Button();
+            this.sizeDownButton.CanFocus = true;
+            this.sizeDownButton.Name = "sizeDownButton";
+            this.sizeDownButton.FocusOnClick = false;
+            this.sizeDownButton.Relief = ((Gtk.ReliefStyle)(2));
+            // Container child sizeDownButton.Gtk.Container+ContainerChild
+            this.image2 = new Gtk.Image();
+            this.image2.Name = "image2";
+            this.image2.Pixbuf = Gdk.Pixbuf.LoadFromResource("ocmgtk.icons.scalable.down_icon.svg");
+            this.sizeDownButton.Add(this.image2);
+            this.sizeDownButton.Label = null;
+            this.hbox1.Add(this.sizeDownButton);
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.hbox1[this.sizeDownButton]));
+            w7.Position = 2;
+            w7.Expand = false;
+            w7.Fill = false;
+            this.widgetBox.Add(this.hbox1);
+            Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(this.widgetBox[this.hbox1]));
+            w8.Position = 0;
+            w8.Expand = false;
+            w8.Fill = false;
+            // Container child widgetBox.Gtk.Box+BoxChild
+            this.hbuttonbox2 = new Gtk.HButtonBox();
+            this.hbuttonbox2.Name = "hbuttonbox2";
+            this.hbuttonbox2.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            this.widgetBox.Add(this.hbuttonbox2);
+            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.widgetBox[this.hbuttonbox2]));
+            w9.Position = 1;
+            w9.Expand = false;
+            w9.Fill = false;
+            // Container child widgetBox.Gtk.Box+BoxChild
             this.browserFrame = new Gtk.Frame();
             this.browserFrame.Name = "browserFrame";
             this.browserFrame.ShadowType = ((Gtk.ShadowType)(1));
@@ -42,14 +115,16 @@ namespace ocmgtk {
             this.browserAlign.Name = "browserAlign";
             this.browserFrame.Add(this.browserAlign);
             this.widgetBox.Add(this.browserFrame);
-            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.widgetBox[this.browserFrame]));
-            w4.Position = 0;
+            Gtk.Box.BoxChild w11 = ((Gtk.Box.BoxChild)(this.widgetBox[this.browserFrame]));
+            w11.Position = 2;
             this.Add(this.widgetBox);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             w1.SetUiManager(UIManager);
             this.Hide();
+            this.sizeUpButton.Clicked += new System.EventHandler(this.OnUpClick);
+            this.sizeDownButton.Clicked += new System.EventHandler(this.OnDownClick);
         }
     }
 }

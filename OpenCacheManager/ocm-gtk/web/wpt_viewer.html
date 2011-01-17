@@ -192,6 +192,7 @@ body {
 		feature.data.popupContentHTML ="<div>" + openspan + wptName 
 		+ "<br/>" + wptFullName + "</span><hr noshade>" 
 		+ wptDescription;
+		icon.imageDiv.title = wptName + ":" + wptFullName;
 		feature.data.icon = icon;
 		var marker = feature.createMarker();
 		marker.events.register('mousedown',feature,mousedown);
@@ -205,7 +206,7 @@ body {
 		var icon = new OpenLayers.Icon(icon,size,offset);
 		var lonlat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
 		var feature = new OpenLayers.Feature(extra, lonlat);
-		
+		icon.imageDiv.title = wptName + ":" + wptFullName;
 		var openspan = "<span style='font-face:sans-serif; font-weight:bolder; font-size:12pt;";
 		if (mode == "archived")
 			openspan += " color:darkred; text-decoration:line-through;'>";
@@ -274,7 +275,7 @@ body {
 		var icon = new OpenLayers.Icon("../icons/48x48/circle.png",size,offset);
 		notify.addMarker(new OpenLayers.Marker(lonLat,icon));  	
 		map.addLayer(notify);
-		map.raiseLayer(notify, -1)
+		map.raiseLayer(notify, -3)
 		map.panTo(lonLat);
 	}
 	

@@ -13,6 +13,10 @@ the waypoints tab
 - Major performance improvements
 - Show solved puzzle icon if cache has final location waypoint or corrected coordinates
 - Remove "placed by me" from advanced filters as it's a duplicate
+- Add minimize/maximize buttons to the map pane
+- Complete attribute filters and icons
+- Kludge around opencaching.us invalid date format in attribute log
+- Map icons now show cache name as a tooltip
 
 Version 0.22.8
 --------------

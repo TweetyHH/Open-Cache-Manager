@@ -67,6 +67,7 @@ namespace ocmengine
 		private bool m_children = false;
 		private double m_correctedLat = -1;
 		private double m_correctedLon = -1;
+		private double m_distance = -1;
 		
 		public string CacheName
 		{
@@ -263,6 +264,12 @@ namespace ocmengine
 		{
 			get { return m_correctedLon;}
 			set { m_correctedLon = value;}
+		}
+		
+		public double Distance
+		{
+			get { return m_distance;}
+			set { m_distance = value;}
 		}
 					
 		

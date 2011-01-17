@@ -102,5 +102,16 @@ namespace ocmgtk
 			else
 				pending_actions.Add(script);
 		}
+		protected virtual void OnUpClick (object sender, System.EventArgs e)
+		{
+			sizeUpButton.Sensitive = m_monitor.Main.DoUpMap();
+			sizeDownButton.Sensitive = true;
+		}
+		
+		protected virtual void OnDownClick (object sender, System.EventArgs e)
+		{
+			sizeDownButton.Sensitive = m_monitor.Main.DoDownMap();
+			sizeUpButton.Sensitive = true;
+		}
 	}
 }

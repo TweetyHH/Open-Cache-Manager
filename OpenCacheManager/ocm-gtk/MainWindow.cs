@@ -742,7 +742,43 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.AddChildWaypoint();
 	}
 	
+	public bool DoUpMap()
+	{
+		if (vPane.Position <= 285)
+		{
+			vPane.Position = 0;
+			return false;
+		}
+		else if (vPane.Position <= 385)
+		{
+			vPane.Position = 285;
+			return true;
+		}
+		else 
+		{
+			vPane.Position = 385;
+			return true;
+		}
+	}
 	
+	public bool DoDownMap()
+	{
+		if (vPane.Position >=385)
+		{
+			vPane.Position = vPane.MaxPosition - 10;
+			return false;
+		}
+		else if (vPane.Position < 285)
+		{
+			vPane.Position = 285;
+			return true;
+		}
+		else 
+		{
+			vPane.Position = 385;
+			return true;
+		}
+	}
 	
 	
 }

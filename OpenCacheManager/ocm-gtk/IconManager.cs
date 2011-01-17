@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using Gdk;
 using ocmengine;
 
@@ -23,7 +24,7 @@ namespace ocmgtk
 
 	public class IconManager
 	{
-
+		private static Dictionary<string, Pixbuf> imageCache = new Dictionary<string, Pixbuf>();
 		private static Pixbuf TRADICON_S = new Pixbuf ("./icons/scalable/traditional.svg", 24, 24);
 		private static Pixbuf LETTERICON_S = new Pixbuf ("./icons/scalable/letterbox.svg", 24, 24);
 		private static Pixbuf MULTIICON_S = new Pixbuf ("./icons/scalable/multi.svg", 24, 24);
@@ -197,7 +198,10 @@ namespace ocmgtk
 			{
 				String val = attrname.Replace(' ', '_');
 				val = val.Replace('/','_');
-				return new Pixbuf ("./icons/scalable/attributes/yes_" +  val + ".svg", 32, 32);
+				string iconName = "./icons/scalable/attributes/yes_" +  val + ".svg";
+				if (!imageCache.ContainsKey(iconName))
+					imageCache[iconName] = new Pixbuf(iconName, 32,32);
+				return imageCache[iconName];				
 			}
 			catch 
 			{
@@ -211,7 +215,10 @@ namespace ocmgtk
 			{
 				String val = attrname.Replace(' ', '_');
 				val = val.Replace('/','_');
-				return new Pixbuf ("./icons/scalable/attributes/no_" + val + ".svg", 32, 32);
+				string iconName = "./icons/scalable/attributes/no_" + val + ".svg";
+				if (!imageCache.ContainsKey(iconName))
+					imageCache[iconName] = new Pixbuf(iconName, 32,32);
+				return imageCache[iconName];
 			}
 			catch 
 			{
@@ -225,7 +232,10 @@ namespace ocmgtk
 			{
 				String val = attrname.Replace(' ', '_');
 				val = val.Replace('/','_');
-				return new Pixbuf ("./icons/scalable/attributes/dis_" + val + ".svg", 32, 32);
+				string iconName = "./icons/scalable/attributes/dis_" + val + ".svg";
+				if (!imageCache.ContainsKey(iconName))
+					imageCache[iconName] = new Pixbuf(iconName, 32,32);
+				return imageCache[iconName];
 			}
 			catch 
 			{

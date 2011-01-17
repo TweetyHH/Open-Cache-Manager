@@ -117,12 +117,18 @@ namespace ocmgtk
 				UIMonitor.getInstance().LoadConfig(false);
 				if (m_file.EndsWith(".ocm"))
 				{
-					System.Console.WriteLine("Loading...");
 					UIMonitor.getInstance().SetCurrentDB(m_file, true);
 				}
 				else
 				{
-					UIMonitor.getInstance().ImportGPXFile(m_file);	
+					if (m_file.EndsWith(".gpx"))
+					{
+						UIMonitor.getInstance().ImportGPXFile(m_file);
+					}
+					if (m_file.EndsWith(".zip"))
+					{
+						UIMonitor.getInstance().ImportZip(m_file);
+					}
 				}
 			}
 			else

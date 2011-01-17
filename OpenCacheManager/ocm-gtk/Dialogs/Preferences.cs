@@ -138,7 +138,6 @@ namespace ocmgtk
 			foreach(QuickFilter item in filterList.FilterArray)
 			{
 				startupFilterCombo.AppendText(item.Name);
-				System.Console.WriteLine("Adding filter..." + item.Name);
 				if (item.Name == filterName)
 					startupFilterCombo.Active = i;
 				i++;
