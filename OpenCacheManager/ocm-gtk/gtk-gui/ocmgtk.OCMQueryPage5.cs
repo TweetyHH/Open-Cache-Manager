@@ -592,7 +592,7 @@ namespace ocmgtk {
             // Container child hbox1.Gtk.Box+BoxChild
             this.image3 = new Gtk.Image();
             this.image3.Name = "image3";
-            this.image3.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-dialog-info", Gtk.IconSize.Button, 20);
+            this.image3.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-dialog-info", Gtk.IconSize.Button, 16);
             this.hbox1.Add(this.image3);
             Gtk.Box.BoxChild w21 = ((Gtk.Box.BoxChild)(this.hbox1[this.image3]));
             w21.Position = 0;
@@ -755,7 +755,7 @@ namespace ocmgtk {
             this.nightCFilt.Events = ((Gdk.EventMask)(256));
             this.nightCFilt.Name = "nightCFilt";
             this.nightCFilt.AttributeName = "Night Cache";
-            this.nightCFilt.CanExclude = false;
+            this.nightCFilt.CanExclude = true;
             this.table2.Add(this.nightCFilt);
             Gtk.Table.TableChild w34 = ((Gtk.Table.TableChild)(this.table2[this.nightCFilt]));
             w34.TopAttach = ((uint)(2));
@@ -797,7 +797,7 @@ namespace ocmgtk {
             this.pgrabFilt.Events = ((Gdk.EventMask)(256));
             this.pgrabFilt.Name = "pgrabFilt";
             this.pgrabFilt.AttributeName = "Park and Grab";
-            this.pgrabFilt.CanExclude = false;
+            this.pgrabFilt.CanExclude = true;
             this.table2.Add(this.pgrabFilt);
             Gtk.Table.TableChild w37 = ((Gtk.Table.TableChild)(this.table2[this.pgrabFilt]));
             w37.TopAttach = ((uint)(2));
@@ -1450,7 +1450,7 @@ namespace ocmgtk {
             // Container child hbox2.Gtk.Box+BoxChild
             this.image4 = new Gtk.Image();
             this.image4.Name = "image4";
-            this.image4.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-dialog-info", Gtk.IconSize.Button, 20);
+            this.image4.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-dialog-info", Gtk.IconSize.Button, 16);
             this.hbox2.Add(this.image4);
             Gtk.Box.BoxChild w85 = ((Gtk.Box.BoxChild)(this.hbox2[this.image4]));
             w85.Position = 0;
@@ -1599,7 +1599,7 @@ namespace ocmgtk {
             this.nightCEFilt.Events = ((Gdk.EventMask)(256));
             this.nightCEFilt.Name = "nightCEFilt";
             this.nightCEFilt.AttributeName = "Night Cache";
-            this.nightCEFilt.CanExclude = false;
+            this.nightCEFilt.CanExclude = true;
             this.table1.Add(this.nightCEFilt);
             Gtk.Table.TableChild w97 = ((Gtk.Table.TableChild)(this.table1[this.nightCEFilt]));
             w97.TopAttach = ((uint)(2));
@@ -1655,7 +1655,7 @@ namespace ocmgtk {
             this.pgrabEFilt1.Events = ((Gdk.EventMask)(256));
             this.pgrabEFilt1.Name = "pgrabEFilt1";
             this.pgrabEFilt1.AttributeName = "Park and Grab";
-            this.pgrabEFilt1.CanExclude = false;
+            this.pgrabEFilt1.CanExclude = true;
             this.table1.Add(this.pgrabEFilt1);
             Gtk.Table.TableChild w101 = ((Gtk.Table.TableChild)(this.table1[this.pgrabEFilt1]));
             w101.TopAttach = ((uint)(2));

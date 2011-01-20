@@ -17,6 +17,8 @@ the waypoints tab
 - Complete attribute filters and icons
 - Kludge around opencaching.us invalid date format in attribute log
 - Map icons now show cache name as a tooltip
+- Fix GUI update issues
+- Move map scale to bottom
 
 Version 0.22.8
 --------------

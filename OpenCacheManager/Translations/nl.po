@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2011-01-17 16:42:30-0500\n"
+"POT-Creation-Date: 2011-01-20 10:48:30-0500\n"
 "PO-Revision-Date: 2010-11-21 10:16+0100\n"
 "Last-Translator: Harrie Klomp <Harrie@harrieklomp.nl>\n"
 "Language-Team: \n"
@@ -373,19 +373,19 @@ msgstr "Locatie"
 msgid "Name"
 msgstr "Naam"
 
-#: ../ocm-gtk/Widgets/WaypointWidget.cs:351
+#: ../ocm-gtk/Widgets/WaypointWidget.cs:356
 msgid "Grabbing Waypoints"
 msgstr "Verzamelen wegpunten"
 
-#: ../ocm-gtk/Widgets/WaypointWidget.cs:360
+#: ../ocm-gtk/Widgets/WaypointWidget.cs:365
 msgid "OCM was unable to find any child waypoints."
 msgstr "OCM kon geen child wegpunten vinden."
 
-#: ../ocm-gtk/Widgets/WaypointWidget.cs:372
+#: ../ocm-gtk/Widgets/WaypointWidget.cs:377
 msgid "Processing Children..."
 msgstr "Bewerken wegpunten..."
 
-#: ../ocm-gtk/Widgets/WaypointWidget.cs:382
+#: ../ocm-gtk/Widgets/WaypointWidget.cs:387
 #: ../ocm-gtk/Widgets/ReviewWaypointWidget.cs:61
 msgid "Grabbed Waypoint"
 msgstr "Verzameld wegpunt"
@@ -398,14 +398,14 @@ msgstr "Laart laden {0}"
 msgid "Loading Map"
 msgstr "Kaart laden"
 
-#: ../ocm-gtk/UIMonitor.cs:281 ../ocm-gtk/UIMonitor.cs:287
-#: ../ocm-gtk/UIMonitor.cs:523 ../ocm-gtk/UIMonitor.cs:525
-#: ../ocm-gtk/UIMonitor.cs:1278 ../ocm-gtk/UIMonitor.cs:1284
-#: ../ocm-gtk/UIMonitor.cs:1676
+#: ../ocm-gtk/UIMonitor.cs:283 ../ocm-gtk/UIMonitor.cs:289
+#: ../ocm-gtk/UIMonitor.cs:525 ../ocm-gtk/UIMonitor.cs:527
+#: ../ocm-gtk/UIMonitor.cs:1301 ../ocm-gtk/UIMonitor.cs:1307
+#: ../ocm-gtk/UIMonitor.cs:1699
 msgid "Home"
 msgstr "Thuis"
 
-#: ../ocm-gtk/UIMonitor.cs:412
+#: ../ocm-gtk/UIMonitor.cs:414
 msgid ""
 "OCM needs to upgrade your database.\n"
 "Would you like to backup your database first?"
@@ -413,19 +413,19 @@ msgstr ""
 "OCM gaat uw database te vernieuwen.\n"
 "Wilt u eerst een backup maken?"
 
-#: ../ocm-gtk/UIMonitor.cs:419
+#: ../ocm-gtk/UIMonitor.cs:421
 msgid "Upgrade complete"
 msgstr "Opwaardering compleet"
 
-#: ../ocm-gtk/UIMonitor.cs:584 ../ocm-gtk/UIMonitor.cs:611
+#: ../ocm-gtk/UIMonitor.cs:586 ../ocm-gtk/UIMonitor.cs:613
 msgid "<b>A cache by:</b> "
 msgstr "<b>Een cache van:</b> "
 
-#: ../ocm-gtk/UIMonitor.cs:584 ../ocm-gtk/UIMonitor.cs:611
+#: ../ocm-gtk/UIMonitor.cs:586 ../ocm-gtk/UIMonitor.cs:613
 msgid "<br><b>Hidden on: </b>"
 msgstr "<b>Geplaatst op:</b>"
 
-#: ../ocm-gtk/UIMonitor.cs:658
+#: ../ocm-gtk/UIMonitor.cs:660
 msgid ""
 "Showing {0} of {1} caches, {2} found, {3} unavailable/archived, {4} placed "
 "by me"
@@ -433,7 +433,7 @@ msgstr ""
 "In beeld {0} van {1} caches, {2} gevonden, {3} niet beschikbaar/"
 "gearchiveerd, {4} geplaatst door mij"
 
-#: ../ocm-gtk/UIMonitor.cs:660
+#: ../ocm-gtk/UIMonitor.cs:662
 msgid ""
 "Showing {0} of {1} caches from {2}, {3} found, {4} unavailable/archived, {5} "
 "placed by me"
@@ -441,18 +441,18 @@ msgstr ""
 "In beeld {0} van {1} caches van {2}. {3} gevonden, {4} niet beschikbaar/"
 "gearchiveerd, {5} geplaatst door mij"
 
-#: ../ocm-gtk/UIMonitor.cs:670
+#: ../ocm-gtk/UIMonitor.cs:672
 msgid "Centred on {0} ({1})"
 msgstr "Gecentreerd op {0} ({1})"
 
-#: ../ocm-gtk/UIMonitor.cs:690
+#: ../ocm-gtk/UIMonitor.cs:692
 msgid "Create database"
 msgstr "Maak database"
 
-#: ../ocm-gtk/UIMonitor.cs:690 ../ocm-gtk/UIMonitor.cs:752
-#: ../ocm-gtk/UIMonitor.cs:836 ../ocm-gtk/UIMonitor.cs:920
-#: ../ocm-gtk/UIMonitor.cs:1795 ../ocm-gtk/Dialogs/Preferences.cs:232
-#: ../ocm-gtk/Dialogs/Preferences.cs:242
+#: ../ocm-gtk/UIMonitor.cs:692 ../ocm-gtk/UIMonitor.cs:754
+#: ../ocm-gtk/UIMonitor.cs:838 ../ocm-gtk/UIMonitor.cs:922
+#: ../ocm-gtk/UIMonitor.cs:1818 ../ocm-gtk/Dialogs/Preferences.cs:231
+#: ../ocm-gtk/Dialogs/Preferences.cs:241
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
 #: ../ocm-gtk/Widgets/GPXWidget.cs:110
 #: ../ocm-gtk/Widgets/GenericGPSWidget.cs:152
@@ -462,64 +462,64 @@ msgstr "Maak database"
 msgid "Cancel"
 msgstr "Anuleren"
 
-#: ../ocm-gtk/UIMonitor.cs:690
+#: ../ocm-gtk/UIMonitor.cs:692
 msgid "Save"
 msgstr "Opslaan"
 
-#: ../ocm-gtk/UIMonitor.cs:704
+#: ../ocm-gtk/UIMonitor.cs:706
 msgid "You cannot overwrite the currently open database."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:714
+#: ../ocm-gtk/UIMonitor.cs:716
 #, fuzzy
 msgid "Are you sure you want to overwrite '{0}'"
 msgstr "Weet u zeker dat \"{0}\" overschreven moet worden ?"
 
-#: ../ocm-gtk/UIMonitor.cs:750
+#: ../ocm-gtk/UIMonitor.cs:752
 msgid "Open Database"
 msgstr "Open database"
 
-#: ../ocm-gtk/UIMonitor.cs:754 ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
+#: ../ocm-gtk/UIMonitor.cs:756 ../ocm-gtk/Widgets/SetupAssistantPage2.cs:62
 msgid "Open"
 msgstr "Openen"
 
-#: ../ocm-gtk/UIMonitor.cs:836
+#: ../ocm-gtk/UIMonitor.cs:838
 msgid " Export Finds GPX File"
 msgstr "Exporteren gevonden GPX bestand"
 
-#: ../ocm-gtk/UIMonitor.cs:836
+#: ../ocm-gtk/UIMonitor.cs:838
 msgid "Export"
 msgstr "Exporteren"
 
-#: ../ocm-gtk/UIMonitor.cs:920
+#: ../ocm-gtk/UIMonitor.cs:922
 msgid "Import GPX File"
 msgstr "GPX bestand importeren"
 
-#: ../ocm-gtk/UIMonitor.cs:920 ../ocm-gtk/UIMonitor.cs:1795
+#: ../ocm-gtk/UIMonitor.cs:922 ../ocm-gtk/UIMonitor.cs:1818
 msgid "Import"
 msgstr "Importeren"
 
-#: ../ocm-gtk/UIMonitor.cs:1043
+#: ../ocm-gtk/UIMonitor.cs:1060
 msgid "Are you sure you want to delete {0}?"
 msgstr "Weet u zeker dat {0} verwijderd moet worden ?"
 
-#: ../ocm-gtk/UIMonitor.cs:1081
+#: ../ocm-gtk/UIMonitor.cs:1098
 msgid "Are you sure you want to clear all advanced filters?"
 msgstr "Weet u zeker om geavanceerde filters te herstellen?"
 
-#: ../ocm-gtk/UIMonitor.cs:1353
+#: ../ocm-gtk/UIMonitor.cs:1376
 msgid "{0} added to {1}"
 msgstr "{0} toegevoegd aan {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1364
+#: ../ocm-gtk/UIMonitor.cs:1387
 msgid "{0} caches added to {1}"
 msgstr "{0} caches toegevoegd aan {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1370
+#: ../ocm-gtk/UIMonitor.cs:1393
 msgid "Are you sure you want to remove {0} from {1}?"
 msgstr "Weet u zeker om {0} te verwijderen van {1}?"
 
-#: ../ocm-gtk/UIMonitor.cs:1440
+#: ../ocm-gtk/UIMonitor.cs:1463
 msgid ""
 "Are you sure you want to delete these {0} caches?\n"
 "This operation cannot be undone."
@@ -527,32 +527,32 @@ msgstr ""
 "Weet u zeker dat {0} verwijderd moet worden ?\n"
 "Dit kan niet meer ongedaan gemaakt worden."
 
-#: ../ocm-gtk/UIMonitor.cs:1545 ../ocm-gtk/UIMonitor.cs:1561
+#: ../ocm-gtk/UIMonitor.cs:1568 ../ocm-gtk/UIMonitor.cs:1584
 msgid "Preparing to send to QLandKarte GT"
 msgstr "Voorbereiden om naar QLandkarte GT te verzenden "
 
-#: ../ocm-gtk/UIMonitor.cs:1586
+#: ../ocm-gtk/UIMonitor.cs:1609
 msgid "Save QuickFilter"
 msgstr "Bewaar snelfilter"
 
-#: ../ocm-gtk/UIMonitor.cs:1601
+#: ../ocm-gtk/UIMonitor.cs:1624
 #, fuzzy
 msgid "Delete QuickFilter"
 msgstr "_Verwijder snelfilter..."
 
-#: ../ocm-gtk/UIMonitor.cs:1614
+#: ../ocm-gtk/UIMonitor.cs:1637
 msgid "Database Compacted."
 msgstr "Database verkleind."
 
-#: ../ocm-gtk/UIMonitor.cs:1636
+#: ../ocm-gtk/UIMonitor.cs:1659
 msgid "Move Geocaches..."
 msgstr "Verplaats geocaches..."
 
-#: ../ocm-gtk/UIMonitor.cs:1664
+#: ../ocm-gtk/UIMonitor.cs:1687
 msgid "Map Point"
 msgstr "Kaartpunt"
 
-#: ../ocm-gtk/UIMonitor.cs:1707 ../ocm-gtk/UIMonitor.cs:1741
+#: ../ocm-gtk/UIMonitor.cs:1730 ../ocm-gtk/UIMonitor.cs:1764
 msgid ""
 "A new version \"{0}\" of OCM is available\n"
 "Would you like to go to the download page now?"
@@ -560,15 +560,15 @@ msgstr ""
 "Een nieuwe versie \"{0}\" van OCM is beschikbaar\n"
 "Wilt u naar de downloadpagina gaan?"
 
-#: ../ocm-gtk/UIMonitor.cs:1725 ../ocm-gtk/UIMonitor.cs:1765
+#: ../ocm-gtk/UIMonitor.cs:1748 ../ocm-gtk/UIMonitor.cs:1788
 msgid "Unable to check for updates, check your network connection."
 msgstr "Kan niet controleren voor updates, controleer uw netwerkverbinding."
 
-#: ../ocm-gtk/UIMonitor.cs:1756
+#: ../ocm-gtk/UIMonitor.cs:1779
 msgid "OCM is at the latest version."
 msgstr "Dit is de nieuwste OCM versie."
 
-#: ../ocm-gtk/UIMonitor.cs:1795
+#: ../ocm-gtk/UIMonitor.cs:1818
 msgid "Import ZIP File"
 msgstr "Importeren zip bestand"
 
@@ -576,7 +576,7 @@ msgstr "Importeren zip bestand"
 #: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:80
 #: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:83
 #: ../ocm-gtk/Dialogs/CopyingProgress.cs:74
-#: ../ocm-gtk/Dialogs/CopyingProgress.cs:156
+#: ../ocm-gtk/Dialogs/CopyingProgress.cs:165
 msgid "Complete"
 msgstr "Klaar"
 
@@ -585,26 +585,31 @@ msgstr "Klaar"
 msgid "<i>Import complete, {0} waypoints processed in {1}:{2}:{3}</i>"
 msgstr "<i>Importeren compleet, {0} cache(s) verwerkt</i>"
 
-#: ../ocm-gtk/Dialogs/ProgressDialog.cs:133
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:92
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:93
+msgid "Unzipping"
+msgstr ""
+
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:140
 #, fuzzy
 msgid "Processing File {0} of {1}"
 msgstr "Pagina {0}van {1}"
 
-#: ../ocm-gtk/Dialogs/ProgressDialog.cs:171
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:178
 #: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:61
 msgid "<b>File: </b>"
 msgstr "<b>Bestand: </b>"
 
-#: ../ocm-gtk/Dialogs/ProgressDialog.cs:197
+#: ../ocm-gtk/Dialogs/ProgressDialog.cs:204
 msgid "Import cancelled, all changes reverted."
 msgstr "Importeren geanuleerd, alle veranderingen ongedaan gemaakt."
 
-#: ../ocm-gtk/Dialogs/Preferences.cs:232 ../ocm-gtk/Dialogs/Preferences.cs:242
+#: ../ocm-gtk/Dialogs/Preferences.cs:231 ../ocm-gtk/Dialogs/Preferences.cs:241
 #, fuzzy
 msgid "Choose Directory"
 msgstr "Kies database locatie"
 
-#: ../ocm-gtk/Dialogs/Preferences.cs:232 ../ocm-gtk/Dialogs/Preferences.cs:242
+#: ../ocm-gtk/Dialogs/Preferences.cs:231 ../ocm-gtk/Dialogs/Preferences.cs:241
 #: ../ocm-gtk/Dialogs/AddCommandDialog.cs:57
 msgid "OK"
 msgstr "OK"
@@ -702,7 +707,7 @@ msgstr "Te doen"
 
 #: ../ocm-gtk/QuickFilter.cs:146 ../ocm-gtk/gtk-gui/MainWindow.cs:531
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:532
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:282
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:289
 #: ../ocm-gtk/gtk-gui/ocmgtk.SymbolChooser.cs:126
 msgid "Mine"
 msgstr "Mijn caches"
@@ -727,7 +732,7 @@ msgid "Delete Caches...."
 msgstr "_Verwijder cache..."
 
 #: ../ocm-gtk/Dialogs/CopyingProgress.cs:73
-#: ../ocm-gtk/Dialogs/CopyingProgress.cs:155
+#: ../ocm-gtk/Dialogs/CopyingProgress.cs:164
 msgid "<i>Complete</i>"
 msgstr "<i>Klaar</i>"
 
@@ -747,11 +752,11 @@ msgstr ""
 "De te openen database dient te worden opgewaardeerd. Open de database "
 "voordat er caches gekopieerd/verplaatst worden."
 
-#: ../ocm-gtk/Dialogs/CopyingProgress.cs:167
+#: ../ocm-gtk/Dialogs/CopyingProgress.cs:176
 msgid "<i>Copying:{0}</i>"
 msgstr "<i>kopiëren :{0}</i>"
 
-#: ../ocm-gtk/Dialogs/CopyingProgress.cs:177
+#: ../ocm-gtk/Dialogs/CopyingProgress.cs:186
 #, fuzzy
 msgid "<i>Deleting:{0}</i>"
 msgstr "<i>kopiëren :{0}</i>"
@@ -1260,31 +1265,31 @@ msgstr "Notities"
 msgid "Filter"
 msgstr "Filter"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:155
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:156
 msgid "km"
 msgstr "km"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:206
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:209
 msgid "<span fgcolor=\"blue\">Advanced filters</span> have been applied."
 msgstr "<span fgcolor=\"blue\">Geavanceerde filters</span> zijn toegepast."
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:230
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:233
 msgid "Archived"
 msgstr "Gearchiveerd"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:245
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:249
 msgid "Not Found"
 msgstr "Niet gevonden"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:258
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:263
 msgid "Available"
 msgstr "Beschikbaar"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:271
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:277
 msgid "Found"
 msgstr "Gevonden"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:295
+#: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:303
 msgid "Disabled"
 msgstr "Niet beschikbaar"
 

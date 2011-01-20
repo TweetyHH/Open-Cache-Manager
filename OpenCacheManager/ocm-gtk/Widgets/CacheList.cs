@@ -208,7 +208,7 @@ namespace ocmgtk
 			else
 				m_pulseMode = false;
 			m_ListSort.SetSortColumnId (-1, SortType.Ascending);
-			m_monitor.StartProgressLoad(Catalog.GetString("Loading Caches"));
+			m_monitor.StartProgressLoad(Catalog.GetString("Loading Caches"), true);
 			store.ReadCache += HandleStoreReadCache;
 			store.Complete += HandleStoreComplete;
 			store.GetCaches(m_monitor.CentreLat, m_monitor.CentreLon);
@@ -223,7 +223,7 @@ namespace ocmgtk
 		{
 			Engine.getInstance().Store.ReadCache -= HandleStoreReadCache;
 			Engine.getInstance().Store.Complete -= HandleStoreComplete;
-			m_monitor.SetProgressDone();
+			m_monitor.SetProgressDone(true);
 		}
 
 		void HandleStoreReadCache (object sender, CacheStore.ReadCacheArgs args)
@@ -243,7 +243,7 @@ namespace ocmgtk
 				
 				if (m_intervalCount == 100)
 				{
-					m_monitor.SetProgress(m_loadCount, m_loadTotal, String.Format(Catalog.GetString("Loading Caches {0}"), (m_loadCount/m_loadTotal).ToString("0%")));
+					m_monitor.SetProgress(m_loadCount, m_loadTotal, String.Format(Catalog.GetString("Loading Caches {0}"), (m_loadCount/m_loadTotal).ToString("0%")), true);
 					m_intervalCount = 0;
 				}
 			}

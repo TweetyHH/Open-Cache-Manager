@@ -633,29 +633,41 @@ namespace ocmengine
 			if (m_filter.Contains(FilterList.KEY_INCATTRS) || m_filter.Contains(FilterList.KEY_EXCATTRS)
 			    || m_filter.Contains(FilterList.KEY_CHILDREN))
 			{
+				StringBuilder refineList = new StringBuilder();
 				preFilterList.Append(" AND GEOCACHE.name IN (");
 				if (m_filter.Contains(FilterList.KEY_INCATTRS))
 				{
-					BuildInclusionList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='True' AND value == ",
+					refineList = BuildInclusionList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='True' AND value == ",
 					                    FilterList.KEY_INCATTRS,
-					                    preFilterList,
+					                    refineList,
 					                    out atLeastOne);
 				}
 				if (m_filter.Contains(FilterList.KEY_EXCATTRS))
 				{
-					BuildInclusionList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='False' AND value ==", 
+					refineList = BuildInclusionList ("SELECT DISTINCT cachename FROM ATTRIBUTES where inc='False' AND value ==", 
 					                    FilterList.KEY_EXCATTRS,
-					                    preFilterList,
+					                    refineList,
 					                    out atLeastOne);
 					
 				}
+
 				string childTypes = m_filter.GetCriteria(FilterList.KEY_CHILDREN) as string;
 				if (!String.IsNullOrEmpty(childTypes))
 				{
 					atLeastOne = true;
 					IDbConnection conn = OpenConnection();
-					IDbCommand cmd = conn.CreateCommand();	
+					IDbCommand cmd = conn.CreateCommand();
+	
 					cmd.CommandText = String.Format(HAS_WPT_FILT,childTypes);
+					if (refineList.Length > 0)
+					{
+						cmd.CommandText += "AND WAYPOINT.parent IN (";
+						cmd.CommandText += refineList.ToString();
+						cmd.CommandText += ")";
+					}
+					System.Console.WriteLine(cmd.CommandText);
+					refineList = new StringBuilder();
+					
 					IDataReader rdr = cmd.ExecuteReader();
 					bool firstDone = false;
 					while (rdr.Read())
@@ -663,12 +675,13 @@ namespace ocmengine
 						if (!firstDone)
 							firstDone = true;
 						else
-							preFilterList.Append(",");
-						preFilterList.Append("'");
-						preFilterList.Append(rdr.GetString(0));
-						preFilterList.Append("'");
+							refineList.Append(",");
+						refineList.Append("'");
+						refineList.Append(rdr.GetString(0));
+						refineList.Append("'");
 					}
 				}
+				preFilterList.Append(refineList);
 				preFilterList.Append(")");
 				
 			}
@@ -719,12 +732,12 @@ namespace ocmengine
 			return null;
 		}
 		
-		private void BuildInclusionList (String sql, String key, 
+		private StringBuilder BuildInclusionList (String sql, String key, 
 		                                 System.Text.StringBuilder preFilterList, 
 		                                 out bool atLeastOne)
 		{
 				atLeastOne = true;
-				StringBuilder refineList = new StringBuilder();
+				StringBuilder refineList = new StringBuilder(preFilterList.ToString());
 				List<String> incAttrs = m_filter.GetCriteria(key) as List<String>;
 				IEnumerator<String> ct = incAttrs.GetEnumerator();
 				bool firstDone = false;
@@ -743,7 +756,7 @@ namespace ocmengine
 					}
 					if (!firstDone)
 						firstDone = true;
-					//System.Console.WriteLine(cmdTxt);
+					System.Console.WriteLine(cmdTxt);
 					cmd.CommandText = cmdTxt;
 					IDataReader rdr = cmd.ExecuteReader();
 					refineList.Remove(0, refineList.Length);
@@ -764,7 +777,7 @@ namespace ocmengine
 					cmd.Dispose();
 				}
 				conn.Close();
-				preFilterList.Append(refineList.ToString());
+				return refineList;
 		}
 		
 		private void BuildExclusionList (String sql, String key, 

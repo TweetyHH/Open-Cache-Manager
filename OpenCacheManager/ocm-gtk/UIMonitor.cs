@@ -60,6 +60,7 @@ namespace ocmgtk
 		private int m_height;
 		private QuickFilters m_filters;
 		private DateTime m_loggingdate = DateTime.Now;
+		private bool m_blockMapProgress = false;
 		#endregion
 
 		#region Properties
@@ -227,6 +228,7 @@ namespace ocmgtk
 		
 
 		public Boolean ShowNearby {
+			get { return m_showNearby;}
 			set { m_showNearby = value; 
 				if (value == false)
 				{
@@ -307,6 +309,7 @@ namespace ocmgtk
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (true);
 			m_filters = QuickFilters.LoadQuickFilters();
+			LoadMap (map);
 			String startFilter = (string)m_conf.Get ("/apps/ocm/startupfilter", String.Empty);
 			if (startFilter != String.Empty)
 			{
@@ -327,7 +330,6 @@ namespace ocmgtk
 			}
 			
 			SetSelectedCache(null);
-			LoadMap (map);
 			BuildWaypointMappings();
 			m_mainWin.RebuildQuickFilterMenu(m_filters);
 			EToolList tools = EToolList.LoadEToolList();
@@ -988,7 +990,10 @@ namespace ocmgtk
 			Engine.getInstance ().Store.UpdateWaypointAtomic (m_selectedCache);
 			Engine.getInstance ().Store.AddLogAtomic (m_selectedCache.Name, log);
 			SetSelectedCache(m_selectedCache);
+			if (m_showNearby)
+				GetNearByCaches();
 			UpdateStatusBar();
+			m_mainWin.QueueDraw();
 		}
 
 		public void MarkCacheUnfound ()
@@ -999,6 +1004,9 @@ namespace ocmgtk
 				Engine.getInstance ().Store.UpdateWaypointAtomic (m_selectedCache);
 				SetSelectedCache(m_selectedCache);
 				UpdateStatusBar();
+				if (m_showNearby)
+					GetNearByCaches();
+				m_mainWin.QueueDraw();
 			}
 			dlg.Hide ();
 		}
@@ -1011,6 +1019,9 @@ namespace ocmgtk
 				m_selectedCache.Archived = false;
 				Engine.getInstance ().Store.UpdateCacheAtomic (m_selectedCache);
 				SetSelectedCache(m_selectedCache);
+				if (m_showNearby)
+					GetNearByCaches();
+				m_mainWin.QueueDraw();
 			}
 			dlg.Hide ();
 		}
@@ -1023,6 +1034,9 @@ namespace ocmgtk
 				m_selectedCache.Archived = true;
 				Engine.getInstance ().Store.UpdateCacheAtomic (m_selectedCache);
 				SetSelectedCache(m_selectedCache);
+				if (m_showNearby)
+					GetNearByCaches();
+				m_mainWin.QueueDraw();
 			}
 			dlg.Hide ();
 		}
@@ -1035,6 +1049,9 @@ namespace ocmgtk
 				m_selectedCache.Archived = false;
 				Engine.getInstance ().Store.UpdateCacheAtomic (m_selectedCache);
 				SetSelectedCache(m_selectedCache);
+				if (m_showNearby)
+					GetNearByCaches();
+				m_mainWin.QueueDraw();
 			}
 			dlg.Hide ();
 		}
@@ -1091,16 +1108,20 @@ namespace ocmgtk
 			dlg.Dispose ();
 		}
 
-		public void StartProgressLoad (String msg)
+		public void StartProgressLoad (String msg, bool isDB)
 		{
 			m_progress.Show ();
 			m_progress.Fraction = 0;
 			m_progress.Text = msg;
+			if (isDB)
+				m_blockMapProgress = true;
 			DoGUIUpdate ();
 		}
 
-		public void SetProgress (double progress, double total, string msg)
+		public void SetProgress (double progress, double total, string msg, bool isDB)
 		{
+			if (!isDB && m_blockMapProgress)
+				return;
 			if (!m_progress.Visible)
 				m_progress.Show();
 			m_progress.Fraction = (progress / total);
@@ -1116,8 +1137,10 @@ namespace ocmgtk
 			DoGUIUpdate ();
 		}
 
-		public void SetProgressDone ()
+		public void SetProgressDone (bool isDB)
 		{
+			if (isDB)
+				m_blockMapProgress = false;
 			m_progress.Hide ();
 			DoGUIUpdate ();
 		}
@@ -1879,10 +1902,15 @@ namespace ocmgtk
 				dlg.SetPoint (newPoint);
 				if ((int)ResponseType.Ok == dlg.Run ()) {
 					newPoint = dlg.GetPoint ();
+					if (newPoint.Symbol == "Final Location")
+						m_selectedCache.HasFinal = true;
 					CacheStore store = Engine.getInstance ().Store;
 					store.AddWaypointAtomic (newPoint);
 					dlg.Dispose ();
 					m_pane.SetCacheSelected();
+					m_mainWin.QueueDraw();
+					if (m_showNearby)
+						GetNearByCaches();
 				}
 			} catch (Exception ex) {
 				UIMonitor.ShowException (ex);

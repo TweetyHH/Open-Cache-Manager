@@ -215,7 +215,7 @@ namespace ocmgtk {
             // Container child button937.Gtk.Container+ContainerChild
             this.image43 = new Gtk.Image();
             this.image43.Name = "image43";
-            this.image43.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-open", Gtk.IconSize.Button, 20);
+            this.image43.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-open", Gtk.IconSize.Button, 16);
             this.button937.Add(this.image43);
             this.button937.Label = null;
             this.table1.Add(this.button937);
@@ -231,7 +231,7 @@ namespace ocmgtk {
             // Container child button938.Gtk.Container+ContainerChild
             this.image44 = new Gtk.Image();
             this.image44.Name = "image44";
-            this.image44.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-open", Gtk.IconSize.Button, 20);
+            this.image44.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-open", Gtk.IconSize.Button, 16);
             this.button938.Add(this.image44);
             this.button938.Label = null;
             this.table1.Add(this.button938);

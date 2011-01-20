@@ -183,9 +183,11 @@ namespace ocmgtk
 				m_mon.AddMapWayPoint (Orig);
 				m_childPoints.AppendValues(Orig);
 			}
-			m_mon.SetProgressDone();
+			m_mon.SetProgressDone(false);
 			m_ListSort.SetSortColumnId (1, SortType.Ascending);
-			m_mon.Main.Show();
+			m_mon.Main.QueueDraw();
+			if (m_mon.ShowNearby)
+				m_mon.GetNearByCaches();
 		}
 		
 		public void ShowChildWaypoints (Geocache cache)
@@ -290,6 +292,8 @@ namespace ocmgtk
 				dlg.SetPoint (newPoint);
 				if ((int)ResponseType.Ok == dlg.Run ()) {
 					newPoint = dlg.GetPoint ();
+					if (newPoint.Symbol == "Final Location")
+						parent.HasFinal = true;
 					CacheStore store = Engine.getInstance ().Store;
 					store.AddWaypointAtomic (newPoint);
 					dlg.Dispose ();
@@ -308,7 +312,8 @@ namespace ocmgtk
 			
 			try {
 				if ((int)ResponseType.Yes == md.Run ()) {
-					
+					if (toDelete.Symbol == "Final Location")
+						m_mon.SelectedCache.HasFinal = false;
 					Engine.getInstance ().Store.DeleteWaypoint (toDelete.Name);
 					UpdateCacheInfo ();
 				}
@@ -349,7 +354,7 @@ namespace ocmgtk
 			String expr = @"\b[NnSs] ?[0-9]+.? ?[0-9]*\.[0-9]*\s[WwEe] ?[0-9]+.? ?[0-9]*\.[0-9]*";
 			String desc = cache.ShortDesc + cache.LongDesc;
 			MatchCollection matches = Regex.Matches(desc, expr);
-			m_mon.StartProgressLoad(Catalog.GetString("Grabbing Waypoints"));
+			m_mon.StartProgressLoad(Catalog.GetString("Grabbing Waypoints"), false);
 			if (matches.Count > 0)
 			{
 				ScanWaypointsDialog dlg = new ScanWaypointsDialog(matches.Count, this, matches);
@@ -362,7 +367,7 @@ namespace ocmgtk
 				dlg.Run();
 				dlg.Hide();
 			}
-			m_mon.SetProgressDone();
+			m_mon.SetProgressDone(false);
 		}
 		
 		public void AutoGenerateChildren (MatchCollection matches)
@@ -370,7 +375,7 @@ namespace ocmgtk
 			int count = 0;
 			foreach (Match match in matches)
 			{
-				m_mon.SetProgress((double) count, (double) matches.Count, Catalog.GetString("Processing Children..."));
+				m_mon.SetProgress((double) count, (double) matches.Count, Catalog.GetString("Processing Children..."), false);
 				DegreeMinutes[] coord =  Utilities.ParseCoordString(match.Captures[0].Value);
 				System.Console.WriteLine(Utilities.getCoordString(coord[0], coord[1]));
 				

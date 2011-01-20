@@ -172,7 +172,7 @@ namespace ocmgtk {
             // Container child hbox1.Gtk.Box+BoxChild
             this.image46 = new Gtk.Image();
             this.image46.Name = "image46";
-            this.image46.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-dialog-info", Gtk.IconSize.Button, 20);
+            this.image46.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-dialog-info", Gtk.IconSize.Button, 16);
             this.hbox1.Add(this.image46);
             Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.hbox1[this.image46]));
             w5.Position = 0;

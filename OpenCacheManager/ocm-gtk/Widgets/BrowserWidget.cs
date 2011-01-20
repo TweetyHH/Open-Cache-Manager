@@ -42,7 +42,7 @@ namespace ocmgtk
 
 		void HandleM_browserLoadFinished (object o, LoadFinishedArgs args)
 		{
-			m_monitor.SetProgressDone();
+			m_monitor.SetProgressDone(false);
 			loaded = true;
 			IEnumerator<string> actions = pending_actions.GetEnumerator();
 			while (actions.MoveNext())
@@ -53,13 +53,13 @@ namespace ocmgtk
 		void HandleM_browserLoadProgressChanged (object o, LoadProgressChangedArgs args)
 		{	
 				m_monitor.SetProgress(args.Progress, 100, String.Format(Catalog.GetString("Loading Map {0}"), 
-			                                                        ((double)args.Progress/(double)100).ToString("0%")));
+			                                                        ((double)args.Progress/(double)100).ToString("0%")), false);
 		
 		}
 
 		void HandleM_browserLoadStarted (object o, LoadStartedArgs args)
 		{
-			m_monitor.StartProgressLoad(Catalog.GetString("Loading Map"));
+			m_monitor.StartProgressLoad(Catalog.GetString("Loading Map"), false);
 			loaded = false;
 		}
 

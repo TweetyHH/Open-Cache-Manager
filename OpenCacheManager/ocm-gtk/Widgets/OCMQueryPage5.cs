@@ -588,6 +588,10 @@ namespace ocmgtk
 					attrs.Add(offrFilt.AttributeName);
 				if (skidooFilt.IsFiltered && !skidooFilt.IsIncluded)
 					attrs.Add(skidooFilt.AttributeName);
+				if (pgrabFilt.IsFiltered && !pgrabFilt.IsIncluded)
+					attrs.Add(pgrabFilt.AttributeName);
+				if (nightCFilt.IsFiltered && !nightCFilt.IsIncluded)
+					attrs.Add(nightCFilt.AttributeName);
 				return attrs;
 			}
 			set
@@ -664,6 +668,10 @@ namespace ocmgtk
 					offrFilt.SetState(AttributeFilterWidget.AttrState.NO);
 				if (value.Contains(skidooFilt.AttributeName))
 					skidooFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(pgrabFilt.AttributeName))
+					pgrabFilt.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(nightCFilt.AttributeName))
+					nightCFilt.SetState(AttributeFilterWidget.AttrState.NO);
 			}
 		}
 		
@@ -742,6 +750,10 @@ namespace ocmgtk
 					attrs.Add(offrEFilt.AttributeName);
 				if (skidooFilt1.IsFiltered && !skidooFilt1.IsIncluded)
 					attrs.Add(skidooFilt1.AttributeName);
+				if (pgrabEFilt1.IsFiltered && !pgrabEFilt1.IsIncluded)
+					attrs.Add(pgrabEFilt1.AttributeName);
+				if (nightCEFilt.IsFiltered && !nightCEFilt.IsIncluded)
+					attrs.Add(nightCEFilt.AttributeName);
 				return attrs;
 			}
 			set
@@ -820,6 +832,10 @@ namespace ocmgtk
 					offrEFilt.SetState(AttributeFilterWidget.AttrState.NO);
 				if (value.Contains(skidooFilt1.AttributeName))
 					skidooFilt1.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(pgrabEFilt1.AttributeName))
+					pgrabEFilt1.SetState(AttributeFilterWidget.AttrState.NO);
+				if (value.Contains(nightCEFilt.AttributeName))
+					nightCEFilt.SetState(AttributeFilterWidget.AttrState.NO);
 			}
 		}
 	}
