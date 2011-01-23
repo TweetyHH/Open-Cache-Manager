@@ -633,6 +633,12 @@ public partial class MainWindow : Gtk.Window
 			(ExternalToolsAction.Proxies[0] as MenuItem).Submenu = emenu;
 	}
 	
+	public void RebuildLocationsMenu(LocationList locs)
+	{
+			Menu emenu = locs.BuildLocationlMenu();
+			(LocationsMenu.Proxies[0] as MenuItem).Submenu = emenu;
+	}
+	
 	
 	protected virtual void OnSaveQuickFilter (object sender, System.EventArgs e)
 	{
@@ -780,5 +786,14 @@ public partial class MainWindow : Gtk.Window
 		}
 	}
 	
+	protected virtual void OnAddLocation (object sender, System.EventArgs e)
+	{
+		m_monitor.AddLocation();
+	}
+	
+	protected virtual void OnDeleteLocation (object sender, System.EventArgs e)
+	{
+		m_monitor.RemoveLocation();
+	}
 	
 }

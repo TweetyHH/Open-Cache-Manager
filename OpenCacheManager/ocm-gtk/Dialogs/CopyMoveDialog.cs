@@ -31,6 +31,19 @@ namespace ocmgtk
 			set { chooser.SetCurrentFolder(value);}
 		}
 		
+		public CopyingProgress.ModeEnum Mode
+		{
+			get
+			{
+				if (visibleRadio.Active)
+					return CopyingProgress.ModeEnum.VISIBLE;
+				else if (selectedRadio.Active)
+					return CopyingProgress.ModeEnum.SELECTED;
+				else
+					return CopyingProgress.ModeEnum.ALL;
+			}
+		}
+		
 		
 		public CopyMoveDialog ()
 		{

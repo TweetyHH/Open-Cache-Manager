@@ -11,7 +11,7 @@
 namespace ocmgtk {
     
     
-    public partial class DeleteBookmark {
+    public partial class DeleteItem {
         
         private Gtk.HBox hbox1;
         
@@ -25,12 +25,12 @@ namespace ocmgtk {
         
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
-            // Widget ocmgtk.DeleteBookmark
-            this.Name = "ocmgtk.DeleteBookmark";
+            // Widget ocmgtk.DeleteItem
+            this.Name = "ocmgtk.DeleteItem";
             this.Title = Mono.Unix.Catalog.GetString("Delete Bookmark List...");
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.BorderWidth = ((uint)(6));
-            // Internal child ocmgtk.DeleteBookmark.VBox
+            // Internal child ocmgtk.DeleteItem.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";
             w1.BorderWidth = ((uint)(2));
@@ -58,7 +58,7 @@ namespace ocmgtk {
             w4.Position = 0;
             w4.Expand = false;
             w4.Fill = false;
-            // Internal child ocmgtk.DeleteBookmark.ActionArea
+            // Internal child ocmgtk.DeleteItem.ActionArea
             Gtk.HButtonBox w5 = this.ActionArea;
             w5.Name = "dialog1_ActionArea";
             w5.Spacing = 10;

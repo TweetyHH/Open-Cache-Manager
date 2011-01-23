@@ -59,6 +59,7 @@ namespace ocmgtk
 		private int m_width;
 		private int m_height;
 		private QuickFilters m_filters;
+		private LocationList m_locations;
 		private DateTime m_loggingdate = DateTime.Now;
 		private bool m_blockMapProgress = false;
 		#endregion
@@ -309,6 +310,7 @@ namespace ocmgtk
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (true);
 			m_filters = QuickFilters.LoadQuickFilters();
+			m_locations = LocationList.LoadLocationList();
 			LoadMap (map);
 			String startFilter = (string)m_conf.Get ("/apps/ocm/startupfilter", String.Empty);
 			if (startFilter != String.Empty)
@@ -332,6 +334,7 @@ namespace ocmgtk
 			SetSelectedCache(null);
 			BuildWaypointMappings();
 			m_mainWin.RebuildQuickFilterMenu(m_filters);
+			m_mainWin.RebuildLocationsMenu(m_locations);
 			EToolList tools = EToolList.LoadEToolList();
 			m_mainWin.RebuildEToolMenu(tools);
 			bool showNearby = (Boolean) m_conf.Get("/apps/ocm/shownearby", true);
@@ -526,6 +529,7 @@ namespace ocmgtk
 			m_conf.Set("/apps/ocm/lastname", Catalog.GetString("Home"));
 			Geocache selected = m_selectedCache;
 			m_centreName = Catalog.GetString("Home");
+			RecenterMap();
 			RefreshCaches();
 			if (selected != null)
 				SelectCache(selected.Name);
@@ -590,7 +594,7 @@ namespace ocmgtk
 
 			m_map.LoadScript ("addMarker(" + lat.ToString(CultureInfo.InvariantCulture) + ","
 			                  + lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" 
-			                  + IconManager.GetMapIcon (cache, m_ownerid) + "',\"" 
+			                  + IconManager.GetMapIcon (cache, m_ownerid, this) + "',\"" 
 			                  + cache.Name + "\",\"" + cache.CacheName.Replace("\"","'") + "\",\"" 
 			                  + cachedesc.Replace("\"","''") + "\",\"" + mode + "\")");
 		}
@@ -617,7 +621,7 @@ namespace ocmgtk
 
 			m_map.LoadScript ("addExtraMarker(" + lat.ToString(CultureInfo.InvariantCulture) + ","
 			                  + lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" 
-			                  + IconManager.GetMapIcon (cache, m_ownerid) + "',\"" 
+			                  + IconManager.GetMapIcon (cache, m_ownerid, this) + "',\"" 
 			                  + cache.Name + "\",\"" + cache.CacheName.Replace("\"","'") + "\",\"" 
 			                  + cachedesc.Replace("\"","''") + "\",\"" + mode + "\")");
 			if (m_ShowAllChildren)
@@ -1252,6 +1256,7 @@ namespace ocmgtk
 			dlg.SetQuickFilters(m_filters, 	(string)m_conf.Get ("/apps/ocm/startupfilter", String.Empty));
 			dlg.DataDirectory = (String) m_conf.Get("/apps/ocm/datadir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
 			dlg.ImportDirectory = (String) m_conf.Get("/apps/ocm/importdir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
+			dlg.SolvedIconMode = m_conf.SolvedModeState;
 			int oldInterval = dlg.UpdateInterval;
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
@@ -1270,6 +1275,7 @@ namespace ocmgtk
 				m_conf.Set ("/apps/ocm/importdir", dlg.ImportDirectory);
 				m_conf.Set ("/apps/ocm/startupfilter", dlg.StartupFilter);
 				m_conf.Set ("/apps/ocm/autoclose", dlg.AutoCloseOnCompletion);
+				m_conf.SolvedModeState = dlg.SolvedIconMode;
 				
 				if (dlg.UpdateInterval != oldInterval)
 				{
@@ -1309,6 +1315,7 @@ namespace ocmgtk
 				{
 					m_mainWin.EnableResetCentre();
 				}
+			GoHome();
 		}
 		
 		public static void TerraHome()
@@ -1408,7 +1415,7 @@ namespace ocmgtk
 		public void RemoveBookmark()
 		{
 			CacheStore store = Engine.getInstance().Store;
-			DeleteBookmark dlg = new DeleteBookmark();
+			DeleteItem dlg = new DeleteItem();
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
 				store.DeleteBookmark(dlg.Bookmark);
@@ -1621,7 +1628,7 @@ namespace ocmgtk
 		
 		public void DeleteQuickFilter()
 		{
-			DeleteBookmark dlg = new DeleteBookmark(m_filters);
+			DeleteItem dlg = new DeleteItem(m_filters);
 			dlg.Title = Catalog.GetString("Delete QuickFilter");
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
@@ -1650,7 +1657,7 @@ namespace ocmgtk
 			if ((int)ResponseType.Ok == dlg.Run())
 			{
 				CopyingProgress cp = new CopyingProgress();
-				cp.Start(dlg.Filename, false, CopyingProgress.ModeEnum.VISIBLE);
+				cp.Start(dlg.Filename, false, dlg.Mode);
 			}
 		}
 		
@@ -1683,13 +1690,22 @@ namespace ocmgtk
 		
 		public void SetMapCentre(double lat, double lon)
 		{
+			SetMapCentre(lat, lon, null);
+		}
+		
+		public void SetMapCentre(double lat, double lon, string name)
+		{
 			CentreLat = lat;
 			CentreLon = lon;
-			CenterName = Catalog.GetString("Map Point");
+			if (name == null)
+				CenterName = Catalog.GetString("Map Point");
+			else
+				CenterName = name;
 			m_conf.Set("/apps/ocm/lastlat", m_home_lat);
 			m_conf.Set("/apps/ocm/lastlon", m_home_lon);
 			m_conf.Set("/apps/ocm/lastname", m_centreName);
 			m_mainWin.EnableResetCentre();
+			RecenterMap();
 			RefreshCaches();
 		}
 		
@@ -1915,6 +1931,46 @@ namespace ocmgtk
 			} catch (Exception ex) {
 				UIMonitor.ShowException (ex);
 			}
+		}
+		
+		public void AddLocation()
+		{
+			AddLocation(m_currLat, m_currLon);
+		}
+		
+		public void AddLocation(double lat, double lon)
+		{
+			AddLocationDialog dlg = new AddLocationDialog();
+			dlg.Location.Latitude = lat;
+			dlg.Location.Longitude = lon;
+			if ((int)ResponseType.Ok == dlg.Run())
+			{
+				Location newLoc = new Location();
+				newLoc.Latitude = dlg.Location.Latitude;
+				newLoc.Longitude = dlg.Location.Longitude;
+				newLoc.Name = dlg.LocationName;
+				m_locations.AddLocation(newLoc);
+				m_mainWin.RebuildLocationsMenu(m_locations);
+				SetLocation(newLoc);
+			}
+		}
+		
+		public void RemoveLocation()
+		{
+			DeleteItem dlg = new DeleteItem(m_locations);
+			dlg.Title = Catalog.GetString("Delete Location....");
+			if ((int) ResponseType.Ok == dlg.Run())
+			{
+				m_locations.DeleteLocation(dlg.Bookmark);
+				m_mainWin.RebuildLocationsMenu(m_locations);
+			}
+			dlg.Dispose();
+		}
+		
+		
+		public void SetLocation(Location loc)
+		{
+			SetMapCentre(loc.Latitude, loc.Longitude, loc.Name);
 		}
 	}
 }

@@ -64,7 +64,10 @@ body {
 	var popup_no_cache = "<div onmousedown='doSetCentre()' onmouseover='doHighlight(this)' onmouseout='doNohighlight(this)'>"
 					+ "Set as Centre</div>"
 					+  "<div onmousedown='doSetHome()' onmouseover='doHighlight(this)' onmouseout='doNohighlight(this)'>"
-					+ "Set as Home</div>";
+					+ "Set as Home</div>"
+					+ "<hr noshade/>"
+					+  "<div onmousedown='doAddLocation()' onmouseover='doHighlight(this)' onmouseout='doNohighlight(this)'>"
+					+ "Add Location</div>";
 	
 	function getParm( name )
 	{
@@ -300,12 +303,11 @@ body {
 	
 	function doPopup(e)
 	{
-		
+		var popup = document.getElementById("popup");
 		if (e.which != 3)
 		{
 			return;
 		}
-		var popup = document.getElementById("popup");
 		if (popup.style.display == "inline")
 		{
 			doHidePopup();
@@ -349,6 +351,14 @@ body {
 		doHidePopup();
 		var lonlat = mouse.transform(map.projection, map.displayProjection);
 		hidden.innerHTML = "<iframe src='ocm://sethome/" + lonlat.lat + "/" + lonlat.lon + "'/>";
+	}
+	
+	
+	function doAddLocation()
+	{
+		doHidePopup();
+		var lonlat = mouse.transform(map.projection, map.displayProjection);
+		hidden.innerHTML = "<iframe src='ocm://addlocation/" + lonlat.lat + "/" + lonlat.lon + "'/>";
 	}
 	
         // -->

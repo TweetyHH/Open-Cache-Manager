@@ -135,79 +135,96 @@ namespace ocmgtk
 				
 				List<CacheAttribute> attrs = Engine.getInstance().Store.GetAttributes(cache.Name);
 				StringBuilder bldr = new StringBuilder();
-				if (attrs.Count <= 0)
-					bldr.Append(Catalog.GetString("None"));
-				bool isFirst = true;
+				Gtk.Table.TableChild props;
 				foreach (Gtk.Widget child in attrTable.Children)
 				{
 						attrTable.Remove(child);
 				}
-				Gtk.Table.TableChild props;
-				
-				uint colCount = 0;
-				
-				foreach (CacheAttribute attr in attrs)
+				if (attrs.Count <= 0)
 				{
-					Pixbuf buf;
-					if (attr.Include)
-						buf = IconManager.GetYAttrIcon(attr.AttrValue);
-					else
-						buf = IconManager.GetNAttrIcon(attr.AttrValue);
-					if (buf != null)
-					{
-						Gtk.Image img = new Gtk.Image();
-						img.Pixbuf = buf;
-						img.TooltipText = Catalog.GetString(attr.AttrValue);
-						attrTable.Add(img);
-						props = ((Gtk.Table.TableChild)(this.attrTable[img]));
-						props.TopAttach = 0;
-						props.LeftAttach = colCount;
-						props.RightAttach = colCount + 1;
-						props.BottomAttach = 1;
-						props.XOptions = AttachOptions.Shrink;
-						img.Show();
-						colCount++;
-						continue;
-					}
-					
-					if (isFirst)
-						isFirst = false;
-					else
-						bldr.Append(", ");					
-					if (!attr.Include)
-					{
-						bldr.Append("<span fgcolor='red' strikethrough='true'>");
-						bldr.Append(attr.AttrValue);
-						bldr.Append("</span>");
-					}
-					else
-					{
-						bldr.Append(attr.AttrValue);
-					}
-				}
-				Label filler = new Label("");
-				attrTable.Add(filler);
-				props = ((Gtk.Table.TableChild)(this.attrTable[filler]));
-				props.TopAttach = 0;
-				props.LeftAttach = colCount;
-				props.RightAttach = colCount + 1;
-				props.BottomAttach = 1;
-				props.XOptions = AttachOptions.Expand;
-				filler.Show();
-				
-				if(bldr.Length > 0)
-				{
+					bldr.Append(Catalog.GetString("None"));
 					attrTable.Add(attrLabel);
 					props = ((Gtk.Table.TableChild)(this.attrTable[attrLabel]));
-					props.TopAttach = 1;
+					props.TopAttach = 0;
 					props.LeftAttach = 0;
-					props.RightAttach = colCount + 1;
-					props.BottomAttach = 2;
+					props.RightAttach = 1;
+					props.BottomAttach = 1;
 					attrLabel.Markup = bldr.ToString();
 					attrLabel.Show();
 				}
+				else
+				{
+					ShowAttrIcons (attrs, bldr);
+				}
 			} catch (Exception e) {
 				UIMonitor.ShowException(e);
+			}
+		}
+		
+		private void ShowAttrIcons (List<CacheAttribute> attrs, StringBuilder bldr)
+		{
+			Gtk.Table.TableChild props;	
+			bool isFirst = true;
+			uint colCount = 0;				
+			foreach (CacheAttribute attr in attrs)
+			{
+				Pixbuf buf;
+				if (attr.Include)
+					buf = IconManager.GetYAttrIcon(attr.AttrValue);
+				else
+					buf = IconManager.GetNAttrIcon(attr.AttrValue);
+				if (buf != null)
+				{
+					Gtk.Image img = new Gtk.Image();
+					img.Pixbuf = buf;
+					img.TooltipText = Catalog.GetString(attr.AttrValue);
+					attrTable.Add(img);
+					props = ((Gtk.Table.TableChild)(this.attrTable[img]));
+					props.TopAttach = 0;
+					props.LeftAttach = colCount;
+					props.RightAttach = colCount + 1;
+					props.BottomAttach = 1;
+					props.XOptions = AttachOptions.Shrink;
+					img.Show();
+					colCount++;
+					continue;
+				}
+				
+				if (isFirst)
+					isFirst = false;
+				else
+					bldr.Append(", ");					
+				if (!attr.Include)
+				{
+					bldr.Append("<span fgcolor='red' strikethrough='true'>");
+					bldr.Append(attr.AttrValue);
+					bldr.Append("</span>");
+				}
+				else
+				{
+					bldr.Append(attr.AttrValue);
+				}
+			}
+			Label filler = new Label("");
+			attrTable.Add(filler);
+			props = ((Gtk.Table.TableChild)(this.attrTable[filler]));
+			props.TopAttach = 0;
+			props.LeftAttach = colCount;
+			props.RightAttach = colCount + 1;
+			props.BottomAttach = 1;
+			props.XOptions = AttachOptions.Expand;
+			filler.Show();
+			
+			if(bldr.Length > 0)
+			{
+				attrTable.Add(attrLabel);
+				props = ((Gtk.Table.TableChild)(this.attrTable[attrLabel]));
+				props.TopAttach = 1;
+				props.LeftAttach = 0;
+				props.RightAttach = colCount + 1;
+				props.BottomAttach = 2;
+				attrLabel.Markup = bldr.ToString();
+				attrLabel.Show();
 			}
 		}
 

@@ -20,9 +20,22 @@ namespace ocmgtk
 {
 
 
-	public class Config
+	public class Config:IConfig
 	{
 		private GConf.Client m_client;
+		public SolvedMode SolvedModeState
+		{
+			get 
+			{ 
+				return (SolvedMode) Enum.Parse(typeof(SolvedMode), this.Get("/apps/ocm/solved_mode", 
+				                                                                 SolvedMode.PUZZLES.ToString()) 
+				                                     							as string); 
+			}
+			set 
+			{ 
+				m_client.Set("/apps/ocm/solved_mode", value.ToString()); 
+			}
+		}
 
 		public Config ()
 		{

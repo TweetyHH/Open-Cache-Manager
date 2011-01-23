@@ -65,7 +65,6 @@ namespace ocmgtk {
             this.visibleRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Visible Caches"));
             this.visibleRadio.CanFocus = true;
             this.visibleRadio.Name = "visibleRadio";
-            this.visibleRadio.Active = true;
             this.visibleRadio.DrawIndicator = true;
             this.visibleRadio.UseUnderline = true;
             this.visibleRadio.Group = new GLib.SList(System.IntPtr.Zero);
@@ -76,7 +75,6 @@ namespace ocmgtk {
             w2.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
             this.selectedRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Selected Cache"));
-            this.selectedRadio.Sensitive = false;
             this.selectedRadio.CanFocus = true;
             this.selectedRadio.Name = "selectedRadio";
             this.selectedRadio.DrawIndicator = true;
@@ -89,7 +87,6 @@ namespace ocmgtk {
             w3.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
             this.entireRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Entire Database"));
-            this.entireRadio.Sensitive = false;
             this.entireRadio.CanFocus = true;
             this.entireRadio.Name = "entireRadio";
             this.entireRadio.DrawIndicator = true;
@@ -171,7 +168,7 @@ namespace ocmgtk {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 400;
-            this.DefaultHeight = 226;
+            this.DefaultHeight = 231;
             this.Show();
             this.buttonCancel.Clicked += new System.EventHandler(this.OnButtonCancelClicked);
             this.buttonOk.Clicked += new System.EventHandler(this.OKClicked);

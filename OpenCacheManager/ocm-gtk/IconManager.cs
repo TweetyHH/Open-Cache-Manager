@@ -132,14 +132,20 @@ namespace ocmgtk
 		/// <returns>
 		/// Icon file name <see cref="System.String"/>
 		/// </returns>
-		public static string GetMapIcon (Geocache cache, String ownerId)
+		public static string GetMapIcon (Geocache cache, String ownerId, UIMonitor mon)
 		{
 			if (cache.Found)
 				return FOUND_MI;
 			if ((cache.OwnerID == ownerId) ||(cache.CacheOwner == ownerId))
 				return OWNED_MI;
 			if ((cache.HasCorrected || cache.HasFinal))
-				return CORRECTED_MI;
+			{
+				if (mon.Configuration.SolvedModeState == SolvedMode.ALL)
+					return CORRECTED_MI;
+				else if (mon.Configuration.SolvedModeState == SolvedMode.PUZZLES &&
+				         cache.TypeOfCache == Geocache.CacheType.MYSTERY)
+					return CORRECTED_MI;
+			}
 			switch (cache.TypeOfCache) {
 				case Geocache.CacheType.TRADITIONAL:
 					return TRAD_MI;

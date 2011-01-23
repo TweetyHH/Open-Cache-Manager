@@ -139,7 +139,6 @@
     <Compile Include="Widgets\HTMLEditorWidget.cs" />
     <Compile Include="Widgets\NotesWidget.cs" />
     <Compile Include="Dialogs\AddBookMarkDialog.cs" />
-    <Compile Include="Dialogs\DeleteBookmark.cs" />
     <Compile Include="Dialogs\ModifyCacheDialog.cs" />
     <Compile Include="Dialogs\NoDBDialog.cs" />
     <Compile Include="GPS.cs" />
@@ -191,7 +190,6 @@
     <Compile Include="gtk-gui\ocmgtk.HTMLEditorWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.NotesWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.AddBookMarkDialog.cs" />
-    <Compile Include="gtk-gui\ocmgtk.DeleteBookmark.cs" />
     <Compile Include="gtk-gui\ocmgtk.ModifyCacheDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.NoDBDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.GPSDConfig.cs" />
@@ -239,6 +237,15 @@
     <Compile Include="gtk-gui\ocmgtk.ExportGPXDialog.cs" />
     <Compile Include="Widgets\AttributeFilterWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.AttributeFilterWidget.cs" />
+    <Compile Include="Dialogs\AddLocationDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.AddLocationDialog.cs" />
+    <Compile Include="Widgets\LocationWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.LocationWidget.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="LocationList.cs" />
+    <Compile Include="Dialogs\DeleteItem.cs" />
+    <Compile Include="IConfig.cs" />
+    <Compile Include="gtk-gui\ocmgtk.DeleteItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

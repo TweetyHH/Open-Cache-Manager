@@ -300,9 +300,19 @@ namespace ocmgtk
 			else if ((cache.OwnerID == m_monitor.OwnerID  ) || (cache.CacheOwner == m_monitor.OwnerID))
 				icon.Pixbuf = IconManager.GetSmallCacheIcon (Geocache.CacheType.MINE);
 			else if (cache.HasCorrected || cache.HasFinal)
-				icon.Pixbuf = IconManager.CORRECTED_S;
+			{
+				if (m_monitor.Configuration.SolvedModeState == SolvedMode.ALL)
+					icon.Pixbuf = IconManager.CORRECTED_S;
+				else if ((m_monitor.Configuration.SolvedModeState == SolvedMode.PUZZLES) && 
+				        	(cache.TypeOfCache == Geocache.CacheType.MYSTERY))
+					icon.Pixbuf = IconManager.CORRECTED_S;
+				else
+					icon.Pixbuf = IconManager.GetSmallCacheIcon (cache.TypeOfCache);
+			}
 			else
+			{
 				icon.Pixbuf = IconManager.GetSmallCacheIcon (cache.TypeOfCache);
+			}
 		}
 
 		private void RenderCacheDistance (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)

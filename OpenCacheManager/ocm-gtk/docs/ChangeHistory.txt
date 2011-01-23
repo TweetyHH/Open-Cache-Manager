@@ -1,3 +1,13 @@
+Version 0.23.1
+--------------
+- Add locations feature to OCM. You can now add new locations via the Locations menu
+  or by right clicking on the map
+- You can now set how OCM displays the "solved" icon in preferences, the default is now just
+  puzzle caches with corrected coordinates/final locations
+- Fix minor graphical glitch if cache has no attributes
+- Can now choose "Selected cache" or "Entire database" when copying/moving caches between databases
+
+
 Version 0.22.9
 --------------
 - Fix "Does not have corrected coordinates" filter bugs

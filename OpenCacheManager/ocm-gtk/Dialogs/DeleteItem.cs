@@ -22,18 +22,20 @@ namespace ocmgtk
 {
 
 
-	public partial class DeleteBookmark : Gtk.Dialog
+	public partial class DeleteItem : Gtk.Dialog
 	{			
 		public string Bookmark
 		{
 			get { return bmrkCombo.ActiveText;}
 		}
 		
-		public DeleteBookmark ():this(null)
+		public DeleteItem ()
 		{
+			this.Build();
+			this.PopulateList();
 		}
 		
-		public DeleteBookmark (QuickFilters filters)
+		public DeleteItem (QuickFilters filters)
 		{
 			this.Build ();
 			if (filters != null)
@@ -55,6 +57,22 @@ namespace ocmgtk
 			else
 			{
 				PopulateList();
+			}
+		}
+		
+		public DeleteItem (LocationList locations)
+		{
+			this.Build ();
+			if (locations != null)
+			{
+				this.label1.Text = Catalog.GetString("Location:");
+				int iCount = 0;
+				foreach (Location loc in locations.Locations)
+				{
+					bmrkCombo.AppendText(loc.Name);
+					bmrkCombo.Active = 0;
+					iCount ++;
+				}
 			}
 		}
 		

@@ -132,6 +132,34 @@ namespace ocmgtk
 			get { return autoCloseCheck.Active;}
 		}
 		
+		public SolvedMode SolvedIconMode
+		{
+			get
+			{
+				if (solvedAllRadio.Active)
+					return SolvedMode.ALL;
+				else if (solvedPuzzRadio.Active)
+					return SolvedMode.PUZZLES;
+				else
+					return SolvedMode.NONE;
+			}
+			set
+			{
+				switch (value)
+				{
+					case SolvedMode.ALL:
+						solvedAllRadio.Active = true;
+						break;
+					case SolvedMode.PUZZLES:
+						solvedPuzzRadio.Active = true;
+						break;
+					default:
+						solvedNoneRadio.Active = true;
+						break;
+				}
+			}
+		}
+		
 		public void SetQuickFilters(QuickFilters filterList, String  filterName)
 		{
 			int i=0;
@@ -246,10 +274,6 @@ namespace ocmgtk
 			}
 			dlg.Destroy ();
 		}
-		
-		
-		
-		
 		
 		
 	}

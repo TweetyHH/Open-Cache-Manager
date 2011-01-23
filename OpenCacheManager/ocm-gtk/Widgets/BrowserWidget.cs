@@ -86,6 +86,10 @@ namespace ocmgtk
 				{
 					m_monitor.SetHome(double.Parse(request[1], System.Globalization.CultureInfo.InvariantCulture), double.Parse(request[2], System.Globalization.CultureInfo.InvariantCulture));
 				}
+				else if (request[0].Equals("addlocation"))
+				{
+					m_monitor.AddLocation(double.Parse(request[1], System.Globalization.CultureInfo.InvariantCulture), double.Parse(request[2], System.Globalization.CultureInfo.InvariantCulture));
+				}
 				args.Frame.StopLoading();
 			}
 		}
