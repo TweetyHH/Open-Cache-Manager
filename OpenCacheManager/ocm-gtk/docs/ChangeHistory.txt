@@ -6,6 +6,9 @@ Version 0.23.1
   puzzle caches with corrected coordinates/final locations
 - Fix minor graphical glitch if cache has no attributes
 - Can now choose "Selected cache" or "Entire database" when copying/moving caches between databases
+- Add direct entry mode for coordinates, similar to QLandkarte GT. Default can be set in preferences
+	N.B. In direct entry mode English must be used (i.e. N/S/E/W)
+	-- At the moment, only decimal degree format is supported
 
 
 Version 0.22.9

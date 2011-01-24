@@ -1257,6 +1257,7 @@ namespace ocmgtk
 			dlg.DataDirectory = (String) m_conf.Get("/apps/ocm/datadir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
 			dlg.ImportDirectory = (String) m_conf.Get("/apps/ocm/importdir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
 			dlg.SolvedIconMode = m_conf.SolvedModeState;
+			dlg.UseDirectMode = m_conf.UseDirectEntryMode;
 			int oldInterval = dlg.UpdateInterval;
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
@@ -1276,6 +1277,7 @@ namespace ocmgtk
 				m_conf.Set ("/apps/ocm/startupfilter", dlg.StartupFilter);
 				m_conf.Set ("/apps/ocm/autoclose", dlg.AutoCloseOnCompletion);
 				m_conf.SolvedModeState = dlg.SolvedIconMode;
+				m_conf.UseDirectEntryMode = dlg.UseDirectMode;
 				
 				if (dlg.UpdateInterval != oldInterval)
 				{

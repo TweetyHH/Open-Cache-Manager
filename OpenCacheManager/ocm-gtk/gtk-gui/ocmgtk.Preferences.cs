@@ -85,6 +85,8 @@ namespace ocmgtk {
         
         private Gtk.Label childLabel;
         
+        private Gtk.CheckButton entryModeCheck;
+        
         private Gtk.Frame frame1;
         
         private Gtk.Alignment GtkAlignment2;
@@ -97,7 +99,9 @@ namespace ocmgtk {
         
         private Gtk.RadioButton solvedNoneRadio;
         
-        private Gtk.Label GtkLabel3;
+        private Gtk.Label GtkLabel4;
+        
+        private Gtk.HSeparator hseparator3;
         
         private Gtk.ComboBox modeCombo;
         
@@ -486,7 +490,7 @@ namespace ocmgtk {
             this.notebook1.SetTabLabel(this.table3, this.label14);
             this.label14.ShowAll();
             // Container child notebook1.Gtk.Notebook+NotebookChild
-            this.table5 = new Gtk.Table(((uint)(2)), ((uint)(2)), false);
+            this.table5 = new Gtk.Table(((uint)(4)), ((uint)(2)), false);
             this.table5.Name = "table5";
             this.table5.RowSpacing = ((uint)(6));
             this.table5.ColumnSpacing = ((uint)(6));
@@ -500,6 +504,20 @@ namespace ocmgtk {
             Gtk.Table.TableChild w32 = ((Gtk.Table.TableChild)(this.table5[this.childLabel]));
             w32.XOptions = ((Gtk.AttachOptions)(4));
             w32.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table5.Gtk.Table+TableChild
+            this.entryModeCheck = new Gtk.CheckButton();
+            this.entryModeCheck.CanFocus = true;
+            this.entryModeCheck.Name = "entryModeCheck";
+            this.entryModeCheck.Label = Mono.Unix.Catalog.GetString("Use direct entry mode for coordinates");
+            this.entryModeCheck.DrawIndicator = true;
+            this.entryModeCheck.UseUnderline = true;
+            this.table5.Add(this.entryModeCheck);
+            Gtk.Table.TableChild w33 = ((Gtk.Table.TableChild)(this.table5[this.entryModeCheck]));
+            w33.TopAttach = ((uint)(2));
+            w33.BottomAttach = ((uint)(3));
+            w33.RightAttach = ((uint)(2));
+            w33.XOptions = ((Gtk.AttachOptions)(4));
+            w33.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table5.Gtk.Table+TableChild
             this.frame1 = new Gtk.Frame();
             this.frame1.Name = "frame1";
@@ -520,10 +538,10 @@ namespace ocmgtk {
             this.solvedPuzzRadio.UseUnderline = true;
             this.solvedPuzzRadio.Group = new GLib.SList(System.IntPtr.Zero);
             this.vbox2.Add(this.solvedPuzzRadio);
-            Gtk.Box.BoxChild w33 = ((Gtk.Box.BoxChild)(this.vbox2[this.solvedPuzzRadio]));
-            w33.Position = 0;
-            w33.Expand = false;
-            w33.Fill = false;
+            Gtk.Box.BoxChild w34 = ((Gtk.Box.BoxChild)(this.vbox2[this.solvedPuzzRadio]));
+            w34.Position = 0;
+            w34.Expand = false;
+            w34.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
             this.solvedAllRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("All caches with corrected coordinates/final location"));
             this.solvedAllRadio.CanFocus = true;
@@ -532,10 +550,10 @@ namespace ocmgtk {
             this.solvedAllRadio.UseUnderline = true;
             this.solvedAllRadio.Group = this.solvedPuzzRadio.Group;
             this.vbox2.Add(this.solvedAllRadio);
-            Gtk.Box.BoxChild w34 = ((Gtk.Box.BoxChild)(this.vbox2[this.solvedAllRadio]));
-            w34.Position = 1;
-            w34.Expand = false;
-            w34.Fill = false;
+            Gtk.Box.BoxChild w35 = ((Gtk.Box.BoxChild)(this.vbox2[this.solvedAllRadio]));
+            w35.Position = 1;
+            w35.Expand = false;
+            w35.Fill = false;
             // Container child vbox2.Gtk.Box+BoxChild
             this.solvedNoneRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Never"));
             this.solvedNoneRadio.CanFocus = true;
@@ -544,24 +562,34 @@ namespace ocmgtk {
             this.solvedNoneRadio.UseUnderline = true;
             this.solvedNoneRadio.Group = this.solvedPuzzRadio.Group;
             this.vbox2.Add(this.solvedNoneRadio);
-            Gtk.Box.BoxChild w35 = ((Gtk.Box.BoxChild)(this.vbox2[this.solvedNoneRadio]));
-            w35.Position = 2;
-            w35.Expand = false;
-            w35.Fill = false;
+            Gtk.Box.BoxChild w36 = ((Gtk.Box.BoxChild)(this.vbox2[this.solvedNoneRadio]));
+            w36.Position = 2;
+            w36.Expand = false;
+            w36.Fill = false;
             this.GtkAlignment2.Add(this.vbox2);
             this.frame1.Add(this.GtkAlignment2);
-            this.GtkLabel3 = new Gtk.Label();
-            this.GtkLabel3.Name = "GtkLabel3";
-            this.GtkLabel3.LabelProp = Mono.Unix.Catalog.GetString("Show solved puzzle icon");
-            this.GtkLabel3.UseMarkup = true;
-            this.frame1.LabelWidget = this.GtkLabel3;
+            this.GtkLabel4 = new Gtk.Label();
+            this.GtkLabel4.Name = "GtkLabel4";
+            this.GtkLabel4.LabelProp = Mono.Unix.Catalog.GetString("Show solved puzzle icon");
+            this.GtkLabel4.UseMarkup = true;
+            this.frame1.LabelWidget = this.GtkLabel4;
             this.table5.Add(this.frame1);
-            Gtk.Table.TableChild w38 = ((Gtk.Table.TableChild)(this.table5[this.frame1]));
-            w38.TopAttach = ((uint)(1));
-            w38.BottomAttach = ((uint)(2));
-            w38.RightAttach = ((uint)(2));
-            w38.XOptions = ((Gtk.AttachOptions)(4));
-            w38.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w39 = ((Gtk.Table.TableChild)(this.table5[this.frame1]));
+            w39.TopAttach = ((uint)(3));
+            w39.BottomAttach = ((uint)(4));
+            w39.RightAttach = ((uint)(2));
+            w39.XOptions = ((Gtk.AttachOptions)(4));
+            w39.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table5.Gtk.Table+TableChild
+            this.hseparator3 = new Gtk.HSeparator();
+            this.hseparator3.Name = "hseparator3";
+            this.table5.Add(this.hseparator3);
+            Gtk.Table.TableChild w40 = ((Gtk.Table.TableChild)(this.table5[this.hseparator3]));
+            w40.TopAttach = ((uint)(1));
+            w40.BottomAttach = ((uint)(2));
+            w40.RightAttach = ((uint)(2));
+            w40.XOptions = ((Gtk.AttachOptions)(4));
+            w40.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table5.Gtk.Table+TableChild
             this.modeCombo = Gtk.ComboBox.NewText();
             this.modeCombo.AppendText(Mono.Unix.Catalog.GetString("Prefix with Type (e.g. PKABCD01)"));
@@ -569,17 +597,17 @@ namespace ocmgtk {
             this.modeCombo.Name = "modeCombo";
             this.modeCombo.Active = 0;
             this.table5.Add(this.modeCombo);
-            Gtk.Table.TableChild w39 = ((Gtk.Table.TableChild)(this.table5[this.modeCombo]));
-            w39.LeftAttach = ((uint)(1));
-            w39.RightAttach = ((uint)(2));
-            w39.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w41 = ((Gtk.Table.TableChild)(this.table5[this.modeCombo]));
+            w41.LeftAttach = ((uint)(1));
+            w41.RightAttach = ((uint)(2));
+            w41.YOptions = ((Gtk.AttachOptions)(4));
             this.notebook1.Add(this.table5);
-            Gtk.Notebook.NotebookChild w40 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.table5]));
-            w40.Position = 3;
+            Gtk.Notebook.NotebookChild w42 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.table5]));
+            w42.Position = 3;
             // Notebook tab
             this.label8 = new Gtk.Label();
             this.label8.Name = "label8";
-            this.label8.LabelProp = Mono.Unix.Catalog.GetString("Waypoints/Corrected Coordinates");
+            this.label8.LabelProp = Mono.Unix.Catalog.GetString("Waypoints/Coordinates");
             this.notebook1.SetTabLabel(this.table5, this.label8);
             this.label8.ShowAll();
             // Container child notebook1.Gtk.Notebook+NotebookChild
@@ -593,11 +621,11 @@ namespace ocmgtk {
             this.label11.Name = "label11";
             this.label11.LabelProp = Mono.Unix.Catalog.GetString("days");
             this.table4.Add(this.label11);
-            Gtk.Table.TableChild w41 = ((Gtk.Table.TableChild)(this.table4[this.label11]));
-            w41.LeftAttach = ((uint)(2));
-            w41.RightAttach = ((uint)(3));
-            w41.XOptions = ((Gtk.AttachOptions)(4));
-            w41.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w43 = ((Gtk.Table.TableChild)(this.table4[this.label11]));
+            w43.LeftAttach = ((uint)(2));
+            w43.RightAttach = ((uint)(3));
+            w43.XOptions = ((Gtk.AttachOptions)(4));
+            w43.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table4.Gtk.Table+TableChild
             this.updateCheck = new Gtk.CheckButton();
             this.updateCheck.CanFocus = true;
@@ -607,8 +635,8 @@ namespace ocmgtk {
             this.updateCheck.DrawIndicator = true;
             this.updateCheck.UseUnderline = true;
             this.table4.Add(this.updateCheck);
-            Gtk.Table.TableChild w42 = ((Gtk.Table.TableChild)(this.table4[this.updateCheck]));
-            w42.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w44 = ((Gtk.Table.TableChild)(this.table4[this.updateCheck]));
+            w44.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table4.Gtk.Table+TableChild
             this.updateEntry = new Gtk.Entry();
             this.updateEntry.CanFocus = true;
@@ -618,13 +646,13 @@ namespace ocmgtk {
             this.updateEntry.InvisibleChar = '•';
             this.updateEntry.Xalign = 1F;
             this.table4.Add(this.updateEntry);
-            Gtk.Table.TableChild w43 = ((Gtk.Table.TableChild)(this.table4[this.updateEntry]));
-            w43.LeftAttach = ((uint)(1));
-            w43.RightAttach = ((uint)(2));
-            w43.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w45 = ((Gtk.Table.TableChild)(this.table4[this.updateEntry]));
+            w45.LeftAttach = ((uint)(1));
+            w45.RightAttach = ((uint)(2));
+            w45.YOptions = ((Gtk.AttachOptions)(4));
             this.notebook1.Add(this.table4);
-            Gtk.Notebook.NotebookChild w44 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.table4]));
-            w44.Position = 4;
+            Gtk.Notebook.NotebookChild w46 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.table4]));
+            w46.Position = 4;
             // Notebook tab
             this.label18 = new Gtk.Label();
             this.label18.Name = "label18";
@@ -632,14 +660,14 @@ namespace ocmgtk {
             this.notebook1.SetTabLabel(this.table4, this.label18);
             this.label18.ShowAll();
             w1.Add(this.notebook1);
-            Gtk.Box.BoxChild w45 = ((Gtk.Box.BoxChild)(w1[this.notebook1]));
-            w45.Position = 0;
+            Gtk.Box.BoxChild w47 = ((Gtk.Box.BoxChild)(w1[this.notebook1]));
+            w47.Position = 0;
             // Internal child ocmgtk.Preferences.ActionArea
-            Gtk.HButtonBox w46 = this.ActionArea;
-            w46.Name = "dialog1_ActionArea";
-            w46.Spacing = 10;
-            w46.BorderWidth = ((uint)(5));
-            w46.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            Gtk.HButtonBox w48 = this.ActionArea;
+            w48.Name = "dialog1_ActionArea";
+            w48.Spacing = 10;
+            w48.BorderWidth = ((uint)(5));
+            w48.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -649,9 +677,9 @@ namespace ocmgtk {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w47 = ((Gtk.ButtonBox.ButtonBoxChild)(w46[this.buttonCancel]));
-            w47.Expand = false;
-            w47.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w49 = ((Gtk.ButtonBox.ButtonBoxChild)(w48[this.buttonCancel]));
+            w49.Expand = false;
+            w49.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -661,10 +689,10 @@ namespace ocmgtk {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w48 = ((Gtk.ButtonBox.ButtonBoxChild)(w46[this.buttonOk]));
-            w48.Position = 1;
-            w48.Expand = false;
-            w48.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w50 = ((Gtk.ButtonBox.ButtonBoxChild)(w48[this.buttonOk]));
+            w50.Position = 1;
+            w50.Expand = false;
+            w50.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }

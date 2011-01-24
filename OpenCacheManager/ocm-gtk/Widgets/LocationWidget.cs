@@ -14,6 +14,9 @@
 //    limitations under the License.
 
 using System;
+using Gtk;
+using ocmengine;
+using Mono.Unix;
 
 namespace ocmgtk
 {
@@ -22,22 +25,128 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class LocationWidget : Gtk.Bin
 	{
-
+		Gtk.Entry m_DirectEntry = new Gtk.Entry();
+		Gtk.Label m_DirectLabel = new Gtk.Label(Catalog.GetString("Coordinate:"));
+		
+		bool m_IsDirect = false;
+		
 		public double Latitude
 		{
-			get { return latWidget.getCoordinate();}
-			set { latWidget.SetCoordinate(value, true);}
+			get 
+			{ 
+				if (m_IsDirect)
+					return Utilities.ParseCoordString(m_DirectEntry.Text)[0].GetDecimalDegrees();
+				return latWidget.getCoordinate();
+			}
+			set { 
+				latWidget.SetCoordinate(value, true);
+				if (m_IsDirect)
+					m_DirectEntry.Text = Utilities.getCoordStringCN(latWidget.getCoordinate(), lonWidget.getCoordinate());
+			}
 		}
 		
 		public double Longitude
 		{
-			get { return lonWidget.getCoordinate();}
-			set { lonWidget.SetCoordinate(value, true);}
+			get 
+			{ 
+				if (m_IsDirect)
+					return Utilities.ParseCoordString(m_DirectEntry.Text)[1].GetDecimalDegrees();
+				return lonWidget.getCoordinate();
+			}
+			set { 
+				lonWidget.SetCoordinate(value, false);
+				if (m_IsDirect)
+					m_DirectEntry.Text = Utilities.getCoordStringCN(latWidget.getCoordinate(), lonWidget.getCoordinate());
+
+			}
 		}
+		
+		protected virtual void OnEditClicked (object sender, System.EventArgs e)
+		{
+			if (!m_IsDirect)
+				SetDirectMode ();
+			else
+				SetHelperMode();
+		}
+		
+		private void SetHelperMode ()
+		{
+			latWidget.SetCoordinate(Utilities.ParseCoordString(m_DirectEntry.Text)[0].GetDecimalDegrees(), true);
+			lonWidget.SetCoordinate(Utilities.ParseCoordString(m_DirectEntry.Text)[1].GetDecimalDegrees(), false);
+			
+			Gtk.Table.TableChild props;
+			widgetTable.Remove(m_DirectLabel);
+			widgetTable.Remove(m_DirectEntry);
+			widgetTable.Add(latWidget);
+			widgetTable.Add(lonWidget);
+			widgetTable.Add(lonLabel);
+			widgetTable.Add(latLabel);
+			props = ((Gtk.Table.TableChild)(this.widgetTable[latLabel]));
+			props.TopAttach = 0;
+			props.LeftAttach = 0;
+			props.RightAttach = 1;
+			props.BottomAttach = 1;	
+			props.XOptions = AttachOptions.Fill;
+			latLabel.Show();
+			props = ((Gtk.Table.TableChild)(this.widgetTable[latWidget]));
+			props.TopAttach = 0;
+			props.LeftAttach = 1;
+			props.RightAttach = 2;
+			props.BottomAttach = 1;	
+			props.XOptions = AttachOptions.Fill;
+			latWidget.Show();
+			props = ((Gtk.Table.TableChild)(this.widgetTable[lonLabel]));
+			props.TopAttach = 1;
+			props.LeftAttach = 0;
+			props.RightAttach = 1;
+			props.BottomAttach = 2;	
+			props.XOptions = AttachOptions.Fill;
+			lonLabel.Show();
+			props = ((Gtk.Table.TableChild)(this.widgetTable[lonWidget]));
+			props.TopAttach = 1;
+			props.LeftAttach = 1;
+			props.RightAttach = 2;
+			props.BottomAttach = 2;	
+			props.XOptions = AttachOptions.Fill;
+			lonWidget.Show();
+			m_IsDirect = false;
+		}
+		
+		private void SetDirectMode ()
+		{
+			Gtk.Table.TableChild props;
+			widgetTable.Remove(latLabel);
+			widgetTable.Remove(lonLabel);
+			widgetTable.Remove(latWidget);
+			widgetTable.Remove(lonWidget);
+			widgetTable.Add(m_DirectEntry);
+			widgetTable.Add(m_DirectLabel);
+			props = ((Gtk.Table.TableChild)(this.widgetTable[m_DirectLabel]));
+			props.TopAttach = 0;
+			props.LeftAttach = 0;
+			props.RightAttach = 1;
+			props.BottomAttach = 1;	
+			props.XOptions = AttachOptions.Shrink;
+			m_DirectLabel.Show();
+			props = ((Gtk.Table.TableChild)(this.widgetTable[m_DirectEntry]));
+			props.TopAttach = 0;
+			props.LeftAttach = 1;
+			props.RightAttach = 2;
+			props.BottomAttach = 1;	
+			props.XOptions = AttachOptions.Shrink;
+			m_DirectEntry.Text = Utilities.getCoordStringCN(latWidget.getCoordinate(), lonWidget.getCoordinate());
+			m_DirectEntry.TooltipText = Catalog.GetString("Coordinates must be typed in using English formatting");
+			m_DirectEntry.Show();
+			m_IsDirect = true;
+		}
+		
 		
 		public LocationWidget ()
 		{
 			this.Build ();
+			m_DirectEntry.WidthChars = 40;
+			if (UIMonitor.getInstance().Configuration.UseDirectEntryMode)
+				SetDirectMode();
 		}
 	}
 }

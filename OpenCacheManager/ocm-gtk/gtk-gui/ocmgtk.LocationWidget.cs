@@ -13,13 +13,19 @@ namespace ocmgtk {
     
     public partial class LocationWidget {
         
-        private Gtk.Table table2;
+        private Gtk.Table widgetTable;
         
-        private Gtk.Label label4;
+        private Gtk.Button button9;
         
-        private Gtk.Label label5;
+        private Gtk.Image editIcon;
+        
+        private Gtk.Label label1;
+        
+        private Gtk.Label latLabel;
         
         private ocmgtk.CoordinateWidget latWidget;
+        
+        private Gtk.Label lonLabel;
         
         private ocmgtk.CoordinateWidget lonWidget;
         
@@ -29,57 +35,81 @@ namespace ocmgtk {
             Stetic.BinContainer.Attach(this);
             this.Name = "ocmgtk.LocationWidget";
             // Container child ocmgtk.LocationWidget.Gtk.Container+ContainerChild
-            this.table2 = new Gtk.Table(((uint)(2)), ((uint)(2)), false);
-            this.table2.Name = "table2";
-            this.table2.RowSpacing = ((uint)(6));
-            this.table2.ColumnSpacing = ((uint)(6));
-            // Container child table2.Gtk.Table+TableChild
-            this.label4 = new Gtk.Label();
-            this.label4.Name = "label4";
-            this.label4.Xalign = 0F;
-            this.label4.LabelProp = Mono.Unix.Catalog.GetString("Latitude:");
-            this.table2.Add(this.label4);
-            Gtk.Table.TableChild w1 = ((Gtk.Table.TableChild)(this.table2[this.label4]));
-            w1.XOptions = ((Gtk.AttachOptions)(4));
-            w1.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table2.Gtk.Table+TableChild
-            this.label5 = new Gtk.Label();
-            this.label5.Name = "label5";
-            this.label5.Xalign = 0F;
-            this.label5.LabelProp = Mono.Unix.Catalog.GetString("Longitude:");
-            this.table2.Add(this.label5);
-            Gtk.Table.TableChild w2 = ((Gtk.Table.TableChild)(this.table2[this.label5]));
-            w2.TopAttach = ((uint)(1));
-            w2.BottomAttach = ((uint)(2));
+            this.widgetTable = new Gtk.Table(((uint)(2)), ((uint)(4)), false);
+            this.widgetTable.Name = "widgetTable";
+            this.widgetTable.RowSpacing = ((uint)(6));
+            this.widgetTable.ColumnSpacing = ((uint)(6));
+            // Container child widgetTable.Gtk.Table+TableChild
+            this.button9 = new Gtk.Button();
+            this.button9.CanFocus = true;
+            this.button9.Name = "button9";
+            // Container child button9.Gtk.Container+ContainerChild
+            this.editIcon = new Gtk.Image();
+            this.editIcon.Name = "editIcon";
+            this.editIcon.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-edit", Gtk.IconSize.Button, 16);
+            this.button9.Add(this.editIcon);
+            this.button9.Label = null;
+            this.widgetTable.Add(this.button9);
+            Gtk.Table.TableChild w2 = ((Gtk.Table.TableChild)(this.widgetTable[this.button9]));
+            w2.LeftAttach = ((uint)(2));
+            w2.RightAttach = ((uint)(3));
             w2.XOptions = ((Gtk.AttachOptions)(4));
             w2.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table2.Gtk.Table+TableChild
+            // Container child widgetTable.Gtk.Table+TableChild
+            this.label1 = new Gtk.Label();
+            this.label1.Name = "label1";
+            this.widgetTable.Add(this.label1);
+            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.widgetTable[this.label1]));
+            w3.LeftAttach = ((uint)(3));
+            w3.RightAttach = ((uint)(4));
+            w3.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child widgetTable.Gtk.Table+TableChild
+            this.latLabel = new Gtk.Label();
+            this.latLabel.Name = "latLabel";
+            this.latLabel.Xalign = 0F;
+            this.latLabel.LabelProp = Mono.Unix.Catalog.GetString("Latitude:");
+            this.widgetTable.Add(this.latLabel);
+            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.widgetTable[this.latLabel]));
+            w4.XOptions = ((Gtk.AttachOptions)(4));
+            w4.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child widgetTable.Gtk.Table+TableChild
             this.latWidget = new ocmgtk.CoordinateWidget();
             this.latWidget.Events = ((Gdk.EventMask)(256));
             this.latWidget.Name = "latWidget";
-            this.table2.Add(this.latWidget);
-            Gtk.Table.TableChild w3 = ((Gtk.Table.TableChild)(this.table2[this.latWidget]));
-            w3.LeftAttach = ((uint)(1));
-            w3.RightAttach = ((uint)(2));
-            w3.XOptions = ((Gtk.AttachOptions)(4));
-            w3.YOptions = ((Gtk.AttachOptions)(4));
-            // Container child table2.Gtk.Table+TableChild
+            this.widgetTable.Add(this.latWidget);
+            Gtk.Table.TableChild w5 = ((Gtk.Table.TableChild)(this.widgetTable[this.latWidget]));
+            w5.LeftAttach = ((uint)(1));
+            w5.RightAttach = ((uint)(2));
+            w5.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child widgetTable.Gtk.Table+TableChild
+            this.lonLabel = new Gtk.Label();
+            this.lonLabel.Name = "lonLabel";
+            this.lonLabel.Xalign = 0F;
+            this.lonLabel.LabelProp = Mono.Unix.Catalog.GetString("Longitude:");
+            this.widgetTable.Add(this.lonLabel);
+            Gtk.Table.TableChild w6 = ((Gtk.Table.TableChild)(this.widgetTable[this.lonLabel]));
+            w6.TopAttach = ((uint)(1));
+            w6.BottomAttach = ((uint)(2));
+            w6.XOptions = ((Gtk.AttachOptions)(4));
+            w6.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child widgetTable.Gtk.Table+TableChild
             this.lonWidget = new ocmgtk.CoordinateWidget();
             this.lonWidget.Events = ((Gdk.EventMask)(256));
             this.lonWidget.Name = "lonWidget";
-            this.table2.Add(this.lonWidget);
-            Gtk.Table.TableChild w4 = ((Gtk.Table.TableChild)(this.table2[this.lonWidget]));
-            w4.TopAttach = ((uint)(1));
-            w4.BottomAttach = ((uint)(2));
-            w4.LeftAttach = ((uint)(1));
-            w4.RightAttach = ((uint)(2));
-            w4.XOptions = ((Gtk.AttachOptions)(4));
-            w4.YOptions = ((Gtk.AttachOptions)(4));
-            this.Add(this.table2);
+            this.widgetTable.Add(this.lonWidget);
+            Gtk.Table.TableChild w7 = ((Gtk.Table.TableChild)(this.widgetTable[this.lonWidget]));
+            w7.TopAttach = ((uint)(1));
+            w7.BottomAttach = ((uint)(2));
+            w7.LeftAttach = ((uint)(1));
+            w7.RightAttach = ((uint)(2));
+            w7.XOptions = ((Gtk.AttachOptions)(4));
+            w7.YOptions = ((Gtk.AttachOptions)(4));
+            this.Add(this.widgetTable);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.Hide();
+            this.button9.Clicked += new System.EventHandler(this.OnEditClicked);
         }
     }
 }

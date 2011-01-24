@@ -112,9 +112,19 @@ namespace ocmengine
 			return getCoordString(new DegreeMinutes(lat), new DegreeMinutes(lon));
 		}
 		
+		public static string getCoordStringCN(double lat, double lon)
+		{
+			return getLatStringCN(new DegreeMinutes(lat)) + " " + getLonStringCN(new DegreeMinutes(lon));
+		}
+		
 		public static string getCoordString(DegreeMinutes lat, DegreeMinutes lon)
 		{
 			return getLatString(lat) + " " + getLonString(lon);
+		}
+		
+		public static string getCoordStringCN(DegreeMinutes lat, DegreeMinutes lon)
+		{
+			return getLatStringCN(lat) + " " + getLonStringCN(lon);
 		}
 		
 		public static string getLatString(DegreeMinutes lat)
@@ -130,6 +140,19 @@ namespace ocmengine
 			return co_ordinate;
 		}
 		
+		public static string getLatStringCN(DegreeMinutes lat)
+		{
+				
+			String co_ordinate = "";
+			
+			if (lat.Degrees > 0)
+				co_ordinate += String.Format("N {0}° {1}", lat.Degrees,lat.Minutes.ToString("0.000", CultureInfo.InvariantCulture));
+			else
+				co_ordinate += String.Format("S {0}° {1}", lat.Degrees * -1,  lat.Minutes.ToString("0.000", CultureInfo.InvariantCulture));
+				
+			return co_ordinate;
+		}
+		
 		public static string getLonString(DegreeMinutes lon)
 		{
 			String co_ordinate = "";
@@ -138,6 +161,18 @@ namespace ocmengine
 				co_ordinate += String.Format(Catalog.GetString("  E {0}° {1}"), lon.Degrees, lon.Minutes.ToString("#.000", CultureInfo.InvariantCulture));
 			else
 				co_ordinate += String.Format(Catalog.GetString("  W {0}° {1}"), lon.Degrees *-1 , lon.Minutes.ToString("#.000", CultureInfo.InvariantCulture));
+		
+			return co_ordinate;
+		}
+		
+		public static string getLonStringCN(DegreeMinutes lon)
+		{
+			String co_ordinate = "";
+			
+			if (lon.Degrees > 0)
+				co_ordinate += String.Format("  E {0}° {1}", lon.Degrees, lon.Minutes.ToString("#.000", CultureInfo.InvariantCulture));
+			else
+				co_ordinate += String.Format("  W {0}° {1}", lon.Degrees *-1 , lon.Minutes.ToString("#.000", CultureInfo.InvariantCulture));
 		
 			return co_ordinate;
 		}

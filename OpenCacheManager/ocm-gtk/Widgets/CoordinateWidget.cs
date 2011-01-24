@@ -27,6 +27,8 @@ namespace ocmgtk
 		public delegate void ChangedEventHandler(object sender, EventArgs args);
 		public event ChangedEventHandler Changed;
 		
+		bool m_IsLoaded = false;
+		
 		public CoordinateWidget ()
 		{
 			this.Build ();
@@ -83,15 +85,19 @@ namespace ocmgtk
 		
 		private void SetLatBox(bool lat)
 		{
-			if (lat)
+			if (!m_IsLoaded)
 			{
-				directionCombo.AppendText(Catalog.GetString("N"));
-				directionCombo.AppendText(Catalog.GetString("S"));
-			}
-			else
-			{
-				directionCombo.AppendText(Mono.Unix.Catalog.GetString("E"));
-				directionCombo.AppendText(Mono.Unix.Catalog.GetString("W"));
+				if (lat)
+				{
+					directionCombo.AppendText(Catalog.GetString("N"));
+					directionCombo.AppendText(Catalog.GetString("S"));
+				}
+				else
+				{
+					directionCombo.AppendText(Mono.Unix.Catalog.GetString("E"));
+					directionCombo.AppendText(Mono.Unix.Catalog.GetString("W"));
+				}
+				m_IsLoaded = true;
 			}
 		}
 		

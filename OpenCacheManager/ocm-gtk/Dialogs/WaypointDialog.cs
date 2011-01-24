@@ -46,8 +46,8 @@ namespace ocmgtk
 			descriptionEntry.Buffer.Text = pnt.Desc;
 			flagEntry.Active = GetPTTypeCode(pnt.Symbol);
 			nameEntry.Text = pnt.Name;
-			latEntry.SetCoordinate(pnt.Lat, true);
-			longEntry.SetCoordinate(pnt.Lon, false);
+			locationWidget.Latitude = pnt.Lat;
+			locationWidget.Longitude = pnt.Lon;
 		}
 		
 		public ocmengine.Waypoint GetPoint()
@@ -55,8 +55,8 @@ namespace ocmgtk
 			m_point.Name = nameEntry.Text;
 			m_point.Desc = descriptionEntry.Buffer.Text;
 			m_point.Symbol = GetPTType(flagEntry.Active);
-			m_point.Lat = latEntry.getCoordinate();
-			m_point.Lon = longEntry.getCoordinate();
+			m_point.Lat = locationWidget.Latitude;
+			m_point.Lon = locationWidget.Longitude;
 			m_point.Type = "Waypoint|" + m_point.Symbol;
 			return m_point;
 		}
@@ -161,10 +161,10 @@ namespace ocmgtk
 				msg.Dispose();
 				return false;
 			}
-			if (!latEntry.ValidateEntry())
+			/*if (!locationWidget.Latitude.ValidateEntry())
 				return false;
-			if (!longEntry.ValidateEntry())
-				return false;
+			if (!locationWidget.Longitude.ValidateEntry())
+				return false;*/
 			return true;
 		}
 		

@@ -36,6 +36,12 @@ namespace ocmgtk
 				m_client.Set("/apps/ocm/solved_mode", value.ToString()); 
 			}
 		}
+		
+		public bool UseDirectEntryMode
+		{
+			get { return (bool) this.Get("/apps/ocm/direct_entry", false);}
+			set { m_client.Set("/apps/ocm/direct_entry", value);}
+		}
 
 		public Config ()
 		{

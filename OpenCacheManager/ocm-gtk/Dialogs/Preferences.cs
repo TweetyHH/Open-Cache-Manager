@@ -240,6 +240,12 @@ namespace ocmgtk
 			set { updateEntry.Text = value.ToString();}
 		}
 		
+		public bool UseDirectMode
+		{
+			get { return entryModeCheck.Active;}
+			set { entryModeCheck.Active = value;}
+		}
+		
 		
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
