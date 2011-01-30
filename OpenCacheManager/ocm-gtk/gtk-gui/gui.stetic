@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
-    <widget-library name="../bin/Release_Translated/ocm-gtk.exe" internal="true" />
+    <widget-library name="../bind/ocm-gtk.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="1284 1201">
     <action-group name="Default">
@@ -782,6 +782,34 @@
         <property name="Label" translatable="yes">Home</property>
         <property name="ShortLabel" translatable="yes">Home</property>
       </action>
+      <action id="AddGPSProfileAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Add GPS Profile...</property>
+        <property name="ShortLabel" translatable="yes">Add GPS Profile...</property>
+        <signal name="Activated" handler="OnAddGPS" />
+      </action>
+      <action id="DeleteGPSProfileAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Delete GPS Profile...</property>
+        <property name="ShortLabel" translatable="yes">Delete GPS Profile...</property>
+        <signal name="Activated" handler="OnDeleteProfile" />
+      </action>
+      <action id="GPSProfileAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">GPS Profile</property>
+        <property name="ShortLabel" translatable="yes">GPS Profile</property>
+      </action>
+      <action id="ProcessFieldNotesAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Process Field Notes...</property>
+        <property name="Sensitive">False</property>
+        <property name="ShortLabel" translatable="yes">Process Field Notes...</property>
+      </action>
+      <action id="EditGPSProfileAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Edit GPS Profile...</property>
+        <property name="ShortLabel" translatable="yes">Edit GPS Profile...</property>
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">OCM</property>
@@ -905,9 +933,14 @@
                 <node type="Menuitem" action="ConfigureGPSDAction" />
               </node>
               <node type="Menu" action="GPSAction">
-                <node type="Menuitem" action="ConfigureGPSAction" />
+                <node type="Menuitem" action="AddGPSProfileAction" />
+                <node type="Menu" action="EditGPSProfileAction" />
+                <node type="Menuitem" action="DeleteGPSProfileAction" />
+                <node type="Separator" />
+                <node type="Menu" action="GPSProfileAction" />
                 <node type="Separator" />
                 <node type="Menuitem" action="TransferCachesAction" />
+                <node type="Menuitem" action="ProcessFieldNotesAction" />
               </node>
               <node type="Menu" action="ToolsAction">
                 <node type="Menuitem" action="ViewAllInQLandkarteGTAction" />
@@ -3556,7 +3589,7 @@ Disabled on Startup</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.CheckButton" id="entryModeCheck">
+                  <widget class="Gtk.CheckButton" id="directEntryCheck">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Label" translatable="yes">Use direct entry mode for coordinates</property>
@@ -3598,6 +3631,7 @@ Disabled on Startup</property>
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="Label" translatable="yes">Only puzzle cache types with corrected coordinats/final location</property>
+                                <property name="Active">True</property>
                                 <property name="DrawIndicator">True</property>
                                 <property name="HasLabel">True</property>
                                 <property name="UseUnderline">True</property>
@@ -3694,7 +3728,7 @@ Disabled on Startup</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.ComboBox" id="modeCombo">
+                  <widget class="Gtk.ComboBox" id="prefixModeCombo">
                     <property name="MemberName" />
                     <property name="IsTextCombo">True</property>
                     <property name="Items" translatable="yes">Prefix with Type (e.g. PKABCD01)
@@ -5910,7 +5944,7 @@ Less Than</property>
     <property name="MemberName" />
     <property name="WidthRequest">600</property>
     <property name="HeightRequest">500</property>
-    <property name="Title" translatable="yes">GPS Configuration...</property>
+    <property name="Title" translatable="yes">Add GPS Profile...</property>
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
@@ -5925,6 +5959,44 @@ Less Than</property>
       <widget class="Gtk.VBox" id="dialog1_VBox">
         <property name="MemberName" />
         <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.HBox" id="hbox1">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Label" id="profLabel">
+                <property name="MemberName" />
+                <property name="Xalign">0</property>
+                <property name="LabelProp" translatable="yes">Profile Name:</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Entry" id="profileEntry">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Text" translatable="yes">New Profile</property>
+                <property name="IsEditable">True</property>
+                <property name="InvisibleChar">•</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
         <child>
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
@@ -6021,7 +6093,7 @@ Other GPS</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">0</property>
+            <property name="Position">1</property>
             <property name="AutoSize">False</property>
           </packing>
         </child>
@@ -9098,33 +9170,7 @@ Mega Event Cache</property>
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
-      <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
-        <property name="MemberName" />
-        <property name="CanFocus">True</property>
-        <property name="ShadowType">In</property>
-        <child>
-          <widget class="Gtk.Viewport" id="GtkViewport">
-            <property name="MemberName" />
-            <property name="ShadowType">None</property>
-            <child>
-              <widget class="Gtk.VBox" id="widgetBox">
-                <property name="MemberName" />
-                <property name="Spacing">6</property>
-                <property name="BorderWidth">6</property>
-                <child>
-                  <placeholder />
-                </child>
-                <child>
-                  <placeholder />
-                </child>
-                <child>
-                  <placeholder />
-                </child>
-              </widget>
-            </child>
-          </widget>
-        </child>
-      </widget>
+      <placeholder />
     </child>
   </widget>
   <widget class="Gtk.Bin" id="ocmgtk.SymbolChooser" design-size="546 300">

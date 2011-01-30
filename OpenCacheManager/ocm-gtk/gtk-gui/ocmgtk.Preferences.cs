@@ -85,7 +85,7 @@ namespace ocmgtk {
         
         private Gtk.Label childLabel;
         
-        private Gtk.CheckButton entryModeCheck;
+        private Gtk.CheckButton directEntryCheck;
         
         private Gtk.Frame frame1;
         
@@ -103,7 +103,7 @@ namespace ocmgtk {
         
         private Gtk.HSeparator hseparator3;
         
-        private Gtk.ComboBox modeCombo;
+        private Gtk.ComboBox prefixModeCombo;
         
         private Gtk.Label label8;
         
@@ -505,14 +505,14 @@ namespace ocmgtk {
             w32.XOptions = ((Gtk.AttachOptions)(4));
             w32.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table5.Gtk.Table+TableChild
-            this.entryModeCheck = new Gtk.CheckButton();
-            this.entryModeCheck.CanFocus = true;
-            this.entryModeCheck.Name = "entryModeCheck";
-            this.entryModeCheck.Label = Mono.Unix.Catalog.GetString("Use direct entry mode for coordinates");
-            this.entryModeCheck.DrawIndicator = true;
-            this.entryModeCheck.UseUnderline = true;
-            this.table5.Add(this.entryModeCheck);
-            Gtk.Table.TableChild w33 = ((Gtk.Table.TableChild)(this.table5[this.entryModeCheck]));
+            this.directEntryCheck = new Gtk.CheckButton();
+            this.directEntryCheck.CanFocus = true;
+            this.directEntryCheck.Name = "directEntryCheck";
+            this.directEntryCheck.Label = Mono.Unix.Catalog.GetString("Use direct entry mode for coordinates");
+            this.directEntryCheck.DrawIndicator = true;
+            this.directEntryCheck.UseUnderline = true;
+            this.table5.Add(this.directEntryCheck);
+            Gtk.Table.TableChild w33 = ((Gtk.Table.TableChild)(this.table5[this.directEntryCheck]));
             w33.TopAttach = ((uint)(2));
             w33.BottomAttach = ((uint)(3));
             w33.RightAttach = ((uint)(2));
@@ -534,6 +534,7 @@ namespace ocmgtk {
             this.solvedPuzzRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Only puzzle cache types with corrected coordinats/final location"));
             this.solvedPuzzRadio.CanFocus = true;
             this.solvedPuzzRadio.Name = "solvedPuzzRadio";
+            this.solvedPuzzRadio.Active = true;
             this.solvedPuzzRadio.DrawIndicator = true;
             this.solvedPuzzRadio.UseUnderline = true;
             this.solvedPuzzRadio.Group = new GLib.SList(System.IntPtr.Zero);
@@ -591,13 +592,13 @@ namespace ocmgtk {
             w40.XOptions = ((Gtk.AttachOptions)(4));
             w40.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table5.Gtk.Table+TableChild
-            this.modeCombo = Gtk.ComboBox.NewText();
-            this.modeCombo.AppendText(Mono.Unix.Catalog.GetString("Prefix with Type (e.g. PKABCD01)"));
-            this.modeCombo.AppendText(Mono.Unix.Catalog.GetString("Use GC name (e.g. GCABCD01)"));
-            this.modeCombo.Name = "modeCombo";
-            this.modeCombo.Active = 0;
-            this.table5.Add(this.modeCombo);
-            Gtk.Table.TableChild w41 = ((Gtk.Table.TableChild)(this.table5[this.modeCombo]));
+            this.prefixModeCombo = Gtk.ComboBox.NewText();
+            this.prefixModeCombo.AppendText(Mono.Unix.Catalog.GetString("Prefix with Type (e.g. PKABCD01)"));
+            this.prefixModeCombo.AppendText(Mono.Unix.Catalog.GetString("Use GC name (e.g. GCABCD01)"));
+            this.prefixModeCombo.Name = "prefixModeCombo";
+            this.prefixModeCombo.Active = 0;
+            this.table5.Add(this.prefixModeCombo);
+            Gtk.Table.TableChild w41 = ((Gtk.Table.TableChild)(this.table5[this.prefixModeCombo]));
             w41.LeftAttach = ((uint)(1));
             w41.RightAttach = ((uint)(2));
             w41.YOptions = ((Gtk.AttachOptions)(4));

@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using System.Collections.Generic;
 
 namespace ocmgtk
 {
@@ -52,80 +53,91 @@ namespace ocmgtk
 			}
 		}
 		
-		public void UpdateWaypointSymbols(Config config)
+		public Dictionary<string,string> GPSMappings
 		{
-			waypointWidget.UpdateMappings(config);
+			get{ return waypointWidget.GetMappings();}
 		}
-
-		public GPSConfiguration (Config config)
+		
+		public string ProfileName
 		{
-			this.Build ();			
-			try
-			{
-				waypointWidget.ShowAll();
-				SavedGPSConf saved = new SavedGPSConf(config);
-				if ((saved.GetBabelFormat() == "garmin") && (saved.GetOutputFile() == "usb:"))
-				{
-					gusbwidet.SetCacheLimit(saved.GetCacheLimit());
-					gusbwidet.SetNameMode(saved.GetNameMode());
-					gusbwidet.SetDescMode(saved.GetDescMode());
-					deviceCombo.Active = 1;
-				}
-				else if (saved.GetBabelFormat() == "garmin")
-				{
-					garswidget.SetCacheLimit(saved.GetCacheLimit());
-					garswidget.SetOutputFile(saved.GetOutputFile());
-					garswidget.SetNameMode(saved.GetNameMode());
-					deviceCombo.Active = 2;
-				}
-				else if (saved.GetBabelFormat()== "OCM_GPX")
-				{
-					gpxwidget.SetCacheLimit(saved.GetCacheLimit());
-					gpxwidget.SetOutputFile(saved.GetOutputFile());
-					gpxwidget.SetLogLimit(saved.GetLogLimit());
-					gpxwidget.SetIncludeAttributes(saved.IncludeAttributes());
-					deviceCombo.Active = 0;
-					ShowDeviceConfig();
-				}
-				else if (saved.GetBabelFormat().StartsWith("delbin"))
-				{
-					delwidget.SetCacheLimit(saved.GetCacheLimit());
-					delwidget.SetLogLimit(saved.GetLogLimit());
-					delwidget.SetIncludeAttributes(saved.IncludeAttributes());
-					deviceCombo.Active = 4;
-				}
-				else if (saved.GetBabelFormat() == "edge")
-				{
-					edgeWidget.SetCacheLimit(saved.GetCacheLimit());
-					edgeWidget.SetOutputFile(saved.GetOutputFile());
-					edgeWidget.SetDescMode(saved.GetDescMode());
-					edgeWidget.SetNameMode(saved.GetNameMode());
-					deviceCombo.Active = 3;
-				}
-				else if (saved.GetBabelFormat() == "delgpx")
-				{
-					delgpxwidget.SetCacheLimit(saved.GetCacheLimit());
-					delgpxwidget.SetOutputFile(saved.GetOutputFile());
-					delgpxwidget.SetLogLimit(saved.GetLogLimit());
-					delgpxwidget.SetIncludeAttributes(saved.IncludeAttributes());
-					deviceCombo.Active = 5;
-				}
-				else 
-				{	
-					gpswidget.SetCacheLimit(saved.GetCacheLimit());
-					gpswidget.SetOutputFile(saved.GetOutputFile());
-					gpswidget.SetBabelFormat(saved.GetBabelFormat());
-					gpswidget.SetDescMode(saved.GetDescMode());
-					gpswidget.SetNameMode(saved.GetNameMode());
-					deviceCombo.Active = 6;
-				}
-			}
-			catch (GConf.NoSuchKeyException)
-			{
-				//Ignore
-			}
+			get { return profileEntry.Text;}
+			set {profileEntry.Text = value;}
 		}
-
+		
+		public GPSConfiguration()
+		{
+			this.Build ();	
+			gpxwidget.SetCacheLimit(-1);
+			gpxwidget.SetOutputFile("/media/GARMIN/Garmin/GPX/geocaches.gpx");
+			gpxwidget.SetLogLimit(-1);
+			gpxwidget.SetIncludeAttributes(false);
+			deviceCombo.Active = 0;
+			waypointWidget.PopulateMappings(null);
+			ShowDeviceConfig();
+		}
+		
+		public GPSConfiguration(GPSProfile profile)
+		{
+			this.Build ();	
+			profileEntry.Text = profile.Name;
+			if ((profile.BabelFormat == "garmin") && (profile.OutputFile == "usb:"))
+			{
+				gusbwidet.SetCacheLimit(profile.CacheLimit);
+				gusbwidet.SetNameMode(profile.NameMode);
+				gusbwidet.SetDescMode(profile.DescMode);
+				deviceCombo.Active = 1;
+			}
+			else if (profile.BabelFormat == "garmin")
+			{
+				garswidget.SetCacheLimit(profile.CacheLimit);
+				garswidget.SetOutputFile(profile.OutputFile);
+				garswidget.SetNameMode(profile.NameMode);
+				deviceCombo.Active = 2;
+			}
+			else if (profile.BabelFormat== "OCM_GPX")
+			{
+				gpxwidget.SetCacheLimit(profile.CacheLimit);
+				gpxwidget.SetOutputFile(profile.OutputFile);
+				gpxwidget.SetLogLimit(profile.LogLimit);
+				gpxwidget.SetIncludeAttributes(profile.IncludeAttributes);
+				deviceCombo.Active = 0;
+				ShowDeviceConfig();
+			}
+			else if (profile.BabelFormat.StartsWith("delbin"))
+			{
+				delwidget.SetCacheLimit(profile.CacheLimit);
+				delwidget.SetLogLimit(profile.LogLimit);
+				delwidget.SetIncludeAttributes(profile.IncludeAttributes);
+				deviceCombo.Active = 4;
+			}
+			else if (profile.BabelFormat == "edge")
+			{
+				edgeWidget.SetCacheLimit(profile.CacheLimit);
+				edgeWidget.SetOutputFile(profile.OutputFile);
+				edgeWidget.SetDescMode(profile.DescMode);
+				edgeWidget.SetNameMode(profile.NameMode);
+				deviceCombo.Active = 3;
+			}
+			else if (profile.BabelFormat == "delgpx")
+			{
+				delgpxwidget.SetCacheLimit(profile.CacheLimit);
+				delgpxwidget.SetOutputFile(profile.OutputFile);
+				delgpxwidget.SetLogLimit(profile.LogLimit);
+				delgpxwidget.SetIncludeAttributes(profile.IncludeAttributes);
+				deviceCombo.Active = 5;
+			}
+			else 
+			{	
+				gpswidget.SetCacheLimit(profile.CacheLimit);
+				gpswidget.SetOutputFile(profile.OutputFile);
+				gpswidget.SetBabelFormat(profile.BabelFormat);
+				gpswidget.SetDescMode(profile.DescMode);
+				gpswidget.SetNameMode(profile.NameMode);
+				deviceCombo.Active = 6;
+			}
+			waypointWidget.PopulateMappings(profile.WaypointMappings);
+			this.ShowAll();
+		}
 
 		protected virtual void OnButtonClick (object sender, System.EventArgs e)
 		{
@@ -144,7 +156,8 @@ namespace ocmgtk
 			
 			foreach (Gtk.Widget child in table1.Children)
 			{
-				if (child != deviceCombo && child != deviceLabel)
+				if (child != deviceCombo && child != deviceLabel 
+				    && child != profLabel && child !=profileEntry)
 					table1.Remove(child);
 			}
 			

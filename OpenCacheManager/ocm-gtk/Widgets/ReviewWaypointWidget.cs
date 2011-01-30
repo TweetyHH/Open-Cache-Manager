@@ -52,7 +52,7 @@ namespace ocmgtk
 				if (String.IsNullOrEmpty(name))
 				{
 					name = "RP" + m_parent.Name.Substring (2);
-					if ((bool) UIMonitor.getInstance().Configuration.Get("/apps/ocm/noprefixes", false))
+					if ((bool) UIMonitor.getInstance().Configuration.IgnoreWaypointPrefixes)
 					{
 						name = m_parent.Name;
 					}
@@ -67,7 +67,7 @@ namespace ocmgtk
 		{
 			get
 			{
-				return ((bool) UIMonitor.getInstance().Configuration.Get("/apps/ocm/noprefixes", false));
+				return UIMonitor.getInstance().Configuration.IgnoreWaypointPrefixes;
 			}
 		}
 		

@@ -282,7 +282,7 @@ namespace ocmgtk
 				newPoint.Lon = parent.Lon;	
 				String name = "FL" + parent.Name.Substring (2);
 				WaypointDialog dlg = new WaypointDialog ();
-				if ((bool) m_mon.Configuration.Get("/apps/ocm/noprefixes", false))
+				if (m_mon.Configuration.IgnoreWaypointPrefixes)
 				{
 					name = parent.Name;
 					dlg.IgnorePrefix = true;
@@ -387,7 +387,7 @@ namespace ocmgtk
 				newPoint.Lon = coord[1].GetDecimalDegrees();
 				newPoint.Desc = Catalog.GetString("Grabbed Waypoint");
 				String name = "RP" + parent.Name.Substring (2);
-				if ((bool) m_mon.Configuration.Get("/apps/ocm/noprefixes", false))
+				if (m_mon.Configuration.IgnoreWaypointPrefixes)
 				{
 					name = parent.Name;
 				}

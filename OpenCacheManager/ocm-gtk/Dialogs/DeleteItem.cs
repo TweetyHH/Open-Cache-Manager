@@ -76,6 +76,22 @@ namespace ocmgtk
 			}
 		}
 		
+		public DeleteItem (GPSProfileList profiles)
+		{
+			this.Build ();
+			if (profiles != null)
+			{
+				this.label1.Text = Catalog.GetString("GPS Profile:");
+				int iCount = 0;
+				foreach (GPSProfile loc in profiles.Profiles)
+				{
+					bmrkCombo.AppendText(loc.Name);
+					bmrkCombo.Active = 0;
+					iCount ++;
+				}
+			}
+		}
+		
 		
 		private void PopulateList()
 		{

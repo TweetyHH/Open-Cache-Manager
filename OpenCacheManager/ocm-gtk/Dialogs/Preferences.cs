@@ -24,124 +24,40 @@ namespace ocmgtk
 
 	public partial class Preferences : Gtk.Dialog
 	{
+		private IConfig m_config = null;
 
-		public Preferences ()
+		public Preferences (IConfig config, QuickFilters filters)
 		{
 			this.Build ();
-		}
-
-		public double Lat {
-			get {
-				return latControl.getCoordinate();
-			}
-			set
-			{
-				latControl.SetCoordinate(value, true);
-			}
-		}
-
-		public double Lon {
-			get {
-				return lonControl.getCoordinate();
-			}
-			set
-			{
-				lonControl.SetCoordinate(value, false);
-			}
+			m_config = config;
+			latControl.SetCoordinate(config.HomeLat, true);
+			lonControl.SetCoordinate(config.HomeLon, false);
+			memberId.Text = config.OwnerID;
+			unitsCombo.Active = config.ImperialUnits ? 1:0;
+			nearbyCombo.Active = config.ShowNearby ? 0:1;
+			childPointCombo.Active = config.ShowAllChildren? 1:0;
+			dataDirEntry.Text = config.DataDirectory;
+			importDirEntry.Text = config.ImportDirectory;
+			WaypointSolvedMode = config.SolvedModeState;
+			SetStartupFilter(filters, config.StartupFilter);
+			DefaultMap = config.MapType;
+			MapPoints = config.MapPoints;
+			prefixModeCombo.Active = config.IgnoreWaypointPrefixes ? 1:0;
+			updateCheck.Active = config.CheckForUpdates;
+			UpdateInterval = config.UpdateInterval;
+			directEntryCheck.Active = config.UseDirectEntryMode;
 		}
 		
-		public string MemberID
-		{
-			get
-			{
-				return memberId.Text;
-			}
-			set
-			{
-				memberId.Text = value;
-			}
-		}
-		
-		public bool ImperialUnits
-		{
-			get { 
-				if (unitsCombo.Active == 1)
-					return true;
-				else
-					return false;
-			}
-			set
-			{
-				if (value)
-					unitsCombo.Active = 1;
-				else
-					unitsCombo.Active = 0;
-			}				
-		}
-		
-		public bool ShowNearby
-		{
-			get { 
-				if (nearbyCombo.Active == 0)
-					return true;
-				else
-					return false;
-			}
-			set
-			{
-				if (value)
-					nearbyCombo.Active = 0;
-				else
-					nearbyCombo.Active = 1;
-			}		
-		}
-		
-		public bool ShowAllChildren
-		{
-			get 
-			{
-				if (childPointCombo.Active == 0)
-					return false;
-				else
-					return true;
-			}
-			set
-			{
-				if (value)
-					childPointCombo.Active = 1;
-				else
-					childPointCombo.Active = 0;
-			}
-		}
-		
-		public String DataDirectory
-		{
-			set { dataDirEntry.Text = value;}
-			get { return dataDirEntry.Text;}
-		}
-		
-		public String ImportDirectory
-		{
-			set { importDirEntry.Text = value;}
-			get { return importDirEntry.Text;}
-		}
-		
-		public bool AutoCloseOnCompletion
-		{
-			set { autoCloseCheck.Active = value;}
-			get { return autoCloseCheck.Active;}
-		}
-		
-		public SolvedMode SolvedIconMode
+		private SolvedMode WaypointSolvedMode
 		{
 			get
 			{
 				if (solvedAllRadio.Active)
 					return SolvedMode.ALL;
-				else if (solvedPuzzRadio.Active)
-					return SolvedMode.PUZZLES;
-				else
+				else if (solvedNoneRadio.Active)
 					return SolvedMode.NONE;
+				else
+					return SolvedMode.PUZZLES;
 			}
 			set
 			{
@@ -160,7 +76,7 @@ namespace ocmgtk
 			}
 		}
 		
-		public void SetQuickFilters(QuickFilters filterList, String  filterName)
+		private  void SetStartupFilter(QuickFilters filterList, String  filterName)
 		{
 			int i=0;
 			foreach(QuickFilter item in filterList.FilterArray)
@@ -174,12 +90,7 @@ namespace ocmgtk
 				startupFilterCombo.Active = 0;
 		}
 		
-		public string StartupFilter
-		{
-			get { return startupFilterCombo.ActiveText; }
-		}
-		
-		public string DefaultMap
+		private string DefaultMap
 		{
 			get {
 				switch (mapsCombo.Active)
@@ -206,50 +117,38 @@ namespace ocmgtk
 			}
 		}
 		
-		public int MapPoints
+		private int MapPoints
 		{
 			get { return Int16.Parse(mapPointEntry.Text);}
 			set { mapPointEntry.Text = value.ToString();}
 		}
 
-		public bool UsePrefixesForChildWaypoints
-		{
-			get {
-				if (modeCombo.Active == 0)
-					return true;
-				return false;
-			}
-			set 
-			{
-				if (value)
-					modeCombo.Active = 0;
-				else
-					modeCombo.Active = 1;
-			}
-		}
-		
-		public bool CheckForUpdates
-		{
-			get { return updateCheck.Active;}
-			set { updateCheck.Active = value;}
-		}
-		
-		public int UpdateInterval
+		private int UpdateInterval
 		{
 			get { return int.Parse(updateEntry.Text);}
 			set { updateEntry.Text = value.ToString();}
-		}
-		
-		public bool UseDirectMode
-		{
-			get { return entryModeCheck.Active;}
-			set { entryModeCheck.Active = value;}
 		}
 		
 		
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
 			this.Hide();
+			m_config.HomeLat = latControl.getCoordinate();
+			m_config.HomeLon = lonControl.getCoordinate();
+			m_config.OwnerID = memberId.Text;
+			m_config.ImperialUnits = (unitsCombo.Active == 1)? true:false;
+			m_config.ShowNearby = (nearbyCombo.Active == 0)?true:false;
+			m_config.ShowAllChildren = (childPointCombo.Active == 1)?true:false;
+			m_config.MapPoints = MapPoints;
+			m_config.DataDirectory = dataDirEntry.Text;
+			m_config.ImportDirectory = importDirEntry.Text;
+			m_config.SolvedModeState = WaypointSolvedMode;
+			m_config.StartupFilter = startupFilterCombo.ActiveText;
+			m_config.MapType = DefaultMap;
+			m_config.IgnoreWaypointPrefixes = (prefixModeCombo.Active == 1)?true:false;
+			m_config.CheckForUpdates = updateCheck.Active;
+			m_config.UpdateInterval = UpdateInterval;
+			m_config.UseDirectEntryMode = directEntryCheck.Active;
 		}
 		protected virtual void OnCancelClicked (object sender, System.EventArgs e)
 		{

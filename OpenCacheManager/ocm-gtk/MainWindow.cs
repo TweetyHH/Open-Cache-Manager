@@ -348,7 +348,7 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnConfigure (object sender, System.EventArgs e)
 	{
-		m_monitor.ConfigureGPS();
+		m_monitor.AddGPSProfile();
 	}
 	
 	protected virtual void OnSendCachesActionActivated (object sender, System.EventArgs e)
@@ -639,6 +639,18 @@ public partial class MainWindow : Gtk.Window
 			(LocationsMenu.Proxies[0] as MenuItem).Submenu = emenu;
 	}
 	
+	public void RebuildProfEditMenu(GPSProfileList profiles)
+	{	
+		Menu emenu = profiles.BuildProfileEditMenu();
+		(EditGPSProfileAction.Proxies[0] as MenuItem).Submenu = emenu;
+	}
+	
+	public void RebuildProfilesMenu(GPSProfileList profiles)
+	{
+		Menu emenu = profiles.BuildProfileMenu();
+		(GPSProfileAction.Proxies[0] as MenuItem).Submenu = emenu;
+	}
+	
 	
 	protected virtual void OnSaveQuickFilter (object sender, System.EventArgs e)
 	{
@@ -795,5 +807,15 @@ public partial class MainWindow : Gtk.Window
 	{
 		m_monitor.RemoveLocation();
 	}
+	
+	protected virtual void OnAddGPS (object sender, System.EventArgs e)
+	{
+		m_monitor.AddGPSProfile();
+	}
+	protected virtual void OnDeleteProfile (object sender, System.EventArgs e)
+	{
+		m_monitor.DeleteGPSProfile();
+	}
+	
 	
 }

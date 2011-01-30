@@ -19,8 +19,6 @@ using System.IO;
 
 namespace ocmengine
 {
-	public enum UserMode {OWNER_ID, USERNAME};
-	
 	public class Engine
 	{
 		private CacheStore m_store;
@@ -29,13 +27,6 @@ namespace ocmengine
 			get { return m_store;}
 		}
 		
-		
-		private UserMode m_mode = UserMode.OWNER_ID;
-		public UserMode Mode
-		{
-			get { return m_mode;}
-			set { m_mode = value;}
-		}
 		
 		private static Engine m_instance = null;
 

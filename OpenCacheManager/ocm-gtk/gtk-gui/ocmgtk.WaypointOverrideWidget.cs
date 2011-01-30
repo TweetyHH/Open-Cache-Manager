@@ -13,31 +13,11 @@ namespace ocmgtk {
     
     public partial class WaypointOverrideWidget {
         
-        private Gtk.ScrolledWindow scrolledwindow1;
-        
-        private Gtk.VBox widgetBox;
-        
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget ocmgtk.WaypointOverrideWidget
             Stetic.BinContainer.Attach(this);
             this.Name = "ocmgtk.WaypointOverrideWidget";
-            // Container child ocmgtk.WaypointOverrideWidget.Gtk.Container+ContainerChild
-            this.scrolledwindow1 = new Gtk.ScrolledWindow();
-            this.scrolledwindow1.CanFocus = true;
-            this.scrolledwindow1.Name = "scrolledwindow1";
-            this.scrolledwindow1.ShadowType = ((Gtk.ShadowType)(1));
-            // Container child scrolledwindow1.Gtk.Container+ContainerChild
-            Gtk.Viewport w1 = new Gtk.Viewport();
-            w1.ShadowType = ((Gtk.ShadowType)(0));
-            // Container child GtkViewport.Gtk.Container+ContainerChild
-            this.widgetBox = new Gtk.VBox();
-            this.widgetBox.Name = "widgetBox";
-            this.widgetBox.Spacing = 6;
-            this.widgetBox.BorderWidth = ((uint)(6));
-            w1.Add(this.widgetBox);
-            this.scrolledwindow1.Add(w1);
-            this.Add(this.scrolledwindow1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }

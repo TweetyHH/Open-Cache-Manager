@@ -371,7 +371,8 @@ namespace ocmengine
 			{
 				cache = ParseOpenCache(reader, ref cache);
 			}
-			else if (reader.NamespaceURI.StartsWith("http://www.groundspeak.com/cache"))
+			else if (reader.NamespaceURI.StartsWith("http://www.groundspeak.com/cache") 
+			         || reader.NamespaceURI.StartsWith("http://www.gsak.net/xmlv1/5"))
 			{
 				cache = ParseGroundSpeakCache (reader, ref cache);
 			}
@@ -598,6 +599,22 @@ namespace ocmengine
 				else
 					cache.Archived = false;
 				cache.CacheID = reader.GetAttribute("id");
+			}
+			else if (reader.LocalName == "LatBeforeCorrect")
+			{
+				System.Console.WriteLine("HERE");
+				double corLat = cache.OrigLat;
+				cache.Lat = reader.ReadElementContentAsDouble();
+				cache.CorrectedLat = corLat;
+				System.Console.WriteLine(cache.Lat);
+				System.Console.WriteLine(cache.OrigLat);
+			}
+			else if (reader.LocalName == "LonBeforeCorrect")
+			{
+				System.Console.WriteLine("HERE2");
+				double corLon = cache.OrigLon;
+				cache.Lon = reader.ReadElementContentAsDouble();
+				cache.CorrectedLon = corLon;
 			}
 			else if (reader.LocalName == "name")
 			{

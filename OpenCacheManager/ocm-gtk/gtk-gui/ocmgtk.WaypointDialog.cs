@@ -65,6 +65,7 @@ namespace ocmgtk {
             this.table1.ColumnSpacing = ((uint)(6));
             // Container child table1.Gtk.Table+TableChild
             this.alignment2 = new Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
+            this.alignment2.Name = "alignment2";
             this.alignment2.TopPadding = ((uint)(6));
             this.alignment2.RightPadding = ((uint)(12));
             // Container child alignment2.Gtk.Container+ContainerChild

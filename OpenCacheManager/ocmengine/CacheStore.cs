@@ -364,6 +364,10 @@ namespace ocmengine
 			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
 			IDbCommand cmd = m_conn.CreateCommand();
+			string updateCmd = ADD_EXISTING_GC;
+			if (cache.HasCorrected)
+				updateCmd = UPDATE_GC;
+			System.Console.WriteLine(updateCmd);
 			string insert = String.Format(INSERT_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
 			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
@@ -372,7 +376,7 @@ namespace ocmengine
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
 			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString(),
 			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture));
-			string update = String.Format(ADD_EXISTING_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
+			string update = String.Format(updateCmd, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
 			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 

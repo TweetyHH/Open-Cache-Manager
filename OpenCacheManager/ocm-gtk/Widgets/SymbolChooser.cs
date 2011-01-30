@@ -38,6 +38,7 @@ namespace ocmgtk
 			this.Build ();
 			symbolLabel.Text = key;
 			symbolCombo.Entry.Text = def;
+			this.ShowAll();
 		}
 	}
 }

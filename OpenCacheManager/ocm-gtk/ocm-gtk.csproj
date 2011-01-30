@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.23.1</ReleaseVersion>
+    <ReleaseVersion>0.23.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -128,7 +128,6 @@
     <Compile Include="Widgets\GarminUSBWidget.cs" />
     <Compile Include="Widgets\IGPSConfig.cs" />
     <Compile Include="Dialogs\SendWaypointsDialog.cs" />
-    <Compile Include="SavedGPSConf.cs" />
     <Compile Include="Widgets\MagellanExploristWidget.cs" />
     <Compile Include="Widgets\GenericGPSWidget.cs" />
     <Compile Include="Widgets\OCMQueryPage3.cs" />
@@ -246,6 +245,8 @@
     <Compile Include="Dialogs\DeleteItem.cs" />
     <Compile Include="IConfig.cs" />
     <Compile Include="gtk-gui\ocmgtk.DeleteItem.cs" />
+    <Compile Include="Widgets\GPSProfileList.cs" />
+    <Compile Include="Widgets\GPSProfile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

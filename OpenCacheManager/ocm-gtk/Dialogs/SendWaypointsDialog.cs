@@ -40,21 +40,21 @@ namespace ocmgtk
 			writer.WriteWaypoint += HandleWriterWriteWaypoint;
 		}
 
-		public void Start (List<Geocache> caches, IGPSConfig config, Dictionary<string,string> wmappings)
+		public void Start (List<Geocache> caches, GPSProfile profile)
 		{
 			try {
-				if (config.GetCacheLimit () == -1)
+				if (profile.CacheLimit == -1)
 					total = caches.Count + 1;
 				else
-					total = config.GetCacheLimit () + 1;
-				writer.Limit = config.GetCacheLimit ();
-				writer.BabelFile = config.GetOutputFile();
-				writer.BabelFormat = config.GetBabelFormat ();
-				writer.DescMode = config.GetDescMode();
-				writer.NameMode = config.GetNameMode();
-				writer.LogLimit = config.GetLogLimit();
-				writer.IncludeAttributes = config.IncludeAttributes();
-				writer.WriteToGPS (caches, wmappings);
+					total = profile.CacheLimit + 1;
+				writer.Limit = profile.CacheLimit;
+				writer.BabelFile = profile.OutputFile;
+				writer.BabelFormat = profile.BabelFormat;
+				writer.DescMode = profile.DescMode;
+				writer.NameMode = profile.NameMode;
+				writer.LogLimit = profile.LogLimit;
+				writer.IncludeAttributes = profile.IncludeAttributes;
+				writer.WriteToGPS (caches, profile.WaypointMappings);
 				this.Show ();
 			} catch (Exception e) {
 				this.Hide ();

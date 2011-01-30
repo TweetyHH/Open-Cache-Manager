@@ -39,11 +39,8 @@ namespace ocmgtk
 		private static UIMonitor m_instance = null;
 		private GeoCachePane m_pane = null;
 		private Statusbar m_statusbar = null;
-
-
-
-		private double m_home_lat = 46.49;
-		private double m_home_lon = -81.01;
+		private double m_centerLat = 0;
+		private double m_centerLon = 0;
 		private String m_ownerid = "0";
 		private CacheList m_cachelist;
 		private Geocache m_selectedCache;
@@ -132,16 +129,16 @@ namespace ocmgtk
 		/// Current centrepoint latitude
 		/// </summary>
 		public double CentreLat {
-			get { return m_home_lat; }
-			set { m_home_lat = value; }
+			get { return m_centerLat; }
+			set { m_centerLat = value; }
 		}
 
 		/// <summary>
 		/// Current centrepoint longitude
 		/// </summary>
 		public double CentreLon {
-			get { return m_home_lon; }
-			set { m_home_lon = value; }
+			get { return m_centerLon; }
+			set { m_centerLon = value; }
 		}
 
 		public Label CentreLabel {
@@ -190,6 +187,8 @@ namespace ocmgtk
 			}
 		}
 		
+		private GPSProfileList m_profiles;
+		
 		private int m_MapPoints = 100;
 		public int MapPoints
 		{
@@ -199,7 +198,7 @@ namespace ocmgtk
 		
 		private void BuildWaypointMappings()
 		{
-			Dictionary<string, string> mappings = new Dictionary<string, string>();
+			/*Dictionary<string, string> mappings = new Dictionary<string, string>();
 			mappings.Add("Geocache|Traditional Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Traditional_Cache", "Geocache") as string);
 			mappings.Add("Geocache|Unknown Cache",m_conf.Get("/apps/ocm/wmappings/Geocache_Unknown_Cache", "Geocache") as string);
 			mappings.Add("Geocache|Virtual Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Virtual_Cache", "Geocache") as string);
@@ -223,7 +222,7 @@ namespace ocmgtk
 			mappings.Add("Waypoint|Stages of a Multicache", m_conf.Get("/apps/ocm/wmappings/Waypoint_Stages_of_a_Multicache", "Pin, Red") as string);
 			mappings.Add("Waypoint|Trailhead", m_conf.Get("/apps/ocm/wmappings/Waypoint_Trailhead", "Trail Head") as string);
 			mappings.Add("Waypoint|Other", m_conf.Get("/apps/ocm/wmappings/Waypoint_Other", "Pin, Green") as string);
-			m_WaypointMappings = mappings;
+			m_WaypointMappings = mappings;*/
 		}
 		
 		
@@ -278,32 +277,27 @@ namespace ocmgtk
 		/// </summary>
 		public void LoadConfig (bool refreshNow)
 		{
-			CentreLat = (double) m_conf.Get ("/apps/ocm/lastlat", 0.0);
-			CentreLon = (double)m_conf.Get ("/apps/ocm/lastlon", 0.0);
+			CentreLat = m_conf.LastLat;
+			CentreLon = m_conf.LastLon;
 			m_currLat = CentreLat;
 			m_currLon = CentreLon;
-			CenterName = (string) m_conf.Get("/apps/ocm/lastname", Catalog.GetString("Home"));
+			CenterName = m_conf.LastName;
 			if (CentreLat == 0 && CentreLon == 0)
 			{
-				CentreLat = (double) m_conf.Get ("/apps/ocm/homelat", 0.0);
-				CentreLon = (double)m_conf.Get ("/apps/ocm/homelon", 0.0);
+				CentreLat = m_conf.HomeLat;
+				CentreLon = m_conf.HomeLon;
 			}
 			if (m_centreName != Catalog.GetString("Home"))
 			{
 				m_mainWin.EnableResetCentre();
 			}
-			MapPoints = (int) m_conf.Get("/apps/ocm/mappoints", 100);
-			OwnerID = (string)m_conf.Get ("/apps/ocm/memberid", String.Empty);
-			m_useImperial = (Boolean) m_conf.Get("/apps/ocm/imperial", false);
-			int win_width = (int) m_conf.Get("/apps/ocm/winwidth", 1024);
-			int win_height = (int) m_conf.Get("/apps/ocm/winheight", 768);
-			m_mainWin.VPos = (int) m_conf.Get("/apps/ocm/vpos", 300);
-			m_mainWin.HPos = (int) m_conf.Get("/apps/ocm/hpos", 400);
-			m_mainWin.Resize(win_width, win_height);
-			string map = (string) m_conf.Get("/apps/ocm/defmap", "osm");
-			String dbName = (string)m_conf.Get ("/apps/ocm/currentdb", String.Empty);
-			bool enableGPS = (bool) m_conf.Get("/apps/ocm/gpsd/onstartup", false);
-			if (enableGPS)
+			MapPoints = m_conf.MapPoints;
+			OwnerID = m_conf.OwnerID;
+			m_useImperial = m_conf.ImperialUnits;
+			m_mainWin.VPos = m_conf.VBarPosition;
+			m_mainWin.HPos = m_conf.HBarPosition;
+			m_mainWin.Resize(m_conf.WindowWidth, m_conf.WindowHeight);
+			if (m_conf.UseGPSD)
 				m_mainWin.SetGPSDOn();
 			m_mainWin.SizeAllocated += HandleM_mainWinSizeAllocated;
 			m_mainWin.ShowNow();
@@ -311,12 +305,12 @@ namespace ocmgtk
 				Gtk.Application.RunIteration (true);
 			m_filters = QuickFilters.LoadQuickFilters();
 			m_locations = LocationList.LoadLocationList();
-			LoadMap (map);
-			String startFilter = (string)m_conf.Get ("/apps/ocm/startupfilter", String.Empty);
-			if (startFilter != String.Empty)
+			m_profiles = GPSProfileList.LoadProfileList();
+			LoadMap (m_conf.MapType);
+			if (m_conf.StartupFilter != String.Empty)
 			{
-				SetCurrentDB (dbName, false);
-				QuickFilter filter = m_filters.GetFilter(startFilter);
+				SetCurrentDB (m_conf.DBFile, false);
+				QuickFilter filter = m_filters.GetFilter(m_conf.StartupFilter);
 				if (filter != null)
 				{
 					m_cachelist.ApplyQuickFilter(filter);
@@ -328,27 +322,23 @@ namespace ocmgtk
 			}
 			else
 			{
-				SetCurrentDB (dbName, refreshNow);
+				SetCurrentDB (m_conf.DBFile, refreshNow);
 			}
-			
 			SetSelectedCache(null);
-			BuildWaypointMappings();
 			m_mainWin.RebuildQuickFilterMenu(m_filters);
 			m_mainWin.RebuildLocationsMenu(m_locations);
+			m_mainWin.RebuildProfilesMenu(m_profiles);
+			m_mainWin.RebuildProfEditMenu(m_profiles);
+			m_conf.CheckForDefaultGPS(m_profiles, m_mainWin);
 			EToolList tools = EToolList.LoadEToolList();
 			m_mainWin.RebuildEToolMenu(tools);
-			bool showNearby = (Boolean) m_conf.Get("/apps/ocm/shownearby", true);
-			m_ShowAllChildren = (Boolean) m_conf.Get("/apps/ocm/showallchildren", false);
-			if (showNearby)
+			m_ShowAllChildren = m_conf.ShowAllChildren;
+			if (m_conf.ShowNearby)
 				m_mainWin.SetNearbyEnabled();
 			if (m_ShowAllChildren)
 				m_mainWin.SetShowAllChildren();
 			if (m_useImperial)
 				m_cachelist.SetImperial();
-			if (true == (bool) m_conf.Get("/apps/ocm/userownerid", true))
-				Engine.getInstance().Mode = UserMode.OWNER_ID;
-			else
-				Engine.getInstance().Mode = UserMode.USERNAME;
 			AutoCheckForUpdates();				
 		}
 
@@ -361,7 +351,7 @@ namespace ocmgtk
 		private void LoadMap (string map)
 		{
 			//System.Console.WriteLine("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_home_lat + "&lon=" + m_home_lon);
-			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_home_lat.ToString(CultureInfo.InvariantCulture) + "&lon=" + m_home_lon.ToString(CultureInfo.InvariantCulture));
+			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_centerLat.ToString(CultureInfo.InvariantCulture) + "&lon=" + m_centerLon.ToString(CultureInfo.InvariantCulture));
 		}
 
 		public void SetCurrentDB (string dbName, bool loadNow)
@@ -378,7 +368,7 @@ namespace ocmgtk
 			String[] dbSplit = dbName.Split ('/');
 			String dBShort = dbSplit[dbSplit.Length - 1];
 			m_mainWin.Title = dBShort + " - OCM";
-			m_conf.Set ("/apps/ocm/currentdb", dbName);
+			m_conf.DBFile = dbName;
 			CacheStore store = Engine.getInstance().Store;
 			store.SetDB(dbName);
 			store.BookmarkList = null;
@@ -522,28 +512,31 @@ namespace ocmgtk
 		
 		public void ResetCenterToHome()
 		{
-			CentreLat = (double)m_conf.Get ("/apps/ocm/homelat", 0.0);
-			CentreLon = (double)m_conf.Get ("/apps/ocm/homelon", 0.0);
-			m_conf.Set("/apps/ocm/lastlat", m_home_lat);
-			m_conf.Set("/apps/ocm/lastlon", m_home_lon);
-			m_conf.Set("/apps/ocm/lastname", Catalog.GetString("Home"));
-			Geocache selected = m_selectedCache;
+			m_centerLat = m_conf.HomeLat;
+			m_centerLon = m_conf.HomeLon;
 			m_centreName = Catalog.GetString("Home");
+			SaveCenterPos ();
+			Geocache selected = m_selectedCache;
 			RecenterMap();
 			RefreshCaches();
 			if (selected != null)
 				SelectCache(selected.Name);
 		}
 		
+		private void SaveCenterPos ()
+		{
+			m_conf.LastLat = m_centerLat;
+			m_conf.LastLon = m_centerLon;
+			m_conf.LastName = m_centreName;
+		}
+		
 		public void SetSelectedAsCentre()
 		{
-			m_home_lat = m_selectedCache.Lat;
-			m_home_lon = m_selectedCache.Lon;
+			m_centerLat = m_selectedCache.Lat;
+			m_centerLon = m_selectedCache.Lon;
+			m_centreName = m_selectedCache.Name;
+			SaveCenterPos();
 			Geocache selected = m_selectedCache;
-			m_centreName = selected.Name;
-			m_conf.Set("/apps/ocm/lastlat", m_home_lat);
-			m_conf.Set("/apps/ocm/lastlon", m_home_lon);
-			m_conf.Set("/apps/ocm/lastname", m_centreName);
 			m_mainWin.EnableResetCentre();
 			m_cachelist.RefilterList();
 			SelectCache(selected.Name);
@@ -695,9 +688,7 @@ namespace ocmgtk
 		public bool CreateDB ()
 		{
 			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Create database"), m_mainWin, FileChooserAction.Save, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Save"), ResponseType.Accept);
-			dlg.SetCurrentFolder(((String) m_conf.Get("/apps/ocm/datadir", 
-			                                     System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments))));
-
+			dlg.SetCurrentFolder(m_conf.DataDirectory);
 			dlg.CurrentName = "newdb.ocm";
 			FileFilter filter = new FileFilter ();
 			filter.Name = "OCM Databases";
@@ -760,7 +751,7 @@ namespace ocmgtk
 				                                               ResponseType.Cancel, 
 				                                               Catalog.GetString ("Open"), 
 				                                               ResponseType.Accept);
-				dlg.SetCurrentFolder ((String) m_conf.Get("/apps/ocm/datadir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments)));
+				dlg.SetCurrentFolder (m_conf.DataDirectory);
 				FileFilter filter = new FileFilter ();
 				filter.Name = "OCM Databases";
 				filter.AddPattern ("*.ocm");
@@ -925,7 +916,7 @@ namespace ocmgtk
 		public void ImportGPX ()
 		{
 			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Import GPX File"), m_mainWin, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Import"), ResponseType.Accept);
-			dlg.SetCurrentFolder ((String) m_conf.Get("/apps/ocm/importdir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments)));
+			dlg.SetCurrentFolder (m_conf.ImportDirectory);
 			FileFilter filter = new FileFilter ();
 			filter.Name = "Waypoint Files";
 			filter.AddPattern ("*.gpx");
@@ -962,8 +953,6 @@ namespace ocmgtk
 
 		public void LogFind ()
 		{
-			MarkCacheFound();
-			//System.Console.WriteLine(m_selectedCache.URL);
 			if (m_selectedCache.URL == null)
 				return;
 			else if (!m_selectedCache.URL.ToString().Contains("geocaching"))
@@ -1200,22 +1189,69 @@ namespace ocmgtk
 			}
 		}
 		
-		public void ConfigureGPS()
+		public void AddGPSProfile()
 		{
-			GPSConfiguration dlg = new GPSConfiguration(m_conf);
+			GPSConfiguration dlg = new GPSConfiguration();
 			dlg.Parent = m_mainWin;
 			dlg.Icon = m_mainWin.Icon;
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
-				m_conf.Set("/apps/ocm/gps/type", dlg.GPSConfig.GetBabelFormat());
-				m_conf.Set("/apps/ocm/gps/file", dlg.GPSConfig.GetOutputFile());
-				m_conf.Set("/apps/ocm/gps/limit", dlg.GPSConfig.GetCacheLimit());
-				m_conf.Set("/apps/ocm/gps/namemode", dlg.GPSConfig.GetNameMode().ToString());
-				m_conf.Set("/apps/ocm/gps/descmode", dlg.GPSConfig.GetDescMode().ToString());
-				m_conf.Set("/apps/ocm/gps/loglimit", dlg.GPSConfig.GetLogLimit());
-				m_conf.Set("/apps/ocm/gps/incattr", dlg.GPSConfig.IncludeAttributes());
-				dlg.UpdateWaypointSymbols(m_conf);
-				BuildWaypointMappings();
+				GPSProfile prof = new GPSProfile();
+				prof.Name = dlg.ProfileName;
+				prof.BabelFormat = dlg.GPSConfig.GetBabelFormat();
+				prof.CacheLimit = dlg.GPSConfig.GetCacheLimit();
+				prof.NameMode = dlg.GPSConfig.GetNameMode();
+				prof.DescMode = dlg.GPSConfig.GetDescMode();
+				prof.LogLimit = dlg.GPSConfig.GetLogLimit();
+				prof.IncludeAttributes = dlg.GPSConfig.IncludeAttributes();
+				prof.OutputFile = dlg.GPSConfig.GetOutputFile();
+				prof.WaypointMappings = dlg.GPSMappings;
+				m_profiles.AddProfile(prof);
+				m_mainWin.RebuildProfEditMenu(m_profiles);
+				m_mainWin.RebuildProfilesMenu(m_profiles);
+			}
+		}
+		
+		public void EditProfile(GPSProfile prof)
+		{
+			GPSConfiguration dlg = new GPSConfiguration(prof);
+			dlg.Parent = m_mainWin;
+			dlg.Icon = m_mainWin.Icon;
+			dlg.Title = Catalog.GetString("Edit GPS Profile...");
+			if ((int) ResponseType.Ok == dlg.Run())
+			{
+				string origName = prof.Name;
+				prof.Name = dlg.ProfileName;
+				prof.BabelFormat = dlg.GPSConfig.GetBabelFormat();
+				prof.CacheLimit = dlg.GPSConfig.GetCacheLimit();
+				prof.NameMode = dlg.GPSConfig.GetNameMode();
+				prof.DescMode = dlg.GPSConfig.GetDescMode();
+				prof.LogLimit = dlg.GPSConfig.GetLogLimit();
+				prof.IncludeAttributes = dlg.GPSConfig.IncludeAttributes();
+				prof.OutputFile = dlg.GPSConfig.GetOutputFile();
+				prof.WaypointMappings = dlg.GPSMappings;
+				if (origName == prof.Name)
+				{
+					m_profiles.EditProfile(prof);
+				}
+				else
+				{
+					m_profiles.DeleteProfile(origName);
+					m_profiles.AddProfile(prof);
+				}
+				m_mainWin.RebuildProfEditMenu(m_profiles);
+				m_mainWin.RebuildProfilesMenu(m_profiles);
+			}
+		}
+		
+		public void DeleteGPSProfile()
+		{
+			DeleteItem dlg = new DeleteItem(m_profiles);
+			if ((int)ResponseType.Ok == dlg.Run())
+			{
+				m_profiles.DeleteProfile(dlg.Bookmark);
+				m_mainWin.RebuildProfEditMenu(m_profiles);
+				m_mainWin.RebuildProfilesMenu(m_profiles);
 			}
 		}
 		
@@ -1226,8 +1262,7 @@ namespace ocmgtk
 				SendWaypointsDialog dlg = new SendWaypointsDialog();
 				dlg.Parent = m_mainWin;
 				dlg.Icon = m_mainWin.Icon;
-				SavedGPSConf conf = new SavedGPSConf(m_conf);
-				dlg.Start(m_cachelist.getVisibleCaches(), conf, m_WaypointMappings);
+				dlg.Start(m_cachelist.getVisibleCaches(), m_profiles.GetActiveProfile());
 			}
 			catch (GConf.NoSuchKeyException)
 			{
@@ -1239,56 +1274,20 @@ namespace ocmgtk
 		
 		public void ShowPreferences()
 		{
-			Preferences dlg = new Preferences();
-			dlg.MemberID = (String) m_conf.Get ("/apps/ocm/memberid", String.Empty);
-			dlg.Lat = (Double) m_conf.Get ("/apps/ocm/homelat", 0.0);
-			dlg.Lon = (Double) m_conf.Get ("/apps/ocm/homelon", 0.0);
-			dlg.ImperialUnits = (Boolean) m_conf.Get("/apps/ocm/imperial", false);
-			dlg.DefaultMap = (String) m_conf.Get("/apps/ocm/defmap", "osm");
-			dlg.ShowNearby = (Boolean) m_conf.Get("/apps/ocm/shownearby", true);
-			dlg.UsePrefixesForChildWaypoints = !((bool) m_conf.Get("/apps/ocm/noprefixes", false));
-			dlg.CheckForUpdates = (Boolean) m_conf.Get("/apps/ocm/update/checkForUpdates", true);
-			dlg.AutoCloseOnCompletion = (Boolean) m_conf.Get("/apps/ocm/autoclose", false);
-			dlg.UpdateInterval = (int) m_conf.Get("/apps/ocm/update/updateInterval", 7);
-			dlg.ShowAllChildren = (Boolean) m_conf.Get("/apps/ocm/showallchildren", false);
-			dlg.MapPoints = (int) m_conf.Get("/apps/ocm/mappoints", 100);
-			dlg.Icon = m_mainWin.Icon;
-			dlg.SetQuickFilters(m_filters, 	(string)m_conf.Get ("/apps/ocm/startupfilter", String.Empty));
-			dlg.DataDirectory = (String) m_conf.Get("/apps/ocm/datadir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
-			dlg.ImportDirectory = (String) m_conf.Get("/apps/ocm/importdir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
-			dlg.SolvedIconMode = m_conf.SolvedModeState;
-			dlg.UseDirectMode = m_conf.UseDirectEntryMode;
-			int oldInterval = dlg.UpdateInterval;
+			Preferences dlg = new Preferences(m_conf, m_filters);
+			int oldInterval = m_conf.UpdateInterval;	
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
-				m_conf.Set ("/apps/ocm/memberid", dlg.MemberID);
-				m_conf.Set ("/apps/ocm/homelat", dlg.Lat);
-				m_conf.Set ("/apps/ocm/homelon", dlg.Lon);
-				m_conf.Set ("/apps/ocm/imperial", dlg.ImperialUnits);
-				m_conf.Set ("/apps/ocm/defmap", dlg.DefaultMap);
-				m_conf.Set ("/apps/ocm/shownearby", dlg.ShowNearby);
-				m_conf.Set ("/apps/ocm/noprefixes", !dlg.UsePrefixesForChildWaypoints);
-				m_conf.Set ("/apps/ocm/update/checkForUpdates", dlg.CheckForUpdates);
-				m_conf.Set ("/apps/ocm/update/updateInterval", dlg.UpdateInterval);
-				m_conf.Set ("/apps/ocm/showallchildren", dlg.ShowAllChildren);
-				m_conf.Set ("/apps/ocm/mappoints", dlg.MapPoints);
-				m_conf.Set ("/apps/ocm/datadir", dlg.DataDirectory);
-				m_conf.Set ("/apps/ocm/importdir", dlg.ImportDirectory);
-				m_conf.Set ("/apps/ocm/startupfilter", dlg.StartupFilter);
-				m_conf.Set ("/apps/ocm/autoclose", dlg.AutoCloseOnCompletion);
-				m_conf.SolvedModeState = dlg.SolvedIconMode;
-				m_conf.UseDirectEntryMode = dlg.UseDirectMode;
-				
-				if (dlg.UpdateInterval != oldInterval)
+				if (m_conf.UpdateInterval != oldInterval)
 				{
-					m_conf.Set("/apps/ocm/update/nextcheck", DateTime.Now.AddDays(dlg.UpdateInterval).ToString("o"));			
+					m_conf.NextUpdateCheck = DateTime.Now.AddDays(m_conf.UpdateInterval);
 				}
-				m_useImperial = dlg.ImperialUnits;
-				m_ownerid = dlg.MemberID;
-				m_ShowAllChildren = dlg.ShowAllChildren;
-				m_MapPoints = dlg.MapPoints;
-				
-				if (dlg.ImperialUnits)
+				m_useImperial = m_conf.ImperialUnits;
+				m_ownerid = m_conf.OwnerID;
+				m_showNearby = m_conf.ShowNearby;
+				m_ShowAllChildren = m_conf.ShowAllChildren;
+				m_MapPoints = m_conf.MapPoints;
+				if (m_useImperial)
 				{
 					m_cachelist.SetImperial();
 				}
@@ -1296,7 +1295,7 @@ namespace ocmgtk
 				{
 					m_cachelist.SetMetric();
 				}
-				LoadMap(dlg.DefaultMap);
+				LoadMap(m_conf.MapType);
 				RecenterMap ();
 				RefreshCaches();			
 			}
@@ -1305,18 +1304,19 @@ namespace ocmgtk
 		
 		public void RecenterMap ()
 		{
-			CentreLat = (double) m_conf.Get ("/apps/ocm/lastlat", 0.0);
-				CentreLon = (double)m_conf.Get ("/apps/ocm/lastlon", 0.0);
-				CenterName = (string) m_conf.Get("/apps/ocm/lastname", Catalog.GetString("Home"));
-				if (CentreLat == 0 && CentreLon == 0)
-				{
-					CentreLat = (double) m_conf.Get ("/apps/ocm/homelat", 0.0);
-					CentreLon = (double)m_conf.Get ("/apps/ocm/homelon", 0.0);
-				}
-				if (m_centreName != Catalog.GetString("Home"))
-				{
-					m_mainWin.EnableResetCentre();
-				}
+			CentreLat = m_conf.LastLat;
+			CentreLon = m_conf.LastLon;
+			CenterName = m_conf.LastName;
+			if (CentreLat == 0 && CentreLon == 0)
+			{
+				CentreLat = m_conf.HomeLat;
+				CentreLon = m_conf.HomeLon;
+				CenterName = Catalog.GetString("Home");
+			}
+			if (m_centreName != Catalog.GetString("Home"))
+			{
+				m_mainWin.EnableResetCentre();
+			}
 			GoHome();
 		}
 		
@@ -1488,15 +1488,13 @@ namespace ocmgtk
 		public void EnableGPS()
 		{
 			m_gps = new GPS();
-
-			int interval = (int) m_conf.Get("/apps/ocm/gpsd/poll", 30);
-			m_gpsTimer = new Timer(interval * 1000);
+			m_gpsTimer = new Timer(m_conf.GPSDPoll * 1000);
 			m_gpsTimer.AutoReset = true;
 			m_gpsTimer.Enabled = true;
 			m_gpsTimer.Elapsed += HandleM_gpsTimerElapsed;
 			m_centreName = "GPS";
-			m_home_lat = m_gps.Lat;
-			m_home_lon = m_gps.Lon;
+			m_centerLat = m_gps.Lat;
+			m_centerLon = m_gps.Lon;
 			UpdateCentrePointStatus();
 			Timer init = new Timer(1000);
 			init.AutoReset = false;
@@ -1509,10 +1507,10 @@ namespace ocmgtk
 			
 			Application.Invoke(delegate{
 			m_centreName = "GPS";
-			m_home_lat = m_gps.Lat;
-			m_home_lon = m_gps.Lon;
+			m_centerLat = m_gps.Lat;
+			m_centerLon = m_gps.Lon;
 			m_cachelist.RefilterList();
-			bool recenterMap = (bool) m_conf.Get("/apps/ocm/gpsd/recenter", true);
+			bool recenterMap = m_conf.GPSDAutoMoveMap;
 			if (m_selectedCache == null && recenterMap)
 				GoHome();
 			});
@@ -1532,15 +1530,15 @@ namespace ocmgtk
 		
 		public void SaveWinSettings()
 		{
-			m_conf.Set("/apps/ocm/winwidth", m_width);
-			m_conf.Set("/apps/ocm/winheight",m_height);
-			m_conf.Set("/apps/ocm/hpos", m_mainWin.HPos);
-			m_conf.Set("/apps/ocm/vpos",m_mainWin.VPos);
+			m_conf.WindowWidth = m_width;
+			m_conf.WindowHeight = m_height;
+			m_conf.HBarPosition = m_mainWin.HPos;
+			m_conf.VBarPosition = m_mainWin.VPos;
 		}
 		
 		public void ConfigureGPSD()
 		{
-			GPSDConfig dlg = new GPSDConfig();
+			/*GPSDConfig dlg = new GPSDConfig();
 			dlg.Icon = m_mainWin.Icon;
 			dlg.GPSDOnStartup = (bool) m_conf.Get("/apps/ocm/gpsd/onstartup", false);
 			dlg.RecenterMap = (bool) m_conf.Get("/apps/ocm/gpsd/recenter", true);
@@ -1550,7 +1548,7 @@ namespace ocmgtk
 				m_conf.Set("/apps/ocm/gpsd/onstartup", dlg.GPSDOnStartup);
 				m_conf.Set("/apps/ocm/gpsd/recenter", dlg.RecenterMap);
 				m_conf.Set("/apps/ocm/gpsd/poll", dlg.PollInterval);
-			}
+			}*/
 		}
 		
 		public string GetOCMVersion()
@@ -1653,8 +1651,7 @@ namespace ocmgtk
 		{
 			CopyMoveDialog dlg = new CopyMoveDialog();
 			dlg.Title = "Copy Caches to Another Database...";
-			dlg.Filename = 	((String) m_conf.Get("/apps/ocm/datadir", 
-			                                     System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments)));
+			dlg.Filename = 	m_conf.DataDirectory;
 
 			if ((int)ResponseType.Ok == dlg.Run())
 			{
@@ -1668,8 +1665,7 @@ namespace ocmgtk
 			CopyMoveDialog dlg = new CopyMoveDialog();
 			dlg.Title = Catalog.GetString("Move Geocaches...");
 			dlg.Title = "Move Caches to Another Database...";
-			dlg.Filename = 	((String) m_conf.Get("/apps/ocm/datadir", 
-			                                     System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments)));
+			dlg.Filename = m_conf.DataDirectory;
 			if ((int)ResponseType.Ok == dlg.Run())
 			{
 				CopyingProgress cp = new CopyingProgress();
@@ -1703,9 +1699,7 @@ namespace ocmgtk
 				CenterName = Catalog.GetString("Map Point");
 			else
 				CenterName = name;
-			m_conf.Set("/apps/ocm/lastlat", m_home_lat);
-			m_conf.Set("/apps/ocm/lastlon", m_home_lon);
-			m_conf.Set("/apps/ocm/lastname", m_centreName);
+			SaveCenterPos();
 			m_mainWin.EnableResetCentre();
 			RecenterMap();
 			RefreshCaches();
@@ -1716,11 +1710,9 @@ namespace ocmgtk
 			CentreLat = lat;
 			CentreLon = lon;
 			CenterName = Catalog.GetString("Home");
-			m_conf.Set ("/apps/ocm/homelat", lat);
-			m_conf.Set ("/apps/ocm/homelon", lon);
-			m_conf.Set("/apps/ocm/lastlat", m_home_lat);
-			m_conf.Set("/apps/ocm/lastlon", m_home_lon);
-			m_conf.Set("/apps/ocm/lastname", m_centreName);
+			m_conf.HomeLat = lat;
+			m_conf.HomeLon = lon;
+			SaveCenterPos();
 			RefreshCaches();
 		}
 		
@@ -1734,12 +1726,9 @@ namespace ocmgtk
 		{
 			try
 			{
-				bool check = (bool) m_conf.Get("/apps/ocm/update/checkForUpdates", true);
-				if (!check)
+				if (!m_conf.CheckForUpdates)
 					return;
-				string nextTime = (string) m_conf.Get("/apps/ocm/update/nextcheck", DateTime.Today.ToString("o"));
-				DateTime next = DateTime.Parse(nextTime);
-				if (DateTime.Now < next)
+				if (DateTime.Now < m_conf.NextUpdateCheck)
 						return;
 				string ver = UpdateChecker.GetLatestVer();
 				if (ver != GetOCMVersion())
@@ -1757,8 +1746,7 @@ namespace ocmgtk
 					else
 						dlg.Hide();
 				}
-				int nextCheck = (int) m_conf.Get("/apps/ocm/update/updateInterval",7);
-				m_conf.Set("/apps/ocm/update/nextcheck", DateTime.Now.AddDays(nextCheck).ToString("o"));
+				m_conf.NextUpdateCheck = DateTime.Now.AddDays(m_conf.UpdateInterval);
 			}
 			catch (Exception)
 			{
@@ -1835,7 +1823,7 @@ namespace ocmgtk
 		public void ImportZip()
 		{
 			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Import ZIP File"), m_mainWin, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Import"), ResponseType.Accept);
-			dlg.SetCurrentFolder ((String) m_conf.Get("/apps/ocm/importdir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments)));
+			dlg.SetCurrentFolder (m_conf.ImportDirectory);
 			FileFilter filter = new FileFilter ();
 			filter.Name = "ZIP Files";
 			filter.AddPattern ("*.zip");
@@ -1877,9 +1865,7 @@ namespace ocmgtk
 		public void ImportDirectory()
 		{
 			ImportDirectoryDialog dlg = new ImportDirectoryDialog();
-			dlg.Directory = ((String) m_conf.Get("/apps/ocm/importdir", 
-			                                          System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments)));
-			
+			dlg.Directory = m_conf.ImportDirectory;
 			if (dlg.Run () == (int)ResponseType.Ok) {
 				dlg.Hide();
 				ImportDirectory(dlg.Directory, dlg.DeleteOnCompletion);
@@ -1910,7 +1896,7 @@ namespace ocmgtk
 				newPoint.Lon = parent.Lon;	
 				String name = "FL" + parent.Name.Substring (2);
 				WaypointDialog dlg = new WaypointDialog ();
-				if ((bool) m_conf.Get("/apps/ocm/noprefixes", false))
+				if (m_conf.IgnoreWaypointPrefixes)
 				{
 					name = parent.Name;
 					dlg.IgnorePrefix = true;

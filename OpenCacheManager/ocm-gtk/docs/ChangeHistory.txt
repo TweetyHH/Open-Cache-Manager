@@ -1,4 +1,4 @@
-Version 0.23.1
+Version 0.23
 --------------
 - Add locations feature to OCM. You can now add new locations via the Locations menu
   or by right clicking on the map
@@ -9,6 +9,8 @@ Version 0.23.1
 - Add direct entry mode for coordinates, similar to QLandkarte GT. Default can be set in preferences
 	N.B. In direct entry mode English must be used (i.e. N/S/E/W)
 	-- At the moment, only decimal degree format is supported
+- Add GPS profiles support. Users upgrading from previous versions of OCM will have their settings moved
+to the "Default" profile. You can rename this profile from the GPS menu.
 
 
 Version 0.22.9

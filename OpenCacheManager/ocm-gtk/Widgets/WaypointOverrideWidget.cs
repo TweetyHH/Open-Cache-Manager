@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using Gtk;
 using System.Collections.Generic;
 
 namespace ocmgtk
@@ -23,54 +24,64 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class WaypointOverrideWidget : Gtk.Bin
 	{
-		
+		VBox widgetBox = null;
 		public WaypointOverrideWidget ()
 		{
 			this.Build ();
-			PopulateMappings(new Config());
 		}
 		
-		public void PopulateMappings(Config config)
+		public void PopulateMappings(Dictionary<string,string> mappings)
 		{
-			System.Console.WriteLine("CALLED");
-			widgetBox.Add(new SymbolChooser("Geocache|Traditional Cache", config.Get("/apps/ocm/wmappings/Geocache_Traditional_Cache", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache|Unknown Cache",config.Get("/apps/ocm/wmappings/Geocache_Unknown_Cache", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache|Virtual Cache", config.Get("/apps/ocm/wmappings/Geocache_Virtual_Cache", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache|Multi-cache", config.Get("/apps/ocm/wmappings/Geocache_Multi-cache", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache|Project APE Cache", config.Get("/apps/ocm/wmappings/Geocache_Project_APE_Cache", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache|Cache In Trash Out Event", config.Get("/apps/ocm/wmappings/Geocache_Cache_In_Trash_Out_Event", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache|Earthcache", config.Get("/apps/ocm/wmappings/Geocache_Earthcache", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache|Event Cache", config.Get("/apps/ocm/wmappings/Geocache_Event_Cache", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache|Letterbox Hybrid", config.Get("/apps/ocm/wmappings/Geocache_Letterbox_Hybrid", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache|GPS Adventures Exhibit",config.Get("/apps/ocm/wmappings/Geocache_GPS_Adventures_Exhibit", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache|Mega-Event Cache", config.Get("/apps/ocm/wmappings/Geocache_Mega-Event_Cache", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache|Locationless Cache",config.Get("/apps/ocm/wmappings/Geocache_Locationless_Cache", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache|Webcam cache",config.Get("/apps/ocm/wmappings/Geocache_Webcam_Cache", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache|Wherigo Cache", config.Get("/apps/ocm/wmappings/Geocache_Wherigo_Cache", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache", config.Get("/apps/ocm/wmappings/Geocache", "Geocache") as string));
-			widgetBox.Add(new SymbolChooser("Geocache Found", config.Get("/apps/ocm/wmappings/Geocache_Found", "Geocache Found") as string));
-			widgetBox.Add(new SymbolChooser("Waypoint|Final Location", config.Get("/apps/ocm/wmappings/Waypoint_Final_Location", "Pin, Blue") as string));
-			widgetBox.Add(new SymbolChooser("Waypoint|Parking Area", config.Get("/apps/ocm/wmappings/Waypoint_Parking_Area", "Parking Area") as string));
-			widgetBox.Add(new SymbolChooser("Waypoint|Reference Point", config.Get("/apps/ocm/wmappings/Waypoint_Reference_Point", "Pin, Green") as string));
-			widgetBox.Add(new SymbolChooser("Waypoint|Question to Answer", config.Get("/apps/ocm/wmappings/Waypoint_Question_to_Answer", "Pin, Red") as string));
-			widgetBox.Add(new SymbolChooser("Waypoint|Stages of a Multicache", config.Get("/apps/ocm/wmappings/Waypoint_Stages_of_a_Multicache", "Pin, Red") as string));
-			widgetBox.Add(new SymbolChooser("Waypoint|Trailhead", config.Get("/apps/ocm/wmappings/Waypoint_Trailhead", "Trail Head") as string));
-			widgetBox.Add(new SymbolChooser("Waypoint|Other", config.Get("/apps/ocm/wmappings/Waypoint_Other", "Pin, Green") as string));
+			widgetBox = new VBox();
+			ScrolledWindow window = new ScrolledWindow();
+			window.VscrollbarPolicy = PolicyType.Always;
+			if (mappings == null)
+			{		
+				widgetBox.Add(new SymbolChooser("Geocache|Traditional Cache", "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache|Unknown Cache", "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache|Virtual Cache",  "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache|Multi-cache",  "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache|Project APE Cache",  "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache|Cache In Trash Out Event", "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache|Earthcache",  "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache|Event Cache", "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache|Letterbox Hybrid",  "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache|GPS Adventures Exhibit", "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache|Mega-Event Cache", "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache|Locationless Cache", "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache|Webcam cache", "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache|Wherigo Cache",  "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache", "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache Found", "Geocache"));
+				widgetBox.Add(new SymbolChooser("Waypoint|Final Location", "Pin, Blue"));
+				widgetBox.Add(new SymbolChooser("Waypoint|Parking Area","Parking Area"));
+				widgetBox.Add(new SymbolChooser("Waypoint|Reference Point", "Pin, Green"));
+				widgetBox.Add(new SymbolChooser("Waypoint|Question to Answer", "Pin, Red"));
+				widgetBox.Add(new SymbolChooser("Waypoint|Stages of a Multicache", "Pin, Red"));
+				widgetBox.Add(new SymbolChooser("Waypoint|Trailhead", "Trail Head"));
+				widgetBox.Add(new SymbolChooser("Waypoint|Other","Pin, Green"));
+			}
+			else
+			{
+				foreach (string key in mappings.Keys)
+				{
+					widgetBox.Add(new SymbolChooser(key,mappings[key]));
+				}
+			}
 			widgetBox.Add(null);
-			widgetBox.ShowAll();
-			scrolledwindow1.ShowAll();
+			window.AddWithViewport(widgetBox);
+			this.Add(window);
+			this.ShowAll();
 		}	
 		
-		public void UpdateMappings(Config config)
+		public Dictionary<string,string> GetMappings()
 		{
-			System.Console.WriteLine("Update called");
+			Dictionary<string,string> mappings = new Dictionary<string, string>();
 			foreach(SymbolChooser chooser in widgetBox.Children)
 			{
-				string newKey = chooser.Key.Replace('|','_');
-				newKey = newKey.Replace(' ','_');
-				System.Console.WriteLine(newKey + " " + chooser.SymbolName);
-				config.Set("/apps/ocm/wmappings/" + newKey, chooser.SymbolName);
+				mappings.Add(chooser.Key, chooser.SymbolName);
 			}
+			return mappings;
 		}
 	}
 }

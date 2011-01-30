@@ -21,5 +21,34 @@ namespace ocmgtk
 	public interface IConfig
 	{
 		SolvedMode SolvedModeState {get;set;}
+		double LastLat {get;set;}
+		double LastLon {get;set;}
+		string LastName {get;set;}
+		bool UseDirectEntryMode {get;set;}
+		double HomeLat {get;set;}
+		double HomeLon {get;set;}
+		int MapPoints {get;set;}
+		string OwnerID {get;set;}
+		bool ImperialUnits {get;set;}
+		int WindowWidth {get;set;}
+		int WindowHeight {get;set;}
+		int VBarPosition {get;set;}
+		int HBarPosition {get;set;}
+		string MapType {get;set;}
+		string DBFile {get;set;}
+		string DataDirectory {get;set;}
+		string ImportDirectory {get;set;}
+		bool UseGPSD {get;set;}
+		int GPSDPoll {get;set;}
+		bool GPSDAutoMoveMap {get;set;}
+		string StartupFilter {get;set;}
+		bool ShowNearby {get;set;}
+		bool ShowAllChildren {get;set;}
+		string GPSProf {get;set;}
+		bool IgnoreWaypointPrefixes {get;set;}
+		bool CheckForUpdates {get;set;}
+		DateTime NextUpdateCheck {get;set;}
+		int UpdateInterval {get;set;}
+		void CheckForDefaultGPS(GPSProfileList list, MainWindow win);
 	}
 }
