@@ -64,7 +64,7 @@ namespace ocmgtk
 				dlg.Title = Catalog.GetString("Preparing GPX File");
 				dlg.WaypointsOnly = true;
 				dlg.CompleteCommand = m_command.Replace("%gpx%", tempFile);
-				dlg.Start(tempFile, mon.GetVisibleCacheList(), mon.WaypointMappings);
+				dlg.Start(tempFile, mon.GetVisibleCacheList(), GPSProfileList.GetDefaultMappings());
 			}
 			if (cmd.Contains("%selected%"))
 			{
@@ -89,7 +89,7 @@ namespace ocmgtk
 				dlg.CompleteCommand = m_command.Replace("%selected%", tempFile);
 				List<Geocache> cache = new List<Geocache>();
 				cache.Add(mon.SelectedCache);
-				dlg.Start(tempFile, cache, mon.WaypointMappings);
+				dlg.Start(tempFile, cache, GPSProfileList.GetDefaultMappings());
 			}
 			else if (cmd.Contains("%finds%"))
 			{
@@ -104,7 +104,7 @@ namespace ocmgtk
 				dlg.Title = Catalog.GetString("Preparing GPX File");
 				dlg.WaypointsOnly = true;
 				dlg.CompleteCommand = m_command.Replace("%finds%", tempFile);
-				dlg.Start(tempFile, Engine.getInstance().Store.GetFinds(), mon.WaypointMappings);
+				dlg.Start(tempFile, Engine.getInstance().Store.GetFinds(), GPSProfileList.GetDefaultMappings());
 			}
 			else
 			{

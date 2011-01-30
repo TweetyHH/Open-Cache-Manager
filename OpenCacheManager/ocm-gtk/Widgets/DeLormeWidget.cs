@@ -128,5 +128,11 @@ namespace ocmgtk
 		{
 			attrCheck.Active = val;
 		}
+		
+		public string FieldNotesFile
+		{
+			get { return null;}
+			set { }
+		}
 	}
 }

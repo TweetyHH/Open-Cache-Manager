@@ -71,6 +71,7 @@ namespace ocmgtk
 			gpxwidget.SetOutputFile("/media/GARMIN/Garmin/GPX/geocaches.gpx");
 			gpxwidget.SetLogLimit(-1);
 			gpxwidget.SetIncludeAttributes(false);
+			gpxwidget.FieldNotesFile = "/media/GARMIN/Garmin/geocache_visits.txt";
 			deviceCombo.Active = 0;
 			waypointWidget.PopulateMappings(null);
 			ShowDeviceConfig();
@@ -100,6 +101,7 @@ namespace ocmgtk
 				gpxwidget.SetOutputFile(profile.OutputFile);
 				gpxwidget.SetLogLimit(profile.LogLimit);
 				gpxwidget.SetIncludeAttributes(profile.IncludeAttributes);
+				gpxwidget.FieldNotesFile = profile.FieldNotesFile;
 				deviceCombo.Active = 0;
 				ShowDeviceConfig();
 			}
@@ -124,6 +126,7 @@ namespace ocmgtk
 				delgpxwidget.SetOutputFile(profile.OutputFile);
 				delgpxwidget.SetLogLimit(profile.LogLimit);
 				delgpxwidget.SetIncludeAttributes(profile.IncludeAttributes);
+				delgpxwidget.FieldNotesFile = profile.FieldNotesFile;
 				deviceCombo.Active = 5;
 			}
 			else 

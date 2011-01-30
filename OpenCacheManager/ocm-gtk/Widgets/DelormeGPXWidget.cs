@@ -115,6 +115,12 @@ namespace ocmgtk
 			return ocmengine.WaypointDescMode.DESC;
 		}
 		
+		public string FieldNotesFile
+		{
+			get { return fieldNotesEntry.Text;}
+			set { fieldNotesEntry.Text = value;}
+		}
+		
 		protected virtual void OnFileClick (object sender, System.EventArgs e)
 		{
 			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Select GPX location"), null, FileChooserAction.Save, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Select"), ResponseType.Accept);
@@ -153,6 +159,23 @@ namespace ocmgtk
 		{
 			attrCheck.Active = val;
 		}
+		
+		protected virtual void OnFieldBrowse (object sender, System.EventArgs e)
+		{
+			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Select Field Notes location"), null, FileChooserAction.Save, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Select"), ResponseType.Accept);
+			dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
+			dlg.CurrentName = "FieldNotes.gpx";
+			FileFilter filter = new FileFilter ();
+			filter.Name = Catalog.GetString("Text Files");
+			filter.AddMimeType ("text/plain");
+			filter.AddPattern ("*.txt");			
+			dlg.AddFilter (filter);			
+			if (dlg.Run () == (int)ResponseType.Accept) {
+				fieldNotesEntry.Text = dlg.Filename;
+			}
+			dlg.Destroy ();
+		}
+		
 		
 	}
 }

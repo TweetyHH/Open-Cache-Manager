@@ -169,6 +169,12 @@ namespace ocmgtk
 			this.limitEntry.Sensitive = limitCheck.Active;;
 		}
 		
+		public string FieldNotesFile
+		{
+			get { return null;}
+			set {}
+		}
+		
 		
 		
 		

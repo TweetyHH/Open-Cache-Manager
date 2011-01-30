@@ -28,5 +28,6 @@ namespace ocmgtk
 		ocmengine.WaypointNameMode GetNameMode();
 		ocmengine.WaypointDescMode GetDescMode();
 		bool IncludeAttributes();
+		string FieldNotesFile {get;set;}
 	}
 }

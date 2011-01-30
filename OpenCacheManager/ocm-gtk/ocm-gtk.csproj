@@ -132,7 +132,6 @@
     <Compile Include="Widgets\GenericGPSWidget.cs" />
     <Compile Include="Widgets\OCMQueryPage3.cs" />
     <Compile Include="Dialogs\ChangeHistory.cs" />
-    <Compile Include="Config.cs" />
     <Compile Include="Widgets\DateWidget.cs" />
     <Compile Include="Dialogs\CalendarWindow.cs" />
     <Compile Include="Widgets\HTMLEditorWidget.cs" />
@@ -140,13 +139,10 @@
     <Compile Include="Dialogs\AddBookMarkDialog.cs" />
     <Compile Include="Dialogs\ModifyCacheDialog.cs" />
     <Compile Include="Dialogs\NoDBDialog.cs" />
-    <Compile Include="GPS.cs" />
     <Compile Include="Dialogs\GPSDConfig.cs" />
     <Compile Include="Widgets\WaypointOverrideWidget.cs" />
     <Compile Include="Widgets\SymbolChooser.cs" />
-    <Compile Include="QuickFilter.cs" />
     <Compile Include="Dialogs\QTLandKarteDialog.cs" />
-    <Compile Include="QuickFilters.cs" />
     <Compile Include="Dialogs\ProcessLogs.cs" />
     <Compile Include="IQLandkarteGT.cs" />
     <Compile Include="Widgets\SetupAssistantPage4.cs" />
@@ -210,15 +206,12 @@
     <Compile Include="Widgets\OCMTreeView.cs" />
     <Compile Include="Dialogs\ConfigureEToolsDlg.cs" />
     <Compile Include="gtk-gui\ocmgtk.ConfigureEToolsDlg.cs" />
-    <Compile Include="ExternalTool.cs" />
     <Compile Include="Widgets\OCMQueryPage4.cs" />
     <Compile Include="gtk-gui\ocmgtk.OCMQueryPage4.cs" />
-    <Compile Include="EToolList.cs" />
     <Compile Include="Widgets\DeLormeWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.DeLormeWidget.cs" />
     <Compile Include="Dialogs\AddCommandDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.AddCommandDialog.cs" />
-    <Compile Include="UpdateChecker.cs" />
     <Compile Include="printing\CachePrinter.cs" />
     <Compile Include="Widgets\GarminEdgeWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.GarminEdgeWidget.cs" />
@@ -240,13 +233,20 @@
     <Compile Include="gtk-gui\ocmgtk.AddLocationDialog.cs" />
     <Compile Include="Widgets\LocationWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.LocationWidget.cs" />
-    <Compile Include="Location.cs" />
-    <Compile Include="LocationList.cs" />
     <Compile Include="Dialogs\DeleteItem.cs" />
-    <Compile Include="IConfig.cs" />
     <Compile Include="gtk-gui\ocmgtk.DeleteItem.cs" />
-    <Compile Include="Widgets\GPSProfileList.cs" />
-    <Compile Include="Widgets\GPSProfile.cs" />
+    <Compile Include="configuration\Config.cs" />
+    <Compile Include="configuration\IConfig.cs" />
+    <Compile Include="configuration\EToolList.cs" />
+    <Compile Include="configuration\ExternalTool.cs" />
+    <Compile Include="configuration\Location.cs" />
+    <Compile Include="configuration\LocationList.cs" />
+    <Compile Include="configuration\QuickFilter.cs" />
+    <Compile Include="configuration\QuickFilters.cs" />
+    <Compile Include="configuration\UpdateChecker.cs" />
+    <Compile Include="configuration\GPSProfile.cs" />
+    <Compile Include="configuration\GPSProfileList.cs" />
+    <Compile Include="gpsd\GPS.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -266,6 +266,8 @@
     <Folder Include="licence\" />
     <Folder Include="version\" />
     <Folder Include="printing\" />
+    <Folder Include="configuration\" />
+    <Folder Include="gpsd\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

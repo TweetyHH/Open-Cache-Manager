@@ -55,6 +55,44 @@ namespace ocmgtk
 				return null;
 			return m_profiles[active];
 		}
+		
+		public Dictionary<string,string> GetActiveMappings()
+		{
+			string active = UIMonitor.getInstance().Configuration.GPSProf;
+			if (active == null || !m_profiles.ContainsKey(active))
+				return GPSProfileList.GetDefaultMappings ();
+			return m_profiles[active].WaypointMappings;
+		}
+		
+		public static Dictionary<string,string> GetDefaultMappings ()
+		{
+				Dictionary<string,string> mappings = new Dictionary<string, string>();
+				// Return default mappings
+				mappings.Add("Geocache|Traditional Cache", "Geocache");
+				mappings.Add("Geocache|Unknown Cache", "Geocache");
+				mappings.Add("Geocache|Virtual Cache",  "Geocache");
+				mappings.Add("Geocache|Multi-cache",  "Geocache");
+				mappings.Add("Geocache|Project APE Cache",  "Geocache");
+				mappings.Add("Geocache|Cache In Trash Out Event", "Geocache");
+				mappings.Add("Geocache|Earthcache",  "Geocache");
+				mappings.Add("Geocache|Event Cache", "Geocache");
+				mappings.Add("Geocache|Letterbox Hybrid",  "Geocache");
+				mappings.Add("Geocache|GPS Adventures Exhibit", "Geocache");
+				mappings.Add("Geocache|Mega-Event Cache", "Geocache");
+				mappings.Add("Geocache|Locationless Cache", "Geocache");
+				mappings.Add("Geocache|Webcam cache", "Geocache");
+				mappings.Add("Geocache|Wherigo Cache",  "Geocache");
+				mappings.Add("Geocache", "Geocache");
+				mappings.Add("Geocache Found", "Geocache");
+				mappings.Add("Waypoint|Final Location", "Pin, Blue");
+				mappings.Add("Waypoint|Parking Area","Parking Area");
+				mappings.Add("Waypoint|Reference Point", "Pin, Green");
+				mappings.Add("Waypoint|Question to Answer", "Pin, Red");
+				mappings.Add("Waypoint|Stages of a Multicache", "Pin, Red");
+				mappings.Add("Waypoint|Trailhead", "Trail Head");
+				mappings.Add("Waypoint|Other","Pin, Green");
+				return mappings;
+		}
 
 		
 		public void AddProfile(GPSProfile prof)

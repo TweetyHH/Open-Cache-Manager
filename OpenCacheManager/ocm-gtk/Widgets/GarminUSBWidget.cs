@@ -133,5 +133,11 @@ namespace ocmgtk
 			return false;
 		}
 		
+		public string FieldNotesFile
+		{
+			get { return null;}
+			set {}
+		}
+		
 	}
 }

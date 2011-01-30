@@ -37,6 +37,16 @@ namespace ocmgtk {
         
         private Gtk.Image image3;
         
+        private Gtk.HBox hbox5;
+        
+        private Gtk.Label label4;
+        
+        private Gtk.Entry fieldNotesEntry;
+        
+        private Gtk.Button fileButton1;
+        
+        private Gtk.Image image4;
+        
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget ocmgtk.GPXWidget
@@ -163,6 +173,49 @@ namespace ocmgtk {
             w11.Position = 2;
             w11.Expand = false;
             w11.Fill = false;
+            // Container child vbox3.Gtk.Box+BoxChild
+            this.hbox5 = new Gtk.HBox();
+            this.hbox5.Name = "hbox5";
+            this.hbox5.Spacing = 6;
+            // Container child hbox5.Gtk.Box+BoxChild
+            this.label4 = new Gtk.Label();
+            this.label4.Name = "label4";
+            this.label4.LabelProp = Mono.Unix.Catalog.GetString("Field Notes File:");
+            this.hbox5.Add(this.label4);
+            Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.hbox5[this.label4]));
+            w12.Position = 0;
+            w12.Expand = false;
+            w12.Fill = false;
+            // Container child hbox5.Gtk.Box+BoxChild
+            this.fieldNotesEntry = new Gtk.Entry();
+            this.fieldNotesEntry.CanFocus = true;
+            this.fieldNotesEntry.Name = "fieldNotesEntry";
+            this.fieldNotesEntry.Text = "/media/GARMIN/Garmin/geocache_visits.txt";
+            this.fieldNotesEntry.IsEditable = true;
+            this.fieldNotesEntry.InvisibleChar = '•';
+            this.hbox5.Add(this.fieldNotesEntry);
+            Gtk.Box.BoxChild w13 = ((Gtk.Box.BoxChild)(this.hbox5[this.fieldNotesEntry]));
+            w13.Position = 1;
+            // Container child hbox5.Gtk.Box+BoxChild
+            this.fileButton1 = new Gtk.Button();
+            this.fileButton1.CanFocus = true;
+            this.fileButton1.Name = "fileButton1";
+            // Container child fileButton1.Gtk.Container+ContainerChild
+            this.image4 = new Gtk.Image();
+            this.image4.Name = "image4";
+            this.image4.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-open", Gtk.IconSize.Menu, 16);
+            this.fileButton1.Add(this.image4);
+            this.fileButton1.Label = null;
+            this.hbox5.Add(this.fileButton1);
+            Gtk.Box.BoxChild w15 = ((Gtk.Box.BoxChild)(this.hbox5[this.fileButton1]));
+            w15.Position = 2;
+            w15.Expand = false;
+            w15.Fill = false;
+            this.vbox3.Add(this.hbox5);
+            Gtk.Box.BoxChild w16 = ((Gtk.Box.BoxChild)(this.vbox3[this.hbox5]));
+            w16.Position = 3;
+            w16.Expand = false;
+            w16.Fill = false;
             this.Add(this.vbox3);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
@@ -171,6 +224,7 @@ namespace ocmgtk {
             this.logLimitCheck.Toggled += new System.EventHandler(this.OnLogLimitToggle);
             this.limitCheck.Toggled += new System.EventHandler(this.OnLimitToggle);
             this.fileButton.Clicked += new System.EventHandler(this.OnFileClick);
+            this.fileButton1.Clicked += new System.EventHandler(this.OnFieldFileClick);
         }
     }
 }

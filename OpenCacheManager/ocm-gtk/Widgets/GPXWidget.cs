@@ -58,12 +58,12 @@ namespace ocmgtk
 
 		public string GetOutputFile ()
 		{
-			return fileEntry.Text;
+			return fieldNotesEntry.Text;
 		}
 		
 		public void SetOutputFile(String file)
 		{
-			fileEntry.Text = file;
+			fieldNotesEntry.Text = file;
 		}
 
 		public string GetBabelFormat ()
@@ -86,15 +86,6 @@ namespace ocmgtk
 				logLimitEntry.Text = val.ToString();
 		}
 		
-		public bool IgnoreGeocacheOverrides()
-		{
-			return false;
-		}
-		
-		public bool IgnoreWaypointOverrides()
-		{
-			return false;
-		}
 		
 		public ocmengine.WaypointNameMode GetNameMode()
 		{
@@ -105,6 +96,13 @@ namespace ocmgtk
 		{
 			return ocmengine.WaypointDescMode.DESC;
 		}
+		
+		public string FieldNotesFile
+		{
+			get { return fieldNotesEntry.Text;}
+			set { fieldNotesEntry.Text = value;}
+		}
+		
 		
 		protected virtual void OnFileClick (object sender, System.EventArgs e)
 		{
@@ -121,7 +119,23 @@ namespace ocmgtk
 			dlg.AddFilter (filter);
 			
 			if (dlg.Run () == (int)ResponseType.Accept) {
-				fileEntry.Text = dlg.Filename;
+				fieldNotesEntry.Text = dlg.Filename;
+			}
+			dlg.Destroy ();
+		}
+		
+		protected virtual void OnFieldFileClick (object sender, System.EventArgs e)
+		{
+			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Select Field Notes location"), null, FileChooserAction.Save, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Select"), ResponseType.Accept);
+			dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
+			dlg.CurrentName = "geocache_visits.gpx";
+			FileFilter filter = new FileFilter ();
+			filter.Name = Catalog.GetString("Text Files");
+			filter.AddMimeType ("text/plain");
+			filter.AddPattern ("*.txt");			
+			dlg.AddFilter (filter);			
+			if (dlg.Run () == (int)ResponseType.Accept) {
+				fieldNotesEntry.Text = dlg.Filename;
 			}
 			dlg.Destroy ();
 		}
@@ -139,6 +153,6 @@ namespace ocmgtk
 		public void SetIncludeAttributes(bool val)
 		{
 			attrCheck.Active = val;
-		}
+		}		
 	}
 }

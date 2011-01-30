@@ -181,7 +181,13 @@ namespace ocmgtk
 		public string GPSProf
 		{
 			get { return this.Get("/apps/ocm/gps/currentprof", null) as string;}
-			set { m_client.Set("/apps/ocm/gps/currentprof", value);}
+			set 
+			{ 
+				if (value == null)
+					UnsetKey("/apps/ocm/gps/currentprof");
+				else
+					m_client.Set("/apps/ocm/gps/currentprof", value);
+			}
 		}
 		
 		public bool IgnoreWaypointPrefixes
@@ -234,6 +240,10 @@ namespace ocmgtk
 				profile.LogLimit = (int) this.Get("/apps/ocm/gps/loglimit", -1);
 				profile.IncludeAttributes = (bool) this.Get("/apps/ocm/gps/incattr", false);
 				profile.OutputFile = this.Get("/apps/ocm/gps/file", "/media/GARMIN/Garmin/GPX/geocaches.gpx") as string;
+				if (profile.BabelFormat == "delgpx")
+					profile.FieldNotesFile = "/media/EM_USERMAPS/FieldNotes.txt";
+				else if (profile.BabelFormat == "OCM_GPX")
+					profile.FieldNotesFile = "/media/GARMIN/Garmin/geocache_visits.txt";
 				UpgradeWaypointMappings(profile);
 				list.AddProfile(profile);
 				GPSProf = profile.Name;
@@ -293,6 +303,7 @@ namespace ocmgtk
 			UnsetKey("/apps/ocm/wmappings/Geocache_Mega-Event_Cache");
 			UnsetKey("/apps/ocm/wmappings/Geocache_Locationless_Cache");
 			UnsetKey("/apps/ocm/wmappings/Geocache_Webcam_Cache");
+			UnsetKey("/apps/ocm/wmappings/Geocache_Webcam_cache");
 			UnsetKey("/apps/ocm/wmappings/Geocache_Wherigo_Cache");
 			UnsetKey("/apps/ocm/wmappings/Geocache");
 			UnsetKey("/apps/ocm/wmappings/Geocache_Found");

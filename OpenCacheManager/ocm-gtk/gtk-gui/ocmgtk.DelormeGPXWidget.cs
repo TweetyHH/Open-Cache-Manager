@@ -31,11 +31,19 @@ namespace ocmgtk {
         
         private Gtk.RadioButton autoNameRado;
         
+        private Gtk.Button fieldBrowseButton;
+        
+        private Gtk.Image image21;
+        
+        private Gtk.Entry fieldNotesEntry;
+        
         private Gtk.Button fileButton;
         
         private Gtk.Image image3;
         
         private Gtk.Entry fileEntry;
+        
+        private Gtk.Label label1;
         
         private Gtk.RadioButton useFileRadio;
         
@@ -109,7 +117,7 @@ namespace ocmgtk {
             w5.Expand = false;
             w5.Fill = false;
             // Container child vbox1.Gtk.Box+BoxChild
-            this.table2 = new Gtk.Table(((uint)(3)), ((uint)(3)), false);
+            this.table2 = new Gtk.Table(((uint)(4)), ((uint)(3)), false);
             this.table2.Name = "table2";
             this.table2.RowSpacing = ((uint)(6));
             this.table2.ColumnSpacing = ((uint)(6));
@@ -140,6 +148,39 @@ namespace ocmgtk {
             w7.XOptions = ((Gtk.AttachOptions)(4));
             w7.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
+            this.fieldBrowseButton = new Gtk.Button();
+            this.fieldBrowseButton.CanFocus = true;
+            this.fieldBrowseButton.Name = "fieldBrowseButton";
+            // Container child fieldBrowseButton.Gtk.Container+ContainerChild
+            this.image21 = new Gtk.Image();
+            this.image21.Name = "image21";
+            this.image21.Pixbuf = Stetic.IconLoader.LoadIcon(this, "gtk-open", Gtk.IconSize.Button, 16);
+            this.fieldBrowseButton.Add(this.image21);
+            this.fieldBrowseButton.Label = null;
+            this.table2.Add(this.fieldBrowseButton);
+            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table2[this.fieldBrowseButton]));
+            w9.TopAttach = ((uint)(3));
+            w9.BottomAttach = ((uint)(4));
+            w9.LeftAttach = ((uint)(2));
+            w9.RightAttach = ((uint)(3));
+            w9.XOptions = ((Gtk.AttachOptions)(4));
+            w9.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.fieldNotesEntry = new Gtk.Entry();
+            this.fieldNotesEntry.CanFocus = true;
+            this.fieldNotesEntry.Name = "fieldNotesEntry";
+            this.fieldNotesEntry.Text = "/media/EM_USERMAPS/FieldNotes.txt";
+            this.fieldNotesEntry.IsEditable = true;
+            this.fieldNotesEntry.InvisibleChar = '•';
+            this.table2.Add(this.fieldNotesEntry);
+            Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.table2[this.fieldNotesEntry]));
+            w10.TopAttach = ((uint)(3));
+            w10.BottomAttach = ((uint)(4));
+            w10.LeftAttach = ((uint)(1));
+            w10.RightAttach = ((uint)(2));
+            w10.XOptions = ((Gtk.AttachOptions)(4));
+            w10.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
             this.fileButton = new Gtk.Button();
             this.fileButton.CanFocus = true;
             this.fileButton.Name = "fileButton";
@@ -150,13 +191,13 @@ namespace ocmgtk {
             this.fileButton.Add(this.image3);
             this.fileButton.Label = null;
             this.table2.Add(this.fileButton);
-            Gtk.Table.TableChild w9 = ((Gtk.Table.TableChild)(this.table2[this.fileButton]));
-            w9.TopAttach = ((uint)(2));
-            w9.BottomAttach = ((uint)(3));
-            w9.LeftAttach = ((uint)(2));
-            w9.RightAttach = ((uint)(3));
-            w9.XOptions = ((Gtk.AttachOptions)(4));
-            w9.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w12 = ((Gtk.Table.TableChild)(this.table2[this.fileButton]));
+            w12.TopAttach = ((uint)(2));
+            w12.BottomAttach = ((uint)(3));
+            w12.LeftAttach = ((uint)(2));
+            w12.RightAttach = ((uint)(3));
+            w12.XOptions = ((Gtk.AttachOptions)(4));
+            w12.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.fileEntry = new Gtk.Entry();
             this.fileEntry.Sensitive = false;
@@ -166,12 +207,23 @@ namespace ocmgtk {
             this.fileEntry.IsEditable = true;
             this.fileEntry.InvisibleChar = '•';
             this.table2.Add(this.fileEntry);
-            Gtk.Table.TableChild w10 = ((Gtk.Table.TableChild)(this.table2[this.fileEntry]));
-            w10.TopAttach = ((uint)(2));
-            w10.BottomAttach = ((uint)(3));
-            w10.LeftAttach = ((uint)(1));
-            w10.RightAttach = ((uint)(2));
-            w10.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w13 = ((Gtk.Table.TableChild)(this.table2[this.fileEntry]));
+            w13.TopAttach = ((uint)(2));
+            w13.BottomAttach = ((uint)(3));
+            w13.LeftAttach = ((uint)(1));
+            w13.RightAttach = ((uint)(2));
+            w13.YOptions = ((Gtk.AttachOptions)(4));
+            // Container child table2.Gtk.Table+TableChild
+            this.label1 = new Gtk.Label();
+            this.label1.Name = "label1";
+            this.label1.Xalign = 0F;
+            this.label1.LabelProp = Mono.Unix.Catalog.GetString("Field Notes File:");
+            this.table2.Add(this.label1);
+            Gtk.Table.TableChild w14 = ((Gtk.Table.TableChild)(this.table2[this.label1]));
+            w14.TopAttach = ((uint)(3));
+            w14.BottomAttach = ((uint)(4));
+            w14.XOptions = ((Gtk.AttachOptions)(4));
+            w14.YOptions = ((Gtk.AttachOptions)(4));
             // Container child table2.Gtk.Table+TableChild
             this.useFileRadio = new Gtk.RadioButton(Mono.Unix.Catalog.GetString("Use specified file:"));
             this.useFileRadio.CanFocus = true;
@@ -180,16 +232,16 @@ namespace ocmgtk {
             this.useFileRadio.UseUnderline = true;
             this.useFileRadio.Group = this.autoNameRado.Group;
             this.table2.Add(this.useFileRadio);
-            Gtk.Table.TableChild w11 = ((Gtk.Table.TableChild)(this.table2[this.useFileRadio]));
-            w11.TopAttach = ((uint)(2));
-            w11.BottomAttach = ((uint)(3));
-            w11.XOptions = ((Gtk.AttachOptions)(4));
-            w11.YOptions = ((Gtk.AttachOptions)(4));
+            Gtk.Table.TableChild w15 = ((Gtk.Table.TableChild)(this.table2[this.useFileRadio]));
+            w15.TopAttach = ((uint)(2));
+            w15.BottomAttach = ((uint)(3));
+            w15.XOptions = ((Gtk.AttachOptions)(4));
+            w15.YOptions = ((Gtk.AttachOptions)(4));
             this.vbox1.Add(this.table2);
-            Gtk.Box.BoxChild w12 = ((Gtk.Box.BoxChild)(this.vbox1[this.table2]));
-            w12.Position = 1;
-            w12.Expand = false;
-            w12.Fill = false;
+            Gtk.Box.BoxChild w16 = ((Gtk.Box.BoxChild)(this.vbox1[this.table2]));
+            w16.Position = 1;
+            w16.Expand = false;
+            w16.Fill = false;
             this.Add(this.vbox1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
@@ -199,6 +251,7 @@ namespace ocmgtk {
             this.limitCheck.Toggled += new System.EventHandler(this.OnLimitToggle);
             this.useFileRadio.Toggled += new System.EventHandler(this.OnFileToggle);
             this.fileButton.Clicked += new System.EventHandler(this.OnFileClick);
+            this.fieldBrowseButton.Clicked += new System.EventHandler(this.OnFieldBrowse);
         }
     }
 }

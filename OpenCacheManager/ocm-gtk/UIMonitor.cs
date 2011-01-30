@@ -167,12 +167,6 @@ namespace ocmgtk
 			set { m_progress = value; }
 		}
 		
-		private Dictionary<string, string> m_WaypointMappings;
-		public Dictionary<string, string> WaypointMappings
-		{
-			get{return m_WaypointMappings;}
-		}
-		
 		private bool m_ShowAllChildren = false;
 		public bool ShowAllChildren
 		{
@@ -196,37 +190,6 @@ namespace ocmgtk
 			set { m_MapPoints = value;}
 		}
 		
-		private void BuildWaypointMappings()
-		{
-			/*Dictionary<string, string> mappings = new Dictionary<string, string>();
-			mappings.Add("Geocache|Traditional Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Traditional_Cache", "Geocache") as string);
-			mappings.Add("Geocache|Unknown Cache",m_conf.Get("/apps/ocm/wmappings/Geocache_Unknown_Cache", "Geocache") as string);
-			mappings.Add("Geocache|Virtual Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Virtual_Cache", "Geocache") as string);
-			mappings.Add("Geocache|Multi-cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Multi-cache", "Geocache") as string);
-			mappings.Add("Geocache|Project APE Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Project_APE_Cache", "Geocache") as string);
-			mappings.Add("Geocache|Cache In Trash Out Event", m_conf.Get("/apps/ocm/wmappings/Geocache_Cache_In_Trash_Out_Event", "Geocache") as string);
-			mappings.Add("Geocache|Earthcache", m_conf.Get("/apps/ocm/wmappings/Geocache_Earthcache", "Geocache") as string);
-			mappings.Add("Geocache|Event Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Event_Cache", "Geocache") as string);
-			mappings.Add("Geocache|Letterbox Hybrid", m_conf.Get("/apps/ocm/wmappings/Geocache_Letterbox_Hybrid", "Geocache") as string);
-			mappings.Add("Geocache|GPS Adventures Exhibit",m_conf.Get("/apps/ocm/wmappings/Geocache_GPS_Adventures_Exhibit", "Geocache") as string);
-			mappings.Add("Geocache|Mega-Event Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Mega-Event_Cache", "Geocache") as string);
-			mappings.Add("Geocache|Locationless Cache",m_conf.Get("/apps/ocm/wmappings/Geocache_Locationless_Cache", "Geocache") as string);
-			mappings.Add("Geocache|Webcam Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Webcam_Cache", "Geocache") as string);
-			mappings.Add("Geocache|Wherigo Cache", m_conf.Get("/apps/ocm/wmappings/Geocache_Wherigo_Cache", "Geocache") as string);
-			mappings.Add("Geocache", m_conf.Get("/apps/ocm/wmappings/Geocache", "Geocache") as string);
-			mappings.Add("Geocache Found", m_conf.Get("/apps/ocm/wmappings/Geocache_Found", "Geocache Found") as string);
-			mappings.Add("Waypoint|Final Location", m_conf.Get("/apps/ocm/wmappings/Waypoint_Final_Location", "Pin, Blue") as string);
-			mappings.Add("Waypoint|Parking Area", m_conf.Get("/apps/ocm/wmappings/Waypoint_Parking_Area", "Parking Area") as string);
-			mappings.Add("Waypoint|Reference Point", m_conf.Get("/apps/ocm/wmappings/Waypoint_Reference_Point", "Pin, Green") as string);
-			mappings.Add("Waypoint|Question to Answer", m_conf.Get("/apps/ocm/wmappings/Waypoint_Question_to_Answer", "Pin, Red") as string);
-			mappings.Add("Waypoint|Stages of a Multicache", m_conf.Get("/apps/ocm/wmappings/Waypoint_Stages_of_a_Multicache", "Pin, Red") as string);
-			mappings.Add("Waypoint|Trailhead", m_conf.Get("/apps/ocm/wmappings/Waypoint_Trailhead", "Trail Head") as string);
-			mappings.Add("Waypoint|Other", m_conf.Get("/apps/ocm/wmappings/Waypoint_Other", "Pin, Green") as string);
-			m_WaypointMappings = mappings;*/
-		}
-		
-		
-
 		public Boolean ShowNearby {
 			get { return m_showNearby;}
 			set { m_showNearby = value; 
@@ -807,7 +770,7 @@ namespace ocmgtk
 					writer.WriteAttributes = dlg.MustHaveIncludeAttributes;
 					writer.LogLimit = dlg.LogLimit;
 					edlg.Icon = m_mainWin.Icon;
-					edlg.Start (dlg.Filename, GetVisibleCacheList (), m_WaypointMappings);
+					edlg.Start (dlg.Filename, GetVisibleCacheList (), m_profiles.GetActiveMappings());
 					RecentManager manager = RecentManager.Default;
 					manager.AddItem("file://" + dlg.Filename);
 				}
@@ -843,7 +806,7 @@ namespace ocmgtk
 				if (dlg.Run () == (int)ResponseType.Accept) {
 					dlg.Hide ();
 					edlg.Icon = m_mainWin.Icon;
-					edlg.Start (dlg.Filename, Engine.getInstance().Store.GetFinds(), m_WaypointMappings);
+					edlg.Start (dlg.Filename, Engine.getInstance().Store.GetFinds(), GPSProfileList.GetDefaultMappings());
 					RecentManager manager = RecentManager.Default;
 					manager.AddItem("file://" + dlg.Filename);
 				}
@@ -1205,7 +1168,10 @@ namespace ocmgtk
 				prof.LogLimit = dlg.GPSConfig.GetLogLimit();
 				prof.IncludeAttributes = dlg.GPSConfig.IncludeAttributes();
 				prof.OutputFile = dlg.GPSConfig.GetOutputFile();
+				prof.FieldNotesFile = dlg.GPSConfig.FieldNotesFile;
 				prof.WaypointMappings = dlg.GPSMappings;
+				if (m_conf.GPSProf == null)
+					m_conf.GPSProf = prof.Name;
 				m_profiles.AddProfile(prof);
 				m_mainWin.RebuildProfEditMenu(m_profiles);
 				m_mainWin.RebuildProfilesMenu(m_profiles);
@@ -1221,6 +1187,9 @@ namespace ocmgtk
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
 				string origName = prof.Name;
+				bool isActive = false;
+				if ((m_profiles.GetActiveProfile()) != null && (m_profiles.GetActiveProfile().Name == origName))
+				    isActive = true;
 				prof.Name = dlg.ProfileName;
 				prof.BabelFormat = dlg.GPSConfig.GetBabelFormat();
 				prof.CacheLimit = dlg.GPSConfig.GetCacheLimit();
@@ -1230,6 +1199,7 @@ namespace ocmgtk
 				prof.IncludeAttributes = dlg.GPSConfig.IncludeAttributes();
 				prof.OutputFile = dlg.GPSConfig.GetOutputFile();
 				prof.WaypointMappings = dlg.GPSMappings;
+				prof.FieldNotesFile = dlg.GPSConfig.FieldNotesFile;
 				if (origName == prof.Name)
 				{
 					m_profiles.EditProfile(prof);
@@ -1238,6 +1208,8 @@ namespace ocmgtk
 				{
 					m_profiles.DeleteProfile(origName);
 					m_profiles.AddProfile(prof);
+					if (isActive)
+						m_conf.GPSProf = prof.Name;
 				}
 				m_mainWin.RebuildProfEditMenu(m_profiles);
 				m_mainWin.RebuildProfilesMenu(m_profiles);
@@ -1249,6 +1221,23 @@ namespace ocmgtk
 			DeleteItem dlg = new DeleteItem(m_profiles);
 			if ((int)ResponseType.Ok == dlg.Run())
 			{
+				if ((m_profiles.GetActiveProfile() != null) &&(dlg.Bookmark == m_profiles.GetActiveProfile().Name))
+				{
+					MessageDialog confirm = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Warning,
+					                                          ButtonsType.YesNo, Catalog.GetString("\"{0}\" is the active" +
+					                                          	" GPS profile. Are you sure you wish to delete it?"),
+					                                           dlg.Bookmark);
+					if ((int) ResponseType.No == confirm.Run())
+					{
+						confirm.Hide();
+						confirm.Dispose();
+						return;
+					}
+					confirm.Hide();
+					confirm.Dispose();
+					m_conf.GPSProf = null;
+				}
+				
 				m_profiles.DeleteProfile(dlg.Bookmark);
 				m_mainWin.RebuildProfEditMenu(m_profiles);
 				m_mainWin.RebuildProfilesMenu(m_profiles);
@@ -1257,19 +1246,20 @@ namespace ocmgtk
 		
 		public void SendToGPS()
 		{
-			try
+			if (m_profiles.GetActiveProfile() == null)
 			{
-				SendWaypointsDialog dlg = new SendWaypointsDialog();
-				dlg.Parent = m_mainWin;
-				dlg.Icon = m_mainWin.Icon;
-				dlg.Start(m_cachelist.getVisibleCaches(), m_profiles.GetActiveProfile());
-			}
-			catch (GConf.NoSuchKeyException)
-			{
-				MessageDialog err = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Error, ButtonsType.Ok, "You must configure a GPS Device first.");
+				MessageDialog err = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Error, ButtonsType.Ok, 
+				                                      Catalog.GetString("There is no active GPS profile. Either select an" +
+				                                      	" existing one from the GPS Menu or add a new profile ."));
 				err.Run();
+				err.Hide();
 				err.Dispose();
+				return;
 			}
+			SendWaypointsDialog dlg = new SendWaypointsDialog();
+			dlg.Parent = m_mainWin;
+			dlg.Icon = m_mainWin.Icon;
+			dlg.Start(m_cachelist.getVisibleCaches(), m_profiles.GetActiveProfile());
 		}
 		
 		public void ShowPreferences()
@@ -1577,7 +1567,7 @@ namespace ocmgtk
 			dlg.WaypointsOnly = true;
 			dlg.CompleteCommand = "qlandkartegt " + tempFile;
 			dlg.Icon = m_mainWin.Icon;
-			dlg.Start(tempFile, GetVisibleCacheList(), m_WaypointMappings);
+			dlg.Start(tempFile, GetVisibleCacheList(), GPSProfileList.GetDefaultMappings());
 		}
 		
 		public void OpenSelectedCacheInQLandKarte()
@@ -1593,7 +1583,7 @@ namespace ocmgtk
 			dlg.WaypointsOnly = true;
 			dlg.CompleteCommand = "qlandkartegt " + tempFile;
 			dlg.Icon = m_mainWin.Icon;
-			dlg.Start(tempFile, cache, m_WaypointMappings);
+			dlg.Start(tempFile, cache, GPSProfileList.GetDefaultMappings());
 		}
 		
 		public void ApplyQuickFilter(QuickFilter filter)
