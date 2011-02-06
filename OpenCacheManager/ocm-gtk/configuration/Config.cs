@@ -201,6 +201,12 @@ namespace ocmgtk
 			get { return (bool) this.Get("/apps/ocm/update/checkForUpdates", true);}
 			set {this.Set("/apps/ocm/update/checkForUpdates", value);}
 		}
+
+		public bool AutoCloseWindows
+		{
+			get { return (bool) this.Get("/apps/ocm/autoCloseWindows", true);}
+			set {this.Set("/apps/ocm/autoCloseWindows", value);}	
+		}
 		
 		public DateTime NextUpdateCheck
 		{

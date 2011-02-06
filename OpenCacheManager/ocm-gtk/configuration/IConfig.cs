@@ -49,6 +49,8 @@ namespace ocmgtk
 		bool CheckForUpdates {get;set;}
 		DateTime NextUpdateCheck {get;set;}
 		int UpdateInterval {get;set;}
+		bool AutoCloseWindows{get;set;}
+		
 		void CheckForDefaultGPS(GPSProfileList list, MainWindow win);
 	}
 }

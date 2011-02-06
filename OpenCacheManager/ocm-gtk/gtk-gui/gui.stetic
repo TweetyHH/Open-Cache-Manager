@@ -2917,7 +2917,7 @@ Other</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.Preferences" design-size="670 373">
+  <widget class="Gtk.Dialog" id="ocmgtk.Preferences" design-size="722 373">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Preferences...</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -2935,7 +2935,7 @@ Other</property>
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">3</property>
+            <property name="CurrentPage">1</property>
             <property name="TabPos">Left</property>
             <child>
               <widget class="Gtk.Table" id="table2">
@@ -3088,7 +3088,6 @@ Other</property>
                 <child>
                   <widget class="Gtk.CheckButton" id="autoCloseCheck">
                     <property name="MemberName" />
-                    <property name="Sensitive">False</property>
                     <property name="CanFocus">True</property>
                     <property name="Label" translatable="yes">Don't show import/export summary on completion</property>
                     <property name="DrawIndicator">True</property>
@@ -11078,7 +11077,7 @@ Other</property>
                 <child>
                   <widget class="Gtk.Image" id="image1">
                     <property name="MemberName" />
-                    <property name="Yalign">0.1</property>
+                    <property name="Yalign">1</property>
                     <property name="Pixbuf">stock:gtk-dialog-info Menu</property>
                   </widget>
                   <packing>

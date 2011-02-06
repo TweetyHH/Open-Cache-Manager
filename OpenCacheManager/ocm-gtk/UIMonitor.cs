@@ -748,6 +748,7 @@ namespace ocmgtk
 		{
 			GPXWriter writer = new GPXWriter();
 			ExportProgressDialog edlg = new ExportProgressDialog (writer);
+			edlg.AutoClose = m_conf.AutoCloseWindows;
 			try {
 				ExportGPXDialog dlg = new ExportGPXDialog ();
 				dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
@@ -791,7 +792,7 @@ namespace ocmgtk
 			writer.IsMyFinds = true;
 			writer.MyFindsOwner = m_ownerid;
 			ExportProgressDialog edlg = new ExportProgressDialog (writer);
-			edlg.AutoClose = false;
+			edlg.AutoClose = m_conf.AutoCloseWindows;
 			
 			try {
 				FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString (" Export Finds GPX File"), m_mainWin, FileChooserAction.Save, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Export"), ResponseType.Accept);
@@ -897,7 +898,7 @@ namespace ocmgtk
 		
 		public void ImportGPXFile (String filename)
 		{
-			ImportGPXFile(filename, false);
+			ImportGPXFile(filename, m_conf.AutoCloseWindows);
 		}
 
 		public void ImportGPXFile (String filename, bool autoclose)
@@ -1259,6 +1260,7 @@ namespace ocmgtk
 			SendWaypointsDialog dlg = new SendWaypointsDialog();
 			dlg.Parent = m_mainWin;
 			dlg.Icon = m_mainWin.Icon;
+//			dlg.AutoClose = m_conf.AutoCloseWindows;
 			dlg.Start(m_cachelist.getVisibleCaches(), m_profiles.GetActiveProfile());
 		}
 		
@@ -1840,7 +1842,7 @@ namespace ocmgtk
 				// Do nothing until exit	
 			}
 			
-			ImportDirectory(tempPath + "ocm_unzip", true);
+			ImportDirectory(tempPath + "ocm_unzip", true, m_conf.AutoCloseWindows);
 		}
 		
 		public void ShowOtherChildWaypoints (Geocache cache)
@@ -1858,18 +1860,19 @@ namespace ocmgtk
 			dlg.Directory = m_conf.ImportDirectory;
 			if (dlg.Run () == (int)ResponseType.Ok) {
 				dlg.Hide();
-				ImportDirectory(dlg.Directory, dlg.DeleteOnCompletion);
+				ImportDirectory(dlg.Directory, dlg.DeleteOnCompletion, m_conf.AutoCloseWindows);
 			}
 			dlg.Destroy ();
 	
 		}
 		
-		private void ImportDirectory(String path, bool delete)
+		private void ImportDirectory(String path, bool delete, bool autoClose)
 		{
 				GPXParser parser = new GPXParser ();
 				parser.CacheOwner = OwnerID;
 				ProgressDialog pdlg = new ProgressDialog (parser);
 				pdlg.Icon = m_mainWin.Icon;
+				pdlg.AutoClose = autoClose;
 				pdlg.Modal = true;
 				pdlg.StartMulti(path, Engine.getInstance().Store, delete);
 				RefreshCaches ();

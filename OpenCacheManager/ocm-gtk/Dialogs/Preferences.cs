@@ -46,6 +46,7 @@ namespace ocmgtk
 			updateCheck.Active = config.CheckForUpdates;
 			UpdateInterval = config.UpdateInterval;
 			directEntryCheck.Active = config.UseDirectEntryMode;
+			autoCloseCheck.Active = config.AutoCloseWindows;
 		}
 		
 		private SolvedMode WaypointSolvedMode
@@ -149,7 +150,9 @@ namespace ocmgtk
 			m_config.CheckForUpdates = updateCheck.Active;
 			m_config.UpdateInterval = UpdateInterval;
 			m_config.UseDirectEntryMode = directEntryCheck.Active;
+			m_config.AutoCloseWindows = autoCloseCheck.Active;
 		}
+		
 		protected virtual void OnCancelClicked (object sender, System.EventArgs e)
 		{
 			this.Hide();
