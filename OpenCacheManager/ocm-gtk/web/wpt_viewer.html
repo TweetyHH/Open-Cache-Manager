@@ -176,7 +176,7 @@ body {
 	function addMarker(lat, lon, icon, wptName, wptFullName, wptDescription, mode)
 	{
 		var size = new OpenLayers.Size(24,24);
-		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h/2);
 		var icon = new OpenLayers.Icon(icon,size,offset);
 		var lonlat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
 		var feature = new OpenLayers.Feature(pois, lonlat);
@@ -205,7 +205,7 @@ body {
 	function addExtraMarker(lat, lon, icon, wptName, wptFullName, wptDescription, mode)
 	{
 		var size = new OpenLayers.Size(24,24);
-		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h/2);
 		var icon = new OpenLayers.Icon(icon,size,offset);
 		var lonlat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);
 		var feature = new OpenLayers.Feature(extra, lonlat);
@@ -274,7 +274,7 @@ body {
 			notify.destroy();
 		notify = new OpenLayers.Layer.Markers( "Notify" );
 		var size = new OpenLayers.Size(48,48);
-		var offset = new OpenLayers.Pixel(-(size.w/2), -(size.h/1.33));
+		var offset = new OpenLayers.Pixel(-(size.w/2), -(size.h/2));
 		var icon = new OpenLayers.Icon("../icons/48x48/circle.png",size,offset);
 		notify.addMarker(new OpenLayers.Marker(lonLat,icon));  	
 		map.addLayer(notify);
