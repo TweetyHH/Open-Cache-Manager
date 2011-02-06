@@ -1812,6 +1812,14 @@ namespace ocmgtk
 			dlg.Hide();
 		}
 		
+		public void CorrectCoordinates(double lat, double lon)
+		{
+			m_selectedCache.CorrectedLat = lat;
+			m_selectedCache.CorrectedLon = lon;
+			Engine.getInstance().Store.UpdateCacheAtomic(m_selectedCache);
+			SetSelectedCache(m_selectedCache);
+		}
+		 
 		public void ImportZip()
 		{
 			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Import ZIP File"), m_mainWin, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Import"), ResponseType.Accept);
@@ -1878,15 +1886,16 @@ namespace ocmgtk
 				RefreshCaches ();
 		}
 		
-		public void AddChildWaypoint()
+		
+		public void AddChildWaypoint(double lat, double lon)
 		{
 			try {
 				Waypoint newPoint = new Waypoint ();
 				Geocache parent = m_selectedCache;
 				newPoint.Symbol = "Final Location";
 				newPoint.Parent = parent.Name;
-				newPoint.Lat = parent.Lat;
-				newPoint.Lon = parent.Lon;	
+				newPoint.Lat = lat;
+				newPoint.Lon = lon;	
 				String name = "FL" + parent.Name.Substring (2);
 				WaypointDialog dlg = new WaypointDialog ();
 				if (m_conf.IgnoreWaypointPrefixes)
@@ -1912,6 +1921,11 @@ namespace ocmgtk
 			} catch (Exception ex) {
 				UIMonitor.ShowException (ex);
 			}
+		}
+		
+		public void AddChildWaypoint()
+		{
+			AddChildWaypoint(m_selectedCache.Lat, m_selectedCache.Lon);
 		}
 		
 		public void AddLocation()

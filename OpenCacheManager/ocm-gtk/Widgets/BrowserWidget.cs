@@ -90,6 +90,14 @@ namespace ocmgtk
 				{
 					m_monitor.AddLocation(double.Parse(request[1], System.Globalization.CultureInfo.InvariantCulture), double.Parse(request[2], System.Globalization.CultureInfo.InvariantCulture));
 				}
+				else if (request[0].Equals("addwaypoint"))
+				{
+					m_monitor.AddChildWaypoint(double.Parse(request[1], System.Globalization.CultureInfo.InvariantCulture), double.Parse(request[2], System.Globalization.CultureInfo.InvariantCulture));
+				}
+				else if (request[0].Equals("correctcoordinate"))
+				{
+					m_monitor.CorrectCoordinates(double.Parse(request[1], System.Globalization.CultureInfo.InvariantCulture), double.Parse(request[2], System.Globalization.CultureInfo.InvariantCulture));					
+				}
 				args.Frame.StopLoading();
 			}
 		}

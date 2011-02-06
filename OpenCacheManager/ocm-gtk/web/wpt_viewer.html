@@ -67,7 +67,11 @@ body {
 					+ "Set as Home</div>"
 					+ "<hr noshade/>"
 					+  "<div onmousedown='doAddLocation()' onmouseover='doHighlight(this)' onmouseout='doNohighlight(this)'>"
-					+ "Add Location</div>";
+					+ "Add Location</div>"
+					+ "<div onmousedown='doAddWaypoint()' onmouseover='doHighlight(this)' onmouseout='doNohighlight(this)'>"
+					+ "Add Waypoint</div>"
+					+ "<div onmousedown='doCorrectCoordinate()' onmouseover='doHighlight(this)' onmouseout='doNohighlight(this)'>"
+					+ "Correct Coordinates</div>";
 	
 	function getParm( name )
 	{
@@ -360,6 +364,21 @@ body {
 		var lonlat = mouse.transform(map.projection, map.displayProjection);
 		hidden.innerHTML = "<iframe src='ocm://addlocation/" + lonlat.lat + "/" + lonlat.lon + "'/>";
 	}
+	
+	function doAddWaypoint()
+	{
+		doHidePopup();
+		var lonlat = mouse.transform(map.projection, map.displayProjection);
+		hidden.innerHTML = "<iframe src='ocm://addwaypoint/" + lonlat.lat + "/" + lonlat.lon + "'/>";
+	}
+	
+	function doCorrectCoordinate()
+	{
+		doHidePopup();
+		var lonlat = mouse.transform(map.projection, map.displayProjection);
+		hidden.innerHTML = "<iframe src='ocm://correctcoordinate/" + lonlat.lat + "/" + lonlat.lon + "'/>";
+	}
+	
 	
         // -->
     </script>
