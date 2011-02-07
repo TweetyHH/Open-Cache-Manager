@@ -11,6 +11,13 @@ Version 0.23
 	-- At the moment, only decimal degree format is supported
 - Add GPS profiles support. Users upgrading from previous versions of OCM will have their settings moved
 to the "Default" profile. You can rename this profile from the GPS menu.
+- OCM can now process Corrected Coordinates and notes from GSAK (in GSAK, when exporting check the box that
+says "Include GSAK Extra Fields in Export")
+- On the Advanced filters dialog, bold tab names that have non-default values
+- Improve menu organization
+- Add support for DNF, FTF, and up to four user supplied data fields
+- OCM now maintains cache logs beween imports
+- Add Field Notes support
 
 
 Version 0.22.9

@@ -68,6 +68,13 @@ namespace ocmengine
 		private double m_correctedLat = -1;
 		private double m_correctedLon = -1;
 		private double m_distance = -1;
+	
+		private bool m_dnf = false;
+		private bool m_ftf = false;
+		private string m_user1 = String.Empty;
+		private string m_user2 = String.Empty;
+		private string m_user3 = String.Empty;
+		private string m_user4 = String.Empty;
 		
 		public string CacheName
 		{
@@ -271,7 +278,42 @@ namespace ocmengine
 			get { return m_distance;}
 			set { m_distance = value;}
 		}
+		
+		public bool FTF
+		{
+			get { return m_ftf;}
+			set { m_ftf = value;}
+		}
 					
+		public bool DNF
+		{
+			get { return m_dnf;}
+			set {m_dnf = value;}
+		}
+		
+		public string User1
+		{
+			get { return m_user1;}
+			set { m_user1 = value;}
+		}
+		
+		public string User2
+		{
+			get { return m_user2;}
+			set { m_user2 = value;}
+		}
+		
+		public string User3
+		{
+			get { return m_user3;}
+			set { m_user3 = value;}
+		}
+		
+		public string User4
+		{
+			get { return m_user4;}
+			set { m_user4 = value;}
+		}
 		
 		/// <summary>
 		/// Creates a new Geocache object. Only public for testing purposes.

@@ -136,6 +136,17 @@ namespace ocmgtk
 			set { this.Set("/apps/ocm/datadir", value);}
 		}
 		
+		public bool UseOfflineLogging
+		{
+			get { return (Boolean) this.Get("/apps/ocm/offlinelogging", true);}
+			set { this.Set("/apps/ocm/offlinelogging", value);}
+		}
+		
+		
+		public string FieldNotesFile
+		{
+			get { return DataDirectory + "/cachelogs.txt";}
+		}
 		public string ImportDirectory
 		{
 			get { return (String) this.Get("/apps/ocm/importdir", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));}

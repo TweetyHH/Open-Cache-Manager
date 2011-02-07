@@ -78,8 +78,8 @@ namespace ocmgtk
 			else
 				urlEntry.Text = String.Empty;
 			urlNameEntry.Text = m_cache.URLName;
-			latEntry.SetCoordinate(m_cache.OrigLat, true);
-			lonEntry.SetCoordinate(m_cache.OrigLon, false);
+			coordEntry.Latitude = m_cache.OrigLat;
+			coordEntry.Longitude = m_cache.OrigLon;
 			nameEntry.Text = m_cache.CacheName;
 			shortDescEntry.Buffer.Text = m_cache.ShortDesc;
 			longDescEntry.Buffer.Text = m_cache.LongDesc;
@@ -88,6 +88,10 @@ namespace ocmgtk
 			ownerEntry.Text = m_cache.CacheOwner;
 			ownerIDEntry.Text = m_cache.OwnerID;
 			cacheIDEntry.Text = m_cache.CacheID;
+			udata1Entry.Text = m_cache.User1;
+			uData2Entry.Text = m_cache.User2;
+			uData3Entry.Text = m_cache.User3;
+			uData4Entry.Text = m_cache.User4;
 			
 			diffEntry.Active = 0;
 			if (m_cache.Difficulty > 1 )
@@ -193,8 +197,8 @@ namespace ocmgtk
 				m_cache.URL = null;
 			}
 			m_cache.URLName = urlNameEntry.Text;
-			m_cache.Lat = latEntry.getCoordinate();
-			m_cache.Lon = lonEntry.getCoordinate();
+			m_cache.Lat = coordEntry.Latitude;
+			m_cache.Lon = coordEntry.Longitude;
 			m_cache.CacheName = nameEntry.Text;
 			m_cache.ShortDesc = shortDescEntry.Buffer.Text;
 			m_cache.LongDesc = longDescEntry.Buffer.Text;
@@ -203,6 +207,10 @@ namespace ocmgtk
 			m_cache.CacheOwner = ownerEntry.Text;
 			m_cache.OwnerID = ownerIDEntry.Text;
 			m_cache.CacheID = cacheIDEntry.Text;
+			m_cache.User1 = udata1Entry.Text;
+			m_cache.User2 = uData2Entry.Text;
+			m_cache.User3 = uData3Entry.Text;
+			m_cache.User4 = uData4Entry.Text;
 			
 			m_cache.Difficulty = 1f;
 			if (diffEntry.Active == 1 )

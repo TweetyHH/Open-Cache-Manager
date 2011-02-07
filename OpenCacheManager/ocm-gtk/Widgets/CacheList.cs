@@ -19,6 +19,7 @@ namespace ocmgtk
 		const string START_ARCHIVE = "<span fgcolor='red' strikethrough='true'>";
 		const string START_UNAVAIL = "<span fgcolor='red'>";
 		const string START_RECENT_DNF = "<span fgcolor='darkorange'>";
+		const string START_MYDNF = "<span fgcolor='darkblue'>";
 		const string START_ITALICS = "<i>";
 		const string START_BOLD = "<b>";
 		const string END_BOLD = "</b>";
@@ -295,7 +296,11 @@ namespace ocmgtk
 		{
 			Geocache cache = (Geocache)model.GetValue (iter, 0);
 			CellRendererPixbuf icon = cell as CellRendererPixbuf;
-			if (cache.Found)
+			if (cache.FTF)
+				icon.Pixbuf = IconManager.FTF_S;
+			else if (cache.DNF)
+				icon.Pixbuf = IconManager.DNF_S;
+			else if (cache.Found)
 				icon.Pixbuf = IconManager.GetSmallCacheIcon (Geocache.CacheType.FOUND);
 			else if ((cache.OwnerID == m_monitor.OwnerID  ) || (cache.CacheOwner == m_monitor.OwnerID))
 				icon.Pixbuf = IconManager.GetSmallCacheIcon (Geocache.CacheType.MINE);
@@ -503,6 +508,8 @@ namespace ocmgtk
 			MenuItem mark = new MenuItem(Catalog.GetString("Mark"));
 			Menu markSub = new Menu();
 			MenuItem markFound = new MenuItem(Catalog.GetString("Mark Found"));
+			MenuItem markFTF = new MenuItem(Catalog.GetString("Mark First To Find"));
+			MenuItem markDNF = new MenuItem(Catalog.GetString("Mark Did Not Find"));
 			MenuItem markUnfound = new MenuItem(Catalog.GetString("Mark Unfound"));
 			MenuItem markDisabled = new MenuItem(Catalog.GetString("Mark Disabled"));
 			MenuItem markArchived = new MenuItem(Catalog.GetString("Mark Archived"));
@@ -539,13 +546,34 @@ namespace ocmgtk
 				
 				if (cache.Symbol.Contains("Found"))
 				{
+					if (cache.FTF)
+					{
+						markFTF.Sensitive = false;
+						markFound.Sensitive = true;
+					}
+					else
+					{
+						markFTF.Sensitive = true;
+						markFound.Sensitive = false;
+					}
 					markUnfound.Sensitive = true;
-					markFound.Sensitive = false;
+					markDNF.Sensitive = true;
+					
 				}
 				else
 				{
-					markUnfound.Sensitive = false;
 					markFound.Sensitive = true;
+					markFTF.Sensitive = true;
+					if (cache.DNF)
+					{
+						markDNF.Sensitive = false;
+						markUnfound.Sensitive = true;
+					}
+					else
+					{
+						markDNF.Sensitive = true;
+						markUnfound.Sensitive = false;
+					}
 				}
 			}
 			else
@@ -588,6 +616,8 @@ namespace ocmgtk
 			markAvailable.Activated += HandleMarkAvailableActivated;
 			qlandkarte.Activated += HandleQlandkarteActivated;
 			logCache.Activated += HandleLogCacheActivated;
+			markDNF.Activated += HandleMarkDNFActivated;
+			markFTF.Activated += HandleMarkFTFActivated;
 		
 			
 			popup.Add (setCenterItem);
@@ -596,6 +626,8 @@ namespace ocmgtk
 			popup.Add (logCache);
 			popup.Add (mark);
 			markSub.Add(markFound);
+			markSub.Add(markFTF);
+			markSub.Add(markDNF);
 			markSub.Add(markUnfound);
 			markSub.Add (markDisabled);
 			markSub.Add (markArchived);
@@ -609,6 +641,16 @@ namespace ocmgtk
 			popup.Add (deleteItem);
 			popup.ShowAll ();
 			popup.Popup ();
+		}
+
+		void HandleMarkFTFActivated (object sender, EventArgs e)
+		{
+			m_monitor.MarkCacheFTF();
+		}
+
+		void HandleMarkDNFActivated (object sender, EventArgs e)
+		{
+			m_monitor.MarkCacheDNF();
 		}
 
 		void HandleLogCacheActivated (object sender, EventArgs e)

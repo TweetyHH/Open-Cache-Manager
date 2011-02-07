@@ -14,36 +14,40 @@
 //    limitations under the License.
 
 using System;
-using System.Collections.Generic;
-using ocmengine;
 
 namespace ocmgtk
 {
 
 
-	[Serializable]
-	public class GPSProfile
+	public partial class LoadGPSFieldNotes : Gtk.Dialog
 	{
-		public int CacheLimit = -1;
-		public string OutputFile = null;
-		public string BabelFormat = null;
-		public string FieldNotesFile = null;
-		public string Name = null;
-		public int LogLimit = -1;
-		public bool IncludeAttributes = true;
-		public WaypointNameMode NameMode = WaypointNameMode.CODE;
-		public WaypointDescMode DescMode = WaypointDescMode.DESC;
-		public Dictionary<string, string> WaypointMappings = null;
-		public DateTime LastFieldNoteScan = DateTime.MinValue;		
 
-		public GPSProfile ()
+		public LoadGPSFieldNotes ()
 		{
+			this.Build ();
 		}
 		
-		public void SetAsCurrent()
+		public DateTime LastScan
 		{
-			UIMonitor.getInstance().Configuration.GPSProf = this.Name;
+			set
+			{
+				if (value == DateTime.MinValue)
+				{
+					checkIgnoreLogs.Active = false;
+				}
+				else
+				{
+					checkIgnoreLogs.Active = true;
+					ignoreDate.Date = value;
+				}
+			}
+			get
+			{
+				if (checkIgnoreLogs.Active)
+					return ignoreDate.Date;
+				else
+					return DateTime.MinValue;
+			}
 		}
-		
 	}
 }

@@ -17,15 +17,15 @@ namespace ocmgtk {
         
         private ocmgtk.OCMQueryPage1 page1;
         
-        private Gtk.Label label3;
+        private Gtk.Label diffLabel;
         
         private ocmgtk.OCMQueryPage2 contPage;
         
-        private Gtk.Label page2;
+        private Gtk.Label contLabel;
         
         private ocmgtk.OCMQueryPage3 datePage;
         
-        private Gtk.Label label2;
+        private Gtk.Label dateLabel;
         
         private ocmgtk.OCMQueryPage4 childrenPage;
         
@@ -33,7 +33,11 @@ namespace ocmgtk {
         
         private ocmgtk.OCMQueryPage5 attributePage;
         
-        private Gtk.Label label4;
+        private Gtk.Label attrPageLabel;
+        
+        private ocmgtk.OCMQueryPage6 ocmquerypage61;
+        
+        private Gtk.Label label6;
         
         private Gtk.Button buttonCancel;
         
@@ -44,7 +48,14 @@ namespace ocmgtk {
             // Widget ocmgtk.FilterDialog
             this.Name = "ocmgtk.FilterDialog";
             this.Title = Mono.Unix.Catalog.GetString("Advanced Filters...");
+            this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.WindowPosition = ((Gtk.WindowPosition)(4));
+            this.Modal = true;
+            this.BorderWidth = ((uint)(6));
+            this.Resizable = false;
+            this.AllowGrow = false;
+            this.SkipPagerHint = true;
+            this.SkipTaskbarHint = true;
             // Internal child ocmgtk.FilterDialog.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";
@@ -53,7 +64,7 @@ namespace ocmgtk {
             this.notebook1 = new Gtk.Notebook();
             this.notebook1.CanFocus = true;
             this.notebook1.Name = "notebook1";
-            this.notebook1.CurrentPage = 4;
+            this.notebook1.CurrentPage = 0;
             this.notebook1.TabPos = ((Gtk.PositionType)(0));
             // Container child notebook1.Gtk.Notebook+NotebookChild
             this.page1 = new ocmgtk.OCMQueryPage1();
@@ -61,11 +72,11 @@ namespace ocmgtk {
             this.page1.Name = "page1";
             this.notebook1.Add(this.page1);
             // Notebook tab
-            this.label3 = new Gtk.Label();
-            this.label3.Name = "label3";
-            this.label3.LabelProp = Mono.Unix.Catalog.GetString("Difficulty/Type");
-            this.notebook1.SetTabLabel(this.page1, this.label3);
-            this.label3.ShowAll();
+            this.diffLabel = new Gtk.Label();
+            this.diffLabel.Name = "diffLabel";
+            this.diffLabel.LabelProp = Mono.Unix.Catalog.GetString("Difficulty/Type");
+            this.notebook1.SetTabLabel(this.page1, this.diffLabel);
+            this.diffLabel.ShowAll();
             // Container child notebook1.Gtk.Notebook+NotebookChild
             this.contPage = new ocmgtk.OCMQueryPage2();
             this.contPage.Events = ((Gdk.EventMask)(256));
@@ -74,11 +85,11 @@ namespace ocmgtk {
             Gtk.Notebook.NotebookChild w3 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.contPage]));
             w3.Position = 1;
             // Notebook tab
-            this.page2 = new Gtk.Label();
-            this.page2.Name = "page2";
-            this.page2.LabelProp = Mono.Unix.Catalog.GetString("Container/Description/Placed By");
-            this.notebook1.SetTabLabel(this.contPage, this.page2);
-            this.page2.ShowAll();
+            this.contLabel = new Gtk.Label();
+            this.contLabel.Name = "contLabel";
+            this.contLabel.LabelProp = Mono.Unix.Catalog.GetString("Container/Description/Placed By");
+            this.notebook1.SetTabLabel(this.contPage, this.contLabel);
+            this.contLabel.ShowAll();
             // Container child notebook1.Gtk.Notebook+NotebookChild
             this.datePage = new ocmgtk.OCMQueryPage3();
             this.datePage.Events = ((Gdk.EventMask)(256));
@@ -94,11 +105,11 @@ namespace ocmgtk {
             Gtk.Notebook.NotebookChild w4 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.datePage]));
             w4.Position = 2;
             // Notebook tab
-            this.label2 = new Gtk.Label();
-            this.label2.Name = "label2";
-            this.label2.LabelProp = Mono.Unix.Catalog.GetString("Dates/Location");
-            this.notebook1.SetTabLabel(this.datePage, this.label2);
-            this.label2.ShowAll();
+            this.dateLabel = new Gtk.Label();
+            this.dateLabel.Name = "dateLabel";
+            this.dateLabel.LabelProp = Mono.Unix.Catalog.GetString("Dates/Location");
+            this.notebook1.SetTabLabel(this.datePage, this.dateLabel);
+            this.dateLabel.ShowAll();
             // Container child notebook1.Gtk.Notebook+NotebookChild
             this.childrenPage = new ocmgtk.OCMQueryPage4();
             this.childrenPage.Events = ((Gdk.EventMask)(256));
@@ -123,20 +134,33 @@ namespace ocmgtk {
             Gtk.Notebook.NotebookChild w6 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.attributePage]));
             w6.Position = 4;
             // Notebook tab
-            this.label4 = new Gtk.Label();
-            this.label4.Name = "label4";
-            this.label4.LabelProp = Mono.Unix.Catalog.GetString("Attributes");
-            this.notebook1.SetTabLabel(this.attributePage, this.label4);
-            this.label4.ShowAll();
+            this.attrPageLabel = new Gtk.Label();
+            this.attrPageLabel.Name = "attrPageLabel";
+            this.attrPageLabel.LabelProp = Mono.Unix.Catalog.GetString("Attributes");
+            this.notebook1.SetTabLabel(this.attributePage, this.attrPageLabel);
+            this.attrPageLabel.ShowAll();
+            // Container child notebook1.Gtk.Notebook+NotebookChild
+            this.ocmquerypage61 = new ocmgtk.OCMQueryPage6();
+            this.ocmquerypage61.Events = ((Gdk.EventMask)(256));
+            this.ocmquerypage61.Name = "ocmquerypage61";
+            this.notebook1.Add(this.ocmquerypage61);
+            Gtk.Notebook.NotebookChild w7 = ((Gtk.Notebook.NotebookChild)(this.notebook1[this.ocmquerypage61]));
+            w7.Position = 5;
+            // Notebook tab
+            this.label6 = new Gtk.Label();
+            this.label6.Name = "label6";
+            this.label6.LabelProp = Mono.Unix.Catalog.GetString("Status/Distance");
+            this.notebook1.SetTabLabel(this.ocmquerypage61, this.label6);
+            this.label6.ShowAll();
             w1.Add(this.notebook1);
-            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(w1[this.notebook1]));
-            w7.Position = 0;
+            Gtk.Box.BoxChild w8 = ((Gtk.Box.BoxChild)(w1[this.notebook1]));
+            w8.Position = 0;
             // Internal child ocmgtk.FilterDialog.ActionArea
-            Gtk.HButtonBox w8 = this.ActionArea;
-            w8.Name = "dialog1_ActionArea";
-            w8.Spacing = 10;
-            w8.BorderWidth = ((uint)(5));
-            w8.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+            Gtk.HButtonBox w9 = this.ActionArea;
+            w9.Name = "dialog1_ActionArea";
+            w9.Spacing = 10;
+            w9.BorderWidth = ((uint)(5));
+            w9.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonCancel = new Gtk.Button();
             this.buttonCancel.CanDefault = true;
@@ -146,9 +170,9 @@ namespace ocmgtk {
             this.buttonCancel.UseUnderline = true;
             this.buttonCancel.Label = "gtk-cancel";
             this.AddActionWidget(this.buttonCancel, -6);
-            Gtk.ButtonBox.ButtonBoxChild w9 = ((Gtk.ButtonBox.ButtonBoxChild)(w8[this.buttonCancel]));
-            w9.Expand = false;
-            w9.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w10 = ((Gtk.ButtonBox.ButtonBoxChild)(w9[this.buttonCancel]));
+            w10.Expand = false;
+            w10.Fill = false;
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
             this.buttonOk = new Gtk.Button();
             this.buttonOk.CanDefault = true;
@@ -158,15 +182,15 @@ namespace ocmgtk {
             this.buttonOk.UseUnderline = true;
             this.buttonOk.Label = "gtk-ok";
             this.AddActionWidget(this.buttonOk, -5);
-            Gtk.ButtonBox.ButtonBoxChild w10 = ((Gtk.ButtonBox.ButtonBoxChild)(w8[this.buttonOk]));
-            w10.Position = 1;
-            w10.Expand = false;
-            w10.Fill = false;
+            Gtk.ButtonBox.ButtonBoxChild w11 = ((Gtk.ButtonBox.ButtonBoxChild)(w9[this.buttonOk]));
+            w11.Position = 1;
+            w11.Expand = false;
+            w11.Fill = false;
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 808;
-            this.DefaultHeight = 453;
+            this.DefaultWidth = 1012;
+            this.DefaultHeight = 619;
             this.buttonOk.HasDefault = true;
             this.Show();
             this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteClick);

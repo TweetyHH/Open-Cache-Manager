@@ -74,13 +74,15 @@ public partial class MainWindow : Gtk.Window
 		addCacheTo = new MenuItem(Catalog.GetString("Add _Selected Cache to"));
 		addCacheTo.Sensitive = false;
 		removeSelected = new MenuItem(Catalog.GetString("_Remove Selected Cache from Bookmark List"));
-		bmrksMenu.Append(newBList);
-		bmrksMenu.Append(delBList);
-		bmrksMenu.Append(new MenuItem());
 		bmrksMenu.Append(bmrkLists);
 		bmrksMenu.Append(addVisibleCaches);
 		bmrksMenu.Append(addCacheTo);
 		bmrksMenu.Append(removeSelected);
+		bmrksMenu.Append(new MenuItem());
+		bmrksMenu.Append(newBList);
+		bmrksMenu.Append(delBList);
+		
+	
 		bmrks.Submenu = bmrksMenu;
 		newBList.Activated += HandleNewBListActivated;
 		removeSelected.Activated += HandleRemoveSelectedActivated;
@@ -816,6 +818,34 @@ public partial class MainWindow : Gtk.Window
 	{
 		m_monitor.DeleteGPSProfile();
 	}
+	
+	protected virtual void OnOfflineToggle (object sender, System.EventArgs e)
+	{
+		m_monitor.Configuration.UseOfflineLogging = !m_monitor.Configuration.UseOfflineLogging;
+	}
+	
+	public void SetOfflineMode(bool isOffline)
+	{
+		LogToFieldNotesFileAction.Toggled -= OnOfflineToggle;
+		LogToFieldNotesFileAction.Active = isOffline;
+		LogToFieldNotesFileAction.Toggled += OnOfflineToggle;
+	}
+	protected virtual void OnViewFieldNotes (object sender, System.EventArgs e)
+	{
+		m_monitor.ViewOfflineLogs();
+	}
+	
+	protected virtual void OnProcessFieldNotes (object sender, System.EventArgs e)
+	{
+		m_monitor.ProcessGPSFieldNotes();
+	}
+	
+	protected virtual void OnClearFieldNotes (object sender, System.EventArgs e)
+	{
+		m_monitor.ClearFieldNotes();
+	}
+	
+	
 	
 	
 }

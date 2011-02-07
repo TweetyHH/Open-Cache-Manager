@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.23.2</ReleaseVersion>
+    <ReleaseVersion>0.23.3</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -143,7 +143,6 @@
     <Compile Include="Widgets\WaypointOverrideWidget.cs" />
     <Compile Include="Widgets\SymbolChooser.cs" />
     <Compile Include="Dialogs\QTLandKarteDialog.cs" />
-    <Compile Include="Dialogs\ProcessLogs.cs" />
     <Compile Include="IQLandkarteGT.cs" />
     <Compile Include="Widgets\SetupAssistantPage4.cs" />
     <Compile Include="IconManager.cs" />
@@ -191,7 +190,6 @@
     <Compile Include="gtk-gui\ocmgtk.WaypointOverrideWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.SymbolChooser.cs" />
     <Compile Include="gtk-gui\ocmgtk.QTLandKarteDialog.cs" />
-    <Compile Include="gtk-gui\ocmgtk.ProcessLogs.cs" />
     <Compile Include="gtk-gui\ocmgtk.SetupAssistantPage4.cs" />
     <Compile Include="gtk-gui\ocmgtk.CopyMoveDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.CopyingProgress.cs" />
@@ -247,6 +245,16 @@
     <Compile Include="configuration\GPSProfile.cs" />
     <Compile Include="configuration\GPSProfileList.cs" />
     <Compile Include="gpsd\GPS.cs" />
+    <Compile Include="Widgets\OCMQueryPage6.cs" />
+    <Compile Include="gtk-gui\ocmgtk.OCMQueryPage6.cs" />
+    <Compile Include="Dialogs\LoggingDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.LoggingDialog.cs" />
+    <Compile Include="Dialogs\OfflineLogDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.OfflineLogDialog.cs" />
+    <Compile Include="Dialogs\OffLineLogViewer.cs" />
+    <Compile Include="gtk-gui\ocmgtk.OffLineLogViewer.cs" />
+    <Compile Include="Dialogs\LoadGPSFieldNotes.cs" />
+    <Compile Include="gtk-gui\ocmgtk.LoadGPSFieldNotes.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -1073,6 +1081,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\scalable\attributes\no_Park_and_Grab.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\dnf.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\ftf.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\write_note.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\scalable\needs_maintenance.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

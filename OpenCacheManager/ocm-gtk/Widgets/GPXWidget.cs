@@ -58,12 +58,12 @@ namespace ocmgtk
 
 		public string GetOutputFile ()
 		{
-			return fieldNotesEntry.Text;
+			return fileEntry.Text;
 		}
 		
 		public void SetOutputFile(String file)
 		{
-			fieldNotesEntry.Text = file;
+			fileEntry.Text = file;
 		}
 
 		public string GetBabelFormat ()

@@ -28,6 +28,9 @@ namespace ocmgtk
 		Gtk.Entry m_DirectEntry = new Gtk.Entry();
 		Gtk.Label m_DirectLabel = new Gtk.Label(Catalog.GetString("Coordinate:"));
 		
+		public delegate void ChangedEventHandler(object sender, EventArgs args);
+		public event ChangedEventHandler Changed;
+		
 		bool m_IsDirect = false;
 		
 		public double Latitude
@@ -147,6 +150,27 @@ namespace ocmgtk
 			m_DirectEntry.WidthChars = 40;
 			if (UIMonitor.getInstance().Configuration.UseDirectEntryMode)
 				SetDirectMode();
+			latWidget.Changed += HandleLatWidgetChanged;
+			lonWidget.Changed += HandleLonWidgetChanged;
+			m_DirectEntry.Changed += HandleM_DirectEntryChanged;
+		}
+
+		void HandleM_DirectEntryChanged (object sender, EventArgs e)
+		{
+			if (m_IsDirect && Changed != null)
+				Changed(this, new EventArgs());
+		}
+
+		void HandleLonWidgetChanged (object sender, EventArgs args)
+		{
+			if (Changed != null)
+				Changed(this, new EventArgs());
+		}
+
+		void HandleLatWidgetChanged (object sender, EventArgs args)
+		{
+			if (Changed != null)
+				Changed(this, new EventArgs());
 		}
 	}
 }

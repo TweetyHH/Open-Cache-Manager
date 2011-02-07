@@ -30,8 +30,8 @@ namespace ocmgtk
 		{
 			this.Build ();
 			m_config = config;
-			latControl.SetCoordinate(config.HomeLat, true);
-			lonControl.SetCoordinate(config.HomeLon, false);
+			coordinateEntry.Latitude = config.HomeLat;
+			coordinateEntry.Longitude = config.HomeLon;
 			memberId.Text = config.OwnerID;
 			unitsCombo.Active = config.ImperialUnits ? 1:0;
 			nearbyCombo.Active = config.ShowNearby ? 0:1;
@@ -134,8 +134,8 @@ namespace ocmgtk
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
 			this.Hide();
-			m_config.HomeLat = latControl.getCoordinate();
-			m_config.HomeLon = lonControl.getCoordinate();
+			m_config.HomeLat = coordinateEntry.Latitude;
+			m_config.HomeLon = coordinateEntry.Longitude;
 			m_config.OwnerID = memberId.Text;
 			m_config.ImperialUnits = (unitsCombo.Active == 1)? true:false;
 			m_config.ShowNearby = (nearbyCombo.Active == 0)?true:false;

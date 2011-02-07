@@ -26,10 +26,16 @@ namespace ocmgtk {
         protected virtual void Build() {
             Stetic.Gui.Initialize(this);
             // Widget ocmgtk.DeleteItem
+            this.WidthRequest = 300;
             this.Name = "ocmgtk.DeleteItem";
             this.Title = Mono.Unix.Catalog.GetString("Delete Bookmark List...");
+            this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.BorderWidth = ((uint)(6));
+            this.Resizable = false;
+            this.AllowGrow = false;
+            this.SkipPagerHint = true;
+            this.SkipTaskbarHint = true;
             // Internal child ocmgtk.DeleteItem.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";
@@ -93,7 +99,7 @@ namespace ocmgtk {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 354;
-            this.DefaultHeight = 119;
+            this.DefaultHeight = 123;
             this.Show();
             this.buttonCancel.Clicked += new System.EventHandler(this.OnCancelClicked);
             this.buttonOk.Clicked += new System.EventHandler(this.OnOKClicked);

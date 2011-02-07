@@ -269,6 +269,7 @@ namespace ocmgtk
 			m_filters = QuickFilters.LoadQuickFilters();
 			m_locations = LocationList.LoadLocationList();
 			m_profiles = GPSProfileList.LoadProfileList();
+			m_mainWin.SetOfflineMode(m_conf.UseOfflineLogging);
 			LoadMap (m_conf.MapType);
 			if (m_conf.StartupFilter != String.Empty)
 			{
@@ -917,12 +918,75 @@ namespace ocmgtk
 
 		public void LogFind ()
 		{
+			if (m_conf.UseOfflineLogging)
+			{
+				LogFindOffline ();		
+			}
+			else
+			{
+				LogCacheOnline ();
+			}
+		}
+		
+		private void LogFindOffline ()
+		{
+			OfflineLogDialog dlg = new OfflineLogDialog();
+			CacheLog log = new CacheLog();
+			log.CacheCode = m_selectedCache.Name;
+			log.LogDate = m_loggingdate;
+			log.LogStatus = "Found it";
+			log.LoggedBy = "OCM";
+			log.LogKey = m_selectedCache.Name + "-ofl";
+			log.LogMessage = String.Empty;
+			dlg.Log = log;
+			if ((int) ResponseType.Ok == dlg.Run())
+			{
+				log = dlg.Log;
+				ProcessOfflineLog (m_selectedCache, log, dlg.FTF);
+				dlg.Hide();
+			}
+			dlg.Hide();
+			dlg.Dispose();		
+		}
+		
+		private void ProcessOfflineLog (Geocache cache, CacheLog log, bool ftf)
+		{
+				FieldNotesHandler.WriteToFile(log , m_conf.FieldNotesFile);
+			
+				if (cache == null)
+					return;
+				CacheStore store = Engine.getInstance().Store;
+				store.AddLogAtomic(log.CacheCode, log);
+				if (log.LogStatus == "Found it")
+				{
+					cache.DNF = false;
+					cache.FTF = ftf;
+					cache.Symbol = "Geocache Found";
+					store.UpdateCacheAtomic(cache);
+					store.UpdateWaypointAtomic(cache);
+				}
+				else if (log.LogStatus == "Didn't find it")
+				{
+					cache.DNF = true;
+					cache.FTF = false;
+					cache.Symbol = "Geocache";
+					store.UpdateCacheAtomic(cache);
+					store.UpdateWaypointAtomic(cache);
+				}
+				else if (log.LogStatus == "Needs Maintenance")
+				{
+					cache.CheckNotes = true;
+				}
+		}
+		
+		private void LogCacheOnline ()
+		{
+			MarkCacheFound();
 			if (m_selectedCache.URL == null)
 				return;
-			else if (!m_selectedCache.URL.ToString().Contains("geocaching"))
-				System.Diagnostics.Process.Start (m_selectedCache.URL.ToString());
-			else
-				System.Diagnostics.Process.Start ("http://www.geocaching.com/seek/log.aspx?ID=" + m_selectedCache.CacheID);
+			LoggingDialog dlg = new LoggingDialog();
+			dlg.LogCache(m_selectedCache);
+			dlg.Run();
 		}
 
 		public void MarkCacheFound ()
@@ -937,6 +1001,8 @@ namespace ocmgtk
 			}
 			dlg.Hide();
 			m_loggingdate = dlg.LogDate;
+			m_selectedCache.FTF = false;
+			m_selectedCache.DNF = false;
 			m_selectedCache.Symbol = "Geocache Found";
 			CacheLog log = new CacheLog ();
 			log.FinderID = OwnerID;
@@ -945,6 +1011,7 @@ namespace ocmgtk
 			log.LogStatus = "Found it";
 			log.LogMessage = "AUTO LOG: OCM";
 			Engine.getInstance ().Store.UpdateWaypointAtomic (m_selectedCache);
+			Engine.getInstance ().Store.UpdateCacheAtomic (m_selectedCache);
 			Engine.getInstance ().Store.AddLogAtomic (m_selectedCache.Name, log);
 			SetSelectedCache(m_selectedCache);
 			if (m_showNearby)
@@ -958,7 +1025,10 @@ namespace ocmgtk
 			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, "Are you sure you want to mark " + m_selectedCache.Name + " as unfound?");
 			if ((int)ResponseType.Yes == dlg.Run ()) {
 				m_selectedCache.Symbol = "Geocache";
+				m_selectedCache.FTF = false;
+				m_selectedCache.DNF = false;
 				Engine.getInstance ().Store.UpdateWaypointAtomic (m_selectedCache);
+				Engine.getInstance ().Store.UpdateCacheAtomic (m_selectedCache);
 				SetSelectedCache(m_selectedCache);
 				UpdateStatusBar();
 				if (m_showNearby)
@@ -966,6 +1036,68 @@ namespace ocmgtk
 				m_mainWin.QueueDraw();
 			}
 			dlg.Hide ();
+		}
+		
+		public void MarkCacheFTF ()
+		{
+			MarkFoundDialog dlg = new MarkFoundDialog();
+			dlg.CacheName = m_selectedCache.Name;
+			dlg.LogDate = m_loggingdate;
+			if ((int)ResponseType.Cancel == dlg.Run ()) 
+			{
+				dlg.Hide();
+				return;
+			}
+			dlg.Hide();
+			m_loggingdate = dlg.LogDate;
+			m_selectedCache.Symbol = "Geocache Found";
+			m_selectedCache.FTF = true;
+			m_selectedCache.DNF = false;
+			CacheLog log = new CacheLog ();
+			log.FinderID = OwnerID;
+			log.LogDate = dlg.LogDate;
+			log.LoggedBy = "OCM";
+			log.LogStatus = "Found it";
+			log.LogMessage = "AUTO LOG: OCM";
+			Engine.getInstance ().Store.UpdateWaypointAtomic (m_selectedCache);
+			Engine.getInstance ().Store.UpdateCacheAtomic (m_selectedCache);
+			Engine.getInstance ().Store.AddLogAtomic (m_selectedCache.Name, log);
+			SetSelectedCache(m_selectedCache);
+			if (m_showNearby)
+				GetNearByCaches();
+			UpdateStatusBar();
+			m_mainWin.QueueDraw();
+		}
+		
+		public void MarkCacheDNF()
+		{
+			MarkFoundDialog dlg = new MarkFoundDialog();
+			dlg.CacheName = m_selectedCache.Name;
+			dlg.LogDate = m_loggingdate;
+			if ((int)ResponseType.Cancel == dlg.Run ()) 
+			{
+				dlg.Hide();
+				return;
+			}
+			dlg.Hide();
+			m_loggingdate = dlg.LogDate;
+			m_selectedCache.Symbol = "Geocache";
+			m_selectedCache.FTF = false;
+			m_selectedCache.DNF = true;
+			CacheLog log = new CacheLog ();
+			log.FinderID = OwnerID;
+			log.LogDate = dlg.LogDate;
+			log.LoggedBy = "OCM";
+			log.LogStatus = "Didn't find it";
+			log.LogMessage = "AUTO LOG: OCM";
+			Engine.getInstance ().Store.UpdateWaypointAtomic (m_selectedCache);
+			Engine.getInstance ().Store.UpdateCacheAtomic (m_selectedCache);
+			Engine.getInstance ().Store.AddLogAtomic (m_selectedCache.Name, log);
+			SetSelectedCache(m_selectedCache);
+			if (m_showNearby)
+				GetNearByCaches();
+			UpdateStatusBar();
+			m_mainWin.QueueDraw();
 		}
 		
 		public void MarkCacheDisabled ()
@@ -1966,6 +2098,63 @@ namespace ocmgtk
 		public void SetLocation(Location loc)
 		{
 			SetMapCentre(loc.Latitude, loc.Longitude, loc.Name);
+		}
+		
+		public void ViewOfflineLogs()
+		{
+			if (!System.IO.File.Exists(m_conf.FieldNotesFile))
+			{
+				MessageDialog mdlg = new MessageDialog(m_mainWin,DialogFlags.Modal, MessageType.Info, ButtonsType.Ok,
+				                                      Catalog.GetString("There are no offline logs."));
+				mdlg.Run();
+				mdlg.Hide();
+				return;
+			}
+			
+			List<CacheLog> logs = FieldNotesHandler.GetLogs(m_conf.FieldNotesFile);
+			OffLineLogViewer dlg = new OffLineLogViewer();
+			dlg.PopulateLogs(logs);
+			dlg.Run();
+		}
+		
+		public void ProcessGPSFieldNotes()
+		{
+			LoadGPSFieldNotes dlg = new LoadGPSFieldNotes();
+			if ((int) ResponseType.Ok == dlg.Run())
+			{
+				dlg.Hide();
+				GPSProfile prof = m_profiles.GetActiveProfile();
+				List<CacheLog> logs = FieldNotesHandler.GetLogs(prof.FieldNotesFile);
+				int iCount = 0;
+				foreach(CacheLog log in logs)
+				{
+					if (log.LogDate < dlg.LastScan)
+						continue;
+					Geocache cache = Engine.getInstance().Store.GetCache(log.CacheCode);
+					ProcessOfflineLog(cache, log, false);
+					iCount ++;
+				}
+				MessageDialog mdlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Info,
+				                                       ButtonsType.Ok, Catalog.GetString("Processed {0} field notes."),
+				                                       iCount.ToString());
+				mdlg.Run();
+				mdlg.Hide();
+				RefreshCaches();
+			}
+			dlg.Hide();
+			dlg.Dispose();
+		}
+		
+		public void ClearFieldNotes()
+		{
+			MessageDialog dlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Warning, ButtonsType.YesNo,
+			                                      Catalog.GetString("Are you sure you want to clear all Field Notes?"));
+			if ((int)ResponseType.Yes == dlg.Run())
+			{
+				FieldNotesHandler.ClearFieldNotes(m_conf.FieldNotesFile);
+			}
+			dlg.Hide();
+			dlg.Dispose();
 		}
 	}
 }

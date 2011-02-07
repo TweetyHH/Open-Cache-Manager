@@ -26,12 +26,12 @@ namespace ocmgtk
 		
 		public double CorrectedLat
 		{
-			get { return correctLat.getCoordinate();}
+			get { return coordEntry.Latitude;}
 		}
 		
 		public double CorrectedLon
 		{
-			get { return correctLon.getCoordinate();}
+			get { return coordEntry.Longitude;}
 		}
 		
 		bool m_IsCorrected = false;
@@ -53,27 +53,20 @@ namespace ocmgtk
 			SetActual(cache.OrigLat, cache.OrigLon);
 			if (cache.HasCorrected)
 			{
-				correctLat.SetCoordinate(cache.CorrectedLat, true);
-				correctLon.SetCoordinate(cache.CorrectedLon, false);
+				coordEntry.Latitude = cache.CorrectedLat;
+				coordEntry.Longitude = cache.CorrectedLon;
 				resetButton.Sensitive = true;
 			}
 			else
 			{
-				correctLat.SetCoordinate(cache.Lat, true);
-				correctLon.SetCoordinate(cache.Lon, false);
+				coordEntry.Latitude = cache.Lat;
+				coordEntry.Longitude = cache.Lon;
 			}	
 			m_IsCorrected = cache.HasCorrected;
-			correctLat.Changed += HandleCorrectLatChanged;
-			correctLon.Changed += HandleCorrectLonChanged;
+			coordEntry.Changed += HandleCoordEntryChanged;
 		}
 
-		void HandleCorrectLonChanged (object sender, EventArgs args)
-		{
-			resetButton.Sensitive = true;
-			m_IsCorrected = true;
-		}
-
-		void HandleCorrectLatChanged (object sender, EventArgs args)
+		void HandleCoordEntryChanged (object sender, EventArgs args)
 		{
 			resetButton.Sensitive = true;
 			m_IsCorrected = true;
@@ -85,8 +78,8 @@ namespace ocmgtk
 		}
 		protected virtual void OnResetClick (object sender, System.EventArgs e)
 		{
-			correctLat.SetCoordinate(m_cache.OrigLat, true);
-			correctLon.SetCoordinate(m_cache.OrigLon, false);
+			coordEntry.Latitude = m_cache.OrigLat;
+			coordEntry.Longitude = m_cache.OrigLon;
 			m_IsCorrected = false;
 			resetButton.Sensitive = false;
 		}

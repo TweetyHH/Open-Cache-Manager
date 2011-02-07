@@ -131,7 +131,7 @@ namespace ocmengine
 			}
 			rdr.Close();
 			store.ClearTBs(waypoints);
-			store.ClearLogs(waypoints);
+			//store.ClearLogs(waypoints);
 			store.ClearAttributes(waypoints);
 			return;
 		}
@@ -489,7 +489,7 @@ namespace ocmengine
 			}
 			else if (reader.LocalName == "logs" && !reader.IsEmptyElement)
 			{
-				parseVCacheLogs(ref cache, reader);
+				ParseTerraLogs(ref cache, reader);
 			}
 			//TEMP FIX THIS
 			cache.Difficulty = 1;
@@ -563,7 +563,7 @@ namespace ocmengine
 			}
 			else if (reader.LocalName == "logs" && !reader.IsEmptyElement)
 			{
-				parseCacheLogs(ref cache, reader);
+				ParseCacheLogs(ref cache, reader);
 			}
 			else if (reader.LocalName == "travelbugs" && !reader.IsEmptyElement)
 			{
@@ -669,7 +669,7 @@ namespace ocmengine
 			}
 			else if (reader.LocalName == "logs" && !reader.IsEmptyElement)
 			{
-				parseCacheLogs(ref cache, reader);
+				ParseCacheLogs(ref cache, reader);
 			}
 			else if (reader.LocalName == "travelbugs" && !reader.IsEmptyElement)
 			{
@@ -721,14 +721,14 @@ namespace ocmengine
 			}			
 		}
 		
-		private void parseCacheLogs(ref Geocache cache, XmlReader reader)
+		private void ParseCacheLogs(ref Geocache cache, XmlReader reader)
 		{
 			bool logsChecked = false;
 			while (reader.Read())
 			{
 				if (reader.LocalName == "log")
 				{
-					parseCacheLog(ref cache, reader, ref logsChecked);
+					ParseCacheLog(ref cache, reader, ref logsChecked);
 				}
 				if (reader.LocalName == "logs")
 				{
@@ -737,10 +737,11 @@ namespace ocmengine
 			}
 		}
 		
-		private void parseCacheLog(ref Geocache cache, XmlReader reader, ref bool logsChecked)
+		private void ParseCacheLog(ref Geocache cache, XmlReader reader, ref bool logsChecked)
 		{
 			CacheLog log = new CacheLog();
 			log.LogID = reader.GetAttribute("id");
+			log.LogKey = cache.Name + log.LogID;
 			bool breakLoop = false;
 			while (reader.Read() && !breakLoop)
 			{
@@ -782,6 +783,19 @@ namespace ocmengine
 					breakLoop = true;
 				}
 			}
+			if (log.LoggedBy == "GSAK" && log.LogStatus == "Other")
+			{
+				if (log.LogMessage.Trim() == "Notes:")
+				{
+					// Empty note, ignore
+					return;
+				}
+				// Convert GSAK notes into OCM notes
+				cache.Notes += log.LogMessage;
+				cache.Notes += "----------\n";
+				return;
+			}
+			
 			m_store.AddLog(cache.Name, log);	
 			if (!logsChecked)
 			{
@@ -799,14 +813,14 @@ namespace ocmengine
 			
 		}
 		
-		private void parseVCacheLogs(ref Geocache cache, XmlReader reader)
+		private void ParseTerraLogs(ref Geocache cache, XmlReader reader)
 		{
 			bool logsChecked = false;
 			while (reader.Read())
 			{
 				if (reader.LocalName == "log")
 				{
-					parseVCacheLog(ref cache, reader, ref logsChecked);
+					ParseTerraLog(ref cache, reader, ref logsChecked);
 				}
 				if (reader.LocalName == "logs")
 				{
@@ -816,10 +830,12 @@ namespace ocmengine
 		}
 		
 		
-		private void parseVCacheLog(ref Geocache cache, XmlReader reader,ref bool logsChecked)
+		private void ParseTerraLog(ref Geocache cache, XmlReader reader,ref bool logsChecked)
 		{
 			CacheLog log = new CacheLog();
 			bool breakLoop = false;
+			log.LogID = reader.GetAttribute("id");
+			log.LogKey = cache.Name + log.LogID;
 			while (reader.Read() && !breakLoop)
 			{
 				if (reader.LocalName == "date")

@@ -12,6 +12,7 @@
 */
 using System;
 using System.Xml;
+using System.IO;
 
 namespace ocmengine
 {
@@ -26,12 +27,20 @@ namespace ocmengine
 		string m_status = "Unknown";
 		string m_finder_id = "Unknown";
 		string m_logID = "-1";
+		string m_logKey = "-1";
+		string m_cacheCode = "Unknown";
 		bool m_encoded = false;
 		
 		public DateTime LogDate
 		{
 			get { return m_logdate;}
 			set {m_logdate = value;}
+		}
+		
+		public string CacheCode
+		{
+			get { return m_cacheCode;}
+			set { m_cacheCode = value;}
 		}
 		
 		public string LoggedBy
@@ -62,7 +71,14 @@ namespace ocmengine
 		public string LogID
 		{
 			get { return m_logID;}
-			set { m_logID = value;}
+			set { m_logID = value;
+			}
+		}
+		
+		public string LogKey
+		{
+			get { return m_logKey;}
+			set { m_logKey = value;}
 		}
 		
 		public bool Encoded
@@ -113,6 +129,18 @@ namespace ocmengine
 			writer.WriteString(LogMessage);
 			writer.WriteEndElement();			
 			writer.WriteEndElement();
+		}
+		
+		public void WriteToFieldNotesFile(TextWriter writer)
+		{
+			writer.Write(m_cacheCode);
+			writer.Write(",");
+			writer.Write(m_logdate.ToString("o"));
+			writer.Write(",");
+			writer.Write(m_status);
+			writer.Write(",\"");
+			writer.Write(m_logmessage);
+			writer.WriteLine("\"");
 		}
 	}
 }

@@ -178,6 +178,15 @@ namespace ocmengine
 		}
 		
 		
+		public Geocache GetCache(String code)
+		{
+			String sql = GET_GC + " AND GEOCACHE.name =='" + code + "'";
+			List<Geocache> caches = GetCacheList(sql);
+			if (caches.Count <= 0)
+				return null;
+			else
+				return caches[0];
+		}
 		
 		public List<Geocache> GetCaches(double lat, double lon)
 		{
@@ -347,7 +356,8 @@ namespace ocmengine
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
 			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString(),
-			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture));
+			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture),
+			                              	cache.DNF, cache.FTF, cache.User1, cache.User2, cache.User3, cache.User4);
 			string update = String.Format(UPDATE_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
 			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
@@ -355,7 +365,8 @@ namespace ocmengine
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
 			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString(),
-			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture));
+			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture),
+			                              	cache.DNF, cache.FTF, cache.User1, cache.User2, cache.User3, cache.User4);
 			InsertOrUpdate (update, insert, cmd);
 		}
 		
@@ -364,10 +375,9 @@ namespace ocmengine
 			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
 			IDbCommand cmd = m_conn.CreateCommand();
-			string updateCmd = ADD_EXISTING_GC;
-			if (cache.HasCorrected)
-				updateCmd = UPDATE_GC;
-			System.Console.WriteLine(updateCmd);
+			bool hasExtraFields = false;
+			if (cache.HasCorrected || !String.IsNullOrEmpty(cache.Notes))
+				hasExtraFields = true;
 			string insert = String.Format(INSERT_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
 			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
@@ -375,8 +385,12 @@ namespace ocmengine
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
 			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString(),
-			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture));
-			string update = String.Format(updateCmd, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
+			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture),
+			                              	cache.DNF, cache.FTF, cache.User1, cache.User2, cache.User3, cache.User4);
+			string update;
+			if (!hasExtraFields)
+			{
+				update = String.Format(ADD_EXISTING_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
 			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
 			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
@@ -384,6 +398,18 @@ namespace ocmengine
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
 			                                cache.Available.ToString(), cache.CheckNotes.ToString(),
 			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture));
+			}
+			else
+			{
+				update =  String.Format(UPDATE_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
+			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
+			                                cache.Difficulty.ToString(CultureInfo.InvariantCulture), cache.Terrain.ToString(CultureInfo.InvariantCulture), SQLEscape(cache.Country), 
+			                                SQLEscape(cache.State),cache.TypeOfCache.ToString(), 
+			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
+			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
+			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString(),
+			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture));
+			}
 			InsertOrUpdate (update, insert, cmd);
 		}
 		
@@ -452,10 +478,8 @@ namespace ocmengine
 				log.FinderID = rdr.GetString(4);
 				String encoded = rdr.GetString(5);
 				log.Encoded = Boolean.Parse(encoded);
-				object logid = rdr.GetValue(6);
-				if (logid is string)
-					log.LogID = logid as string;
-					
+				log.LogID = rdr.GetString(6);
+				log.LogKey = rdr.GetString(7);
 			}
 			CloseConnection(ref rdr, ref command, ref conn);
 			return log;
@@ -541,7 +565,10 @@ namespace ocmengine
 		
 		private Geocache BuildCache(IDataReader reader)
 		{
+			
 			Geocache cache = new Geocache();
+			
+			// DBVER 0 Fields
 			cache.Name = reader.GetString(0);
 			cache.Lat = double.Parse(reader.GetString(1), CultureInfo.InvariantCulture);
 			cache.Lon = double.Parse(reader.GetString(2), CultureInfo.InvariantCulture);
@@ -573,6 +600,9 @@ namespace ocmengine
 			String available = reader.GetString(24);
 			cache.Available = Boolean.Parse(available);
 			cache.Updated = DateTime.Parse(reader.GetString(25));
+			
+			// From this point, the fields have been added in later DB Schema versions
+			// Must check to see if they aren't DBNULL before getting the value
 			Object val = reader.GetValue(26);
 			if (val is string)
 				cache.Notes = reader.GetString(26);
@@ -587,8 +617,32 @@ namespace ocmengine
 			val = reader.GetValue(29);
 			if (val is string)
 				cache.CorrectedLon = Double.Parse(val as string, CultureInfo.InvariantCulture);
+			val = reader.GetValue(30);
+			if (val is string)
+				cache.DNF = Boolean.Parse(val as string);
+			val = reader.GetValue(31);
+			if (val is string)
+				cache.FTF = Boolean.Parse(val as string);
+			val = reader.GetValue(32);
+			if (val is string)
+					cache.User1 = val as string;
+			val = reader.GetValue(33);
+			if (val is string)
+					cache.User2 = val as string;
+			val = reader.GetValue(34);
+			if (val is string)
+					cache.User3 = val as string;
+			val = reader.GetValue(35);
+			if (val is string)
+					cache.User4 = val as string;
+				
+				
+				
+			// Preprocessed fields from other DB tables... These queries were run first for performance reason
 			cache.Children = m_hasChildrenList.Contains(cache.Name);
 			cache.HasFinal = m_hasFinalList.Contains(cache.Name);
+			
+			// Calculated properties
 			cache.Distance = Utilities.calculateDistance(m_lat, cache.Lat, m_lon, cache.Lon);			
 			
 			if (this.ReadCache != null)
@@ -669,7 +723,6 @@ namespace ocmengine
 						cmd.CommandText += refineList.ToString();
 						cmd.CommandText += ")";
 					}
-					System.Console.WriteLine(cmd.CommandText);
 					refineList = new StringBuilder();
 					
 					IDataReader rdr = cmd.ExecuteReader();
@@ -760,7 +813,6 @@ namespace ocmengine
 					}
 					if (!firstDone)
 						firstDone = true;
-					System.Console.WriteLine(cmdTxt);
 					cmd.CommandText = cmdTxt;
 					IDataReader rdr = cmd.ExecuteReader();
 					refineList.Remove(0, refineList.Length);
@@ -909,13 +961,16 @@ namespace ocmengine
 		{
 			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
+			System.Console.WriteLine("Adding log for " + cachename);
+			System.Console.WriteLine("Logkey" + log.LogKey);
 			IDbCommand cmd = m_conn.CreateCommand();
 			String insert = String.Format(ADD_LOG, cachename, log.LogDate.ToString("o"), SQLEscape(log.LoggedBy),
 			                                SQLEscape(log.LogMessage), SQLEscape(log.LogStatus), log.FinderID, 
-			                                log.Encoded.ToString(), log.LogID);
-			cmd.CommandText = insert;
-			cmd.ExecuteNonQuery();
-			cmd.Dispose();
+			                                log.Encoded.ToString(), log.LogID, log.LogKey);
+			String update = String.Format(UPDATE_LOG, cachename, log.LogDate.ToString("o"), SQLEscape(log.LoggedBy),
+			                                SQLEscape(log.LogMessage), SQLEscape(log.LogStatus), log.FinderID, 
+			                                log.Encoded.ToString(), log.LogID, log.LogKey);
+			InsertOrUpdate(update, insert, cmd);
 		}
 		
 		public void ClearTBs(List<String> caches)
@@ -1130,7 +1185,7 @@ namespace ocmengine
 			{
 				int ver =0;
 				ver = GetDBVersion ();
-				if (ver < 4)
+				if (ver < 5)
 					return true;
 				return false;
 			}
@@ -1146,6 +1201,7 @@ namespace ocmengine
 		{
 			IDbConnection conn = OpenConnection();
 			IDbCommand cmd = conn.CreateCommand();
+			IDbTransaction trans = conn.BeginTransaction();
 			int ver = GetDBVersion();
 			if (ver == 0)
 			{
@@ -1172,13 +1228,81 @@ namespace ocmengine
 				cmd.CommandText = CREATE_ATTRS_TABLE;
 				cmd.ExecuteNonQuery();
 			}
-			cmd.CommandText = UPGRADE_GEOCACHE_V3_V4A;
+			if (ver <= 3)
+			{
+				cmd.CommandText = UPGRADE_GEOCACHE_V3_V4A;
+				cmd.ExecuteNonQuery();
+				cmd.CommandText = UPGRADE_GEOCACHE_V3_V4B;
+				cmd.ExecuteNonQuery();
+			}
+			cmd.CommandText = UPGRADE_GEOCACHE_V4_V5A;
 			cmd.ExecuteNonQuery();
-			cmd.CommandText = UPGRADE_GEOCACHE_V3_V4B;
+			cmd.CommandText = UPGRADE_GEOCACHE_V4_V5B;
 			cmd.ExecuteNonQuery();
+			cmd.CommandText = UPGRADE_GEOCACHE_V4_V5C;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = UPGRADE_GEOCACHE_V4_V5D;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = UPGRADE_GEOCACHE_V4_V5E;
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = UPGRADE_GEOCACHE_V4_V5F;
+			cmd.ExecuteNonQuery();
+			// Rename old logs table
+			cmd.CommandText = UPGRADE_GEOCACHE_V4_V5G;
+			cmd.ExecuteNonQuery();
+			trans.Commit();		
+			trans = conn.BeginTransaction();
+			// Create new logs table
+			cmd.CommandText = CREATE_LOGS_TABLE;
+			cmd.ExecuteNonQuery();
+			// Copy to new logs table
+		/*	cmd.CommandText = UPGRADE_GEOCACHE_V4_V5H;
+			IDataReader rdr = cmd.ExecuteReader();
+			Random rand = new Random();			
+			List<CacheLog> oldLogs = new List<CacheLog>();
+			while (rdr.Read())
+			{
+				System.Console.WriteLine("READING LOGS");
+				CacheLog log = new CacheLog();
+				log.CacheCode = rdr.GetString(0);
+				log.LogDate = DateTime.Parse(rdr.GetString(1));
+				log.LoggedBy = rdr.GetString(2);
+				log.LogMessage = rdr.GetString(3);
+				log.LogStatus = rdr.GetString(4);
+				log.FinderID = rdr.GetString(5);
+				String encoded = rdr.GetString(6);
+				log.Encoded = Boolean.Parse(encoded);
+				object val = rdr.GetValue(7);
+				if (val is string)
+					log.LogID = val as string;			
+				if (String.IsNullOrEmpty(log.LogID))
+					log.LogID = rand.Next(5000).ToString();	
+				oldLogs.Add(log);
+			}	
+			
+			rdr.Close();
+			rdr.Dispose();
+			
+				
+			// Add logs back to new table
+			foreach(CacheLog log in oldLogs)
+			{
+				System.Console.WriteLine("Adding logs");
+				AddLog(log.CacheCode, log);
+			}
+			
+			
+			*/
+
+			
+			// Drop oldlogs table
+			cmd.CommandText = UPGRADE_GEOCACHE_V4_V5I;
+			cmd.ExecuteNonQuery();	
+			
 			cmd.CommandText = SET_DB_VER;
 			cmd.ExecuteNonQuery();
 			cmd.Dispose();
+			trans.Commit();
 			conn.Close();
 		}
 		

@@ -30,7 +30,7 @@ namespace ocmgtk
 		private static Pixbuf MULTIICON_S = new Pixbuf ("./icons/scalable/multi.svg", 24, 24);
 		private static Pixbuf MYSTERYICON_S = new Pixbuf ("./icons/scalable/unknown.svg", 24, 24);
 		private static Pixbuf OTHERICON_S = new Pixbuf ("./icons/scalable/other.svg", 24, 24);
-		private static Pixbuf FOUNDICON_S = new Pixbuf ("./icons/scalable/found.svg", 24, 24);
+		public static Pixbuf FOUNDICON_S = new Pixbuf ("./icons/scalable/found.svg", 24, 24);
 		private static Pixbuf EARTHICON_S = new Pixbuf ("./icons/scalable/earth.svg", 24, 24);
 		private static Pixbuf CITOICON_S = new Pixbuf ("./icons/scalable/cito.svg", 24, 24);
 		private static Pixbuf MEGAEVENT_S = new Pixbuf ("./icons/scalable/mega.svg", 24, 24);
@@ -46,6 +46,10 @@ namespace ocmgtk
 		private static Pixbuf BLUEPIN_S = new Pixbuf ("./icons/scalable/bluepin.svg", 24, 24);
 		private static Pixbuf REDPIN_S = new Pixbuf ("./icons/scalable/pushpin.svg", 24, 24);
 		public static Pixbuf CORRECTED_S = new Pixbuf ("./icons/scalable/corrected.svg", 24, 24);
+		public static Pixbuf FTF_S = new Pixbuf ("./icons/scalable/ftf.svg", 24, 24);
+		public static Pixbuf DNF_S = new Pixbuf ("./icons/scalable/dnf.svg", 24, 24);
+		public static Pixbuf WRITENOTE_S = new Pixbuf ("./icons/scalable/write_note.svg", 24, 24);
+		public static Pixbuf NEEDS_MAINT_S = new Pixbuf ("./icons/scalable/needs_maintenance.svg", 24, 24);
 		
 
 		private static string TRAD_MI = "traditional.png";

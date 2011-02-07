@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using ocmengine;
 using Gtk;
+using Mono.Unix;
 
 namespace ocmgtk
 {
@@ -34,87 +35,237 @@ namespace ocmgtk
 				GetKeyWordFilter (filter);
 				GetContainerFilter (filter);
 				GetDateFilter (filter);
-				string cntry = datePage.Country;
-				if (!String.IsNullOrEmpty(cntry))
-					filter.AddFilterCriteria(FilterList.KEY_COUNTRY, datePage.Country);
-				string state = datePage.Province;
-				if (!String.IsNullOrEmpty(state))
-					filter.AddFilterCriteria(FilterList.KEY_STATE, datePage.Province);
+				GetCountryFilter (filter);
+				GetStateFilter (filter);
 				GetFoundOnFilter (filter);
 				GetFoundBeforeFilter (filter);
 				GetFoundAfterFilter (filter);
 				HasNotesFilter (filter);
 				GetChildrenFilter (filter);
 				GetNoChildrenFilter (filter);
-				if (childrenPage.HasCorrectedCoords)
-					filter.AddFilterCriteria(FilterList.KEY_CORRECTED, true);
-				else
-					filter.RemoveCriteria(FilterList.KEY_CORRECTED);
-				if (childrenPage.DoesNotHaveCorrectedCoords)
-					filter.AddFilterCriteria(FilterList.KEY_NOCORRECTED, true);
-				else
-					filter.RemoveCriteria(FilterList.KEY_NOCORRECTED);
-				filter.AddFilterCriteria(FilterList.KEY_OWNERID, UIMonitor.getInstance().OwnerID);
+				GetCorrectedCoordsFilter (filter);
+				GetNoCorrectedCoordsFilter (filter);
 				GetMustHaveAttributes (filter);
-				if (attributePage.MustNotHaveIncludeAttributes.Count > 0)
-					filter.AddFilterCriteria(FilterList.KEY_INCNOATTRS, attributePage.MustNotHaveIncludeAttributes);
-				else
-					filter.RemoveCriteria(FilterList.KEY_INCNOATTRS);
-				if (attributePage.MustNotHaveNegAttributes.Count > 0)
-					filter.AddFilterCriteria(FilterList.KEY_EXCNOATTRS, attributePage.MustNotHaveNegAttributes);
-				else
-					filter.RemoveCriteria(FilterList.KEY_EXCNOATTRS);
+				GetMustNotHaveSetAttributesFilter (filter);
+				filter.AddFilterCriteria(FilterList.KEY_OWNERID, UIMonitor.getInstance().OwnerID);
 				return filter;
 			}
 			set {
 				if (value == null) {
 					return;
 				}
-				page1.TerrValue = value.GetCriteria (FilterList.KEY_TERRAIN_VAL) as string;
-				page1.TerrOperator = value.GetCriteria (FilterList.KEY_TERRAIN_OP) as string;
-				page1.DifficultyValue = value.GetCriteria (FilterList.KEY_DIFF_VAL) as string;
-				page1.DifficultyOperator = value.GetCriteria (FilterList.KEY_DIFF_OP) as string;
-				page1.SelectedCacheTypes = value.GetCriteria(FilterList.KEY_CACHETYPE) as List<string>;
-				contPage.PlacedBy = value.GetCriteria(FilterList.KEY_PLACEDBY) as string;
-				contPage.DescriptionKeyWords = value.GetCriteria(FilterList.KEY_DESCRIPTION) as string;
-				contPage.ContainerTypes = value.GetCriteria(FilterList.KEY_CONTAINER) as List<string>;
-				if (value.Contains(FilterList.KEY_PLACEBEFORE))
-					datePage.PlaceBefore = (DateTime) value.GetCriteria(FilterList.KEY_PLACEBEFORE);
-				if (value.Contains(FilterList.KEY_PLACEAFTER))
-					datePage.PlaceAfter = (DateTime) value.GetCriteria(FilterList.KEY_PLACEAFTER);
-				if (value.Contains(FilterList.KEY_INFOBEFORE))
-					datePage.InfoBefore = (DateTime) value.GetCriteria(FilterList.KEY_INFOBEFORE);
-				if (value.Contains(FilterList.KEY_INFOAFTER))
-					datePage.InfoAfter = (DateTime) value.GetCriteria(FilterList.KEY_INFOAFTER);
-				if (value.Contains(FilterList.KEY_COUNTRY))
-					datePage.Country = value.GetCriteria(FilterList.KEY_COUNTRY) as string;
-				if (value.Contains(FilterList.KEY_STATE))
-					datePage.Province = value.GetCriteria(FilterList.KEY_STATE) as string;
-				if (value.Contains(FilterList.KEY_FOUNDON))
-					datePage.FoundOn = (DateTime) value.GetCriteria(FilterList.KEY_FOUNDON);
-				if (value.Contains(FilterList.KEY_FOUNDBEFORE))
-					datePage.FoundBefore = (DateTime) value.GetCriteria(FilterList.KEY_FOUNDBEFORE);
-				if (value.Contains(FilterList.KEY_FOUNDAFTER))
-					datePage.FoundAfter = (DateTime) value.GetCriteria(FilterList.KEY_FOUNDAFTER);
-				if (value.Contains(FilterList.KEY_CHILDREN))
-					childrenPage.ChildrenFilter = value.GetCriteria(FilterList.KEY_CHILDREN) as string;
-				if (value.Contains(FilterList.KEY_NOCHILDREN))
-					childrenPage.NoChildrenFilter = value.GetCriteria(FilterList.KEY_NOCHILDREN) as string;
-				if (value.Contains(FilterList.KEY_NOTES))
-					childrenPage.HasNotes = (Boolean) value.GetCriteria(FilterList.KEY_NOTES);
-				if (value.Contains(FilterList.KEY_CORRECTED))
-					childrenPage.HasCorrectedCoords = true;
-				if (value.Contains(FilterList.KEY_NOCORRECTED))
-					childrenPage.DoesNotHaveCorrectedCoords = true;
-				if (value.Contains(FilterList.KEY_INCATTRS))
-					attributePage.MustHaveIncludeAttributes = (List<String>) value.GetCriteria(FilterList.KEY_INCATTRS);
-				if (value.Contains(FilterList.KEY_EXCATTRS))
-					attributePage.MustHaveNegAttributes = (List<String>) value.GetCriteria(FilterList.KEY_EXCATTRS);
-				if (value.Contains(FilterList.KEY_INCNOATTRS))
-					attributePage.MustNotHaveIncludeAttributes = (List<String>) value.GetCriteria(FilterList.KEY_INCNOATTRS);
-				if (value.Contains(FilterList.KEY_EXCNOATTRS))
-					attributePage.MustNotHaveNegAttributes = (List<String>) value.GetCriteria(FilterList.KEY_EXCNOATTRS);
+				SetDiffTerTabFilters (value);
+				SetContainerTabFilters (value);
+				SetDateTabFilters (value);
+				SetChildrenTabFilters (value);
+				SetAttributeTabFilters (value);
  			}
+		}
+		
+		private void SetAttributeTabFilters (FilterList list)
+		{
+			bool atLeastOne = false;
+			if (list.Contains(FilterList.KEY_INCATTRS))
+			{
+				atLeastOne = true;
+				attributePage.MustHaveIncludeAttributes = (List<String>) list.GetCriteria(FilterList.KEY_INCATTRS);
+			}
+			if (list.Contains(FilterList.KEY_EXCATTRS))
+			{
+				atLeastOne = true;
+				attributePage.MustHaveNegAttributes = (List<String>) list.GetCriteria(FilterList.KEY_EXCATTRS);
+			}
+			if (list.Contains(FilterList.KEY_INCNOATTRS))
+			{
+				atLeastOne = true;
+				attributePage.MustNotHaveIncludeAttributes = (List<String>) list.GetCriteria(FilterList.KEY_INCNOATTRS);
+			}
+			if (list.Contains(FilterList.KEY_EXCNOATTRS))
+			{
+				atLeastOne = true;
+				attributePage.MustNotHaveNegAttributes = (List<String>) list.GetCriteria(FilterList.KEY_EXCNOATTRS);
+			}
+			if (atLeastOne)
+			{
+				attrPageLabel.Markup = "<b>" + Catalog.GetString("Attributes") + "</b>";
+			}
+		}
+		
+		private void SetChildrenTabFilters (FilterList list)
+		{
+			bool atLeastOne = false;
+			if (list.Contains(FilterList.KEY_CHILDREN))
+			{
+				childrenPage.ChildrenFilter = list.GetCriteria(FilterList.KEY_CHILDREN) as string;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_NOCHILDREN))
+			{
+				childrenPage.NoChildrenFilter = list.GetCriteria(FilterList.KEY_NOCHILDREN) as string;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_NOTES))
+			{
+				childrenPage.HasNotes = (Boolean) list.GetCriteria(FilterList.KEY_NOTES);
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_CORRECTED))
+			{
+				childrenPage.HasCorrectedCoords = true;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_NOCORRECTED))
+			{
+				childrenPage.DoesNotHaveCorrectedCoords = true;
+				atLeastOne = true;
+			}
+			if (atLeastOne)
+			{
+				labelChildren.Markup = "<b>" + Catalog.GetString("Notes/Children/Corrected") + "</b>";
+			}
+		}
+		
+		private void SetDateTabFilters (FilterList list)
+		{
+			bool atLeastOne = false;
+			if (list.Contains(FilterList.KEY_COUNTRY))
+			{
+				datePage.Country = list.GetCriteria(FilterList.KEY_COUNTRY) as string;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_STATE))
+			{
+				datePage.Province = list.GetCriteria(FilterList.KEY_STATE) as string;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_PLACEBEFORE))
+			{
+				datePage.PlaceBefore = (DateTime) list.GetCriteria(FilterList.KEY_PLACEBEFORE);
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_PLACEAFTER))
+			{
+				datePage.PlaceAfter = (DateTime) list.GetCriteria(FilterList.KEY_PLACEAFTER);
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_INFOBEFORE))
+			{
+				datePage.InfoBefore = (DateTime) list.GetCriteria(FilterList.KEY_INFOBEFORE);
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_INFOAFTER))
+			{
+				datePage.InfoAfter = (DateTime) list.GetCriteria(FilterList.KEY_INFOAFTER);
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_FOUNDON))
+			{
+				datePage.FoundOn = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDON);
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_FOUNDBEFORE))
+			{
+				datePage.FoundBefore = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDBEFORE);
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_FOUNDAFTER))
+			{
+				datePage.FoundAfter = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDAFTER);
+				atLeastOne = true;
+			}
+			if (atLeastOne)
+				dateLabel.Markup = "<b>" + Catalog.GetString("Dates/Location") + "</b>";
+		}
+		
+		private void SetContainerTabFilters (FilterList list)
+		{
+			bool atLeastOne = false;
+			if (list.Contains(FilterList.KEY_PLACEDBY))
+			{
+				contPage.PlacedBy = list.GetCriteria(FilterList.KEY_PLACEDBY) as string;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_DESCRIPTION))
+			{
+				contPage.DescriptionKeyWords = list.GetCriteria(FilterList.KEY_DESCRIPTION) as string;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_CONTAINER))
+			{
+				contPage.ContainerTypes = list.GetCriteria(FilterList.KEY_CONTAINER) as List<string>;
+				atLeastOne = true;
+			}
+			if (atLeastOne)
+				contLabel.Markup = "<b>" + Catalog.GetString("Container/Description/Placed By") + "</b>";
+			
+		}
+		
+		private void SetDiffTerTabFilters (FilterList list)
+		{
+			bool atLeastOne = false;
+			if (list.Contains(FilterList.KEY_TERRAIN_VAL))
+			{
+				atLeastOne = true;
+				page1.TerrValue = list.GetCriteria (FilterList.KEY_TERRAIN_VAL) as string;
+				page1.TerrOperator = list.GetCriteria (FilterList.KEY_TERRAIN_OP) as string;
+			}
+			if (list.Contains(FilterList.KEY_DIFF_VAL))
+			{
+				atLeastOne = true;
+				page1.DifficultyValue = list.GetCriteria (FilterList.KEY_DIFF_VAL) as string;
+				page1.DifficultyOperator = list.GetCriteria (FilterList.KEY_DIFF_OP) as string;
+			}
+			if (list.Contains(FilterList.KEY_CACHETYPE))
+			{
+				atLeastOne = true;
+				page1.SelectedCacheTypes = list.GetCriteria(FilterList.KEY_CACHETYPE) as List<string>;
+			}
+			if (atLeastOne)
+			{
+				diffLabel.Markup = "<b>" + Catalog.GetString("Difficulty/Type") + "</b>";
+			}
+		}
+		
+		private void GetMustNotHaveSetAttributesFilter (FilterList filter)
+		{
+			if (attributePage.MustNotHaveIncludeAttributes.Count > 0)
+					filter.AddFilterCriteria(FilterList.KEY_INCNOATTRS, attributePage.MustNotHaveIncludeAttributes);
+				else
+					filter.RemoveCriteria(FilterList.KEY_INCNOATTRS);	
+			if (attributePage.MustNotHaveNegAttributes.Count > 0)
+					filter.AddFilterCriteria(FilterList.KEY_EXCNOATTRS, attributePage.MustNotHaveNegAttributes);
+				else
+					filter.RemoveCriteria(FilterList.KEY_EXCNOATTRS);
+		}
+		
+		private void GetNoCorrectedCoordsFilter (FilterList filter)
+		{
+			if (childrenPage.DoesNotHaveCorrectedCoords)
+					filter.AddFilterCriteria(FilterList.KEY_NOCORRECTED, true);
+				else
+					filter.RemoveCriteria(FilterList.KEY_NOCORRECTED);
+		}
+		
+		private void GetCorrectedCoordsFilter (FilterList filter)
+		{
+			if (childrenPage.HasCorrectedCoords)
+					filter.AddFilterCriteria(FilterList.KEY_CORRECTED, true);
+				else
+					filter.RemoveCriteria(FilterList.KEY_CORRECTED);
+		}
+		
+		private void GetStateFilter (FilterList filter)
+		{
+			string state = datePage.Province;
+				if (!String.IsNullOrEmpty(state))
+					filter.AddFilterCriteria(FilterList.KEY_STATE, datePage.Province);
+		}
+		
+		private void GetCountryFilter (FilterList filter)
+		{
+			string cntry = datePage.Country;
+				if (!String.IsNullOrEmpty(cntry))
+					filter.AddFilterCriteria(FilterList.KEY_COUNTRY, datePage.Country);
 		}
 		
 		private void GetMustHaveAttributes (FilterList filter)
