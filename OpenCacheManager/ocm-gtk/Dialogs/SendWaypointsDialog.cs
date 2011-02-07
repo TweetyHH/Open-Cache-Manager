@@ -28,10 +28,15 @@ namespace ocmgtk
 		GPSBabelWriter writer = new GPSBabelWriter ();
 		double total = 0;
 		double count = 0;
-		
+		bool m_autoClose = false;
+				
 		public bool noCancel = false;
 		public bool done = false;
 
+		public bool AutoClose {
+			set { m_autoClose = value; }	
+		}
+		
 		public SendWaypointsDialog ()
 		{
 			this.Build ();
@@ -80,6 +85,10 @@ namespace ocmgtk
 				this.Hide();
 				return;
 			}
+			if (m_autoClose) {
+				CloseMe();
+				return;
+			}
 			writeProgress.Fraction = 1;
 			writeProgress.Text = Catalog.GetString("Complete");
 			done = true;
@@ -99,6 +108,10 @@ namespace ocmgtk
 		
 		protected virtual void OnCloseClick (object sender, System.EventArgs e)
 		{
+			CloseMe();
+		}
+		
+		private void CloseMe() {
 			this.Hide ();
 			this.Dispose ();
 		}

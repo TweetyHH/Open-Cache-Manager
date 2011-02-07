@@ -1392,7 +1392,7 @@ namespace ocmgtk
 			SendWaypointsDialog dlg = new SendWaypointsDialog();
 			dlg.Parent = m_mainWin;
 			dlg.Icon = m_mainWin.Icon;
-//			dlg.AutoClose = m_conf.AutoCloseWindows;
+			dlg.AutoClose = m_conf.AutoCloseWindows;
 			dlg.Start(m_cachelist.getVisibleCaches(), m_profiles.GetActiveProfile());
 		}
 		
