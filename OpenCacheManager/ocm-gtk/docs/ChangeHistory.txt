@@ -2,6 +2,8 @@ Version 0.23
 --------------
 - Add locations feature to OCM. You can now add new locations via the Locations menu
   or by right clicking on the map
+- Map Features: You can now set corrected coordinates or add a new Waypoint by right clicking on the map.
+- Add autoclose feature for importing and exporting GPX/Zip. Not yet for Transfer Caches.
 - You can now set how OCM displays the "solved" icon in preferences, the default is now just
   puzzle caches with corrected coordinates/final locations
 - Fix minor graphical glitch if cache has no attributes

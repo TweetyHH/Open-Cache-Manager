@@ -1925,7 +1925,15 @@ namespace ocmgtk
 		
 		public void CorrectCoordinates()
 		{
-		 	CorrectedCoordinatesDlg dlg = new CorrectedCoordinatesDlg();
+			if (m_selectedCache == null) {
+				MessageDialog mdlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Error,
+					                                       ButtonsType.Ok, Catalog.GetString("You have to select a cache first."));
+				mdlg.Run();
+				mdlg.Destroy();
+				return;
+			}
+
+			CorrectedCoordinatesDlg dlg = new CorrectedCoordinatesDlg();
 			dlg.SetCache(m_selectedCache);
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
@@ -1946,10 +1954,18 @@ namespace ocmgtk
 		
 		public void CorrectCoordinates(double lat, double lon)
 		{
+			if (m_selectedCache == null) {
+				MessageDialog mdlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Error,
+					                                       ButtonsType.Ok, Catalog.GetString("You have to select a cache first."));
+				mdlg.Run();
+				mdlg.Destroy();
+				return;
+			}
 			m_selectedCache.CorrectedLat = lat;
 			m_selectedCache.CorrectedLon = lon;
 			Engine.getInstance().Store.UpdateCacheAtomic(m_selectedCache);
 			SetSelectedCache(m_selectedCache);
+			CorrectCoordinates(); // Opens up the GUI for editing/approvel
 		}
 		 
 		public void ImportZip()
@@ -2021,6 +2037,14 @@ namespace ocmgtk
 		
 		public void AddChildWaypoint(double lat, double lon)
 		{
+			if (m_selectedCache == null) {
+				MessageDialog mdlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Error,
+					                                       ButtonsType.Ok, Catalog.GetString("You have to select a cache first."));
+				mdlg.Run();
+				mdlg.Destroy();
+				return;
+			}
+
 			try {
 				Waypoint newPoint = new Waypoint ();
 				Geocache parent = m_selectedCache;
