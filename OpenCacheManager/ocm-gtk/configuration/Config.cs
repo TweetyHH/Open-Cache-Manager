@@ -219,6 +219,18 @@ namespace ocmgtk
 			set {this.Set("/apps/ocm/autoCloseWindows", value);}	
 		}
 		
+		public DateTime LastGPSFieldNoteScan
+		{
+			get {
+				string dt = (string) this.Get("/apps/ocm/gps/lastscan", DateTime.Today.ToString("o"));
+				return DateTime.Parse(dt);
+			}
+			set
+			{
+				 this.Set("/apps/ocm/gps/lastscan", value.ToString("o"));
+			}
+		}
+		
 		public DateTime NextUpdateCheck
 		{
 			get {

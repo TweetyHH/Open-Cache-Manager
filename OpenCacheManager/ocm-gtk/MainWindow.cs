@@ -65,7 +65,7 @@ public partial class MainWindow : Gtk.Window
 	protected void BuildBookMarkMenu()
 	{
 		MenuItem bmrks = new MenuItem(Catalog.GetString("_Bookmarks"));
-		mainmenubar.Insert(bmrks, 3);	
+		mainmenubar.Insert(bmrks, 5);	
 		Menu bmrksMenu = new Menu();
 		MenuItem newBList = new MenuItem(Catalog.GetString("_Create Bookmark List..."));
 		MenuItem delBList = new MenuItem(Catalog.GetString("_Delete Bookmark List..."));
@@ -227,7 +227,7 @@ public partial class MainWindow : Gtk.Window
 				MarkDisabledAction1.Sensitive = true;
 			
 			ModifyCacheAction.Sensitive = true;
-			DeleteCacheAction.Sensitive = true;
+			DeleteAction1.Sensitive = true;
 			ViewSelectedCacheInQLandkarteGTAction.Sensitive = true;
 			AddChildWaypointAction.Sensitive = true;
 		}
@@ -245,7 +245,7 @@ public partial class MainWindow : Gtk.Window
 			MarkDisabledAction1.Sensitive = false;
 			MarkUnfoundAction1.Sensitive = false;
 			ModifyCacheAction.Sensitive = false;
-			DeleteCacheAction.Sensitive = false;
+			DeleteAction1.Sensitive = false;
 			CorrectedCoordinatesAction.Sensitive = false;
 			ViewSelectedCacheInQLandkarteGTAction.Sensitive = false;
 			printAction.Sensitive = false;
@@ -264,10 +264,6 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.ExportGPX();		
 	}
 
-	protected virtual void OnNewActionActivated (object sender, System.EventArgs e)
-	{
-		m_monitor.CreateDB ();
-	}
 	protected virtual void OnHomePageActivated (object sender, System.EventArgs e)
 	{
 		UIMonitor.ViewHomePage ();
@@ -649,8 +645,10 @@ public partial class MainWindow : Gtk.Window
 	
 	public void RebuildProfilesMenu(GPSProfileList profiles)
 	{
-		Menu emenu = profiles.BuildProfileMenu();
-		(GPSProfileAction.Proxies[0] as MenuItem).Submenu = emenu;
+		Menu tmenu = profiles.BuildProfileTransferMenu();
+		(TransferCachesAction.Proxies[0] as MenuItem).Submenu = tmenu;
+		Menu rmenu = profiles.BuildProfileReceiveMenu();
+		(ReceiveFieldNotesAction.Proxies[0] as MenuItem).Submenu = rmenu;
 	}
 	
 	
@@ -837,13 +835,19 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnProcessFieldNotes (object sender, System.EventArgs e)
 	{
-		m_monitor.ProcessGPSFieldNotes();
+		m_monitor.ReceiveGPSFieldNotes();
 	}
 	
 	protected virtual void OnClearFieldNotes (object sender, System.EventArgs e)
 	{
 		m_monitor.ClearFieldNotes();
 	}
+	
+	protected virtual void OnNewAction (object sender, System.EventArgs e)
+	{
+		m_monitor.CreateDB ();
+	}
+	
 	
 	
 	

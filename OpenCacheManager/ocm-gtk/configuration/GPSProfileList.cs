@@ -156,28 +156,44 @@ namespace ocmgtk
 			fs.Close();
 		}
 		
-		public Menu BuildProfileMenu()
+		public Menu BuildProfileTransferMenu()
 		{
 			Menu etMenu = new Menu();
-			int iCount = 0;
-			Gtk.RadioAction first = null;
 			foreach (GPSProfile loc in m_profiles.Values)
 			{
-				Gtk.RadioAction action = new Gtk.RadioAction(loc.Name, loc.Name, null, null, iCount);
-				if (iCount == 0)
-					first = action;
-				else
-					action.Group = first.Group;
-				if (UIMonitor.getInstance().Configuration.GPSProf == loc.Name)
-					action.Active = true;
-				else
-					action.Active = false;
+				Gtk.Action action = new Gtk.Action(loc.Name, loc.Name);
 				etMenu.Append(action.CreateMenuItem());
-				action.Toggled += HandleActionToggled;
-				iCount ++;
-				
+				action.Activated += HandleTransferActionActivated;	
 			}
 			return etMenu;
+		}
+		
+		public Menu BuildProfileReceiveMenu()
+		{
+			Menu etMenu = new Menu();
+			foreach (GPSProfile loc in m_profiles.Values)
+			{
+				if (String.IsNullOrEmpty(loc.FieldNotesFile))
+				    continue;
+				Gtk.Action action = new Gtk.Action(loc.Name, loc.Name);
+				etMenu.Append(action.CreateMenuItem());
+				action.Activated += HandleReceiveActionActivated;
+			}
+			return etMenu;
+		}
+
+		void HandleReceiveActionActivated (object sender, EventArgs e)
+		{
+			UIMonitor mon = UIMonitor.getInstance();
+			mon.Configuration.GPSProf =  ((sender) as Gtk.Action).Name;
+			mon.ReceiveGPSFieldNotes();
+		}
+
+		void HandleTransferActionActivated (object sender, EventArgs e)
+		{
+			UIMonitor mon = UIMonitor.getInstance();
+			mon.Configuration.GPSProf =  ((sender) as Gtk.Action).Name;
+			mon.SendToGPS();
 		}
 		
 		public Menu BuildProfileEditMenu()

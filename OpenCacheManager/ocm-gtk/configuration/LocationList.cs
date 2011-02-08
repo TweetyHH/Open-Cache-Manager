@@ -120,7 +120,28 @@ namespace ocmgtk
 				iCount ++;
 				
 			}
+			etMenu.Append(new MenuItem());
+			ToggleAction gpsdAction = new ToggleAction("UseGPSD", Catalog.GetString("GPSD Position"),null, null);
+			gpsdAction.Active = UIMonitor.getInstance().Configuration.UseGPSD;
+			gpsdAction.Toggled += HandleGpsdActionToggled;
+			etMenu.Append(gpsdAction.CreateMenuItem());	
+			etMenu.ShowAll();
 			return etMenu;
+		}
+
+		void HandleGpsdActionToggled (object sender, EventArgs e)
+		{
+			UIMonitor mon = UIMonitor.getInstance();
+			if (((ToggleAction) sender).Active)
+			{
+				mon.EnableGPS();
+				mon.Configuration.UseGPSD = true;
+			}
+			else
+			{
+				mon.DisableGPS();
+				mon.Configuration.UseGPSD = false;
+			}
 		}
 
 		void HandleHome_actionActivated (object sender, EventArgs e)

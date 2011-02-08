@@ -47,6 +47,8 @@ namespace ocmgtk
 			UpdateInterval = config.UpdateInterval;
 			directEntryCheck.Active = config.UseDirectEntryMode;
 			autoCloseCheck.Active = config.AutoCloseWindows;
+			pollEntry.Text = config.GPSDPoll.ToString();
+			recenterCheck.Active = config.GPSDAutoMoveMap;
 		}
 		
 		private SolvedMode WaypointSolvedMode
@@ -151,6 +153,8 @@ namespace ocmgtk
 			m_config.UpdateInterval = UpdateInterval;
 			m_config.UseDirectEntryMode = directEntryCheck.Active;
 			m_config.AutoCloseWindows = autoCloseCheck.Active;
+			m_config.GPSDPoll = int.Parse(pollEntry.Text);
+			m_config.GPSDAutoMoveMap = recenterCheck.Active;
 		}
 		
 		protected virtual void OnCancelClicked (object sender, System.EventArgs e)

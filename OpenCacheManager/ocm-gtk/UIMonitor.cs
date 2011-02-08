@@ -2166,32 +2166,40 @@ namespace ocmgtk
 			dlg.Run();
 		}
 		
-		public void ProcessGPSFieldNotes()
+		public void ReceiveGPSFieldNotes()
 		{
+			
 			LoadGPSFieldNotes dlg = new LoadGPSFieldNotes();
-			if ((int) ResponseType.Ok == dlg.Run())
+			try
 			{
-				dlg.Hide();
-				GPSProfile prof = m_profiles.GetActiveProfile();
-				List<CacheLog> logs = FieldNotesHandler.GetLogs(prof.FieldNotesFile);
-				int iCount = 0;
-				foreach(CacheLog log in logs)
+				if ((int) ResponseType.Ok == dlg.Run())
 				{
-					if (log.LogDate < dlg.LastScan)
-						continue;
-					Geocache cache = Engine.getInstance().Store.GetCache(log.CacheCode);
-					ProcessOfflineLog(cache, log, false);
-					iCount ++;
+					dlg.Hide();
+					GPSProfile prof = m_profiles.GetActiveProfile();
+					List<CacheLog> logs = FieldNotesHandler.GetLogs(prof.FieldNotesFile);
+					int iCount = 0;
+					foreach(CacheLog log in logs)
+					{
+						if (log.LogDate < dlg.LastScan)
+							continue;
+						Geocache cache = Engine.getInstance().Store.GetCache(log.CacheCode);
+						ProcessOfflineLog(cache, log, false);
+						iCount ++;
+					}
+					MessageDialog mdlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Info,
+					                                       ButtonsType.Ok, Catalog.GetString("Processed {0} field notes."),
+					                                       iCount.ToString());
+					mdlg.Run();
+					mdlg.Hide();
+					RefreshCaches();
 				}
-				MessageDialog mdlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Info,
-				                                       ButtonsType.Ok, Catalog.GetString("Processed {0} field notes."),
-				                                       iCount.ToString());
-				mdlg.Run();
-				mdlg.Hide();
-				RefreshCaches();
+				dlg.Hide();
+				dlg.Dispose();
 			}
-			dlg.Hide();
-			dlg.Dispose();
+			catch (Exception e)
+			{
+				ShowException(e);
+			}
 		}
 		
 		public void ClearFieldNotes()
