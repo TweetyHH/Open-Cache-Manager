@@ -513,12 +513,19 @@ namespace ocmgtk
 		/// <param name="pt">
 		/// The waypoint to display <see cref="Waypoint"/>
 		/// </param>
-		public void AddMapWayPoint (Waypoint pt)
+		public void AddMapWayPoint (Waypoint pt, Geocache parent)
 		{
 			string desc = pt.Desc.Replace("\"","''");
 			desc = desc.Replace("\n", "<br/>");
+			string iconModifier = String.Empty;
+			if (parent.Archived) {
+				iconModifier = "archived-";
+			}
+			else if (!parent.Available) {
+				iconModifier = "disabled-";
+			}
 			m_map.LoadScript ("addMarker(" + pt.Lat.ToString(CultureInfo.InvariantCulture) + "," 
-			                  + pt.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/"
+			                  + pt.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" + iconModifier
 			                  + IconManager.GetMapIcon (pt.Symbol) + "',\"" + pt.Name + "\",\"\",\"" + desc + "\")");
 		}
 
@@ -531,12 +538,18 @@ namespace ocmgtk
 		public void AddMapCache (Geocache cache)
 		{
 			string mode = String.Empty;
-			if (cache.Archived)
+			string iconModifier = String.Empty;
+			if (cache.Archived) {
 				mode = "archived";
-			else if (!cache.Available)
+				iconModifier = "archived-";
+			}
+			else if (!cache.Available) {
 				mode = "disabled";
-			else if (cache.CheckNotes)
+				iconModifier = "disabled-";
+			}
+			else if (cache.CheckNotes) {
 				mode = "checknotes";
+			}
 			
 			double lat = cache.Lat;
 			double lon = cache.Lon;
@@ -550,7 +563,7 @@ namespace ocmgtk
 					"<br><b>Cache size: </b>" + cache.Container + "</div>";
 
 			m_map.LoadScript ("addMarker(" + lat.ToString(CultureInfo.InvariantCulture) + ","
-			                  + lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" 
+			                  + lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" + iconModifier 
 			                  + IconManager.GetMapIcon (cache, m_ownerid, this) + "',\"" 
 			                  + cache.Name + "\",\"" + cache.CacheName.Replace("\"","'") + "\",\"" 
 			                  + cachedesc.Replace("\"","''") + "\",\"" + mode + "\")");
@@ -559,10 +572,15 @@ namespace ocmgtk
 		public void AddOtherCacheToMap (Geocache cache)
 		{
 			string mode = String.Empty;
-			if (cache.Archived)
+			string iconModifier = String.Empty;
+			if (cache.Archived) {
 				mode = "archived";
-			else if (!cache.Available)
+				iconModifier = "archived-";
+			}
+			else if (!cache.Available) {
 				mode = "disabled";
+				iconModifier = "disabled-";
+			}
 			else if (cache.CheckNotes)
 				mode = "checknotes";
 			double lat = cache.Lat;
@@ -577,7 +595,7 @@ namespace ocmgtk
 					"<br><b>Cache size: </b>" + cache.Container + "</div>";
 
 			m_map.LoadScript ("addExtraMarker(" + lat.ToString(CultureInfo.InvariantCulture) + ","
-			                  + lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" 
+			                  + lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" + iconModifier
 			                  + IconManager.GetMapIcon (cache, m_ownerid, this) + "',\"" 
 			                  + cache.Name + "\",\"" + cache.CacheName.Replace("\"","'") + "\",\"" 
 			                  + cachedesc.Replace("\"","''") + "\",\"" + mode + "\")");
@@ -589,8 +607,15 @@ namespace ocmgtk
 		{
 			string desc = pt.Desc.Replace("\"","''");
 			desc = desc.Replace("\n", "<br/>");
+			string iconModifier = String.Empty;
+			if (cache.Archived) {
+				iconModifier = "archived-";
+			}
+			else if (! cache.Available) {
+				iconModifier = "disabled-";
+			}
 			m_map.LoadScript ("addExtraMarker(" + pt.Lat.ToString(CultureInfo.InvariantCulture) + "," 
-			                  + pt.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/"
+			                  + pt.Lon.ToString(CultureInfo.InvariantCulture) + ",'../icons/24x24/" + iconModifier
 			                  + IconManager.GetMapIcon (pt.Symbol) + "',\"" + cache.Name + "\",\""+ cache.CacheName.Replace("\"","'") +"\",\"" + pt.Name + "-" + desc + "\")");
 		}
 

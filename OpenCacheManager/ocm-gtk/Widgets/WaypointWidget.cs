@@ -180,7 +180,7 @@ namespace ocmgtk
 				Orig.Symbol = "Geocache";
 				Orig.Type = "Geocache - Original";
 				Orig.Desc = Catalog.GetString("Original Location");
-				m_mon.AddMapWayPoint (Orig);
+				m_mon.AddMapWayPoint (Orig, cache);
 				m_childPoints.AppendValues(Orig);
 			}
 			m_mon.SetProgressDone(false);
@@ -199,7 +199,7 @@ namespace ocmgtk
 			cache.Children = false;
 			while (wptenum.MoveNext ()) {
 				m_childPoints.AppendValues (wptenum.Current);
-				m_mon.AddMapWayPoint (wptenum.Current);
+				m_mon.AddMapWayPoint (wptenum.Current, cache);
 				cache.Children = true;		
 			}
 		}
