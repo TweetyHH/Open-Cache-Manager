@@ -67,6 +67,10 @@ namespace ocmengine
 				log.LogDate = DateTime.Parse(parts[1]);
 				log.LogStatus = parts[2];
 				StringBuilder message = new StringBuilder();
+				if (parts.Length > 4)
+				{
+					RebuildLogMessage (parts);
+				}
 				if (!parts[3].EndsWith("\"") || parts[3] == "\"")
 				{
 					if (parts[3] != "\"")
@@ -106,6 +110,18 @@ namespace ocmengine
 			reader.Close();
 			fstream.Close();
 			return logs;
+		}
+		
+		private static void RebuildLogMessage (string[] parts)
+		{
+			StringBuilder builder = new StringBuilder();
+			for (int i=3; i < parts.Length; i++)
+			{
+				if (i>3)
+					builder.Append(",");
+				builder.Append(parts[i]);
+			}
+			parts[3] = builder.ToString();
 		}
 	}
 }

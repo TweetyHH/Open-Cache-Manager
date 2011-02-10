@@ -91,14 +91,13 @@ namespace ocmgtk.printing
 		void HandleM_printBeginPrint (object o, BeginPrintArgs args)
 		{
 			string contents;
-            double height,width;
+            double height;
 
             // Get the Context of the Print Operation
             PrintContext context = args.Context;
            
             // Get the Height of the Context
             height = context.Height;
-			width = context.Width;
 			
 			StringBuilder builder = new StringBuilder();
          

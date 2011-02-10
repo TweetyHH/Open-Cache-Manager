@@ -19,7 +19,7 @@ namespace ocmgtk
 		const string START_ARCHIVE = "<span fgcolor='red' strikethrough='true'>";
 		const string START_UNAVAIL = "<span fgcolor='red'>";
 		const string START_RECENT_DNF = "<span fgcolor='darkorange'>";
-		const string START_MYDNF = "<span fgcolor='darkblue'>";
+		const string START_MY_DNF = "<span fgcolor='blue'>";
 		const string START_ITALICS = "<i>";
 		const string START_BOLD = "<b>";
 		const string END_BOLD = "</b>";
@@ -279,6 +279,8 @@ namespace ocmgtk
 				builder.Append(unavailText (cache.CacheName));
 			else if (cache.Archived)
 				builder.Append(archiveText (cache.CacheName));
+			else if (cache.DNF)
+				builder.Append(START_MY_DNF + GLib.Markup.EscapeText (cache.CacheName) + END_SPAN);
 			else if (cache.CheckNotes)
 				builder.Append(START_RECENT_DNF + GLib.Markup.EscapeText (cache.CacheName) + END_SPAN);
 			else

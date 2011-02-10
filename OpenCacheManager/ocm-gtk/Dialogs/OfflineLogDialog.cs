@@ -56,8 +56,8 @@ namespace ocmgtk
 				log.LogDate = logDateWidget.Date;
 				log.LogMessage = logEntry.Buffer.Text;
 				log.LoggedBy = "OCM";
-				log.FinderID = "0";
-				log.LogKey = m_cache + "-ofl";
+				log.FinderID = UIMonitor.getInstance().OwnerID;
+				log.LogKey = m_cache + log.LogDate.ToFileTime().ToString();
 				
 				switch (logChoice.Active)
 				{

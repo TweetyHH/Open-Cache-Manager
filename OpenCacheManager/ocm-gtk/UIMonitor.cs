@@ -1017,7 +1017,7 @@ namespace ocmgtk
 		public void MarkCacheFound ()
 		{
 			MarkFoundDialog dlg = new MarkFoundDialog();
-			dlg.CacheName = m_selectedCache.Name;
+			dlg.DialogLabel = String.Format("Do you wish to mark {0} as found?", m_selectedCache.Name);
 			dlg.LogDate = m_loggingdate;
 			if ((int)ResponseType.Cancel == dlg.Run ()) 
 			{
@@ -1035,6 +1035,7 @@ namespace ocmgtk
 			log.LoggedBy = "OCM";
 			log.LogStatus = "Found it";
 			log.LogMessage = "AUTO LOG: OCM";
+			log.LogKey = m_selectedCache.Name + log.LogDate.ToFileTime().ToString();
 			Engine.getInstance ().Store.UpdateWaypointAtomic (m_selectedCache);
 			Engine.getInstance ().Store.UpdateCacheAtomic (m_selectedCache);
 			Engine.getInstance ().Store.AddLogAtomic (m_selectedCache.Name, log);
@@ -1066,7 +1067,8 @@ namespace ocmgtk
 		public void MarkCacheFTF ()
 		{
 			MarkFoundDialog dlg = new MarkFoundDialog();
-			dlg.CacheName = m_selectedCache.Name;
+			dlg.Title = Catalog.GetString("Mark First to Find");
+			dlg.DialogLabel = String.Format("Do you wish to mark {0} as first to find?", m_selectedCache.Name);
 			dlg.LogDate = m_loggingdate;
 			if ((int)ResponseType.Cancel == dlg.Run ()) 
 			{
@@ -1084,6 +1086,7 @@ namespace ocmgtk
 			log.LoggedBy = "OCM";
 			log.LogStatus = "Found it";
 			log.LogMessage = "AUTO LOG: OCM";
+			log.LogKey = m_selectedCache.Name + log.LogDate.ToFileTime().ToString();
 			Engine.getInstance ().Store.UpdateWaypointAtomic (m_selectedCache);
 			Engine.getInstance ().Store.UpdateCacheAtomic (m_selectedCache);
 			Engine.getInstance ().Store.AddLogAtomic (m_selectedCache.Name, log);
@@ -1097,7 +1100,8 @@ namespace ocmgtk
 		public void MarkCacheDNF()
 		{
 			MarkFoundDialog dlg = new MarkFoundDialog();
-			dlg.CacheName = m_selectedCache.Name;
+			dlg.Title = Catalog.GetString("Mark Did Not Find");
+			dlg.DialogLabel = String.Format("Do you wish to mark {0} as did not find?", m_selectedCache.Name);
 			dlg.LogDate = m_loggingdate;
 			if ((int)ResponseType.Cancel == dlg.Run ()) 
 			{
@@ -1115,6 +1119,7 @@ namespace ocmgtk
 			log.LoggedBy = "OCM";
 			log.LogStatus = "Didn't find it";
 			log.LogMessage = "AUTO LOG: OCM";
+			log.LogKey = m_selectedCache.Name + log.LogDate.ToFileTime().ToString();
 			Engine.getInstance ().Store.UpdateWaypointAtomic (m_selectedCache);
 			Engine.getInstance ().Store.UpdateCacheAtomic (m_selectedCache);
 			Engine.getInstance ().Store.AddLogAtomic (m_selectedCache.Name, log);
@@ -1360,7 +1365,7 @@ namespace ocmgtk
 				prof.FieldNotesFile = dlg.GPSConfig.FieldNotesFile;
 				if (origName == prof.Name)
 				{
-					m_profiles.EditProfile(prof);
+					m_profiles.UpdateProfile(prof);
 				}
 				else
 				{
@@ -2015,7 +2020,7 @@ namespace ocmgtk
 			String tempPath = System.IO.Path.GetTempPath();
 			ProcessStartInfo start = new ProcessStartInfo();
 			start.FileName = "unzip";
-			start.Arguments = filename + " -d " + tempPath + "ocm_unzip";
+			start.Arguments = filename + " -o -d " + tempPath + "ocm_unzip";
 			Process unzip =  Process.Start(start);
 			
 			while (!unzip.HasExited)
@@ -2154,14 +2159,14 @@ namespace ocmgtk
 			if (!System.IO.File.Exists(m_conf.FieldNotesFile))
 			{
 				MessageDialog mdlg = new MessageDialog(m_mainWin,DialogFlags.Modal, MessageType.Info, ButtonsType.Ok,
-				                                      Catalog.GetString("There are no offline logs."));
+				                                      Catalog.GetString("There are no field notes."));
 				mdlg.Run();
 				mdlg.Hide();
 				return;
 			}
 			
 			List<CacheLog> logs = FieldNotesHandler.GetLogs(m_conf.FieldNotesFile);
-			OffLineLogViewer dlg = new OffLineLogViewer();
+			OffLineLogViewer dlg = new OffLineLogViewer(this);
 			dlg.PopulateLogs(logs);
 			dlg.Run();
 		}
@@ -2170,6 +2175,7 @@ namespace ocmgtk
 		{
 			
 			LoadGPSFieldNotes dlg = new LoadGPSFieldNotes();
+			dlg.LastScan = m_profiles.GetActiveProfile().LastFieldNoteScan;
 			try
 			{
 				if ((int) ResponseType.Ok == dlg.Run())
@@ -2178,14 +2184,19 @@ namespace ocmgtk
 					GPSProfile prof = m_profiles.GetActiveProfile();
 					List<CacheLog> logs = FieldNotesHandler.GetLogs(prof.FieldNotesFile);
 					int iCount = 0;
+					DateTime latestScan = dlg.LastScan;
 					foreach(CacheLog log in logs)
 					{
 						if (log.LogDate < dlg.LastScan)
 							continue;
 						Geocache cache = Engine.getInstance().Store.GetCache(log.CacheCode);
 						ProcessOfflineLog(cache, log, false);
+						if (latestScan < log.LogDate)
+							latestScan = log.LogDate;
 						iCount ++;
 					}
+					m_profiles.GetActiveProfile().LastFieldNoteScan = latestScan;
+					m_profiles.UpdateProfile(prof);
 					MessageDialog mdlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Info,
 					                                       ButtonsType.Ok, Catalog.GetString("Processed {0} field notes."),
 					                                       iCount.ToString());

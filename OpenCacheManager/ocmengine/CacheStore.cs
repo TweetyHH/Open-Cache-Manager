@@ -188,6 +188,27 @@ namespace ocmengine
 				return caches[0];
 		}
 		
+		public List<Geocache> GetCaches(List<string> codes)
+		{
+			bool isFirst = true;
+			StringBuilder builder = new StringBuilder();
+			builder.Append(GET_GC);
+			builder.Append(" AND GEOCACHE.name IN(");
+			foreach(string code in codes)
+			{
+				if (isFirst)
+					isFirst = false;
+				else
+					builder.Append(",");
+				builder.Append("'");
+				builder.Append(code);
+				builder.Append("'");
+			}
+			builder.Append(")");
+			List<Geocache> caches = GetCacheList(builder.ToString());
+			return caches;
+		}
+		
 		public List<Geocache> GetCaches(double lat, double lon)
 		{
 			m_lat = lat;
@@ -449,6 +470,24 @@ namespace ocmengine
 			IDbConnection conn = OpenConnection();
 			IDbCommand command = conn.CreateCommand();
 			command.CommandText = String.Format(LAST_FIND_BY_YOU, cache.Name, ownerID);
+			IDataReader reader = command.ExecuteReader();
+			DateTime date = DateTime.MinValue;
+			while (reader.Read())
+			{
+				string val = reader.GetString(0);
+				if (!String.IsNullOrEmpty(val))
+					date = DateTime.Parse(val);
+					
+			}
+			CloseConnection(ref reader, ref command, ref conn);
+			return date;
+		}
+		
+		public DateTime GetLastDNFByYou(Geocache cache, String ownerID)
+		{
+			IDbConnection conn = OpenConnection();
+			IDbCommand command = conn.CreateCommand();
+			command.CommandText = String.Format(LAST_DNF_BY_YOU, cache.Name, ownerID);
 			IDataReader reader = command.ExecuteReader();
 			DateTime date = DateTime.MinValue;
 			while (reader.Read())
@@ -961,8 +1000,6 @@ namespace ocmengine
 		{
 			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
-			System.Console.WriteLine("Adding log for " + cachename);
-			System.Console.WriteLine("Logkey" + log.LogKey);
 			IDbCommand cmd = m_conn.CreateCommand();
 			String insert = String.Format(ADD_LOG, cachename, log.LogDate.ToString("o"), SQLEscape(log.LoggedBy),
 			                                SQLEscape(log.LogMessage), SQLEscape(log.LogStatus), log.FinderID, 

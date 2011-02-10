@@ -848,6 +848,11 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.CreateDB ();
 	}
 	
+	public void AddAction(Action act, String accel)
+	{
+		this.UIManager.ActionGroups[0].Add(act, accel);
+	}
+	
 	
 	
 	

@@ -21,9 +21,9 @@ namespace ocmgtk
 
 	public partial class MarkFoundDialog : Gtk.Dialog
 	{
-		public string CacheName
+		public string DialogLabel
 		{
-			set { label1.Text = String.Format("Do you wish to mark {0} as found?", value);}
+			set { label1.Text = value;}
 		}
 		public DateTime LogDate
 		{

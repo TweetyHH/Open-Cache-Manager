@@ -602,16 +602,12 @@ namespace ocmengine
 			}
 			else if (reader.LocalName == "LatBeforeCorrect")
 			{
-				System.Console.WriteLine("HERE");
 				double corLat = cache.OrigLat;
 				cache.Lat = reader.ReadElementContentAsDouble();
 				cache.CorrectedLat = corLat;
-				System.Console.WriteLine(cache.Lat);
-				System.Console.WriteLine(cache.OrigLat);
 			}
 			else if (reader.LocalName == "LonBeforeCorrect")
 			{
-				System.Console.WriteLine("HERE2");
 				double corLon = cache.OrigLon;
 				cache.Lon = reader.ReadElementContentAsDouble();
 				cache.CorrectedLon = corLon;

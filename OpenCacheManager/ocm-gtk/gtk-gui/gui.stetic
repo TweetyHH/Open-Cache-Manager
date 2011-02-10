@@ -679,16 +679,16 @@
         <property name="Label" translatable="yes">Database</property>
         <property name="ShortLabel" translatable="yes">Database</property>
       </action>
-      <action id="CopyCachesToAnotherDatabaseAction">
+      <action id="CopyToAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Copy Caches To Another Database...</property>
-        <property name="ShortLabel" translatable="yes">Copy Caches To Another Database...</property>
+        <property name="Label" translatable="yes">Copy To...</property>
+        <property name="ShortLabel" translatable="yes">Copy To...</property>
         <signal name="Activated" handler="OnCopyVisibleCachesActionActivated" />
       </action>
-      <action id="MoveCachesToAnotherDatabaseAction">
+      <action id="MoveToAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Move Caches To Another Database...</property>
-        <property name="ShortLabel" translatable="yes">Move Caches To Another Database...</property>
+        <property name="Label" translatable="yes">Move To...</property>
+        <property name="ShortLabel" translatable="yes">Move To...</property>
         <signal name="Activated" handler="OnMove" />
       </action>
       <action id="CompactDatabaseAction2">
@@ -893,6 +893,7 @@
                   <node type="Menuitem" action="NewCacheAction" />
                 </node>
                 <node type="Menuitem" action="openAction2" />
+                <node type="Menuitem" action="CompactDatabaseAction2" />
                 <node type="Separator" />
                 <node type="Menuitem" action="openAction" />
                 <node type="Menuitem" action="ImportZIPFileAction" />
@@ -905,6 +906,9 @@
                 <node type="Menuitem" action="QuitAction" />
               </node>
               <node type="Menu" action="EditAction">
+                <node type="Menuitem" action="CopyToAction" />
+                <node type="Menuitem" action="MoveToAction" />
+                <node type="Separator" />
                 <node type="Menuitem" action="DeleteAction1" />
                 <node type="Menuitem" action="DeleteAllAction" />
                 <node type="Separator" />
@@ -960,12 +964,6 @@
                 <node type="Menuitem" action="SetSelectedCacheAsCentreAction" />
                 <node type="Menuitem" action="ModifyCacheAction" />
                 <node type="Separator" />
-              </node>
-              <node type="Menu" action="DatabaseAction">
-                <node type="Menuitem" action="CopyCachesToAnotherDatabaseAction" />
-                <node type="Menuitem" action="MoveCachesToAnotherDatabaseAction" />
-                <node type="Separator" />
-                <node type="Menuitem" action="CompactDatabaseAction2" />
               </node>
               <node type="Menu" action="WebAction">
                 <node type="Menuitem" action="OCMHomePageAction" />
@@ -3697,6 +3695,7 @@ Disabled on Startup</property>
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="Label" translatable="yes">Only puzzle cache types with corrected coordinats/final location</property>
+                                <property name="Active">True</property>
                                 <property name="DrawIndicator">True</property>
                                 <property name="HasLabel">True</property>
                                 <property name="UseUnderline">True</property>
@@ -12002,7 +12001,7 @@ Cache Name</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.MarkFoundDialog" design-size="287 153">
+  <widget class="Gtk.Dialog" id="ocmgtk.MarkFoundDialog" design-size="297 153">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Mark Found</property>
     <property name="TypeHint">Dialog</property>
@@ -16777,15 +16776,56 @@ Needs Maintenance</property>
     <property name="MemberName" />
     <property name="WidthRequest">600</property>
     <property name="HeightRequest">400</property>
-    <property name="Title" translatable="yes">View Pending Logs...</property>
+    <property name="Title" translatable="yes">View Field Notes...</property>
+    <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="Modal">True</property>
     <property name="BorderWidth">6</property>
+    <property name="SkipPagerHint">True</property>
+    <property name="SkipTaskbarHint">True</property>
     <property name="Buttons">1</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
       <widget class="Gtk.VBox" id="dialog1_VBox">
         <property name="MemberName" />
+        <property name="Spacing">6</property>
         <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.HBox" id="hbox1">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Image" id="image11">
+                <property name="MemberName" />
+                <property name="Pixbuf">stock:gtk-dialog-info LargeToolbar</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="fnFieldNotesLabel">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">label1</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
         <child>
           <widget class="Gtk.HBox" id="hbox2">
             <property name="MemberName" />
@@ -16830,22 +16870,6 @@ Needs Maintenance</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Button" id="onViewOnlineClick">
-                    <property name="MemberName" />
-                    <property name="Sensitive">False</property>
-                    <property name="CanFocus">True</property>
-                    <property name="Type">TextOnly</property>
-                    <property name="Label" translatable="yes">_Log Online</property>
-                    <property name="UseUnderline">True</property>
-                    <signal name="Clicked" handler="OnLogOnlineClick" />
-                  </widget>
-                  <packing>
-                    <property name="Position">1</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
-                <child>
                   <widget class="Gtk.Button" id="deleteButton">
                     <property name="MemberName" />
                     <property name="Sensitive">False</property>
@@ -16855,6 +16879,21 @@ Needs Maintenance</property>
                     <property name="StockId">gtk-delete</property>
                     <signal name="Clicked" handler="OnDeleteClick" />
                     <property name="label">gtk-delete</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="delAllButton">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Delete All</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnDeleteAllClick" />
                   </widget>
                   <packing>
                     <property name="Position">2</property>
@@ -16873,14 +16912,25 @@ Needs Maintenance</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">0</property>
+            <property name="Position">1</property>
             <property name="AutoSize">True</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HSeparator" id="hseparator1">
+            <property name="MemberName" />
+          </widget>
+          <packing>
+            <property name="Position">2</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
           </packing>
         </child>
         <child>
           <widget class="Gtk.Frame" id="frame1">
             <property name="MemberName" />
-            <property name="ShadowType">In</property>
+            <property name="ShadowType">None</property>
             <child>
               <widget class="Gtk.Alignment" id="GtkAlignment3">
                 <property name="MemberName" />
@@ -16907,7 +16957,7 @@ Needs Maintenance</property>
             <child>
               <widget class="Gtk.Label" id="GtkLabel4">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Log Entry:</property>
+                <property name="LabelProp" translatable="yes">&lt;b&gt;Log Text:&lt;/b&gt;</property>
                 <property name="UseMarkup">True</property>
               </widget>
               <packing>
@@ -16916,7 +16966,7 @@ Needs Maintenance</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">1</property>
+            <property name="Position">3</property>
             <property name="AutoSize">True</property>
           </packing>
         </child>

@@ -30,6 +30,10 @@ namespace ocmgtk
 
 		static string FOUND_DATE = Catalog.GetString("<span font='bold italic 10' fgcolor='darkgreen'>You have already found this cache on {0}</span>");
 		static string FOUND = Catalog.GetString("<span font='bold italic 10' fgcolor='darkgreen'>You have already found this cache</span>");
+		static string FTF_DATE = Catalog.GetString("<span font='bold italic 10' fgcolor='darkgreen'>You were first to find this cache on {0}</span>");
+		static string FTF = Catalog.GetString("<span font='bold italic 10' fgcolor='darkgreen'>You were first to find this cache</span>");
+		static string DNF_DATE = Catalog.GetString("<span font='bold italic 10' fgcolor='blue'>You didn't find this cache on {0}</span>");
+		static string DNF = Catalog.GetString("<span font='bold italic 10' fgcolor='blue'>You didn't find this cache</span>");
 		static string MINE = Catalog.GetString("<span font='bold italic 10' fgcolor='darkgreen'>You own this cache</span>");
 		static string UNAVAILABLE = Catalog.GetString("<span font='bold italic 10' fgcolor='red'>This cache is temporarily unavailable, check the logs for more information.</span>");
 		static string ARCHIVED = Catalog.GetString("<span font='bold italic 10' fgcolor='red'>This cache has been archived, check the logs for more information.</span>");
@@ -100,14 +104,29 @@ namespace ocmgtk
 				else
 					lastFoundDateLabel.Text = lastDate.ToShortDateString();
 				DateTime lastFound = store.GetLastFindByYou(cache, m_monitor.OwnerID);
+				DateTime lastDNF = store.GetLastDNFByYou(cache, m_monitor.OwnerID);
 				if (cache.Found && lastFound == DateTime.MinValue)
-					statusLabel.Markup = FOUND; 
+				{
+					if (!cache.FTF)
+						statusLabel.Markup = FOUND; 
+					else
+						statusLabel.Markup = FTF;
+				}
 				else if (cache.Found)
-					statusLabel.Markup = String.Format(FOUND_DATE, lastFound.ToShortDateString()); 
+				{
+					if (!cache.FTF)
+						statusLabel.Markup = String.Format(FOUND_DATE, lastFound.ToShortDateString());
+					else
+						statusLabel.Markup = String.Format(FTF_DATE, lastFound.ToShortDateString());
+				}
 				else if (cache.Archived)
 					statusLabel.Markup = ARCHIVED; 
 				else if (!cache.Available)
 					statusLabel.Markup = UNAVAILABLE;
+				else if (cache.DNF && lastDNF == DateTime.MinValue)
+					statusLabel.Markup = DNF;
+				else if (cache.DNF)
+					statusLabel.Markup = String.Format(DNF_DATE, lastDNF.ToShortDateString());
 				else if (cache.OwnerID == m_monitor.OwnerID || cache.CacheOwner == m_monitor.OwnerID)
 					statusLabel.Markup = MINE;
 				else if (cache.CheckNotes)

@@ -117,7 +117,7 @@ namespace ocmgtk
 			UpdateProfFile();
 		}
 		
-		public void EditProfile(GPSProfile prof)
+		public void UpdateProfile(GPSProfile prof)
 		{
 			m_profiles.Remove(prof.Name);
 			m_profiles.Add(prof.Name, prof);
@@ -165,7 +165,13 @@ namespace ocmgtk
 				etMenu.Append(action.CreateMenuItem());
 				action.Activated += HandleTransferActionActivated;	
 			}
+			etMenu.ShowAll();
 			return etMenu;
+		}
+
+		void HandleActActivated (object sender, EventArgs e)
+		{
+			UIMonitor.getInstance().SendToGPS();
 		}
 		
 		public Menu BuildProfileReceiveMenu()
@@ -215,12 +221,6 @@ namespace ocmgtk
 		{
 			GPSProfile prof = m_profiles[((sender) as Gtk.Action).Name];
 			UIMonitor.getInstance().EditProfile(prof);
-		}
-
-		void HandleActionToggled (object sender, EventArgs e)
-		{
-			GPSProfile prof = m_profiles[((sender) as Gtk.Action).Name];
-			prof.SetAsCurrent();
 		}
 	}
 }

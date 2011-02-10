@@ -28,24 +28,36 @@ namespace ocmgtk
 		private ListStore m_logList;
 		private List<CacheLog> m_Logs;
 		private TreeModelSort listSort;
+		private UIMonitor m_monitor;
+		private Dictionary<string, Geocache> m_caches;
 		
-		public OffLineLogViewer ()
+		public OffLineLogViewer (UIMonitor mon)
 		{
 			this.Build ();
 			BuildLogTreeWidget();
+			m_monitor = mon;
+			m_caches = new Dictionary<string, Geocache>();
+			fnFieldNotesLabel.Text = String.Format(Catalog.GetString("File Location: {0}"), m_monitor.Configuration.FieldNotesFile);
 			this.ShowAll();
 		}
 		
 		public void PopulateLogs(List<CacheLog> logs)
 		{
 			m_logList.Clear();
+			m_caches.Clear();
 			m_Logs = logs;
 			listSort.SetSortColumnId(0, SortType.Descending);
+			List<String> caches = new List<String>();
 			foreach (CacheLog log in logs)
 			{
 				m_logList.AppendValues(log);
+				caches.Add(log.CacheCode);
 			}
-			
+			List<Geocache> cachesInDb = Engine.getInstance().Store.GetCaches(caches);		
+			foreach(Geocache cache in cachesInDb)
+			{
+				m_caches[cache.Name] = cache;
+			}
 		}
 		
 		private void BuildLogTreeWidget()
@@ -126,10 +138,8 @@ namespace ocmgtk
 			CacheLog log = (CacheLog)model.GetValue (iter, 0);
 			CellRendererText text = cell as CellRendererText;
 			
-			// TEMP: INEFFICIENT, SHOULD GET ALL POSSIBLE CACHES FIRST
-			Geocache cache = Engine.getInstance().Store.GetCache(log.CacheCode);
-			if (cache != null)
-				text.Text = cache.CacheName;
+			if (m_caches.ContainsKey(log.CacheCode))
+				text.Text = m_caches[log.CacheCode].CacheName;
 			else
 				text.Text = Catalog.GetString("<Name Unavailable>");
 		}
@@ -192,10 +202,6 @@ namespace ocmgtk
 			}
 		}
 		
-		protected virtual void OnLogOnlineClick (object sender, System.EventArgs e)
-		{
-		}
-		
 		protected virtual void OnDeleteClick (object sender, System.EventArgs e)
 		{
 			Gtk.TreeIter itr;
@@ -217,9 +223,18 @@ namespace ocmgtk
 		
 		private void UpdateFNFile()
 		{
-			string fnFile = UIMonitor.getInstance().Configuration.FieldNotesFile;
+			string fnFile = m_monitor.Configuration.FieldNotesFile;
 			FieldNotesHandler.ClearFieldNotes(fnFile);
 			FieldNotesHandler.WriteToFile(m_Logs, fnFile);
 		}	
+		
+		protected virtual void OnDeleteAllClick (object sender, System.EventArgs e)
+		{
+			FieldNotesHandler.ClearFieldNotes(m_monitor.Configuration.FieldNotesFile);
+			m_Logs.Clear();
+			PopulateLogs(m_Logs);
+		}
+		
+		
 	}
 }

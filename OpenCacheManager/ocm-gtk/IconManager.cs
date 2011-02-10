@@ -68,6 +68,7 @@ namespace ocmgtk
 		private static string WHERIGO_MI = "wherigo.png";
 		private static string GENERIC_MI = "treasure.png";
 		private static string CORRECTED_MI = "corrected.png";
+		private static string DNF_MI = "dnf.png";
 		
 		/// <summary>
 		/// Returns a PixBuf containing the 16x16 icon for the specified cache type
@@ -149,6 +150,10 @@ namespace ocmgtk
 				else if (mon.Configuration.SolvedModeState == SolvedMode.PUZZLES &&
 				         cache.TypeOfCache == Geocache.CacheType.MYSTERY)
 					return CORRECTED_MI;
+			}
+			else if (cache.DNF)
+			{
+				return DNF_MI;
 			}
 			switch (cache.TypeOfCache) {
 				case Geocache.CacheType.TRADITIONAL:

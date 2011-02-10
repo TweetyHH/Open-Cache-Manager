@@ -34,6 +34,7 @@ namespace ocmgtk
 				if (value == DateTime.MinValue)
 				{
 					checkIgnoreLogs.Active = false;
+					ignoreDate.Date = value;
 				}
 				else
 				{
