@@ -862,8 +862,8 @@
       <action id="NewDatabaseAction">
         <property name="Type">Action</property>
         <property name="Accelerator">&lt;Control&gt;&lt;Mod2&gt;n</property>
-        <property name="Label" translatable="yes">_New Database</property>
-        <property name="ShortLabel" translatable="yes">_New Database</property>
+        <property name="Label" translatable="yes">_New Database...</property>
+        <property name="ShortLabel" translatable="yes">_New Database...</property>
         <signal name="Activated" handler="OnNewAction" />
       </action>
       <action id="ReceiveFieldNotesAction">
