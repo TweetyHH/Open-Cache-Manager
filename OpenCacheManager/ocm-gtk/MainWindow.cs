@@ -853,6 +853,12 @@ public partial class MainWindow : Gtk.Window
 		this.UIManager.ActionGroups[0].Add(act, accel);
 	}
 	
+	protected virtual void OnTransferLU (object sender, System.EventArgs e)
+	{
+		m_monitor.SendToGPS();
+	}
+	
+	
 	
 	
 	

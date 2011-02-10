@@ -212,9 +212,9 @@
       </action>
       <action id="SetSelectedCacheAsCentreAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Set Selected Cache As Centre</property>
+        <property name="Label" translatable="yes">_Set Selected Cache As Centre</property>
         <property name="Sensitive">False</property>
-        <property name="ShortLabel" translatable="yes">Set Selected Cache As Centre</property>
+        <property name="ShortLabel" translatable="yes">_Set Selected Cache As Centre</property>
         <signal name="Activated" handler="OnSetCentre" />
       </action>
       <action id="ResetCentreToHomeAction">
@@ -423,8 +423,8 @@
       </action>
       <action id="DeleteAllAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Delete All...</property>
-        <property name="ShortLabel" translatable="yes">Delete All...</property>
+        <property name="Label" translatable="yes">Delete _All...</property>
+        <property name="ShortLabel" translatable="yes">Delete _All...</property>
         <signal name="Activated" handler="OnDeleteAllSelect" />
       </action>
       <action id="UseGPSDAsCentreAction">
@@ -466,8 +466,8 @@
       </action>
       <action id="DeselectAction1">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Deselect</property>
-        <property name="ShortLabel" translatable="yes">Deselect</property>
+        <property name="Label" translatable="yes">De_select</property>
+        <property name="ShortLabel" translatable="yes">De_select</property>
         <signal name="Activated" handler="OnDeselectClick" />
       </action>
       <action id="ToolsAction">
@@ -513,8 +513,8 @@
       </action>
       <action id="OCMWikiAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">OCM Wiki...</property>
-        <property name="ShortLabel" translatable="yes">OCM Wiki...</property>
+        <property name="Label" translatable="yes">_OCM Wiki...</property>
+        <property name="ShortLabel" translatable="yes">_OCM Wiki...</property>
         <signal name="Activated" handler="OnWikiClick" />
       </action>
       <action id="CompactDatabaseAction">
@@ -583,8 +583,8 @@
       </action>
       <action id="ExternalToolsAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">External Tools</property>
-        <property name="ShortLabel" translatable="yes">External Tools</property>
+        <property name="Label" translatable="yes">_External Tools</property>
+        <property name="ShortLabel" translatable="yes">_External Tools</property>
       </action>
       <action id="NoneAction">
         <property name="Type">Action</property>
@@ -594,8 +594,8 @@
       </action>
       <action id="ConfigureExternalToolsAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Configure External Tools...</property>
-        <property name="ShortLabel" translatable="yes">Configure External Tools...</property>
+        <property name="Label" translatable="yes">_Configure External Tools...</property>
+        <property name="ShortLabel" translatable="yes">_Configure External Tools...</property>
         <signal name="Activated" handler="OnConfigureETools" />
       </action>
       <action id="ExportFindsGPXAction">
@@ -606,25 +606,25 @@
       </action>
       <action id="CheckForUpdatesAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Check For Updates...</property>
-        <property name="ShortLabel" translatable="yes">Check For Updates...</property>
+        <property name="Label" translatable="yes">Check For _Updates...</property>
+        <property name="ShortLabel" translatable="yes">Check For _Updates...</property>
         <signal name="Activated" handler="OnUpdateCheck" />
       </action>
       <action id="printAction">
         <property name="Type">Action</property>
         <property name="Accelerator">&lt;Control&gt;&lt;Mod2&gt;p</property>
-        <property name="Label" translatable="yes">Print...</property>
+        <property name="Label" translatable="yes">_Print...</property>
         <property name="Sensitive">False</property>
-        <property name="ShortLabel" translatable="yes">Print...</property>
+        <property name="ShortLabel" translatable="yes">_Print...</property>
         <property name="StockId">gtk-print</property>
         <signal name="Activated" handler="OnPrintClick" />
       </action>
       <action id="CorrectedCoordinatesAction">
         <property name="Type">Action</property>
         <property name="Accelerator">&lt;Control&gt;&lt;Mod2&gt;r</property>
-        <property name="Label" translatable="yes">Corrected Coordinates...</property>
+        <property name="Label" translatable="yes">_Corrected Coordinates...</property>
         <property name="Sensitive">False</property>
-        <property name="ShortLabel" translatable="yes">Corrected Coordinates...</property>
+        <property name="ShortLabel" translatable="yes">_Corrected Coordinates...</property>
         <signal name="Activated" handler="OnCorrectedClick" />
       </action>
       <action id="OpencachingAction">
@@ -640,14 +640,14 @@
       </action>
       <action id="ImportZIPFileAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Import ZIP File...</property>
-        <property name="ShortLabel" translatable="yes">Import ZIP File...</property>
+        <property name="Label" translatable="yes">Import _ZIP File...</property>
+        <property name="ShortLabel" translatable="yes">Import _ZIP File...</property>
         <signal name="Activated" handler="OnZipClick" />
       </action>
       <action id="ChildWaypointsAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Child Waypoints</property>
-        <property name="ShortLabel" translatable="yes">Child Waypoints</property>
+        <property name="Label" translatable="yes">_Child Waypoints</property>
+        <property name="ShortLabel" translatable="yes">_Child Waypoints</property>
       </action>
       <action id="SelectedCacheOnlyAction">
         <property name="Type">Action</property>
@@ -681,27 +681,27 @@
       </action>
       <action id="CopyToAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Copy To...</property>
-        <property name="ShortLabel" translatable="yes">Copy To...</property>
+        <property name="Label" translatable="yes">_Copy To...</property>
+        <property name="ShortLabel" translatable="yes">_Copy To...</property>
         <signal name="Activated" handler="OnCopyVisibleCachesActionActivated" />
       </action>
       <action id="MoveToAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Move To...</property>
-        <property name="ShortLabel" translatable="yes">Move To...</property>
+        <property name="Label" translatable="yes">_Move To...</property>
+        <property name="ShortLabel" translatable="yes">_Move To...</property>
         <signal name="Activated" handler="OnMove" />
       </action>
       <action id="CompactDatabaseAction2">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Compact Database</property>
-        <property name="ShortLabel" translatable="yes">Compact Database</property>
+        <property name="Label" translatable="yes">_Compact Database</property>
+        <property name="ShortLabel" translatable="yes">_Compact Database</property>
         <signal name="Activated" handler="OnCompact" />
       </action>
       <action id="ImportDirectoryAction">
         <property name="Type">Action</property>
         <property name="Accelerator">&lt;Control&gt;&lt;Alt&gt;&lt;Mod2&gt;i</property>
-        <property name="Label" translatable="yes">Import Directory...</property>
-        <property name="ShortLabel" translatable="yes">Import Directory...</property>
+        <property name="Label" translatable="yes">Import _Directory...</property>
+        <property name="ShortLabel" translatable="yes">Import _Directory...</property>
         <signal name="Activated" handler="OnImportDirClicked" />
       </action>
       <action id="StatisticsAction">
@@ -758,8 +758,8 @@
       </action>
       <action id="LocationsMenu">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">L_ocations</property>
-        <property name="ShortLabel" translatable="yes">L_ocations</property>
+        <property name="Label" translatable="yes">_Locations</property>
+        <property name="ShortLabel" translatable="yes">_Locations</property>
       </action>
       <action id="HomeAction1">
         <property name="Type">Action</property>
@@ -768,14 +768,14 @@
       </action>
       <action id="AddGPSProfileAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Add GPS Profile...</property>
-        <property name="ShortLabel" translatable="yes">Add GPS Profile...</property>
+        <property name="Label" translatable="yes">_Add GPS Profile...</property>
+        <property name="ShortLabel" translatable="yes">_Add GPS Profile...</property>
         <signal name="Activated" handler="OnAddGPS" />
       </action>
       <action id="DeleteGPSProfileAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Delete GPS Profile...</property>
-        <property name="ShortLabel" translatable="yes">Delete GPS Profile...</property>
+        <property name="Label" translatable="yes">_Delete GPS Profile...</property>
+        <property name="ShortLabel" translatable="yes">_Delete GPS Profile...</property>
         <signal name="Activated" handler="OnDeleteProfile" />
       </action>
       <action id="GPSProfileAction">
@@ -791,8 +791,8 @@
       </action>
       <action id="EditGPSProfileAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Edit GPS Profile...</property>
-        <property name="ShortLabel" translatable="yes">Edit GPS Profile...</property>
+        <property name="Label" translatable="yes">_Edit GPS Profile...</property>
+        <property name="ShortLabel" translatable="yes">_Edit GPS Profile...</property>
       </action>
       <action id="MarkDidNotFindAction">
         <property name="Type">Action</property>
@@ -824,8 +824,8 @@
       </action>
       <action id="FieldNotesAction1">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Field Notes...</property>
-        <property name="ShortLabel" translatable="yes">View Field Notes...</property>
+        <property name="Label" translatable="yes">_Field Notes...</property>
+        <property name="ShortLabel" translatable="yes">_Field Notes...</property>
         <signal name="Activated" handler="OnViewFieldNotes" />
       </action>
       <action id="ClearFieldNotesAction">
@@ -836,8 +836,8 @@
       </action>
       <action id="ViewAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">View</property>
-        <property name="ShortLabel" translatable="yes">View</property>
+        <property name="Label" translatable="yes">_View</property>
+        <property name="ShortLabel" translatable="yes">_View</property>
       </action>
       <action id="ZoomAction">
         <property name="Type">Action</property>
@@ -868,8 +868,15 @@
       </action>
       <action id="ReceiveFieldNotesAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Receive Field Notes...</property>
-        <property name="ShortLabel" translatable="yes">Receive Field Notes...</property>
+        <property name="Label" translatable="yes">_Receive Field Notes...</property>
+        <property name="ShortLabel" translatable="yes">_Receive Field Notes...</property>
+      </action>
+      <action id="TransferCachesToLastUsedAction">
+        <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Control&gt;&lt;Mod2&gt;t</property>
+        <property name="Label" translatable="yes">Transfer _Caches to Last Used...</property>
+        <property name="ShortLabel" translatable="yes">Transfer Caches to Last Used...</property>
+        <signal name="Activated" handler="OnTransferLU" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -998,6 +1005,7 @@
               </node>
               <node type="Menu" action="GPSAction">
                 <node type="Menu" action="TransferCachesAction" />
+                <node type="Menuitem" action="TransferCachesToLastUsedAction" />
                 <node type="Menu" action="ReceiveFieldNotesAction" />
                 <node type="Separator" />
                 <node type="Menuitem" action="AddGPSProfileAction" />
