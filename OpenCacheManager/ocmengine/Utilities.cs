@@ -341,9 +341,14 @@ namespace ocmengine
 		public static System.Diagnostics.ProcessStartInfo StringToStartInfo(String cmd)
 		{
 			int index = cmd.IndexOf(" ");
-			string proc = cmd.Substring(0, index);
-			string args = cmd.Substring(index);
-			return new System.Diagnostics.ProcessStartInfo(proc, args);
+			// Not every command has a " " in it, perhaps when there is no arguments.
+			if (index <= 0) {
+				return new System.Diagnostics.ProcessStartInfo(cmd);
+			} else {
+				string proc = cmd.Substring(0, index);
+				string args = cmd.Substring(index);
+				return new System.Diagnostics.ProcessStartInfo(proc, args);
+			}
 		}
 	}	
 }
