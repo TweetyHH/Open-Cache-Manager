@@ -1,0 +1,9 @@
+<maps>
+	<map>
+		<name>Google Satelite</name>
+		<code>new OpenLayers.Layer.Google("Google Satellite", {type: G_SATELLITE_MAP, 'sphericalMercator': true, numZoomLevels: 22})</code>
+		<layer>10</layer>
+		<covered>nearly whole world</covered>
+		<active>true</active>
+	</map>
+</maps>

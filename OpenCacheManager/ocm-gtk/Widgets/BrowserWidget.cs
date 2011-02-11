@@ -119,6 +119,10 @@ namespace ocmgtk
 			LoadScript("setAutoSelectCache('" + autoSelectCache + "');");
 		}
 		
+		public void AddMap(string codeForMap, int layer) {
+			LoadScript("addMapRenderer("+codeForMap+", " + layer + "); ");
+		}
+		
 		protected virtual void OnUpClick (object sender, System.EventArgs e)
 		{
 			sizeUpButton.Sensitive = m_monitor.Main.DoUpMap();
