@@ -146,9 +146,14 @@ namespace ocmengine
 		
 		public void AddWaypoint(Waypoint point)
 		{
+			AddWaypoint(point, false);
+		}
+		
+		public void AddWaypoint(Waypoint point, bool noOverwrite)
+		{
 			if (point is Geocache)
 				AddCache(point as Geocache);
-			UpdateWaypoint(point);
+			UpdateWaypoint(point, noOverwrite);
 		}
 		
 		public string GenerateNewName(String testname)
@@ -291,11 +296,11 @@ namespace ocmengine
 		public void UpdateWaypointAtomic(Waypoint pt)
 		{
 			IDbTransaction trans = StartUpdate();
-			UpdateWaypoint(pt);
+			UpdateWaypoint(pt, false);
 			EndUpdate(trans);
 		}
 		
-		internal void UpdateWaypoint(Waypoint pt)
+		internal void UpdateWaypoint(Waypoint pt, bool noOverwrite)
 		{
 			if (m_conn == null)
 				throw new Exception("DB NOT OPEN");
@@ -312,7 +317,13 @@ namespace ocmengine
 			string insert = String.Format(INSERT_WPT, SQLEscape(pt.Name), lat.ToString(CultureInfo.InvariantCulture), lon.ToString(CultureInfo.InvariantCulture), pt.URL, 
 			                                SQLEscape(pt.URLName), SQLEscape(pt.Desc), pt.Symbol, pt.Type,
 			                                pt.Time.ToString("o"), pt.Parent, pt.Updated.ToString("o"));
-			string update = String.Format(UPDATE_WPT, SQLEscape(pt.Name), lat.ToString(CultureInfo.InvariantCulture), lon.ToString(CultureInfo.InvariantCulture), pt.URL, 
+			string update;
+			if (noOverwrite)
+				update = String.Format(UPDATE_WPT_NO_SYM, SQLEscape(pt.Name), lat.ToString(CultureInfo.InvariantCulture), lon.ToString(CultureInfo.InvariantCulture), pt.URL, 
+			                                SQLEscape(pt.URLName), SQLEscape(pt.Desc), pt.Type,
+			                                pt.Time.ToString("o"), pt.Parent, pt.Updated.ToString("o"));	
+			else
+				update = String.Format(UPDATE_WPT, SQLEscape(pt.Name), lat.ToString(CultureInfo.InvariantCulture), lon.ToString(CultureInfo.InvariantCulture), pt.URL, 
 			                                SQLEscape(pt.URLName), SQLEscape(pt.Desc), pt.Symbol, pt.Type,
 			                                pt.Time.ToString("o"), pt.Parent, pt.Updated.ToString("o"));			
 			InsertOrUpdate (update, insert, cmd);
@@ -397,7 +408,14 @@ namespace ocmengine
 				throw new Exception("DB NOT OPEN");
 			IDbCommand cmd = m_conn.CreateCommand();
 			bool hasExtraFields = false;
-			if (cache.HasCorrected || !String.IsNullOrEmpty(cache.Notes))
+			if (cache.HasCorrected ||
+			    !String.IsNullOrEmpty(cache.Notes) ||
+			    !String.IsNullOrEmpty(cache.User1) ||
+			    !String.IsNullOrEmpty(cache.User2) ||
+			    !String.IsNullOrEmpty(cache.User3) ||
+			    !String.IsNullOrEmpty(cache.User4) ||
+			    cache.DNF ||
+			    cache.FTF)
 				hasExtraFields = true;
 			string insert = String.Format(INSERT_GC, cache.Name, SQLEscape(cache.CacheName), cache.CacheID, 
 			                                SQLEscape(cache.CacheOwner), cache.OwnerID, SQLEscape(cache.PlacedBy), 
@@ -429,7 +447,8 @@ namespace ocmengine
 			                                SQLEscape(cache.ShortDesc), SQLEscape(cache.LongDesc),
 			                                SQLEscape(cache.Hint), cache.Container, cache.Archived.ToString(),
 			                                cache.Available.ToString(), SQLEscape(cache.Notes), cache.CheckNotes.ToString(),
-			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture));
+			                              	cache.CorrectedLat.ToString(CultureInfo.InvariantCulture), cache.CorrectedLon.ToString(CultureInfo.InvariantCulture), 
+				                        	cache.DNF, cache.FTF, cache.User1, cache.User2, cache.User3, cache.User4);
 			}
 			InsertOrUpdate (update, insert, cmd);
 		}

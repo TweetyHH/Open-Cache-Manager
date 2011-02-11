@@ -168,11 +168,6 @@ namespace ocmgtk
 			etMenu.ShowAll();
 			return etMenu;
 		}
-
-		void HandleActActivated (object sender, EventArgs e)
-		{
-			UIMonitor.getInstance().SendToGPS();
-		}
 		
 		public Menu BuildProfileReceiveMenu()
 		{

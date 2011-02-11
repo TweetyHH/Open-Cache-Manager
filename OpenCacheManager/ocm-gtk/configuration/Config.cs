@@ -249,6 +249,24 @@ namespace ocmgtk
 			set { this.Set("/apps/ocm/update/updateInterval",value);}
 		}
 		
+		public bool ImportPreventStatusOverwrite
+		{
+			get { return (Boolean) this.Get("/apps/ocm/importnooverwrite", false);}
+			set { this.Set("/apps/ocm/importnooverwrite",value);}
+		}
+		
+		public bool ImportPurgeOldLogs
+		{
+			get { return (Boolean) this.Get("/apps/ocm/importpurgelogs", false);}
+			set { this.Set("/apps/ocm/importpurgelogs",value);}
+		}
+		
+		public bool ImportIgnoreExtraFields
+		{
+			get { return (Boolean) this.Get("/apps/ocm/importignoregsak", false);}
+			set { this.Set("/apps/ocm/importignoregsak",value);}
+		}
+		
 		public void CheckForDefaultGPS(GPSProfileList list, MainWindow win)
 		{
 			string defName = this.GPSProf;

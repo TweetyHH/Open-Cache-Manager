@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.23.3</ReleaseVersion>
+    <ReleaseVersion>0.23.4</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -255,6 +255,8 @@
     <Compile Include="gtk-gui\ocmgtk.OffLineLogViewer.cs" />
     <Compile Include="Dialogs\LoadGPSFieldNotes.cs" />
     <Compile Include="gtk-gui\ocmgtk.LoadGPSFieldNotes.cs" />
+    <Compile Include="Dialogs\ImportDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.ImportDialog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

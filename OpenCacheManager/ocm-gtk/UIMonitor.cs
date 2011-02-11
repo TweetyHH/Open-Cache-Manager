@@ -779,6 +779,7 @@ namespace ocmgtk
 				ExportGPXDialog dlg = new ExportGPXDialog ();
 				dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
 				dlg.CurrentName = "export.gpx";
+				dlg.WaypointMappings = null;
 				FileFilter filter = new FileFilter ();
 				filter.Name = "GPX Files";
 				filter.AddPattern ("*.gpx");
@@ -797,7 +798,7 @@ namespace ocmgtk
 					writer.WriteAttributes = dlg.MustHaveIncludeAttributes;
 					writer.LogLimit = dlg.LogLimit;
 					edlg.Icon = m_mainWin.Icon;
-					edlg.Start (dlg.Filename, GetVisibleCacheList (), m_profiles.GetActiveMappings());
+					edlg.Start (dlg.Filename, GetVisibleCacheList (), dlg.WaypointMappings);
 					RecentManager manager = RecentManager.Default;
 					manager.AddItem("file://" + dlg.Filename);
 				}
@@ -903,23 +904,25 @@ namespace ocmgtk
 			assistant.ShowAll ();
 		}
 
-		public void ImportGPX ()
+		public void ImportFile ()
 		{
-			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Import GPX File"), m_mainWin, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Import"), ResponseType.Accept);
-			dlg.SetCurrentFolder (m_conf.ImportDirectory);
-			FileFilter filter = new FileFilter ();
-			filter.Name = "Waypoint Files";
-			filter.AddPattern ("*.gpx");
-			filter.AddPattern ("*.loc");
-			dlg.AddFilter (filter);
-			
+			ImportDialog dlg = new ImportDialog();
+			dlg.SetCurrentFolder(m_conf.ImportDirectory);
+			dlg.IgnoreExtraFields = m_conf.ImportIgnoreExtraFields;
+			dlg.PreventStatusOverwrite = m_conf.ImportPreventStatusOverwrite;
+			dlg.PurgeOldLogs = m_conf.ImportPurgeOldLogs;
 			if (dlg.Run () == (int)ResponseType.Accept) {
 				RegisterRecentFile(dlg.Filename);
 				dlg.Hide ();
-				ImportGPXFile (dlg.Filename);
+				m_conf.ImportIgnoreExtraFields = dlg.IgnoreExtraFields;
+				m_conf.ImportPreventStatusOverwrite = dlg.PreventStatusOverwrite;
+				m_conf.ImportPurgeOldLogs = dlg.PurgeOldLogs;
+				if (dlg.Filename.EndsWith(".zip"))
+				    ImportZip(dlg.Filename);
+				else
+					ImportGPXFile (dlg.Filename);
 			}
 			dlg.Destroy ();
-			;
 		}
 		
 		public void ImportGPXFile (String filename)
@@ -931,6 +934,9 @@ namespace ocmgtk
 		{
 			System.IO.FileStream fs = System.IO.File.OpenRead (filename);
 			GPXParser parser = new GPXParser ();
+			parser.IgnoreExtraFields = m_conf.ImportIgnoreExtraFields;
+			parser.PreserveFound = m_conf.ImportPreventStatusOverwrite;
+			parser.PurgeLogs = m_conf.ImportPurgeOldLogs;
 			parser.CacheOwner = OwnerID;
 			ProgressDialog pdlg = new ProgressDialog (parser);
 			pdlg.AutoClose = autoclose;
@@ -1998,29 +2004,12 @@ namespace ocmgtk
 			CorrectCoordinates(); // Opens up the GUI for editing/approvel
 		}
 		 
-		public void ImportZip()
-		{
-			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Import ZIP File"), m_mainWin, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Import"), ResponseType.Accept);
-			dlg.SetCurrentFolder (m_conf.ImportDirectory);
-			FileFilter filter = new FileFilter ();
-			filter.Name = "ZIP Files";
-			filter.AddPattern ("*.zip");
-			dlg.AddFilter (filter);
-			
-			if (dlg.Run () == (int)ResponseType.Accept) {
-				dlg.Hide ();
-				RegisterRecentFile(dlg.Filename);
-				ImportZip (dlg.Filename);				
-			}
-			dlg.Destroy ();
-		}
-		
 		public void ImportZip (string filename)
 		{
 			String tempPath = System.IO.Path.GetTempPath();
 			ProcessStartInfo start = new ProcessStartInfo();
 			start.FileName = "unzip";
-			start.Arguments = filename + " -o -d " + tempPath + "ocm_unzip";
+			start.Arguments = filename + " -d " + tempPath + "ocm_unzip";
 			Process unzip =  Process.Start(start);
 			
 			while (!unzip.HasExited)
@@ -2055,6 +2044,9 @@ namespace ocmgtk
 		private void ImportDirectory(String path, bool delete, bool autoClose)
 		{
 				GPXParser parser = new GPXParser ();
+				parser.IgnoreExtraFields = m_conf.ImportIgnoreExtraFields;
+				parser.PreserveFound = m_conf.ImportPreventStatusOverwrite;
+				parser.PurgeLogs = m_conf.ImportPurgeOldLogs;
 				parser.CacheOwner = OwnerID;
 				ProgressDialog pdlg = new ProgressDialog (parser);
 				pdlg.Icon = m_mainWin.Icon;

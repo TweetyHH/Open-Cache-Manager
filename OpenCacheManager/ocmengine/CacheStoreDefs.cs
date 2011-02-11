@@ -28,6 +28,7 @@ namespace ocmengine
 		const string SQL_CONNECT = "Data Source=";
 		const string INSERT_WPT = "INSERT INTO WAYPOINT (name,lat,lon,url,urlname,desc,symbol,type,time, parent, lastUpdate) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}', '{10}')";
 		const string UPDATE_WPT = "UPDATE WAYPOINT SET lat='{1}', lon='{2}',url='{3}', urlname='{4}', desc='{5}', symbol='{6}', type='{7}', time='{8}', parent='{9}', lastUpdate='{10}' WHERE name='{0}'";
+		const string UPDATE_WPT_NO_SYM = "UPDATE WAYPOINT SET lat='{1}', lon='{2}',url='{3}', urlname='{4}', desc='{5}', type='{6}', time='{7}', parent='{8}', lastUpdate='{9}' WHERE name='{0}'";
 		const string WPT_EXISTS_CHECK = "SELECT COUNT(name) FROM WAYPOINT WHERE name='{0}'";
 		const string GET_WPTS = "SELECT name, lat, lon, url, urlname, desc, symbol, type, time, parent, lastUpdate FROM WAYPOINT";
 		const string DELETE_LOGS = "DELETE FROM LOGS where cache IN ({0})";
@@ -48,8 +49,6 @@ namespace ocmengine
 		const string UPDATE_GC = "UPDATE GEOCACHE SET fullname='{1}', id='{2}', owner='{3}', ownerID='{4}',  placedby='{5}', difficulty='{6}', terrain='{7}', country='{8}',state='{9}',type='{10}',shortdesc='{11}',longdesc='{12}',hint='{13}',container='{14}',archived='{15}',available='{16}', notes='{17}', checkNotes='{18}', corlat='{19}', corlon='{20}',dnf='{21}',ftf='{22}',user1='{23}',user2='{24}',user3='{25}',user4='{26}' WHERE name='{0}'";
 		// SAME AS UPDATE, BUT DOESN't OVERWRITE SPECIAL FIELDS but does overwrite found status
 		const string ADD_EXISTING_GC = "UPDATE GEOCACHE SET fullname='{1}', id='{2}', owner='{3}', ownerID='{4}',  placedby='{5}', difficulty='{6}', terrain='{7}', country='{8}',state='{9}',type='{10}',shortdesc='{11}',longdesc='{12}',hint='{13}',container='{14}',archived='{15}',available='{16}', checkNotes='{17}' WHERE name='{0}'";
-		// SAME AS ABOVE, BUT DOESN'T OVERWRITE FOUND STATUS'
-		const string ADD_EXISTING_GC_NO_SYM = "UPDATE GEOCACHE SET fullname='{1}', id='{2}', owner='{3}', ownerID='{4}',  placedby='{5}', difficulty='{6}', terrain='{7}', country='{8}',state='{9}',type='{10}',shortdesc='{11}',longdesc='{12}',hint='{13}',container='{14}',archived='{15}',available='{16}', checkNotes='{17}' WHERE name='{0}'";
 		const string GC_EXISTS_CHECK = "SELECT 1 FROM GEOCACHE WHERE name='{0}'";
 		const string GET_GC = "SELECT  WAYPOINT.name, WAYPOINT.lat, WAYPOINT.lon, WAYPOINT.url, WAYPOINT.urlname, WAYPOINT.desc, WAYPOINT.symbol, WAYPOINT.type, WAYPOINT.time," 
 			+ "GEOCACHE.fullname, GEOCACHE.id, GEOCACHE.owner, GEOCACHE.ownerID, GEOCACHE.placedby, GEOCACHE.difficulty, GEOCACHE.terrain, GEOCACHE.country, GEOCACHE.state,"

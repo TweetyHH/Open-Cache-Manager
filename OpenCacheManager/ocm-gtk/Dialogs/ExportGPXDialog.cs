@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using System.Collections.Generic;
 
 namespace ocmgtk
 {
@@ -29,6 +30,12 @@ namespace ocmgtk
 		public void SetCurrentFolder(String folder)
 		{
 			fileChooser.SetCurrentFolder(folder);
+		}
+		
+		public Dictionary<string,string> WaypointMappings
+		{
+			get{return waypointSymbolWidget.GetMappings();}
+			set{waypointSymbolWidget.PopulateMappings(value);}
 		}
 		
 		public String CurrentName
@@ -48,7 +55,7 @@ namespace ocmgtk
 		
 		public bool IsPaperless
 		{
-			get { return asPaperlessRadio.Active;}
+			get { return exportPaperlessDetails.Active;}
 		}
 		
 		public int CacheLimit
@@ -61,20 +68,19 @@ namespace ocmgtk
 			}
 		}
 		
+		public bool UseMappings
+		{
+			get { return customSymbolsCheck.Active;}
+		}
+		
+		
 		public bool IncludeChildren
 		{
 			get { return includeChildrenCheck.Active; }
 		}
 		
-		public bool UseMappings
-		{
-			get { return useMappingsCheck.Active;}
-		}
-		
 		public ocmengine.WaypointNameMode GetNameMode()
 		{
-			if (asPaperlessRadio.Active)
-				return ocmengine.WaypointNameMode.CODE;
 			switch (nameMode.Active)
 			{
 				case 0:
@@ -86,8 +92,6 @@ namespace ocmgtk
 		
 		public ocmengine.WaypointDescMode GetDescMode()
 		{
-			if (asPaperlessRadio.Active)
-				return ocmengine.WaypointDescMode.DESC;
 			switch (descMode.Active)
 			{
 				case 0:
@@ -121,12 +125,7 @@ namespace ocmgtk
 		
 		protected virtual void OnPaperlessToggle (object sender, System.EventArgs e)
 		{
-			paperlessFrame.Sensitive = asPaperlessRadio.Active;
-		}
-		
-		protected virtual void OnAsWaypointToggle (object sender, System.EventArgs e)
-		{
-			waypointFrame.Sensitive = asWaypointRadio.Active;
+			paperlessFrame.Sensitive = exportPaperlessDetails.Active;
 		}
 		
 		protected virtual void OnLimitToggle (object sender, System.EventArgs e)

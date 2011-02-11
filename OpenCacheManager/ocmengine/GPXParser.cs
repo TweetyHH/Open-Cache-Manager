@@ -49,6 +49,25 @@ namespace ocmengine
 			set {m_ownid = value;}
 		}	
 		
+		bool m_ignoreExtraFields = false;
+		public bool IgnoreExtraFields
+		{
+			set { m_ignoreExtraFields = value;}
+		}
+		
+		bool m_purgeLogs = false;
+		public bool PurgeLogs
+		{
+			set { m_purgeLogs = value;}
+		}
+		
+		bool m_preserveFound = false;
+		public bool PreserveFound
+		{
+			set { m_preserveFound = value;}
+		}
+		
+		
 		private DateTime gpx_date;
 		
 		private Boolean m_cancel = false;
@@ -92,7 +111,8 @@ namespace ocmengine
 			}
 			rdr.Close();
 			store.ClearTBs(waypoints);
-			store.ClearLogs(waypoints);
+			if (m_purgeLogs)
+				store.ClearLogs(waypoints);
 			store.ClearAttributes(waypoints);
 			return count;
 		}
@@ -131,7 +151,8 @@ namespace ocmengine
 			}
 			rdr.Close();
 			store.ClearTBs(waypoints);
-			//store.ClearLogs(waypoints);
+			if (m_purgeLogs)
+				store.ClearLogs(waypoints);
 			store.ClearAttributes(waypoints);
 			return;
 		}
@@ -165,14 +186,14 @@ namespace ocmengine
 						{
 							Waypoint pt = processWaypoint(reader);
 							pt.Updated = gpx_date;
-							m_store.AddWaypoint(pt);							
+							m_store.AddWaypoint(pt, m_preserveFound);							
 						}
 						
 						if (reader.Name == "waypoint")
 						{
 							Waypoint pt = processLocWaypoint(reader);
 							pt.Updated = System.DateTime.Now;
-							m_store.AddWaypoint(pt);
+							m_store.AddWaypoint(pt, m_preserveFound);
 						}
 						break;
 					case XmlNodeType.EndElement:
@@ -600,13 +621,37 @@ namespace ocmengine
 					cache.Archived = false;
 				cache.CacheID = reader.GetAttribute("id");
 			}
-			else if (reader.LocalName == "LatBeforeCorrect")
+			else if (reader.LocalName == "DNF" && !m_ignoreExtraFields)
+			{
+				cache.DNF = reader.ReadElementContentAsBoolean();
+			}
+			else if (reader.LocalName == "FirstToFind"  && !m_ignoreExtraFields)
+			{
+				cache.FTF = reader.ReadElementContentAsBoolean();
+			}
+			else if (reader.LocalName == "UserData" && !m_ignoreExtraFields)
+			{
+				cache.User1 = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "User2" && !m_ignoreExtraFields)
+			{
+				cache.User2 = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "User3" && !m_ignoreExtraFields)
+			{
+				cache.User3 = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "User4" && !m_ignoreExtraFields)
+			{
+				cache.User4 = reader.ReadElementContentAsString();
+			}
+			else if (reader.LocalName == "LatBeforeCorrect" && !m_ignoreExtraFields)
 			{
 				double corLat = cache.OrigLat;
 				cache.Lat = reader.ReadElementContentAsDouble();
 				cache.CorrectedLat = corLat;
 			}
-			else if (reader.LocalName == "LonBeforeCorrect")
+			else if (reader.LocalName == "LonBeforeCorrect" && !m_ignoreExtraFields)
 			{
 				double corLon = cache.OrigLon;
 				cache.Lon = reader.ReadElementContentAsDouble();

@@ -190,7 +190,7 @@ public partial class MainWindow : Gtk.Window
 
 	protected virtual void OnImportClicked (object o, System.EventArgs args)
 	{
-		m_monitor.ImportGPX();
+		m_monitor.ImportFile();
 	}
 
 	public void SetSelectedCache(Geocache cache)
@@ -725,10 +725,6 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OnWorldOCClick (object sender, System.EventArgs e)
 	{
 		Process.Start("http://opencaching.eu");
-	}
-	protected virtual void OnZipClick (object sender, System.EventArgs e)
-	{
-		m_monitor.ImportZip();
 	}
 	
 	protected virtual void OnSelectedChildClick (object sender, System.EventArgs e)
