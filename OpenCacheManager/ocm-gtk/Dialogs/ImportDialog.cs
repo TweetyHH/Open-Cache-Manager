@@ -74,5 +74,12 @@ namespace ocmgtk
 			this.Hide();
 		}
 		
+		protected virtual void OnFileActivated (object sender, System.EventArgs e)
+		{
+			this.Respond(ResponseType.Accept);
+			this.Hide();
+		}
+		
+		
 	}
 }

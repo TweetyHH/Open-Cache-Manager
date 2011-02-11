@@ -36,8 +36,27 @@ namespace ocmgtk
 			}
 		}
 		
+		public bool PreventStatusOverwrite
+		{
+			get { return statusCheck.Active;}
+			set { statusCheck.Active = value;}
+		}
+		
+		public bool PurgeOldLogs
+		{
+			get { return oldLogsCheck.Active;}
+			set { oldLogsCheck.Active = value;}
+		}
+		
+		public bool IgnoreExtraFields
+		{
+			get { return gsakFieldsCheck.Active;}
+			set { gsakFieldsCheck.Active = value;}
+		}
+		
 		public bool DeleteOnCompletion
 		{
+			set { deleteCheck.Active = value;}
 			get { return deleteCheck.Active;}
 		}
 	}

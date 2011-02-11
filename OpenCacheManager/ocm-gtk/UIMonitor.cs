@@ -2009,7 +2009,7 @@ namespace ocmgtk
 			String tempPath = System.IO.Path.GetTempPath();
 			ProcessStartInfo start = new ProcessStartInfo();
 			start.FileName = "unzip";
-			start.Arguments = filename + " -d " + tempPath + "ocm_unzip";
+			start.Arguments = "-o " + filename + " -d " + tempPath + "ocm_unzip";
 			Process unzip =  Process.Start(start);
 			
 			while (!unzip.HasExited)
@@ -2032,9 +2032,17 @@ namespace ocmgtk
 		public void ImportDirectory()
 		{
 			ImportDirectoryDialog dlg = new ImportDirectoryDialog();
+			dlg.IgnoreExtraFields = m_conf.ImportIgnoreExtraFields;
+			dlg.PreventStatusOverwrite = m_conf.ImportPreventStatusOverwrite;
+			dlg.PurgeOldLogs = m_conf.ImportPurgeOldLogs;
 			dlg.Directory = m_conf.ImportDirectory;
+			dlg.DeleteOnCompletion = m_conf.ImportDeleteFiles;
 			if (dlg.Run () == (int)ResponseType.Ok) {
 				dlg.Hide();
+				m_conf.ImportIgnoreExtraFields = dlg.IgnoreExtraFields;
+				m_conf.ImportPreventStatusOverwrite = dlg.PreventStatusOverwrite;
+				m_conf.ImportPurgeOldLogs = dlg.PurgeOldLogs;
+				m_conf.ImportDeleteFiles = dlg.DeleteOnCompletion;
 				ImportDirectory(dlg.Directory, dlg.DeleteOnCompletion, m_conf.AutoCloseWindows);
 			}
 			dlg.Destroy ();

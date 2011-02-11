@@ -96,8 +96,7 @@ namespace ocmgtk
 						Gtk.Application.RunIteration (false);
 					ProcessStartInfo start = new ProcessStartInfo();
 					start.FileName = "unzip";
-					System.Console.WriteLine(files[i] + " -d \"" + directoryPath + "\"");
-					start.Arguments = "\"" + files[i] + "\" -d \"" + directoryPath + "\"";
+					start.Arguments = "-o \"" + files[i] + "\" -d \"" + directoryPath + "\"";
 					Process unzip =  Process.Start(start);
 					while (!unzip.HasExited)
 					{

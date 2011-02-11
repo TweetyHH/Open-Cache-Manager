@@ -267,6 +267,12 @@ namespace ocmgtk
 			set { this.Set("/apps/ocm/importignoregsak",value);}
 		}
 		
+		public bool ImportDeleteFiles
+		{
+			get { return (Boolean) this.Get("/apps/ocm/importdeletefiles", false);}
+			set { this.Set("/apps/ocm/importdeletefiles",value);}
+		}
+		
 		public void CheckForDefaultGPS(GPSProfileList list, MainWindow win)
 		{
 			string defName = this.GPSProf;

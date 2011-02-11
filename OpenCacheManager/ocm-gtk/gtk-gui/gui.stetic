@@ -872,6 +872,12 @@
         <property name="ShortLabel" translatable="yes">Transfer Caches to Last Used...</property>
         <signal name="Activated" handler="OnTransferLU" />
       </action>
+      <action id="ImportDirectoryAction1">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Import _Directory</property>
+        <property name="ShortLabel" translatable="yes">Import _Directory</property>
+        <signal name="Activated" handler="OnImportDirClicked" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">OCM</property>
@@ -897,6 +903,7 @@
                 <node type="Menuitem" action="CompactDatabaseAction2" />
                 <node type="Separator" />
                 <node type="Menuitem" action="openAction" />
+                <node type="Menuitem" action="ImportDirectoryAction1" />
                 <node type="Menuitem" action="saveAsAction" />
                 <node type="Menuitem" action="ExportFindsGPXAction" />
                 <node type="Separator" />
@@ -15196,12 +15203,16 @@ Cache Name</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.ImportDirectoryDialog" design-size="328 147">
+  <widget class="Gtk.Dialog" id="ocmgtk.ImportDirectoryDialog" design-size="512 243">
     <property name="MemberName" />
+    <property name="WidthRequest">500</property>
     <property name="Title" translatable="yes">Import Directory</property>
+    <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">6</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -15211,34 +15222,9 @@ Cache Name</property>
         <child>
           <widget class="Gtk.Table" id="table1">
             <property name="MemberName" />
-            <property name="NRows">2</property>
             <property name="NColumns">2</property>
             <property name="RowSpacing">6</property>
             <property name="ColumnSpacing">6</property>
-            <child>
-              <widget class="Gtk.CheckButton" id="deleteCheck">
-                <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Label" translatable="yes">Delete Files On Completion</property>
-                <property name="DrawIndicator">True</property>
-                <property name="HasLabel">True</property>
-                <property name="UseUnderline">True</property>
-              </widget>
-              <packing>
-                <property name="TopAttach">1</property>
-                <property name="BottomAttach">2</property>
-                <property name="RightAttach">2</property>
-                <property name="AutoSize">False</property>
-                <property name="XOptions">Fill</property>
-                <property name="YOptions">Fill</property>
-                <property name="XExpand">False</property>
-                <property name="XFill">True</property>
-                <property name="XShrink">False</property>
-                <property name="YExpand">False</property>
-                <property name="YFill">True</property>
-                <property name="YShrink">False</property>
-              </packing>
-            </child>
             <child>
               <widget class="Gtk.FileChooserButton" id="dirChooser">
                 <property name="MemberName" />
@@ -15279,6 +15265,106 @@ Cache Name</property>
           </widget>
           <packing>
             <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Frame" id="frame1">
+            <property name="MemberName" />
+            <property name="ShadowType">None</property>
+            <child>
+              <widget class="Gtk.Alignment" id="GtkAlignment2">
+                <property name="MemberName" />
+                <property name="Xalign">0</property>
+                <property name="Yalign">0</property>
+                <property name="LeftPadding">12</property>
+                <child>
+                  <widget class="Gtk.VBox" id="vbox2">
+                    <property name="MemberName" />
+                    <property name="Spacing">6</property>
+                    <child>
+                      <widget class="Gtk.CheckButton" id="deleteCheck">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Label" translatable="yes">Delete files on completion</property>
+                        <property name="DrawIndicator">True</property>
+                        <property name="HasLabel">True</property>
+                        <property name="UseUnderline">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.CheckButton" id="statusCheck">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Label" translatable="yes">Do not overwrite existing found status in database</property>
+                        <property name="DrawIndicator">True</property>
+                        <property name="HasLabel">True</property>
+                        <property name="UseUnderline">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.CheckButton" id="oldLogsCheck">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Label" translatable="yes">Purge old cache logs</property>
+                        <property name="DrawIndicator">True</property>
+                        <property name="HasLabel">True</property>
+                        <property name="UseUnderline">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">2</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.CheckButton" id="gsakFieldsCheck">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Label" translatable="yes">Ignore GSAK/OCM extra fields in GPX file</property>
+                        <property name="DrawIndicator">True</property>
+                        <property name="HasLabel">True</property>
+                        <property name="UseUnderline">True</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">3</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="GtkLabel7">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">&lt;b&gt;Options&lt;/b&gt;</property>
+                <property name="UseMarkup">True</property>
+              </widget>
+              <packing>
+                <property name="type">label_item</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -17137,13 +17223,19 @@ finds online, go to &lt;b&gt;Cache → View Offline Logs...&lt;/b&gt;</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.ImportDialog" design-size="721 521">
+  <widget class="Gtk.Dialog" id="ocmgtk.ImportDialog" design-size="721 527">
     <property name="MemberName" />
+    <property name="WidthRequest">700</property>
+    <property name="HeightRequest">500</property>
     <property name="Title" translatable="yes">Import GPX/LOC/ZIP..</property>
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">6</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
+    <property name="SkipPagerHint">True</property>
+    <property name="SkipTaskbarHint">True</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">
@@ -17153,6 +17245,7 @@ finds online, go to &lt;b&gt;Cache → View Offline Logs...&lt;/b&gt;</property>
         <child>
           <widget class="Gtk.FileChooserWidget" id="fileWidget">
             <property name="MemberName" />
+            <signal name="FileActivated" handler="OnFileActivated" />
           </widget>
           <packing>
             <property name="Position">0</property>
@@ -17165,24 +17258,9 @@ finds online, go to &lt;b&gt;Cache → View Offline Logs...&lt;/b&gt;</property>
             <property name="CanFocus">True</property>
             <property name="Expanded">True</property>
             <child>
-              <widget class="Gtk.HBox" id="hbox1">
+              <widget class="Gtk.VBox" id="vbox2">
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
-                <property name="BorderWidth">6</property>
-                <child>
-                  <widget class="Gtk.CheckButton" id="statusCheck">
-                    <property name="MemberName" />
-                    <property name="CanFocus">True</property>
-                    <property name="Label" translatable="yes">Prevent found status overwrite</property>
-                    <property name="DrawIndicator">True</property>
-                    <property name="HasLabel">True</property>
-                    <property name="UseUnderline">True</property>
-                  </widget>
-                  <packing>
-                    <property name="Position">0</property>
-                    <property name="AutoSize">True</property>
-                  </packing>
-                </child>
                 <child>
                   <widget class="Gtk.CheckButton" id="oldLogsCheck">
                     <property name="MemberName" />
@@ -17193,8 +17271,26 @@ finds online, go to &lt;b&gt;Cache → View Offline Logs...&lt;/b&gt;</property>
                     <property name="UseUnderline">True</property>
                   </widget>
                   <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.CheckButton" id="statusCheck">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Label" translatable="yes">Do not overwrite existing found status in database</property>
+                    <property name="DrawIndicator">True</property>
+                    <property name="HasLabel">True</property>
+                    <property name="UseUnderline">True</property>
+                  </widget>
+                  <packing>
                     <property name="Position">1</property>
                     <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
                   </packing>
                 </child>
                 <child>
@@ -17209,6 +17305,8 @@ finds online, go to &lt;b&gt;Cache → View Offline Logs...&lt;/b&gt;</property>
                   <packing>
                     <property name="Position">2</property>
                     <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
                   </packing>
                 </child>
               </widget>
