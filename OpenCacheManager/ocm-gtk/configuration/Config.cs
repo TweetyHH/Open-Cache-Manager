@@ -215,8 +215,14 @@ namespace ocmgtk
 
 		public bool AutoCloseWindows
 		{
-			get { return (bool) this.Get("/apps/ocm/autoCloseWindows", true);}
+			get { return (bool) this.Get("/apps/ocm/map/autoCloseWindows", false);}
 			set {this.Set("/apps/ocm/autoCloseWindows", value);}	
+		}
+		
+		public bool AutoSelectCacheFromMap
+		{
+			get { return (bool) this.Get("/apps/ocm/map/autoSelectCacheFromMap", false);}
+			set {this.Set("/apps/ocm/map/autoSelectCacheFromMap", value);}	
 		}
 		
 		public DateTime LastGPSFieldNoteScan

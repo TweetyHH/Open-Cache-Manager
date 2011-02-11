@@ -60,6 +60,7 @@ body {
 	var gphy;
 	var osm;
 	var mouse;
+	var autoSelectCache = false;
 	
 	var popup_no_cache = "<div onmousedown='doSetCentre()' onmouseover='doHighlight(this)' onmouseout='doNohighlight(this)'>"
 					+ "Set as Centre</div>"
@@ -226,7 +227,8 @@ body {
 		
 		feature.popupClass = OpenLayers.Class(OpenLayers.Popup.FramedCloud, {'autoSize': true, 'minSize': new OpenLayers.Size(300,200), 'maxSize': new OpenLayers.Size(500,300)});
 		feature.data.popupContentHTML ="<div>" + openspan + wptName + "<br/>" + wptFullName + "</span><hr noshade>" + wptDescription 
-		+ "<hr noshade><a href='javascript:doSelectCache(\"" + wptName + "\")'>[Select this cache]</a></div>";
+		+ (autoSelectCache ? "</div>" : ("<hr noshade><a href='javascript:doSelectCache(\"" + wptName + "\")'>[Select this cache]</a></div>"));
+		feature.data.wpt = wptName;
 		feature.data.icon = icon;
 		var marker = feature.createMarker();
 		marker.setOpacity(0.66);
@@ -237,25 +239,29 @@ body {
 
 	function mousedown(evt)
 	{
-	  		if (evt.which == 3)
-	  		{
-	  			doPopup();
-	  			return;
-	  		}
+		if (evt.which == 3)
+		{
+			doPopup();
+			return;
+		}
 	  			
 	  		
-	  		if (currentPopup != null)
-	  		{
-	  			currentPopup.hide();
-	  		}
+		if (currentPopup != null)
+	  	{
+	  		currentPopup.hide();
+	  	}
 	  		
-	  		if (this.popup == null) {
-                    this.popup = this.createPopup(true);
-                    map.addPopup(this.popup);
-             }
-             this.popup.show();
-            currentPopup= this.popup;             
-            OpenLayers.Event.stop(evt);
+	  	if (this.popup == null) {
+			this.popup = this.createPopup(true);
+			map.addPopup(this.popup);
+		}
+		this.popup.show();
+		currentPopup= this.popup;             
+		OpenLayers.Event.stop(evt);
+		
+		if (autoSelectCache) {
+           	hidden.innerHTML = "<iframe src='ocm://select/" + this.data.wpt + "'/>";
+        }
 	}
 	
 	function goHome(lat, lon)
@@ -378,8 +384,21 @@ body {
 		var lonlat = mouse.transform(map.projection, map.displayProjection);
 		hidden.innerHTML = "<iframe src='ocm://correctcoordinate/" + lonlat.lat + "/" + lonlat.lon + "'/>";
 	}
-	
-	
+
+	// Seting if the Caches will be opened in OCM while clicking it one the map
+	function setAutoSelectCache(value) {
+		autoSelectCache = stringToBoolean(value);
+	}
+	function stringToBoolean(string) {
+        switch(string.toLowerCase()) {
+    		case "true": case "yes": case "1": return true;
+            case "false": case "no": case "0": case null: return false;
+            default: return Boolean(string);
+        }
+	}
+
+
+
         // -->
     </script>
   </head>

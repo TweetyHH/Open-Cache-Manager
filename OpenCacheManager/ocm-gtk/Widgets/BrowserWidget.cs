@@ -114,6 +114,11 @@ namespace ocmgtk
 			else
 				pending_actions.Add(script);
 		}
+		
+		public void SetAutoSelectCache(bool autoSelectCache) {
+			LoadScript("setAutoSelectCache('" + autoSelectCache + "');");
+		}
+		
 		protected virtual void OnUpClick (object sender, System.EventArgs e)
 		{
 			sizeUpButton.Sensitive = m_monitor.Main.DoUpMap();

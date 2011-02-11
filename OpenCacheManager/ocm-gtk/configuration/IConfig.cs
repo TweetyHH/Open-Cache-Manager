@@ -50,6 +50,7 @@ namespace ocmgtk
 		DateTime NextUpdateCheck {get;set;}
 		int UpdateInterval {get;set;}
 		bool AutoCloseWindows{get;set;}
+		bool AutoSelectCacheFromMap{get;set;}
 		
 		void CheckForDefaultGPS(GPSProfileList list, MainWindow win);
 	}
