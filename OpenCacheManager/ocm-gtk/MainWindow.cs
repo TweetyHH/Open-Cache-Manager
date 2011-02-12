@@ -854,9 +854,25 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.SendToGPS();
 	}
 	
+	protected virtual void OnComboClick (object sender, System.EventArgs e)
+	{
+		m_monitor.DoComboFilter();
+	}
 	
+	public void SetComboFilterState()
+	{
+		AdvancedFiltersAction.Sensitive = false;
+		ClearAdvancedFiltersAction.Sensitive = false;
+		ClearComboFilterAction.Sensitive = true;
+	}
+	protected virtual void OnClearComboFilter (object sender, System.EventArgs e)
+	{
+		m_monitor.ClearCombo();
+	}
 	
-	
-	
-	
+	public void ClearCombo ()
+	{
+		ClearComboFilterAction.Sensitive = false;
+		AdvancedFiltersAction.Sensitive = true;
+	}
 }

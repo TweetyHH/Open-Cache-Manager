@@ -257,6 +257,8 @@
     <Compile Include="gtk-gui\ocmgtk.LoadGPSFieldNotes.cs" />
     <Compile Include="Dialogs\ImportDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.ImportDialog.cs" />
+    <Compile Include="Dialogs\AddComboFilter.cs" />
+    <Compile Include="gtk-gui\ocmgtk.AddComboFilter.cs" />
     <Compile Include="MapManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -1246,6 +1248,9 @@
     <Resource Include="icons\24x24\disabled-dnf.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="maps\google-sat.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <None Include="x-gpx.xml">
@@ -1269,7 +1274,6 @@
     </None>
     <None Include="icons\24x24\locationless.png" />
     <None Include="icons\24x24\waypoint-flag-red.png" />
-    <None Include="maps\google-sat.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="OCM.desktop">

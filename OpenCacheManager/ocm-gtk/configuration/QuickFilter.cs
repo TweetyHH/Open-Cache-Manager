@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using ocmengine;
 using Mono.Unix;
 
@@ -94,6 +95,14 @@ namespace ocmgtk
 			set { m_distFilter = value;}
 		}
 		
+		List<FilterList> m_ComboFilter = null;
+		public List<FilterList> ComboFilter
+		{
+			get { return m_ComboFilter;}
+			set { m_ComboFilter = value;}
+		}
+		
+		
 		public enum PREDEF_FILTER {DONE, TODO, MINE, ALL, CUSTOM};
 		
 		public static QuickFilter TODO_FILTER = new QuickFilter(PREDEF_FILTER.TODO);
@@ -119,6 +128,7 @@ namespace ocmgtk
 					m_archived = true;
 					m_mine = false;
 					m_distFilter = -1;
+					m_ComboFilter = null;
 					m_nameFilter = String.Empty;
 					m_name = Catalog.GetString("Done");
 					break;
@@ -130,6 +140,7 @@ namespace ocmgtk
 					m_notFound = true;
 					m_archived = false;
 					m_mine = false;
+					m_ComboFilter = null;
 					m_distFilter = -1;
 					m_nameFilter = String.Empty;
 					m_name = Catalog.GetString("To Do");
@@ -142,6 +153,7 @@ namespace ocmgtk
 					m_notFound = false;
 					m_archived = false;
 					m_mine = true;
+					m_ComboFilter = null;
 					m_distFilter = -1;
 					m_nameFilter = String.Empty;
 					m_name = Catalog.GetString("Mine");
@@ -154,6 +166,7 @@ namespace ocmgtk
 					m_notFound = true;
 					m_archived = true;
 					m_mine = true;
+					m_ComboFilter = null;
 					m_distFilter = -1;
 					m_nameFilter = String.Empty;
 					m_name = Catalog.GetString("All");

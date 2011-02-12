@@ -22,6 +22,8 @@ to the "Default" profile. You can rename this profile from the GPS menu.
 - Add Field Notes support
 - Show disabled/archived caches on map as grayed out/reddish
 - Can now add corrected coordinates and child waypoints via the map
+- Add Combination Filters
+- Add Custom map support
 
 
 Version 0.22.9
