@@ -317,7 +317,7 @@ namespace ocmgtk
 			//System.Console.WriteLine("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_home_lat + "&lon=" + m_home_lon);
 			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_centerLat.ToString(CultureInfo.InvariantCulture) + "&lon=" + m_centerLon.ToString(CultureInfo.InvariantCulture));
 			m_map.SetAutoSelectCache(m_conf.AutoSelectCacheFromMap);
-			MapManager mapManager = new MapManager("../../maps");
+			MapManager mapManager = new MapManager(System.Environment.CurrentDirectory + "/maps");
 			
 			mapManager.addMaps(m_map);
 		}
