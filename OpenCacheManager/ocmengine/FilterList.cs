@@ -55,6 +55,8 @@ namespace ocmengine
 		public const String KEY_EXCATTRS = "excattrs";
 		public const String KEY_INCNOATTRS = "incnoattrs";
 		public const String KEY_EXCNOATTRS = "excnoattrs";
+		public const String KEY_FTF = "ftf";
+		public const String KEY_DNF = "dnf";
 		public FilterList ()
 		{
 			
@@ -230,8 +232,16 @@ namespace ocmengine
 			{
 				builder.Append(" AND  (GEOCACHE.corlat IS NULL OR GEOCACHE.corlat ='-1')");
 			}
+			if (m_criteria.Contains(KEY_FTF))
+			{
+				builder.Append( " AND Geocache.ftf == '" + ((bool) m_criteria[KEY_FTF]).ToString() + "'");
+			}
+			if (m_criteria.Contains(KEY_DNF))
+			{
+				builder.Append( " AND Geocache.dnf == '" + ((bool) m_criteria[KEY_DNF]).ToString() + "'");
+			}
 			 
-			//System.Console.WriteLine(builder.ToString());
+			System.Console.WriteLine(builder.ToString());
 			return builder.ToString ();
 		}
 	}

@@ -22,21 +22,42 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class OCMQueryPage3 : Gtk.Bin
 	{
+		protected virtual void OnPlacedByToggle (object sender, System.EventArgs e)
+		{
+			placedEntry.Sensitive = placedByRadio.Active;
+		}
+		
+		public String PlacedBy
+		{
+			get { 
+				if (placedByRadio.Active)
+					return placedEntry.Text;
+				return null;
+			}
+			set
+			{
+				if (value == null)
+					return;
+				placedEntry.Text = value;
+				placedByRadio.Active = true;
+			}
+		}
 		
 		public DateTime PlaceBefore
 		{
 			get
 			{
-				if (placeBeforeCheck.Active)
-					return placeBeforeEntry.Date;
+				if (placeCheck.Active && placedCombo.Active == 0)
+					return placeDateEntry.Date;
 				return DateTime.MinValue;				
 			}
 			set
 			{
 				if (value == DateTime.MinValue)
 					return;
-				placeBeforeCheck.Active = true;
-				placeBeforeEntry.Date = value;
+				placeCheck.Active = true;
+				placedCombo.Active = 0;
+				placeDateEntry.Date = value;
 			}
 		}
 		
@@ -44,16 +65,17 @@ namespace ocmgtk
 		{
 			get
 			{
-				if (placeAfterCheck.Active)
-					return placeAfterEntry.Date;
+				if (placeCheck.Active && placedCombo.Active == 1)
+					return placeDateEntry.Date;
 				return DateTime.MinValue;			
 			}
 			set
 			{
 				if (value == DateTime.MinValue)
 					return;
-				placeAfterCheck.Active = true;
-				placeAfterEntry.Date = value;
+				placeCheck.Active = true;
+				placedCombo.Active = 1;
+				placeDateEntry.Date = value;
 			}
 		}
 		
@@ -199,11 +221,7 @@ namespace ocmgtk
 		{
 			this.Build ();
 		}
-		protected virtual void OnPlaceBeforeTogg (object sender, System.EventArgs e)
-		{
-			placeBeforeEntry.Sensitive = placeBeforeCheck.Active;
-		}
-		
+
 		protected virtual void OnInfoAfterTog (object sender, System.EventArgs e)
 		{
 			infoAfterEntry1.Sensitive = infoAfterCheck.Active;
@@ -212,11 +230,6 @@ namespace ocmgtk
 		protected virtual void OnInfoBeforeTog (object sender, System.EventArgs e)
 		{
 			infoBeforeEntry.Sensitive = infoBeforeCheck.Active;
-		}
-		
-		protected virtual void OnPlaceAfterCheck (object sender, System.EventArgs e)
-		{
-			this.placeAfterEntry.Sensitive = placeAfterCheck.Active;
 		}
 		
 		protected virtual void OnCountryToggle (object sender, System.EventArgs e)
