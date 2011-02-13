@@ -6379,6 +6379,7 @@ Less Than</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
+                        <signal name="Toggled" handler="OnStatusToggle" />
                       </widget>
                       <packing>
                         <property name="Position">2</property>
@@ -6390,6 +6391,7 @@ Less Than</property>
                     <child>
                       <widget class="Gtk.Frame" id="statusFrame">
                         <property name="MemberName" />
+                        <property name="Sensitive">False</property>
                         <property name="ShadowType">In</property>
                         <child>
                           <widget class="Gtk.Alignment" id="GtkAlignment4">
@@ -6415,6 +6417,7 @@ Less Than</property>
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="Label" translatable="yes">Archived</property>
+                                    <property name="Active">True</property>
                                     <property name="DrawIndicator">True</property>
                                     <property name="HasLabel">True</property>
                                     <property name="UseUnderline">True</property>
@@ -6439,6 +6442,7 @@ Less Than</property>
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="Label" translatable="yes">Available</property>
+                                    <property name="Active">True</property>
                                     <property name="DrawIndicator">True</property>
                                     <property name="HasLabel">True</property>
                                     <property name="UseUnderline">True</property>
@@ -6461,6 +6465,7 @@ Less Than</property>
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="Label" translatable="yes">Disabled</property>
+                                    <property name="Active">True</property>
                                     <property name="DrawIndicator">True</property>
                                     <property name="HasLabel">True</property>
                                     <property name="UseUnderline">True</property>
@@ -6485,6 +6490,7 @@ Less Than</property>
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="Label" translatable="yes">Found</property>
+                                    <property name="Active">True</property>
                                     <property name="DrawIndicator">True</property>
                                     <property name="HasLabel">True</property>
                                     <property name="UseUnderline">True</property>
@@ -6505,6 +6511,7 @@ Less Than</property>
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="Label" translatable="yes">Mine</property>
+                                    <property name="Active">True</property>
                                     <property name="DrawIndicator">True</property>
                                     <property name="HasLabel">True</property>
                                     <property name="UseUnderline">True</property>
@@ -6527,6 +6534,7 @@ Less Than</property>
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="Label" translatable="yes">Not Found</property>
+                                    <property name="Active">True</property>
                                     <property name="DrawIndicator">True</property>
                                     <property name="HasLabel">True</property>
                                     <property name="UseUnderline">True</property>

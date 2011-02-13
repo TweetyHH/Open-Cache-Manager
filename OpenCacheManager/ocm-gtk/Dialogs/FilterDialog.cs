@@ -47,7 +47,8 @@ namespace ocmgtk
 				GetNoCorrectedCoordsFilter (filter);
 				GetMustHaveAttributes (filter);
 				GetMustNotHaveSetAttributesFilter (filter);
-				GetMarkedFilter (filter);			
+				GetMarkedFilter (filter);	
+				GetStatusFilter (filter);
 				filter.AddFilterCriteria(FilterList.KEY_OWNERID, UIMonitor.getInstance().OwnerID);
 				return filter;
 			}
@@ -61,6 +62,18 @@ namespace ocmgtk
 				SetChildrenTabFilters (value);
 				SetAttributeTabFilters (value);
  			}
+		}
+		
+		private void GetStatusFilter (FilterList filter)
+		{
+			if (contPage.Status != null)
+			{
+				filter.AddFilterCriteria(FilterList.KEY_STATUS, contPage.Status);
+			}
+			else
+			{
+				filter.RemoveCriteria(FilterList.KEY_STATUS);
+			}
 		}
 		
 		private void GetMarkedFilter (FilterList filter)
@@ -241,6 +254,11 @@ namespace ocmgtk
 			if (list.Contains(FilterList.KEY_DESCRIPTION))
 			{
 				contPage.DescriptionKeyWords = list.GetCriteria(FilterList.KEY_DESCRIPTION) as string;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_STATUS))
+			{
+				contPage.Status = list.GetCriteria(FilterList.KEY_STATUS) as bool[];
 				atLeastOne = true;
 			}
 			if (atLeastOne)

@@ -161,6 +161,35 @@ namespace ocmgtk
 				}
 			}
 		}
+		
+		public bool[] Status
+		{
+			get {
+				if (!statusCheck.Active)
+					return null;
+				bool[] statusArray = new bool[6];
+				statusArray[0] = foundCheck.Active;
+				statusArray[1] = notFoundCheck.Active;
+				statusArray[2] = mineCheck.Active;
+				statusArray[3] = availCheck.Active;
+				statusArray[4] = disabledCheck.Active;
+				statusArray[5] = archiveCheck.Active;
+				return statusArray;
+			}
+			set
+			{
+				if  (value != null)
+				{
+					statusCheck.Active = true;
+					foundCheck.Active = value[0];
+					notFoundCheck.Active = value[1];
+					mineCheck.Active = value[2];
+					availCheck.Active = value[3];
+					disabledCheck.Active = value[4];
+					archiveCheck.Active = value[5];
+				}
+			}
+		}
 
 		public OCMQueryPage2 ()
 		{
@@ -182,6 +211,9 @@ namespace ocmgtk
 			markFrame.Sensitive = markedCheck.Active;
 		}
 		
-		
+		protected virtual void OnStatusToggle (object sender, System.EventArgs e)
+		{
+			statusFrame.Sensitive = statusCheck.Active;
+		}
 	}
 }
