@@ -18,7 +18,6 @@ using System;
 namespace ocmgtk
 {
 
-
 	public class MapDescription
 	{
 

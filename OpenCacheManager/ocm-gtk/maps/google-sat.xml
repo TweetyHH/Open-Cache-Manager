@@ -3,7 +3,24 @@
 		<name>Google Satelite</name>
 		<code>new OpenLayers.Layer.Google("Google Satellite", {type: G_SATELLITE_MAP, 'sphericalMercator': true, numZoomLevels: 22})</code>
 		<layer>1</layer>
-		<covered>nearly whole world</covered>
+		<baseLayer>true</baseLayer>
+		<covered>World</covered>
+		<active>false</active>
+	</map>
+	<map>
+		<name>Hike and Bike</name>
+		<code>new OpenLayers.Layer.XYZ("Hike and Bike Map", "http://toolserver.org/tiles/hikebike/${z}/${x}/${y}.png", { type: 'png', isBaseLayer: true, attribution: 'Map Data from <a href="http://www.openstreetmap.org/">OpenStreetMap</a> (<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-by-SA 2.0</a>)' } )</code>
+		<layer>10</layer>
+		<baseLayer>true</baseLayer>
+		<covered>World</covered>
 		<active>true</active>
 	</map>
+	<map>
+		<name>Reit und Wanderkarte</name>
+		<code>new OpenLayers.Layer.XYZ('topo', 'http://topo.wanderreitkarte.de/topo/${z}/${x}/${y}.png', {isBaseLayer:false, visibility: false})</code>
+		<layer>1000</layer>
+		<baseLayer>true</baseLayer>
+		<covered>Central Europe</covered>
+		<active>true</active>
+	</map>		
 </maps>

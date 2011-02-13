@@ -15,6 +15,7 @@
 
 using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Xml.XPath;
 
 namespace ocmgtk
@@ -45,6 +46,23 @@ namespace ocmgtk
 					}
 				}
 			}
+		}
+		
+		public List<MapDescription> getMaps(string file) {
+			List<MapDescription> mapList = new List<MapDescription>();
+			XPathNavigator nav = new XPathDocument (file).CreateNavigator();
+			XPathNodeIterator maps = nav.Select("/maps/map");
+			while (maps.MoveNext()) {
+				MapDescription map = new MapDescription();
+				map.Name = maps.Current.SelectSingleNode("name").Value;
+				map.Code = maps.Current.SelectSingleNode("code").Value;
+				map.Layer = maps.Current.SelectSingleNode("layer").ValueAsInt;
+				map.BaseLayer = maps.Current.SelectSingleNode("baseLayer").ValueAsBoolean;
+				map.Covered = maps.Current.SelectSingleNode("covered").Value;
+				map.Active = maps.Current.SelectSingleNode("active").ValueAsBoolean;
+				mapList.Add(map);
+			}
+			return mapList;
 		}
 	}
 }
