@@ -37,10 +37,11 @@ namespace ocmgtk
 				if (file.EndsWith(".xml")) {
 					XPathNavigator nav = new XPathDocument (file).CreateNavigator();
 					
-					XPathNodeIterator codes = nav.Select("//code");
-					while (codes.MoveNext()) {
-						// TODO: tweety: add Map Layer instead of 10
-						browserWidget.AddMap(codes.Current.Value, 1);	
+					XPathNodeIterator maps = nav.Select("/maps/map");
+					while (maps.MoveNext()) {
+						string code = maps.Current.SelectSingleNode("code").Value;
+						int layer = maps.Current.SelectSingleNode("layer").ValueAsInt;
+						browserWidget.AddMap(code, layer);	
 					}
 				}
 			}
