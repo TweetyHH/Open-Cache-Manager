@@ -58,6 +58,16 @@ namespace ocmengine
 		private IDbConnection m_conn = null;
 		private String m_dbFile = null;
 		
+		private List<FilterList> m_comboList = null;
+		public List<FilterList> ComboFilter
+		{
+			get { return m_comboList;}
+			set { 
+				m_comboList = value;
+				m_filter = null;
+			}
+		}
+		
 		private FilterList m_filter = null;		
 		public FilterList Filter
 		{
@@ -218,6 +228,28 @@ namespace ocmengine
 		{
 			m_lat = lat;
 			m_lon = lon;
+			List<Geocache> caches = new List<Geocache>();
+			if (m_comboList != null)
+			{
+				System.Console.WriteLine("COMBO!");
+				foreach (FilterList filter in m_comboList.ToArray())
+				{
+					m_filter = filter;
+					DoBuildCacheList (caches);
+				}
+			}
+			else
+			{
+				DoBuildCacheList(caches);
+			}		
+		
+			if (this.Complete != null)
+				this.Complete(this, new EventArgs());
+			return caches;
+		}
+		
+		private void DoBuildCacheList (List<Geocache> caches)
+		{
 			String sql = GET_GC;
 			if (null != m_filter)
 				sql += m_filter.BuildWhereClause();
@@ -227,10 +259,7 @@ namespace ocmengine
 			if (null != prefilter)
 				sql += prefilter;
 			//System.Console.WriteLine(sql);
-			List<Geocache> caches =  GetCacheList(sql);
-			if (this.Complete != null)
-				this.Complete(this, new EventArgs());
-			return caches;
+			GetCacheList(sql, caches);
 		}
 		
 		public List<Geocache> GetFinds()
@@ -575,8 +604,14 @@ namespace ocmengine
 		
 		private List<Geocache> GetCacheList(String sql)
 		{
-			BuildHasChildrenList();
 			List<Geocache> pts = new List<Geocache>();
+			GetCacheList(sql, pts);
+			return pts;
+		}
+		
+		private void GetCacheList(String sql, List<Geocache> pts)
+		{
+			BuildHasChildrenList();
 			IDbConnection conn =  OpenConnection ();
 			IDbCommand command = conn.CreateCommand();
 			command.CommandText = sql;
@@ -587,9 +622,7 @@ namespace ocmengine
 				if (cache != null)
 					pts.Add(cache);
 			}
-			
-			CloseConnection (ref reader, ref command, ref conn);
-			return pts;				
+			CloseConnection (ref reader, ref command, ref conn);			
 		}
 		
 		private static void CloseConnection (ref IDataReader reader, ref IDbCommand command, ref IDbConnection conn)

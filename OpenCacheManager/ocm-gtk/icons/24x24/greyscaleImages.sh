@@ -5,7 +5,7 @@ rm disabled-*.png
 rm archived-*.png
 
 for file in *.png; do
-    convert $file -colorspace GRAY disabled-$file
-    convert $file -colorize 00,50,50 archived-$file
+    convert $file -colorspace GRAY archived-$file
+    convert $file -colorize 25,25,25 disabled-$file
 done
 

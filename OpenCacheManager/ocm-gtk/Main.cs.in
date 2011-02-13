@@ -59,7 +59,13 @@ namespace ocmgtk
 				if (args.Length > 0)
 					m_file = args[0];
 			//System.Console.WriteLine("Path is " + "@expanded_datadir@/locale");
-			Mono.Unix.Catalog.Init ("opencachemanager", "./locale");
+			// Set the localeDirectory right both for developement or for installed versions
+			String localeDirectory = "@expanded_datadir@/locale";
+			if (localeDirectory.Contains("@" + "expanded_datadir" + "@")) {
+				localeDirectory = "./locale";
+			}
+			Mono.Unix.Catalog.Init ("opencachemanager", localeDirectory);
+			//Mono.Unix.Catalog.Init ("opencachemanager", "./locale");
 			//Mono.Unix.Catalog.Init ("opencachemanager", "@expanded_datadir@/locale");
 			bool runWizard = false;
 			try {
@@ -117,12 +123,18 @@ namespace ocmgtk
 				UIMonitor.getInstance().LoadConfig(false);
 				if (m_file.EndsWith(".ocm"))
 				{
-					System.Console.WriteLine("Loading...");
 					UIMonitor.getInstance().SetCurrentDB(m_file, true);
 				}
 				else
 				{
-					UIMonitor.getInstance().ImportGPXFile(m_file);	
+					if (m_file.EndsWith(".gpx"))
+					{
+						UIMonitor.getInstance().ImportGPXFile(m_file);
+					}
+					if (m_file.EndsWith(".zip"))
+					{
+						UIMonitor.getInstance().ImportZip(m_file);
+					}
 				}
 			}
 			else

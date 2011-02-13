@@ -54,6 +54,7 @@ namespace ocmgtk
 		public CacheList ()
 		{
 			this.Build ();
+			comboBox.Remove(infoComboBox);
 			advancedBox.Remove(infoHbox);
 			treeview1 = new OCMTreeView();
 			treeview1.ButtonPressEvent += DoButtonPress;
@@ -66,15 +67,26 @@ namespace ocmgtk
 			refreshTimer.Elapsed += HandleRefreshTimerElapsed;
 		}
 		
-		public void ShowInfoBox()
+		public void ShowInfoBox(bool isCombo)
 		{
-			advancedBox.Add(infoHbox);
-			ShowAll();
+			ClearInfoBoxes();
+			if (!isCombo)
+			{
+				advancedBox.Add(infoHbox);
+				infoHbox.Show();
+			}
+			else
+			{
+				comboBox.Add(infoComboBox);
+				infoComboBox.Show();
+			}
 		}
 		
-		public void HideInfoBox()
+		
+		public void ClearInfoBoxes()
 		{
 			advancedBox.Remove(infoHbox);
+			comboBox.Remove(infoComboBox);
 			ShowAll();
 		}
 
@@ -842,10 +854,15 @@ namespace ocmgtk
 				filter.Distance = -1;
 			filter.NameFilter = filterEntry.Text;
 		}
-	
+		
 		protected virtual void OnFilterClick (object sender, System.EventArgs e)
 		{
 			m_monitor.SetAdditonalFilters();
+		}	
+	
+		protected virtual void OnComboClick (object sender, System.EventArgs e)
+		{
+			m_monitor.DoComboFilter();
 		}	
 	}
 }

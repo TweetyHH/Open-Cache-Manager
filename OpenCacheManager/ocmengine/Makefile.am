@@ -73,7 +73,8 @@ FILES = \
 	CacheStoreDefs.cs \
 	FilterList.cs \
 	GPSBabelWriter.cs \
-	CacheAttribute.cs 
+	CacheAttribute.cs \
+	FieldNotesHandler.cs 
 
 DATA_FILES = 
 

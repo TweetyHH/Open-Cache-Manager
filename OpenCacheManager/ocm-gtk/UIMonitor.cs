@@ -317,7 +317,7 @@ namespace ocmgtk
 			//System.Console.WriteLine("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_home_lat + "&lon=" + m_home_lon);
 			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_centerLat.ToString(CultureInfo.InvariantCulture) + "&lon=" + m_centerLon.ToString(CultureInfo.InvariantCulture));
 			m_map.SetAutoSelectCache(m_conf.AutoSelectCacheFromMap);
-			MapManager mapManager = new MapManager("../../maps");
+			MapManager mapManager = new MapManager(System.Environment.CurrentDirectory + "/maps");
 			
 			mapManager.addMaps(m_map);
 		}
@@ -1213,12 +1213,12 @@ namespace ocmgtk
 		{
 			if (filters !=null && filters.GetCount() > 1)
 				{
-					m_cachelist.ShowInfoBox();
+					m_cachelist.ShowInfoBox(false);
 					m_mainWin.SetAllowClearFilter (true);
 				}
 				else
 				{
-					m_cachelist.HideInfoBox();
+					m_cachelist.ClearInfoBoxes();
 					m_mainWin.SetAllowClearFilter (false);
 				}
 		}
@@ -1230,7 +1230,7 @@ namespace ocmgtk
 				dlg.Hide ();
 				Engine.getInstance ().Store.Filter = null;
 				m_mainWin.SetAllowClearFilter (false);
-				m_cachelist.HideInfoBox();
+				m_cachelist.ClearInfoBoxes();
 				RefreshCaches ();
 			} else
 				dlg.Hide ();
@@ -1765,11 +1765,23 @@ namespace ocmgtk
 			m_cachelist.ApplyQuickFilter(filter);
 			CacheStore store = Engine.getInstance().Store;
 			bool needsReload = false;
-			if (store.Filter != null)
+			if (store.Filter != null || store.ComboFilter != null)
 				needsReload = true;
+			store.ComboFilter = filter.ComboFilter;
 			store.Filter = filter.AdvancedFilters;
 			CheckAdvancedFilters(filter.AdvancedFilters);
-			if (filter.AdvancedFilters != null || needsReload)
+			if (filter.ComboFilter != null)
+			{
+				m_mainWin.SetComboFilterState();
+				m_cachelist.ShowInfoBox(true);
+			}
+			else
+			{
+				m_mainWin.ClearCombo();
+			}
+			if (filter.AdvancedFilters != null || 
+			    filter.ComboFilter != null || 
+			    needsReload)
 				RefreshCaches();
 			else
 				m_cachelist.RefilterList();
@@ -1783,6 +1795,7 @@ namespace ocmgtk
 			{
 				QuickFilter filter = new QuickFilter();
 				filter.AdvancedFilters = Engine.getInstance().Store.Filter;
+				filter.ComboFilter = Engine.getInstance().Store.ComboFilter;
 				m_cachelist.PopulateQuickFilter(filter);
 				filter.Name = dlg.BookmarkName;
 				m_filters.AddFilter(filter);
@@ -2227,6 +2240,27 @@ namespace ocmgtk
 			}
 			dlg.Hide();
 			dlg.Dispose();
+		}
+		
+		public void DoComboFilter()
+		{
+			AddComboFilter dlg = new AddComboFilter();
+			dlg.ComboFilter = Engine.getInstance().Store.ComboFilter;
+			if ((int)ResponseType.Ok == dlg.Run())
+			{
+				m_cachelist.ShowInfoBox(true);
+				Engine.getInstance().Store.ComboFilter = dlg.ComboFilter;
+				m_mainWin.SetComboFilterState();
+				RefreshCaches();
+			}
+		}
+		
+		public void ClearCombo()
+		{
+			Engine.getInstance().Store.ComboFilter = null;
+			m_mainWin.ClearCombo();
+			m_cachelist.ClearInfoBoxes();
+			RefreshCaches();
 		}
 	}
 }
