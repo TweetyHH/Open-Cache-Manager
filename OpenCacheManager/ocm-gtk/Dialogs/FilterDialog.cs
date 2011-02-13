@@ -47,6 +47,7 @@ namespace ocmgtk
 				GetNoCorrectedCoordsFilter (filter);
 				GetMustHaveAttributes (filter);
 				GetMustNotHaveSetAttributesFilter (filter);
+				GetMarkedFilter (filter);			
 				filter.AddFilterCriteria(FilterList.KEY_OWNERID, UIMonitor.getInstance().OwnerID);
 				return filter;
 			}
@@ -60,6 +61,35 @@ namespace ocmgtk
 				SetChildrenTabFilters (value);
 				SetAttributeTabFilters (value);
  			}
+		}
+		
+		private void GetMarkedFilter (FilterList filter)
+		{
+			if (contPage.hasDNF)
+			{
+				filter.AddFilterCriteria(FilterList.KEY_DNF, true);
+				filter.RemoveCriteria(FilterList.KEY_FTF);
+			}
+			else if (contPage.hasNoDNF)
+			{
+				filter.AddFilterCriteria(FilterList.KEY_DNF, false);
+				filter.RemoveCriteria(FilterList.KEY_FTF);
+			}
+			else if (contPage.hasFTF)
+			{
+				filter.AddFilterCriteria(FilterList.KEY_FTF, true);
+				filter.RemoveCriteria(FilterList.KEY_DNF);
+			}
+			else if (contPage.hasNoFTF)
+			{
+				filter.AddFilterCriteria(FilterList.KEY_FTF, false);
+				filter.RemoveCriteria(FilterList.KEY_DNF);
+			}
+			else
+			{
+				filter.RemoveCriteria(FilterList.KEY_DNF);
+				filter.RemoveCriteria(FilterList.KEY_FTF);
+			}
 		}
 		
 		private void SetAttributeTabFilters (FilterList list)
@@ -130,59 +160,82 @@ namespace ocmgtk
 			bool atLeastOne = false;
 			if (list.Contains(FilterList.KEY_COUNTRY))
 			{
-				datePage.Country = list.GetCriteria(FilterList.KEY_COUNTRY) as string;
+				placementPage.Country = list.GetCriteria(FilterList.KEY_COUNTRY) as string;
 				atLeastOne = true;
 			}
 			if (list.Contains(FilterList.KEY_STATE))
 			{
-				datePage.Province = list.GetCriteria(FilterList.KEY_STATE) as string;
+				placementPage.Province = list.GetCriteria(FilterList.KEY_STATE) as string;
 				atLeastOne = true;
 			}
 			if (list.Contains(FilterList.KEY_PLACEBEFORE))
 			{
-				datePage.PlaceBefore = (DateTime) list.GetCriteria(FilterList.KEY_PLACEBEFORE);
+				placementPage.PlaceBefore = (DateTime) list.GetCriteria(FilterList.KEY_PLACEBEFORE);
 				atLeastOne = true;
 			}
 			if (list.Contains(FilterList.KEY_PLACEAFTER))
 			{
-				datePage.PlaceAfter = (DateTime) list.GetCriteria(FilterList.KEY_PLACEAFTER);
+				placementPage.PlaceAfter = (DateTime) list.GetCriteria(FilterList.KEY_PLACEAFTER);
 				atLeastOne = true;
 			}
 			if (list.Contains(FilterList.KEY_INFOBEFORE))
 			{
-				datePage.InfoBefore = (DateTime) list.GetCriteria(FilterList.KEY_INFOBEFORE);
+				placementPage.InfoBefore = (DateTime) list.GetCriteria(FilterList.KEY_INFOBEFORE);
 				atLeastOne = true;
 			}
 			if (list.Contains(FilterList.KEY_INFOAFTER))
 			{
-				datePage.InfoAfter = (DateTime) list.GetCriteria(FilterList.KEY_INFOAFTER);
+				placementPage.InfoAfter = (DateTime) list.GetCriteria(FilterList.KEY_INFOAFTER);
 				atLeastOne = true;
 			}
 			if (list.Contains(FilterList.KEY_FOUNDON))
 			{
-				datePage.FoundOn = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDON);
+				placementPage.FoundOn = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDON);
 				atLeastOne = true;
 			}
 			if (list.Contains(FilterList.KEY_FOUNDBEFORE))
 			{
-				datePage.FoundBefore = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDBEFORE);
+				placementPage.FoundBefore = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDBEFORE);
 				atLeastOne = true;
 			}
 			if (list.Contains(FilterList.KEY_FOUNDAFTER))
 			{
-				datePage.FoundAfter = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDAFTER);
+				placementPage.FoundAfter = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDAFTER);
 				atLeastOne = true;
 			}
 			if (atLeastOne)
 				dateLabel.Markup = "<b>" + Catalog.GetString("Dates/Location") + "</b>";
+			if (list.Contains(FilterList.KEY_PLACEDBY))
+			{
+				placementPage.PlacedBy = list.GetCriteria(FilterList.KEY_PLACEDBY) as string;
+				atLeastOne = true;
+			}
 		}
 		
 		private void SetContainerTabFilters (FilterList list)
 		{
 			bool atLeastOne = false;
-			if (list.Contains(FilterList.KEY_PLACEDBY))
+			if (list.Contains(FilterList.KEY_CONTAINER))
 			{
-				contPage.PlacedBy = list.GetCriteria(FilterList.KEY_PLACEDBY) as string;
+				contPage.ContainerTypes = list.GetCriteria(FilterList.KEY_CONTAINER) as List<string>;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_FTF))
+			{
+				bool ftf = (bool) list.GetCriteria(FilterList.KEY_FTF);
+				if (ftf)
+					contPage.hasFTF = true;
+				else
+					contPage.hasNoFTF = true;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_DNF))
+			{
+				bool ftf = (bool) list.GetCriteria(FilterList.KEY_DNF);
+				if (ftf)
+					contPage.hasDNF = true;
+				else
+					contPage.hasNoDNF = true;
 				atLeastOne = true;
 			}
 			if (list.Contains(FilterList.KEY_DESCRIPTION))
@@ -190,13 +243,8 @@ namespace ocmgtk
 				contPage.DescriptionKeyWords = list.GetCriteria(FilterList.KEY_DESCRIPTION) as string;
 				atLeastOne = true;
 			}
-			if (list.Contains(FilterList.KEY_CONTAINER))
-			{
-				contPage.ContainerTypes = list.GetCriteria(FilterList.KEY_CONTAINER) as List<string>;
-				atLeastOne = true;
-			}
 			if (atLeastOne)
-				contLabel.Markup = "<b>" + Catalog.GetString("Container/Description/Placed By") + "</b>";
+				contLabel.Markup = "<b>" + Catalog.GetString("Container/Description/Status") + "</b>";
 			
 		}
 		
@@ -206,23 +254,23 @@ namespace ocmgtk
 			if (list.Contains(FilterList.KEY_TERRAIN_VAL))
 			{
 				atLeastOne = true;
-				page1.TerrValue = list.GetCriteria (FilterList.KEY_TERRAIN_VAL) as string;
-				page1.TerrOperator = list.GetCriteria (FilterList.KEY_TERRAIN_OP) as string;
+				difficultyPage.TerrValue = list.GetCriteria (FilterList.KEY_TERRAIN_VAL) as string;
+				difficultyPage.TerrOperator = list.GetCriteria (FilterList.KEY_TERRAIN_OP) as string;
 			}
 			if (list.Contains(FilterList.KEY_DIFF_VAL))
 			{
 				atLeastOne = true;
-				page1.DifficultyValue = list.GetCriteria (FilterList.KEY_DIFF_VAL) as string;
-				page1.DifficultyOperator = list.GetCriteria (FilterList.KEY_DIFF_OP) as string;
+				difficultyPage.DifficultyValue = list.GetCriteria (FilterList.KEY_DIFF_VAL) as string;
+				difficultyPage.DifficultyOperator = list.GetCriteria (FilterList.KEY_DIFF_OP) as string;
 			}
 			if (list.Contains(FilterList.KEY_CACHETYPE))
 			{
 				atLeastOne = true;
-				page1.SelectedCacheTypes = list.GetCriteria(FilterList.KEY_CACHETYPE) as List<string>;
+				difficultyPage.SelectedCacheTypes = list.GetCriteria(FilterList.KEY_CACHETYPE) as List<string>;
 			}
 			if (atLeastOne)
 			{
-				diffLabel.Markup = "<b>" + Catalog.GetString("Difficulty/Type") + "</b>";
+				diffLabel.Markup = "<b>" + Catalog.GetString("Difficulty/Terrain/Type") + "</b>";
 			}
 		}
 		
@@ -256,16 +304,16 @@ namespace ocmgtk
 		
 		private void GetStateFilter (FilterList filter)
 		{
-			string state = datePage.Province;
+			string state = placementPage.Province;
 				if (!String.IsNullOrEmpty(state))
-					filter.AddFilterCriteria(FilterList.KEY_STATE, datePage.Province);
+					filter.AddFilterCriteria(FilterList.KEY_STATE, placementPage.Province);
 		}
 		
 		private void GetCountryFilter (FilterList filter)
 		{
-			string cntry = datePage.Country;
+			string cntry = placementPage.Country;
 				if (!String.IsNullOrEmpty(cntry))
-					filter.AddFilterCriteria(FilterList.KEY_COUNTRY, datePage.Country);
+					filter.AddFilterCriteria(FilterList.KEY_COUNTRY, placementPage.Country);
 		}
 		
 		private void GetMustHaveAttributes (FilterList filter)
@@ -306,44 +354,44 @@ namespace ocmgtk
 		
 		private void GetFoundAfterFilter (FilterList filter)
 		{
-			if (datePage.FoundAfter != DateTime.MinValue)
-					filter.AddFilterCriteria(FilterList.KEY_FOUNDAFTER, datePage.FoundAfter);
+			if (placementPage.FoundAfter != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_FOUNDAFTER, placementPage.FoundAfter);
 				else
 					filter.RemoveCriteria(FilterList.KEY_FOUNDAFTER);
 		}
 		
 		private void GetFoundBeforeFilter (FilterList filter)
 		{
-			if (datePage.FoundBefore != DateTime.MinValue)
-					filter.AddFilterCriteria(FilterList.KEY_FOUNDBEFORE, datePage.FoundBefore);
+			if (placementPage.FoundBefore != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_FOUNDBEFORE, placementPage.FoundBefore);
 				else 
 					filter.RemoveCriteria(FilterList.KEY_FOUNDBEFORE);
 		}
 		
 		private void GetFoundOnFilter (FilterList filter)
 		{
-			if (datePage.FoundOn != DateTime.MinValue)
-					filter.AddFilterCriteria(FilterList.KEY_FOUNDON, datePage.FoundOn);
+			if (placementPage.FoundOn != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_FOUNDON, placementPage.FoundOn);
 				else
 					filter.RemoveCriteria(FilterList.KEY_FOUNDON);
 		}
 		
 		private void GetDateFilter (FilterList filter)
 		{
-				if (datePage.PlaceBefore != DateTime.MinValue)
-					filter.AddFilterCriteria(FilterList.KEY_PLACEBEFORE, datePage.PlaceBefore);
+				if (placementPage.PlaceBefore != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_PLACEBEFORE, placementPage.PlaceBefore);
 				else
 					filter.RemoveCriteria(FilterList.KEY_PLACEBEFORE);
-				if (datePage.PlaceAfter != DateTime.MinValue)
-					filter.AddFilterCriteria(FilterList.KEY_PLACEAFTER, datePage.PlaceAfter);
+				if (placementPage.PlaceAfter != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_PLACEAFTER, placementPage.PlaceAfter);
 				else
 					filter.RemoveCriteria(FilterList.KEY_PLACEAFTER);
-				if (datePage.InfoBefore != DateTime.MinValue)
-					filter.AddFilterCriteria(FilterList.KEY_INFOBEFORE, datePage.InfoBefore);
+				if (placementPage.InfoBefore != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_INFOBEFORE, placementPage.InfoBefore);
 				else
 					filter.RemoveCriteria(FilterList.KEY_INFOBEFORE);
-				if (datePage.InfoAfter != DateTime.MinValue)
-					filter.AddFilterCriteria(FilterList.KEY_INFOAFTER, datePage.InfoAfter);
+				if (placementPage.InfoAfter != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_INFOAFTER, placementPage.InfoAfter);
 				else
 					filter.RemoveCriteria(FilterList.KEY_INFOAFTER);
 		}
@@ -366,7 +414,7 @@ namespace ocmgtk
 		
 		private void GetPlacedByFilter (FilterList filter)
 		{
-			String placedby = contPage.PlacedBy;
+			String placedby = placementPage.PlacedBy;
 				if (null != placedby)
 					filter.AddFilterCriteria(FilterList.KEY_PLACEDBY, placedby);
 				else
@@ -375,17 +423,17 @@ namespace ocmgtk
 
 		private void GetCTypeFilter (FilterList filter)
 		{
-			if (null != page1.SelectedCacheTypes) 
-				filter.AddFilterCriteria (FilterList.KEY_CACHETYPE, page1.SelectedCacheTypes);
+			if (null != difficultyPage.SelectedCacheTypes) 
+				filter.AddFilterCriteria (FilterList.KEY_CACHETYPE, difficultyPage.SelectedCacheTypes);
 			else
 				filter.RemoveCriteria(FilterList.KEY_CACHETYPE);
 		}
 
 		private void GetDifficultyFilter (FilterList filter)
 		{
-			if (!String.IsNullOrEmpty (page1.DifficultyValue)) {
-				filter.AddFilterCriteria (FilterList.KEY_DIFF_VAL, page1.DifficultyValue);
-				filter.AddFilterCriteria (FilterList.KEY_DIFF_OP, page1.DifficultyOperator);
+			if (!String.IsNullOrEmpty (difficultyPage.DifficultyValue)) {
+				filter.AddFilterCriteria (FilterList.KEY_DIFF_VAL, difficultyPage.DifficultyValue);
+				filter.AddFilterCriteria (FilterList.KEY_DIFF_OP, difficultyPage.DifficultyOperator);
 			}
 			else
 			{
@@ -396,9 +444,9 @@ namespace ocmgtk
 
 		private void GetTerrainFilter (FilterList filter)
 		{
-			if (!String.IsNullOrEmpty (page1.TerrValue)) {
-				filter.AddFilterCriteria (FilterList.KEY_TERRAIN_VAL, page1.TerrValue);
-				filter.AddFilterCriteria (FilterList.KEY_TERRAIN_OP, page1.TerrOperator);
+			if (!String.IsNullOrEmpty (difficultyPage.TerrValue)) {
+				filter.AddFilterCriteria (FilterList.KEY_TERRAIN_VAL, difficultyPage.TerrValue);
+				filter.AddFilterCriteria (FilterList.KEY_TERRAIN_OP, difficultyPage.TerrOperator);
 			}
 			else
 			{

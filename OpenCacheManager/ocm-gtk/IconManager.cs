@@ -69,6 +69,7 @@ namespace ocmgtk
 		private static string GENERIC_MI = "treasure.png";
 		private static string CORRECTED_MI = "corrected.png";
 		private static string DNF_MI = "dnf.png";
+		private static string FTF_MI = "ftf.png";
 		
 		/// <summary>
 		/// Returns a PixBuf containing the 16x16 icon for the specified cache type
@@ -140,7 +141,11 @@ namespace ocmgtk
 		public static string GetMapIcon (Geocache cache, String ownerId, UIMonitor mon)
 		{
 			if (cache.Found)
+			{
+				if (cache.FTF)
+					return FTF_MI;
 				return FOUND_MI;
+			}
 			if ((cache.OwnerID == ownerId) ||(cache.CacheOwner == ownerId))
 				return OWNED_MI;
 			if ((cache.HasCorrected || cache.HasFinal))

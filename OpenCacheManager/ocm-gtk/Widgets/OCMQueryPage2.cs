@@ -23,23 +23,6 @@ namespace ocmgtk
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class OCMQueryPage2 : Gtk.Bin
 	{
-
-		public String PlacedBy
-		{
-			get { 
-				if (placedByRadio.Active)
-					return placedEntry.Text;
-				return null;
-			}
-			set
-			{
-				if (value == null)
-					return;
-				placedEntry.Text = value;
-				placedByRadio.Active = true;
-			}
-		}
-		
 		
 		public string DescriptionKeyWords
 		{
@@ -107,6 +90,77 @@ namespace ocmgtk
 			}
 		}
 		
+		public bool hasDNF
+		{
+			get
+			{
+				if(markedCheck.Active && dnfRadio.Active)
+					return true;
+				return false;
+			}
+			set
+			{
+				if (value)
+				{
+					markedCheck.Active = true;
+					dnfRadio.Active = true;
+				}
+			}
+		}
+		
+		public bool hasNoDNF
+		{
+			get
+			{
+				if(markedCheck.Active && noDNFRadio.Active)
+					return true;
+				return false;
+			}
+			set
+			{
+				if (value)
+				{
+					markedCheck.Active = true;
+					noDNFRadio.Active = true;
+				}
+			}
+		}
+		
+		public bool hasFTF
+		{
+			get
+			{
+				if(markedCheck.Active && ftfRadio.Active)
+					return true;
+				return false;
+			}
+			set
+			{
+				if (value)
+				{
+					markedCheck.Active = true;
+					ftfRadio.Active = true;
+				}
+			}
+		}
+		
+		public bool hasNoFTF
+		{
+			get
+			{
+				if(markedCheck.Active && noFTFRadio.Active)
+					return true;
+				return false;
+			}
+			set
+			{
+				if (value)
+				{
+					markedCheck.Active = true;
+					noFTFRadio.Active = true;
+				}
+			}
+		}
 
 		public OCMQueryPage2 ()
 		{
@@ -122,11 +176,12 @@ namespace ocmgtk
 		{
 			descEntry.Sensitive = descCheck.Active;
 		}
-		
-		protected virtual void OnPlacedByToggle (object sender, System.EventArgs e)
-		{
-			placedEntry.Sensitive = placedByRadio.Active;
-		}
 				
+		protected virtual void OnMarkedtoggle (object sender, System.EventArgs e)
+		{
+			markFrame.Sensitive = markedCheck.Active;
+		}
+		
+		
 	}
 }
