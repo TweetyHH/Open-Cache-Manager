@@ -186,15 +186,35 @@ namespace ocmengine
 					builder.Append(" AND WAYPOINT.symbol == 'Geocache'");
 				if (status[0] && !status [1])
 					builder.Append(" AND WAYPOINT.symbol == 'Geocache Found'");
-				if (status[2] && !status[3] && status[4])
-					builder.Append(" AND GEOCACHE.available == 'True' OR Geocache.archived == 'True'");
-				if (!status[2] && !status[3] && status[4])
+				if (!status[2])
+				{
+					builder.Append(" AND GEOCACHE.owner !='");
+					builder.Append(m_criteria[KEY_OWNERID]);
+					builder.Append("'");
+					builder.Append(" AND GEOCACHE.ownerID !='");
+					builder.Append(m_criteria[KEY_OWNERID]);
+					builder.Append("'");
+				}
+				else if (status[2] && !status[0] && !status[1])
+				{
+					builder.Append(" AND (GEOCACHE.owner =='");
+					builder.Append(m_criteria[KEY_OWNERID]);
+					builder.Append("'");
+					builder.Append(" OR GEOCACHE.ownerID =='");
+					builder.Append(m_criteria[KEY_OWNERID]);
+					builder.Append("')");
+				}					
+				if (status[3] && !status[4] && status[5])
+					builder.Append(" AND (GEOCACHE.available == 'True' OR Geocache.archived == 'True')");
+				if (!status[3] && !status[4] && status[5])
 					builder.Append(" AND GEOCACHE.available == 'False' AND Geocache.archived == 'True'");
-				if (!status[2] && status[3] && !status[4])
-					builder.Append(" AND GEOCACHE.available == 'False' AND Geocache.archived == 'FALSE'");
-				if (status[2] && !status[3] && !status[4])
+				if (!status[3] && status[4] && !status[5])
+					builder.Append(" AND GEOCACHE.available == 'False' AND Geocache.archived == 'False'");
+				if (status[3] && !status[4] && !status[5])
 					builder.Append(" AND GEOCACHE.available == 'True'");
-				if (!status[2] && status[3] && status[4])
+				if (status[3] && status[4] && !status[5])
+					builder.Append(" AND (GEOCACHE.available == 'True' OR Geocache.archived == 'False')");
+				if (!status[3] && status[4] && status[5])
 					builder.Append(" AND GEOCACHE.available == 'False'");
  			}
 			

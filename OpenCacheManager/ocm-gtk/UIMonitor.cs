@@ -2255,6 +2255,11 @@ namespace ocmgtk
 			}
 		}
 		
+		public void SetBasicStatus(bool enabled)
+		{
+		//	m_cachelist.EnableBasicStatus = enabled;
+		}
+		
 		public void ClearCombo()
 		{
 			Engine.getInstance().Store.ComboFilter = null;

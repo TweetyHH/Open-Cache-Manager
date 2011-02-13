@@ -152,7 +152,6 @@
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="gtk-gui\ocmgtk.GeocacheInfoPanel.cs" />
     <Compile Include="gtk-gui\ocmgtk.GeoCachePane.cs" />
-    <Compile Include="gtk-gui\ocmgtk.CacheList.cs" />
     <Compile Include="gtk-gui\ocmgtk.WaypointWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.LogViewerWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.BrowserWidget.cs" />
@@ -246,20 +245,21 @@
     <Compile Include="configuration\GPSProfileList.cs" />
     <Compile Include="gpsd\GPS.cs" />
     <Compile Include="Widgets\OCMQueryPage6.cs" />
-    <Compile Include="gtk-gui\ocmgtk.OCMQueryPage6.cs" />
     <Compile Include="Dialogs\LoggingDialog.cs" />
-    <Compile Include="gtk-gui\ocmgtk.LoggingDialog.cs" />
     <Compile Include="Dialogs\OfflineLogDialog.cs" />
-    <Compile Include="gtk-gui\ocmgtk.OfflineLogDialog.cs" />
     <Compile Include="Dialogs\OffLineLogViewer.cs" />
-    <Compile Include="gtk-gui\ocmgtk.OffLineLogViewer.cs" />
     <Compile Include="Dialogs\LoadGPSFieldNotes.cs" />
-    <Compile Include="gtk-gui\ocmgtk.LoadGPSFieldNotes.cs" />
     <Compile Include="Dialogs\ImportDialog.cs" />
-    <Compile Include="gtk-gui\ocmgtk.ImportDialog.cs" />
     <Compile Include="Dialogs\AddComboFilter.cs" />
-    <Compile Include="gtk-gui\ocmgtk.AddComboFilter.cs" />
     <Compile Include="MapManager.cs" />
+    <Compile Include="gtk-gui\ocmgtk.CacheList.cs" />
+    <Compile Include="gtk-gui\ocmgtk.OCMQueryPage6.cs" />
+    <Compile Include="gtk-gui\ocmgtk.LoggingDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.OfflineLogDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.OffLineLogViewer.cs" />
+    <Compile Include="gtk-gui\ocmgtk.LoadGPSFieldNotes.cs" />
+    <Compile Include="gtk-gui\ocmgtk.ImportDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.AddComboFilter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

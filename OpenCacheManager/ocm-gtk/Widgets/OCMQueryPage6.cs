@@ -27,5 +27,94 @@ namespace ocmgtk
 		{
 			this.Build ();
 		}
+		
+		public DateTime FoundOn
+		{
+			get
+			{
+				if (foundCheck.Active && (foundCombo.Active == 0))
+					return foundDateEntry.Date;
+				return DateTime.MinValue;
+			}
+			set
+			{
+				if (value != DateTime.MinValue)
+				{
+					foundCheck.Active = true;
+					foundDateEntry.Date = value;
+					foundCombo.Active =0;
+				}
+					
+			}
+		}
+		
+		public DateTime FoundBefore
+		{
+			get
+			{
+				if (foundCheck.Active && (foundCombo.Active == 2))
+					return foundDateEntry.Date;
+				return DateTime.MinValue;
+			}
+			set
+			{
+				if (value != DateTime.MinValue)
+				{
+					foundCheck.Active = true;
+					foundDateEntry.Date = value;
+					foundCombo.Active = 2;
+				}
+					
+			}
+		}
+		
+		public DateTime FoundAfter
+		{
+			get
+			{
+				if (foundCheck.Active && (foundCombo.Active == 1))
+					return foundDateEntry.Date;
+				return DateTime.MinValue;
+			}
+			set
+			{
+				if (value != DateTime.MinValue)
+				{
+					foundCheck.Active = true;
+					foundDateEntry.Date = value;
+					foundCombo.Active = 1;
+				}
+					
+			}
+		}
+		
+		public DateTime InfoAfter
+		{
+			get
+			{
+				return DateTime.MinValue;				
+			}
+			set
+			{
+			
+			}
+		}
+		
+		public DateTime InfoBefore
+		{
+			get 
+			{
+				return DateTime.MinValue;
+			}
+			set
+			{
+			}
+		}
+		
+		protected virtual void OnFoundCheckToggle (object sender, System.EventArgs e)
+		{
+			foundDateEntry.Sensitive = foundCheck.Active;
+			foundCombo.Sensitive = foundCheck.Active;
+		}
 	}
 }

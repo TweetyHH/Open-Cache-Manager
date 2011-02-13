@@ -180,27 +180,27 @@ namespace ocmgtk
 			}
 			if (list.Contains(FilterList.KEY_INFOBEFORE))
 			{
-				placementPage.InfoBefore = (DateTime) list.GetCriteria(FilterList.KEY_INFOBEFORE);
+				updatedPage.InfoBefore = (DateTime) list.GetCriteria(FilterList.KEY_INFOBEFORE);
 				atLeastOne = true;
 			}
 			if (list.Contains(FilterList.KEY_INFOAFTER))
 			{
-				placementPage.InfoAfter = (DateTime) list.GetCriteria(FilterList.KEY_INFOAFTER);
+				updatedPage.InfoAfter = (DateTime) list.GetCriteria(FilterList.KEY_INFOAFTER);
 				atLeastOne = true;
 			}
 			if (list.Contains(FilterList.KEY_FOUNDON))
 			{
-				placementPage.FoundOn = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDON);
+				updatedPage.FoundOn = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDON);
 				atLeastOne = true;
 			}
 			if (list.Contains(FilterList.KEY_FOUNDBEFORE))
 			{
-				placementPage.FoundBefore = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDBEFORE);
+				updatedPage.FoundBefore = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDBEFORE);
 				atLeastOne = true;
 			}
 			if (list.Contains(FilterList.KEY_FOUNDAFTER))
 			{
-				placementPage.FoundAfter = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDAFTER);
+				updatedPage.FoundAfter = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDAFTER);
 				atLeastOne = true;
 			}
 			if (atLeastOne)
@@ -354,24 +354,24 @@ namespace ocmgtk
 		
 		private void GetFoundAfterFilter (FilterList filter)
 		{
-			if (placementPage.FoundAfter != DateTime.MinValue)
-					filter.AddFilterCriteria(FilterList.KEY_FOUNDAFTER, placementPage.FoundAfter);
+			if (updatedPage.FoundAfter != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_FOUNDAFTER, updatedPage.FoundAfter);
 				else
 					filter.RemoveCriteria(FilterList.KEY_FOUNDAFTER);
 		}
 		
 		private void GetFoundBeforeFilter (FilterList filter)
 		{
-			if (placementPage.FoundBefore != DateTime.MinValue)
-					filter.AddFilterCriteria(FilterList.KEY_FOUNDBEFORE, placementPage.FoundBefore);
+			if (updatedPage.FoundBefore != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_FOUNDBEFORE, updatedPage.FoundBefore);
 				else 
 					filter.RemoveCriteria(FilterList.KEY_FOUNDBEFORE);
 		}
 		
 		private void GetFoundOnFilter (FilterList filter)
 		{
-			if (placementPage.FoundOn != DateTime.MinValue)
-					filter.AddFilterCriteria(FilterList.KEY_FOUNDON, placementPage.FoundOn);
+			if (updatedPage.FoundOn != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_FOUNDON, updatedPage.FoundOn);
 				else
 					filter.RemoveCriteria(FilterList.KEY_FOUNDON);
 		}
@@ -386,12 +386,12 @@ namespace ocmgtk
 					filter.AddFilterCriteria(FilterList.KEY_PLACEAFTER, placementPage.PlaceAfter);
 				else
 					filter.RemoveCriteria(FilterList.KEY_PLACEAFTER);
-				if (placementPage.InfoBefore != DateTime.MinValue)
-					filter.AddFilterCriteria(FilterList.KEY_INFOBEFORE, placementPage.InfoBefore);
+				if (updatedPage.InfoBefore != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_INFOBEFORE, updatedPage.InfoBefore);
 				else
 					filter.RemoveCriteria(FilterList.KEY_INFOBEFORE);
-				if (placementPage.InfoAfter != DateTime.MinValue)
-					filter.AddFilterCriteria(FilterList.KEY_INFOAFTER, placementPage.InfoAfter);
+				if (updatedPage.InfoAfter != DateTime.MinValue)
+					filter.AddFilterCriteria(FilterList.KEY_INFOAFTER, updatedPage.InfoAfter);
 				else
 					filter.RemoveCriteria(FilterList.KEY_INFOAFTER);
 		}

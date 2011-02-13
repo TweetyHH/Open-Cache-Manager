@@ -47,17 +47,17 @@ namespace ocmgtk
 		{
 			get
 			{
-				if (placeCheck.Active && placedCombo.Active == 0)
-					return placeDateEntry.Date;
+				if (hiddenCheck.Active && hiddenCombo.Active == 0)
+					return hiddenDateEntry.Date;
 				return DateTime.MinValue;				
 			}
 			set
 			{
 				if (value == DateTime.MinValue)
 					return;
-				placeCheck.Active = true;
-				placedCombo.Active = 0;
-				placeDateEntry.Date = value;
+				hiddenCheck.Active = true;
+				hiddenCombo.Active = 0;
+				hiddenDateEntry.Date = value;
 			}
 		}
 		
@@ -65,114 +65,23 @@ namespace ocmgtk
 		{
 			get
 			{
-				if (placeCheck.Active && placedCombo.Active == 1)
-					return placeDateEntry.Date;
+				if (hiddenCheck.Active && hiddenCombo.Active == 1)
+					return hiddenDateEntry.Date;
 				return DateTime.MinValue;			
 			}
 			set
 			{
 				if (value == DateTime.MinValue)
 					return;
-				placeCheck.Active = true;
-				placedCombo.Active = 1;
-				placeDateEntry.Date = value;
+				hiddenCheck.Active = true;
+				hiddenCombo.Active = 1;
+				hiddenDateEntry.Date = value;
 			}
 		}
 		
-		public DateTime InfoAfter
-		{
-			get
-			{
-				if (infoAfterCheck.Active)
-					return infoAfterEntry1.Date;
-				return DateTime.MinValue;				
-			}
-			set
-			{
-				if (value == DateTime.MinValue)
-					return;
-				infoAfterCheck.Active = true;
-				infoAfterEntry1.Date = value;
-			}
-		}
 		
-		public DateTime InfoBefore
-		{
-			get 
-			{
-				if (infoBeforeCheck.Active)
-					return infoBeforeEntry.Date;
-				return DateTime.MinValue;
-			}
-			set
-			{
-				if (value == DateTime.MinValue)
-					return;
-				infoBeforeCheck.Active = true;
-				infoBeforeEntry.Date = value;
-			}
-		}
 		
-		public DateTime FoundOn
-		{
-			get
-			{
-				if (foundCheck.Active && (foundCombo.Active == 0))
-					return foundDateEntry.Date;
-				return DateTime.MinValue;
-			}
-			set
-			{
-				if (value != DateTime.MinValue)
-				{
-					foundCheck.Active = true;
-					foundDateEntry.Date = value;
-					foundCombo.Active =0;
-				}
-					
-			}
-		}
-		
-		public DateTime FoundBefore
-		{
-			get
-			{
-				if (foundCheck.Active && (foundCombo.Active == 2))
-					return foundDateEntry.Date;
-				return DateTime.MinValue;
-			}
-			set
-			{
-				if (value != DateTime.MinValue)
-				{
-					foundCheck.Active = true;
-					foundDateEntry.Date = value;
-					foundCombo.Active = 2;
-				}
-					
-			}
-		}
-		
-		public DateTime FoundAfter
-		{
-			get
-			{
-				if (foundCheck.Active && (foundCombo.Active == 1))
-					return foundDateEntry.Date;
-				return DateTime.MinValue;
-			}
-			set
-			{
-				if (value != DateTime.MinValue)
-				{
-					foundCheck.Active = true;
-					foundDateEntry.Date = value;
-					foundCombo.Active = 1;
-				}
-					
-			}
-		}
-		
+	
 		public string Country
 		{
 			get { 
@@ -221,31 +130,23 @@ namespace ocmgtk
 		{
 			this.Build ();
 		}
-
-		protected virtual void OnInfoAfterTog (object sender, System.EventArgs e)
-		{
-			infoAfterEntry1.Sensitive = infoAfterCheck.Active;
-		}
-		
-		protected virtual void OnInfoBeforeTog (object sender, System.EventArgs e)
-		{
-			infoBeforeEntry.Sensitive = infoBeforeCheck.Active;
-		}
 		
 		protected virtual void OnCountryToggle (object sender, System.EventArgs e)
 		{
 			countryEntry.Sensitive = countryCheck.Active;
 		}
-		
-		protected virtual void OnStateCheckToggled (object sender, System.EventArgs e)
+			
+		protected virtual void OnStateCheckToggle (object sender, System.EventArgs e)
 		{
 			stateEntry.Sensitive = stateCheck.Active;
 		}
-		protected virtual void OnFoundCheckToggle (object sender, System.EventArgs e)
+		
+		protected virtual void OnHiddenToggle (object sender, System.EventArgs e)
 		{
-			foundDateEntry.Sensitive = foundCheck.Active;
-			foundCombo.Sensitive = foundCheck.Active;
+			hiddenCombo.Sensitive = hiddenCheck.Active;
+			hiddenDateEntry.Sensitive = hiddenCheck.Active;
 		}
+		
 		
 		
 	}
