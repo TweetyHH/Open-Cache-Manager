@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
-    <widget-library name="../bin/Release_Translated/ocm-gtk.exe" internal="true" />
+    <widget-library name="../bind/ocm-gtk.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="1284 1201">
     <action-group name="Default">
@@ -3077,7 +3077,7 @@ Other</property>
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">2</property>
+            <property name="CurrentPage">3</property>
             <property name="TabPos">Left</property>
             <child>
               <widget class="Gtk.Table" id="table2">
@@ -3747,6 +3747,24 @@ Disabled on Startup</property>
               </packing>
             </child>
             <child>
+              <widget class="ocmgtk.MapSelectionWidget" id="mapselectionwidget1">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+              </widget>
+              <packing>
+                <property name="Position">3</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="label23">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Mapimport</property>
+              </widget>
+              <packing>
+                <property name="type">tab</property>
+              </packing>
+            </child>
+            <child>
               <widget class="Gtk.Table" id="table5">
                 <property name="MemberName" />
                 <property name="NRows">4</property>
@@ -3816,7 +3834,6 @@ Disabled on Startup</property>
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="Label" translatable="yes">Only puzzle cache types with corrected coordinats/final location</property>
-                                <property name="Active">True</property>
                                 <property name="DrawIndicator">True</property>
                                 <property name="HasLabel">True</property>
                                 <property name="UseUnderline">True</property>
@@ -3868,7 +3885,7 @@ Disabled on Startup</property>
                       </widget>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="GtkLabel4">
+                      <widget class="Gtk.Label" id="GtkLabel5">
                         <property name="MemberName" />
                         <property name="LabelProp" translatable="yes">&lt;b&gt;Solved puzzle icon&lt;/b&gt;</property>
                         <property name="UseMarkup">True</property>
@@ -3935,7 +3952,7 @@ Use GC name (e.g. GCABCD01)</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">3</property>
+                <property name="Position">4</property>
               </packing>
             </child>
             <child>
@@ -4020,7 +4037,7 @@ Use GC name (e.g. GCABCD01)</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">4</property>
+                <property name="Position">5</property>
               </packing>
             </child>
             <child>
@@ -4114,7 +4131,7 @@ Use GC name (e.g. GCABCD01)</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">5</property>
+                <property name="Position">6</property>
               </packing>
             </child>
             <child>
@@ -17681,6 +17698,150 @@ will be returned.</property>
             <property name="Position">1</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Bin" id="ocmgtk.MapSelectionWidget" design-size="536 272">
+    <property name="MemberName" />
+    <property name="Visible">False</property>
+    <child>
+      <widget class="Gtk.Table" id="table6">
+        <property name="MemberName" />
+        <property name="NColumns">2</property>
+        <property name="RowSpacing">6</property>
+        <property name="ColumnSpacing">6</property>
+        <property name="BorderWidth">6</property>
+        <child>
+          <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="ShadowType">In</property>
+            <child>
+              <widget class="Gtk.TreeView" id="mapView">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="AutoSize">True</property>
+            <property name="XExpand">True</property>
+            <property name="XFill">True</property>
+            <property name="XShrink">False</property>
+            <property name="YExpand">True</property>
+            <property name="YFill">True</property>
+            <property name="YShrink">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Table" id="table7">
+            <property name="MemberName" />
+            <property name="NRows">5</property>
+            <property name="RowSpacing">6</property>
+            <property name="ColumnSpacing">6</property>
+            <child>
+              <placeholder />
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="activateButton">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Activate Map</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnActivateButtonClicked" />
+              </widget>
+              <packing>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="deactivateButton">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Deactivate Map</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnDeactivateButtonClicked" />
+              </widget>
+              <packing>
+                <property name="TopAttach">1</property>
+                <property name="BottomAttach">2</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.HSeparator" id="hseparator2">
+                <property name="MemberName" />
+              </widget>
+              <packing>
+                <property name="TopAttach">2</property>
+                <property name="BottomAttach">3</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="openButton">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-open Menu</property>
+                <property name="Label" translatable="yes">Open Map File</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnOpenButtonClicked" />
+              </widget>
+              <packing>
+                <property name="TopAttach">3</property>
+                <property name="BottomAttach">4</property>
+                <property name="AutoSize">True</property>
+                <property name="XOptions">Fill</property>
+                <property name="YOptions">Fill</property>
+                <property name="XExpand">False</property>
+                <property name="XFill">True</property>
+                <property name="XShrink">False</property>
+                <property name="YExpand">False</property>
+                <property name="YFill">True</property>
+                <property name="YShrink">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="LeftAttach">1</property>
+            <property name="RightAttach">2</property>
+            <property name="AutoSize">True</property>
+            <property name="XOptions">Fill</property>
+            <property name="XExpand">False</property>
+            <property name="XFill">True</property>
+            <property name="XShrink">False</property>
+            <property name="YExpand">True</property>
+            <property name="YFill">True</property>
+            <property name="YShrink">False</property>
           </packing>
         </child>
       </widget>

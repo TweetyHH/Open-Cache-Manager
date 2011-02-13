@@ -260,6 +260,9 @@
     <Compile Include="Dialogs\AddComboFilter.cs" />
     <Compile Include="gtk-gui\ocmgtk.AddComboFilter.cs" />
     <Compile Include="MapManager.cs" />
+    <Compile Include="Widgets\MapSelectionWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.MapSelectionWidget.cs" />
+    <Compile Include="MapDescription.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
