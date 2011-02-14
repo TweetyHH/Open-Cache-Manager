@@ -92,11 +92,17 @@ namespace ocmgtk
 		{
 			get
 			{
-				return DateTime.MinValue;				
+				if (lastUpdateCheck.Active && lastUpdateCombo.Active == 1)
+					return lastUpdateDate.Date;
+				return DateTime.MinValue;
 			}
 			set
 			{
-			
+				if (value == DateTime.MinValue)
+					return;
+				lastUpdateDate.Date = value;
+				lastUpdateCombo.Active = 1;
+				lastUpdateCheck.Active = true;
 			}
 		}
 		
@@ -104,10 +110,17 @@ namespace ocmgtk
 		{
 			get 
 			{
+				if (lastUpdateCheck.Active && lastUpdateCombo.Active == 0)
+					return lastUpdateDate.Date;
 				return DateTime.MinValue;
 			}
 			set
 			{
+				if (value == DateTime.MinValue)
+					return;
+				lastUpdateDate.Date = value;
+				lastUpdateCombo.Active = 0;
+				lastUpdateCheck.Active = true;
 			}
 		}
 		
@@ -116,5 +129,13 @@ namespace ocmgtk
 			foundDateEntry.Sensitive = foundCheck.Active;
 			foundCombo.Sensitive = foundCheck.Active;
 		}
+		
+		protected virtual void OnUpdateToggle (object sender, System.EventArgs e)
+		{
+			lastUpdateCombo.Sensitive = lastUpdateCheck.Active;
+			lastUpdateDate.Sensitive = lastUpdateCheck.Active;
+		}
+		
+		
 	}
 }

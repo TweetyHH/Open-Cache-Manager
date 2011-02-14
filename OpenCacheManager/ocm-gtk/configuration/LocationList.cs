@@ -48,6 +48,13 @@ namespace ocmgtk
 				}				
 			}
 		}
+		
+		public Location GetLocation(String name)
+		{
+			if (m_locations.ContainsKey(name))
+				return m_locations[name];
+			return null;
+		}
 
 		
 		public void AddLocation(Location loc)

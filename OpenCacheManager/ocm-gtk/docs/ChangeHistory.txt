@@ -24,6 +24,7 @@ to the "Default" profile. You can rename this profile from the GPS menu.
 - Can now add corrected coordinates and child waypoints via the map
 - Add Combination Filters
 - Add Custom map support
+- Add new advanced filters for DNF, FTF, distance, status, userdata, found by, and updated within
 
 
 Version 0.22.9

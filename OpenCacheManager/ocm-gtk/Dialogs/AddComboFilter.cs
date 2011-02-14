@@ -104,7 +104,78 @@ namespace ocmgtk
 			RenderNoCorrected (list, builder);
 			RenderMustHaveAttributes (list, builder);
 			RenderMustNotHaveAttributes (list, builder);
+			RenderFTF (list, builder);
+			RenderDNF (list, builder);
+			RenderStatus (list, builder);
+			if (list.Contains(FilterList.KEY_DIST))
+			{
+				builder.Append(Catalog.GetString("<b>Distance: </b>"));
+				string op = list.GetCriteria(FilterList.KEY_DIST_OP) as string;
+				if (op == "<=")
+					builder.Append("Less than ");
+				else if (op == ">=")
+					builder.Append("Greater than ");
+				else
+					builder.Append("Equal to ");
+				builder.Append(((double)list.GetCriteria(FilterList.KEY_DIST)).ToString());
+				if (UIMonitor.getInstance().Configuration.ImperialUnits)
+					builder.Append(Catalog.GetString(" mi"));
+				else
+					builder.Append(Catalog.GetString(" km"));
+				
+				if (list.Contains(FilterList.KEY_DIST_LAT))
+				{
+					double lat = (double) list.GetCriteria(FilterList.KEY_DIST_LAT);
+					double lon = (double) list.GetCriteria(FilterList.KEY_DIST_LON);
+					builder.Append(" From: ");
+					builder.Append(Utilities.getCoordString(lat, lon));
+				}
+				builder.Append("\n");
+			}
+			System.Console.WriteLine(builder.ToString());
 			condition_cell.Markup = builder.ToString();			
+		}
+		
+		private static void RenderStatus (FilterList list, StringBuilder builder)
+		{
+			if (list.Contains(FilterList.KEY_STATUS))
+			{
+				builder.Append(Catalog.GetString("<b>Status: </b>"));
+				bool[] status = (bool[]) list.GetCriteria(FilterList.KEY_STATUS);
+				if (status[0])
+					builder.Append(Catalog.GetString("Found "));
+				if (status[1])
+					builder.Append(Catalog.GetString("Unfound "));
+				if (status[2])
+					builder.Append(Catalog.GetString("Mine "));
+				if (status[3])
+					builder.Append(Catalog.GetString("Available "));
+				if (status[4])
+					builder.Append(Catalog.GetString("Disabled "));
+				if (status[5])
+					builder.Append(Catalog.GetString("Archived "));
+				builder.Append("\n");
+			}
+		}
+		
+		private static void RenderDNF (FilterList list, StringBuilder builder)
+		{
+			if (list.Contains(FilterList.KEY_DNF))
+			{
+				builder.Append("<b>Didn't find it: </b>");
+				builder.Append(((bool) list.GetCriteria(FilterList.KEY_DNF)).ToString());
+				builder.Append("\n");
+			}
+		}
+		
+		private static void RenderFTF (FilterList list, StringBuilder builder)
+		{
+			if (list.Contains(FilterList.KEY_FTF))
+			{
+				builder.Append("<b>First to find: </b>");
+				builder.Append(((bool) list.GetCriteria(FilterList.KEY_FTF)).ToString());
+				builder.Append("\n");
+			}
 		}
 		
 		private static void RenderMustNotHaveAttributes (FilterList list, StringBuilder builder)

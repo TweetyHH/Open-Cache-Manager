@@ -49,6 +49,8 @@ namespace ocmgtk
 				GetMustNotHaveSetAttributesFilter (filter);
 				GetMarkedFilter (filter);	
 				GetStatusFilter (filter);
+				GetDistanceFilter (filter);
+				GetDistanceLoc (filter);
 				filter.AddFilterCriteria(FilterList.KEY_OWNERID, UIMonitor.getInstance().OwnerID);
 				return filter;
 			}
@@ -58,10 +60,37 @@ namespace ocmgtk
 				}
 				SetDiffTerTabFilters (value);
 				SetContainerTabFilters (value);
-				SetDateTabFilters (value);
+				SetLocationPageFilters (value);
 				SetChildrenTabFilters (value);
 				SetAttributeTabFilters (value);
+				SetUpdatedPageFilters(value);
  			}
+		}
+		
+		private void GetDistanceLoc (FilterList filter)
+		{
+			if (placementPage.DistLat != -1)
+					filter.AddFilterCriteria(FilterList.KEY_DIST_LAT, placementPage.DistLat);
+				else
+					filter.RemoveCriteria(FilterList.KEY_DIST_LAT);
+				if (placementPage.DistLon != -1)
+					filter.AddFilterCriteria(FilterList.KEY_DIST_LON, placementPage.DistLon);
+				else
+					filter.RemoveCriteria(FilterList.KEY_DIST_LON);
+		}
+		
+		private void GetDistanceFilter (FilterList filter)
+		{
+			if (placementPage.Distance != -1)
+				{
+					filter.AddFilterCriteria(FilterList.KEY_DIST, placementPage.Distance);
+					filter.AddFilterCriteria(FilterList.KEY_DIST_OP, placementPage.DistOp);
+				}
+				else
+				{
+					filter.RemoveCriteria(FilterList.KEY_DIST);
+					filter.RemoveCriteria(FilterList.KEY_DIST_OP);
+				}
 		}
 		
 		private void GetStatusFilter (FilterList filter)
@@ -168,7 +197,7 @@ namespace ocmgtk
 			}
 		}
 		
-		private void SetDateTabFilters (FilterList list)
+		private void SetLocationPageFilters (FilterList list)
 		{
 			bool atLeastOne = false;
 			if (list.Contains(FilterList.KEY_COUNTRY))
@@ -181,6 +210,11 @@ namespace ocmgtk
 				placementPage.Province = list.GetCriteria(FilterList.KEY_STATE) as string;
 				atLeastOne = true;
 			}
+			if (list.Contains(FilterList.KEY_PLACEDBY))
+			{
+				placementPage.PlacedBy = list.GetCriteria(FilterList.KEY_PLACEDBY) as string;
+				atLeastOne = true;
+			}
 			if (list.Contains(FilterList.KEY_PLACEBEFORE))
 			{
 				placementPage.PlaceBefore = (DateTime) list.GetCriteria(FilterList.KEY_PLACEBEFORE);
@@ -191,6 +225,29 @@ namespace ocmgtk
 				placementPage.PlaceAfter = (DateTime) list.GetCriteria(FilterList.KEY_PLACEAFTER);
 				atLeastOne = true;
 			}
+			if (list.Contains(FilterList.KEY_DIST))
+			{
+				placementPage.Distance = (double) list.GetCriteria(FilterList.KEY_DIST);
+				placementPage.DistOp = list.GetCriteria(FilterList.KEY_DIST_OP) as string;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_DIST_LAT))
+			{
+				placementPage.DistLat = (double) list.GetCriteria(FilterList.KEY_DIST_LAT);
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_DIST_LON))
+			{
+				placementPage.DistLon = (double) list.GetCriteria(FilterList.KEY_DIST_LON);
+				atLeastOne = true;
+			}
+			if (atLeastOne)
+				dateLabel.Markup = "<b>" + Catalog.GetString("Placement/Location") + "</b>";
+		}
+		
+		private void SetUpdatedPageFilters(FilterList list)
+		{
+			bool atLeastOne = false;
 			if (list.Contains(FilterList.KEY_INFOBEFORE))
 			{
 				updatedPage.InfoBefore = (DateTime) list.GetCriteria(FilterList.KEY_INFOBEFORE);
@@ -217,12 +274,7 @@ namespace ocmgtk
 				atLeastOne = true;
 			}
 			if (atLeastOne)
-				dateLabel.Markup = "<b>" + Catalog.GetString("Dates/Location") + "</b>";
-			if (list.Contains(FilterList.KEY_PLACEDBY))
-			{
-				placementPage.PlacedBy = list.GetCriteria(FilterList.KEY_PLACEDBY) as string;
-				atLeastOne = true;
-			}
+				updateLabel.Markup = "<b>" + Catalog.GetString("Updated/Found") + "</b>";
 		}
 		
 		private void SetContainerTabFilters (FilterList list)

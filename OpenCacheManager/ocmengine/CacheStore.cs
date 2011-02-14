@@ -1015,6 +1015,28 @@ namespace ocmengine
 					else 
 						return false;
 				}
+				if (m_filter.Contains(FilterList.KEY_DIST))
+				{
+					double lat = m_lat;
+					double lon = m_lon;
+					if (m_filter.Contains(FilterList.KEY_DIST_LAT))
+						lat = (double) m_filter.GetCriteria(FilterList.KEY_DIST_LAT);
+					if (m_filter.Contains(FilterList.KEY_DIST_LON))
+						lon = (double) m_filter.GetCriteria(FilterList.KEY_DIST_LON);
+					
+					double limit = (double) m_filter.GetCriteria(FilterList.KEY_DIST);
+					double dist = Utilities.calculateDistance(cache.Lat, lat, cache.Lon, lon);
+					string op = m_filter.GetCriteria(FilterList.KEY_DIST_OP) as String;
+					if (op == "<=")
+						if (dist > limit)
+							return false;
+					if (op == ">=")
+						if (dist < limit)
+							return false;
+					if (op == "==")
+						if (dist != limit)
+							return false;
+				}
 			}
 			return true;
 		}

@@ -57,6 +57,10 @@ namespace ocmgtk
 		private int m_height;
 		private QuickFilters m_filters;
 		private LocationList m_locations;
+		public LocationList Locations
+		{
+			get { return m_locations;}
+		}
 		private DateTime m_loggingdate = DateTime.Now;
 		private bool m_blockMapProgress = false;
 		#endregion
@@ -2192,7 +2196,8 @@ namespace ocmgtk
 		{
 			
 			LoadGPSFieldNotes dlg = new LoadGPSFieldNotes();
-			dlg.LastScan = m_profiles.GetActiveProfile().LastFieldNoteScan;
+			dlg.LastScan = m_conf.LastGPSFieldNoteScan;
+			dlg.LastScanTD = m_profiles.GetActiveProfile().LastFieldNoteScan;
 			try
 			{
 				if ((int) ResponseType.Ok == dlg.Run())
@@ -2213,6 +2218,7 @@ namespace ocmgtk
 						iCount ++;
 					}
 					m_profiles.GetActiveProfile().LastFieldNoteScan = latestScan;
+					m_conf.LastGPSFieldNoteScan = latestScan;
 					m_profiles.UpdateProfile(prof);
 					MessageDialog mdlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Info,
 					                                       ButtonsType.Ok, Catalog.GetString("Processed {0} field notes."),

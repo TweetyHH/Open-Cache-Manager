@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using Mono.Unix;
 
 namespace ocmgtk
 {
@@ -27,6 +28,17 @@ namespace ocmgtk
 			this.Build ();
 		}
 		
+		public DateTime LastScanTD
+		{
+			set
+			{
+				if (value == DateTime.MinValue)
+					lastScanTD.Text = Catalog.GetString("Never");
+				else
+					lastScanTD.Text = value.ToLongDateString();
+			}
+		}
+		
 		public DateTime LastScan
 		{
 			set
@@ -35,11 +47,13 @@ namespace ocmgtk
 				{
 					checkIgnoreLogs.Active = false;
 					ignoreDate.Date = value;
+					lastScan.Text = Catalog.GetString("Never");
 				}
 				else
 				{
 					checkIgnoreLogs.Active = true;
 					ignoreDate.Date = value;
+					lastScan.Text = value.ToLongDateString();
 				}
 			}
 			get

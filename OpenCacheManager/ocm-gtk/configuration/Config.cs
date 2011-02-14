@@ -228,7 +228,7 @@ namespace ocmgtk
 		public DateTime LastGPSFieldNoteScan
 		{
 			get {
-				string dt = (string) this.Get("/apps/ocm/gps/lastscan", DateTime.Today.ToString("o"));
+				string dt = (string) this.Get("/apps/ocm/gps/lastscan", DateTime.MinValue.ToString("o"));
 				return DateTime.Parse(dt);
 			}
 			set
@@ -278,6 +278,7 @@ namespace ocmgtk
 			get { return (Boolean) this.Get("/apps/ocm/importdeletefiles", false);}
 			set { this.Set("/apps/ocm/importdeletefiles",value);}
 		}
+		
 		
 		public void CheckForDefaultGPS(GPSProfileList list, MainWindow win)
 		{

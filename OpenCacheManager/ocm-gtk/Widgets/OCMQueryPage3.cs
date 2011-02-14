@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using Mono.Unix;
 
 namespace ocmgtk
 {
@@ -125,10 +126,109 @@ namespace ocmgtk
 			}
 		}
 		
+		public double Distance
+		{
+			get {
+				if (distCheck.Active)
+					return int.Parse(distEntry.Text); 
+				return -1;
+			}
+			set
+			{
+				if (value != -1)
+				{
+					distCheck.Active = true;
+					distEntry.Text = value.ToString();
+				}
+			}
+		}
 		
+		public string DistOp
+		{
+			get {
+				switch (distCombo.Active)
+				{
+					case 0:
+						return "<=";
+					case 1:
+						return ">=";
+					default:
+						return "==";
+				}
+			}
+			set 
+			{
+				if (value == "<=")
+					distCombo.Active = 0;
+				else if (value == "==")
+					distCombo.Active = 1;
+				else
+					distCombo.Active = 2;
+			}
+		}
+		
+		public double DistLat
+		{
+			get
+			{
+				if (locRadio.Active)
+				{
+					if (locationCombo.Active == 0)
+						return UIMonitor.getInstance().Configuration.HomeLat;
+					return m_locations.GetLocation(locationCombo.ActiveText).Latitude;
+				}
+				if (posRadio.Active)
+				{
+					return posLocation.Latitude;
+				}
+				return -1;
+			}
+			set
+			{
+				posRadio.Active = true;
+				posLocation.Latitude = value;
+			}
+		}
+		
+		public double DistLon
+		{
+			get
+			{
+				if (locRadio.Active)
+				{
+					if (locationCombo.Active == 0)
+						return UIMonitor.getInstance().Configuration.HomeLon;
+					return m_locations.GetLocation(locationCombo.ActiveText).Longitude;
+				}
+				if (posRadio.Active)
+				{
+					return posLocation.Longitude;
+				}
+				return -1;
+			}
+			set
+			{
+				posRadio.Active = true;
+				posLocation.Longitude = value;
+			}
+		}
+		
+		LocationList m_locations;
 		public OCMQueryPage3 ()
 		{
 			this.Build ();
+			UIMonitor mon = UIMonitor.getInstance();
+			locationCombo.AppendText(Catalog.GetString("Home"));
+			m_locations = mon.Locations;
+			foreach (Location loc in mon.Locations.Locations)
+			{
+				locationCombo.AppendText(loc.Name);
+			}
+			locationCombo.Active = 0;
+			if (mon.Configuration.ImperialUnits)
+			{
+				distMeasureLabel.Text = Catalog.GetString("Mi");
+			}
 		}
 		
 		protected virtual void OnCountryToggle (object sender, System.EventArgs e)
@@ -146,6 +246,24 @@ namespace ocmgtk
 			hiddenCombo.Sensitive = hiddenCheck.Active;
 			hiddenDateEntry.Sensitive = hiddenCheck.Active;
 		}
+		
+		protected virtual void OnLocationToggle (object sender, System.EventArgs e)
+		{
+			locationCombo.Sensitive = locRadio.Active;
+		}
+		
+		protected virtual void OnPositionToggle (object sender, System.EventArgs e)
+		{
+			posLocation.Sensitive = posRadio.Active;
+		}
+		
+		protected virtual void OnDistanceToggle (object sender, System.EventArgs e)
+		{
+			distFrame.Sensitive = distCheck.Active;
+		}
+		
+		
+		
 		
 		
 		

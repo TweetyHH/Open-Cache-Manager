@@ -55,6 +55,10 @@ namespace ocmengine
 		public const String KEY_EXCATTRS = "excattrs";
 		public const String KEY_INCNOATTRS = "incnoattrs";
 		public const String KEY_EXCNOATTRS = "excnoattrs";
+		public const String KEY_DIST_OP = "distop";
+		public const String KEY_DIST = "dist";
+		public const String KEY_DIST_LAT = "distlat";
+		public const String KEY_DIST_LON = "distlon";
 		public const String KEY_FTF = "ftf";
 		public const String KEY_DNF = "dnf";
 		public FilterList ()
