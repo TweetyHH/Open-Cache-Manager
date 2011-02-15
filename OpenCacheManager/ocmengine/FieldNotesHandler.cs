@@ -52,7 +52,7 @@ namespace ocmengine
 		}
 		                           
 		
-		public static List<CacheLog> GetLogs(String fnFile)
+		public static List<CacheLog> GetLogs(String fnFile, String OwnerId)
 		{
 			List<CacheLog> logs = new List<CacheLog>();
 			FileStream fstream = File.OpenRead(fnFile);
@@ -101,9 +101,9 @@ namespace ocmengine
 					message.Append(parts[3].Substring(1,parts[3].Length -2));
 				}
 				log.LogMessage = message.ToString();
-				log.LogKey = parts[0] + "-ofl";
+				log.LogKey = parts[0] + log.LogDate.ToFileTime().ToString();
 				log.LoggedBy = "OCM";
-				log.FinderID = "0";
+				log.FinderID = OwnerId;
 				logs.Add(log);
 				logLine = reader.ReadLine();
 			}

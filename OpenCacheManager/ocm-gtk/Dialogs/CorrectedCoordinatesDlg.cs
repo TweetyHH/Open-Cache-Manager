@@ -27,11 +27,19 @@ namespace ocmgtk
 		public double CorrectedLat
 		{
 			get { return coordEntry.Latitude;}
+			set { 
+				coordEntry.Latitude = value;
+				m_IsCorrected = true;
+			}
 		}
 		
 		public double CorrectedLon
 		{
 			get { return coordEntry.Longitude;}
+			set { 
+				coordEntry.Longitude = value;
+				m_IsCorrected = true;
+			}
 		}
 		
 		bool m_IsCorrected = false;

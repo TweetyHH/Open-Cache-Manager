@@ -1643,6 +1643,7 @@ namespace ocmgtk
 				dlg.Hide();
 				DoGUIUpdate();
 				CopyingProgress ddlg = new CopyingProgress();
+				ddlg.Icon = m_mainWin.Icon;
 				ddlg.StartDelete(GetVisibleCacheList());
 				SetSelectedCache(null);
 				RefreshCaches ();
@@ -1833,10 +1834,11 @@ namespace ocmgtk
 			CopyMoveDialog dlg = new CopyMoveDialog();
 			dlg.Title = "Copy Caches to Another Database...";
 			dlg.Filename = 	m_conf.DataDirectory;
-
+			dlg.Icon = m_mainWin.Icon;
 			if ((int)ResponseType.Ok == dlg.Run())
 			{
 				CopyingProgress cp = new CopyingProgress();
+				cp.Icon = m_mainWin.Icon;
 				cp.Start(dlg.Filename, false, dlg.Mode);
 			}
 		}
@@ -1847,9 +1849,11 @@ namespace ocmgtk
 			dlg.Title = Catalog.GetString("Move Geocaches...");
 			dlg.Title = "Move Caches to Another Database...";
 			dlg.Filename = m_conf.DataDirectory;
+			dlg.Icon = m_mainWin.Icon;
 			if ((int)ResponseType.Ok == dlg.Run())
 			{
 				CopyingProgress cp = new CopyingProgress();
+				cp.Icon = m_mainWin.Icon;
 				cp.Start(dlg.Filename, true, CopyingProgress.ModeEnum.VISIBLE);
 				RefreshCaches();
 			}
@@ -1982,6 +1986,11 @@ namespace ocmgtk
 		
 		public void CorrectCoordinates()
 		{
+			CorrectCoordinates(-1,-1);
+		}
+		
+		public void CorrectCoordinates(double lat, double lon)
+		{
 			if (m_selectedCache == null) {
 				MessageDialog mdlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Error,
 					                                       ButtonsType.Ok, Catalog.GetString("You have to select a cache first."));
@@ -1991,7 +2000,13 @@ namespace ocmgtk
 			}
 
 			CorrectedCoordinatesDlg dlg = new CorrectedCoordinatesDlg();
+			dlg.Icon = m_mainWin.Icon;
 			dlg.SetCache(m_selectedCache);
+			if (lat != -1)
+			{
+				dlg.CorrectedLat = lat;
+				dlg.CorrectedLon = lon;
+			}
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
 				if (dlg.IsCorrected)
@@ -2007,22 +2022,6 @@ namespace ocmgtk
 				SetSelectedCache(m_selectedCache);
 			}
 			dlg.Hide();
-		}
-		
-		public void CorrectCoordinates(double lat, double lon)
-		{
-			if (m_selectedCache == null) {
-				MessageDialog mdlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Error,
-					                                       ButtonsType.Ok, Catalog.GetString("You have to select a cache first."));
-				mdlg.Run();
-				mdlg.Destroy();
-				return;
-			}
-			m_selectedCache.CorrectedLat = lat;
-			m_selectedCache.CorrectedLon = lon;
-			Engine.getInstance().Store.UpdateCacheAtomic(m_selectedCache);
-			SetSelectedCache(m_selectedCache);
-			CorrectCoordinates(); // Opens up the GUI for editing/approvel
 		}
 		 
 		public void ImportZip (string filename)
@@ -2186,7 +2185,7 @@ namespace ocmgtk
 				return;
 			}
 			
-			List<CacheLog> logs = FieldNotesHandler.GetLogs(m_conf.FieldNotesFile);
+			List<CacheLog> logs = FieldNotesHandler.GetLogs(m_conf.FieldNotesFile, m_ownerid);
 			OffLineLogViewer dlg = new OffLineLogViewer(this);
 			dlg.PopulateLogs(logs);
 			dlg.Run();
@@ -2198,13 +2197,14 @@ namespace ocmgtk
 			LoadGPSFieldNotes dlg = new LoadGPSFieldNotes();
 			dlg.LastScan = m_conf.LastGPSFieldNoteScan;
 			dlg.LastScanTD = m_profiles.GetActiveProfile().LastFieldNoteScan;
+			dlg.Icon = m_mainWin.Icon;
 			try
 			{
 				if ((int) ResponseType.Ok == dlg.Run())
 				{
 					dlg.Hide();
 					GPSProfile prof = m_profiles.GetActiveProfile();
-					List<CacheLog> logs = FieldNotesHandler.GetLogs(prof.FieldNotesFile);
+					List<CacheLog> logs = FieldNotesHandler.GetLogs(prof.FieldNotesFile, m_ownerid);
 					int iCount = 0;
 					DateTime latestScan = dlg.LastScan;
 					foreach(CacheLog log in logs)

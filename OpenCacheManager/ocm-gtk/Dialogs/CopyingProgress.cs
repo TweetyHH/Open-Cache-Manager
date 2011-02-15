@@ -124,7 +124,6 @@ namespace ocmgtk
 			
 			IDbTransaction trans = target.StartUpdate();
 			target.ClearAttributes(str);
-			target.ClearLogs(str);
 			target.ClearTBs(str);
 			foreach(Geocache cache in caches)
 			{
@@ -144,6 +143,7 @@ namespace ocmgtk
 				//target.ClearLogs(cache.Name);
 				foreach(CacheLog log in logs)
 				{
+					System.Console.WriteLine("Adding logs");
 					target.AddLog(cache.Name, log);
 				}
 				

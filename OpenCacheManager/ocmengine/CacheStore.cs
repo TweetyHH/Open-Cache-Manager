@@ -1157,9 +1157,8 @@ namespace ocmengine
 				log.FinderID = rdr.GetString(4);
 				String encoded = rdr.GetString(5);
 				log.Encoded = Boolean.Parse(encoded);
-				object val = rdr.GetValue(6);
-				if (val is string)
-					log.LogID = val as string;
+				log.LogID = rdr.GetString(6);
+				log.LogKey = rdr.GetString(7);
 				logs.Add(log);
 			}
 			CloseConnection(ref rdr, ref cmd, ref conn);

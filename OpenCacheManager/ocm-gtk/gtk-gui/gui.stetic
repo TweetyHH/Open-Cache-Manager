@@ -10444,7 +10444,7 @@ Visit the OCM wiki for help and how to guides by click on Help&gt;OCM Wiki...
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.CopyMoveDialog" design-size="400 231">
+  <widget class="Gtk.Dialog" id="ocmgtk.CopyMoveDialog" design-size="400 225">
     <property name="MemberName" />
     <property name="WidthRequest">350</property>
     <property name="Title" translatable="yes">Copy/Move</property>
@@ -10463,10 +10463,43 @@ Visit the OCM wiki for help and how to guides by click on Help&gt;OCM Wiki...
         <property name="MemberName" />
         <property name="BorderWidth">2</property>
         <child>
+          <widget class="Gtk.HBox" id="hbox1">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Label" id="label3">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Target Database:</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.FileChooserButton" id="chooser">
+                <property name="MemberName" />
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
           <widget class="Gtk.Frame" id="frame1">
             <property name="MemberName" />
-            <property name="ShadowType">In</property>
-            <property name="BorderWidth">6</property>
+            <property name="ShadowType">None</property>
+            <property name="LabelYalign">0</property>
             <child>
               <widget class="Gtk.Alignment" id="GtkAlignment2">
                 <property name="MemberName" />
@@ -10481,7 +10514,8 @@ Visit the OCM wiki for help and how to guides by click on Help&gt;OCM Wiki...
                       <widget class="Gtk.RadioButton" id="visibleRadio">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
-                        <property name="Label" translatable="yes">Visible Caches</property>
+                        <property name="Label" translatable="yes">All unfiltered caches</property>
+                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -10498,7 +10532,7 @@ Visit the OCM wiki for help and how to guides by click on Help&gt;OCM Wiki...
                       <widget class="Gtk.RadioButton" id="selectedRadio">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
-                        <property name="Label" translatable="yes">Selected Cache</property>
+                        <property name="Label" translatable="yes">Just the selected cache</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -10515,7 +10549,7 @@ Visit the OCM wiki for help and how to guides by click on Help&gt;OCM Wiki...
                       <widget class="Gtk.RadioButton" id="entireRadio">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
-                        <property name="Label" translatable="yes">Entire Database</property>
+                        <property name="Label" translatable="yes">The entire database</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -10540,39 +10574,6 @@ Visit the OCM wiki for help and how to guides by click on Help&gt;OCM Wiki...
               </widget>
               <packing>
                 <property name="type">label_item</property>
-              </packing>
-            </child>
-          </widget>
-          <packing>
-            <property name="Position">0</property>
-            <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
-          </packing>
-        </child>
-        <child>
-          <widget class="Gtk.HBox" id="hbox1">
-            <property name="MemberName" />
-            <property name="Spacing">6</property>
-            <child>
-              <widget class="Gtk.Label" id="label3">
-                <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Target Database:</property>
-              </widget>
-              <packing>
-                <property name="Position">0</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.FileChooserButton" id="chooser">
-                <property name="MemberName" />
-              </widget>
-              <packing>
-                <property name="Position">1</property>
-                <property name="AutoSize">True</property>
               </packing>
             </child>
           </widget>
@@ -10630,8 +10631,9 @@ Visit the OCM wiki for help and how to guides by click on Help&gt;OCM Wiki...
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.CopyingProgress" design-size="428 205">
+  <widget class="Gtk.Dialog" id="ocmgtk.CopyingProgress" design-size="462 205">
     <property name="MemberName" />
+    <property name="WidthRequest">450</property>
     <property name="Title" translatable="yes">Copy Geocaches...</property>
     <property name="TypeHint">Dialog</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -13054,7 +13056,7 @@ Cache Name</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.CorrectedCoordinatesDlg" design-size="417 205">
+  <widget class="Gtk.Dialog" id="ocmgtk.CorrectedCoordinatesDlg" design-size="427 213">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Corrected Coordinates</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -13071,97 +13073,99 @@ Cache Name</property>
         <property name="MemberName" />
         <property name="BorderWidth">2</property>
         <child>
-          <widget class="Gtk.Table" id="table1">
+          <widget class="Gtk.Frame" id="frame1">
             <property name="MemberName" />
-            <property name="NRows">2</property>
-            <property name="NColumns">2</property>
-            <property name="RowSpacing">6</property>
-            <property name="ColumnSpacing">6</property>
+            <property name="ShadowType">None</property>
             <child>
-              <widget class="Gtk.Frame" id="frame2">
+              <widget class="Gtk.Alignment" id="GtkAlignment3">
                 <property name="MemberName" />
-                <property name="ShadowType">In</property>
+                <property name="Xalign">0</property>
+                <property name="Yalign">0</property>
+                <property name="LeftPadding">12</property>
                 <child>
-                  <widget class="Gtk.Alignment" id="GtkAlignment2">
+                  <widget class="Gtk.HBox" id="hbox1">
                     <property name="MemberName" />
-                    <property name="Xalign">0</property>
-                    <property name="Yalign">0</property>
-                    <property name="LeftPadding">12</property>
+                    <property name="Spacing">6</property>
                     <child>
-                      <widget class="ocmgtk.LocationWidget" id="coordEntry">
+                      <widget class="Gtk.Label" id="label1">
                         <property name="MemberName" />
-                        <property name="Events">ButtonPressMask</property>
-                        <property name="Latitude">0</property>
-                        <property name="Longitude">0</property>
+                        <property name="LabelProp" translatable="yes">Coodinate:</property>
                       </widget>
+                      <packing>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="origLabel">
+                        <property name="MemberName" />
+                        <property name="Xalign">0</property>
+                        <property name="LabelProp">&lt;unknown&gt;</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
                     </child>
                   </widget>
                 </child>
-                <child>
-                  <widget class="Gtk.Label" id="GtkLabel3">
-                    <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">Corrected Coordinates</property>
-                  </widget>
-                  <packing>
-                    <property name="type">label_item</property>
-                  </packing>
-                </child>
               </widget>
-              <packing>
-                <property name="TopAttach">1</property>
-                <property name="BottomAttach">2</property>
-                <property name="RightAttach">2</property>
-                <property name="AutoSize">True</property>
-                <property name="XOptions">Fill</property>
-                <property name="YOptions">Fill</property>
-                <property name="XExpand">False</property>
-                <property name="XFill">True</property>
-                <property name="XShrink">False</property>
-                <property name="YExpand">False</property>
-                <property name="YFill">True</property>
-                <property name="YShrink">False</property>
-              </packing>
             </child>
             <child>
-              <widget class="Gtk.Label" id="label1">
+              <widget class="Gtk.Label" id="GtkLabel4">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Original Coodinate:</property>
+                <property name="LabelProp" translatable="yes">&lt;b&gt;Oringal Location&lt;/b&gt;</property>
+                <property name="UseMarkup">True</property>
               </widget>
               <packing>
-                <property name="AutoSize">True</property>
-                <property name="XOptions">Fill</property>
-                <property name="YOptions">Fill</property>
-                <property name="XExpand">False</property>
-                <property name="XFill">True</property>
-                <property name="XShrink">False</property>
-                <property name="YExpand">False</property>
-                <property name="YFill">True</property>
-                <property name="YShrink">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.Label" id="origLabel">
-                <property name="MemberName" />
-                <property name="Xalign">0</property>
-                <property name="LabelProp">&lt;unknown&gt;</property>
-              </widget>
-              <packing>
-                <property name="LeftAttach">1</property>
-                <property name="RightAttach">2</property>
-                <property name="AutoSize">True</property>
-                <property name="XOptions">Fill</property>
-                <property name="YOptions">Fill</property>
-                <property name="XExpand">False</property>
-                <property name="XFill">True</property>
-                <property name="XShrink">False</property>
-                <property name="YExpand">False</property>
-                <property name="YFill">True</property>
-                <property name="YShrink">False</property>
+                <property name="type">label_item</property>
               </packing>
             </child>
           </widget>
           <packing>
             <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Frame" id="frame3">
+            <property name="MemberName" />
+            <property name="ShadowType">None</property>
+            <child>
+              <widget class="Gtk.Alignment" id="GtkAlignment4">
+                <property name="MemberName" />
+                <property name="Xalign">0</property>
+                <property name="Yalign">0</property>
+                <property name="LeftPadding">12</property>
+                <child>
+                  <widget class="ocmgtk.LocationWidget" id="coordEntry">
+                    <property name="MemberName" />
+                    <property name="Events">ButtonPressMask</property>
+                    <property name="Latitude">0</property>
+                    <property name="Longitude">0</property>
+                  </widget>
+                </child>
+              </widget>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="GtkLabel5">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">&lt;b&gt;Corrected Location&lt;/b&gt;</property>
+                <property name="UseMarkup">True</property>
+              </widget>
+              <packing>
+                <property name="type">label_item</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
