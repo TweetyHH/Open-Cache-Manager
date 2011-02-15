@@ -5116,6 +5116,7 @@ Less Than</property>
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Any cache type</property>
+                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -5747,6 +5748,9 @@ Less Than</property>
                 <property name="Events">ButtonPressMask</property>
                 <property name="PlaceBefore">0</property>
                 <property name="PlaceAfter">0</property>
+                <property name="Distance">0</property>
+                <property name="DistLat">0</property>
+                <property name="DistLon">0</property>
               </widget>
               <packing>
                 <property name="Position">2</property>

@@ -119,7 +119,7 @@ namespace ocmgtk
 			dlg.AddFilter (filter);
 			
 			if (dlg.Run () == (int)ResponseType.Accept) {
-				fieldNotesEntry.Text = dlg.Filename;
+				fileEntry.Text = dlg.Filename;
 			}
 			dlg.Destroy ();
 		}

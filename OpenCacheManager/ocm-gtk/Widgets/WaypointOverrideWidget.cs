@@ -49,7 +49,7 @@ namespace ocmgtk
 				widgetBox.Add(new SymbolChooser("Geocache|GPS Adventures Exhibit", "Geocache"));
 				widgetBox.Add(new SymbolChooser("Geocache|Mega-Event Cache", "Geocache"));
 				widgetBox.Add(new SymbolChooser("Geocache|Locationless Cache", "Geocache"));
-				widgetBox.Add(new SymbolChooser("Geocache|Webcam cache", "Geocache"));
+				widgetBox.Add(new SymbolChooser("Geocache|Webcam Cache", "Geocache"));
 				widgetBox.Add(new SymbolChooser("Geocache|Wherigo Cache",  "Geocache"));
 				widgetBox.Add(new SymbolChooser("Geocache", "Geocache"));
 				widgetBox.Add(new SymbolChooser("Geocache Found", "Geocache"));
