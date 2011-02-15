@@ -2104,6 +2104,7 @@ namespace ocmgtk
 				newPoint.Lon = lon;	
 				String name = "FL" + parent.Name.Substring (2);
 				WaypointDialog dlg = new WaypointDialog ();
+				dlg.Icon = m_mainWin.Icon;
 				if (m_conf.IgnoreWaypointPrefixes)
 				{
 					name = parent.Name;
