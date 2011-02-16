@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2011-02-10 07:31:20-0500\n"
-"PO-Revision-Date: 2011-02-13 11:40:19+0100\n"
+"PO-Revision-Date: 2011-02-16 18:45:18+0100\n"
 "Last-Translator: Michael Massoth <michael@mmassoth.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -232,14 +232,14 @@ msgid ""
 "<span font='bold italic 10' fgcolor='blue'>You didn't find this cache on "
 "{0}</span>"
 msgstr ""
-"<span font='bold italic 10' fgcolor='darkgreen'>Sie haben diesen Cache am {0} "
+"<span font='bold italic 10' fgcolor='blue'>Sie haben diesen Cache am {0} "
 "nicht gefunden</span>"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:35
 msgid ""
 "<span font='bold italic 10' fgcolor='blue'>You didn't find this cache</span>"
 msgstr ""
-"<span font='bold italic 10' fgcolor='darkgreen'>Sie haben diesen cache nicht "
+"<span font='bold italic 10' fgcolor='blue'>Sie haben diesen Cache nicht "
 "gefunden!</span>"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:36
@@ -3847,7 +3847,6 @@ msgstr "Ignoriere Logs vor:"
 #~ msgstr "Speichern GPX File"
 #~ msgid "Can have any attribute"
 #~ msgstr "Darf beliebige Attribute enthalten"
-
 #~ msgid "Must match the following:"
 #~ msgstr "Muss folgende Attribute erfüllen:"
 
@@ -3876,7 +3875,6 @@ msgstr "Ignoriere Logs vor:"
 #~ msgstr "Rollstuhl geeignet"
 #~ msgid "Recommended for Kids"
 #~ msgstr "Für Kinder empfohlen"
-
 #~ msgid "Available 24 Hours"
 #~ msgstr "24 Stunden verfügbar"
 
