@@ -70,7 +70,7 @@ public partial class MainWindow : Gtk.Window
 		MenuItem newBList = new MenuItem(Catalog.GetString("_Create Bookmark List..."));
 		MenuItem delBList = new MenuItem(Catalog.GetString("_Delete Bookmark List..."));
 		bmrkLists = new MenuItem(Catalog.GetString("Bookmark _List"));
-		addVisibleCaches = new MenuItem(Catalog.GetString("_Add All Visible Caches to"));
+		addVisibleCaches = new MenuItem(Catalog.GetString("_Add All Unfiltered Caches to"));
 		addCacheTo = new MenuItem(Catalog.GetString("Add _Selected Cache to"));
 		addCacheTo.Sensitive = false;
 		removeSelected = new MenuItem(Catalog.GetString("_Remove Selected Cache from Bookmark List"));

@@ -51,6 +51,9 @@ namespace ocmgtk
 		int UpdateInterval {get;set;}
 		bool AutoCloseWindows{get;set;}
 		bool AutoSelectCacheFromMap{get;set;}
+		bool ShowDNFIcon{get;set;}
+		bool UseOfflineLogging{get;set;}
+		string FieldNotesFile{get;}
 		
 		void CheckForDefaultGPS(GPSProfileList list, MainWindow win);
 	}

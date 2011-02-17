@@ -40,6 +40,12 @@ namespace ocmgtk
 			}
 		}
 		
+		public bool ShowDNFIcon
+		{
+				get { return (bool) this.Get("/apps/ocm/dnficon", true);}
+				set { this.Set("/apps/ocm/dnficon", value);}
+		}
+		
 		public double LastLat
 		{
 			get { return (double) this.Get ("/apps/ocm/lastlat", 0.0);}
@@ -215,7 +221,7 @@ namespace ocmgtk
 
 		public bool AutoCloseWindows
 		{
-			get { return (bool) this.Get("/apps/ocm/map/autoCloseWindows", false);}
+			get { return (bool) this.Get("/apps/ocm/autoCloseWindows", false);}
 			set {this.Set("/apps/ocm/autoCloseWindows", value);}	
 		}
 		

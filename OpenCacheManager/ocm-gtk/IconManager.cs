@@ -156,7 +156,7 @@ namespace ocmgtk
 				         cache.TypeOfCache == Geocache.CacheType.MYSTERY)
 					return CORRECTED_MI;
 			}
-			else if (cache.DNF)
+			else if (cache.DNF && mon.Configuration.ShowDNFIcon)
 			{
 				return DNF_MI;
 			}

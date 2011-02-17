@@ -135,7 +135,7 @@ namespace ocmgtk
 			}
 			set
 			{
-				if (value != -1)
+				if (value > 0)
 				{
 					distCheck.Active = true;
 					distEntry.Text = value.ToString();
@@ -160,7 +160,7 @@ namespace ocmgtk
 			{
 				if (value == "<=")
 					distCombo.Active = 0;
-				else if (value == "==")
+				else if (value == ">=")
 					distCombo.Active = 1;
 				else
 					distCombo.Active = 2;
@@ -171,6 +171,8 @@ namespace ocmgtk
 		{
 			get
 			{
+				if (!distCheck.Active)
+					return -1;
 				if (locRadio.Active)
 				{
 					if (locationCombo.Active == 0)
@@ -185,8 +187,11 @@ namespace ocmgtk
 			}
 			set
 			{
-				posRadio.Active = true;
-				posLocation.Latitude = value;
+				if (value != 0)
+				{
+					posRadio.Active = true;
+					posLocation.Latitude = value;
+				}
 			}
 		}
 		
@@ -194,6 +199,8 @@ namespace ocmgtk
 		{
 			get
 			{
+				if (!distCheck.Active)
+					return -1;
 				if (locRadio.Active)
 				{
 					if (locationCombo.Active == 0)
@@ -208,8 +215,11 @@ namespace ocmgtk
 			}
 			set
 			{
-				posRadio.Active = true;
-				posLocation.Longitude = value;
+				if (value != 0)
+				{
+					posRadio.Active = true;
+					posLocation.Longitude = value;
+				}
 			}
 		}
 		

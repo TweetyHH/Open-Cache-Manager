@@ -67,7 +67,7 @@ namespace ocmgtk
 
 		#region Properties
 		
-		public Config Configuration
+		public IConfig Configuration
 		{
 			get { return m_conf;}
 		}

@@ -48,7 +48,7 @@ namespace ocmgtk
 			directEntryCheck.Active = config.UseDirectEntryMode;
 			autoCloseCheck.Active = config.AutoCloseWindows;
 			selectCachesFromMapCheck.Active = config.AutoSelectCacheFromMap;
-			
+			dnfCheck.Active = config.ShowDNFIcon;
 			pollEntry.Text = config.GPSDPoll.ToString();
 			recenterCheck.Active = config.GPSDAutoMoveMap;
 		}
@@ -158,6 +158,7 @@ namespace ocmgtk
 			m_config.GPSDPoll = int.Parse(pollEntry.Text);
 			m_config.GPSDAutoMoveMap = recenterCheck.Active;
 			m_config.AutoSelectCacheFromMap = selectCachesFromMapCheck.Active;
+			m_config.ShowDNFIcon = dnfCheck.Active;
 		}
 		
 		protected virtual void OnCancelClicked (object sender, System.EventArgs e)
