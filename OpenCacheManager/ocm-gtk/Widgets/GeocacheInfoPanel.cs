@@ -103,9 +103,14 @@ namespace ocmgtk
 					lastFoundDateLabel.Text = Catalog.GetString("Never");
 				else
 					lastFoundDateLabel.Text = lastDate.ToShortDateString();
-				DateTime lastFound = store.GetLastFindByYou(cache, m_monitor.OwnerID);
+				DateTime lastFound = store.GetLastFound(cache);
+				if (lastFound == DateTime.MinValue)
+					lfoundLabel.Text = Catalog.GetString("Never");
+				else
+					lfoundLabel.Text = lastFound.ToShortDateString();
+				DateTime lastFoundByYou = store.GetLastFindByYou(cache, m_monitor.OwnerID);
 				DateTime lastDNF = store.GetLastDNFByYou(cache, m_monitor.OwnerID);
-				if (cache.Found && lastFound == DateTime.MinValue)
+				if (cache.Found && lastFoundByYou == DateTime.MinValue)
 				{
 					if (!cache.FTF)
 						statusLabel.Markup = FOUND; 
@@ -115,9 +120,9 @@ namespace ocmgtk
 				else if (cache.Found)
 				{
 					if (!cache.FTF)
-						statusLabel.Markup = String.Format(FOUND_DATE, lastFound.ToShortDateString());
+						statusLabel.Markup = String.Format(FOUND_DATE, lastFoundByYou.ToShortDateString());
 					else
-						statusLabel.Markup = String.Format(FTF_DATE, lastFound.ToShortDateString());
+						statusLabel.Markup = String.Format(FTF_DATE, lastFoundByYou.ToShortDateString());
 				}
 				else if (cache.Archived)
 					statusLabel.Markup = ARCHIVED; 

@@ -51,6 +51,7 @@ namespace ocmgtk
 				GetStatusFilter (filter);
 				GetDistanceFilter (filter);
 				GetDistanceLoc (filter);
+				GetInfoWithinFilter (filter);
 				filter.AddFilterCriteria(FilterList.KEY_OWNERID, UIMonitor.getInstance().OwnerID);
 				return filter;
 			}
@@ -65,6 +66,26 @@ namespace ocmgtk
 				SetAttributeTabFilters (value);
 				SetUpdatedPageFilters(value);
  			}
+		}
+		
+		private void GetInfoWithinFilter (FilterList filter)
+		{
+			if (updatedPage.InfoWithin > 0)
+			{
+				filter.AddFilterCriteria(FilterList.KEY_INFO_DAYS, updatedPage.InfoWithin);
+			}
+			else
+			{
+				filter.RemoveCriteria(FilterList.KEY_INFO_DAYS);
+			}
+			if (updatedPage.InfoNotWithin > 0)
+			{
+				filter.AddFilterCriteria(FilterList.KEY_INFO_NDAYS, updatedPage.InfoNotWithin);
+			}
+			else
+			{
+				filter.RemoveCriteria(FilterList.KEY_INFO_NDAYS);
+			}
 		}
 		
 		private void GetDistanceLoc (FilterList filter)
@@ -256,6 +277,16 @@ namespace ocmgtk
 			if (list.Contains(FilterList.KEY_INFOAFTER))
 			{
 				updatedPage.InfoAfter = (DateTime) list.GetCriteria(FilterList.KEY_INFOAFTER);
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_INFO_DAYS))
+			{
+				updatedPage.InfoWithin = (int) list.GetCriteria(FilterList.KEY_INFO_DAYS);
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_INFO_NDAYS))
+			{
+				updatedPage.InfoNotWithin = (int) list.GetCriteria(FilterList.KEY_INFO_NDAYS);
 				atLeastOne = true;
 			}
 			if (list.Contains(FilterList.KEY_FOUNDON))

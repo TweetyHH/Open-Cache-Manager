@@ -513,6 +513,24 @@ namespace ocmengine
 			return date;
 		}
 		
+		public DateTime GetLastFound(Geocache cache)
+		{
+			IDbConnection conn = OpenConnection();
+			IDbCommand command = conn.CreateCommand();
+			command.CommandText = String.Format(LAST_FOUND, cache.Name);
+			IDataReader reader = command.ExecuteReader();
+			DateTime date = DateTime.MinValue;
+			while (reader.Read())
+			{
+				string val = reader.GetString(0);
+				if (!String.IsNullOrEmpty(val))
+					date = DateTime.Parse(val);
+					
+			}
+			CloseConnection(ref reader, ref command, ref conn);
+			return date;
+		}
+		
 		public DateTime GetLastFindByYou(Geocache cache, String ownerID)
 		{
 			IDbConnection conn = OpenConnection();
@@ -829,6 +847,7 @@ namespace ocmengine
 						refineList.Append("'");
 					}
 				}
+				
 				preFilterList.Append(refineList);
 				preFilterList.Append(")");
 				
@@ -985,6 +1004,20 @@ namespace ocmengine
 				if (m_filter.Contains(FilterList.KEY_INFOAFTER))
 					if (cache.Updated <= ((DateTime) m_filter.GetCriteria(FilterList.KEY_INFOAFTER)))
 						return false;
+				if (m_filter.Contains(FilterList.KEY_INFO_DAYS))
+				{
+					int days = (int) m_filter.GetCriteria(FilterList.KEY_INFO_DAYS);
+					DateTime dt = DateTime.Now.Subtract(new TimeSpan(days, 0,0,0));
+					if (cache.Updated <= dt)
+						return false;						
+				}
+				if (m_filter.Contains(FilterList.KEY_INFO_NDAYS))
+				{
+					int days = (int) m_filter.GetCriteria(FilterList.KEY_INFO_NDAYS);
+					DateTime dt = DateTime.Now.Subtract(new TimeSpan(days, 0,0,0));
+					if (cache.Updated >= dt)
+						return false;						
+				}
 				if (m_filter.Contains(FilterList.KEY_FOUNDON))
 				{
 					if (cache.Found)

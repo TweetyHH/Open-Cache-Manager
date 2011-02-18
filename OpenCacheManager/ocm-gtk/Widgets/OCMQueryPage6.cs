@@ -92,7 +92,7 @@ namespace ocmgtk
 		{
 			get
 			{
-				if (lastUpdateCheck.Active && lastUpdateCombo.Active == 1)
+				if (lastUpdateCheck.Active && lUpdateDate.Active && lastUpdateCombo.Active == 1)
 					return lastUpdateDate.Date;
 				return DateTime.MinValue;
 			}
@@ -110,7 +110,7 @@ namespace ocmgtk
 		{
 			get 
 			{
-				if (lastUpdateCheck.Active && lastUpdateCombo.Active == 0)
+				if (lastUpdateCheck.Active && lUpdateDate.Active && lastUpdateCombo.Active == 0)
 					return lastUpdateDate.Date;
 				return DateTime.MinValue;
 			}
@@ -120,7 +120,50 @@ namespace ocmgtk
 					return;
 				lastUpdateDate.Date = value;
 				lastUpdateCombo.Active = 0;
+				lUpdateDate.Active = true;
 				lastUpdateCheck.Active = true;
+			}
+		}
+		
+		public int InfoWithin
+		{
+			get
+			{
+				if (lUpdateWithin.Active && lastUpdateCheck.Active)
+				{
+					return int.Parse(lupdatewithinEntry.Text);
+				}
+				return -1;
+			}
+			set
+			{
+				if (value > 0)
+				{
+					lUpdateWithin.Active = true;
+					lastUpdateCheck.Active = true;
+					lupdatewithinEntry.Text = value.ToString();
+				}
+			}
+		}
+		
+		public int InfoNotWithin
+		{
+			get
+			{
+				if (nUpdateWithin.Active && lastUpdateCheck.Active)
+				{
+					return int.Parse(nupdatedWithinEntry.Text);
+				}
+				return -1;
+			}
+			set
+			{
+				if (value > 0)
+				{
+					nUpdateWithin.Active = true;
+					lastUpdateCheck.Active = true;
+					nupdatedWithinEntry.Text = value.ToString();
+				}
 			}
 		}
 		
@@ -132,9 +175,26 @@ namespace ocmgtk
 		
 		protected virtual void OnUpdateToggle (object sender, System.EventArgs e)
 		{
-			lastUpdateCombo.Sensitive = lastUpdateCheck.Active;
-			lastUpdateDate.Sensitive = lastUpdateCheck.Active;
+			updateFrame.Sensitive = lastUpdateCheck.Active;
+			
 		}
+		protected virtual void OnLUpdateToggle (object sender, System.EventArgs e)
+		{
+			lastUpdateCombo.Sensitive = lUpdateDate.Active;
+			lastUpdateDate.Sensitive = lUpdateDate.Active;
+		}
+		
+		protected virtual void OnLWithinToggle (object sender, System.EventArgs e)
+		{
+			lupdatewithinEntry.Sensitive = lUpdateWithin.Active;
+		}
+		
+		protected virtual void OnNotWithinToggle (object sender, System.EventArgs e)
+		{
+			nupdatedWithinEntry.Sensitive = nUpdateWithin.Active;
+		}
+		
+		
 		
 		
 	}

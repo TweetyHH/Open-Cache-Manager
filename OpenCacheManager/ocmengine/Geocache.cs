@@ -314,6 +314,7 @@ namespace ocmengine
 			get { return m_user4;}
 			set { m_user4 = value;}
 		}
+			
 		
 		/// <summary>
 		/// Creates a new Geocache object. Only public for testing purposes.

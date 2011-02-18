@@ -40,6 +40,8 @@ namespace ocmengine
 		public const String KEY_PLACEBEFORE = "placebefore";
 		public const String KEY_INFOAFTER = "infoafter";
 		public const String KEY_INFOBEFORE = "infobefore";
+		public const String KEY_INFO_DAYS = "infodays";
+		public const String KEY_INFO_NDAYS = "infondays";
 		public const String KEY_COUNTRY = "country";
 		public const String KEY_STATE = "state";
 		public const String KEY_FOUNDON = "foundon";
@@ -61,6 +63,8 @@ namespace ocmengine
 		public const String KEY_DIST_LON = "distlon";
 		public const String KEY_FTF = "ftf";
 		public const String KEY_DNF = "dnf";
+		public const String KEY_LFOUND = "lastFound";
+		public const String KEY_LFOUND_DAYS = "lastFoundDays";
 		public FilterList ()
 		{
 			
