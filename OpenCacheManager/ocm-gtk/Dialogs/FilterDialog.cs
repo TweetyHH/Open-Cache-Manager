@@ -52,6 +52,8 @@ namespace ocmgtk
 				GetDistanceFilter (filter);
 				GetDistanceLoc (filter);
 				GetInfoWithinFilter (filter);
+				GetUserDataFilters (filter);
+				
 				filter.AddFilterCriteria(FilterList.KEY_OWNERID, UIMonitor.getInstance().OwnerID);
 				return filter;
 			}
@@ -66,6 +68,42 @@ namespace ocmgtk
 				SetAttributeTabFilters (value);
 				SetUpdatedPageFilters(value);
  			}
+		}
+		
+		private void GetUserDataFilters (FilterList filter)
+		{
+			if (childrenPage.User1 != null)
+				{
+					filter.AddFilterCriteria(FilterList.KEY_U1, childrenPage.User1);
+				}
+				else
+				{
+					filter.RemoveCriteria(FilterList.KEY_U1);
+				}
+				if (childrenPage.User2 != null)
+				{
+					filter.AddFilterCriteria(FilterList.KEY_U2, childrenPage.User2);
+				}
+				else
+				{
+					filter.RemoveCriteria(FilterList.KEY_U2);
+				}
+				if (childrenPage.User3 != null)
+				{
+					filter.AddFilterCriteria(FilterList.KEY_U3, childrenPage.User3);
+				}
+				else
+				{
+					filter.RemoveCriteria(FilterList.KEY_U3);
+				}
+				if (childrenPage.User4 != null)
+				{
+					filter.AddFilterCriteria(FilterList.KEY_U4, childrenPage.User4);
+				}
+				else
+				{
+					filter.RemoveCriteria(FilterList.KEY_U4);
+				}
 		}
 		
 		private void GetInfoWithinFilter (FilterList filter)
@@ -210,6 +248,26 @@ namespace ocmgtk
 			if (list.Contains(FilterList.KEY_NOCORRECTED))
 			{
 				childrenPage.DoesNotHaveCorrectedCoords = true;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_U1))
+			{
+				childrenPage.User1 = list.GetCriteria(FilterList.KEY_U1) as string;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_U2))
+			{
+				childrenPage.User2 = list.GetCriteria(FilterList.KEY_U2) as string;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_U3))
+			{
+				childrenPage.User3 = list.GetCriteria(FilterList.KEY_U3) as string;
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_U4))
+			{
+				childrenPage.User4 = list.GetCriteria(FilterList.KEY_U4) as string;
 				atLeastOne = true;
 			}
 			if (atLeastOne)

@@ -271,26 +271,36 @@ namespace ocmengine
 			return caches;
 		}
 		
-		public void AddBookmark(String name)
+		public void AddBookmarkAtomic(String name)
 		{
 			IDbTransaction trans = StartUpdate();
+			AddBookmark(name);
+			EndUpdate(trans);
+		}
+		
+		public void AddBookmark(String name)
+		{
 			IDbCommand cmd = m_conn.CreateCommand();
 			cmd.CommandText = String.Format(ADD_BMRK, name);
 			cmd.ExecuteNonQuery();
 			cmd.Dispose();
 			cmd = null;
+		}
+		
+		public void BookMarkCacheAtomic(String code, String bmrk)
+		{
+			IDbTransaction trans = StartUpdate();
+			BookMarkCache(code,bmrk);
 			EndUpdate(trans);
 		}
 		
 		public void BookMarkCache(String code, String bmrk)
 		{
-			IDbTransaction trans = StartUpdate();
 			IDbCommand cmd = m_conn.CreateCommand();
 			cmd.CommandText = String.Format(BOOKMARK_CACHE, code, bmrk);
 			cmd.ExecuteNonQuery();
 			cmd.Dispose();
 			cmd = null;
-			EndUpdate(trans);
 		}
 		
 		public void RemoveCacheFromActiveBookmark(string code)

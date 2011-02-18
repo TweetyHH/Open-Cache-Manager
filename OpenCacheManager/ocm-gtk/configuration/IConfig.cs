@@ -54,6 +54,12 @@ namespace ocmgtk
 		bool ShowDNFIcon{get;set;}
 		bool UseOfflineLogging{get;set;}
 		string FieldNotesFile{get;}
+		bool ImportIgnoreExtraFields{get;set;}
+		bool ImportPreventStatusOverwrite{get;set;}
+		bool ImportPurgeOldLogs{get;set;}
+		bool ImportDeleteFiles{get;set;}
+		DateTime LastGPSFieldNoteScan{get;set;}
+		string ImportBookmarkList{get;set;}
 		
 		void CheckForDefaultGPS(GPSProfileList list, MainWindow win);
 	}

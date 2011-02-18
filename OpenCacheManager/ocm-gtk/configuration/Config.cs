@@ -285,6 +285,17 @@ namespace ocmgtk
 			set { this.Set("/apps/ocm/importdeletefiles",value);}
 		}
 		
+		public string ImportBookmarkList
+		{
+			get { return (string) this.Get("/apps/ocm/importbookmark", null);}
+			set {
+				if (value == null)
+					UnsetKey("/apps/ocm/gps/currentprof");
+				else
+					this.Set("/apps/ocm/importbookmark",value);
+			}
+		}
+		
 		
 		public void CheckForDefaultGPS(GPSProfileList list, MainWindow win)
 		{

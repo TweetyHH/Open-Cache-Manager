@@ -46,7 +46,7 @@ namespace ocmgtk
 		private Geocache m_selectedCache;
 		private MainWindow m_mainWin;
 		private BrowserWidget m_map;
-		private Config m_conf;
+		private IConfig m_conf;
 		private Label m_centreLabel;
 		private ProgressBar m_progress;
 		private bool m_showNearby;
@@ -919,12 +919,14 @@ namespace ocmgtk
 			dlg.IgnoreExtraFields = m_conf.ImportIgnoreExtraFields;
 			dlg.PreventStatusOverwrite = m_conf.ImportPreventStatusOverwrite;
 			dlg.PurgeOldLogs = m_conf.ImportPurgeOldLogs;
+			dlg.Bookmark = m_conf.ImportBookmarkList;
 			if (dlg.Run () == (int)ResponseType.Accept) {
 				RegisterRecentFile(dlg.Filename);
 				dlg.Hide ();
 				m_conf.ImportIgnoreExtraFields = dlg.IgnoreExtraFields;
 				m_conf.ImportPreventStatusOverwrite = dlg.PreventStatusOverwrite;
 				m_conf.ImportPurgeOldLogs = dlg.PurgeOldLogs;
+				m_conf.ImportBookmarkList = dlg.Bookmark;
 				if (dlg.Filename.EndsWith(".zip"))
 				    ImportZip(dlg.Filename);
 				else
@@ -946,6 +948,7 @@ namespace ocmgtk
 			parser.PreserveFound = m_conf.ImportPreventStatusOverwrite;
 			parser.PurgeLogs = m_conf.ImportPurgeOldLogs;
 			parser.CacheOwner = OwnerID;
+			parser.Bookmark = m_conf.ImportBookmarkList;
 			ProgressDialog pdlg = new ProgressDialog (parser);
 			pdlg.AutoClose = autoclose;
 			pdlg.Icon = m_mainWin.Icon;
@@ -1534,7 +1537,7 @@ namespace ocmgtk
 			if ((int) ResponseType.Ok == dlg.Run())
 			{
 				CacheStore store = Engine.getInstance().Store;
-				store.AddBookmark(dlg.BookmarkName);
+				store.AddBookmarkAtomic(dlg.BookmarkName);
 				m_mainWin.UpdateBookmarkList(store.GetBookmarkLists());
 			}
 		}
@@ -1550,7 +1553,7 @@ namespace ocmgtk
 		public void BookmarkSelectedCache(String bmrk)
 		{
 			CacheStore store = Engine.getInstance().Store;
-			store.BookMarkCache(m_selectedCache.Name, bmrk);
+			store.BookMarkCacheAtomic(m_selectedCache.Name, bmrk);
 			m_statusbar.Push (m_statusbar.GetContextId ("bmrk"), String.Format (Catalog.GetString ("{0} added to {1}"),m_selectedCache.Name, bmrk));
 		}
 		
@@ -1560,7 +1563,7 @@ namespace ocmgtk
 			List<Geocache> caches = GetVisibleCacheList();
 			foreach(Geocache cache in caches)
 			{
-				store.BookMarkCache(cache.Name, bmrk);
+				store.BookMarkCacheAtomic(cache.Name, bmrk);
 			}
 			m_statusbar.Push (m_statusbar.GetContextId ("bmrk"), String.Format (Catalog.GetString ("{0} caches added to {1}"),caches.Count, bmrk));
 		}
@@ -2047,6 +2050,17 @@ namespace ocmgtk
 			while (wptenum.MoveNext ()) {
 				AddOtherMapWayPoint (cache, wptenum.Current);	
 			}
+			if (cache.HasCorrected)
+			{
+				Waypoint Orig = new Waypoint();
+				Orig.Name = cache.Name + "-ORIG";
+				Orig.Lat = cache.OrigLat;
+				Orig.Lon = cache.OrigLon;
+				Orig.Symbol = "Geocache";
+				Orig.Type = "Geocache - Original";
+				Orig.Desc = Catalog.GetString("Original Location");
+				AddOtherMapWayPoint(cache, Orig);
+			}
 		}
 		
 		public void ImportDirectory()
@@ -2057,12 +2071,14 @@ namespace ocmgtk
 			dlg.PurgeOldLogs = m_conf.ImportPurgeOldLogs;
 			dlg.Directory = m_conf.ImportDirectory;
 			dlg.DeleteOnCompletion = m_conf.ImportDeleteFiles;
+			dlg.Bookmark = m_conf.ImportBookmarkList;
 			if (dlg.Run () == (int)ResponseType.Ok) {
 				dlg.Hide();
 				m_conf.ImportIgnoreExtraFields = dlg.IgnoreExtraFields;
 				m_conf.ImportPreventStatusOverwrite = dlg.PreventStatusOverwrite;
 				m_conf.ImportPurgeOldLogs = dlg.PurgeOldLogs;
 				m_conf.ImportDeleteFiles = dlg.DeleteOnCompletion;
+				m_conf.ImportBookmarkList = dlg.Bookmark;
 				ImportDirectory(dlg.Directory, dlg.DeleteOnCompletion, m_conf.AutoCloseWindows);
 			}
 			dlg.Destroy ();
@@ -2072,6 +2088,7 @@ namespace ocmgtk
 		private void ImportDirectory(String path, bool delete, bool autoClose)
 		{
 				GPXParser parser = new GPXParser ();
+				parser.Bookmark = m_conf.ImportBookmarkList;
 				parser.IgnoreExtraFields = m_conf.ImportIgnoreExtraFields;
 				parser.PreserveFound = m_conf.ImportPreventStatusOverwrite;
 				parser.PurgeLogs = m_conf.ImportPurgeOldLogs;

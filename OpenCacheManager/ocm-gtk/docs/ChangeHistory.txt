@@ -27,6 +27,7 @@ to the "Default" profile. You can rename this profile from the GPS menu.
 - Add new advanced filters for DNF, FTF, distance, status, userdata, found by, and updated within
 - Add new preference for DNF icon behaviour
 - Add new preference for automatically select on map when clicked
+- Can now assign caches to a bookmark list on import
 
 
 Version 0.22.9

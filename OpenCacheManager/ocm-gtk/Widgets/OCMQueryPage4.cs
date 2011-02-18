@@ -133,6 +133,82 @@ namespace ocmgtk
 			set { noCorrectCheck.Active = value;}
 		}
 		
+		public string User1
+		{
+			get
+			{ 
+				if (ud1Check.Active)
+					return uEntry1.Text;
+				else
+					return null;
+			}
+			set 
+			{ 
+				if (!String.IsNullOrEmpty(value))
+				{
+					uEntry1.Text = value;
+					ud1Check.Active = true;
+				}
+			}
+		}
+		
+		public string User2
+		{
+			get
+			{ 
+				if (ud2Check.Active)
+					return uEntry2.Text;
+				else
+					return null;
+			}
+			set 
+			{ 
+				if (!String.IsNullOrEmpty(value))
+				{
+					uEntry2.Text = value;
+					ud2Check.Active = true;
+				}
+			}
+		}
+		
+		public string User3
+		{
+			get
+			{ 
+				if (ud3Check.Active)
+					return uEntry3.Text;
+				else
+					return null;
+			}
+			set 
+			{ 
+				if (!String.IsNullOrEmpty(value))
+				{
+					uEntry3.Text = value;
+					ud3Check.Active = true;
+				}
+			}
+		}
+		
+		public string User4
+		{
+			get
+			{ 
+				if (ud4Check.Active)
+					return uEntry4.Text;
+				else
+					return null;
+			}
+			set 
+			{ 
+				if (!String.IsNullOrEmpty(value))
+				{
+					uEntry4.Text = value;
+					ud4Check.Active = true;
+				}
+			}
+		}
+		
 		
 
 		public OCMQueryPage4 ()
@@ -149,6 +225,30 @@ namespace ocmgtk
 		{
 			childCombo.Sensitive = hasChildCheck.Active;
 		}
+		
+		protected virtual void OnU1Toggle (object sender, System.EventArgs e)
+		{
+			uEntry1.Sensitive = ud1Check.Active;
+		}
+		
+		protected virtual void OnU2Toggle (object sender, System.EventArgs e)
+		{
+			uEntry2.Sensitive = ud2Check.Active;
+		}
+		
+		protected virtual void OnU3Toggle (object sender, System.EventArgs e)
+		{
+			uEntry3.Sensitive = ud3Check.Active;
+		}
+		
+		protected virtual void OnU4Toggle (object sender, System.EventArgs e)
+		{
+			uEntry4.Sensitive = ud4Check.Active;
+		}
+		
+		
+		
+		
 		
 		
 		

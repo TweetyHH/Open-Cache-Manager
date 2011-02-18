@@ -158,9 +158,9 @@ namespace ocmengine
 			String co_ordinate = "";
 			
 			if (lon.Degrees > 0)
-				co_ordinate += String.Format(Catalog.GetString("  E {0}° {1}"), lon.Degrees, lon.Minutes.ToString("#.000", CultureInfo.InvariantCulture));
+				co_ordinate += String.Format(Catalog.GetString("  E {0}° {1}"), lon.Degrees, lon.Minutes.ToString("0.000", CultureInfo.InvariantCulture));
 			else
-				co_ordinate += String.Format(Catalog.GetString("  W {0}° {1}"), lon.Degrees *-1 , lon.Minutes.ToString("#.000", CultureInfo.InvariantCulture));
+				co_ordinate += String.Format(Catalog.GetString("  W {0}° {1}"), lon.Degrees *-1 , lon.Minutes.ToString("0.000", CultureInfo.InvariantCulture));
 		
 			return co_ordinate;
 		}
@@ -170,9 +170,9 @@ namespace ocmengine
 			String co_ordinate = "";
 			
 			if (lon.Degrees > 0)
-				co_ordinate += String.Format("  E {0}° {1}", lon.Degrees, lon.Minutes.ToString("#.000", CultureInfo.InvariantCulture));
+				co_ordinate += String.Format("  E {0}° {1}", lon.Degrees, lon.Minutes.ToString("0.000", CultureInfo.InvariantCulture));
 			else
-				co_ordinate += String.Format("  W {0}° {1}", lon.Degrees *-1 , lon.Minutes.ToString("#.000", CultureInfo.InvariantCulture));
+				co_ordinate += String.Format("  W {0}° {1}", lon.Degrees *-1 , lon.Minutes.ToString("0.000", CultureInfo.InvariantCulture));
 		
 			return co_ordinate;
 		}
@@ -180,7 +180,20 @@ namespace ocmengine
 		public static DegreeMinutes[] ParseCoordString(String val)
 		{
 			DegreeMinutes[] coord = new DegreeMinutes[2];
-			if (Regex.IsMatch(val, DEGREE_MINUTES))
+			if (Regex.IsMatch(val, DEC_DEGREES_1))
+			{
+				Match match = Regex.Match(val, DEC_DEGREES_1);
+				bool signLat = match.Groups[1].Value == "S";
+				double absLat = double.Parse(match.Groups[2].Value, CultureInfo.InvariantCulture);
+				System.Console.WriteLine(absLat.ToString());
+				System.Console.WriteLine(match.Groups[2].Value);
+				coord[0] = new DegreeMinutes(signLat ? -absLat: absLat);
+					
+		        bool signLon    = match.Groups[3].Value == "W";
+		        double absLon    = double.Parse(match.Groups[4].Value, CultureInfo.InvariantCulture);
+		        coord[1] = new DegreeMinutes(signLon ? -absLon : absLon);
+			}
+			else if (Regex.IsMatch(val, DEGREE_MINUTES))
 			{
 				Match match = Regex.Match(val, DEGREE_MINUTES);
 				int degLat = int.Parse(match.Groups[2].Value, CultureInfo.InvariantCulture);
@@ -197,13 +210,11 @@ namespace ocmengine
 				coord[0] = lat;
 				coord[1] = lon;		
 			}
-			else if (Regex.IsMatch(val, DEC_DEGREES_1))
-			{
-				throw new Exception("NOT_YET_IMPLEMENTED");
-			}
 			else if (Regex.IsMatch(val, DEC_DEGREES_2))
 			{
-				throw new Exception("NOT_YET_IMPLEMENTED");
+				Match match = Regex.Match(val, DEC_DEGREES_2);
+				coord[0] = new DegreeMinutes(Double.Parse(match.Groups[1].Value));
+				coord[1] = new DegreeMinutes(Double.Parse(match.Groups[2].Value));
 			}
 			else if (Regex.IsMatch(val, DMS))
 			{

@@ -90,13 +90,30 @@ namespace ocmgtk
 					return;
 				}
 				this.Sensitive = true;
-				cacheCodeLabel.Markup = START_BIG + cache.Name + END_BIG;
+				cacheCodeLabel.Markup = START_BIG + cache.Name + ": " + END_BIG;
 				cacheNameLabel.Markup = START_BIG + GLib.Markup.EscapeText (cache.CacheName) + END_BIG;
 				setDifficulty (cache.Difficulty);
 				setTerrain (cache.Terrain);
 				setCacheIcon (cache.TypeOfCache);
 				dateLabel.Text = cache.Time.ToShortDateString ();
 				infoDateLabel.Text = cache.Updated.ToShortDateString ();
+				if (!String.IsNullOrEmpty(cache.User1))
+					uData1.Text = cache.User1;
+				else
+					uData1.Text = Catalog.GetString("None");
+				if (!String.IsNullOrEmpty(cache.User2))
+					uData2.Text = cache.User2;
+				else
+					uData2.Text = Catalog.GetString("None");
+				if (!String.IsNullOrEmpty(cache.User3))
+					uData3.Text = cache.User3;
+				else
+					uData3.Text = Catalog.GetString("None");
+				if (!String.IsNullOrEmpty(cache.User4))
+					uData4.Text = cache.User4;
+				else
+					uData4.Text = Catalog.GetString("None");
+				
 				CacheStore store = Engine.getInstance().Store;
 				DateTime lastDate = store.GetLastLogByYou(cache, m_monitor.OwnerID);
 				if (lastDate == DateTime.MinValue)

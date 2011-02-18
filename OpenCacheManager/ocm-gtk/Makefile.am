@@ -330,10 +330,13 @@ DISABLED_WHERIGO_PNG_SOURCE=icons/24x24/disabled-wherigo.png
 DNF_PNG_SOURCE=icons/24x24/dnf.png
 ARCHIVED_DNF_PNG_SOURCE=icons/24x24/archived-dnf.png
 DISABLED_DNF_PNG_SOURCE=icons/24x24/disabled-dnf.png
+GOOGLE_SAT_XML_SOURCE=maps/google-sat.xml
+ARCHIVED_FTF_PNG_SOURCE=icons/24x24/archived-ftf.png
+DISABLED_FTF_PNG_SOURCE=icons/24x24/disabled-ftf.png
+FTF_PNG_SOURCE=icons/24x24/ftf.png
 GREENPIN_SVG_SOURCE=icons/scalable/greenpin.svg
 NOMAP_PNG_SOURCE=web/nomap.png
 DIS_LONG_HIKE_10KM_SVG_SOURCE=icons/scalable/attributes/dis_Long_Hike_(+10km).svg
-GOOGLE_SAT_XML_SOURCE=maps/google-sat.xml
 OCMENGINE_DLL_SOURCE=../ocmengine/bin/Debug/ocmengine.dll
 OCMENGINE_DLL_MDB_SOURCE=../ocmengine/bin/Debug/ocmengine.dll.mdb
 OCMENGINE_DLL_MDB=$(BUILD_DIR)/ocmengine.dll.mdb
@@ -669,10 +672,13 @@ DISABLED_WHERIGO_PNG_SOURCE=icons/24x24/disabled-wherigo.png
 DNF_PNG_SOURCE=icons/24x24/dnf.png
 ARCHIVED_DNF_PNG_SOURCE=icons/24x24/archived-dnf.png
 DISABLED_DNF_PNG_SOURCE=icons/24x24/disabled-dnf.png
+GOOGLE_SAT_XML_SOURCE=maps/google-sat.xml
+ARCHIVED_FTF_PNG_SOURCE=icons/24x24/archived-ftf.png
+DISABLED_FTF_PNG_SOURCE=icons/24x24/disabled-ftf.png
+FTF_PNG_SOURCE=icons/24x24/ftf.png
 GREENPIN_SVG_SOURCE=icons/scalable/greenpin.svg
 NOMAP_PNG_SOURCE=web/nomap.png
 DIS_LONG_HIKE_10KM_SVG_SOURCE=icons/scalable/attributes/dis_Long_Hike_(+10km).svg
-GOOGLE_SAT_XML_SOURCE=maps/google-sat.xml
 OCMENGINE_DLL_SOURCE=../ocmengine/bin/Debug/ocmengine.dll
 OCMENGINE_DLL_MDB=
 OCM_GTK_EXE_MDB=
@@ -1006,10 +1012,13 @@ DISABLED_WHERIGO_PNG_SOURCE=icons/24x24/disabled-wherigo.png
 DNF_PNG_SOURCE=icons/24x24/dnf.png
 ARCHIVED_DNF_PNG_SOURCE=icons/24x24/archived-dnf.png
 DISABLED_DNF_PNG_SOURCE=icons/24x24/disabled-dnf.png
+GOOGLE_SAT_XML_SOURCE=maps/google-sat.xml
+ARCHIVED_FTF_PNG_SOURCE=icons/24x24/archived-ftf.png
+DISABLED_FTF_PNG_SOURCE=icons/24x24/disabled-ftf.png
+FTF_PNG_SOURCE=icons/24x24/ftf.png
 GREENPIN_SVG_SOURCE=icons/scalable/greenpin.svg
 NOMAP_PNG_SOURCE=web/nomap.png
 DIS_LONG_HIKE_10KM_SVG_SOURCE=icons/scalable/attributes/dis_Long_Hike_(+10km).svg
-GOOGLE_SAT_XML_SOURCE=maps/google-sat.xml
 OCMENGINE_DLL_SOURCE=../ocmengine/bin/Release_Translated/ocmengine.dll
 OCMENGINE_DLL_MDB=
 OCM_GTK_EXE_MDB=
@@ -1141,7 +1150,10 @@ PROGRAMFILES_ICONS_24X24 = \
 	$(DISABLED_WHERIGO_PNG) \
 	$(DNF_PNG) \
 	$(ARCHIVED_DNF_PNG) \
-	$(DISABLED_DNF_PNG)  
+	$(DISABLED_DNF_PNG) \
+	$(ARCHIVED_FTF_PNG) \
+	$(DISABLED_FTF_PNG) \
+	$(FTF_PNG)  
 
 PROGRAMFILES_ICONS_48X48 = \
 	$(CIRCLE_PNG)  
@@ -1441,7 +1453,6 @@ FILES = \
 	gtk-gui/MainWindow.cs \
 	gtk-gui/ocmgtk.GeocacheInfoPanel.cs \
 	gtk-gui/ocmgtk.GeoCachePane.cs \
-	gtk-gui/ocmgtk.CacheList.cs \
 	gtk-gui/ocmgtk.WaypointWidget.cs \
 	gtk-gui/ocmgtk.LogViewerWidget.cs \
 	gtk-gui/ocmgtk.BrowserWidget.cs \
@@ -1535,20 +1546,21 @@ FILES = \
 	configuration/GPSProfileList.cs \
 	gpsd/GPS.cs \
 	Widgets/OCMQueryPage6.cs \
-	gtk-gui/ocmgtk.OCMQueryPage6.cs \
 	Dialogs/LoggingDialog.cs \
-	gtk-gui/ocmgtk.LoggingDialog.cs \
 	Dialogs/OfflineLogDialog.cs \
-	gtk-gui/ocmgtk.OfflineLogDialog.cs \
 	Dialogs/OffLineLogViewer.cs \
-	gtk-gui/ocmgtk.OffLineLogViewer.cs \
 	Dialogs/LoadGPSFieldNotes.cs \
-	gtk-gui/ocmgtk.LoadGPSFieldNotes.cs \
 	Dialogs/ImportDialog.cs \
-	gtk-gui/ocmgtk.ImportDialog.cs \
 	Dialogs/AddComboFilter.cs \
-	gtk-gui/ocmgtk.AddComboFilter.cs \
-	MapManager.cs 
+	MapManager.cs \
+	gtk-gui/ocmgtk.CacheList.cs \
+	gtk-gui/ocmgtk.OCMQueryPage6.cs \
+	gtk-gui/ocmgtk.LoggingDialog.cs \
+	gtk-gui/ocmgtk.OfflineLogDialog.cs \
+	gtk-gui/ocmgtk.OffLineLogViewer.cs \
+	gtk-gui/ocmgtk.LoadGPSFieldNotes.cs \
+	gtk-gui/ocmgtk.ImportDialog.cs \
+	gtk-gui/ocmgtk.AddComboFilter.cs 
 
 DATA_FILES = 
 
@@ -1928,10 +1940,13 @@ DISABLED_WHERIGO_PNG = $(BUILD_DIR)/icons/24x24/disabled-wherigo.png
 DNF_PNG = $(BUILD_DIR)/icons/24x24/dnf.png
 ARCHIVED_DNF_PNG = $(BUILD_DIR)/icons/24x24/archived-dnf.png
 DISABLED_DNF_PNG = $(BUILD_DIR)/icons/24x24/disabled-dnf.png
+GOOGLE_SAT_XML = $(BUILD_DIR)/maps/google-sat.xml
+ARCHIVED_FTF_PNG = $(BUILD_DIR)/icons/24x24/archived-ftf.png
+DISABLED_FTF_PNG = $(BUILD_DIR)/icons/24x24/disabled-ftf.png
+FTF_PNG = $(BUILD_DIR)/icons/24x24/ftf.png
 GREENPIN_SVG = $(BUILD_DIR)/icons/scalable/greenpin.svg
 NOMAP_PNG = $(BUILD_DIR)/web/nomap.png
 DIS_LONG_HIKE_10KM_SVG = $(BUILD_DIR)/icons/scalable/attributes/dis_Long_Hike_(+10km).svg
-GOOGLE_SAT_XML = $(BUILD_DIR)/maps/google-sat.xml
 OCMENGINE_DLL = $(BUILD_DIR)/ocmengine.dll
 
 $(eval $(call emit-deploy-wrapper,MAIN_CS,Main.cs))
@@ -2254,10 +2269,13 @@ $(eval $(call emit-deploy-target,DISABLED_WHERIGO_PNG))
 $(eval $(call emit-deploy-target,DNF_PNG))
 $(eval $(call emit-deploy-target,ARCHIVED_DNF_PNG))
 $(eval $(call emit-deploy-target,DISABLED_DNF_PNG))
+$(eval $(call emit-deploy-target,GOOGLE_SAT_XML))
+$(eval $(call emit-deploy-target,ARCHIVED_FTF_PNG))
+$(eval $(call emit-deploy-target,DISABLED_FTF_PNG))
+$(eval $(call emit-deploy-target,FTF_PNG))
 $(eval $(call emit-deploy-target,GREENPIN_SVG))
 $(eval $(call emit-deploy-target,NOMAP_PNG))
 $(eval $(call emit-deploy-target,DIS_LONG_HIKE_10KM_SVG))
-$(eval $(call emit-deploy-target,GOOGLE_SAT_XML))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL))
 $(eval $(call emit-deploy-target,OCMENGINE_DLL_MDB))
 

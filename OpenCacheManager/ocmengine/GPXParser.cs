@@ -67,6 +67,12 @@ namespace ocmengine
 			set { m_preserveFound = value;}
 		}
 		
+		string m_bookmark = null;
+		public string Bookmark
+		{
+			set { m_bookmark = value;}
+		}
+		
 		
 		private DateTime gpx_date;
 		
@@ -186,7 +192,9 @@ namespace ocmengine
 						{
 							Waypoint pt = processWaypoint(reader);
 							pt.Updated = gpx_date;
-							m_store.AddWaypoint(pt, m_preserveFound);							
+							m_store.AddWaypoint(pt, m_preserveFound);
+							if ((pt is Geocache) && (m_bookmark != null))
+								m_store.BookMarkCache(pt.Name, m_bookmark);
 						}
 						
 						if (reader.Name == "waypoint")
@@ -194,6 +202,8 @@ namespace ocmengine
 							Waypoint pt = processLocWaypoint(reader);
 							pt.Updated = System.DateTime.Now;
 							m_store.AddWaypoint(pt, m_preserveFound);
+							if ((pt is Geocache) && (m_bookmark != null))
+								m_store.BookMarkCache(pt.Name, m_bookmark);
 						}
 						break;
 					case XmlNodeType.EndElement:

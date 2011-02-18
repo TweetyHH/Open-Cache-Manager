@@ -14,6 +14,8 @@
 //    limitations under the License.
 
 using System;
+using ocmengine;
+using System.Collections.Generic;
 using Gtk;
 
 namespace ocmgtk
@@ -32,6 +34,7 @@ namespace ocmgtk
 			filter.AddPattern ("*.loc");
 			filter.AddPattern ("*.zip");
 			fileWidget.AddFilter (filter);
+			UpdateBookMarkCombo();
 		}
 		
 		public string Filename
@@ -58,6 +61,38 @@ namespace ocmgtk
 			set { gsakFieldsCheck.Active = value;}
 		}
 		
+		public string Bookmark
+		{
+			get
+			{
+				if (addToListCombo.Active)
+					return bmCombo.ActiveText;
+				return null;
+			}
+			set
+			{
+				if (value != null)
+				{
+					ListStore store = bmCombo.Model as ListStore;
+					TreeIter itr;
+					store.GetIterFirst (out itr);
+					if (!store.IterIsValid (itr))
+						return;
+					int iCount = 0;
+					do
+					{
+						if (value == store.GetValue (itr, 0) as string)
+						{
+							bmCombo.Active = iCount;
+							addToListCombo.Active = true;
+							return;
+						}
+						iCount++;
+					} while (store.IterNext (ref itr));
+				}
+			}
+		}
+		
 		
 		public void SetCurrentFolder(string folder)
 		{
@@ -80,6 +115,25 @@ namespace ocmgtk
 			this.Hide();
 		}
 		
+		protected virtual void OnAddClicked (object sender, System.EventArgs e)
+		{
+			UIMonitor mon = UIMonitor.getInstance();
+			mon.AddBookmark();
+			UpdateBookMarkCombo();
+		}
+		
+		private void UpdateBookMarkCombo()
+		{
+			ListStore model = bmCombo.Model as ListStore;
+			model.Clear();
+			List<string> bookmarks = Engine.getInstance().Store.GetBookmarkLists();
+			foreach(string bmrk in bookmarks)
+			{
+				bmCombo.AppendText(bmrk);
+			}
+			bmCombo.Active = 0;
+			bmCombo.Show();
+		}
 		
 	}
 }

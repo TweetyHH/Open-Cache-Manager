@@ -63,6 +63,10 @@ namespace ocmengine
 		public const String KEY_DIST_LON = "distlon";
 		public const String KEY_FTF = "ftf";
 		public const String KEY_DNF = "dnf";
+		public const String KEY_U1 = "u1";
+		public const String KEY_U2 = "u2";
+		public const String KEY_U3 = "u3";
+		public const String KEY_U4 = "u4";
 		public const String KEY_LFOUND = "lastFound";
 		public const String KEY_LFOUND_DAYS = "lastFoundDays";
 		public FilterList ()
@@ -267,6 +271,22 @@ namespace ocmengine
 			if (m_criteria.Contains(KEY_DNF))
 			{
 				builder.Append( " AND Geocache.dnf == '" + ((bool) m_criteria[KEY_DNF]).ToString() + "'");
+			}
+			if (m_criteria.Contains(KEY_U1))
+			{
+				builder.Append(" AND Geocache.user1 LIKE '%" + (m_criteria[KEY_U1] as string) + "%'");
+			}
+			if (m_criteria.Contains(KEY_U2))
+			{
+				builder.Append(" AND Geocache.user2 LIKE '%" + (m_criteria[KEY_U2] as string) + "%'");
+			}
+			if (m_criteria.Contains(KEY_U3))
+			{
+				builder.Append(" AND Geocache.user3 LIKE '%" + (m_criteria[KEY_U3] as string) + "%'");
+			}
+			if (m_criteria.Contains(KEY_U4))
+			{
+				builder.Append(" AND Geocache.user4 LIKE '%" + (m_criteria[KEY_U4] as string) + "%'");
 			}
 			 
 			System.Console.WriteLine(builder.ToString());
