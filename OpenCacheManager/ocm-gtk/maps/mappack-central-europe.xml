@@ -66,8 +66,8 @@
 		<active>true</active>
 	</map>	
 	<map>
-		<name>Bridleways</name>
-		<code><![CDATA[new OpenLayers.Layer.XYZ("Bridleways", "http://osm.lonvia.de/hiking/${z}/${x}/${y}.png", { type: 'png', isBaseLayer: false, visibility: false, numZoomLevels: 17} )]]></code>
+		<name>Hikingways</name>
+		<code><![CDATA[new OpenLayers.Layer.XYZ("Hikingways", "http://osm.lonvia.de/hiking/${z}/${x}/${y}.png", { type: 'png', isBaseLayer: false, visibility: false, numZoomLevels: 17} )]]></code>
 		<baseLayer>false</baseLayer>
 		<covered>World (Europe)</covered>
 		<active>true</active>
