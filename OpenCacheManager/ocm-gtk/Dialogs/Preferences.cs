@@ -40,7 +40,6 @@ namespace ocmgtk
 			importDirEntry.Text = config.ImportDirectory;
 			WaypointSolvedMode = config.SolvedModeState;
 			SetStartupFilter(filters, config.StartupFilter);
-			DefaultMap = config.MapType;
 			MapPoints = config.MapPoints;
 			prefixModeCombo.Active = config.IgnoreWaypointPrefixes ? 1:0;
 			updateCheck.Active = config.CheckForUpdates;
@@ -95,34 +94,7 @@ namespace ocmgtk
 			if (startupFilterCombo.Active < 0)
 				startupFilterCombo.Active = 0;
 		}
-		
-		private string DefaultMap
-		{
-			get {
-				switch (mapsCombo.Active)
-				{
-					case 1:
-						return "ghyb";
-					case 2:
-						return "gmap";
-					case 3:
-						return "gphy";
-					default:
-						return "osm";
-				}
-			}
-			set {
-				if (value == "ghyb")
-					mapsCombo.Active = 1;
-				else if (value == "gmap")
-					mapsCombo.Active = 2;
-				else if (value == "gphy")
-					mapsCombo.Active = 3;
-				else
-					mapsCombo.Active = 0;
-			}
-		}
-		
+				
 		private int MapPoints
 		{
 			get { return Int16.Parse(mapPointEntry.Text);}
@@ -150,7 +122,6 @@ namespace ocmgtk
 			m_config.ImportDirectory = importDirEntry.Text;
 			m_config.SolvedModeState = WaypointSolvedMode;
 			m_config.StartupFilter = startupFilterCombo.ActiveText;
-			m_config.MapType = DefaultMap;
 			m_config.IgnoreWaypointPrefixes = (prefixModeCombo.Active == 1)?true:false;
 			m_config.CheckForUpdates = updateCheck.Active;
 			m_config.UpdateInterval = UpdateInterval;

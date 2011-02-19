@@ -35,7 +35,6 @@ namespace ocmgtk
 		int WindowHeight {get;set;}
 		int VBarPosition {get;set;}
 		int HBarPosition {get;set;}
-		string MapType {get;set;}
 		string DBFile {get;set;}
 		string DataDirectory {get;set;}
 		string ImportDirectory {get;set;}

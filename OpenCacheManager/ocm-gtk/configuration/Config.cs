@@ -117,13 +117,7 @@ namespace ocmgtk
 			get { return (int) this.Get("/apps/ocm/hpos", 400);}
 			set { this.Set("/apps/ocm/hpos", value);}
 		}
-		
-		public string MapType
-		{
-			get { return (string) this.Get("/apps/ocm/defmap", "osm");}
-			set { this.Set("/apps/ocm/defmap", value);}
-		}
-		
+
 		public string DBFile
 		{
 			get { return (string)this.Get ("/apps/ocm/currentdb", String.Empty);}
@@ -331,6 +325,7 @@ namespace ocmgtk
 				UnsetKey("/apps/ocm/gps/loglimit");
 				UnsetKey("/apps/ocm/gps/incattr");	
 				UnsetKey("/apps/ocm/gps/file");
+				UnsetKey("/apps/ocm/defmap");
 			}
 		}
 		
