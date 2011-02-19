@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using System.Collections.Generic;
 
 namespace ocmgtk
 {
@@ -51,6 +52,7 @@ namespace ocmgtk
 		int UpdateInterval {get;set;}
 		bool AutoCloseWindows{get;set;}
 		bool AutoSelectCacheFromMap{get;set;}
+		List<MapDescription> OpenLayerMaps{get;set;}
 		
 		void CheckForDefaultGPS(GPSProfileList list, MainWindow win);
 	}

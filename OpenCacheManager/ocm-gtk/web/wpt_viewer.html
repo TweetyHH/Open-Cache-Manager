@@ -60,6 +60,8 @@ body {
 	var gphy;
 	var osm;
 	var mouse;
+	var globe;
+	var greymap;
 	var autoSelectCache = false;
 	
 	var popup_no_cache = "<div onmousedown='doSetCentre()' onmouseover='doHighlight(this)' onmouseout='doNohighlight(this)'>"
@@ -99,7 +101,8 @@ body {
         try
         {
 
-        osm = new OpenLayers.Layer.OSM( "Open Street Map");
+/*        osm = new OpenLayers.Layer.OSM( "Open Street Map");
+        map.addLayer(osm);
 
 	    gmap = new OpenLayers.Layer.Google(
                     "Google Street Map",
@@ -115,28 +118,36 @@ body {
                 "Google Terrain",
                 {'type': G_PHYSICAL_MAP, 'sphericalMercator': true}
             );
+*/            
              var options = {numZoomLevels: 19,
                 isBaseLayer: true,
                 };
-         	map.addLayers([osm, ghyb,gmap,gphy]);
+//         	map.addLayers([osm, ghyb,gmap,gphy]);
         }
         catch(err)
         {
         	// No internet connection
         }
 
-        var globe = new OpenLayers.Layer.Image(
+        globe = new OpenLayers.Layer.Image(
    				 'No Map','nomap.png',
     			   new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34),
     				new OpenLayers.Size(1125,558), options);
-    			map.addLayer(globe);
+    	greymap = new OpenLayers.Layer.Image(
+   				 'No Map','nomap.png',
+    			   new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34),
+    				new OpenLayers.Size(1125,558), options);
+    	map.addLayer(greymap);
+    	//map.addLayer(globe);
+    	//map.setLayerIndex(globe, 9990);
     			
 	    extra = new OpenLayers.Layer.Markers("Other Geocaches");
 	    map.addLayer(extra);
+	    map.setLayerIndex(extra, 99994);
         
         map.addControl(new OpenLayers.Control.ScaleLine())
         map.addControl(new OpenLayers.Control.LayerSwitcher());
-        
+        /*
         var currmap = getParm('map');
         if (currmap == "osm")
         {
@@ -154,7 +165,7 @@ body {
         {
         	map.setBaseLayer(gphy);
         }
-        
+        */
         lon = getParm('lon');
         lat = getParm('lat');       
 
@@ -173,9 +184,12 @@ body {
 		if (extra)
 			extra.destroy();
     	pois = new OpenLayers.Layer.Markers( "Waypoints" );
-    	extra = new OpenLayers.Layer.Markers("Other Geocaches");
     	map.addLayer(pois);
+  	    map.setLayerIndex(pois, 99995);
+
+    	extra = new OpenLayers.Layer.Markers("Other Geocaches");
     	map.addLayer(extra);
+    	map.setLayerIndex(extra, 99996);
     }
 
 	function addMarker(lat, lon, icon, wptName, wptFullName, wptDescription, mode)
@@ -288,7 +302,8 @@ body {
 		var icon = new OpenLayers.Icon("../icons/48x48/circle.png",size,offset);
 		notify.addMarker(new OpenLayers.Marker(lonLat,icon));  	
 		map.addLayer(notify);
-		map.raiseLayer(notify, -3)
+		//map.raiseLayer(notify, -3)
+		map.setLayerIndex(notify, 99999);
 		map.panTo(lonLat);
 	}
 	
@@ -298,6 +313,7 @@ body {
 			extra.destroy();
 		extra = new OpenLayers.Layer.Markers("Other Geocaches");
 		map.addLayer(extra);
+		map.setLayerIndex(extra, 99994);
 	}
 	
 	function mapMoved(evt)
@@ -393,6 +409,7 @@ body {
 	// This Method add some maprenderer to the map
 	function addMapRenderer(newMap, layerLevel) {
 		map.addLayer(newMap);
+		map.removeLayer(greymap);
 		map.setLayerIndex(newMap, layerLevel);
 	}
 			

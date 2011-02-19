@@ -1,5 +1,5 @@
 // 
-//  Copyright 2011  tweety
+//  Copyright 2011  tweetyhh aka. Florian Plähn
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -22,6 +22,13 @@ namespace ocmgtk
 {
 
 
+	/// <summary>
+	/// Be aware! This class is my first real GTK code. ;-)
+	/// 
+	/// This class isn't really good because of the double holding of the
+	/// maps. They are stored in the List m_maps and also in the ListStore
+	/// m_mapModel. So all changes of the order have to be done in both lists!
+	/// </summary>
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class MapSelectionWidget : Gtk.Bin
 	{
@@ -29,27 +36,29 @@ namespace ocmgtk
 		private ListStore m_mapModel;
 		private UIMonitor m_mon;
 
+		public List<MapDescription> Maps {
+			get { return m_maps; }
+			set {
+				m_maps = value;
+				foreach (MapDescription md in m_maps) {
+					m_mapModel.AppendValues (md);
+				}
+			}
+		}
+
 		public MapSelectionWidget ()
 		{
 			this.Build ();
 			m_mon = UIMonitor.getInstance ();
-			
 			m_mapModel = new ListStore (typeof(MapDescription));
-			MapManager mapManager = new MapManager ("./maps");
-			m_maps = mapManager.getMaps ("./maps/google-sat.xml");
-			foreach (MapDescription md in m_maps) {
-				m_mapModel.AppendValues (md);
-			}
+			m_maps = new List<MapDescription> ();
+			
 			FillList ();
-			
-			
-			
 		}
 
 		private void FillList ()
 		{
 			//mapView = new Gtk.TreeView();
-			
 			
 //			CellRendererPixbuf activeCell = new CellRendererPixbuf ();
 			CellRendererText nameCell = new CellRendererText ();
@@ -83,7 +92,7 @@ namespace ocmgtk
 		{
 			MapDescription map = (MapDescription)model.GetValue (iter, 0);
 			CellRendererText text = cell as CellRendererText;
-			text.Text = map.Name + " " + map.Active;
+			text.Text = map.Name;
 			
 			if (map.Active) {
 				text.Strikethrough = false;
@@ -106,12 +115,18 @@ namespace ocmgtk
 			text.Text = map.Covered;
 		}
 
-		private void UpdateMaps() {
+		private void UpdateMaps (Gtk.TreeModel model, Gtk.TreeIter itr)
+		{
+			model.EmitRowChanged (model.GetPath (itr), itr);
 		}
 
-
-
-
+		private void ReloadMaps() {
+			m_mapModel.Clear ();
+			foreach (MapDescription md in m_maps) {
+				m_mapModel.AppendValues (md);
+			}
+		}
+		
 		protected virtual void OnActivateButtonClicked (object sender, System.EventArgs e)
 		{
 			Gtk.TreeIter itr;
@@ -119,10 +134,9 @@ namespace ocmgtk
 			if (mapView.Selection.GetSelected (out model, out itr)) {
 				MapDescription map = (MapDescription)model.GetValue (itr, 0);
 				map.Active = true;
-				UpdateMaps();
+				UpdateMaps (model, itr);
 			}
 		}
-
 
 		protected virtual void OnDeactivateButtonClicked (object sender, System.EventArgs e)
 		{
@@ -131,15 +145,107 @@ namespace ocmgtk
 			if (mapView.Selection.GetSelected (out model, out itr)) {
 				MapDescription map = (MapDescription)model.GetValue (itr, 0);
 				map.Active = false;
-				UpdateMaps();
+				UpdateMaps (model, itr);
 			}
 		}
 
 		protected virtual void OnOpenButtonClicked (object sender, System.EventArgs e)
 		{
+			FileChooserDialog dlg = null;
+			try {
+				dlg = new FileChooserDialog (Catalog.GetString ("Open Map Description File"), (Gtk.Window)this.Parent.Parent.Parent, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Open"), ResponseType.Accept);
+				//dlg.SetCurrentFolder (m_conf.DataDirectory);
+				FileFilter filter = new FileFilter ();
+				filter.Name = "OCM Map Files";
+				filter.AddPattern ("*.xml");
+				dlg.AddFilter (filter);
+				
+				if (dlg.Run () == (int)ResponseType.Accept) {
+					dlg.Hide ();
+					m_maps.AddRange(MapManager.GetMapsFromFile(dlg.Filename));
+					ReloadMaps();
+					dlg.Destroy ();
+				} else {
+					dlg.Hide ();
+					dlg.Destroy ();
+				}
+			} catch (Exception exception) {
+				UIMonitor.ShowException (exception);
+				if (dlg != null) {
+					dlg.Hide();
+					dlg.Destroy();
+				}
+			}
 		}
 		
-				
 		
+		protected virtual void OnDeleteButtonClicked (object sender, System.EventArgs e)
+		{
+			Gtk.TreeIter itr;
+			Gtk.TreeModel model;
+			if (mapView.Selection.GetSelected (out model, out itr)) {
+				MapDescription map = (MapDescription)model.GetValue (itr, 0);
+				MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, String.Format (Catalog.GetString ("Are you sure you want to delete map {0}?"), map.Name));
+				if ((int)ResponseType.Yes == dlg.Run ()) {
+					m_maps.Remove(map);
+					ReloadMaps();
+				}
+				dlg.Hide();
+			}
+		}
+		protected virtual void OnRestoreButtonClicked (object sender, System.EventArgs e)
+		{
+			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, String.Format (Catalog.GetString ("Are really want to delete all maps and restore the default maps?")));
+			if ((int)ResponseType.Yes == dlg.Run ()) {
+				m_maps = MapManager.GetMapsFromFile("maps/defaultmaps.xml");
+				ReloadMaps();
+			}
+			dlg.Hide();
+		}
+		
+		protected virtual void OnUpButtonClicked (object sender, System.EventArgs e)
+		{
+			Gtk.TreeIter itr;
+			Gtk.TreeModel model;
+			if (mapView.Selection.GetSelected (out model, out itr)) {
+				MapDescription map = (MapDescription)model.GetValue (itr, 0);
+				int index = m_maps.IndexOf(map);
+				if (index > 0) { // Can't move the first element up
+					int[] order = new int[m_maps.Capacity];
+					for (int i = 0; i < m_maps.Capacity; i++) {
+						order[i] = i;	
+					}
+					order[index] = index - 1;
+					order[index - 1] = index;
+					m_mapModel.Reorder(order);	
+					// double data holding, not fine but it works
+					m_maps.RemoveAt(index);
+					m_maps.Insert(index - 1, map);
+				}
+			}
+		}
+		
+		protected virtual void OnDownButtonClicked (object sender, System.EventArgs e)
+		{
+			Gtk.TreeIter itr;
+			Gtk.TreeModel model;
+			if (mapView.Selection.GetSelected (out model, out itr)) {
+				MapDescription map = (MapDescription)model.GetValue (itr, 0);
+				int index = m_maps.IndexOf(map);
+				if (index < m_maps.Count - 1) { // Can't move the last element down
+					int[] order = new int[m_maps.Capacity];
+					for (int i = 0; i < m_maps.Capacity; i++) {
+						order[i] = i;	
+					}
+					order[index] = index + 1;
+					order[index + 1] = index;
+					m_mapModel.Reorder(order);	
+					// double data holding, not fine but it works
+					m_maps.RemoveAt(index);
+					m_maps.Insert(index + 1, map);
+				}
+			}
+		}
 	}
+	
 }

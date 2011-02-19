@@ -279,6 +279,20 @@ namespace ocmgtk
 			set { this.Set("/apps/ocm/importdeletefiles",value);}
 		}
 		
+		public List<MapDescription> OpenLayerMaps
+		{
+			get { 
+				string xmlString = (string) this.Get("/apps/ocm/maps/openlayermaps", null);
+				if (string.IsNullOrEmpty(xmlString)) {
+					return MapManager.GetMapsFromFile("./maps/defaultmaps.xml");
+				}
+				else {
+					return MapManager.GetMapsFromString(xmlString);
+				}
+			}
+			set { this.Set("/apps/ocm/maps/openlayermaps", MapManager.CreateXML(value)); }
+		}
+		
 		public void CheckForDefaultGPS(GPSProfileList list, MainWindow win)
 		{
 			string defName = this.GPSProf;

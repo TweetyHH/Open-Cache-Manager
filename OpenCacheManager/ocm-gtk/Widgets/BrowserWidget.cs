@@ -119,6 +119,14 @@ namespace ocmgtk
 			LoadScript("setAutoSelectCache('" + autoSelectCache + "');");
 		}
 		
+		public void AddMaps(List<MapDescription> maps) {
+			foreach (MapDescription map in maps) {
+				if (map.Active) {
+					AddMap(map.Code, map.Layer);
+				}
+			}
+		}
+			
 		public void AddMap(string codeForMap, int layer) {
 			LoadScript("addMapRenderer("+codeForMap+", " + layer + "); ");
 		}

@@ -51,6 +51,7 @@ namespace ocmgtk
 			
 			pollEntry.Text = config.GPSDPoll.ToString();
 			recenterCheck.Active = config.GPSDAutoMoveMap;
+			mapselectionwidget1.Maps = config.OpenLayerMaps;
 		}
 		
 		private SolvedMode WaypointSolvedMode
@@ -158,6 +159,7 @@ namespace ocmgtk
 			m_config.GPSDPoll = int.Parse(pollEntry.Text);
 			m_config.GPSDAutoMoveMap = recenterCheck.Active;
 			m_config.AutoSelectCacheFromMap = selectCachesFromMapCheck.Active;
+			m_config.OpenLayerMaps = mapselectionwidget1.Maps;
 		}
 		
 		protected virtual void OnCancelClicked (object sender, System.EventArgs e)

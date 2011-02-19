@@ -1,0 +1,42 @@
+<maps>
+	<map>
+		<name>OSM: Mapnik</name>
+		<code>new OpenLayers.Layer.OSM( "Open Street Map")</code>
+		<layer>100</layer>
+		<baseLayer>true</baseLayer>
+		<covered>World</covered>
+		<active>true</active>
+	</map>
+	<map>
+		<name>Google Street Map</name>
+		<code>new OpenLayers.Layer.Google("Google Street Map", {'sphericalMercator': true})</code>
+		<layer>110</layer>
+		<baseLayer>true</baseLayer>
+		<covered>World</covered>
+		<active>true</active>
+	</map>
+	<map>
+		<name>Google Hybrid</name>
+		<code>new OpenLayers.Layer.Google("Google Hybrid", {'type': G_HYBRID_MAP, 'numZoomLevels':20, 'sphericalMercator': true} )</code>
+		<layer>1</layer>
+		<baseLayer>true</baseLayer>
+		<covered>World</covered>
+		<active>true</active>
+	</map>
+	<map>
+		<name>Google Terrain</name>
+		<code>new OpenLayers.Layer.Google("Google Terrain", {'type': G_PHYSICAL_MAP, 'sphericalMercator': true} )</code>
+		<layer>1</layer>
+		<baseLayer>true</baseLayer>
+		<covered>World</covered>
+		<active>true</active>
+	</map>        var globe 
+	<map>
+		<name>No Map</name>
+		<code>globe</code>
+		<layer>7</layer>
+		<baseLayer>true</baseLayer>
+		<covered>World</covered>
+		<active>true</active>
+	</map>
+</maps>
