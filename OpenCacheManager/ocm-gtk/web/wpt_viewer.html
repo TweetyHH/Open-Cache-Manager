@@ -44,8 +44,8 @@ body {
 
     <script type="text/javascript">
         <!--
-        // complex map object
-        var map;
+    // complex map object	
+    var map;
  
 	// Start position for the map (hardcoded here for simplicity,
 	// but maybe you want to get from URL params)
@@ -55,12 +55,8 @@ body {
 	var pois,extra;
 	var notify;
 	var currentPopup;
-	var gmap;
-	var ghyb;
-	var gphy;
-	var osm;
 	var mouse;
-	var globe;
+	var emptyMap;
 	var greymap;
 	var autoSelectCache = false;
 	
@@ -100,50 +96,28 @@ body {
                 
         try
         {
-
-/*        osm = new OpenLayers.Layer.OSM( "Open Street Map");
-        map.addLayer(osm);
-
-	    gmap = new OpenLayers.Layer.Google(
-                    "Google Street Map",
-                {'sphericalMercator': true}
-	    );
-
-	    ghyb = new OpenLayers.Layer.Google(
-                "Google Hybrid",
-                {'type': G_HYBRID_MAP, 'numZoomLevels':20, 'sphericalMercator': true}
-            );
-
-	    gphy = new OpenLayers.Layer.Google(
-                "Google Terrain",
-                {'type': G_PHYSICAL_MAP, 'sphericalMercator': true}
-            );
-*/            
-             var options = {numZoomLevels: 19,
-                isBaseLayer: true,
-                };
-//         	map.addLayers([osm, ghyb,gmap,gphy]);
+			// there were map addings here, but right now we don't use them anymore at startup.
         }
         catch(err)
         {
         	// No internet connection
         }
 
-        globe = new OpenLayers.Layer.Image(
+        var options = {numZoomLevels: 19, isBaseLayer: true };
+		// Code for empty map out of the defaultmaps.xml
+        emptyMap = new OpenLayers.Layer.Image( 
    				 'No Map','nomap.png',
     			   new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34),
     				new OpenLayers.Size(1125,558), options);
+		// The greymap is for starting and if no other map is there.    				
     	greymap = new OpenLayers.Layer.Image(
    				 'No Map','nomap.png',
     			   new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34),
     				new OpenLayers.Size(1125,558), options);
     	map.addLayer(greymap);
-    	//map.addLayer(globe);
-    	//map.setLayerIndex(globe, 9990);
     			
 	    extra = new OpenLayers.Layer.Markers("Other Geocaches");
 	    map.addLayer(extra);
-	    map.setLayerIndex(extra, 99994);
         
         map.addControl(new OpenLayers.Control.ScaleLine())
         map.addControl(new OpenLayers.Control.LayerSwitcher());
@@ -167,11 +141,9 @@ body {
 			extra.destroy();
     	pois = new OpenLayers.Layer.Markers( "Waypoints" );
     	map.addLayer(pois);
-  	    map.setLayerIndex(pois, 99995);
 
     	extra = new OpenLayers.Layer.Markers("Other Geocaches");
     	map.addLayer(extra);
-    	map.setLayerIndex(extra, 99996);
     }
 
 	function addMarker(lat, lon, icon, wptName, wptFullName, wptDescription, mode)
@@ -228,7 +200,6 @@ body {
 		feature.data.icon = icon;
 		var marker = feature.createMarker();
 		marker.setOpacity(0.66);
-		map.raiseLayer(extra, -1)
 		marker.events.register('mousedown',feature,mousedown);
 		extra.addMarker(marker);
 	}
@@ -240,7 +211,6 @@ body {
 			doPopup();
 			return;
 		}
-	  			
 	  		
 		if (currentPopup != null)
 	  	{
@@ -272,7 +242,6 @@ body {
 		hidden.innerHTML = "<iframe src='ocm://select/" + wpt + "'/>";
 	}
 
-
 	function zoomToPoint(lat, lon)
 	{
 		var lonLat = new OpenLayers.LonLat(lon, lat).transform(map.displayProjection,  map.projection);	
@@ -284,8 +253,7 @@ body {
 		var icon = new OpenLayers.Icon("../icons/48x48/circle.png",size,offset);
 		notify.addMarker(new OpenLayers.Marker(lonLat,icon));  	
 		map.addLayer(notify);
-		//map.raiseLayer(notify, -3)
-		map.setLayerIndex(notify, 99999);
+		map.raiseLayer(notify, -2)
 		map.panTo(lonLat);
 	}
 	
@@ -295,7 +263,6 @@ body {
 			extra.destroy();
 		extra = new OpenLayers.Layer.Markers("Other Geocaches");
 		map.addLayer(extra);
-		map.setLayerIndex(extra, 99994);
 	}
 	
 	function mapMoved(evt)
@@ -353,14 +320,12 @@ body {
 		hidden.innerHTML = "<iframe src='ocm://setcentre/" + lonlat.lat + "/" + lonlat.lon + "'/>";
 	}
 	
-	
 	function doSetHome()
 	{
 		doHidePopup();
 		var lonlat = mouse.transform(map.projection, map.displayProjection);
 		hidden.innerHTML = "<iframe src='ocm://sethome/" + lonlat.lat + "/" + lonlat.lon + "'/>";
 	}
-	
 	
 	function doAddLocation()
 	{
@@ -389,15 +354,20 @@ body {
 	}
 
 	// This Method add some maprenderer to the map
-	function addMapRenderer(newMap, layerLevel) {
-		map.addLayer(newMap);
-		map.removeLayer(greymap);
-		map.setLayerIndex(newMap, layerLevel);
+	function addMapRenderer(newMap) {
+		try
+        {
+			map.addLayer(newMap);
+			map.removeLayer(greymap);
+        }
+        catch(err)
+        {
+        	// No internet connection
+        }
 	}
 			
-	// Helping method for ADFC Bike Map
+	// Helping method for ADFC Bike Map: a better solution should be found for other specials.
     function get_mm_bikeTracks(bounds) {
-
         llbounds = new OpenLayers.Bounds();
         llbounds.extend(OpenLayers.Layer.SphericalMercator.inverseMercator(bounds.left,bounds.bottom));
         llbounds.extend(OpenLayers.Layer.SphericalMercator.inverseMercator(bounds.right,bounds.top));
@@ -413,7 +383,6 @@ body {
         var y = Math.round((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
         var z = this.map.getZoom();
         var limit = Math.pow(2, z);
-
         if (y < 0 || y >= limit) {
           	return OpenLayers.Util.getImagesLocation() + "404.png";
         } 
@@ -431,9 +400,7 @@ body {
         }
 	}
 
-
-
-        // -->
+// -->
     </script>
   </head>
   <body onload="init()" oncontextmenu="return false;" onmousedown="doPopup(event)">

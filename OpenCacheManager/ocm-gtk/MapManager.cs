@@ -67,7 +67,6 @@ namespace ocmgtk
 				MapDescription map = new MapDescription();
 				map.Name = maps.Current.SelectSingleNode("name").Value;
 				map.Code = maps.Current.SelectSingleNode("code").Value;
-				map.Layer = maps.Current.SelectSingleNode("layer").ValueAsInt;
 				map.BaseLayer = maps.Current.SelectSingleNode("baseLayer").ValueAsBoolean;
 				map.Covered = maps.Current.SelectSingleNode("covered").Value;
 				map.Active = maps.Current.SelectSingleNode("active").ValueAsBoolean;
@@ -82,8 +81,7 @@ namespace ocmgtk
 			foreach(MapDescription map in maps) {
 				sb.AppendLine("\t<map>");
 				sb.AppendLine("\t\t<name>" + map.Name + "</name>");
-				sb.AppendLine("\t\t<code>" + map.Code + "</code>");
-				sb.AppendLine("\t\t<layer>" + map.Layer + "</layer>");
+				sb.AppendLine("\t\t<code><![CDATA[" + map.Code + "]]></code>");
 				sb.AppendLine("\t\t<baseLayer>" + map.BaseLayer.ToString().ToLower() + "</baseLayer>");
 				sb.AppendLine("\t\t<covered>" + map.Covered + "</covered>");
 				sb.AppendLine("\t\t<active>" + map.Active.ToString().ToLower() + "</active>");

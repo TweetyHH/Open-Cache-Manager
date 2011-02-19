@@ -3056,7 +3056,7 @@ Other</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.Preferences" design-size="722 373">
+  <widget class="Gtk.Dialog" id="ocmgtk.Preferences" design-size="975 373">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Preferences...</property>
     <property name="TypeHint">Dialog</property>
@@ -3077,7 +3077,7 @@ Other</property>
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">2</property>
+            <property name="CurrentPage">3</property>
             <property name="TabPos">Left</property>
             <child>
               <widget class="Gtk.Table" id="table2">
@@ -3695,7 +3695,7 @@ Disabled on Startup</property>
             <child>
               <widget class="Gtk.Label" id="label14">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Map</property>
+                <property name="LabelProp" translatable="yes">Map Options</property>
               </widget>
               <packing>
                 <property name="type">tab</property>
@@ -3713,7 +3713,7 @@ Disabled on Startup</property>
             <child>
               <widget class="Gtk.Label" id="label23">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Mapimport</property>
+                <property name="LabelProp" translatable="yes">Maps</property>
               </widget>
               <packing>
                 <property name="type">tab</property>

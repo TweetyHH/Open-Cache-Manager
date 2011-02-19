@@ -18,12 +18,14 @@ using System;
 namespace ocmgtk
 {
 
+	/// <summary>
+	/// This class describes an OpenLayer Map for adding to the BrowserWidget/CacheMap.
+	/// </summary>
 	public class MapDescription
 	{
 
 		private string m_name;
 		private string m_code;
-		private int m_layer;
 		private bool m_active;
 		private string m_covered;
 		private bool m_baseLayer;
@@ -36,11 +38,6 @@ namespace ocmgtk
 		public string Code {
 			get { return m_code; }
 			set { m_code = value; }
-		}
-
-		public int Layer {
-			get { return m_layer; }
-			set { m_layer = value; }
 		}
 
 		public bool Active {
@@ -62,11 +59,10 @@ namespace ocmgtk
 		{
 		}
 
-		public MapDescription (string name, string code, int layer, bool active, string covered, bool baseLayer)
+		public MapDescription (string name, string code, bool active, string covered, bool baseLayer)
 		{
 			m_name = name;
 			m_code = code;
-			m_layer = layer;
 			m_active = active;
 			m_covered = covered;
 			m_baseLayer = baseLayer;

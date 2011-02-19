@@ -34,7 +34,6 @@ namespace ocmgtk
 	{
 		private List<MapDescription> m_maps;
 		private ListStore m_mapModel;
-		private UIMonitor m_mon;
 
 		public List<MapDescription> Maps {
 			get { return m_maps; }
@@ -49,7 +48,6 @@ namespace ocmgtk
 		public MapSelectionWidget ()
 		{
 			this.Build ();
-			m_mon = UIMonitor.getInstance ();
 			m_mapModel = new ListStore (typeof(MapDescription));
 			m_maps = new List<MapDescription> ();
 			
@@ -62,31 +60,30 @@ namespace ocmgtk
 			
 //			CellRendererPixbuf activeCell = new CellRendererPixbuf ();
 			CellRendererText nameCell = new CellRendererText ();
-			CellRendererText layerCell = new CellRendererText ();
+			CellRendererText baseLayerCell = new CellRendererText ();
 			CellRendererText coveredCell = new CellRendererText ();
 			
 //			TreeViewColumn activeIconColum = new TreeViewColumn (Catalog.GetString ("Active"), activeCell);
 			TreeViewColumn nameColumn = new TreeViewColumn (Catalog.GetString ("Name"), nameCell);
-			TreeViewColumn layerColumn = new TreeViewColumn (Catalog.GetString ("Layer"), layerCell);
+			TreeViewColumn baseLayerColumn = new TreeViewColumn (Catalog.GetString ("Baselayer"), baseLayerCell);
 			TreeViewColumn coveredColumn = new TreeViewColumn (Catalog.GetString ("Covered"), coveredCell);
 			
 //			mapView.AppendColumn (activeIconColum);
 			mapView.AppendColumn (nameColumn);
-			mapView.AppendColumn (layerColumn);
+			mapView.AppendColumn (baseLayerColumn);
 			mapView.AppendColumn (coveredColumn);
 			
 //			activeIconColum.SetCellDataFunc (activeCell, new TreeCellDataFunc (RenderCacheIcon));
 //			activeIconColum.SortColumnId = 0;
 			nameColumn.SetCellDataFunc (nameCell, new TreeCellDataFunc (RenderMapName));
 			nameColumn.SortColumnId = 0;
-			layerColumn.SetCellDataFunc (layerCell, new TreeCellDataFunc (RenderMapLayer));
-			layerColumn.SortColumnId = 1;
+			baseLayerColumn.SetCellDataFunc (baseLayerCell, new TreeCellDataFunc (RenderMapBaseLayer));
+			baseLayerColumn.SortColumnId = 1;
 			coveredColumn.SetCellDataFunc (coveredCell, new TreeCellDataFunc (RenderMapCovered));
 			coveredColumn.SortColumnId = 2;
 			
 			mapView.Model = m_mapModel;
 		}
-
 
 		private void RenderMapName (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
@@ -101,11 +98,11 @@ namespace ocmgtk
 			}
 		}
 
-		private void RenderMapLayer (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
+		private void RenderMapBaseLayer (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
 		{
 			MapDescription map = (MapDescription)model.GetValue (iter, 0);
 			CellRendererText text = cell as CellRendererText;
-			text.Text = "" + map.Layer;
+			text.Text = map.BaseLayer ? Catalog.GetString("yes") : Catalog.GetString("no");
 		}
 
 		private void RenderMapCovered (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
@@ -153,10 +150,10 @@ namespace ocmgtk
 		{
 			FileChooserDialog dlg = null;
 			try {
-				dlg = new FileChooserDialog (Catalog.GetString ("Open Map Description File"), (Gtk.Window)this.Parent.Parent.Parent, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Open"), ResponseType.Accept);
+				dlg = new FileChooserDialog (Catalog.GetString ("Open Map Description File"), (Gtk.Window) this.Parent.Parent.Parent, FileChooserAction.Open, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Open"), ResponseType.Accept);
 				//dlg.SetCurrentFolder (m_conf.DataDirectory);
 				FileFilter filter = new FileFilter ();
-				filter.Name = "OCM Map Files";
+				filter.Name = Catalog.GetString("OCM Map Files");
 				filter.AddPattern ("*.xml");
 				dlg.AddFilter (filter);
 				
@@ -177,8 +174,7 @@ namespace ocmgtk
 				}
 			}
 		}
-		
-		
+	
 		protected virtual void OnDeleteButtonClicked (object sender, System.EventArgs e)
 		{
 			Gtk.TreeIter itr;
@@ -218,7 +214,7 @@ namespace ocmgtk
 					order[index] = index - 1;
 					order[index - 1] = index;
 					m_mapModel.Reorder(order);	
-					// double data holding, not fine but it works
+					// due double data holding, not fine but it works
 					m_maps.RemoveAt(index);
 					m_maps.Insert(index - 1, map);
 				}
@@ -240,7 +236,7 @@ namespace ocmgtk
 					order[index] = index + 1;
 					order[index + 1] = index;
 					m_mapModel.Reorder(order);	
-					// double data holding, not fine but it works
+					// due double data holding, not fine but it works
 					m_maps.RemoveAt(index);
 					m_maps.Insert(index + 1, map);
 				}

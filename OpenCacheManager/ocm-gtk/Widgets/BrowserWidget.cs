@@ -122,13 +122,13 @@ namespace ocmgtk
 		public void AddMaps(List<MapDescription> maps) {
 			foreach (MapDescription map in maps) {
 				if (map.Active) {
-					AddMap(map.Code, map.Layer);
+					AddMap(map.Code);
 				}
 			}
 		}
 			
-		public void AddMap(string codeForMap, int layer) {
-			LoadScript("addMapRenderer("+codeForMap+", " + layer + "); ");
+		public void AddMap(string codeForMap) {
+			LoadScript("addMapRenderer(" + codeForMap + "); ");
 		}
 		
 		protected virtual void OnUpClick (object sender, System.EventArgs e)
