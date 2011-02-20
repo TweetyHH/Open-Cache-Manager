@@ -14,14 +14,14 @@
 //    limitations under the License.
 
 using System;
-using org.freedesktop.DBus;
-using NDesk.DBus;
+//using org.freedesktop.DBus;
+//using NDesk.DBus;
 
 
 namespace ocmgtk
 {
 
-	[NDesk.DBus.Interface ("QLandkarteGT")]
+//	[NDesk.DBus.Interface ("QLandkarteGT")]
 	public interface IQLandkarteGT
 	{
 		void loadGeoData(string filename);

@@ -14,13 +14,13 @@
 //    limitations under the License.
 
 using System;
-using org.freedesktop.DBus;
-using NDesk.DBus;
+//using org.freedesktop.DBus;
+//using NDesk.DBus;
 
 namespace ocmgtk
 {
 
-	[NDesk.DBus.Interface ("org.ocm.dbus")]
+//	[NDesk.DBus.Interface ("org.ocm.dbus")]
 	public interface IDBusComm
 	{
 		void ImportGPX(String file);

@@ -1,13 +1,13 @@
 
-using org.freedesktop.DBus;
-using NDesk.DBus;
+//using org.freedesktop.DBus;
+//using NDesk.DBus;
 
 namespace ocmgtk
 {
 	
 	public class GPS
 	{
-		private Connection DbusConnection;
+//		private Connection DbusConnection;
 		public Gpsd gps;
 		
 		private double lastLat = 0;
@@ -25,9 +25,9 @@ namespace ocmgtk
 		
 		public GPS ()
 		{
-			DbusConnection = Bus.System;
-			gps = DbusConnection.GetObject<Gpsd> ("org.gpsd", new ObjectPath ("/org/gpsd"));
-			gps.fix += HandleGpsfix;
+//			DbusConnection = Bus.System;
+//			gps = DbusConnection.GetObject<Gpsd> ("org.gpsd", new ObjectPath ("/org/gpsd"));
+//			gps.fix += HandleGpsfix;
 		}
 
 		void HandleGpsfix (GPSFix fix)
@@ -67,7 +67,7 @@ namespace ocmgtk
 
 	public delegate void GPSPositionChangedHandler (GPSFix fix);
 
-	[Interface("org.gpsd")]
+//	[Interface("org.gpsd")]
 	public interface Gpsd
 	{
 		event GPSPositionChangedHandler fix;

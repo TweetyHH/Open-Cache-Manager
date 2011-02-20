@@ -19,8 +19,8 @@ using Gtk;
 using Mono.Unix;
 using ocmgtk;
 using ocmengine;
-using NDesk.DBus;
-using org.freedesktop.DBus;
+//using NDesk.DBus;
+//using org.freedesktop.DBus;
 
 public partial class MainWindow : Gtk.Window
 {
@@ -117,10 +117,10 @@ public partial class MainWindow : Gtk.Window
 	{
 		try
 		{
-			BusG.Init ();
-			Bus bus = Bus.Session;
-			bus.Unregister(new ObjectPath ("/org/ocm/dbus"));
-			bus.ReleaseName("org.ocm.dbus"); 
+//			BusG.Init ();
+//			Bus bus = Bus.Session;
+//			bus.Unregister(new ObjectPath ("/org/ocm/dbus"));
+//			bus.ReleaseName("org.ocm.dbus"); 
 		}
 		catch 
 		{

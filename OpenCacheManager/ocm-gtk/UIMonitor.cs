@@ -22,8 +22,8 @@ using ocmengine;
 using System.Diagnostics;
 using System.Globalization;
 using System.Timers;
-using org.freedesktop.DBus;
-using NDesk.DBus;
+//using org.freedesktop.DBus;
+//using NDesk.DBus;
 
 namespace ocmgtk
 {

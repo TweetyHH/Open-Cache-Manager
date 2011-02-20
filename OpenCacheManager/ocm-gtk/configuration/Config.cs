@@ -191,7 +191,7 @@ namespace ocmgtk
 				if (value == null)
 					UnsetKey("/apps/ocm/gps/currentprof");
 				else
-					m_client.Set("/apps/ocm/gps/currentprof", value);
+					this.Set("/apps/ocm/gps/currentprof", value);
 			}
 		}
 		
