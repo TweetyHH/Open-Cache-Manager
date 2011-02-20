@@ -16,7 +16,7 @@
 using System;
 using System.Collections.Generic;
 using ocmengine;
-using GConf;
+//using GConf;
 using Mono.Unix;
 
 namespace ocmgtk
@@ -25,7 +25,7 @@ namespace ocmgtk
 
 	public class Config:IConfig
 	{
-		private GConf.Client m_client;
+//		private GConf.Client m_client;
 		public SolvedMode SolvedModeState
 		{
 			get 
@@ -36,20 +36,20 @@ namespace ocmgtk
 			}
 			set 
 			{ 
-				m_client.Set("/apps/ocm/solved_mode", value.ToString()); 
+				this.Set("/apps/ocm/solved_mode", value.ToString()); 
 			}
 		}
 		
 		public double LastLat
 		{
 			get { return (double) this.Get ("/apps/ocm/lastlat", 0.0);}
-			set { m_client.Set("/apps/ocm/lastlat", value);}
+			set { this.Set("/apps/ocm/lastlat", value);}
 		}
 		
 		public double LastLon
 		{
 			get { return (double) this.Get ("/apps/ocm/lastlon", 0.0);}
-			set { m_client.Set("/apps/ocm/lastlon", value);}
+			set { this.Set("/apps/ocm/lastlon", value);}
 		}
 		
 		public string LastName
@@ -198,7 +198,7 @@ namespace ocmgtk
 		public bool IgnoreWaypointPrefixes
 		{
 			get { return (bool) this.Get("/apps/ocm/noprefixes", false);}
-			set { m_client.Set("/apps/ocm/noprefixes", value);}
+			set { this.Set("/apps/ocm/noprefixes", value);}
 		}
 		
 		public bool CheckForUpdates
@@ -386,19 +386,20 @@ namespace ocmgtk
 		
 		private void UnsetKey(String keyname)
 		{
-			System.Diagnostics.Process.Start("gconftool-2 --unset " + keyname);
+//			System.Diagnostics.Process.Start("gconftool-2 --unset " + keyname);
 		}
 
 		public Config ()
 		{
-			m_client = new Client();
+//			m_client = new Client();
 		}
 		
 		private object Get(String key, Object def)
 		{
 			try
 			{
-				return m_client.Get(key);
+//				return m_client.Get(key);
+				return def;
 			}
 			catch
 			{
@@ -408,7 +409,7 @@ namespace ocmgtk
 		
 		private void Set(String key, Object val)
 		{
-			m_client.Set(key, val);
+//			m_client.Set(key, val);
 		}
 		
 		

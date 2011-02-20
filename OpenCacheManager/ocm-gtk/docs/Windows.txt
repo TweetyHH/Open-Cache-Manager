@@ -1,0 +1,34 @@
+Here are a description of steps for testing OCM under Windows:
+
+1. Install Mono 2.10 for Windows
+2. Copy sqlite3.dll to somewhere in the PATH Variable
+3. Remove DBus and GConf Code.
+
+After this steps the wizard for first time starting works, then the following messages occurs:
+
+(ocm-gtk:3292): Gtk-CRITICAL **: gtk_widget_set_parent: assertion `GTK_IS_WIDGET (parent)' failed
+Marshaling close signal
+Exception in Gtk# callback delegate
+  Note: Applications can use GLib.ExceptionManager.UnhandledException to handle the exception.
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.TypeLoadException: A type load exception has occurred.
+  at MainWindow..ctor () [0x00000] in <filename unknown>:0
+  at ocmgtk.SetupAssistant.HandleHandleClose (System.Object sender, System.EventArgs e) [0x00000] in <filename unknown>:0
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
+culture) [0x00000] in <filename unknown>:0
+  --- End of inner exception stack trace ---
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
+culture) [0x00000] in <filename unknown>:0
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <filename unknown>:0
+  at System.Delegate.DynamicInvokeImpl (System.Object[] args) [0x00000] in <filename unknown>:0
+  at System.MulticastDelegate.DynamicInvokeImpl (System.Object[] args) [0x00000] in <filename unknown>:0
+  at System.Delegate.DynamicInvoke (System.Object[] args) [0x00000] in <filename unknown>:0
+  at GLib.Signal.ClosureInvokedCB (System.Object o, GLib.ClosureInvokedArgs args) [0x00000] in <filename unknown>:0
+  at GLib.SignalClosure.Invoke (GLib.ClosureInvokedArgs args) [0x00000] in <filename unknown>:0
+  at GLib.SignalClosure.MarshalCallback (IntPtr raw_closure, IntPtr return_val, UInt32 n_param_vals, IntPtr param_values, IntPtr invocation_hint, IntPtr marshal_data) [0x00000] in
+<filename unknown>:0
+   at GLib.ExceptionManager.RaiseUnhandledException(System.Exception e, Boolean is_terminal)
+   at GLib.SignalClosure.MarshalCallback(IntPtr raw_closure, IntPtr return_val, UInt32 n_param_vals, IntPtr param_values, IntPtr invocation_hint, IntPtr marshal_data)
+   at Gtk.Application.gtk_main()
+   at Gtk.Application.Run()
+   at ocmgtk.MainClass.Main(System.String[] args)

@@ -65,7 +65,7 @@ namespace ocmgtk
 			
 			if (!File.Exists(page2.DBFile))
 				Engine.getInstance().Store.CreateDB(page2.DBFile);	
-			
+/*			
 			GConf.Client client = new GConf.Client();
 			client.Set("/apps/ocm/currentdb", page2.DBFile);
 			client.Set("/apps/ocm/homelat", page3.HomeLat);
@@ -74,7 +74,7 @@ namespace ocmgtk
 			client.Set("/apps/ocm/wizardone", "true");
 			client.Set("/apps/ocm/imperial", page2.ImperialUnits);
 			client.Set("/apps/ocm/defmap", page2.DefaultMap);
-						
+*/
 			MainWindow win = new MainWindow ();
 			win.Show();
 			UIMonitor.getInstance().LoadConfig(true);

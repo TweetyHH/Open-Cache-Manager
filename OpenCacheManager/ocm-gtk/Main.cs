@@ -14,8 +14,8 @@ using System;
 using System.Threading;
 using Gtk;
 using System.Timers;
-using NDesk.DBus;
-using org.freedesktop.DBus;
+//using NDesk.DBus;
+//using org.freedesktop.DBus;
 
 namespace ocmgtk
 {
@@ -28,7 +28,7 @@ namespace ocmgtk
 		{
 			
 			Application.Init ();
-			try
+/*			try
 			{
 				BusG.Init ();
 				Bus bus = Bus.Session;
@@ -54,7 +54,7 @@ namespace ocmgtk
 			{
 				System.Console.Error.WriteLine("NO SESSION DBUS RUNNING");
 			}
-			
+*/			
 			if (args != null)
 				if (args.Length > 0)
 					m_file = args[0];
@@ -68,13 +68,13 @@ namespace ocmgtk
 			//Mono.Unix.Catalog.Init ("opencachemanager", "./locale");
 			//Mono.Unix.Catalog.Init ("opencachemanager", "@expanded_datadir@/locale");
 			bool runWizard = false;
-			try {
-				GConf.Client client = new GConf.Client ();
-				client.Get ("/apps/ocm/wizardone");
-				runWizard = false;
-			} catch (GConf.NoSuchKeyException) {
+//			try {
+//				GConf.Client client = new GConf.Client ();
+//				client.Get ("/apps/ocm/wizardone");
+//				runWizard = false;
+//			} catch (GConf.NoSuchKeyException) {
 				runWizard = true;
-			}
+//			}
 			
 			if (runWizard) {
 				UIMonitor.getInstance ().RunSetupAssistant ();
