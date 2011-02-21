@@ -1289,6 +1289,7 @@
     </None>
     <None Include="icons\24x24\locationless.png" />
     <None Include="icons\24x24\waypoint-flag-red.png" />
+    <None Include="docs\Windows.txt" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="OCM.desktop">

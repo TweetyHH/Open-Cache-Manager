@@ -90,6 +90,7 @@ namespace ocmgtk
 		
 		public static void ShowSplash()
 		{
+			System.Console.WriteLine("==> ShowSplash Start");
 			m_splash = new OCMSplash();
 			m_splash.ShowNow();
 			System.Timers.Timer splashtime = new System.Timers.Timer();
@@ -97,6 +98,7 @@ namespace ocmgtk
 			splashtime.Interval = 1000;
 			splashtime.Elapsed += HandleSplashtimeElapsed;
 			splashtime.Start();
+			System.Console.WriteLine("==> ShowSplash End");
 		}
 
 		static void HandleSplashtimeElapsed (object sender, ElapsedEventArgs e)
@@ -114,7 +116,9 @@ namespace ocmgtk
 				m_splash.Dispose();
 			}
 			
+			System.Console.WriteLine("==> new MainWindow (Start)");
 			MainWindow win = new MainWindow();
+			System.Console.WriteLine("==> new MainWindow (End)");
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration (false);
 			
