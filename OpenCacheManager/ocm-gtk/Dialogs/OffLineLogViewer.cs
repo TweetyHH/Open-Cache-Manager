@@ -212,10 +212,13 @@ namespace ocmgtk
 				MessageDialog dlg = new MessageDialog(this, DialogFlags.Modal, MessageType.Warning, ButtonsType.YesNo,
 				                                      Catalog.GetString("Are you sure you want to remove the log for '{0}'?"),
 				                                      log.CacheCode);
-				m_Logs.Remove(log);
-				PopulateLogs(m_Logs);
-				UpdateFNFile();
-				logEntry.Buffer.Text = String.Empty;
+				if ((int) ResponseType.Yes == dlg.Run())
+				{
+					m_Logs.Remove(log);
+					PopulateLogs(m_Logs);
+					UpdateFNFile();
+					logEntry.Buffer.Text = String.Empty;
+				}
 				dlg.Hide();
 				dlg.Dispose();
 			}

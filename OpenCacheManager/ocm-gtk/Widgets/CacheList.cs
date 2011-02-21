@@ -216,7 +216,7 @@ namespace ocmgtk
 			m_loadCount = 0;
 			m_intervalCount = 0;
 			treeview1.Model = null;
-			if (store.Filter != null && store.Filter.GetCount() > 1)
+			if ((store.Filter != null && store.Filter.GetCount() > 1) || (store.ComboFilter !=null))
 				m_pulseMode = true;
 			else
 				m_pulseMode = false;

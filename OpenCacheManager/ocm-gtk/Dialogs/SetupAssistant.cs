@@ -63,17 +63,21 @@ namespace ocmgtk
 			this.Hide ();
 			this.Dispose ();
 			
-			if (!File.Exists(page2.DBFile))
-				Engine.getInstance().Store.CreateDB(page2.DBFile);	
+			if (!Directory.Exists(page2.DataDirectory))
+				Directory.CreateDirectory(page2.DataDirectory);
 			
-			GConf.Client client = new GConf.Client();
-			client.Set("/apps/ocm/currentdb", page2.DBFile);
-			client.Set("/apps/ocm/homelat", page3.HomeLat);
-			client.Set("/apps/ocm/homelon", page3.HomeLon);
-			client.Set("/apps/ocm/memberid", page3.MemberID);
-			client.Set("/apps/ocm/wizardone", "true");
-			client.Set("/apps/ocm/imperial", page2.ImperialUnits);
-			client.Set("/apps/ocm/defmap", page2.DefaultMap);
+			if (!File.Exists(page2.DBFile))
+				Engine.getInstance().Store.CreateDB(page2.DBFile);
+			
+			Config config = new Config();
+			config.DataDirectory = page2.DataDirectory;
+			config.DBFile = page2.DBFile;
+			config.HomeLat = page3.HomeLat;
+			config.HomeLon = page3.HomeLon;
+			config.OwnerID = page3.MemberID;
+			config.ImperialUnits = page2.ImperialUnits;
+			config.MapType = page2.DefaultMap;
+			config.SetWizardDone();
 						
 			MainWindow win = new MainWindow ();
 			win.Show();

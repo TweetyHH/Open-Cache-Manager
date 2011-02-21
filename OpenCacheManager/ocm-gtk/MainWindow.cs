@@ -151,7 +151,7 @@ public partial class MainWindow : Gtk.Window
 		
 		//dialog.Comments = (asm.GetCustomAttributes (typeof(AssemblyDescriptionAttribute), false)[0] as AssemblyDescriptionAttribute).Description;
 		
-		dialog.Copyright = "Copyright Kyle Campbell (c) 2010";
+		dialog.Copyright = "Copyright Kyle Campbell (c) 2010-2011";
 		
 		System.IO.StreamReader reader = new System.IO.StreamReader(new System.IO.FileStream("licence/Licence.txt",System.IO.FileMode.Open,System.IO.FileAccess.Read));
 		
@@ -159,7 +159,7 @@ public partial class MainWindow : Gtk.Window
 		
 		reader.Close();
 		
-		dialog.Authors = new String[] { "Kyle Campbell - Programming", "Madelayne DeGrâce - Icons",
+		dialog.Authors = new String[] { "Kyle Campbell,Florian Plähn - Programming", "Madelayne DeGrâce - Icons",
 			"Harrie Klomp - Dutch Translation" , "Thor Dekov Buur - Danish Translation",
 			"Michael Massoth/Florian Plähn/Maik Bischoff - German Translation",
 			"Josef Kulhánek - Czech Translation","Vicen - Spanish Translation"};		
@@ -870,9 +870,21 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.ClearCombo();
 	}
 	
+	public void SetLastGPS(string name)
+	{
+		TransferCachesToLastUsedAction.Label = String.Format(Catalog.GetString("Transfer _Caches to Last Used ({0})..."), name);
+		RecieveFieldNotesFromLastUsedAction.Label = String.Format(Catalog.GetString("Receive F_ield Notes from Last Used ({0})..."),name);
+	}
+	
 	public void ClearCombo ()
 	{
 		ClearComboFilterAction.Sensitive = false;
 		AdvancedFiltersAction.Sensitive = true;
 	}
+	protected virtual void OnRecieveLastused (object sender, System.EventArgs e)
+	{
+		m_monitor.ReceiveGPSFieldNotes();
+	}
+	
+	
 }

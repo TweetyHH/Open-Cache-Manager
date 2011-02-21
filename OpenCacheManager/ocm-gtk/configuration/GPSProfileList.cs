@@ -187,6 +187,7 @@ namespace ocmgtk
 		{
 			UIMonitor mon = UIMonitor.getInstance();
 			mon.Configuration.GPSProf =  ((sender) as Gtk.Action).Name;
+			mon.Main.SetLastGPS(((sender) as Gtk.Action).Name);
 			mon.ReceiveGPSFieldNotes();
 		}
 
@@ -194,6 +195,7 @@ namespace ocmgtk
 		{
 			UIMonitor mon = UIMonitor.getInstance();
 			mon.Configuration.GPSProf =  ((sender) as Gtk.Action).Name;
+			mon.Main.SetLastGPS(((sender) as Gtk.Action).Name);
 			mon.SendToGPS();
 		}
 		

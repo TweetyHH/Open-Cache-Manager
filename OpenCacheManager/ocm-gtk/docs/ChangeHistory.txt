@@ -28,6 +28,8 @@ to the "Default" profile. You can rename this profile from the GPS menu.
 - Add new preference for DNF icon behaviour
 - Add new preference for automatically select on map when clicked
 - Can now assign caches to a bookmark list on import
+- Update Setup assistant to set default directory on initial OCM setup
+- Export full cache details to QLandkarte GT to take advantage of new Geocaching features in QLGT 1.1
 
 
 Version 0.22.9

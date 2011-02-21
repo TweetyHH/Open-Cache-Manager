@@ -57,6 +57,14 @@ namespace ocmgtk
 			}		
 		}
 		
+		public String DataDirectory
+		{
+			get
+			{
+				return dataEntry.Text;
+			}
+		}
+		
 		
 		protected virtual void OnOpenClicked (object sender, System.EventArgs e)
 		{
@@ -80,7 +88,27 @@ namespace ocmgtk
 		public SetupAssistantPage2 ()
 		{
 			this.Build ();
-			dbEntry.Text = System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments) + "/default.ocm";
+			dbEntry.Text = System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments) + "/ocm/default.ocm";
+			dataEntry.Text = System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments) + "/ocm";
 		}
+		protected virtual void OnDirectoryClick (object sender, System.EventArgs e)
+		{
+			FileChooserDialog dlg = new FileChooserDialog (Catalog.GetString ("Choose Data Directory"), null, FileChooserAction.SelectFolder, Catalog.GetString ("Cancel"), ResponseType.Cancel, Catalog.GetString ("Select"), ResponseType.Accept);
+			dlg.SetCurrentFolder (dataEntry.Text);
+						
+			if (dlg.Run () == (int)ResponseType.Accept) {
+				dataEntry.Text = dlg.Filename;
+			}
+			dlg.Destroy ();
+		}
+		
+		protected virtual void OnDefaultDirChanged (object sender, System.EventArgs e)
+		{
+			dbEntry.Text = dataEntry.Text + "/default.ocm";
+		}
+		
+		
+		
+		
 	}
 }

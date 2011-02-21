@@ -58,8 +58,20 @@ namespace ocmgtk
 		bool ImportPreventStatusOverwrite{get;set;}
 		bool ImportPurgeOldLogs{get;set;}
 		bool ImportDeleteFiles{get;set;}
+		int ExportLimitCaches{get;set;}
+		bool ExportChildren{get;set;}
+		bool ExportPaperlessOptions{get;set;}
+		bool ExportExtraFields{get;set;}
+		bool ExportCustomSymbols{get;set;}
+		int ExportLimitLogs{get;set;}
+		bool ExportIncludeAttributes{get;set;}
+		bool ExportAsPlainText{get;set;}
+		ocmengine.WaypointDescMode ExportWaypointDescMode{get;set;}
+		ocmengine.WaypointNameMode ExportWaypointNameMode{get;set;}
+		
 		DateTime LastGPSFieldNoteScan{get;set;}
 		string ImportBookmarkList{get;set;}
+		void SetWizardDone();
 		
 		void CheckForDefaultGPS(GPSProfileList list, MainWindow win);
 	}

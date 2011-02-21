@@ -56,6 +56,7 @@ namespace ocmgtk
 		public bool IsPaperless
 		{
 			get { return exportPaperlessDetails.Active;}
+			set { exportPaperlessDetails.Active = value;}
 		}
 		
 		public int CacheLimit
@@ -66,40 +67,71 @@ namespace ocmgtk
 				else
 					return -1;
 			}
+			set
+			{
+				if (value != -1)
+				{
+					limitCheck.Active = true;
+					limitEntry.Text = value.ToString();
+				}
+			}
 		}
 		
 		public bool UseMappings
 		{
 			get { return customSymbolsCheck.Active;}
+			set { customSymbolsCheck.Active = value;}
 		}
 		
 		
 		public bool IncludeChildren
 		{
 			get { return includeChildrenCheck.Active; }
+			set { includeChildrenCheck.Active = value;}
 		}
 		
-		public ocmengine.WaypointNameMode GetNameMode()
+		public ocmengine.WaypointNameMode NameMode
 		{
-			switch (nameMode.Active)
+			get{
+				switch (nameMode.Active)
+				{
+					case 0:
+						return ocmengine.WaypointNameMode.CODE;
+					default:
+						return ocmengine.WaypointNameMode.NAME;
+				}
+			}
+			set
 			{
-				case 0:
-					return ocmengine.WaypointNameMode.CODE;
-				default:
-					return ocmengine.WaypointNameMode.NAME;
+				if (value == ocmengine.WaypointNameMode.CODE)
+					nameMode.Active = 0;
+				else
+					nameMode.Active = 1;
 			}
 		}
 		
-		public ocmengine.WaypointDescMode GetDescMode()
+		public ocmengine.WaypointDescMode DescMode
 		{
-			switch (descMode.Active)
+			get
 			{
-				case 0:
-					return ocmengine.WaypointDescMode.DESC;
-				case 1:
-					return ocmengine.WaypointDescMode.CODESIZEANDHINT;
-				default:
-					return ocmengine.WaypointDescMode.CODESIZETYPE;
+				switch (descMode.Active)
+				{
+					case 0:
+						return ocmengine.WaypointDescMode.DESC;
+					case 1:
+						return ocmengine.WaypointDescMode.CODESIZEANDHINT;
+					default:
+						return ocmengine.WaypointDescMode.CODESIZETYPE;
+				}
+			}
+			set
+			{
+				if (value == ocmengine.WaypointDescMode.DESC)
+					descMode.Active = 0;
+				else if (value == ocmengine.WaypointDescMode.CODESIZETYPE)
+					descMode.Active = 1;
+				else
+					descMode.Active = 2;
 			}
 		}
 		
@@ -111,16 +143,26 @@ namespace ocmgtk
 				else
 					return -1;
 			}
+			set
+			{
+				if (value != -1)
+				{
+					logLimitCheck.Active = true;
+					logLimitEntry.Text = value.ToString();
+				}
+			}
 		}
 		
-		public bool MustHaveIncludeAttributes
+		public bool IncludeAttributes
 		{
 			get {return attrCheck.Active;}
+			set {attrCheck.Active = value;}
 		}
 		
 		public bool UsePlainText
 		{
 			get {return usePlainTextCheck.Active;}
+			set { usePlainTextCheck.Active = value;}
 		}
 		
 		protected virtual void OnPaperlessToggle (object sender, System.EventArgs e)

@@ -199,7 +199,7 @@ namespace ocmgtk
 			if (list.Contains(FilterList.KEY_INCATTRS))
 			{
 				atLeastOne = true;
-				attributePage.MustHaveIncludeAttributes = (List<String>) list.GetCriteria(FilterList.KEY_INCATTRS);
+				attributePage.IncludeAttributes = (List<String>) list.GetCriteria(FilterList.KEY_INCATTRS);
 			}
 			if (list.Contains(FilterList.KEY_EXCATTRS))
 			{
@@ -477,8 +477,8 @@ namespace ocmgtk
 		
 		private void GetMustHaveAttributes (FilterList filter)
 		{
-							if (attributePage.MustHaveIncludeAttributes.Count > 0)
-					filter.AddFilterCriteria(FilterList.KEY_INCATTRS, attributePage.MustHaveIncludeAttributes);
+							if (attributePage.IncludeAttributes.Count > 0)
+					filter.AddFilterCriteria(FilterList.KEY_INCATTRS, attributePage.IncludeAttributes);
 				else
 					filter.RemoveCriteria(FilterList.KEY_INCATTRS);
 				if (attributePage.MustHaveNegAttributes.Count > 0)

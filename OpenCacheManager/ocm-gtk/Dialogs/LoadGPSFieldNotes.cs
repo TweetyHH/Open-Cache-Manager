@@ -26,6 +26,7 @@ namespace ocmgtk
 		public LoadGPSFieldNotes ()
 		{
 			this.Build ();
+			ignoreDate.IncludeTime = true;
 		}
 		
 		public DateTime LastScanTD

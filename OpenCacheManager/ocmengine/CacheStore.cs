@@ -646,8 +646,8 @@ namespace ocmengine
 			IDataReader reader = command.ExecuteReader();
 			while (reader.Read())
 			{
-				Geocache cache = BuildCache(reader);
-				if (cache != null)
+				Geocache cache = BuildCache(reader, pts);
+				if (cache != null && !pts.Contains(cache))
 					pts.Add(cache);
 			}
 			CloseConnection (ref reader, ref command, ref conn);			
@@ -682,7 +682,7 @@ namespace ocmengine
 			return pt;
 		}
 		
-		private Geocache BuildCache(IDataReader reader)
+		private Geocache BuildCache(IDataReader reader, List<Geocache> caches)
 		{
 			
 			Geocache cache = new Geocache();
@@ -766,7 +766,7 @@ namespace ocmengine
 			
 			if (this.ReadCache != null)
 			{
-				if (!DoNonDBFilter(cache))
+				if (caches.Contains(cache) || !DoNonDBFilter(cache))
 				{
 					this.ReadCache(this, new ReadCacheArgs(null));
 					return null;

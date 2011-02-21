@@ -29,7 +29,7 @@ namespace ocmgtk
 			this.Build ();
 		}
 		
-		public List<string> MustHaveIncludeAttributes
+		public List<string> IncludeAttributes
 		{
 			get
 			{

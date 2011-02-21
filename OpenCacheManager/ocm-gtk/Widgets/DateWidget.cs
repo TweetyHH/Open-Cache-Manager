@@ -31,6 +31,13 @@ namespace ocmgtk
 			this.dateField.Text = win.Date;
 		}
 		
+		bool m_IncludeTime = false;
+		public bool IncludeTime
+		{
+			get{ return m_IncludeTime;}
+			set { m_IncludeTime = value;}
+		}
+		
 		
 		
 		public DateTime Date
@@ -50,7 +57,10 @@ namespace ocmgtk
 			{
 				if (value == DateTime.MinValue)
 					value = DateTime.Today;
-				dateField.Text = value.ToShortDateString();
+				if (m_IncludeTime)
+					dateField.Text = value.ToShortDateString() + " " + value.ToShortTimeString();
+				else
+					dateField.Text = value.ToShortDateString();
 			}
 		}
 		

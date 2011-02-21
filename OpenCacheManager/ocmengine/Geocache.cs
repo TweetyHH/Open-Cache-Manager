@@ -517,5 +517,16 @@ namespace ocmengine
 				throw new Exception("UNHANDLED CACHE TYPE");
 			}
 		}
+		
+		public override bool Equals (object obj)
+		{
+			if (obj is Geocache)
+			{
+				Geocache target = obj as Geocache;
+				return target.Name == this.Name;
+			}
+			return false;
+		}
+
 	}
 }

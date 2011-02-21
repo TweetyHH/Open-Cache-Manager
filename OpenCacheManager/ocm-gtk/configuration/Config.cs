@@ -144,7 +144,7 @@ namespace ocmgtk
 		
 		public bool UseOfflineLogging
 		{
-			get { return (Boolean) this.Get("/apps/ocm/offlinelogging", true);}
+			get { return (Boolean) this.Get("/apps/ocm/offlinelogging", false);}
 			set { this.Set("/apps/ocm/offlinelogging", value);}
 		}
 		
@@ -193,6 +193,11 @@ namespace ocmgtk
 		{
 			get { return (Boolean) this.Get("/apps/ocm/showallchildren", false);}
 			set { this.Set("/apps/ocm/showallchildren",value);}
+		}
+		
+		public void SetWizardDone()
+		{
+			this.Set("/apps/ocm/wizardone", "true");
 		}
 		
 		public string GPSProf
@@ -296,6 +301,68 @@ namespace ocmgtk
 			}
 		}
 		
+		public int ExportLimitCaches
+		{
+			get { return (int) this.Get("/apps/ocm/exportlimitcaches", -1);}
+			set { this.Set("/apps/ocm/exportlimitcaches", value);}
+		}
+		
+		public bool ExportChildren{
+			get { return (bool) this.Get("/apps/ocm/exportchildren", true);}
+			set { this.Set("/apps/ocm/exportchildren", value);}
+		}
+			
+		public bool ExportPaperlessOptions
+		{
+			get { return (bool) this.Get("/apps/ocm/exportpaperless", true);}
+			set { this.Set("/apps/ocm/exportpaperless", value);}
+		}
+			
+		public bool ExportExtraFields
+		{
+			get { return (bool) this.Get("/apps/ocm/exportextrafields", false);}
+			set { this.Set("/apps/ocm/exportextrafields", value);}
+		}
+			
+		public bool ExportCustomSymbols
+		{
+			get { return (bool) this.Get("/apps/ocm/exportcustomsym", false);}
+			set { this.Set("/apps/ocm/exportcustomsym", value);}
+		}
+		
+		public int ExportLimitLogs
+		{
+			get { return (int) this.Get("/apps/ocm/exportlimitlogs", -1);}
+			set { this.Set("/apps/ocm/exportlimitlogs", value);}
+		}
+		
+		public bool ExportIncludeAttributes
+		{
+			get { return (bool) this.Get("/apps/ocm/exportattrs", false);}
+			set { this.Set("/apps/ocm/exportattrs", value);}
+		}
+		
+		public bool ExportAsPlainText
+		{
+			get { return (bool) this.Get("/apps/ocm/exportastext", false);}
+			set { this.Set("/apps/ocm/exportastext", value);}
+		}
+		
+		public ocmengine.WaypointDescMode ExportWaypointDescMode
+		{
+			get { string val = this.Get("/apps/ocm/exportdescmode", ocmengine.WaypointDescMode.DESC.ToString()) as string;
+				return (ocmengine.WaypointDescMode)Enum.Parse(typeof(ocmengine.WaypointDescMode), val);
+			}
+			set { this.Set("/apps/ocm/exportdescmode", value.ToString());}
+		}
+		
+		public ocmengine.WaypointNameMode ExportWaypointNameMode
+		{
+			get { string val = this.Get("/apps/ocm/exportnamemode", ocmengine.WaypointNameMode.CODE.ToString()) as string;
+				return (ocmengine.WaypointNameMode)Enum.Parse(typeof(ocmengine.WaypointNameMode), val);
+			}
+			set { this.Set("/apps/ocm/exportnamemode", value.ToString());}
+		}
 		
 		public void CheckForDefaultGPS(GPSProfileList list, MainWindow win)
 		{

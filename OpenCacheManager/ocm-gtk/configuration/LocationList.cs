@@ -27,6 +27,7 @@ namespace ocmgtk
 	[Serializable]
 	public class LocationList
 	{
+		ToggleAction gpsdAction = null;
 
 		public LocationList ()
 		{
@@ -128,7 +129,7 @@ namespace ocmgtk
 				
 			}
 			etMenu.Append(new MenuItem());
-			ToggleAction gpsdAction = new ToggleAction("UseGPSD", Catalog.GetString("GPSD Position"),null, null);
+			gpsdAction = new ToggleAction("UseGPSD", Catalog.GetString("GPSD Position"),null, null);
 			gpsdAction.Active = UIMonitor.getInstance().Configuration.UseGPSD;
 			gpsdAction.Toggled += HandleGpsdActionToggled;
 			etMenu.Append(gpsdAction.CreateMenuItem());	
@@ -153,12 +154,14 @@ namespace ocmgtk
 
 		void HandleHome_actionActivated (object sender, EventArgs e)
 		{
+			gpsdAction.Active = false;
 			UIMonitor.getInstance().ResetCenterToHome();
 		}
 		
 		void HandleActionActivated (object sender, EventArgs e)
 		{
 			Location loc = m_locations[((sender) as Gtk.Action).Name];
+			gpsdAction.Active = false;
 			UIMonitor.getInstance().SetLocation(loc);
 		}
 	}

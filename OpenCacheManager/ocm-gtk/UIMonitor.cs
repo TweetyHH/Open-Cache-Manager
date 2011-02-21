@@ -24,6 +24,8 @@ using System.Globalization;
 using System.Timers;
 using org.freedesktop.DBus;
 using NDesk.DBus;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ocmgtk
 {
@@ -307,7 +309,8 @@ namespace ocmgtk
 				m_mainWin.SetShowAllChildren();
 			if (m_useImperial)
 				m_cachelist.SetImperial();
-			AutoCheckForUpdates();				
+			AutoCheckForUpdates();	
+			m_mainWin.SetLastGPS(m_profiles.GetActiveProfile().Name);
 		}
 
 		void HandleM_mainWinSizeAllocated (object o, SizeAllocatedArgs args)
@@ -774,6 +777,32 @@ namespace ocmgtk
 				return false;
 			}
 		}
+		
+		private Dictionary<string, string> GetExportMappings()
+		{
+			String path = System.Environment.GetFolderPath (System.Environment.SpecialFolder.ApplicationData);
+			if (!File.Exists(path + "/ocm/exportdef.oqf"))
+			{
+				return null;
+			}
+			FileStream fs = new FileStream(path + "/ocm/exportdef.oqf", FileMode.Open, FileAccess.Read);	
+			BinaryFormatter ser = new BinaryFormatter();
+			System.Object mappings = ser.Deserialize(fs);
+			fs.Close();
+			return (Dictionary<string,string>) mappings;
+		}
+		
+		private void SaveWaypointMappings(Dictionary<string,string> mapping)
+		{
+			String path = System.Environment.GetFolderPath (System.Environment.SpecialFolder.ApplicationData);
+			if (!Directory.Exists("ocm"))
+				Directory.CreateDirectory(path + "/ocm");
+			path = path + "/ocm";
+			BinaryFormatter ser = new BinaryFormatter();
+			FileStream fs = new FileStream(path + "/exportdef.oqf", FileMode.Create, FileAccess.ReadWrite);
+			ser.Serialize(fs, mapping);
+			fs.Close();
+		}
 
 		/// <summary>
 		/// Exports a GPX file from the database
@@ -783,29 +812,52 @@ namespace ocmgtk
 			GPXWriter writer = new GPXWriter();
 			ExportProgressDialog edlg = new ExportProgressDialog (writer);
 			edlg.AutoClose = m_conf.AutoCloseWindows;
+			
+			
+
+			
 			try {
 				ExportGPXDialog dlg = new ExportGPXDialog ();
 				dlg.SetCurrentFolder (System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments));
 				dlg.CurrentName = "export.gpx";
-				dlg.WaypointMappings = null;
+				dlg.WaypointMappings = GetExportMappings();
 				FileFilter filter = new FileFilter ();
 				filter.Name = "GPX Files";
 				filter.AddPattern ("*.gpx");
 				dlg.AddFilter (filter);
-				
+				dlg.UsePlainText = m_conf.ExportAsPlainText;
+				dlg.UseMappings = m_conf.ExportCustomSymbols;
+				dlg.IsPaperless = m_conf.ExportPaperlessOptions;
+				dlg.IncludeChildren = m_conf.ExportChildren;
+				dlg.NameMode = m_conf.ExportWaypointNameMode;
+				dlg.DescMode = m_conf.ExportWaypointDescMode;
+				dlg.IncludeAttributes = m_conf.ExportIncludeAttributes;
+				dlg.LogLimit = m_conf.ExportLimitLogs;
+				dlg.CacheLimit = m_conf.ExportLimitCaches;
 				if (dlg.Run () == (int)ResponseType.Ok) {
 					dlg.Hide ();
 					writer.Limit = dlg.CacheLimit;
 					writer.IncludeGroundSpeakExtensions = dlg.IsPaperless;
 					writer.IncludeChildWaypoints = dlg.IncludeChildren;
 					writer.UseOCMPtTypes = dlg.UseMappings;
-					writer.NameMode = dlg.GetNameMode();
-					writer.DescriptionMode = dlg.GetDescMode();
+					writer.NameMode = dlg.NameMode;
+					writer.DescriptionMode = dlg.DescMode;
 					if (dlg.UsePlainText)
 						writer.HTMLOutput = HTMLMode.PLAINTEXT;
-					writer.WriteAttributes = dlg.MustHaveIncludeAttributes;
+					writer.WriteAttributes = dlg.IncludeAttributes;
 					writer.LogLimit = dlg.LogLimit;
 					edlg.Icon = m_mainWin.Icon;
+					
+					m_conf.ExportAsPlainText = dlg.UsePlainText;
+					m_conf.ExportChildren = dlg.IncludeChildren;
+					m_conf.ExportCustomSymbols = dlg.UseMappings;
+					m_conf.ExportIncludeAttributes = dlg.IncludeAttributes;
+					m_conf.ExportLimitCaches = dlg.CacheLimit;
+					m_conf.ExportLimitLogs = dlg.LogLimit;
+					m_conf.ExportPaperlessOptions = dlg.IsPaperless;
+					m_conf.ExportWaypointDescMode = dlg.DescMode;
+					m_conf.ExportWaypointNameMode = dlg.NameMode;
+					SaveWaypointMappings(dlg.WaypointMappings);
 					edlg.Start (dlg.Filename, GetVisibleCacheList (), dlg.WaypointMappings);
 					RecentManager manager = RecentManager.Default;
 					manager.AddItem("file://" + dlg.Filename);
@@ -987,6 +1039,7 @@ namespace ocmgtk
 				ProcessOfflineLog (m_selectedCache, log, dlg.FTF);
 				dlg.Hide();
 			}
+			SetSelectedCache(m_selectedCache);
 			dlg.Hide();
 			dlg.Dispose();		
 		}
@@ -1746,7 +1799,6 @@ namespace ocmgtk
 			
 			dlg.AutoClose = true;
 			dlg.Title = Catalog.GetString("Preparing to send to QLandKarte GT");
-			dlg.WaypointsOnly = true;
 			dlg.CompleteCommand = "qlandkartegt " + tempFile;
 			dlg.Icon = m_mainWin.Icon;
 			dlg.Start(tempFile, GetVisibleCacheList(), GPSProfileList.GetDefaultMappings());
@@ -1762,7 +1814,6 @@ namespace ocmgtk
 			ExportProgressDialog dlg = new ExportProgressDialog(writer);
 			dlg.AutoClose = true;
 			dlg.Title = Catalog.GetString("Preparing to send to QLandKarte GT");
-			dlg.WaypointsOnly = true;
 			dlg.CompleteCommand = "qlandkartegt " + tempFile;
 			dlg.Icon = m_mainWin.Icon;
 			dlg.Start(tempFile, cache, GPSProfileList.GetDefaultMappings());
@@ -2227,7 +2278,7 @@ namespace ocmgtk
 					DateTime latestScan = dlg.LastScan;
 					foreach(CacheLog log in logs)
 					{
-						if (log.LogDate < dlg.LastScan)
+						if (log.LogDate <= dlg.LastScan)
 							continue;
 						Geocache cache = Engine.getInstance().Store.GetCache(log.CacheCode);
 						ProcessOfflineLog(cache, log, false);

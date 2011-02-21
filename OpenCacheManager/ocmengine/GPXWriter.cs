@@ -43,6 +43,7 @@ namespace ocmengine
 	{
 		public const string NS_GPX = "http://www.topografix.com/GPX/1/0";
 		public const string NS_CACHE = "http://www.groundspeak.com/cache/1/0";
+		public const string NS_OCM = "http://www.groundspeak.com/cache/1/0";
 		public const string XSD_DT = "yyyy-MM-ddTHH:mm:ss.fffzzz";
 		
 		public event WriteEventHandler WriteWaypoint;

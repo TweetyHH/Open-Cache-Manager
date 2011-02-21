@@ -92,6 +92,8 @@ namespace ocmgtk
 			RenderPlacedAfter (list, builder);
 			RenderInfoBefore (list, builder);
 			RenderInfoAfter (list, builder);
+			RenderInfoWithin (list, builder);
+			RenderInfoNotWithin (list, builder);
 			RenderFoundAfter (list, builder);
 			RenderFoundBefore (list, builder);
 			RenderFoundOn (list, builder);
@@ -104,6 +106,7 @@ namespace ocmgtk
 			RenderNoCorrected (list, builder);
 			RenderMustHaveAttributes (list, builder);
 			RenderMustNotHaveAttributes (list, builder);
+			RenderUserData (list, builder);
 			RenderFTF (list, builder);
 			RenderDNF (list, builder);
 			RenderStatus (list, builder);
@@ -134,6 +137,56 @@ namespace ocmgtk
 			}
 			System.Console.WriteLine(builder.ToString());
 			condition_cell.Markup = builder.ToString();			
+		}
+		
+		private static void RenderUserData (FilterList list, StringBuilder builder)
+		{
+				if (list.Contains(FilterList.KEY_U1))
+			{
+				builder.Append(Catalog.GetString("<b>User 1 contains: </b>"));
+				builder.Append(list.GetCriteria(FilterList.KEY_U1)as string);
+				builder.Append("\n");
+			}
+			if (list.Contains(FilterList.KEY_U2))
+			{
+				builder.Append(Catalog.GetString("<b>User 2 contains: </b>"));
+				builder.Append(list.GetCriteria(FilterList.KEY_U2)as string);
+				builder.Append("\n");
+			}
+			if (list.Contains(FilterList.KEY_U3))
+			{
+				builder.Append(Catalog.GetString("<b>User 3 contains: </b>"));
+				builder.Append(list.GetCriteria(FilterList.KEY_U3)as string);
+				builder.Append("\n");
+			}
+			if (list.Contains(FilterList.KEY_U4))
+			{
+				builder.Append(Catalog.GetString("<b>User 4 contains: </b>"));
+				builder.Append(list.GetCriteria(FilterList.KEY_U4)as string);
+				builder.Append("\n");
+			}
+		}
+		
+		private static void RenderInfoNotWithin (FilterList list, StringBuilder builder)
+		{
+			if (list.Contains(FilterList.KEY_INFO_NDAYS))
+			{
+				builder.Append(Catalog.GetString("<b>Not updated within: </b>"));
+				builder.Append(((int)list.GetCriteria(FilterList.KEY_INFO_NDAYS)).ToString());
+				builder.Append(Catalog.GetString(" days"));
+				builder.Append("\n");
+			}
+		}
+		
+		private static void RenderInfoWithin (FilterList list, StringBuilder builder)
+		{
+			if (list.Contains(FilterList.KEY_INFO_DAYS))
+			{
+				builder.Append(Catalog.GetString("<b>Updated within: </b>"));
+				builder.Append(((int)list.GetCriteria(FilterList.KEY_INFO_DAYS)).ToString());
+				builder.Append(Catalog.GetString(" days"));
+				builder.Append("\n");
+			}
 		}
 		
 		private static void RenderStatus (FilterList list, StringBuilder builder)

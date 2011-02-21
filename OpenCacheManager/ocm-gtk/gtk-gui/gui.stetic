@@ -891,6 +891,13 @@
         <property name="ShortLabel" translatable="yes">C_lear Combo Filter</property>
         <signal name="Activated" handler="OnClearComboFilter" />
       </action>
+      <action id="RecieveFieldNotesFromLastUsedAction">
+        <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Control&gt;&lt;Alt&gt;&lt;Mod2&gt;r</property>
+        <property name="Label" translatable="yes">Recieve Field Notes from Last Used...</property>
+        <property name="ShortLabel" translatable="yes">Recieve Field Notes from Last Used...</property>
+        <signal name="Activated" handler="OnRecieveLastused" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">OCM</property>
@@ -1019,8 +1026,10 @@
                 <node type="Menuitem" action="GPSDHomePageAction" />
               </node>
               <node type="Menu" action="GPSAction">
-                <node type="Menu" action="TransferCachesAction" />
                 <node type="Menuitem" action="TransferCachesToLastUsedAction" />
+                <node type="Menuitem" action="RecieveFieldNotesFromLastUsedAction" />
+                <node type="Separator" />
+                <node type="Menu" action="TransferCachesAction" />
                 <node type="Menu" action="ReceiveFieldNotesAction" />
                 <node type="Separator" />
                 <node type="Menuitem" action="AddGPSProfileAction" />
@@ -4561,7 +4570,7 @@ For Geocaching.com and Terracaching users, you will need a premium account to us
       <placeholder />
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="ocmgtk.SetupAssistantPage2" design-size="572 216">
+  <widget class="Gtk.Bin" id="ocmgtk.SetupAssistantPage2" design-size="572 250">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -4569,6 +4578,64 @@ For Geocaching.com and Terracaching users, you will need a premium account to us
         <property name="MemberName" />
         <property name="Spacing">6</property>
         <property name="BorderWidth">6</property>
+        <child>
+          <widget class="Gtk.Label" id="label4">
+            <property name="MemberName" />
+            <property name="Xalign">0</property>
+            <property name="LabelProp" translatable="yes">You should choose an default directory for OCM to store data:</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HBox" id="hbox3">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Entry" id="dataEntry">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="IsEditable">True</property>
+                <property name="InvisibleChar">•</property>
+                <signal name="Changed" handler="OnDefaultDirChanged" />
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="button10">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">Custom</property>
+                <signal name="Clicked" handler="OnDirectoryClick" />
+                <child>
+                  <widget class="Gtk.Image" id="image3">
+                    <property name="MemberName" />
+                    <property name="Pixbuf">stock:gtk-directory Button</property>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
         <child>
           <widget class="Gtk.Label" id="label1">
             <property name="MemberName" />
@@ -4578,7 +4645,7 @@ For Geocaching.com and Terracaching users, you will need a premium account to us
             <property name="WidthChars">80</property>
           </widget>
           <packing>
-            <property name="Position">0</property>
+            <property name="Position">2</property>
             <property name="AutoSize">False</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -4604,11 +4671,14 @@ For Geocaching.com and Terracaching users, you will need a premium account to us
               <widget class="Gtk.Button" id="openButton">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="UseStock">True</property>
-                <property name="Type">StockItem</property>
-                <property name="StockId">gtk-open</property>
+                <property name="Type">Custom</property>
                 <signal name="Clicked" handler="OnOpenClicked" />
-                <property name="label">gtk-open</property>
+                <child>
+                  <widget class="Gtk.Image" id="image4">
+                    <property name="MemberName" />
+                    <property name="Pixbuf">stock:gtk-open Menu</property>
+                  </widget>
+                </child>
               </widget>
               <packing>
                 <property name="Position">1</property>
@@ -4619,7 +4689,7 @@ For Geocaching.com and Terracaching users, you will need a premium account to us
             </child>
           </widget>
           <packing>
-            <property name="Position">1</property>
+            <property name="Position">3</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -4720,7 +4790,7 @@ U.S./Imperial</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">2</property>
+            <property name="Position">4</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -4743,7 +4813,10 @@ U.S./Imperial</property>
             <property name="Xalign">0</property>
             <property name="LabelProp" translatable="yes">Finally, you need to enter your home coordinates and user ID so that OCM can correctly calculate the distance to caches from your home and correctly identify which caches are yours. 
 
-If you don't know these settings and are a Geocaching.com user, click on "View Account Online..." to see your information from Geocaching.com</property>
+If you don't know these settings and are a Geocaching.com user, click on &lt;b&gt;"View Account Online..."&lt;/b&gt; to see your information from Geocaching.com
+
+You can also set your home location later using the map in OCM. Scroll the map to your home location, right-click on the map and select &lt;b&gt;Set as Home&lt;/b&gt;.</property>
+            <property name="UseMarkup">True</property>
             <property name="Wrap">True</property>
             <property name="WidthChars">80</property>
           </widget>
@@ -8116,6 +8189,7 @@ On or after</property>
                         <property name="MemberName" />
                         <property name="Sensitive">False</property>
                         <property name="Events">ButtonPressMask</property>
+                        <property name="IncludeTime">False</property>
                         <property name="Date">0</property>
                       </widget>
                       <packing>
@@ -8636,7 +8710,7 @@ Equal to</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="ocmgtk.DateWidget" design-size="266 28">
+  <widget class="Gtk.Bin" id="ocmgtk.DateWidget" design-size="360 28">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -13270,6 +13344,7 @@ Cache Name</property>
               <widget class="ocmgtk.DateWidget" id="foundDateWidget">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
+                <property name="IncludeTime">False</property>
                 <property name="Date">0</property>
               </widget>
               <packing>
@@ -16735,7 +16810,8 @@ Cache Name</property>
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">2</property>
+            <property name="CurrentPage">1</property>
+            <property name="TabPos">Left</property>
             <child>
               <widget class="Gtk.Alignment" id="alignment1">
                 <property name="MemberName" />
@@ -16854,6 +16930,22 @@ Cache Name</property>
                               </packing>
                             </child>
                             <child>
+                              <widget class="Gtk.CheckButton" id="checkbutton1">
+                                <property name="MemberName" />
+                                <property name="CanFocus">True</property>
+                                <property name="Label" translatable="yes">Export Extra Fields in GPX</property>
+                                <property name="DrawIndicator">True</property>
+                                <property name="HasLabel">True</property>
+                                <property name="UseUnderline">True</property>
+                              </widget>
+                              <packing>
+                                <property name="Position">3</property>
+                                <property name="AutoSize">True</property>
+                                <property name="Expand">False</property>
+                                <property name="Fill">False</property>
+                              </packing>
+                            </child>
+                            <child>
                               <widget class="Gtk.CheckButton" id="customSymbolsCheck">
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
@@ -16863,7 +16955,7 @@ Cache Name</property>
                                 <property name="UseUnderline">True</property>
                               </widget>
                               <packing>
-                                <property name="Position">3</property>
+                                <property name="Position">4</property>
                                 <property name="AutoSize">True</property>
                                 <property name="Expand">False</property>
                                 <property name="Fill">False</property>
@@ -17655,6 +17747,7 @@ On or after</property>
                                   <widget class="ocmgtk.DateWidget" id="lastUpdateDate">
                                     <property name="MemberName" />
                                     <property name="Events">ButtonPressMask</property>
+                                    <property name="IncludeTime">False</property>
                                     <property name="Date">0</property>
                                   </widget>
                                   <packing>
@@ -17881,6 +17974,7 @@ on or before:</property>
                             <property name="MemberName" />
                             <property name="Sensitive">False</property>
                             <property name="Events">ButtonPressMask</property>
+                            <property name="IncludeTime">False</property>
                             <property name="Date">0</property>
                           </widget>
                           <packing>
@@ -17927,7 +18021,7 @@ on or before:</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.LoggingDialog" design-size="668 532">
+  <widget class="Gtk.Dialog" id="ocmgtk.LoggingDialog" design-size="750 485">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Log Cache...</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -17957,17 +18051,16 @@ on or before:</property>
             <child>
               <widget class="Gtk.Label" id="label1">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">After completing your log online, click "Close" to return to OCM</property>
+                <property name="Xalign">0</property>
+                <property name="LabelProp" translatable="yes">After completing your log online, click "Close" to return to OCM. To use offline logging, goto &lt;b&gt;Cache → Log to Field Notes File &lt;/b&gt;</property>
+                <property name="UseMarkup">True</property>
+                <property name="Wrap">True</property>
+                <property name="WidthChars">100</property>
               </widget>
               <packing>
                 <property name="Position">1</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
+                <property name="AutoSize">False</property>
               </packing>
-            </child>
-            <child>
-              <placeholder />
             </child>
           </widget>
           <packing>
@@ -18138,6 +18231,7 @@ on or before:</property>
               <widget class="ocmgtk.DateWidget" id="logDateWidget">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
+                <property name="IncludeTime">False</property>
                 <property name="Date">0</property>
               </widget>
               <packing>
@@ -18351,6 +18445,7 @@ Needs Maintenance</property>
                   <widget class="Gtk.TreeView" id="logView">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
+                    <property name="EnableSearch">False</property>
                   </widget>
                 </child>
               </widget>
@@ -18691,6 +18786,7 @@ If you wish to work with the comments entered in the field before logging your f
               <widget class="ocmgtk.DateWidget" id="ignoreDate">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
+                <property name="IncludeTime">False</property>
                 <property name="Date">0</property>
               </widget>
               <packing>
