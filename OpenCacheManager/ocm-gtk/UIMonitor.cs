@@ -276,7 +276,7 @@ namespace ocmgtk
 			m_locations = LocationList.LoadLocationList();
 			m_profiles = GPSProfileList.LoadProfileList();
 			m_mainWin.SetOfflineMode(m_conf.UseOfflineLogging);
-			LoadMap (m_conf.MapType);
+			LoadMap ();
 			if (m_conf.StartupFilter != String.Empty)
 			{
 				SetCurrentDB (m_conf.DBFile, false);
@@ -319,15 +319,14 @@ namespace ocmgtk
 			m_height = args.Allocation.Height;
 		}
 
-		private void LoadMap (string map)
+		private void LoadMap ()
 		{
 			//System.Console.WriteLine("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_home_lat + "&lon=" + m_home_lon);
-			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?map=" + map + "&lat=" + m_centerLat.ToString(CultureInfo.InvariantCulture) + "&lon=" + m_centerLon.ToString(CultureInfo.InvariantCulture));
+			m_map.LoadUrl ("file://" + System.Environment.CurrentDirectory + "/web/wpt_viewer.html?lat=" + m_centerLat.ToString(CultureInfo.InvariantCulture) + "&lon=" + m_centerLon.ToString(CultureInfo.InvariantCulture));
 			m_map.SetAutoSelectCache(m_conf.AutoSelectCacheFromMap);
-			MapManager mapManager = new MapManager(System.Environment.CurrentDirectory + "/maps");
-			
-			mapManager.addMaps(m_map);
+			m_map.AddMaps(m_conf.OpenLayerMaps);
 		}
+
 
 		public void SetCurrentDB (string dbName, bool loadNow)
 		{
@@ -1519,7 +1518,7 @@ namespace ocmgtk
 				{
 					m_cachelist.SetMetric();
 				}
-				LoadMap(m_conf.MapType);
+				LoadMap();
 				RecenterMap ();
 				RefreshCaches();			
 			}

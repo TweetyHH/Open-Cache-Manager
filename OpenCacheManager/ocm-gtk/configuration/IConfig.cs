@@ -14,6 +14,7 @@
 //    limitations under the License.
 
 using System;
+using System.Collections.Generic;
 
 namespace ocmgtk
 {
@@ -68,6 +69,7 @@ namespace ocmgtk
 		bool ExportAsPlainText{get;set;}
 		ocmengine.WaypointDescMode ExportWaypointDescMode{get;set;}
 		ocmengine.WaypointNameMode ExportWaypointNameMode{get;set;}
+		List<MapDescription> OpenLayerMaps{get;set;}
 		
 		DateTime LastGPSFieldNoteScan{get;set;}
 		string ImportBookmarkList{get;set;}

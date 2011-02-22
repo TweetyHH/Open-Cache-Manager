@@ -260,6 +260,7 @@
     <Compile Include="gtk-gui\ocmgtk.LoadGPSFieldNotes.cs" />
     <Compile Include="gtk-gui\ocmgtk.ImportDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.AddComboFilter.cs" />
+    <Compile Include="MapDescription.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
