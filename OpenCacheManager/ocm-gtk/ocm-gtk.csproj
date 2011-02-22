@@ -261,6 +261,8 @@
     <Compile Include="gtk-gui\ocmgtk.ImportDialog.cs" />
     <Compile Include="gtk-gui\ocmgtk.AddComboFilter.cs" />
     <Compile Include="MapDescription.cs" />
+    <Compile Include="Widgets\MapSelectionWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.MapSelectionWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -1259,6 +1261,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\24x24\ftf.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="maps\defaultmaps.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
