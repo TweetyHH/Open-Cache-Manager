@@ -83,6 +83,34 @@ namespace ocmgtk
 			coveredColumn.SortColumnId = 2;
 			
 			mapView.Model = m_mapModel;
+			mapView.Selection.Changed += HandleMapViewSelectionChanged;
+		}
+
+		void HandleMapViewSelectionChanged (object sender, EventArgs e)
+		{
+			TreeIter iter;
+			TreeModel model;
+			
+			if (((TreeSelection)sender).GetSelected (out model, out iter)) {
+				MapDescription val = (MapDescription) model.GetValue (iter, 0);
+				if (val != null)
+				{
+					upButton.Sensitive = m_maps.IndexOf(val) > 0;
+					downButton.Sensitive = m_maps.IndexOf(val) < (m_maps.Count -1);
+					deleteButton.Sensitive = true;
+					activateButton.Sensitive = !val.Active;
+					deactivateButton.Sensitive = val.Active;
+					deleteButton.Sensitive = true;
+				}
+				
+			} else {
+					upButton.Sensitive = false;
+					downButton.Sensitive = false;
+					deleteButton.Sensitive = false;
+					activateButton.Sensitive = false;
+					deactivateButton.Sensitive = false;
+					deleteButton.Sensitive = false;
+			}
 		}
 
 		private void RenderMapName (Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)
@@ -217,6 +245,8 @@ namespace ocmgtk
 					// due double data holding, not fine but it works
 					m_maps.RemoveAt(index);
 					m_maps.Insert(index - 1, map);
+					upButton.Sensitive = m_maps.IndexOf(map) > 0;
+					downButton.Sensitive = m_maps.IndexOf(map) < (m_maps.Count -1);
 				}
 			}
 		}
@@ -239,6 +269,8 @@ namespace ocmgtk
 					// due double data holding, not fine but it works
 					m_maps.RemoveAt(index);
 					m_maps.Insert(index + 1, map);
+					upButton.Sensitive = m_maps.IndexOf(map) > 0;
+					downButton.Sensitive = m_maps.IndexOf(map) < (m_maps.Count -1);
 				}
 			}
 		}

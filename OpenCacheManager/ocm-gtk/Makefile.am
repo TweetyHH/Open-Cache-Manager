@@ -334,6 +334,7 @@ GOOGLE_SAT_XML_SOURCE=maps/google-sat.xml
 ARCHIVED_FTF_PNG_SOURCE=icons/24x24/archived-ftf.png
 DISABLED_FTF_PNG_SOURCE=icons/24x24/disabled-ftf.png
 FTF_PNG_SOURCE=icons/24x24/ftf.png
+DEFAULTMAPS_XML_SOURCE=maps/defaultmaps.xml
 GREENPIN_SVG_SOURCE=icons/scalable/greenpin.svg
 NOMAP_PNG_SOURCE=web/nomap.png
 DIS_LONG_HIKE_10KM_SVG_SOURCE=icons/scalable/attributes/dis_Long_Hike_(+10km).svg
@@ -676,6 +677,7 @@ GOOGLE_SAT_XML_SOURCE=maps/google-sat.xml
 ARCHIVED_FTF_PNG_SOURCE=icons/24x24/archived-ftf.png
 DISABLED_FTF_PNG_SOURCE=icons/24x24/disabled-ftf.png
 FTF_PNG_SOURCE=icons/24x24/ftf.png
+DEFAULTMAPS_XML_SOURCE=maps/defaultmaps.xml
 GREENPIN_SVG_SOURCE=icons/scalable/greenpin.svg
 NOMAP_PNG_SOURCE=web/nomap.png
 DIS_LONG_HIKE_10KM_SVG_SOURCE=icons/scalable/attributes/dis_Long_Hike_(+10km).svg
@@ -1016,6 +1018,7 @@ GOOGLE_SAT_XML_SOURCE=maps/google-sat.xml
 ARCHIVED_FTF_PNG_SOURCE=icons/24x24/archived-ftf.png
 DISABLED_FTF_PNG_SOURCE=icons/24x24/disabled-ftf.png
 FTF_PNG_SOURCE=icons/24x24/ftf.png
+DEFAULTMAPS_XML_SOURCE=maps/defaultmaps.xml
 GREENPIN_SVG_SOURCE=icons/scalable/greenpin.svg
 NOMAP_PNG_SOURCE=web/nomap.png
 DIS_LONG_HIKE_10KM_SVG_SOURCE=icons/scalable/attributes/dis_Long_Hike_(+10km).svg
@@ -1388,7 +1391,8 @@ PROGRAMFILES_ICONS_SCALABLE_ATTRIBUTES = \
 	$(DIS_LONG_HIKE_10KM_SVG)  
 
 PROGRAMFILES_MAPS = \
-	$(GOOGLE_SAT_XML)  
+	$(GOOGLE_SAT_XML) \
+	$(DEFAULTMAPS_XML)  
 
 
 RESGEN=resgen2
@@ -1560,7 +1564,10 @@ FILES = \
 	gtk-gui/ocmgtk.OffLineLogViewer.cs \
 	gtk-gui/ocmgtk.LoadGPSFieldNotes.cs \
 	gtk-gui/ocmgtk.ImportDialog.cs \
-	gtk-gui/ocmgtk.AddComboFilter.cs 
+	gtk-gui/ocmgtk.AddComboFilter.cs \
+	MapDescription.cs \
+	Widgets/MapSelectionWidget.cs \
+	gtk-gui/ocmgtk.MapSelectionWidget.cs 
 
 DATA_FILES = 
 
@@ -1944,6 +1951,7 @@ GOOGLE_SAT_XML = $(BUILD_DIR)/maps/google-sat.xml
 ARCHIVED_FTF_PNG = $(BUILD_DIR)/icons/24x24/archived-ftf.png
 DISABLED_FTF_PNG = $(BUILD_DIR)/icons/24x24/disabled-ftf.png
 FTF_PNG = $(BUILD_DIR)/icons/24x24/ftf.png
+DEFAULTMAPS_XML = $(BUILD_DIR)/maps/defaultmaps.xml
 GREENPIN_SVG = $(BUILD_DIR)/icons/scalable/greenpin.svg
 NOMAP_PNG = $(BUILD_DIR)/web/nomap.png
 DIS_LONG_HIKE_10KM_SVG = $(BUILD_DIR)/icons/scalable/attributes/dis_Long_Hike_(+10km).svg
@@ -2273,6 +2281,7 @@ $(eval $(call emit-deploy-target,GOOGLE_SAT_XML))
 $(eval $(call emit-deploy-target,ARCHIVED_FTF_PNG))
 $(eval $(call emit-deploy-target,DISABLED_FTF_PNG))
 $(eval $(call emit-deploy-target,FTF_PNG))
+$(eval $(call emit-deploy-target,DEFAULTMAPS_XML))
 $(eval $(call emit-deploy-target,GREENPIN_SVG))
 $(eval $(call emit-deploy-target,NOMAP_PNG))
 $(eval $(call emit-deploy-target,DIS_LONG_HIKE_10KM_SVG))

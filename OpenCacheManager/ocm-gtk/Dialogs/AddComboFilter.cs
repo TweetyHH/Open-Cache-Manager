@@ -73,6 +73,26 @@ namespace ocmgtk
 			conditionList.EnableGridLines = TreeViewGridLines.Horizontal;
 			m_Store = new ListStore(typeof(FilterList));
 			conditionList.Model = m_Store;
+			conditionList.Selection.Changed += HandleConditionListSelectionChanged;
+		}
+
+		void HandleConditionListSelectionChanged (object sender, EventArgs e)
+		{
+			TreeIter iter;
+			TreeModel model;
+			
+			if (((TreeSelection)sender).GetSelected (out model, out iter)) {
+				FilterList val = (FilterList)model.GetValue (iter, 0);
+				if (val != null)
+				{
+					editbutton.Sensitive = true;
+					deleteButton.Sensitive = true;
+				}
+				
+			} else {
+				editbutton.Sensitive = false;
+				deleteButton.Sensitive = false;
+			}
 		}
 		
 		private void RenderCondition(Gtk.TreeViewColumn column, Gtk.CellRenderer cell, Gtk.TreeModel model, Gtk.TreeIter iter)

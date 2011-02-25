@@ -404,11 +404,11 @@ namespace ocmgtk
 			if (m_monitor.UseImperial)
 			{
 				distance = Utilities.KmToMiles(distance);
-				distance_label.Markup = Catalog.GetString (String.Format (Catalog.GetString("<span font='bold italic 10'>({0} miles {1} from your home coordinates)</span>"), distance.ToString ("0.00"), bmarker));
+				distance_label.Markup = Catalog.GetString (String.Format (Catalog.GetString("<span font='bold italic 10'>({0} miles {1} from {2})</span>"), distance.ToString ("0.00"), bmarker, m_monitor.CenterName));
 			}
 			else
 			{
-				distance_label.Markup = Catalog.GetString (String.Format (Catalog.GetString("<span font='bold italic 10'>({0} km {1} from your home coordinates)</span>"), distance.ToString ("0.00"), bmarker));
+				distance_label.Markup = Catalog.GetString (String.Format (Catalog.GetString("<span font='bold italic 10'>({0} km {1} from {2})</span>"), distance.ToString ("0.00"), bmarker, m_monitor.CenterName));
 			}
 		}
 

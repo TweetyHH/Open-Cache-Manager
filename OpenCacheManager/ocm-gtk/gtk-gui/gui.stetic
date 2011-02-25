@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
-    <widget-library name="../bind/ocm-gtk.exe" internal="true" />
+    <widget-library name="../bin/Release_Translated/ocm-gtk.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="1284 1201">
     <action-group name="Default">
@@ -2228,7 +2228,7 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.HBox" id="hbox2">
+          <widget class="Gtk.HBox" id="distanceBox">
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>
@@ -2328,10 +2328,11 @@
                     <property name="Relief">None</property>
                     <signal name="Clicked" handler="OnFilterClick" />
                     <child>
-                      <widget class="Gtk.Label" id="label2">
+                      <widget class="Gtk.Label" id="advancedLabel">
                         <property name="MemberName" />
                         <property name="LabelProp" translatable="yes">&lt;span fgcolor="blue"&gt;Advanced filters&lt;/span&gt; have been applied.</property>
                         <property name="UseMarkup">True</property>
+                        <property name="Wrap">True</property>
                       </widget>
                     </child>
                   </widget>
@@ -2382,10 +2383,11 @@
                     <property name="Relief">None</property>
                     <signal name="Clicked" handler="OnComboClick" />
                     <child>
-                      <widget class="Gtk.Label" id="label3">
+                      <widget class="Gtk.Label" id="comboLabel">
                         <property name="MemberName" />
                         <property name="LabelProp" translatable="yes">&lt;span fgcolor="blue"&gt;A combination filter&lt;/span&gt; is applied.</property>
                         <property name="UseMarkup">True</property>
+                        <property name="Wrap">True</property>
                       </widget>
                     </child>
                   </widget>
@@ -2407,7 +2409,7 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Table" id="table1">
+          <widget class="Gtk.Table" id="statusTable">
             <property name="MemberName" />
             <property name="NRows">2</property>
             <property name="NColumns">3</property>
@@ -3870,6 +3872,7 @@ U.S./Imperial</property>
                                 <property name="MemberName" />
                                 <property name="CanFocus">True</property>
                                 <property name="Label" translatable="yes">Only puzzle cache types with corrected coordinats/final location</property>
+                                <property name="Active">True</property>
                                 <property name="DrawIndicator">True</property>
                                 <property name="HasLabel">True</property>
                                 <property name="UseUnderline">True</property>
@@ -8182,6 +8185,7 @@ On or after</property>
                         <property name="MemberName" />
                         <property name="Sensitive">False</property>
                         <property name="Events">ButtonPressMask</property>
+                        <property name="IncludeTime">False</property>
                         <property name="Date">0</property>
                       </widget>
                       <packing>
@@ -13336,6 +13340,7 @@ Cache Name</property>
               <widget class="ocmgtk.DateWidget" id="foundDateWidget">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
+                <property name="IncludeTime">False</property>
                 <property name="Date">0</property>
               </widget>
               <packing>
@@ -16656,13 +16661,14 @@ Cache Name</property>
                         <property name="MemberName" />
                         <property name="Spacing">6</property>
                         <child>
-                          <widget class="Gtk.CheckButton" id="addToListCombo">
+                          <widget class="Gtk.CheckButton" id="addToListCheck">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Label" translatable="yes">Add to bookmark list:</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
                             <property name="UseUnderline">True</property>
+                            <signal name="Toggled" handler="OnBmrkToggle" />
                           </widget>
                           <packing>
                             <property name="Position">0</property>
@@ -16673,6 +16679,7 @@ Cache Name</property>
                         <child>
                           <widget class="Gtk.ComboBox" id="bmCombo">
                             <property name="MemberName" />
+                            <property name="Sensitive">False</property>
                             <property name="IsTextCombo">True</property>
                             <property name="Items" translatable="yes" />
                           </widget>
@@ -16686,12 +16693,14 @@ Cache Name</property>
                         <child>
                           <widget class="Gtk.Button" id="addBmrkButton">
                             <property name="MemberName" />
+                            <property name="Sensitive">False</property>
                             <property name="CanFocus">True</property>
                             <property name="Type">Custom</property>
                             <signal name="Clicked" handler="OnAddClicked" />
                             <child>
                               <widget class="Gtk.Image" id="image20">
                                 <property name="MemberName" />
+                                <property name="Sensitive">False</property>
                                 <property name="Pixbuf">stock:gtk-add Menu</property>
                               </widget>
                             </child>
@@ -16923,6 +16932,7 @@ Cache Name</property>
                             <child>
                               <widget class="Gtk.CheckButton" id="checkbutton1">
                                 <property name="MemberName" />
+                                <property name="Sensitive">False</property>
                                 <property name="CanFocus">True</property>
                                 <property name="Label" translatable="yes">Export Extra Fields in GPX</property>
                                 <property name="DrawIndicator">True</property>
@@ -17738,6 +17748,7 @@ On or after</property>
                                   <widget class="ocmgtk.DateWidget" id="lastUpdateDate">
                                     <property name="MemberName" />
                                     <property name="Events">ButtonPressMask</property>
+                                    <property name="IncludeTime">False</property>
                                     <property name="Date">0</property>
                                   </widget>
                                   <packing>
@@ -17964,6 +17975,7 @@ on or before:</property>
                             <property name="MemberName" />
                             <property name="Sensitive">False</property>
                             <property name="Events">ButtonPressMask</property>
+                            <property name="IncludeTime">False</property>
                             <property name="Date">0</property>
                           </widget>
                           <packing>
@@ -18220,6 +18232,7 @@ on or before:</property>
               <widget class="ocmgtk.DateWidget" id="logDateWidget">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
+                <property name="IncludeTime">False</property>
                 <property name="Date">0</property>
               </widget>
               <packing>
@@ -18774,6 +18787,7 @@ If you wish to work with the comments entered in the field before logging your f
               <widget class="ocmgtk.DateWidget" id="ignoreDate">
                 <property name="MemberName" />
                 <property name="Events">ButtonPressMask</property>
+                <property name="IncludeTime">False</property>
                 <property name="Date">0</property>
               </widget>
               <packing>
@@ -18927,13 +18941,14 @@ If you wish to work with the comments entered in the field before logging your f
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
-                      <widget class="Gtk.CheckButton" id="addToListCombo">
+                      <widget class="Gtk.CheckButton" id="addToListCheck">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Add to bookmark list:</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
+                        <signal name="Toggled" handler="OnAddToBmrkToggle" />
                       </widget>
                       <packing>
                         <property name="Position">0</property>
@@ -18944,6 +18959,7 @@ If you wish to work with the comments entered in the field before logging your f
                     <child>
                       <widget class="Gtk.ComboBox" id="bmCombo">
                         <property name="MemberName" />
+                        <property name="Sensitive">False</property>
                         <property name="IsTextCombo">True</property>
                         <property name="Items" translatable="yes" />
                       </widget>
@@ -18963,6 +18979,7 @@ If you wish to work with the comments entered in the field before logging your f
                         <child>
                           <widget class="Gtk.Image" id="image20">
                             <property name="MemberName" />
+                            <property name="Sensitive">False</property>
                             <property name="Pixbuf">stock:gtk-add Menu</property>
                           </widget>
                         </child>
@@ -19155,6 +19172,7 @@ will be returned.</property>
                 <child>
                   <widget class="Gtk.Button" id="editbutton">
                     <property name="MemberName" />
+                    <property name="Sensitive">False</property>
                     <property name="CanFocus">True</property>
                     <property name="UseStock">True</property>
                     <property name="Type">StockItem</property>
@@ -19169,8 +19187,9 @@ will be returned.</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Button" id="button25">
+                  <widget class="Gtk.Button" id="deleteButton">
                     <property name="MemberName" />
+                    <property name="Sensitive">False</property>
                     <property name="CanFocus">True</property>
                     <property name="UseStock">True</property>
                     <property name="Type">StockItem</property>
@@ -19245,16 +19264,58 @@ will be returned.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="ocmgtk.MapSelectionWidget" design-size="536 322">
+  <widget class="Gtk.Bin" id="ocmgtk.MapSelectionWidget" design-size="536 336">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
       <widget class="Gtk.Table" id="table6">
         <property name="MemberName" />
+        <property name="NRows">2</property>
         <property name="NColumns">2</property>
         <property name="RowSpacing">6</property>
         <property name="ColumnSpacing">6</property>
         <property name="BorderWidth">6</property>
+        <child>
+          <widget class="Gtk.HBox" id="hbox1">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Image" id="image17">
+                <property name="MemberName" />
+                <property name="Pixbuf">stock:gtk-dialog-info Button</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="label1">
+                <property name="MemberName" />
+                <property name="Xalign">0</property>
+                <property name="LabelProp" translatable="yes">The highest map in the list will be the default map when OCM starts.</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="RightAttach">2</property>
+            <property name="AutoSize">False</property>
+            <property name="XOptions">Fill</property>
+            <property name="YOptions">Fill</property>
+            <property name="XExpand">False</property>
+            <property name="XFill">True</property>
+            <property name="XShrink">False</property>
+            <property name="YExpand">False</property>
+            <property name="YFill">True</property>
+            <property name="YShrink">False</property>
+          </packing>
+        </child>
         <child>
           <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
             <property name="MemberName" />
@@ -19268,7 +19329,9 @@ will be returned.</property>
             </child>
           </widget>
           <packing>
-            <property name="AutoSize">True</property>
+            <property name="TopAttach">1</property>
+            <property name="BottomAttach">2</property>
+            <property name="AutoSize">False</property>
             <property name="YOptions">Fill</property>
             <property name="XExpand">True</property>
             <property name="XFill">True</property>
@@ -19287,14 +19350,17 @@ will be returned.</property>
             <child>
               <widget class="Gtk.Button" id="activateButton">
                 <property name="MemberName" />
+                <property name="Sensitive">False</property>
                 <property name="CanFocus">True</property>
                 <property name="Type">TextAndIcon</property>
                 <property name="Icon">stock:gtk-apply Menu</property>
-                <property name="Label" translatable="yes">Activate Map</property>
+                <property name="Label" translatable="yes">Enable Map</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnActivateButtonClicked" />
               </widget>
               <packing>
+                <property name="TopAttach">4</property>
+                <property name="BottomAttach">5</property>
                 <property name="AutoSize">True</property>
                 <property name="XOptions">Fill</property>
                 <property name="YOptions">Fill</property>
@@ -19309,16 +19375,17 @@ will be returned.</property>
             <child>
               <widget class="Gtk.Button" id="deactivateButton">
                 <property name="MemberName" />
+                <property name="Sensitive">False</property>
                 <property name="CanFocus">True</property>
                 <property name="Type">TextAndIcon</property>
                 <property name="Icon">stock:gtk-cancel Menu</property>
-                <property name="Label" translatable="yes">Deactivate Map</property>
+                <property name="Label" translatable="yes">Disable Map</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnDeactivateButtonClicked" />
               </widget>
               <packing>
-                <property name="TopAttach">1</property>
-                <property name="BottomAttach">2</property>
+                <property name="TopAttach">5</property>
+                <property name="BottomAttach">6</property>
                 <property name="AutoSize">True</property>
                 <property name="XOptions">Fill</property>
                 <property name="YOptions">Fill</property>
@@ -19333,6 +19400,7 @@ will be returned.</property>
             <child>
               <widget class="Gtk.Button" id="deleteButton">
                 <property name="MemberName" />
+                <property name="Sensitive">False</property>
                 <property name="CanFocus">True</property>
                 <property name="Type">TextAndIcon</property>
                 <property name="Icon">stock:gtk-delete Menu</property>
@@ -19357,16 +19425,17 @@ will be returned.</property>
             <child>
               <widget class="Gtk.Button" id="downButton">
                 <property name="MemberName" />
+                <property name="Sensitive">False</property>
                 <property name="CanFocus">True</property>
                 <property name="Type">TextAndIcon</property>
                 <property name="Icon">stock:gtk-go-down Menu</property>
-                <property name="Label" translatable="yes">Down</property>
+                <property name="Label" translatable="yes">Move Down</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnDownButtonClicked" />
               </widget>
               <packing>
-                <property name="TopAttach">4</property>
-                <property name="BottomAttach">5</property>
+                <property name="TopAttach">2</property>
+                <property name="BottomAttach">3</property>
                 <property name="AutoSize">True</property>
                 <property name="XOptions">Fill</property>
                 <property name="YOptions">Fill</property>
@@ -19383,8 +19452,8 @@ will be returned.</property>
                 <property name="MemberName" />
               </widget>
               <packing>
-                <property name="TopAttach">5</property>
-                <property name="BottomAttach">6</property>
+                <property name="TopAttach">3</property>
+                <property name="BottomAttach">4</property>
                 <property name="AutoSize">True</property>
                 <property name="XOptions">Fill</property>
                 <property name="YOptions">Fill</property>
@@ -19401,8 +19470,6 @@ will be returned.</property>
                 <property name="MemberName" />
               </widget>
               <packing>
-                <property name="TopAttach">2</property>
-                <property name="BottomAttach">3</property>
                 <property name="AutoSize">True</property>
                 <property name="XOptions">Fill</property>
                 <property name="YOptions">Fill</property>
@@ -19438,7 +19505,7 @@ will be returned.</property>
                 <property name="CanFocus">True</property>
                 <property name="Type">TextAndIcon</property>
                 <property name="Icon">stock:gtk-open Menu</property>
-                <property name="Label" translatable="yes">Open Map File</property>
+                <property name="Label" translatable="yes">Import Map File</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnOpenButtonClicked" />
               </widget>
@@ -19483,16 +19550,17 @@ will be returned.</property>
             <child>
               <widget class="Gtk.Button" id="upButton">
                 <property name="MemberName" />
+                <property name="Sensitive">False</property>
                 <property name="CanFocus">True</property>
                 <property name="Type">TextAndIcon</property>
                 <property name="Icon">stock:gtk-go-up Menu</property>
-                <property name="Label" translatable="yes">Up</property>
+                <property name="Label" translatable="yes">Move Up</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnUpButtonClicked" />
               </widget>
               <packing>
-                <property name="TopAttach">3</property>
-                <property name="BottomAttach">4</property>
+                <property name="TopAttach">1</property>
+                <property name="BottomAttach">2</property>
                 <property name="AutoSize">True</property>
                 <property name="XOptions">Fill</property>
                 <property name="YOptions">Fill</property>
@@ -19506,6 +19574,8 @@ will be returned.</property>
             </child>
           </widget>
           <packing>
+            <property name="TopAttach">1</property>
+            <property name="BottomAttach">2</property>
             <property name="LeftAttach">1</property>
             <property name="RightAttach">2</property>
             <property name="AutoSize">True</property>

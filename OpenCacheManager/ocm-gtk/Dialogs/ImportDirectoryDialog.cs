@@ -68,7 +68,7 @@ namespace ocmgtk
 		{
 			get
 			{
-				if (addToListCombo.Active)
+				if (addToListCheck.Active)
 					return bmCombo.ActiveText;
 				return null;
 			}
@@ -87,7 +87,7 @@ namespace ocmgtk
 						if (value == store.GetValue (itr, 0) as string)
 						{
 							bmCombo.Active = iCount;
-							addToListCombo.Active = true;
+							addToListCheck.Active = true;
 							return;
 						}
 						iCount++;
@@ -114,6 +114,11 @@ namespace ocmgtk
 			}
 			bmCombo.Active = 0;
 			bmCombo.Show();
+		}
+		protected virtual void OnBmrkToggle (object sender, System.EventArgs e)
+		{
+			bmCombo.Sensitive = addToListCheck.Active;
+			addBmrkButton.Sensitive = addToListCheck.Active;
 		}
 	}
 }

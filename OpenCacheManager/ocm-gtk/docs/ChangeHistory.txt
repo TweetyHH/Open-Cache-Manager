@@ -1,4 +1,4 @@
-Version 0.23
+Version 0.23.6
 --------------
 - Add locations feature to OCM. You can now add new locations via the Locations menu
   or by right clicking on the map
@@ -10,7 +10,7 @@ Version 0.23
 - Can now choose "Selected cache" or "Entire database" when copying/moving caches between databases
 - Add direct entry mode for coordinates, similar to QLandkarte GT. Default can be set in preferences
 	N.B. In direct entry mode English must be used (i.e. N/S/E/W)
-	-- At the moment, only decimal degree format is supported
+	-- At the moment, only decimal degree and degree minute format is supported
 - Add GPS profiles support. Users upgrading from previous versions of OCM will have their settings moved
 to the "Default" profile. You can rename this profile from the GPS menu.
 - OCM can now process Corrected Coordinates, First To Find, DNF's, and custom user data fields from GSAK 
@@ -30,6 +30,7 @@ to the "Default" profile. You can rename this profile from the GPS menu.
 - Can now assign caches to a bookmark list on import
 - Update Setup assistant to set default directory on initial OCM setup
 - Export full cache details to QLandkarte GT to take advantage of new Geocaching features in QLGT 1.1
+- Fix bug with ZIP file associations not opening properly in OCM
 
 
 Version 0.22.9

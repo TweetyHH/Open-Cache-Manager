@@ -127,13 +127,14 @@ namespace ocmgtk
 				}
 				else
 				{
-					if (m_file.EndsWith(".gpx"))
-					{
-						UIMonitor.getInstance().ImportGPXFile(m_file);
-					}
+					
 					if (m_file.EndsWith(".zip"))
 					{
 						UIMonitor.getInstance().ImportZip(m_file);
+					}
+					else
+					{
+						UIMonitor.getInstance().ImportGPXFile(m_file);
 					}
 				}
 			}

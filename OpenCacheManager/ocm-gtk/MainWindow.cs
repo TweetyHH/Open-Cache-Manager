@@ -870,10 +870,27 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.ClearCombo();
 	}
 	
-	public void SetLastGPS(string name)
+	public void SetLastGPS(string name, bool canReceive)
 	{
-		TransferCachesToLastUsedAction.Label = String.Format(Catalog.GetString("Transfer _Caches to Last Used ({0})..."), name);
-		RecieveFieldNotesFromLastUsedAction.Label = String.Format(Catalog.GetString("Receive F_ield Notes from Last Used ({0})..."),name);
+		if (name != null)
+		{
+			TransferCachesToLastUsedAction.Label = String.Format(Catalog.GetString("Transfer _Caches to Last Used ({0})..."), name);
+			TransferCachesToLastUsedAction.Sensitive = true;
+			if (canReceive)
+			{
+				RecieveFieldNotesFromLastUsedAction.Label = String.Format(Catalog.GetString("Receive F_ield Notes from Last Used ({0})..."),name);
+				RecieveFieldNotesFromLastUsedAction.Sensitive = true;
+			}
+			else
+			{
+				RecieveFieldNotesFromLastUsedAction.Sensitive = false;
+			}
+		}
+		else
+		{
+			TransferCachesToLastUsedAction.Sensitive = false;
+			RecieveFieldNotesFromLastUsedAction.Sensitive = false;
+		}
 	}
 	
 	public void ClearCombo ()

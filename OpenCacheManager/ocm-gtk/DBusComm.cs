@@ -27,7 +27,10 @@ namespace ocmgtk
 		
 		public void ImportGPX(String filename)
 		{
-			UIMonitor.getInstance().ImportGPXFile(filename);
+			if (filename.EndsWith(".zip"))
+				UIMonitor.getInstance().ImportZip(filename);
+			else
+				UIMonitor.getInstance().ImportGPXFile(filename);
 		}
 		
 		public void ShowOCM()

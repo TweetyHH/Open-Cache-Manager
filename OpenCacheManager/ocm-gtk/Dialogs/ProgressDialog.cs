@@ -18,6 +18,7 @@ using System.IO;
 using ocmengine;
 using Mono.Unix;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace ocmgtk
 {
@@ -82,7 +83,6 @@ namespace ocmgtk
 			m_progress = 0;
 			m_progressCount = 0;
 			m_total = 0;
-			int fileCount = 0;
 			multiFileLabel.Visible = true;
 			
 			// Prescan for zip files and uncompress
@@ -91,12 +91,14 @@ namespace ocmgtk
 				if (files[i].EndsWith(".zip"))
 				{
 					this.progressbar6.Text = Catalog.GetString("Unzipping");
+					DirectoryInfo info = Directory.CreateDirectory(files[i].Substring(0, files[i].Length -4));
+					multiFileLabel.Text = Catalog.GetString("Unizpping");
 					this.waypointName.Markup = "<i>" + Catalog.GetString("Unzipping") + ":" + files[i] + "</i>";
 					while (Gtk.Application.EventsPending ())
 						Gtk.Application.RunIteration (false);
 					ProcessStartInfo start = new ProcessStartInfo();
 					start.FileName = "unzip";
-					start.Arguments = "-o \"" + files[i] + "\" -d \"" + directoryPath + "\"";
+					start.Arguments = "-o \"" + files[i] + "\" -d \"" + info.FullName + "\"";
 					Process unzip =  Process.Start(start);
 					while (!unzip.HasExited)
 					{
@@ -110,42 +112,54 @@ namespace ocmgtk
 			}
 			
 			// Rescan for all GPX files, including those uncompressed by ZIP files
-			files = Directory.GetFiles(directoryPath);
-			for (int i=0; i < files.Length; i++)
+			List<string> fileList = new List<string>();
+			string[] directories = Directory.GetDirectories(directoryPath);
+			BuildFileList (directoryPath, fileList);
+			foreach (string dir in directories)
 			{
-				if (files[i].EndsWith(".gpx"))
-				{
-					FileStream fs =  System.IO.File.OpenRead (files[i]);
-					int total = m_parser.parseTotal(fs, store);
-					m_total += total;
-					fileCount ++;
-					fs.Close();
-				}
+				BuildFileList(dir, fileList);
 			}
 			
 			int currCount = 0;
-			for (int i=0; i < files.Length; i++)
+			foreach (string file in fileList)
 			{
-				if (files[i].EndsWith(".gpx"))
+				if (file.EndsWith(".gpx"))
 				{
 					currCount++;
 					//Clean out attributes,tbs,and logs that will be overwritten
 					if (m_parser.Cancel)
 						return;
-					FileStream fs =  System.IO.File.OpenRead (files[i]);
+					FileStream fs =  System.IO.File.OpenRead (file);
 					m_parser.clearForImport(fs, store);
 					fs.Close();
 					// Need to reopen the file
-					fs =  System.IO.File.OpenRead (files[i]);
-					multiFileLabel.Text = String.Format(Catalog.GetString("Processing File {0} of {1}"), currCount, fileCount);
+					fs =  System.IO.File.OpenRead (file);
+					multiFileLabel.Text = String.Format(Catalog.GetString("Processing File {0} of {1}"), currCount, fileList.Count);
 					ParseFile(fs, store);
 					fs.Close();
 					if (deleteOnCompletion)
-						File.Delete(files[i]);
+						File.Delete(file);
 				}
 			}
 			m_parser.EndUpdate(store);
 			HandleCompletion();
+		}
+		
+		private void BuildFileList (string dirPath,  List<string> fileList)
+		{
+			string[] files = Directory.GetFiles(dirPath);
+			for (int i=0; i < files.Length; i++)
+			{
+				if (files[i].EndsWith(".gpx") || files[i].EndsWith(".loc"))
+				{
+					FileStream fs =  System.IO.File.OpenRead (files[i]);
+					int total = m_parser.parseTotal(fs);
+					m_total += total;
+					fileList.Add(files[i]);
+					fs.Close();
+				}
+			}
+			return;
 		}
 
 

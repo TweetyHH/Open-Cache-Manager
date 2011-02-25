@@ -295,7 +295,7 @@ namespace ocmgtk
 			get { return (string) this.Get("/apps/ocm/importbookmark", null);}
 			set {
 				if (value == null)
-					UnsetKey("/apps/ocm/gps/currentprof");
+					UnsetKey("/apps/ocm/importbookmark");
 				else
 					this.Set("/apps/ocm/importbookmark",value);
 			}

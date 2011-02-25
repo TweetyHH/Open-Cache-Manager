@@ -67,17 +67,57 @@ namespace ocmgtk
 			refreshTimer.Elapsed += HandleRefreshTimerElapsed;
 		}
 		
-		public void ShowInfoBox(bool isCombo)
+		public bool StatusFilterSensitive
+		{
+			get { return statusTable.Sensitive;}
+			set { 
+				statusTable.Sensitive = value;
+			}
+		}
+		
+		public bool DisableDistanceFilter
+		{
+			get { return distanceBox.Sensitive;}
+			set { 
+				distanceBox.Sensitive = value;
+			}
+		}
+		
+		public void ShowInfoBox(bool isCombo, bool disableStatus, bool disableDistance)
 		{
 			ClearInfoBoxes();
 			if (!isCombo)
 			{
 				advancedBox.Add(infoHbox);
+				string markup =  "<span fgcolor=\"blue\">Advanced filters</span> have been applied.";
+				if (disableDistance)
+				{
+					markup += Catalog.GetString(" The advanced filter settings override basic distance filter.");
+					distanceBox.Sensitive = false;
+				}
+				if (disableStatus)
+				{
+					markup += Catalog.GetString(" The advanced filter settings override the basic status filter.");
+					statusTable.Sensitive = false;
+				}
+				advancedLabel.Markup = markup;
 				infoHbox.Show();
 			}
 			else
 			{
 				comboBox.Add(infoComboBox);
+				string markup = "<span fgcolor=\"blue\">A combination filter</span> is applied.";
+				if (disableDistance)
+				{
+					markup += Catalog.GetString(" The combination filter settings override basic distance filter.");
+					distanceBox.Sensitive = false;
+				}
+				if (disableStatus)
+				{
+					markup += Catalog.GetString(" The combination filter settings override the basic status filter.");
+					statusTable.Sensitive = false;
+				}
+				comboLabel.Markup = markup;
 				infoComboBox.Show();
 			}
 		}
@@ -85,6 +125,8 @@ namespace ocmgtk
 		
 		public void ClearInfoBoxes()
 		{
+			distanceBox.Sensitive = true;
+			statusTable.Sensitive = true;
 			advancedBox.Remove(infoHbox);
 			comboBox.Remove(infoComboBox);
 			ShowAll();
@@ -94,7 +136,7 @@ namespace ocmgtk
 		{
 			Application.Invoke (delegate { RefilterList (); });
 		}
-
+		
 
 		private void BuildList ()
 		{
@@ -435,31 +477,34 @@ namespace ocmgtk
 				return false;
 			String filterVal = filterEntry.Text.ToLower ();
 			
-			if (!m_showArchived && cache.Archived)
-				return false;
-			
-			if (!m_showMine && ((cache.OwnerID == m_monitor.OwnerID  ) || (cache.CacheOwner == m_monitor.OwnerID)))
-				return false;
-			
-			if (!m_showNotFound && cache.Symbol != FOUND_CACHE )
-				if (m_showMine && ((cache.OwnerID == m_monitor.OwnerID  ) || (cache.CacheOwner == m_monitor.OwnerID)))
-					return true;
-				else
+			if (statusTable.Sensitive != false)
+			{
+				if (!m_showArchived && cache.Archived)
 					return false;
-			
-			if (!m_showUnavailble && !cache.Available && !cache.Archived)
-				return false;
-			
-			if (!m_showFound && cache.Symbol == FOUND_CACHE)
-				if (m_showMine && (cache.OwnerID == m_monitor.OwnerID))
-					return true;
-				else
+				
+				if (!m_showMine && ((cache.OwnerID == m_monitor.OwnerID  ) || (cache.CacheOwner == m_monitor.OwnerID)))
 					return false;
+				
+				if (!m_showNotFound && cache.Symbol != FOUND_CACHE )
+					if (m_showMine && ((cache.OwnerID == m_monitor.OwnerID  ) || (cache.CacheOwner == m_monitor.OwnerID)))
+						return true;
+					else
+						return false;
+				
+				if (!m_showUnavailble && !cache.Available && !cache.Archived)
+					return false;
+				
+				if (!m_showFound && cache.Symbol == FOUND_CACHE)
+					if (m_showMine && (cache.OwnerID == m_monitor.OwnerID))
+						return true;
+					else
+						return false;
+				
+				if (!m_showAvailable && cache.Available)
+					return false;
+			}
 			
-			if (!m_showAvailable && cache.Available)
-				return false;
-			
-			if (m_maxDistance > 0)
+			if (m_maxDistance > 0 && !(distanceBox.Sensitive == false))
 				if (cache.Distance > m_maxDistance)
 					return false;
 			

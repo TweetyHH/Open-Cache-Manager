@@ -123,7 +123,7 @@ namespace ocmengine
 			return count;
 		}
 		
-		public int parseTotal(FileStream fs, CacheStore store)
+		public int parseTotal(FileStream fs)
 		{
 			XmlReader rdr = XmlReader.Create(fs);
 			rdr.Settings.IgnoreWhitespace = true;

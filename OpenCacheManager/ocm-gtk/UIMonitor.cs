@@ -167,6 +167,7 @@ namespace ocmgtk
 		private string m_centreName = "Home";
 		public string CenterName {
 			set { m_centreName = value; }
+			get { return m_centreName;}
 		}
 
 		public ProgressBar StatusProgress {
@@ -188,6 +189,10 @@ namespace ocmgtk
 		}
 		
 		private GPSProfileList m_profiles;
+		public GPSProfileList GPSProfiles
+		{
+			get { return m_profiles;}
+		}
 		
 		private int m_MapPoints = 100;
 		public int MapPoints
@@ -309,8 +314,11 @@ namespace ocmgtk
 				m_mainWin.SetShowAllChildren();
 			if (m_useImperial)
 				m_cachelist.SetImperial();
-			AutoCheckForUpdates();	
-			m_mainWin.SetLastGPS(m_profiles.GetActiveProfile().Name);
+			AutoCheckForUpdates();
+			if (m_profiles.GetActiveProfile() != null)
+				m_mainWin.SetLastGPS(m_profiles.GetActiveProfile().Name, m_profiles.GetActiveProfile().FieldNotesFile != null);
+			else
+				m_mainWin.SetLastGPS(null, false);
 		}
 
 		void HandleM_mainWinSizeAllocated (object o, SizeAllocatedArgs args)
@@ -386,7 +394,7 @@ namespace ocmgtk
 			}
 			dlg.Hide();
 			store.Upgrade();
-			dlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Question, ButtonsType.Ok, Catalog.GetString("Upgrade complete"));
+			dlg = new MessageDialog(m_mainWin, DialogFlags.Modal, MessageType.Question, ButtonsType.Ok, Catalog.GetString("Upgrade complete."));
 			dlg.Run();
 			dlg.Hide();
 		}
@@ -1271,15 +1279,15 @@ namespace ocmgtk
 		private void CheckAdvancedFilters (FilterList filters)
 		{
 			if (filters !=null && filters.GetCount() > 1)
-				{
-					m_cachelist.ShowInfoBox(false);
+			{
+					m_cachelist.ShowInfoBox(false, filters.Contains(FilterList.KEY_STATUS), filters.Contains(FilterList.KEY_DIST));
 					m_mainWin.SetAllowClearFilter (true);
-				}
-				else
-				{
+			}
+			else
+			{
 					m_cachelist.ClearInfoBoxes();
 					m_mainWin.SetAllowClearFilter (false);
-				}
+			}
 		}
 
 		public void ClearFilters ()
@@ -1831,7 +1839,7 @@ namespace ocmgtk
 			if (filter.ComboFilter != null)
 			{
 				m_mainWin.SetComboFilterState();
-				m_cachelist.ShowInfoBox(true);
+				SetComboStatus (filter.ComboFilter);
 			}
 			else
 			{
@@ -1843,6 +1851,20 @@ namespace ocmgtk
 				RefreshCaches();
 			else
 				m_cachelist.RefilterList();
+		}
+		
+		private void SetComboStatus (List<FilterList> filters)
+		{
+			bool hasDist = false;
+			bool hasStatus = false;
+			foreach(FilterList list in filters)
+			{
+				if (list.Contains(FilterList.KEY_DIST))
+				    hasDist = true;
+				if (list.Contains(FilterList.KEY_STATUS))
+				    hasStatus = true;
+			}
+			m_cachelist.ShowInfoBox(true, hasStatus, hasDist);
 		}
 		
 		public void SaveQuickFilter()
@@ -2322,7 +2344,7 @@ namespace ocmgtk
 			dlg.ComboFilter = Engine.getInstance().Store.ComboFilter;
 			if ((int)ResponseType.Ok == dlg.Run())
 			{
-				m_cachelist.ShowInfoBox(true);
+				SetComboStatus(dlg.ComboFilter);
 				Engine.getInstance().Store.ComboFilter = dlg.ComboFilter;
 				m_mainWin.SetComboFilterState();
 				RefreshCaches();
