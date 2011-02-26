@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2011-02-24 20:07:17-0500\n"
-"PO-Revision-Date: 2011-02-25 16:48:51+0100\n"
+"PO-Revision-Date: 2011-02-26 18:06:15+0100\n"
 "Last-Translator: Michael Massoth <michael@mmassoth.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -907,7 +907,7 @@ msgstr "<big><b>Lösche Geocaches</b></big>"
 
 #: ../ocm-gtk/Dialogs/CopyingProgress.cs:41
 msgid "Delete Caches...."
-msgstr "Lösch_e Cache..."
+msgstr "Lösche Caches..."
 
 #: ../ocm-gtk/Dialogs/CopyingProgress.cs:73
 #: ../ocm-gtk/Dialogs/CopyingProgress.cs:164
@@ -4347,7 +4347,6 @@ msgstr "Hoch"
 #~ msgstr "Ursprüngliche Koordinate:"
 #~ msgid "Export as Waypoints"
 #~ msgstr "Exportiere als Wegpunkte"
-
 #~ msgid "Use GPS Waypoint Symbol Mappings"
 #~ msgstr "Benutze GPS Wegpunkt Symbole"
 
@@ -4409,7 +4408,6 @@ msgstr "Hoch"
 #~ msgstr "Muss-Attribute (Komma getrennt, Englisch):"
 #~ msgid "Common Attributes"
 #~ msgstr "Typische Attribute"
-
 #~ msgid "Save GPX File"
 #~ msgstr "Speichern GPX File"
 
@@ -4437,7 +4435,6 @@ msgstr "Hoch"
 #~ msgstr "Nachtcache"
 #~ msgid "Wireless Beacon"
 #~ msgstr "Funksender (Garmin Chirp)"
-
 #~ msgid "Wheelchair Accessible"
 #~ msgstr "Rollstuhl geeignet"
 
