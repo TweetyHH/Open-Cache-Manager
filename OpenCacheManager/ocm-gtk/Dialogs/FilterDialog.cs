@@ -53,6 +53,7 @@ namespace ocmgtk
 				GetDistanceLoc (filter);
 				GetInfoWithinFilter (filter);
 				GetUserDataFilters (filter);
+				LastFoundFilter (filter);
 				
 				filter.AddFilterCriteria(FilterList.KEY_OWNERID, UIMonitor.getInstance().OwnerID);
 				return filter;
@@ -68,6 +69,26 @@ namespace ocmgtk
 				SetAttributeTabFilters (value);
 				SetUpdatedPageFilters(value);
  			}
+		}
+		
+		private void LastFoundFilter (FilterList filter)
+		{
+			if (updatedPage.FoundAnyoneBefore != DateTime.MinValue)
+				{
+					filter.AddFilterCriteria(FilterList.KEY_LFOUND_BEFORE, updatedPage.FoundAnyoneBefore);
+				}
+				else
+				{
+					filter.RemoveCriteria(FilterList.KEY_LFOUND_BEFORE);
+				}
+				if (updatedPage.FoundAnyoneAfter != DateTime.MinValue)
+				{
+					filter.AddFilterCriteria(FilterList.KEY_LFOUND_AFTER, updatedPage.FoundAnyoneAfter);
+				}
+				else
+				{
+					filter.RemoveCriteria(FilterList.KEY_LFOUND_AFTER);
+				}
 		}
 		
 		private void GetUserDataFilters (FilterList filter)
@@ -360,6 +381,16 @@ namespace ocmgtk
 			if (list.Contains(FilterList.KEY_FOUNDAFTER))
 			{
 				updatedPage.FoundAfter = (DateTime) list.GetCriteria(FilterList.KEY_FOUNDAFTER);
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_LFOUND_BEFORE))
+			{
+				updatedPage.FoundAnyoneBefore = (DateTime) list.GetCriteria(FilterList.KEY_LFOUND_BEFORE);
+				atLeastOne = true;
+			}
+			if (list.Contains(FilterList.KEY_LFOUND_AFTER))
+			{
+				updatedPage.FoundAnyoneAfter = (DateTime) list.GetCriteria(FilterList.KEY_LFOUND_AFTER);
 				atLeastOne = true;
 			}
 			if (atLeastOne)

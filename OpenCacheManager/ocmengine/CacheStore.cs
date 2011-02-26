@@ -258,7 +258,7 @@ namespace ocmengine
 			String prefilter = DoPrefilter();
 			if (null != prefilter)
 				sql += prefilter;
-			//System.Console.WriteLine(sql);
+			System.Console.WriteLine(sql);
 			GetCacheList(sql, caches);
 		}
 		
@@ -863,7 +863,8 @@ namespace ocmengine
 				
 			}
 			if (m_filter.Contains(FilterList.KEY_INCNOATTRS) || m_filter.Contains(FilterList.KEY_EXCNOATTRS) ||
-			    m_filter.Contains(FilterList.KEY_NOCHILDREN))
+			    m_filter.Contains(FilterList.KEY_NOCHILDREN)|| m_filter.Contains(FilterList.KEY_LFOUND_BEFORE)||
+			    m_filter.Contains(FilterList.KEY_LFOUND_AFTER))
 			{
 				preFilterList.Append(" AND GEOCACHE.name NOT IN (");
 				if (m_filter.Contains(FilterList.KEY_INCNOATTRS))
@@ -900,6 +901,58 @@ namespace ocmengine
 						preFilterList.Append("'");
 						preFilterList.Append(rdr.GetString(0));
 						preFilterList.Append("'");
+					}
+				}
+				if (m_filter.Contains(FilterList.KEY_LFOUND_BEFORE))
+				{
+					DateTime date = (DateTime) m_filter.GetCriteria(FilterList.KEY_LFOUND_BEFORE);
+					atLeastOne = true;
+					IDbConnection conn = OpenConnection();
+					IDbCommand cmd = conn.CreateCommand();	
+					cmd.CommandText = String.Format(LAST_FOUND_FILT);
+					IDataReader rdr = cmd.ExecuteReader();
+					bool firstDone = false;
+					while (rdr.Read())
+					{
+						string dtval = rdr.GetString(0);
+						string cache = rdr.GetString(1);
+						DateTime logDate = DateTime.Parse(dtval);
+						if (logDate > date)
+						{
+							if (!firstDone)
+								firstDone = true;
+							else
+								preFilterList.Append(",");
+							preFilterList.Append("'");
+							preFilterList.Append(cache);
+							preFilterList.Append("'");
+						}
+					}
+				}
+				if (m_filter.Contains(FilterList.KEY_LFOUND_AFTER))
+				{
+					DateTime date = (DateTime) m_filter.GetCriteria(FilterList.KEY_LFOUND_AFTER);
+					atLeastOne = true;
+					IDbConnection conn = OpenConnection();
+					IDbCommand cmd = conn.CreateCommand();	
+					cmd.CommandText = String.Format(LAST_FOUND_FILT);
+					IDataReader rdr = cmd.ExecuteReader();
+					bool firstDone = false;
+					while (rdr.Read())
+					{
+						string dtval = rdr.GetString(0);
+						string cache = rdr.GetString(1);
+						DateTime logDate = DateTime.Parse(dtval);
+						if (logDate < date)
+						{
+							if (!firstDone)
+								firstDone = true;
+							else
+								preFilterList.Append(",");
+							preFilterList.Append("'");
+							preFilterList.Append(cache);
+							preFilterList.Append("'");
+						}
 					}
 				}
 				preFilterList.Append(")");

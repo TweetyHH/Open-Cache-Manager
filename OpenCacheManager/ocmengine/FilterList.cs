@@ -67,8 +67,8 @@ namespace ocmengine
 		public const String KEY_U2 = "u2";
 		public const String KEY_U3 = "u3";
 		public const String KEY_U4 = "u4";
-		public const String KEY_LFOUND = "lastFound";
-		public const String KEY_LFOUND_DAYS = "lastFoundDays";
+		public const String KEY_LFOUND_BEFORE = "lastFoundBefore";
+		public const String KEY_LFOUND_AFTER = "lastFoundAfter";
 		public FilterList ()
 		{
 			

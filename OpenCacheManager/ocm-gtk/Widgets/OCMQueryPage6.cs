@@ -88,6 +88,44 @@ namespace ocmgtk
 			}
 		}
 		
+		public DateTime FoundAnyoneBefore
+		{
+			get
+			{
+				if (lFoundAnyOneCheck.Active && lFoundAnyoneCombo.Active == 0)
+					return lFoundAnyoneDate.Date;
+				return DateTime.MinValue;
+			}
+			set
+			{
+				if (value != DateTime.MinValue)
+				{
+					lFoundAnyOneCheck.Active = true;
+					lFoundAnyoneDate.Date = value;
+					lFoundAnyoneCombo.Active = 0;
+				}
+			}
+		}
+		
+		public DateTime FoundAnyoneAfter
+		{
+			get
+			{
+				if (lFoundAnyOneCheck.Active && lFoundAnyoneCombo.Active == 1)
+					return lFoundAnyoneDate.Date;
+				return DateTime.MinValue;
+			}
+			set
+			{
+				if (value != DateTime.MinValue)
+				{
+					lFoundAnyOneCheck.Active = true;
+					lFoundAnyoneDate.Date = value;
+					lFoundAnyoneCombo.Active = 1;
+				}
+			}
+		}
+		
 		public DateTime InfoAfter
 		{
 			get

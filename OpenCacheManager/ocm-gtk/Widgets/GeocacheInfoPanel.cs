@@ -122,7 +122,7 @@ namespace ocmgtk
 					lastFoundDateLabel.Text = lastDate.ToShortDateString();
 				DateTime lastFound = store.GetLastFound(cache);
 				if (lastFound == DateTime.MinValue)
-					lfoundLabel.Text = Catalog.GetString("Never");
+					lfoundLabel.Text = Catalog.GetString("Unknown");
 				else
 					lfoundLabel.Text = lastFound.ToShortDateString();
 				DateTime lastFoundByYou = store.GetLastFindByYou(cache, m_monitor.OwnerID);
