@@ -232,6 +232,13 @@ namespace ocmgtk
 			nupdatedWithinEntry.Sensitive = nUpdateWithin.Active;
 		}
 		
+		protected virtual void OnLFoundAnyToggle (object sender, System.EventArgs e)
+		{
+			lFoundAnyoneCombo.Sensitive = lFoundAnyOneCheck.Active;
+			lFoundAnyoneDate.Sensitive = lFoundAnyOneCheck.Active;
+		}
+		
+		
 		
 		
 		

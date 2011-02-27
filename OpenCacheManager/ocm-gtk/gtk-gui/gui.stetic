@@ -5451,6 +5451,7 @@ Less Than</property>
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Any cache type</property>
+                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -6145,6 +6146,8 @@ Less Than</property>
                 <property name="FoundOn">0</property>
                 <property name="FoundBefore">0</property>
                 <property name="FoundAfter">0</property>
+                <property name="FoundAnyoneBefore">0</property>
+                <property name="FoundAnyoneAfter">0</property>
                 <property name="InfoAfter">0</property>
                 <property name="InfoBefore">0</property>
                 <property name="InfoWithin">0</property>
@@ -13541,7 +13544,7 @@ Cache Name</property>
             <child>
               <widget class="Gtk.Label" id="GtkLabel4">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">&lt;b&gt;Oringal Location&lt;/b&gt;</property>
+                <property name="LabelProp" translatable="yes">&lt;b&gt;Original Location&lt;/b&gt;</property>
                 <property name="UseMarkup">True</property>
               </widget>
               <packing>
@@ -18013,6 +18016,7 @@ on or before:</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
+                        <signal name="Toggled" handler="OnLFoundAnyToggle" />
                       </widget>
                       <packing>
                         <property name="TopAttach">1</property>
@@ -18030,6 +18034,7 @@ on or before:</property>
                     <child>
                       <widget class="Gtk.ComboBox" id="lFoundAnyoneCombo">
                         <property name="MemberName" />
+                        <property name="Sensitive">False</property>
                         <property name="IsTextCombo">True</property>
                         <property name="Items" translatable="yes">On or before
 On or after</property>
@@ -18054,6 +18059,7 @@ On or after</property>
                     <child>
                       <widget class="ocmgtk.DateWidget" id="lFoundAnyoneDate">
                         <property name="MemberName" />
+                        <property name="Sensitive">False</property>
                         <property name="Events">ButtonPressMask</property>
                         <property name="IncludeTime">False</property>
                         <property name="Date">0</property>

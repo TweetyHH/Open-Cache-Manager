@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2011-02-24 20:07:17-0500\n"
-"PO-Revision-Date: 2011-02-24 20:07:17-0500\n"
+"POT-Creation-Date: 2011-02-27 08:38:22-0500\n"
+"PO-Revision-Date: 2011-02-27 08:38:23-0500\n"
 "Last-Translator: Kyle Campbell\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -286,11 +286,15 @@ msgid "NO CACHE SELECTED"
 msgstr ""
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:119
-#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:124
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:462
 #: ../ocm-gtk/Dialogs/LoadGPSFieldNotes.cs:36
 #: ../ocm-gtk/Dialogs/LoadGPSFieldNotes.cs:50
 msgid "Never"
+msgstr ""
+
+#: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:124
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:403
+msgid "Unknown"
 msgstr ""
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:163
@@ -773,31 +777,31 @@ msgstr ""
 msgid "Ref"
 msgstr ""
 
-#: ../ocm-gtk/Dialogs/FilterDialog.cs:220
+#: ../ocm-gtk/Dialogs/FilterDialog.cs:241
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:140
 msgid "Attributes"
 msgstr ""
 
-#: ../ocm-gtk/Dialogs/FilterDialog.cs:274
+#: ../ocm-gtk/Dialogs/FilterDialog.cs:295
 msgid "Notes/Children/Corrected"
 msgstr ""
 
-#: ../ocm-gtk/Dialogs/FilterDialog.cs:323
+#: ../ocm-gtk/Dialogs/FilterDialog.cs:344
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:111
 msgid "Placement/Location"
 msgstr ""
 
-#: ../ocm-gtk/Dialogs/FilterDialog.cs:365
-#: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:160
+#: ../ocm-gtk/Dialogs/FilterDialog.cs:396
+#: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:162
 msgid "Updated/Found"
 msgstr ""
 
-#: ../ocm-gtk/Dialogs/FilterDialog.cs:405
+#: ../ocm-gtk/Dialogs/FilterDialog.cs:436
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:93
 msgid "Container/Description/Status"
 msgstr ""
 
-#: ../ocm-gtk/Dialogs/FilterDialog.cs:431
+#: ../ocm-gtk/Dialogs/FilterDialog.cs:462
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:76
 msgid "Difficulty/Terrain/Type"
 msgstr ""
@@ -1909,8 +1913,8 @@ msgid "GPSD"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:753
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:120
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:133
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:124
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:137
 msgid "days"
 msgstr ""
 
@@ -2175,10 +2179,6 @@ msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:393
 msgid "Traditional"
-msgstr ""
-
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:403
-msgid "Unknown"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:415
@@ -2494,12 +2494,14 @@ msgid "Hidden:"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:121
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:144
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:148
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:320
 msgid "On or before"
 msgstr ""
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:122
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:145
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:149
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:321
 msgid "On or after"
 msgstr ""
 
@@ -2566,7 +2568,7 @@ msgstr ""
 msgid "Change History..."
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:82
+#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:81
 msgid "_Save"
 msgstr ""
 
@@ -3922,43 +3924,47 @@ msgstr ""
 msgid "<span fgcolor=\"blue\">A combination filter</span> is applied."
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:93
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:97
 msgid "Condition matches:"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:167
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:171
 msgid "Last update date:"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:178
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:182
 msgid "Last updated within:"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:221
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:225
 msgid "Not updated within:"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:244
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:248
 msgid "<b>Last Updated</b>"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:272
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:273
 msgid "Last found by you"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:280
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:281
 msgid "on:"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:281
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:282
 msgid "on or after:"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:282
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:283
 msgid "on or before:"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:312
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:310
+msgid "Last found by anyone"
+msgstr ""
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:352
 msgid "<b>Last Found</b>"
 msgstr ""
 

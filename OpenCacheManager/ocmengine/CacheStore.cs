@@ -231,16 +231,15 @@ namespace ocmengine
 			List<Geocache> caches = new List<Geocache>();
 			if (m_comboList != null)
 			{
-				System.Console.WriteLine("COMBO!");
 				foreach (FilterList filter in m_comboList.ToArray())
 				{
 					m_filter = filter;
-					DoBuildCacheList (caches);
+					DoBuildCacheList (caches, true);
 				}
 			}
 			else
 			{
-				DoBuildCacheList(caches);
+				DoBuildCacheList(caches, false);
 			}		
 		
 			if (this.Complete != null)
@@ -248,7 +247,7 @@ namespace ocmengine
 			return caches;
 		}
 		
-		private void DoBuildCacheList (List<Geocache> caches)
+		private void DoBuildCacheList (List<Geocache> caches, bool checkDuplicates)
 		{
 			String sql = GET_GC;
 			if (null != m_filter)
@@ -258,8 +257,8 @@ namespace ocmengine
 			String prefilter = DoPrefilter();
 			if (null != prefilter)
 				sql += prefilter;
-			System.Console.WriteLine(sql);
-			GetCacheList(sql, caches);
+			//System.Console.WriteLine(sql);
+			GetCacheList(sql, caches, checkDuplicates);
 		}
 		
 		public List<Geocache> GetFinds()
@@ -633,11 +632,11 @@ namespace ocmengine
 		private List<Geocache> GetCacheList(String sql)
 		{
 			List<Geocache> pts = new List<Geocache>();
-			GetCacheList(sql, pts);
+			GetCacheList(sql, pts, false);
 			return pts;
 		}
 		
-		private void GetCacheList(String sql, List<Geocache> pts)
+		private void GetCacheList(String sql, List<Geocache> pts, bool checkDuplicates)
 		{
 			BuildHasChildrenList();
 			IDbConnection conn =  OpenConnection ();
@@ -646,9 +645,17 @@ namespace ocmengine
 			IDataReader reader = command.ExecuteReader();
 			while (reader.Read())
 			{
-				Geocache cache = BuildCache(reader, pts);
-				if (cache != null && !pts.Contains(cache))
-					pts.Add(cache);
+				Geocache cache = BuildCache(reader, pts, checkDuplicates);
+				if (checkDuplicates)
+				{
+					if (cache != null && !pts.Contains(cache))
+						pts.Add(cache);
+				}
+				else
+				{
+					if (cache != null)
+						pts.Add(cache);
+				}
 			}
 			CloseConnection (ref reader, ref command, ref conn);			
 		}
@@ -682,7 +689,7 @@ namespace ocmengine
 			return pt;
 		}
 		
-		private Geocache BuildCache(IDataReader reader, List<Geocache> caches)
+		private Geocache BuildCache(IDataReader reader, List<Geocache> caches, bool checkDuplicates)
 		{
 			
 			Geocache cache = new Geocache();
@@ -766,7 +773,7 @@ namespace ocmengine
 			
 			if (this.ReadCache != null)
 			{
-				if (caches.Contains(cache) || !DoNonDBFilter(cache))
+				if ((checkDuplicates &&caches.Contains(cache)) || !DoNonDBFilter(cache))
 				{
 					this.ReadCache(this, new ReadCacheArgs(null));
 					return null;
@@ -864,7 +871,8 @@ namespace ocmengine
 			}
 			if (m_filter.Contains(FilterList.KEY_INCNOATTRS) || m_filter.Contains(FilterList.KEY_EXCNOATTRS) ||
 			    m_filter.Contains(FilterList.KEY_NOCHILDREN)|| m_filter.Contains(FilterList.KEY_LFOUND_BEFORE)||
-			    m_filter.Contains(FilterList.KEY_LFOUND_AFTER))
+			    m_filter.Contains(FilterList.KEY_LFOUND_AFTER) || (m_filter.Contains(FilterList.KEY_FOUNDAFTER))||
+			    m_filter.Contains(FilterList.KEY_FOUNDON) || (m_filter.Contains(FilterList.KEY_FOUNDON)))
 			{
 				preFilterList.Append(" AND GEOCACHE.name NOT IN (");
 				if (m_filter.Contains(FilterList.KEY_INCNOATTRS))
@@ -909,7 +917,7 @@ namespace ocmengine
 					atLeastOne = true;
 					IDbConnection conn = OpenConnection();
 					IDbCommand cmd = conn.CreateCommand();	
-					cmd.CommandText = String.Format(LAST_FOUND_FILT);
+					cmd.CommandText = LAST_FOUND_FILT;
 					IDataReader rdr = cmd.ExecuteReader();
 					bool firstDone = false;
 					while (rdr.Read())
@@ -935,7 +943,7 @@ namespace ocmengine
 					atLeastOne = true;
 					IDbConnection conn = OpenConnection();
 					IDbCommand cmd = conn.CreateCommand();	
-					cmd.CommandText = String.Format(LAST_FOUND_FILT);
+					cmd.CommandText = LAST_FOUND_FILT;
 					IDataReader rdr = cmd.ExecuteReader();
 					bool firstDone = false;
 					while (rdr.Read())
@@ -944,6 +952,84 @@ namespace ocmengine
 						string cache = rdr.GetString(1);
 						DateTime logDate = DateTime.Parse(dtval);
 						if (logDate < date)
+						{
+							if (!firstDone)
+								firstDone = true;
+							else
+								preFilterList.Append(",");
+							preFilterList.Append("'");
+							preFilterList.Append(cache);
+							preFilterList.Append("'");
+						}
+					}
+				}
+				if (m_filter.Contains(FilterList.KEY_FOUNDBEFORE))
+				{
+					DateTime date = (DateTime) m_filter.GetCriteria(FilterList.KEY_FOUNDBEFORE);
+					atLeastOne = true;
+					IDbConnection conn = OpenConnection();
+					IDbCommand cmd = conn.CreateCommand();	
+					cmd.CommandText = String.Format(LAST_FOUND_ME_FILT, m_filter.GetCriteria(FilterList.KEY_OWNERID) as string);
+					IDataReader rdr = cmd.ExecuteReader();
+					bool firstDone = false;
+					while (rdr.Read())
+					{
+						string dtval = rdr.GetString(0);
+						string cache = rdr.GetString(1);
+						DateTime logDate = DateTime.Parse(dtval);
+						if (logDate > date)
+						{
+							if (!firstDone)
+								firstDone = true;
+							else
+								preFilterList.Append(",");
+							preFilterList.Append("'");
+							preFilterList.Append(cache);
+							preFilterList.Append("'");
+						}
+					}
+				}
+				if (m_filter.Contains(FilterList.KEY_FOUNDON))
+				{
+					DateTime date = (DateTime) m_filter.GetCriteria(FilterList.KEY_FOUNDON);
+					atLeastOne = true;
+					IDbConnection conn = OpenConnection();
+					IDbCommand cmd = conn.CreateCommand();	
+					cmd.CommandText = String.Format(LAST_FOUND_ME_FILT, m_filter.GetCriteria(FilterList.KEY_OWNERID) as string);
+					IDataReader rdr = cmd.ExecuteReader();
+					bool firstDone = false;
+					while (rdr.Read())
+					{
+						string dtval = rdr.GetString(0);
+						string cache = rdr.GetString(1);
+						DateTime logDate = DateTime.Parse(dtval);
+						if (logDate.Date != date.Date)
+						{
+							if (!firstDone)
+								firstDone = true;
+							else
+								preFilterList.Append(",");
+							preFilterList.Append("'");
+							preFilterList.Append(cache);
+							preFilterList.Append("'");
+						}
+					}
+				}
+				if (m_filter.Contains(FilterList.KEY_FOUNDAFTER))
+				{
+					DateTime date = (DateTime) m_filter.GetCriteria(FilterList.KEY_FOUNDAFTER);
+					atLeastOne = true;
+					IDbConnection conn = OpenConnection();
+					IDbCommand cmd = conn.CreateCommand();	
+					cmd.CommandText = String.Format(LAST_FOUND_ME_FILT, m_filter.GetCriteria(FilterList.KEY_OWNERID) as string);
+					IDataReader rdr = cmd.ExecuteReader();
+					bool firstDone = false;
+					while (rdr.Read())
+					{
+						string dtval = rdr.GetString(0);
+						string cache = rdr.GetString(1);
+						DateTime logDate = DateTime.Parse(dtval);
+						if (logDate.Date < date.Date)
 						{
 							if (!firstDone)
 								firstDone = true;
@@ -1054,7 +1140,6 @@ namespace ocmengine
 		{
 			if (m_filter != null)
 			{
-				string ownerID = m_filter.GetCriteria(FilterList.KEY_OWNERID) as String;
 				if (m_filter.Contains(FilterList.KEY_PLACEBEFORE))
 					if (cache.Time >= ((DateTime) m_filter.GetCriteria(FilterList.KEY_PLACEBEFORE)))
 						return false;
@@ -1080,36 +1165,6 @@ namespace ocmengine
 					DateTime dt = DateTime.Now.Subtract(new TimeSpan(days, 0,0,0));
 					if (cache.Updated >= dt)
 						return false;						
-				}
-				if (m_filter.Contains(FilterList.KEY_FOUNDON))
-				{
-					if (cache.Found)
-					{
-						if (Engine.getInstance().Store.GetLastFindByYou(cache, ownerID).Date != ((DateTime) m_filter.GetCriteria(FilterList.KEY_FOUNDON)).Date)
-							return false;
-					}
-					else 
-						return false;
-				}
-				if (m_filter.Contains(FilterList.KEY_FOUNDBEFORE))
-				{
-					if (cache.Found)
-					{
-						if (Engine.getInstance().Store.GetLastFindByYou(cache, ownerID).Date > ((DateTime) m_filter.GetCriteria(FilterList.KEY_FOUNDBEFORE)).Date)
-							return false;
-					}
-					else 
-						return false;
-				}
-				if (m_filter.Contains(FilterList.KEY_FOUNDAFTER))
-				{
-					if (cache.Found)
-					{
-						if (Engine.getInstance().Store.GetLastFindByYou(cache, ownerID).Date < ((DateTime) m_filter.GetCriteria(FilterList.KEY_FOUNDAFTER)).Date)
-							return false;
-					}
-					else 
-						return false;
 				}
 				if (m_filter.Contains(FilterList.KEY_DIST))
 				{

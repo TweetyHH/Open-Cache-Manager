@@ -2,6 +2,7 @@ Version 0.23.7
 --------------
 - Add Last Found by Anyone filter
 - Change last found to "unknown" if last found log in OCM database
+- Fixed a few performance bugs
 
 Version 0.23.6
 --------------
