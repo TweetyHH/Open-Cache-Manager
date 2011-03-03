@@ -77,7 +77,7 @@ namespace ocmgtk
 			config.OwnerID = page3.MemberID;
 			config.ImperialUnits = page2.ImperialUnits;
 			config.MapType = page2.DefaultMap;
-			config.SetWizardDone();
+			config.WizardDone = true;
 						
 			MainWindow win = new MainWindow ();
 			win.Show();

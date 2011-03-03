@@ -67,14 +67,8 @@ namespace ocmgtk
 			Mono.Unix.Catalog.Init ("opencachemanager", localeDirectory);
 			//Mono.Unix.Catalog.Init ("opencachemanager", "./locale");
 			//Mono.Unix.Catalog.Init ("opencachemanager", "@expanded_datadir@/locale");
-			bool runWizard = false;
-			try {
-				GConf.Client client = new GConf.Client ();
-				client.Get ("/apps/ocm/wizardone");
-				runWizard = false;
-			} catch (GConf.NoSuchKeyException) {
-				runWizard = true;
-			}
+			Config config = new Config();
+			bool runWizard = !config.WizardDone;
 			
 			if (runWizard) {
 				UIMonitor.getInstance ().RunSetupAssistant ();

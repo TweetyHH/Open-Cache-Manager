@@ -191,13 +191,14 @@ namespace ocmgtk
 		
 		public bool ShowAllChildren
 		{
-			get { return (Boolean) this.Get("/apps/ocm/showallchildren", false);}
+			get { return (bool) this.Get("/apps/ocm/showallchildren", false);}
 			set { this.Set("/apps/ocm/showallchildren",value);}
 		}
 		
-		public void SetWizardDone()
+		public bool WizardDone
 		{
-			this.Set("/apps/ocm/wizardone", "true");
+			get { return Boolean.Parse( (string) this.Get("/apps/ocm/wizardone", "false"));}
+			set { this.Set("/apps/ocm/wizardone",value?"true":"false");}
 		}
 		
 		public string GPSProf

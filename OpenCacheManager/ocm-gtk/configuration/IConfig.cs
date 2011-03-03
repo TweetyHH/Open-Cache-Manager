@@ -67,14 +67,13 @@ namespace ocmgtk
 		int ExportLimitLogs{get;set;}
 		bool ExportIncludeAttributes{get;set;}
 		bool ExportAsPlainText{get;set;}
+		bool WizardDone{get;set;}
 		ocmengine.WaypointDescMode ExportWaypointDescMode{get;set;}
 		ocmengine.WaypointNameMode ExportWaypointNameMode{get;set;}
 		List<MapDescription> OpenLayerMaps{get;set;}
 		
 		DateTime LastGPSFieldNoteScan{get;set;}
-		string ImportBookmarkList{get;set;}
-		void SetWizardDone();
-		
+		string ImportBookmarkList{get;set;}		
 		void CheckForDefaultGPS(GPSProfileList list, MainWindow win);
 	}
 }
