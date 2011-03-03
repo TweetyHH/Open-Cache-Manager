@@ -562,24 +562,24 @@ namespace ocmgtk
 		private void CreatePopup (Gtk.ButtonPressEventArgs args)
 		{
 			Menu popup = new Menu ();
-			MenuItem setCenterItem = new MenuItem (Catalog.GetString("Set As Map Centre"));
-			MenuItem showOnline = new MenuItem (Catalog.GetString("View Cache Online"));
-			MenuItem mark = new MenuItem(Catalog.GetString("Mark"));
+			MenuItem setCenterItem = new MenuItem (Catalog.GetString("_Set As Map Centre"));
+			MenuItem showOnline = new MenuItem (Catalog.GetString("_View Cache Online"));
+			MenuItem mark = new MenuItem(Catalog.GetString("_Mark"));
 			Menu markSub = new Menu();
-			MenuItem markFound = new MenuItem(Catalog.GetString("Mark Found"));
+			MenuItem markFound = new MenuItem(Catalog.GetString("Mark _Found"));
 			MenuItem markFTF = new MenuItem(Catalog.GetString("Mark First To Find"));
 			MenuItem markDNF = new MenuItem(Catalog.GetString("Mark Did Not Find"));
-			MenuItem markUnfound = new MenuItem(Catalog.GetString("Mark Unfound"));
-			MenuItem markDisabled = new MenuItem(Catalog.GetString("Mark Disabled"));
-			MenuItem markArchived = new MenuItem(Catalog.GetString("Mark Archived"));
-			MenuItem markAvailable = new MenuItem(Catalog.GetString("Mark Available"));
+			MenuItem markUnfound = new MenuItem(Catalog.GetString("Mark _Unfound"));
+			MenuItem markDisabled = new MenuItem(Catalog.GetString("Mark _Disabled"));
+			MenuItem markArchived = new MenuItem(Catalog.GetString("Mark _Archived"));
+			MenuItem markAvailable = new MenuItem(Catalog.GetString("Mark A_vailable"));
 			MenuItem correctCoordinates = new MenuItem(Catalog.GetString("_Corrected Coordinates..."));
 			MenuItem addWaypoint = new MenuItem(Catalog.GetString("Add Child _Waypoint..."));
-			
 			MenuItem deleteItem = new MenuItem (Catalog.GetString("Delete..."));
-			MenuItem bookmark = new MenuItem(Catalog.GetString("Add to Bookmark List"));
-			MenuItem qlandkarte = new MenuItem(Catalog.GetString("View in QLandkarte GT..."));
-			MenuItem logCache = new MenuItem(Catalog.GetString("Log Find"));
+			MenuItem bookmark = new MenuItem(Catalog.GetString("_Add to Bookmark List"));
+			MenuItem rmvCache = new MenuItem(Catalog.GetString("_Remove From Bookmark List"));
+			MenuItem qlandkarte = new MenuItem(Catalog.GetString("View in _QLandkarte GT..."));
+			MenuItem logCache = new MenuItem(Catalog.GetString("_Log Find"));
 			
 			TreePath path;
 			TreeIter itr;
@@ -663,7 +663,6 @@ namespace ocmgtk
 				bookmark.Sensitive = false;
 			}
 			
-			MenuItem rmvCache = new MenuItem(Catalog.GetString("Remove From Bookmark List"));
 			if (store.BookmarkList == null)
 				rmvCache.Sensitive = false;
 			rmvCache.Activated += HandleRmvCacheActivated;
