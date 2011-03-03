@@ -573,6 +573,9 @@ namespace ocmgtk
 			MenuItem markDisabled = new MenuItem(Catalog.GetString("Mark Disabled"));
 			MenuItem markArchived = new MenuItem(Catalog.GetString("Mark Archived"));
 			MenuItem markAvailable = new MenuItem(Catalog.GetString("Mark Available"));
+			MenuItem correctCoordinates = new MenuItem(Catalog.GetString("_Corrected Coordinates..."));
+			MenuItem addWaypoint = new MenuItem(Catalog.GetString("Add Child _Waypoint..."));
+			
 			MenuItem deleteItem = new MenuItem (Catalog.GetString("Delete..."));
 			MenuItem bookmark = new MenuItem(Catalog.GetString("Add to Bookmark List"));
 			MenuItem qlandkarte = new MenuItem(Catalog.GetString("View in QLandkarte GT..."));
@@ -673,11 +676,12 @@ namespace ocmgtk
 			markDisabled.Activated += HandleMarkDisabledActivated;
 			markArchived.Activated += HandleMarkArchivedActivated;
 			markAvailable.Activated += HandleMarkAvailableActivated;
+			correctCoordinates.Activated += HandleCorrectCoordinatesActivated;
+			addWaypoint.Activated += HandleAddWayPointActivated;
 			qlandkarte.Activated += HandleQlandkarteActivated;
 			logCache.Activated += HandleLogCacheActivated;
 			markDNF.Activated += HandleMarkDNFActivated;
 			markFTF.Activated += HandleMarkFTFActivated;
-		
 			
 			popup.Add (setCenterItem);
 			popup.Add (showOnline);
@@ -692,6 +696,8 @@ namespace ocmgtk
 			markSub.Add (markArchived);
 			markSub.Add (markAvailable);
 			mark.Submenu = markSub;
+			popup.Add(addWaypoint);			          
+			popup.Add(correctCoordinates);
 			popup.Add (new MenuItem());
 			popup.Add (bookmark);
 			popup.Add (rmvCache);
@@ -755,6 +761,16 @@ namespace ocmgtk
 		void HandleMarkDisabledActivated (object sender, EventArgs e)
 		{
 			m_monitor.MarkCacheDisabled();
+		}
+		
+		void HandleCorrectCoordinatesActivated (object sender, EventArgs e)
+		{
+			m_monitor.CorrectCoordinates();
+		}
+
+		void HandleAddWayPointActivated (object sender, EventArgs e)
+		{
+			m_monitor.AddChildWaypoint();
 		}
 
 		void HandleDeleteItemActivated (object sender, EventArgs e)
