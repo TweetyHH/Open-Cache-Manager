@@ -277,6 +277,30 @@ namespace ocmengine
 				pt.Lat = double.Parse(reader.GetAttribute("lat"), CultureInfo.InvariantCulture);
 				pt.Lon = double.Parse(reader.GetAttribute("lon"), CultureInfo.InvariantCulture);
 			}
+			else if (reader.Name == "terrain")
+			{
+				(pt as Geocache).Terrain = float.Parse(reader.ReadString());
+			}
+			else if (reader.Name == "difficulty")
+			{
+				(pt as Geocache).Difficulty = float.Parse(reader.ReadString());
+			}
+			else if (reader.Name == "container")
+			{
+				string val = reader.ReadString().Trim();
+				if (val == "2")
+					(pt as Geocache).Container = "Micro";	
+				else if (val == "8")
+					(pt as Geocache).Container = "Small";	
+				else if (val == "3")
+					(pt as Geocache).Container = "Regular";	
+				else if (val == "4")
+					(pt as Geocache).Container = "Large";	
+				else if (val == "5")
+					(pt as Geocache).Container = "Virtual";
+				else
+					(pt as Geocache).Container = "Not Chosen";
+			}
 			else if (reader.Name == "type")
 			{
 				pt.Symbol = reader.ReadElementContentAsString();
