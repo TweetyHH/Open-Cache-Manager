@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2011-02-27 08:37:27-0500\n"
+"POT-Creation-Date: 2011-03-05 12:05:35-0500\n"
 "PO-Revision-Date: 2011-01-23 11:05+0100\n"
 "Last-Translator: Harrie Klomp <Harrie@harrieklomp.nl>\n"
 "Language-Team: \n"
@@ -11,27 +11,27 @@ msgstr ""
 "X-Generator: MonoDevelop Gettext addin\n"
 
 #: ../ocmengine/Waypoint.cs:131 ../ocm-gtk/Widgets/WaypointWidget.cs:181
-#: ../ocm-gtk/UIMonitor.cs:2132
+#: ../ocm-gtk/UIMonitor.cs:2139
 msgid "Original Location"
 msgstr "Originele locatie"
 
-#: ../ocmengine/Utilities.cs:135
+#: ../ocmengine/Utilities.cs:137
 msgid "N {0}° {1}"
 msgstr "N {0}° {1}"
 
-#: ../ocmengine/Utilities.cs:137
+#: ../ocmengine/Utilities.cs:139
 msgid "S {0}° {1}"
 msgstr "Z {0}° {1}"
 
-#: ../ocmengine/Utilities.cs:160
+#: ../ocmengine/Utilities.cs:162
 msgid "  E {0}° {1}"
 msgstr "  O {0}° {1}"
 
-#: ../ocmengine/Utilities.cs:162
+#: ../ocmengine/Utilities.cs:164
 msgid "  W {0}° {1}"
 msgstr "  W {0}° {1}"
 
-#: ../ocmengine/Utilities.cs:225
+#: ../ocmengine/Utilities.cs:227
 msgid "Unknown Coordinate Format"
 msgstr "Onbekende coördinaten stelsel"
 
@@ -76,7 +76,7 @@ msgstr "Voeg _geselecteerde cache toe aan"
 msgid "_Remove Selected Cache from Bookmark List"
 msgstr "Verwijder geselecteerde _cache uit bladwijzerlijst"
 
-#: ../ocm-gtk/MainWindow.cs:453 ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:87
+#: ../ocm-gtk/MainWindow.cs:474 ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:87
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:102
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:106
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:110
@@ -91,130 +91,158 @@ msgstr "Verwijder geselecteerde _cache uit bladwijzerlijst"
 msgid "None"
 msgstr "Geen"
 
-#: ../ocm-gtk/MainWindow.cs:876
+#: ../ocm-gtk/MainWindow.cs:897
 #, fuzzy
 msgid "Transfer _Caches to Last Used ({0})..."
 msgstr "_Verzend caches..."
 
-#: ../ocm-gtk/MainWindow.cs:880
+#: ../ocm-gtk/MainWindow.cs:901
 #, fuzzy
 msgid "Receive F_ield Notes from Last Used ({0})..."
 msgstr "Bewerken wegpunten..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:94
+#: ../ocm-gtk/Widgets/CacheList.cs:106
 msgid " The advanced filter settings override basic distance filter."
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:99
+#: ../ocm-gtk/Widgets/CacheList.cs:111
 msgid " The advanced filter settings override the basic status filter."
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:111
+#: ../ocm-gtk/Widgets/CacheList.cs:123
 msgid " The combination filter settings override basic distance filter."
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:116
+#: ../ocm-gtk/Widgets/CacheList.cs:128
 msgid " The combination filter settings override the basic status filter."
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:150 ../ocm-gtk/Widgets/WaypointWidget.cs:49
+#: ../ocm-gtk/Widgets/CacheList.cs:162 ../ocm-gtk/Widgets/WaypointWidget.cs:49
 #: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:71
 msgid "Type"
 msgstr "Soort"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:151 ../ocm-gtk/Widgets/WaypointWidget.cs:51
+#: ../ocm-gtk/Widgets/CacheList.cs:163 ../ocm-gtk/Widgets/WaypointWidget.cs:51
 #: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:73
 msgid "Code"
 msgstr "Code"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:152 ../ocm-gtk/Widgets/CacheList.cs:203
-#: ../ocm-gtk/Widgets/CacheList.cs:204
+#: ../ocm-gtk/Widgets/CacheList.cs:164 ../ocm-gtk/Widgets/CacheList.cs:215
+#: ../ocm-gtk/Widgets/CacheList.cs:216
 msgid "Km"
 msgstr "Km"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:153
+#: ../ocm-gtk/Widgets/CacheList.cs:165
 msgid "Title"
 msgstr "Cache naam"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:197 ../ocm-gtk/Widgets/OCMQueryPage3.cs:239
+#: ../ocm-gtk/Widgets/CacheList.cs:209 ../ocm-gtk/Widgets/OCMQueryPage3.cs:239
 msgid "Mi"
 msgstr "Mi"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:198
+#: ../ocm-gtk/Widgets/CacheList.cs:210
 msgid "Miles"
 msgstr "Mijlen"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:265
+#: ../ocm-gtk/Widgets/CacheList.cs:277
 msgid "Loading Caches"
 msgstr "Laden van {0}caches"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:300
+#: ../ocm-gtk/Widgets/CacheList.cs:312
 msgid "Loading Caches {0}"
 msgstr "Laden caches {0}"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:564
-msgid "Set As Map Centre"
+#: ../ocm-gtk/Widgets/CacheList.cs:576
+#, fuzzy
+msgid "_Set As Map Centre"
 msgstr "Stel in als kaartcentrum"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:565
-msgid "View Cache Online"
+#: ../ocm-gtk/Widgets/CacheList.cs:577
+#, fuzzy
+msgid "_View Cache Online"
 msgstr "Bekijk cache online"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:566
-msgid "Mark"
-msgstr "Markeren"
+#: ../ocm-gtk/Widgets/CacheList.cs:578 ../ocm-gtk/gtk-gui/MainWindow.cs:615
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:616
+msgid "_Mark"
+msgstr "_Markeer"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:568
-#: ../ocm-gtk/gtk-gui/ocmgtk.MarkFoundDialog.cs:35
-msgid "Mark Found"
-msgstr "Markeer gevonden"
+#: ../ocm-gtk/Widgets/CacheList.cs:580 ../ocm-gtk/gtk-gui/MainWindow.cs:630
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:631
+msgid "Mark _Found"
+msgstr "Markeer g_evonden"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:569 ../ocm-gtk/gtk-gui/MainWindow.cs:744
+#: ../ocm-gtk/Widgets/CacheList.cs:581 ../ocm-gtk/gtk-gui/MainWindow.cs:744
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:745
 #, fuzzy
 msgid "Mark First To Find"
 msgstr "Markeer gevonden"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:570 ../ocm-gtk/UIMonitor.cs:1179
+#: ../ocm-gtk/Widgets/CacheList.cs:582 ../ocm-gtk/UIMonitor.cs:1186
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:741 ../ocm-gtk/gtk-gui/MainWindow.cs:742
 msgid "Mark Did Not Find"
 msgstr ""
 
-#: ../ocm-gtk/Widgets/CacheList.cs:571
-msgid "Mark Unfound"
-msgstr "Markeer niet gevonden"
+#: ../ocm-gtk/Widgets/CacheList.cs:583 ../ocm-gtk/gtk-gui/MainWindow.cs:618
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:619
+msgid "Mark _Unfound"
+msgstr "Markeer nie_t gevonden"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:572
-msgid "Mark Disabled"
-msgstr "Markeer niet beschikbaar"
+#: ../ocm-gtk/Widgets/CacheList.cs:584 ../ocm-gtk/gtk-gui/MainWindow.cs:621
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:622
+msgid "Mark _Disabled"
+msgstr "Markeer _niet beschikbaar"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:573
-msgid "Mark Archived"
-msgstr "Markeer gearchiveerd"
+#: ../ocm-gtk/Widgets/CacheList.cs:585 ../ocm-gtk/gtk-gui/MainWindow.cs:624
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:625
+msgid "Mark _Archived"
+msgstr "Markeer _gearchiveerd"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:574
-msgid "Mark Available"
-msgstr "Markeer beschikbaar"
+#: ../ocm-gtk/Widgets/CacheList.cs:586 ../ocm-gtk/gtk-gui/MainWindow.cs:627
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:628
+msgid "Mark A_vailable"
+msgstr "Markeer _beschikbaar"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:575
+#: ../ocm-gtk/Widgets/CacheList.cs:587 ../ocm-gtk/gtk-gui/MainWindow.cs:653
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:655
+#, fuzzy
+msgid "_Corrected Coordinates..."
+msgstr "Gecorrigeerde  coördinaten..."
+
+#: ../ocm-gtk/Widgets/CacheList.cs:588 ../ocm-gtk/gtk-gui/MainWindow.cs:695
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:697
+msgid "Add Child _Waypoint..."
+msgstr "_Childwegpunt toevoegen..."
+
+#: ../ocm-gtk/Widgets/CacheList.cs:589
 msgid "Delete..."
 msgstr "Verwijderen..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:576
-msgid "Add to Bookmark List"
+#: ../ocm-gtk/Widgets/CacheList.cs:590
+#, fuzzy
+msgid "_Add to Bookmark List"
 msgstr "Voeg toe aan bladwijzer"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:577
-msgid "View in QLandkarte GT..."
+#: ../ocm-gtk/Widgets/CacheList.cs:591
+#, fuzzy
+msgid "_Remove From Bookmark List"
+msgstr "Verwijder uit bladwijzer"
+
+#: ../ocm-gtk/Widgets/CacheList.cs:592
+#, fuzzy
+msgid "View in _QLandkarte GT..."
 msgstr "Bekijk in QLandkarte GT..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:578
-msgid "Log Find"
-msgstr "Log als gevonden"
+#: ../ocm-gtk/Widgets/CacheList.cs:593 ../ocm-gtk/gtk-gui/MainWindow.cs:395
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:397
+msgid "_Log Find"
+msgstr "_Log als gevonden"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:662
-msgid "Remove From Bookmark List"
-msgstr "Verwijder uit bladwijzer"
+#: ../ocm-gtk/Widgets/CacheList.cs:594 ../ocm-gtk/gtk-gui/MainWindow.cs:633
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:634
+#, fuzzy
+msgid "_External Tools"
+msgstr "Externe toepassingen"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:30
 msgid ""
@@ -489,9 +517,9 @@ msgstr "Laart laden {0}"
 msgid "Loading Map"
 msgstr "Kaart laden"
 
-#: ../ocm-gtk/UIMonitor.cs:263 ../ocm-gtk/UIMonitor.cs:498
-#: ../ocm-gtk/UIMonitor.cs:1544 ../ocm-gtk/UIMonitor.cs:1546
-#: ../ocm-gtk/UIMonitor.cs:1971 ../ocm-gtk/Widgets/OCMQueryPage3.cs:230
+#: ../ocm-gtk/UIMonitor.cs:270 ../ocm-gtk/UIMonitor.cs:505
+#: ../ocm-gtk/UIMonitor.cs:1551 ../ocm-gtk/UIMonitor.cs:1553
+#: ../ocm-gtk/UIMonitor.cs:1978 ../ocm-gtk/Widgets/OCMQueryPage3.cs:230
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:705 ../ocm-gtk/gtk-gui/MainWindow.cs:706
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:723 ../ocm-gtk/gtk-gui/MainWindow.cs:724
 #: ../ocm-gtk/configuration/Config.cs:62
@@ -499,7 +527,7 @@ msgstr "Kaart laden"
 msgid "Home"
 msgstr "Thuis"
 
-#: ../ocm-gtk/UIMonitor.cs:389
+#: ../ocm-gtk/UIMonitor.cs:396
 msgid ""
 "OCM needs to upgrade your database.\n"
 "Would you like to backup your database first?"
@@ -507,20 +535,20 @@ msgstr ""
 "OCM gaat uw database te vernieuwen.\n"
 "Wilt u eerst een backup maken?"
 
-#: ../ocm-gtk/UIMonitor.cs:396
+#: ../ocm-gtk/UIMonitor.cs:403
 #, fuzzy
 msgid "Upgrade complete."
 msgstr "Opwaardering compleet"
 
-#: ../ocm-gtk/UIMonitor.cs:578 ../ocm-gtk/UIMonitor.cs:610
+#: ../ocm-gtk/UIMonitor.cs:585 ../ocm-gtk/UIMonitor.cs:617
 msgid "<b>A cache by:</b> "
 msgstr "<b>Een cache van:</b> "
 
-#: ../ocm-gtk/UIMonitor.cs:578 ../ocm-gtk/UIMonitor.cs:610
+#: ../ocm-gtk/UIMonitor.cs:585 ../ocm-gtk/UIMonitor.cs:617
 msgid "<br><b>Hidden on: </b>"
 msgstr "<b>Geplaatst op:</b>"
 
-#: ../ocm-gtk/UIMonitor.cs:664
+#: ../ocm-gtk/UIMonitor.cs:671
 msgid ""
 "Showing {0} of {1} caches, {2} found, {3} unavailable/archived, {4} placed "
 "by me"
@@ -528,7 +556,7 @@ msgstr ""
 "In beeld {0} van {1} caches, {2} gevonden, {3} niet beschikbaar/"
 "gearchiveerd, {4} geplaatst door mij"
 
-#: ../ocm-gtk/UIMonitor.cs:666
+#: ../ocm-gtk/UIMonitor.cs:673
 msgid ""
 "Showing {0} of {1} caches from {2}, {3} found, {4} unavailable/archived, {5} "
 "placed by me"
@@ -536,16 +564,16 @@ msgstr ""
 "In beeld {0} van {1} caches van {2}. {3} gevonden, {4} niet beschikbaar/"
 "gearchiveerd, {5} geplaatst door mij"
 
-#: ../ocm-gtk/UIMonitor.cs:676
+#: ../ocm-gtk/UIMonitor.cs:683
 msgid "Centred on {0} ({1})"
 msgstr "Gecentreerd op {0} ({1})"
 
-#: ../ocm-gtk/UIMonitor.cs:696
+#: ../ocm-gtk/UIMonitor.cs:703
 msgid "Create database"
 msgstr "Maak database"
 
-#: ../ocm-gtk/UIMonitor.cs:696 ../ocm-gtk/UIMonitor.cs:756
-#: ../ocm-gtk/UIMonitor.cs:891 ../ocm-gtk/Dialogs/Preferences.cs:148
+#: ../ocm-gtk/UIMonitor.cs:703 ../ocm-gtk/UIMonitor.cs:763
+#: ../ocm-gtk/UIMonitor.cs:898 ../ocm-gtk/Dialogs/Preferences.cs:148
 #: ../ocm-gtk/Dialogs/Preferences.cs:158
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:70
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:95
@@ -559,77 +587,77 @@ msgstr "Maak database"
 msgid "Cancel"
 msgstr "Anuleren"
 
-#: ../ocm-gtk/UIMonitor.cs:696
+#: ../ocm-gtk/UIMonitor.cs:703
 msgid "Save"
 msgstr "Opslaan"
 
-#: ../ocm-gtk/UIMonitor.cs:708
+#: ../ocm-gtk/UIMonitor.cs:715
 msgid "You cannot overwrite the currently open database."
 msgstr "Kan niet een geopende database overschrijven."
 
-#: ../ocm-gtk/UIMonitor.cs:718
+#: ../ocm-gtk/UIMonitor.cs:725
 msgid "Are you sure you want to overwrite '{0}'"
 msgstr "Weet u zeker dat \"{0}\" overschreven moet worden ?"
 
-#: ../ocm-gtk/UIMonitor.cs:754
+#: ../ocm-gtk/UIMonitor.cs:761
 msgid "Open Database"
 msgstr "Open database"
 
-#: ../ocm-gtk/UIMonitor.cs:758 ../ocm-gtk/Widgets/SetupAssistantPage2.cs:70
+#: ../ocm-gtk/UIMonitor.cs:765 ../ocm-gtk/Widgets/SetupAssistantPage2.cs:70
 #: ../ocm-gtk/Widgets/MapSelectionWidget.cs:180
 msgid "Open"
 msgstr "Openen"
 
-#: ../ocm-gtk/UIMonitor.cs:891
+#: ../ocm-gtk/UIMonitor.cs:898
 msgid " Export Finds GPX File"
 msgstr "Exporteren gevonden GPX bestand"
 
-#: ../ocm-gtk/UIMonitor.cs:891
+#: ../ocm-gtk/UIMonitor.cs:898
 msgid "Export"
 msgstr "Exporteren"
 
-#: ../ocm-gtk/UIMonitor.cs:1146
+#: ../ocm-gtk/UIMonitor.cs:1153
 #, fuzzy
 msgid "Mark First to Find"
 msgstr "Markeer gevonden"
 
-#: ../ocm-gtk/UIMonitor.cs:1256
+#: ../ocm-gtk/UIMonitor.cs:1263
 msgid "Are you sure you want to delete {0}?"
 msgstr "Weet u zeker dat {0} verwijderd moet worden ?"
 
-#: ../ocm-gtk/UIMonitor.cs:1294
+#: ../ocm-gtk/UIMonitor.cs:1301
 msgid "Are you sure you want to clear all advanced filters?"
 msgstr "Weet u zeker om geavanceerde filters te herstellen?"
 
-#: ../ocm-gtk/UIMonitor.cs:1425
+#: ../ocm-gtk/UIMonitor.cs:1432
 #, fuzzy
 msgid "Edit GPS Profile..."
 msgstr "_Bekijk mijn profiel..."
 
-#: ../ocm-gtk/UIMonitor.cs:1466
+#: ../ocm-gtk/UIMonitor.cs:1473
 #, fuzzy
 msgid "\"{0}\" is the active GPS profile. Are you sure you wish to delete it?"
 msgstr "Weet u zeker dat {0} verwijderd moet worden ?"
 
-#: ../ocm-gtk/UIMonitor.cs:1491
+#: ../ocm-gtk/UIMonitor.cs:1498
 msgid ""
 "There is no active GPS profile. Either select an existing one from the GPS "
 "Menu or add a new profile ."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:1616
+#: ../ocm-gtk/UIMonitor.cs:1623
 msgid "{0} added to {1}"
 msgstr "{0} toegevoegd aan {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1627
+#: ../ocm-gtk/UIMonitor.cs:1634
 msgid "{0} caches added to {1}"
 msgstr "{0} caches toegevoegd aan {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1633
+#: ../ocm-gtk/UIMonitor.cs:1640
 msgid "Are you sure you want to remove {0} from {1}?"
 msgstr "Weet u zeker om {0} te verwijderen van {1}?"
 
-#: ../ocm-gtk/UIMonitor.cs:1703
+#: ../ocm-gtk/UIMonitor.cs:1710
 msgid ""
 "Are you sure you want to delete these {0} caches?\n"
 "This operation cannot be undone."
@@ -637,31 +665,31 @@ msgstr ""
 "Weet u zeker dat {0} verwijderd moet worden ?\n"
 "Dit kan niet meer ongedaan gemaakt worden."
 
-#: ../ocm-gtk/UIMonitor.cs:1807 ../ocm-gtk/UIMonitor.cs:1822
+#: ../ocm-gtk/UIMonitor.cs:1814 ../ocm-gtk/UIMonitor.cs:1829
 msgid "Preparing to send to QLandKarte GT"
 msgstr "Voorbereiden om naar QLandkarte GT te verzenden "
 
-#: ../ocm-gtk/UIMonitor.cs:1872
+#: ../ocm-gtk/UIMonitor.cs:1879
 msgid "Save QuickFilter"
 msgstr "Bewaar snelfilter"
 
-#: ../ocm-gtk/UIMonitor.cs:1888
+#: ../ocm-gtk/UIMonitor.cs:1895
 msgid "Delete QuickFilter"
 msgstr "Verwijder snelfilter"
 
-#: ../ocm-gtk/UIMonitor.cs:1901
+#: ../ocm-gtk/UIMonitor.cs:1908
 msgid "Database Compacted."
 msgstr "Database verkleind."
 
-#: ../ocm-gtk/UIMonitor.cs:1923
+#: ../ocm-gtk/UIMonitor.cs:1930
 msgid "Move Geocaches..."
 msgstr "Verplaats geocaches..."
 
-#: ../ocm-gtk/UIMonitor.cs:1958
+#: ../ocm-gtk/UIMonitor.cs:1965
 msgid "Map Point"
 msgstr "Kaartpunt"
 
-#: ../ocm-gtk/UIMonitor.cs:1997 ../ocm-gtk/UIMonitor.cs:2030
+#: ../ocm-gtk/UIMonitor.cs:2004 ../ocm-gtk/UIMonitor.cs:2037
 msgid ""
 "A new version \"{0}\" of OCM is available\n"
 "Would you like to go to the download page now?"
@@ -669,33 +697,33 @@ msgstr ""
 "Een nieuwe versie \"{0}\" van OCM is beschikbaar\n"
 "Wilt u naar de downloadpagina gaan?"
 
-#: ../ocm-gtk/UIMonitor.cs:2014 ../ocm-gtk/UIMonitor.cs:2054
+#: ../ocm-gtk/UIMonitor.cs:2021 ../ocm-gtk/UIMonitor.cs:2061
 msgid "Unable to check for updates, check your network connection."
 msgstr "Kan niet controleren voor updates, controleer uw netwerkverbinding."
 
-#: ../ocm-gtk/UIMonitor.cs:2045
+#: ../ocm-gtk/UIMonitor.cs:2052
 msgid "OCM is at the latest version."
 msgstr "Dit is de nieuwste OCM versie."
 
-#: ../ocm-gtk/UIMonitor.cs:2070 ../ocm-gtk/UIMonitor.cs:2180
+#: ../ocm-gtk/UIMonitor.cs:2077 ../ocm-gtk/UIMonitor.cs:2187
 msgid "You have to select a cache first."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:2251
+#: ../ocm-gtk/UIMonitor.cs:2258
 #, fuzzy
 msgid "Delete Location...."
 msgstr "Selecteer bestands locatie"
 
-#: ../ocm-gtk/UIMonitor.cs:2271
+#: ../ocm-gtk/UIMonitor.cs:2278
 msgid "There are no field notes."
 msgstr ""
 
-#: ../ocm-gtk/UIMonitor.cs:2313
+#: ../ocm-gtk/UIMonitor.cs:2320
 #, fuzzy
 msgid "Processed {0} field notes."
 msgstr "Bewerken wegpunten..."
 
-#: ../ocm-gtk/UIMonitor.cs:2331
+#: ../ocm-gtk/UIMonitor.cs:2338
 #, fuzzy
 msgid "Are you sure you want to clear all Field Notes?"
 msgstr "Weet u zeker om geavanceerde filters te herstellen?"
@@ -992,10 +1020,6 @@ msgstr "_Importeren GPX/Loc bestand..."
 msgid "_Export GPX..."
 msgstr "_Exporteren GPX..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:395 ../ocm-gtk/gtk-gui/MainWindow.cs:397
-msgid "_Log Find"
-msgstr "_Log als gevonden"
-
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:399 ../ocm-gtk/gtk-gui/MainWindow.cs:401
 msgid "_Mark Unfound"
 msgstr "M_arkeer niet gevonden"
@@ -1245,35 +1269,6 @@ msgstr "Kopieer alle zichtbare caches..."
 msgid "Move Visible Caches..."
 msgstr "Verplaats alle zichtbare caches..."
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:615 ../ocm-gtk/gtk-gui/MainWindow.cs:616
-msgid "_Mark"
-msgstr "_Markeer"
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:618 ../ocm-gtk/gtk-gui/MainWindow.cs:619
-msgid "Mark _Unfound"
-msgstr "Markeer nie_t gevonden"
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:621 ../ocm-gtk/gtk-gui/MainWindow.cs:622
-msgid "Mark _Disabled"
-msgstr "Markeer _niet beschikbaar"
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:624 ../ocm-gtk/gtk-gui/MainWindow.cs:625
-msgid "Mark _Archived"
-msgstr "Markeer _gearchiveerd"
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:627 ../ocm-gtk/gtk-gui/MainWindow.cs:628
-msgid "Mark A_vailable"
-msgstr "Markeer _beschikbaar"
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:630 ../ocm-gtk/gtk-gui/MainWindow.cs:631
-msgid "Mark _Found"
-msgstr "Markeer g_evonden"
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:633 ../ocm-gtk/gtk-gui/MainWindow.cs:634
-#, fuzzy
-msgid "_External Tools"
-msgstr "Externe toepassingen"
-
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:640 ../ocm-gtk/gtk-gui/MainWindow.cs:641
 #, fuzzy
 msgid "_Configure External Tools..."
@@ -1292,11 +1287,6 @@ msgstr "Controleer voor updates..."
 #, fuzzy
 msgid "_Print..."
 msgstr "Afdrukken..."
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:653 ../ocm-gtk/gtk-gui/MainWindow.cs:655
-#, fuzzy
-msgid "_Corrected Coordinates..."
-msgstr "Gecorrigeerde  coördinaten..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:657 ../ocm-gtk/gtk-gui/MainWindow.cs:658
 msgid "O_pencaching"
@@ -1349,10 +1339,6 @@ msgstr "Importeren map..."
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:692 ../ocm-gtk/gtk-gui/MainWindow.cs:693
 msgid "Statistics..."
 msgstr "Statistieken..."
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:695 ../ocm-gtk/gtk-gui/MainWindow.cs:697
-msgid "Add Child _Waypoint..."
-msgstr "_Childwegpunt toevoegen..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:699 ../ocm-gtk/gtk-gui/MainWindow.cs:700
 #: ../ocm-gtk/gtk-gui/ocmgtk.AddLocationDialog.cs:31
@@ -1556,7 +1542,7 @@ msgid "<lfound>"
 msgstr "Gevonden"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:543
-#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:83
+#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:85
 msgid "label1"
 msgstr "label1"
 
@@ -2556,7 +2542,7 @@ msgstr "<b>Cache grootte:</b>"
 msgid "Change History..."
 msgstr "Geschiedenis..."
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:81
+#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:82
 msgid "_Save"
 msgstr "_Opslaan"
 
@@ -3455,7 +3441,7 @@ msgstr "_Overslaan"
 msgid "Exec"
 msgstr "Starter"
 
-#: ../ocm-gtk/Dialogs/ConfigureEToolsDlg.cs:116
+#: ../ocm-gtk/Dialogs/ConfigureEToolsDlg.cs:117
 msgid "Are you sure you wish to delete '{0}'"
 msgstr "Weet u zeker dat {0} verwijderd moet worden ?"
 
@@ -3585,6 +3571,10 @@ msgstr "Autobenaming op schijf"
 msgid "Use specified file:"
 msgstr "Gebruik bestand:"
 
+#: ../ocm-gtk/gtk-gui/ocmgtk.MarkFoundDialog.cs:35
+msgid "Mark Found"
+msgstr "Markeer gevonden"
+
 #: ../ocm-gtk/gtk-gui/ocmgtk.MarkFoundDialog.cs:97
 msgid "Found date:"
 msgstr "Datum gevonden:"
@@ -3600,7 +3590,7 @@ msgstr "Coördinaten:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CorrectedCoordinatesDlg.cs:93
 #, fuzzy
-msgid "<b>Oringal Location</b>"
+msgid "<b>Original Location</b>"
 msgstr "Originele locatie"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CorrectedCoordinatesDlg.cs:119
@@ -3783,7 +3773,7 @@ msgid "Loading..."
 msgstr "Verblijf"
 
 #: ../ocm-gtk/Dialogs/OfflineLogDialog.cs:97
-#: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:143
+#: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:145
 #, fuzzy
 msgid "<Name Unavailable>"
 msgstr "Markeer beschikbaar"
@@ -3798,10 +3788,16 @@ msgstr "Eindlocatie"
 msgid "Date"
 msgstr "Datums"
 
-#: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:212
+#: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:214
 #, fuzzy
 msgid "Are you sure you want to remove the log for '{0}'?"
 msgstr "Weet u zeker om {0} te verwijderen van {1}?"
+
+#: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:252
+msgid ""
+"'{0}' is not within the list of unfiltered caches. Your filter settings may "
+"have filtered it out or it may not be in your database."
+msgstr ""
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:68
 #, fuzzy
@@ -4094,17 +4090,22 @@ msgstr ""
 msgid "First To Find"
 msgstr ""
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:55
+#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:57
 #, fuzzy
 msgid "View Field Notes..."
 msgstr "Bewerken wegpunten..."
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:147
+#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:125
+#, fuzzy
+msgid "View Cache"
+msgstr "Zichtbare caches"
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:161
 #, fuzzy
 msgid "Delete All"
 msgstr "Verwijderen"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:192
+#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:206
 #, fuzzy
 msgid "<b>Log Text:</b>"
 msgstr "<b>Doel</b>"
@@ -4231,6 +4232,24 @@ msgstr ""
 msgid "Move Up"
 msgstr ""
 
+#~ msgid "Mark"
+#~ msgstr "Markeren"
+
+#~ msgid "Mark Unfound"
+#~ msgstr "Markeer niet gevonden"
+
+#~ msgid "Mark Disabled"
+#~ msgstr "Markeer niet beschikbaar"
+
+#~ msgid "Mark Archived"
+#~ msgstr "Markeer gearchiveerd"
+
+#~ msgid "Mark Available"
+#~ msgstr "Markeer beschikbaar"
+
+#~ msgid "Log Find"
+#~ msgstr "Log als gevonden"
+
 #~ msgid "Default Map:"
 #~ msgstr "Standaard kaart:"
 
@@ -4274,9 +4293,6 @@ msgstr ""
 
 #~ msgid "Cache Details"
 #~ msgstr "Cache eigenschappen"
-
-#~ msgid "Visible Caches"
-#~ msgstr "Zichtbare caches"
 
 #~ msgid "Selected Cache"
 #~ msgstr "Geselecteerde cache"

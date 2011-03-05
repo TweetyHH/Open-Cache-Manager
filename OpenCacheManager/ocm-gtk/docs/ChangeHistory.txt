@@ -1,8 +1,11 @@
 Version 0.23.8
 --------------
 - Add "Add child waypoint" and "Corrected Coordinates" to cache list context menu
+- Add external tools using the %selected% syntax to the cache list context menu
 - Fix import issue with new GC.com LOC file format
 - Fix import issue with opencaching.us style GPX files
+- Fix crash when sorting waypoints in certain conditions
+- Add "View Cache" button to Field Notes viewer
 
 Version 0.23.7
 --------------

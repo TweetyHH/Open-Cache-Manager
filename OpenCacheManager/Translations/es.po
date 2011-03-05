@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OMC\n"
-"POT-Creation-Date: 2011-02-27 08:37:27-0500\n"
-"PO-Revision-Date: 2011-01-18 18:03+0100\n"
+"POT-Creation-Date: 2011-03-05 12:05:35-0500\n"
+"PO-Revision-Date: 2011-02-28 19:27+0100\n"
 "Last-Translator: Vicente Parra Hurtado <schmidgps@yahoo.es>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,27 +14,27 @@ msgstr ""
 "X-Poedit-Country: SPAIN\n"
 
 #: ../ocmengine/Waypoint.cs:131 ../ocm-gtk/Widgets/WaypointWidget.cs:181
-#: ../ocm-gtk/UIMonitor.cs:2132
+#: ../ocm-gtk/UIMonitor.cs:2139
 msgid "Original Location"
 msgstr "Localización Original"
 
-#: ../ocmengine/Utilities.cs:135
+#: ../ocmengine/Utilities.cs:137
 msgid "N {0}° {1}"
 msgstr "N {0}° {1}"
 
-#: ../ocmengine/Utilities.cs:137
+#: ../ocmengine/Utilities.cs:139
 msgid "S {0}° {1}"
 msgstr "S {0}° {1}"
 
-#: ../ocmengine/Utilities.cs:160
+#: ../ocmengine/Utilities.cs:162
 msgid "  E {0}° {1}"
 msgstr "E {0}° {1}"
 
-#: ../ocmengine/Utilities.cs:162
+#: ../ocmengine/Utilities.cs:164
 msgid "  W {0}° {1}"
 msgstr "O {0}° {1}"
 
-#: ../ocmengine/Utilities.cs:225
+#: ../ocmengine/Utilities.cs:227
 msgid "Unknown Coordinate Format"
 msgstr "Formato Coordenadas Desconocido"
 
@@ -67,9 +67,8 @@ msgid "Bookmark _List"
 msgstr "Marcadores"
 
 #: ../ocm-gtk/MainWindow.cs:72
-#, fuzzy
 msgid "_Add All Unfiltered Caches to"
-msgstr "_Añadir Todos los Caches Visibles a"
+msgstr "_Añadir Todos los Caches No Filtrados a"
 
 #: ../ocm-gtk/MainWindow.cs:73
 msgid "Add _Selected Cache to"
@@ -79,7 +78,7 @@ msgstr "Añadir Cache _Seleccionado"
 msgid "_Remove Selected Cache from Bookmark List"
 msgstr "Borrar los Caches Selecionados de los Marcadores"
 
-#: ../ocm-gtk/MainWindow.cs:453 ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:87
+#: ../ocm-gtk/MainWindow.cs:474 ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:87
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:102
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:106
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:110
@@ -94,130 +93,161 @@ msgstr "Borrar los Caches Selecionados de los Marcadores"
 msgid "None"
 msgstr "Nada"
 
-#: ../ocm-gtk/MainWindow.cs:876
-#, fuzzy
+#: ../ocm-gtk/MainWindow.cs:897
 msgid "Transfer _Caches to Last Used ({0})..."
-msgstr "_Transferir Caches"
+msgstr "Transferir _Caches al Último ({0})..."
 
-#: ../ocm-gtk/MainWindow.cs:880
-#, fuzzy
+#: ../ocm-gtk/MainWindow.cs:901
 msgid "Receive F_ield Notes from Last Used ({0})..."
-msgstr "Procesando Adicionales..."
+msgstr "Recibir Notas de _Campo desde el ultimo Uso ({0})..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:94
+#: ../ocm-gtk/Widgets/CacheList.cs:106
 msgid " The advanced filter settings override basic distance filter."
 msgstr ""
-
-#: ../ocm-gtk/Widgets/CacheList.cs:99
-msgid " The advanced filter settings override the basic status filter."
-msgstr ""
+"La configuración de los filtros avanzados reemplazar al filtro básico de "
+"distancias."
 
 #: ../ocm-gtk/Widgets/CacheList.cs:111
+msgid " The advanced filter settings override the basic status filter."
+msgstr ""
+"La configuración de los filtros avanzados reemplazar al filtro básico de "
+"estado."
+
+#: ../ocm-gtk/Widgets/CacheList.cs:123
 msgid " The combination filter settings override basic distance filter."
 msgstr ""
+"La configuración de los filtros combinados reemplazar al filtro básico de "
+"distancias."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:116
+#: ../ocm-gtk/Widgets/CacheList.cs:128
 msgid " The combination filter settings override the basic status filter."
 msgstr ""
+"La configuración de los filtros combinados reemplazar al filtro básico de "
+"estado."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:150 ../ocm-gtk/Widgets/WaypointWidget.cs:49
+#: ../ocm-gtk/Widgets/CacheList.cs:162 ../ocm-gtk/Widgets/WaypointWidget.cs:49
 #: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:71
 msgid "Type"
 msgstr "Tipo"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:151 ../ocm-gtk/Widgets/WaypointWidget.cs:51
+#: ../ocm-gtk/Widgets/CacheList.cs:163 ../ocm-gtk/Widgets/WaypointWidget.cs:51
 #: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:73
 msgid "Code"
 msgstr "Código"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:152 ../ocm-gtk/Widgets/CacheList.cs:203
-#: ../ocm-gtk/Widgets/CacheList.cs:204
+#: ../ocm-gtk/Widgets/CacheList.cs:164 ../ocm-gtk/Widgets/CacheList.cs:215
+#: ../ocm-gtk/Widgets/CacheList.cs:216
 msgid "Km"
 msgstr "Km"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:153
+#: ../ocm-gtk/Widgets/CacheList.cs:165
 msgid "Title"
 msgstr "Título"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:197 ../ocm-gtk/Widgets/OCMQueryPage3.cs:239
+#: ../ocm-gtk/Widgets/CacheList.cs:209 ../ocm-gtk/Widgets/OCMQueryPage3.cs:239
 msgid "Mi"
 msgstr "Mi"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:198
+#: ../ocm-gtk/Widgets/CacheList.cs:210
 msgid "Miles"
 msgstr "Millas"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:265
+#: ../ocm-gtk/Widgets/CacheList.cs:277
 msgid "Loading Caches"
 msgstr "Cargando Caches"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:300
+#: ../ocm-gtk/Widgets/CacheList.cs:312
 msgid "Loading Caches {0}"
 msgstr "Cargando Caches {0}"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:564
-msgid "Set As Map Centre"
+#: ../ocm-gtk/Widgets/CacheList.cs:576
+#, fuzzy
+msgid "_Set As Map Centre"
 msgstr "Establecer como Centro del Mapa"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:565
-msgid "View Cache Online"
+#: ../ocm-gtk/Widgets/CacheList.cs:577
+#, fuzzy
+msgid "_View Cache Online"
 msgstr "Vista de Caches Online"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:566
-msgid "Mark"
-msgstr "Marcar"
+#: ../ocm-gtk/Widgets/CacheList.cs:578 ../ocm-gtk/gtk-gui/MainWindow.cs:615
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:616
+msgid "_Mark"
+msgstr "_Marcar"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:568
-#: ../ocm-gtk/gtk-gui/ocmgtk.MarkFoundDialog.cs:35
-msgid "Mark Found"
-msgstr "Marcar como Encontrado"
+#: ../ocm-gtk/Widgets/CacheList.cs:580 ../ocm-gtk/gtk-gui/MainWindow.cs:630
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:631
+msgid "Mark _Found"
+msgstr "Marcar _Encontrado"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:569 ../ocm-gtk/gtk-gui/MainWindow.cs:744
+#: ../ocm-gtk/Widgets/CacheList.cs:581 ../ocm-gtk/gtk-gui/MainWindow.cs:744
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:745
-#, fuzzy
 msgid "Mark First To Find"
-msgstr "Marcar como Encontrado"
+msgstr "Marcar Primero para Encontrar"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:570 ../ocm-gtk/UIMonitor.cs:1179
+#: ../ocm-gtk/Widgets/CacheList.cs:582 ../ocm-gtk/UIMonitor.cs:1186
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:741 ../ocm-gtk/gtk-gui/MainWindow.cs:742
 msgid "Mark Did Not Find"
-msgstr ""
+msgstr "Marcar como No Pude Encontrar"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:571
-msgid "Mark Unfound"
-msgstr "Marcar como No Encontrado"
+#: ../ocm-gtk/Widgets/CacheList.cs:583 ../ocm-gtk/gtk-gui/MainWindow.cs:618
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:619
+msgid "Mark _Unfound"
+msgstr "Marcar _No Encontrado"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:572
-msgid "Mark Disabled"
-msgstr "Marcar como desactivado"
+#: ../ocm-gtk/Widgets/CacheList.cs:584 ../ocm-gtk/gtk-gui/MainWindow.cs:621
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:622
+msgid "Mark _Disabled"
+msgstr "Marcar _Desactivado"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:573
-msgid "Mark Archived"
-msgstr "Marcar como Archivado"
+#: ../ocm-gtk/Widgets/CacheList.cs:585 ../ocm-gtk/gtk-gui/MainWindow.cs:624
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:625
+msgid "Mark _Archived"
+msgstr "Marcar _Archivado"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:574
-msgid "Mark Available"
-msgstr "Marcar como Disponible"
+#: ../ocm-gtk/Widgets/CacheList.cs:586 ../ocm-gtk/gtk-gui/MainWindow.cs:627
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:628
+msgid "Mark A_vailable"
+msgstr "Marcar Dis_ponible"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:575
+#: ../ocm-gtk/Widgets/CacheList.cs:587 ../ocm-gtk/gtk-gui/MainWindow.cs:653
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:655
+msgid "_Corrected Coordinates..."
+msgstr "_Corregir Coordenadas..."
+
+#: ../ocm-gtk/Widgets/CacheList.cs:588 ../ocm-gtk/gtk-gui/MainWindow.cs:695
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:697
+msgid "Add Child _Waypoint..."
+msgstr "Añadir _Waypoint Adicionales..."
+
+#: ../ocm-gtk/Widgets/CacheList.cs:589
 msgid "Delete..."
 msgstr "Borrar..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:576
-msgid "Add to Bookmark List"
+#: ../ocm-gtk/Widgets/CacheList.cs:590
+#, fuzzy
+msgid "_Add to Bookmark List"
 msgstr "Añadir a Marcadores"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:577
-msgid "View in QLandkarte GT..."
+#: ../ocm-gtk/Widgets/CacheList.cs:591
+#, fuzzy
+msgid "_Remove From Bookmark List"
+msgstr "Borrar de Marcadores"
+
+#: ../ocm-gtk/Widgets/CacheList.cs:592
+#, fuzzy
+msgid "View in _QLandkarte GT..."
 msgstr "Ver en QLandkarte GT..."
 
-#: ../ocm-gtk/Widgets/CacheList.cs:578
-msgid "Log Find"
-msgstr "Registrar como  Encontrado"
+#: ../ocm-gtk/Widgets/CacheList.cs:593 ../ocm-gtk/gtk-gui/MainWindow.cs:395
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:397
+msgid "_Log Find"
+msgstr "_Registrar como Encontrado"
 
-#: ../ocm-gtk/Widgets/CacheList.cs:662
-msgid "Remove From Bookmark List"
-msgstr "Borrar de Marcadores"
+#: ../ocm-gtk/Widgets/CacheList.cs:594 ../ocm-gtk/gtk-gui/MainWindow.cs:633
+#: ../ocm-gtk/gtk-gui/MainWindow.cs:634
+msgid "_External Tools"
+msgstr "Herramientas _Externas"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:30
 msgid ""
@@ -236,39 +266,35 @@ msgstr ""
 "cache</span>"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:32
-#, fuzzy
 msgid ""
 "<span font='bold italic 10' fgcolor='darkgreen'>You were first to find this "
 "cache on {0}</span>"
 msgstr ""
-"<span font='bold italic 10' fgcolor='darkgreen'>You have already found this "
-"cache on {0}</span>"
+"<span font='bold italic 10' fgcolor='darkgreen'>Has sido el primero en "
+"encontrar este cache en {0}</span>"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:33
-#, fuzzy
 msgid ""
 "<span font='bold italic 10' fgcolor='darkgreen'>You were first to find this "
 "cache</span>"
 msgstr ""
-"<span font='bold italic 10' fgcolor='darkgreen'>Eres dueño de este cache</"
-"span>"
+"<span font='bold italic 10' fgcolor='darkgreen'>Has sido el primero en "
+"encontrar este cache</span>"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:34
-#, fuzzy
 msgid ""
 "<span font='bold italic 10' fgcolor='blue'>You didn't find this cache on {0}"
 "</span>"
 msgstr ""
-"<span font='bold italic 10' fgcolor='darkgreen'>You have already found this "
-"cache on {0}</span>"
+"<span font='bold italic 10' fgcolor='darkgreen'>No has encontrado este cache "
+"en {0}</span>"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:35
-#, fuzzy
 msgid ""
 "<span font='bold italic 10' fgcolor='blue'>You didn't find this cache</span>"
 msgstr ""
-"<span font='bold italic 10' fgcolor='darkgreen'>Eres dueño de este cache</"
-"span>"
+"<span font='bold italic 10' fgcolor='darkgreen'>No has encontrado este "
+"cache</span>"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:36
 msgid ""
@@ -368,16 +394,12 @@ msgid "NW"
 msgstr "NO"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:406
-#, fuzzy
 msgid "<span font='bold italic 10'>({0} miles {1} from {2})</span>"
-msgstr ""
-"<span font='bold italic 10'>({0} millas {1} desde las coordenadas de tu "
-"hogar)</span>"
+msgstr "<span font='bold italic 10'>({0} miles {1} desde el {2})</span>"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:410
-#, fuzzy
 msgid "<span font='bold italic 10'>({0} km {1} from {2})</span>"
-msgstr "<span font='bold italic 10'>({0} km {1} desde tu Casa/Hogar)</span>"
+msgstr "<span font='bold italic 10'>({0} km {1} desde el {2})</span>"
 
 #: ../ocm-gtk/Widgets/GeocacheInfoPanel.cs:418
 msgid "Project A.P.E"
@@ -493,9 +515,9 @@ msgstr "Cargando Map {0}"
 msgid "Loading Map"
 msgstr "Cargando Mapa"
 
-#: ../ocm-gtk/UIMonitor.cs:263 ../ocm-gtk/UIMonitor.cs:498
-#: ../ocm-gtk/UIMonitor.cs:1544 ../ocm-gtk/UIMonitor.cs:1546
-#: ../ocm-gtk/UIMonitor.cs:1971 ../ocm-gtk/Widgets/OCMQueryPage3.cs:230
+#: ../ocm-gtk/UIMonitor.cs:270 ../ocm-gtk/UIMonitor.cs:505
+#: ../ocm-gtk/UIMonitor.cs:1551 ../ocm-gtk/UIMonitor.cs:1553
+#: ../ocm-gtk/UIMonitor.cs:1978 ../ocm-gtk/Widgets/OCMQueryPage3.cs:230
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:705 ../ocm-gtk/gtk-gui/MainWindow.cs:706
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:723 ../ocm-gtk/gtk-gui/MainWindow.cs:724
 #: ../ocm-gtk/configuration/Config.cs:62
@@ -503,7 +525,7 @@ msgstr "Cargando Mapa"
 msgid "Home"
 msgstr "tu Hogar"
 
-#: ../ocm-gtk/UIMonitor.cs:389
+#: ../ocm-gtk/UIMonitor.cs:396
 msgid ""
 "OCM needs to upgrade your database.\n"
 "Would you like to backup your database first?"
@@ -511,20 +533,19 @@ msgstr ""
 "OCM necesita actualizar la base de datso.\n"
 "¿Deseas hacer antes una copia de seguridad?"
 
-#: ../ocm-gtk/UIMonitor.cs:396
-#, fuzzy
+#: ../ocm-gtk/UIMonitor.cs:403
 msgid "Upgrade complete."
-msgstr "Actualización Completa"
+msgstr "Actualización Completa."
 
-#: ../ocm-gtk/UIMonitor.cs:578 ../ocm-gtk/UIMonitor.cs:610
+#: ../ocm-gtk/UIMonitor.cs:585 ../ocm-gtk/UIMonitor.cs:617
 msgid "<b>A cache by:</b> "
 msgstr "<b>Un Cache de:</b> "
 
-#: ../ocm-gtk/UIMonitor.cs:578 ../ocm-gtk/UIMonitor.cs:610
+#: ../ocm-gtk/UIMonitor.cs:585 ../ocm-gtk/UIMonitor.cs:617
 msgid "<br><b>Hidden on: </b>"
 msgstr "<br><b>Escondido el: </b>"
 
-#: ../ocm-gtk/UIMonitor.cs:664
+#: ../ocm-gtk/UIMonitor.cs:671
 msgid ""
 "Showing {0} of {1} caches, {2} found, {3} unavailable/archived, {4} placed "
 "by me"
@@ -532,7 +553,7 @@ msgstr ""
 "Mostrando {0} de {1} caches, {2} encontrados, {3} no disponibles/archivados, "
 "{4} puestos por mí"
 
-#: ../ocm-gtk/UIMonitor.cs:666
+#: ../ocm-gtk/UIMonitor.cs:673
 msgid ""
 "Showing {0} of {1} caches from {2}, {3} found, {4} unavailable/archived, {5} "
 "placed by me"
@@ -540,16 +561,16 @@ msgstr ""
 "Mostrando {0} de {1} caches de {2}, {3}encontrados, {4} no disponible/"
 "archivado, {5} puesto por mí"
 
-#: ../ocm-gtk/UIMonitor.cs:676
+#: ../ocm-gtk/UIMonitor.cs:683
 msgid "Centred on {0} ({1})"
 msgstr "Centrado en {0}  ({1})"
 
-#: ../ocm-gtk/UIMonitor.cs:696
+#: ../ocm-gtk/UIMonitor.cs:703
 msgid "Create database"
 msgstr "Crear Base de Datos"
 
-#: ../ocm-gtk/UIMonitor.cs:696 ../ocm-gtk/UIMonitor.cs:756
-#: ../ocm-gtk/UIMonitor.cs:891 ../ocm-gtk/Dialogs/Preferences.cs:148
+#: ../ocm-gtk/UIMonitor.cs:703 ../ocm-gtk/UIMonitor.cs:763
+#: ../ocm-gtk/UIMonitor.cs:898 ../ocm-gtk/Dialogs/Preferences.cs:148
 #: ../ocm-gtk/Dialogs/Preferences.cs:158
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:70
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:95
@@ -563,77 +584,77 @@ msgstr "Crear Base de Datos"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../ocm-gtk/UIMonitor.cs:696
+#: ../ocm-gtk/UIMonitor.cs:703
 msgid "Save"
 msgstr "Salvar"
 
-#: ../ocm-gtk/UIMonitor.cs:708
+#: ../ocm-gtk/UIMonitor.cs:715
 msgid "You cannot overwrite the currently open database."
 msgstr "No se puede sobrescribir la base de datos actualmente abierta."
 
-#: ../ocm-gtk/UIMonitor.cs:718
+#: ../ocm-gtk/UIMonitor.cs:725
 msgid "Are you sure you want to overwrite '{0}'"
 msgstr "Estás seguro que deseas Reescribirlo \"{0}\""
 
-#: ../ocm-gtk/UIMonitor.cs:754
+#: ../ocm-gtk/UIMonitor.cs:761
 msgid "Open Database"
 msgstr "Abrir Base de Datos"
 
-#: ../ocm-gtk/UIMonitor.cs:758 ../ocm-gtk/Widgets/SetupAssistantPage2.cs:70
+#: ../ocm-gtk/UIMonitor.cs:765 ../ocm-gtk/Widgets/SetupAssistantPage2.cs:70
 #: ../ocm-gtk/Widgets/MapSelectionWidget.cs:180
 msgid "Open"
 msgstr "Abrir"
 
-#: ../ocm-gtk/UIMonitor.cs:891
+#: ../ocm-gtk/UIMonitor.cs:898
 msgid " Export Finds GPX File"
 msgstr "Exportar Archivos GPX Encontrados"
 
-#: ../ocm-gtk/UIMonitor.cs:891
+#: ../ocm-gtk/UIMonitor.cs:898
 msgid "Export"
 msgstr "Exportar"
 
-#: ../ocm-gtk/UIMonitor.cs:1146
-#, fuzzy
+#: ../ocm-gtk/UIMonitor.cs:1153
 msgid "Mark First to Find"
-msgstr "Marcar como Encontrado"
+msgstr "Marcar Primero para Encontrar"
 
-#: ../ocm-gtk/UIMonitor.cs:1256
+#: ../ocm-gtk/UIMonitor.cs:1263
 msgid "Are you sure you want to delete {0}?"
 msgstr "¿Estás seguro que quieres borarlo? {0}?"
 
-#: ../ocm-gtk/UIMonitor.cs:1294
+#: ../ocm-gtk/UIMonitor.cs:1301
 msgid "Are you sure you want to clear all advanced filters?"
 msgstr "¿Estás seguro que deseas borar todoslos  filtros avanzados?"
 
-#: ../ocm-gtk/UIMonitor.cs:1425
-#, fuzzy
+#: ../ocm-gtk/UIMonitor.cs:1432
 msgid "Edit GPS Profile..."
-msgstr "_Ver Mi Perfil"
+msgstr "Editar Perfil del GPS..."
 
-#: ../ocm-gtk/UIMonitor.cs:1466
-#, fuzzy
+#: ../ocm-gtk/UIMonitor.cs:1473
 msgid "\"{0}\" is the active GPS profile. Are you sure you wish to delete it?"
-msgstr "Estas seguro que quieres borrarlo '{0}'"
+msgstr ""
+"\"{0}\" es el perfil activo del GPS. ¿Estas seguro que quieres borrarlo?"
 
-#: ../ocm-gtk/UIMonitor.cs:1491
+#: ../ocm-gtk/UIMonitor.cs:1498
 msgid ""
 "There is no active GPS profile. Either select an existing one from the GPS "
 "Menu or add a new profile ."
 msgstr ""
+"No hay perfil del GPS activo. Selecciona uno existente desde el menú del GPS "
+"o añade un nuevo perfil."
 
-#: ../ocm-gtk/UIMonitor.cs:1616
+#: ../ocm-gtk/UIMonitor.cs:1623
 msgid "{0} added to {1}"
 msgstr "{0} añadido a {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1627
+#: ../ocm-gtk/UIMonitor.cs:1634
 msgid "{0} caches added to {1}"
 msgstr "{0} caches añadidos a {1}"
 
-#: ../ocm-gtk/UIMonitor.cs:1633
+#: ../ocm-gtk/UIMonitor.cs:1640
 msgid "Are you sure you want to remove {0} from {1}?"
 msgstr "¿Estás seguro que deseas quitar {0} de {1}?"
 
-#: ../ocm-gtk/UIMonitor.cs:1703
+#: ../ocm-gtk/UIMonitor.cs:1710
 msgid ""
 "Are you sure you want to delete these {0} caches?\n"
 "This operation cannot be undone."
@@ -641,31 +662,31 @@ msgstr ""
 "¿Estás seguro que deseas borrar estos {0} caches?\n"
 "Esta operacion no es reversible."
 
-#: ../ocm-gtk/UIMonitor.cs:1807 ../ocm-gtk/UIMonitor.cs:1822
+#: ../ocm-gtk/UIMonitor.cs:1814 ../ocm-gtk/UIMonitor.cs:1829
 msgid "Preparing to send to QLandKarte GT"
 msgstr "Preparando para enviar a QLandKarte GT"
 
-#: ../ocm-gtk/UIMonitor.cs:1872
+#: ../ocm-gtk/UIMonitor.cs:1879
 msgid "Save QuickFilter"
 msgstr "Salvar Filtro Rápido"
 
-#: ../ocm-gtk/UIMonitor.cs:1888
+#: ../ocm-gtk/UIMonitor.cs:1895
 msgid "Delete QuickFilter"
 msgstr "Borrar Filtro Rápido"
 
-#: ../ocm-gtk/UIMonitor.cs:1901
+#: ../ocm-gtk/UIMonitor.cs:1908
 msgid "Database Compacted."
 msgstr "Base de Datos Compactada."
 
-#: ../ocm-gtk/UIMonitor.cs:1923
+#: ../ocm-gtk/UIMonitor.cs:1930
 msgid "Move Geocaches..."
 msgstr "Mover Geocaches"
 
-#: ../ocm-gtk/UIMonitor.cs:1958
+#: ../ocm-gtk/UIMonitor.cs:1965
 msgid "Map Point"
 msgstr "Punto del Mapa"
 
-#: ../ocm-gtk/UIMonitor.cs:1997 ../ocm-gtk/UIMonitor.cs:2030
+#: ../ocm-gtk/UIMonitor.cs:2004 ../ocm-gtk/UIMonitor.cs:2037
 msgid ""
 "A new version \"{0}\" of OCM is available\n"
 "Would you like to go to the download page now?"
@@ -673,37 +694,34 @@ msgstr ""
 "Una nueva versión \"{0}\"de OCM esta disponible\n"
 "¿Deseas ir a la página de Descargas?"
 
-#: ../ocm-gtk/UIMonitor.cs:2014 ../ocm-gtk/UIMonitor.cs:2054
+#: ../ocm-gtk/UIMonitor.cs:2021 ../ocm-gtk/UIMonitor.cs:2061
 msgid "Unable to check for updates, check your network connection."
 msgstr ""
 "No se puede comprobar si hay actualizaciones, compruebe la conexión de red."
 
-#: ../ocm-gtk/UIMonitor.cs:2045
+#: ../ocm-gtk/UIMonitor.cs:2052
 msgid "OCM is at the latest version."
 msgstr "es la última versión de OCM "
 
-#: ../ocm-gtk/UIMonitor.cs:2070 ../ocm-gtk/UIMonitor.cs:2180
+#: ../ocm-gtk/UIMonitor.cs:2077 ../ocm-gtk/UIMonitor.cs:2187
 msgid "You have to select a cache first."
-msgstr ""
+msgstr "Tienes que seleccionar un Cache primero."
 
-#: ../ocm-gtk/UIMonitor.cs:2251
-#, fuzzy
+#: ../ocm-gtk/UIMonitor.cs:2258
 msgid "Delete Location...."
-msgstr "Seleccionar Ubicación del Archivo"
+msgstr "Dirección Borrada..."
 
-#: ../ocm-gtk/UIMonitor.cs:2271
+#: ../ocm-gtk/UIMonitor.cs:2278
 msgid "There are no field notes."
-msgstr ""
+msgstr "No hay Notas de Campo."
 
-#: ../ocm-gtk/UIMonitor.cs:2313
-#, fuzzy
+#: ../ocm-gtk/UIMonitor.cs:2320
 msgid "Processed {0} field notes."
-msgstr "Procesando Adicionales..."
+msgstr "Procesadas {0}notas de campo."
 
-#: ../ocm-gtk/UIMonitor.cs:2331
-#, fuzzy
+#: ../ocm-gtk/UIMonitor.cs:2338
 msgid "Are you sure you want to clear all Field Notes?"
-msgstr "¿Estás seguro que deseas borar todoslos  filtros avanzados?"
+msgstr "¿Estás seguro que deseas borrar todas las Notas de Campo?"
 
 #: ../ocm-gtk/Dialogs/ProgressDialog.cs:61
 #: ../ocm-gtk/Dialogs/ExportProgressDialog.cs:80
@@ -720,11 +738,11 @@ msgstr "<i>Importación Completa, {0} waypoints procesados{1}:{2}:{3}</i>"
 #: ../ocm-gtk/Dialogs/ProgressDialog.cs:92
 #: ../ocm-gtk/Dialogs/ProgressDialog.cs:95
 msgid "Unzipping"
-msgstr ""
+msgstr "Descomprimiendo"
 
 #: ../ocm-gtk/Dialogs/ProgressDialog.cs:94
 msgid "Unizpping"
-msgstr ""
+msgstr "Descomprimiendo"
 
 #: ../ocm-gtk/Dialogs/ProgressDialog.cs:136
 msgid "Processing File {0} of {1}"
@@ -773,9 +791,8 @@ msgid "Choose Database Location"
 msgstr "Seleccionar Ubicación de la Base de Datos"
 
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:95
-#, fuzzy
 msgid "Choose Data Directory"
-msgstr "Elegir Directorio"
+msgstr "Elegir Directorio de Datos"
 
 #: ../ocm-gtk/Widgets/SetupAssistantPage2.cs:95
 #: ../ocm-gtk/Widgets/GPXWidget.cs:108 ../ocm-gtk/Widgets/GPXWidget.cs:128
@@ -817,27 +834,23 @@ msgstr "Notas/Adicionales/Corregidos"
 
 #: ../ocm-gtk/Dialogs/FilterDialog.cs:344
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:111
-#, fuzzy
 msgid "Placement/Location"
-msgstr "Fechas/Ubicación"
+msgstr "Emplazamiento/Dirección"
 
 #: ../ocm-gtk/Dialogs/FilterDialog.cs:396
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:162
-#, fuzzy
 msgid "Updated/Found"
-msgstr "Actulizar"
+msgstr "Actulizado/Encontrado"
 
 #: ../ocm-gtk/Dialogs/FilterDialog.cs:436
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:93
-#, fuzzy
 msgid "Container/Description/Status"
-msgstr "Contenedor/Descripción/Puesto Por"
+msgstr "Contenedor/Descripción/Estado"
 
 #: ../ocm-gtk/Dialogs/FilterDialog.cs:462
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:76
-#, fuzzy
 msgid "Difficulty/Terrain/Type"
-msgstr "Dificultad/Tipo"
+msgstr "Dificultad/Terreno/Tipo"
 
 #: ../ocm-gtk/Widgets/GPXWidget.cs:108
 #: ../ocm-gtk/Widgets/GarminEdgeWidget.cs:120
@@ -847,15 +860,13 @@ msgstr "Seleccionar Localizacíon GPX"
 
 #: ../ocm-gtk/Widgets/GPXWidget.cs:128
 #: ../ocm-gtk/Widgets/DelormeGPXWidget.cs:165
-#, fuzzy
 msgid "Select Field Notes location"
-msgstr "Seleccionar Ubicación del Archivo"
+msgstr "Seleccionar Ubicación de las Notas de Campo"
 
 #: ../ocm-gtk/Widgets/GPXWidget.cs:132
 #: ../ocm-gtk/Widgets/DelormeGPXWidget.cs:169
-#, fuzzy
 msgid "Text Files"
-msgstr "Selecciona un Archivo"
+msgstr "Archivos de Texto"
 
 #: ../ocm-gtk/Dialogs/SendWaypointsDialog.cs:94
 msgid "<i>Send Complete:{0} geocaches transferred</i>"
@@ -989,26 +1000,20 @@ msgid "Open _Database..."
 msgstr "Abrir Base de _Datos"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:389 ../ocm-gtk/gtk-gui/MainWindow.cs:390
-#, fuzzy
 msgid "_Import GPX/Loc/Zip File..."
-msgstr "_Importar Archivo GPX/Loc"
+msgstr "_Importar Archivo GPX/LOC/ZIP..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:392 ../ocm-gtk/gtk-gui/MainWindow.cs:393
 msgid "_Export GPX..."
 msgstr "_Exportar GPX"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:395 ../ocm-gtk/gtk-gui/MainWindow.cs:397
-msgid "_Log Find"
-msgstr "_Registrar como Encontrado"
-
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:399 ../ocm-gtk/gtk-gui/MainWindow.cs:401
 msgid "_Mark Unfound"
-msgstr "_Marca No Encontarda"
+msgstr "_Marcar No Encontardo"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:403 ../ocm-gtk/gtk-gui/MainWindow.cs:405
-#, fuzzy
 msgid "_Delete..."
-msgstr "Borrar..."
+msgstr "_Borrar..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:407 ../ocm-gtk/gtk-gui/MainWindow.cs:408
 msgid "F_ilter"
@@ -1051,9 +1056,8 @@ msgid "_Change History..."
 msgstr "Historial de  _Cambios"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:439 ../ocm-gtk/gtk-gui/MainWindow.cs:441
-#, fuzzy
 msgid "_Set Selected Cache As Centre"
-msgstr "Definir el Cache Seleccionado como Centro"
+msgstr "_Definir el Cache Seleccionado como Centro"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:443 ../ocm-gtk/gtk-gui/MainWindow.cs:445
 msgid "_Reset Centre to Home"
@@ -1133,14 +1137,12 @@ msgid "Clear _All Filters"
 msgstr "_Limpiar Todos los Filtros"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:540
-#, fuzzy
 msgid "New _Cache..."
-msgstr "Mover Caches..."
+msgstr "_Cache Nuevo..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:541
-#, fuzzy
 msgid "New Cache..."
-msgstr "Mover Caches..."
+msgstr "Cache Nuevo"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:543 ../ocm-gtk/gtk-gui/MainWindow.cs:544
 msgid "_Quick Filter"
@@ -1157,9 +1159,8 @@ msgid "Done"
 msgstr "Hecho"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:552 ../ocm-gtk/gtk-gui/MainWindow.cs:553
-#, fuzzy
 msgid "Delete _All..."
-msgstr "Borrar..."
+msgstr "Borrar _Todo"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:555 ../ocm-gtk/gtk-gui/MainWindow.cs:556
 msgid "Use GPSD as Centre"
@@ -1187,9 +1188,8 @@ msgid "Deselect"
 msgstr "No selecccionar"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:573 ../ocm-gtk/gtk-gui/MainWindow.cs:574
-#, fuzzy
 msgid "De_select"
-msgstr "No selecccionar"
+msgstr "No Selecccionar"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:576 ../ocm-gtk/gtk-gui/MainWindow.cs:577
 msgid "_Tools"
@@ -1229,9 +1229,8 @@ msgid "_Delete Quick Filter..."
 msgstr "_Borrar Filtro Rápido"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:597 ../ocm-gtk/gtk-gui/MainWindow.cs:598
-#, fuzzy
 msgid "_OCM Wiki..."
-msgstr "OCM Wiki..."
+msgstr "_OCM Wiki..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:600 ../ocm-gtk/gtk-gui/MainWindow.cs:601
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:606 ../ocm-gtk/gtk-gui/MainWindow.cs:607
@@ -1250,58 +1249,21 @@ msgstr "Copiar Caches Visibles"
 msgid "Move Visible Caches..."
 msgstr "Mover Caches Visibles"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:615 ../ocm-gtk/gtk-gui/MainWindow.cs:616
-msgid "_Mark"
-msgstr "_Marca"
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:618 ../ocm-gtk/gtk-gui/MainWindow.cs:619
-msgid "Mark _Unfound"
-msgstr "Marcar _No Encontrado"
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:621 ../ocm-gtk/gtk-gui/MainWindow.cs:622
-msgid "Mark _Disabled"
-msgstr "Marcar _Desactivado"
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:624 ../ocm-gtk/gtk-gui/MainWindow.cs:625
-msgid "Mark _Archived"
-msgstr "Marcar _Archivado"
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:627 ../ocm-gtk/gtk-gui/MainWindow.cs:628
-msgid "Mark A_vailable"
-msgstr "Marcar Dis_ponible"
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:630 ../ocm-gtk/gtk-gui/MainWindow.cs:631
-msgid "Mark _Found"
-msgstr "Marcar _Encontrado"
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:633 ../ocm-gtk/gtk-gui/MainWindow.cs:634
-#, fuzzy
-msgid "_External Tools"
-msgstr "Herramientas Externas"
-
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:640 ../ocm-gtk/gtk-gui/MainWindow.cs:641
-#, fuzzy
 msgid "_Configure External Tools..."
-msgstr "Configurar Herramientas Externas"
+msgstr "_Configurar Herramientas Externas"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:643 ../ocm-gtk/gtk-gui/MainWindow.cs:644
 msgid "Export _Finds GPX..."
 msgstr "Exportar GPX Encontrados"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:646 ../ocm-gtk/gtk-gui/MainWindow.cs:647
-#, fuzzy
 msgid "Check For _Updates..."
-msgstr "Buscar Actualizaciones..."
+msgstr "Buscar _Actualizaciones..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:649 ../ocm-gtk/gtk-gui/MainWindow.cs:651
-#, fuzzy
 msgid "_Print..."
-msgstr "Imprimir..."
-
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:653 ../ocm-gtk/gtk-gui/MainWindow.cs:655
-#, fuzzy
-msgid "_Corrected Coordinates..."
-msgstr "Corregir Coordenadas..."
+msgstr "_Imprimir..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:657 ../ocm-gtk/gtk-gui/MainWindow.cs:658
 msgid "O_pencaching"
@@ -1312,9 +1274,8 @@ msgid "List Of Country Sites"
 msgstr "Lista Paises/Servidores"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:663 ../ocm-gtk/gtk-gui/MainWindow.cs:664
-#, fuzzy
 msgid "_Child Waypoints"
-msgstr "Waypoints Adicionales"
+msgstr "_Waypoints Adicionales"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:666 ../ocm-gtk/gtk-gui/MainWindow.cs:667
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:669 ../ocm-gtk/gtk-gui/MainWindow.cs:671
@@ -1332,174 +1293,142 @@ msgid "Database"
 msgstr "Base de Datos"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:680 ../ocm-gtk/gtk-gui/MainWindow.cs:681
-#, fuzzy
 msgid "_Copy To..."
-msgstr "Copia Geocaches..."
+msgstr "_Copiar A..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:683 ../ocm-gtk/gtk-gui/MainWindow.cs:684
-#, fuzzy
 msgid "_Move To..."
-msgstr "Mover Geocaches"
+msgstr "_Mover A..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:686 ../ocm-gtk/gtk-gui/MainWindow.cs:687
-#, fuzzy
 msgid "_Compact Database"
-msgstr "Compactar Base de Datos"
+msgstr "_Compactar Base de Datos"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:689 ../ocm-gtk/gtk-gui/MainWindow.cs:690
-#, fuzzy
 msgid "Import _Directory..."
-msgstr "Importar Directorio"
+msgstr "Importar _Directorio"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:692 ../ocm-gtk/gtk-gui/MainWindow.cs:693
 msgid "Statistics..."
 msgstr "Estadisticas"
 
-#: ../ocm-gtk/gtk-gui/MainWindow.cs:695 ../ocm-gtk/gtk-gui/MainWindow.cs:697
-msgid "Add Child _Waypoint..."
-msgstr "Añadir _Waypoint Adicionales..."
-
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:699 ../ocm-gtk/gtk-gui/MainWindow.cs:700
 #: ../ocm-gtk/gtk-gui/ocmgtk.AddLocationDialog.cs:31
-#, fuzzy
 msgid "Add Location..."
-msgstr "Locationless..."
+msgstr "Añadir Dirección..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:702 ../ocm-gtk/gtk-gui/MainWindow.cs:703
-#, fuzzy
 msgid "Locations"
-msgstr "Localización"
+msgstr "Direcciones"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:708 ../ocm-gtk/gtk-gui/MainWindow.cs:709
-#, fuzzy
 msgid "Delete Location..."
-msgstr "Fechas/Ubicación"
+msgstr "Borrar Dirección..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:711 ../ocm-gtk/gtk-gui/MainWindow.cs:712
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:720 ../ocm-gtk/gtk-gui/MainWindow.cs:721
-#, fuzzy
 msgid "_Locations"
-msgstr "Localización"
+msgstr "_Direcciones"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:714 ../ocm-gtk/gtk-gui/MainWindow.cs:715
-#, fuzzy
 msgid "_Add Location..."
-msgstr "Locationless..."
+msgstr "_Añadir Dirección..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:717 ../ocm-gtk/gtk-gui/MainWindow.cs:718
-#, fuzzy
 msgid "_Delete Location..."
-msgstr "_Borrar Cache"
+msgstr "_Borrar Dirección..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:726 ../ocm-gtk/gtk-gui/MainWindow.cs:727
-#, fuzzy
 msgid "_Add GPS Profile..."
-msgstr "_Ver Mi Perfil"
+msgstr "_Añadir Perfil del GPS..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:729 ../ocm-gtk/gtk-gui/MainWindow.cs:730
-#, fuzzy
 msgid "_Delete GPS Profile..."
-msgstr "_Ver Mi Perfil"
+msgstr "_Borrar Perfil del GPS..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:732 ../ocm-gtk/gtk-gui/MainWindow.cs:733
 msgid "GPS Profile"
-msgstr ""
+msgstr "Perfil GPS"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:735 ../ocm-gtk/gtk-gui/MainWindow.cs:736
-#, fuzzy
 msgid "Process Field Notes..."
-msgstr "Procesando Adicionales..."
+msgstr "Procesar Notas de Campo"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:738 ../ocm-gtk/gtk-gui/MainWindow.cs:739
-#, fuzzy
 msgid "_Edit GPS Profile..."
-msgstr "_Ver Mi Perfil"
+msgstr "_Editar el Perfil del GPS..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:747 ../ocm-gtk/gtk-gui/MainWindow.cs:748
 msgid "Log to _Field Notes File"
-msgstr ""
+msgstr "Registrar Archivos de las _Notas de Campo"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:750 ../ocm-gtk/gtk-gui/MainWindow.cs:751
 msgid "Clear Offline Logs..."
-msgstr ""
+msgstr "Borrar Registros Online..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:753 ../ocm-gtk/gtk-gui/MainWindow.cs:754
-#, fuzzy
 msgid "Field Notes"
-msgstr "Procesando Adicionales..."
+msgstr "Notas de Campo"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:756 ../ocm-gtk/gtk-gui/MainWindow.cs:757
-#, fuzzy
 msgid "_Field Notes..."
-msgstr "Procesando Adicionales..."
+msgstr "_Notas de Campo"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:759 ../ocm-gtk/gtk-gui/MainWindow.cs:760
-#, fuzzy
 msgid "Clear Field Notes..."
-msgstr "Procesando Adicionales..."
+msgstr "Limpiar Notas de Campo..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:762 ../ocm-gtk/gtk-gui/MainWindow.cs:763
-#, fuzzy
 msgid "_View"
-msgstr "_Revisar"
+msgstr "_Ver"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:765 ../ocm-gtk/gtk-gui/MainWindow.cs:766
-#, fuzzy
 msgid "Zoom"
-msgstr "Zoo"
+msgstr "Zoom"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:768 ../ocm-gtk/gtk-gui/MainWindow.cs:769
 msgid "_Go"
-msgstr ""
+msgstr "_Ir"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:771 ../ocm-gtk/gtk-gui/MainWindow.cs:772
 msgid "_New"
-msgstr ""
+msgstr "_Nuevo"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:774 ../ocm-gtk/gtk-gui/MainWindow.cs:775
-#, fuzzy
 msgid "Test"
-msgstr "Restablecer"
+msgstr "Probar"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:777 ../ocm-gtk/gtk-gui/MainWindow.cs:778
-#, fuzzy
 msgid "_New Database..."
-msgstr "Nueva Base de Datos"
+msgstr "_Nueva Base de Datos"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:780 ../ocm-gtk/gtk-gui/MainWindow.cs:781
-#, fuzzy
 msgid "_Receive Field Notes..."
-msgstr "Procesando Adicionales..."
+msgstr "_Recibir Notas de Campo"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:783
-#, fuzzy
 msgid "Transfer _Caches to Last Used..."
-msgstr "_Transferir Caches"
+msgstr "Transferir _Caches a Los Últimos..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:784
-#, fuzzy
 msgid "Transfer Caches to Last Used..."
-msgstr "_Transferir Caches"
+msgstr "Transferir Caches a Los Últimos..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:786 ../ocm-gtk/gtk-gui/MainWindow.cs:787
-#, fuzzy
 msgid "Import _Directory"
-msgstr "Importar Directorio"
+msgstr "Importar _Directorio"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:789 ../ocm-gtk/gtk-gui/MainWindow.cs:790
-#, fuzzy
 msgid "C_ombination Filter..."
-msgstr "Filtros _Avanzados"
+msgstr "Filtro C_ombinado..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:792 ../ocm-gtk/gtk-gui/MainWindow.cs:794
-#, fuzzy
 msgid "C_lear Combo Filter"
-msgstr "Borrar Todos los Filtros"
+msgstr "_Borrar Filtro Combinado"
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:796 ../ocm-gtk/gtk-gui/MainWindow.cs:797
-#, fuzzy
 msgid "Recieve Field Notes from Last Used..."
-msgstr "Procesando Adicionales..."
+msgstr "Recibir Notas de Campo desde Los Últimos..."
 
 #: ../ocm-gtk/gtk-gui/MainWindow.cs:802
 msgid "OCM"
@@ -1551,9 +1480,8 @@ msgid "<b>Last Log By You:</b>"
 msgstr "<b>Tu Último Registro:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:473
-#, fuzzy
 msgid "<b>Last Found:</b>"
-msgstr "<b>Última Actualización:</b>"
+msgstr "<b>Ultimo en Descubrirlo:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:483
 #, fuzzy
@@ -1561,7 +1489,7 @@ msgid "<lfound>"
 msgstr "Encontrado"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:543
-#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:83
+#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:85
 msgid "label1"
 msgstr "Etiqueta 1"
 
@@ -1570,24 +1498,20 @@ msgid "Log My Find..."
 msgstr "Registrar como Encontrado"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:625
-#, fuzzy
 msgid "<b>User Data 3:</b>"
-msgstr "Detalles del Usuario"
+msgstr "<b>Datos de Usuario 3:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:637
-#, fuzzy
 msgid "<b>User Data 4:</b>"
-msgstr "Detalles del Usuario"
+msgstr "<b>Datos de Usuario 4:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:648
-#, fuzzy
 msgid "<b>User Data 1:</b>"
-msgstr "Detalles del Usuario"
+msgstr "<b>Datos de Usuario 1:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:658
-#, fuzzy
 msgid "<b>User Data 2:</b>"
-msgstr "Detalles del Usuario"
+msgstr "<b>Datos de Usuario 2:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GeocacheInfoPanel.cs:718
 msgid "View Online..."
@@ -1685,14 +1609,12 @@ msgstr "Símbolo:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:176
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:269
-#, fuzzy
 msgid "<b>Location</b>"
-msgstr "<b>Ubicación: </b> {0}"
+msgstr "<b>Dirección</b> {0}"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.WaypointDialog.cs:205
-#, fuzzy
 msgid "<b>Description</b>"
-msgstr "<b>Descripción Larga:</b>"
+msgstr "<b>Descripción</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ProgressDialog.cs:36
 msgid "Import Data..."
@@ -1717,18 +1639,16 @@ msgid "Preferences..."
 msgstr "Preferencias..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:199
-#, fuzzy
 msgid "<b>Home Location</b>"
-msgstr "<b>Ubicación: </b> {0}"
+msgstr "<b>Dirección de Casa</b> {0}"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:221
 msgid "User name or Account ID:"
 msgstr "Nombre de Usuario o Account ID:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:240
-#, fuzzy
 msgid "<b>Account Information</b>"
-msgstr "<b>Opciones del Waypoint:</b>"
+msgstr "<b>Información de la Cuenta</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:254
 msgid "Home/Account"
@@ -1774,31 +1694,28 @@ msgid "Child Waypoints:"
 msgstr "Waypoints Adicionales:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:441
-#, fuzzy
 msgid "Use direct entry mode for coordinates"
-msgstr "Has corregido las Coordenadas"
+msgstr "Usar modo de entrada directa para las coordenadas"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:455
 msgid "Show DNF icon in list and on map"
-msgstr ""
+msgstr "Mostrar icono DNF en la lista y en el mapa"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:478
 msgid "Only puzzle cache types with corrected coordinats/final location"
-msgstr ""
+msgstr "Solo caches tipo puzzle con coordenadas corregidas/dirección final"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:491
 msgid "All caches with corrected coordinates/final location"
-msgstr ""
+msgstr "Todos los caches con coordenadas corregidas/dirección final"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:503
-#, fuzzy
 msgid "Never Show"
-msgstr "Nunca"
+msgstr "No Mostrarlo Nunca"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:518
-#, fuzzy
 msgid "<b>Solved puzzle icon</b>"
-msgstr "Puzzles Re_suelto"
+msgstr "<b>Icono Puzzle Resuelto</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:540
 msgid "Prefix with Type (e.g. PKABCD01)"
@@ -1810,11 +1727,11 @@ msgstr "Usa nombre de GC (e.g. GCABCD01)"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:553
 msgid "Automatically select cache when clicked on the map"
-msgstr ""
+msgstr "Selecciona automáticamente el cache al hacer click en el mapa"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:569
 msgid "Behaviour"
-msgstr ""
+msgstr "Comportamiento"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:617
 msgid "Caches on Map:"
@@ -1861,9 +1778,8 @@ msgid "seconds"
 msgstr "segundos"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:741
-#, fuzzy
 msgid "GPSD"
-msgstr "G_PS"
+msgstr "GPSD"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.Preferences.cs:753
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:124
@@ -1913,6 +1829,7 @@ msgstr "Registre una Cuenta"
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage2.cs:61
 msgid "You should choose an default directory for OCM to store data:"
 msgstr ""
+"Usted debe elegir un directorio por defecto para almacenar datos de OCM:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage2.cs:104
 msgid ""
@@ -1947,7 +1864,6 @@ msgid "Google Terrain"
 msgstr "Google Terrain"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.SetupAssistantPage3.cs:51
-#, fuzzy
 msgid ""
 "Finally, you need to enter your home coordinates and user ID so that OCM can "
 "correctly calculate the distance to caches from your home and correctly "
@@ -1961,7 +1877,7 @@ msgid ""
 "b>."
 msgstr ""
 "Por último, es necesario introducir las coordenadas de su casa y el ID de "
-"usuario para que OCM  pueda calcular la distancia de escondites a su casa e "
+"usuario para que OCM  pueda calcular la distancia a caches desde su casa e "
 "identificar correctamente los caches que son suyos. \n"
 "\n"
 "Si usted no conoce estos valores y es un usuario Geocaching.com, haga clic "
@@ -2017,7 +1933,7 @@ msgstr "Dificultad"
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:507
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:529
 msgid "Greater Than"
-msgstr "Mayor que"
+msgstr "Mayor Que"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:123
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:174
@@ -2117,19 +2033,16 @@ msgid "Terrain"
 msgstr "Terreno"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:211
-#, fuzzy
 msgid "<b>Difficulty &amp; Terrain</b>"
-msgstr "<b>Dificultad:</b>"
+msgstr "<b>Dificultad Y Terreno</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:232
-#, fuzzy
 msgid "Any cache type"
-msgstr "Todo Tipo de Caches"
+msgstr "Cualquier Tipo de Caches"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:245
-#, fuzzy
 msgid "Any of the following types:"
-msgstr "Debe coincidir con el texto siguiente:"
+msgstr "Alguno de los siguientes tipos:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage1.cs:275
 msgid "Adventure Maze"
@@ -2186,14 +2099,12 @@ msgid "Advanced Filters..."
 msgstr "Filtros Avenzados..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.FilterDialog.cs:127
-#, fuzzy
 msgid "Notes/User Data/Waypoints/Corrected"
-msgstr "Notas/Adicionales/Corregidos"
+msgstr "Notas/Datos de Usuario/Waypoints/Corregidos"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:128
-#, fuzzy
 msgid "Has any container size"
-msgstr "Cualquier Contenedor"
+msgstr "Cualquier tipo de tamaño"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:155
 msgid "Large"
@@ -2216,51 +2127,44 @@ msgid "Small"
 msgstr "Pequeño"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:234
-#, fuzzy
 msgid "Has any of the following sizes:"
-msgstr "Debe coincidir con el texto siguiente:"
+msgstr "Tiene alguno de los siguientes tamaños:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:250
-#, fuzzy
 msgid "<b>Container Type</b>"
-msgstr "<b>Tipos de Contenedor</b>"
+msgstr "<b>Tipo de Contenedor</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:274
-#, fuzzy
 msgid "Description contains the following words:"
-msgstr "Palabras Clave:"
+msgstr "La descripción contiene las siguientes palabras:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:295
-#, fuzzy
 msgid "<b>Cache Description</b>"
-msgstr "<b>Descripción Corta:</b>"
+msgstr "<b>Descripción del Cache</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:319
 msgid "Only caches that are marked:"
-msgstr ""
+msgstr "Solo caches que tienen la marca:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:342
-#, fuzzy
 msgid "Didn't Find It"
 msgstr "No Encontrado"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:354
-#, fuzzy
 msgid "First to Find"
-msgstr "Marcar como Encontrado"
+msgstr "Primero para Encontrar"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:364
 msgid "Not Didn't Find It"
-msgstr ""
+msgstr "Sin Encontrar"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:378
-#, fuzzy
 msgid "Not First to Find"
-msgstr "Marcar como Encontrado"
+msgstr "No ser el Primero para Encontrar"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:399
 msgid "Caches with the following status flags:"
-msgstr ""
+msgstr "Caches etiquetados como:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:425
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:286
@@ -2288,23 +2192,20 @@ msgid "Not Found"
 msgstr "No Encontrado"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage2.cs:511
-#, fuzzy
 msgid "<b>Cache Status</b>"
-msgstr "Detalles del Cache"
+msgstr "<b>Estado del Cache</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:45
-#, fuzzy
 msgid "Add GPS Profile..."
-msgstr "_Ver Mi Perfil"
+msgstr "_Añadir Perfil del GPS..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:66
 msgid "Profile Name:"
-msgstr ""
+msgstr "Nombre del Perfil:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:76
-#, fuzzy
 msgid "New Profile"
-msgstr "_Ver Mi Perfil"
+msgstr "Nuevo Perfil"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPSConfiguration.cs:100
 msgid "Garmin GPX (Colorado/Oregon/Dakotai/Map62/Nuvi 5xx)"
@@ -2376,7 +2277,7 @@ msgstr "Archivo de Salida GPX"
 #: ../ocm-gtk/gtk-gui/ocmgtk.GPXWidget.cs:182
 #: ../ocm-gtk/gtk-gui/ocmgtk.DelormeGPXWidget.cs:219
 msgid "Field Notes File:"
-msgstr ""
+msgstr "Archivo de Notas de Campo:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:56
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:118
@@ -2402,7 +2303,7 @@ msgstr "Código Cache/Tamaño/Pistas"
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminEdgeWidget.cs:51
 #: ../ocm-gtk/gtk-gui/ocmgtk.ExportGPXDialog.cs:336
 msgid "Cache Code/Size/Type"
-msgstr "Código cache/Tamaño/Tipo"
+msgstr "Código Cache/Tamaño/Tipo"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.GarminUSBWidget.cs:73
 #: ../ocm-gtk/gtk-gui/ocmgtk.GenericGPSWidget.cs:87
@@ -2483,23 +2384,20 @@ msgid "Output FIle:"
 msgstr "Archivo de Salida"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:110
-#, fuzzy
 msgid "Hidden:"
-msgstr "Pistas:"
+msgstr "Escondido:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:121
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:148
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:320
-#, fuzzy
 msgid "On or before"
-msgstr "el o anterior al:"
+msgstr "el o anterior al"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:122
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:149
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:321
-#, fuzzy
 msgid "On or after"
-msgstr "el o posterior al:"
+msgstr "el o posterior al"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:150
 msgid "Placed by anyone"
@@ -2510,33 +2408,28 @@ msgid "Placed by:"
 msgstr "Colocado por:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:191
-#, fuzzy
 msgid "<b>Cache Placement</b>"
-msgstr "<b>Tamaño del Cache:</b>"
+msgstr "<b>Emplazamiento del Cache</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:216
-#, fuzzy
 msgid "Country:"
-msgstr "Pais"
+msgstr "Pais:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:239
 msgid "Distance is:"
-msgstr ""
+msgstr "La distancia es:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:268
-#, fuzzy
 msgid "Less than"
 msgstr "Menor Que"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:269
-#, fuzzy
 msgid "Greater than"
 msgstr "Mayor que"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:270
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:505
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:527
-#, fuzzy
 msgid "Equal to"
 msgstr "Igual A"
 
@@ -2547,32 +2440,29 @@ msgstr "km"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:301
 msgid "From current centre point"
-msgstr ""
+msgstr "Desde el actual punto central"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:317
-#, fuzzy
 msgid "From location:"
-msgstr "Localización"
+msgstr "Desde la dirección:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:346
 msgid "From position:"
-msgstr ""
+msgstr "Desde la posición:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:385
-#, fuzzy
 msgid "State or province:"
-msgstr "Estado/Provincia"
+msgstr "Estado o Provincia:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage3.cs:412
-#, fuzzy
 msgid "<b>Cache Location</b>"
-msgstr "<b>Tamaño del Cache:</b>"
+msgstr "<b>Dirección del Cache:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ChangeHistory.cs:25
 msgid "Change History..."
 msgstr "Historial de Cambios"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:81
+#: ../ocm-gtk/gtk-gui/ocmgtk.NotesWidget.cs:82
 msgid "_Save"
 msgstr "_Guardar"
 
@@ -2593,9 +2483,8 @@ msgstr ""
 "que las importaciones GPX sobrescriban la ubicación de la cache"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:307
-#, fuzzy
 msgid "<b>Waypoint Description</b>"
-msgstr "<b>Opciones del Waypoint:</b>"
+msgstr "<b>Descripción del Waypoint:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:319
 msgid "URL:"
@@ -2642,14 +2531,12 @@ msgid "Waypoint Properties"
 msgstr "Propiedades del Waypoint"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:468
-#, fuzzy
 msgid "<b>Short Description</b>"
-msgstr "<b>Descripción Corta:</b>"
+msgstr "<b>Descripción Corta</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:500
-#, fuzzy
 msgid "<b>Long Description</b>"
-msgstr "<b>Descripción Larga:</b>"
+msgstr "<b>Descripción Larga</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:544
 msgid "Cache Name:"
@@ -2664,9 +2551,8 @@ msgid "Terrain:"
 msgstr "Terreno:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:609
-#, fuzzy
 msgid "Paperless Caching Details"
-msgstr "Exportar Detalles Paperless Caching"
+msgstr "Detalles Paperless Caching"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:647
 msgid "Owner:"
@@ -2685,34 +2571,28 @@ msgid "Cache ID:"
 msgstr "Cache ID:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:726
-#, fuzzy
 msgid "<b>Owner Details</b>"
-msgstr "<b>Terreno:</b>"
+msgstr "<b>Detalles del Propietario</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:750
-#, fuzzy
 msgid "User Data 2:"
-msgstr "Detalles del Usuario"
+msgstr "Datos del Usuario 2:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:760
-#, fuzzy
 msgid "User Data 3:"
-msgstr "Detalles del Usuario"
+msgstr "Datos del Usuario 3:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:770
-#, fuzzy
 msgid "User Data 4:"
-msgstr "Detalles del Usuario"
+msgstr "Datos del Usuario 4:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:780
-#, fuzzy
 msgid "User Data 1:"
-msgstr "Detalles del Usuario"
+msgstr "Datos del Usuario 1:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:839
-#, fuzzy
 msgid "<b>User Data</b>"
-msgstr "<b>Terreno:</b>"
+msgstr "<b>Datos del Usuario</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ModifyCacheDialog.cs:853
 msgid "Other Properties"
@@ -3371,15 +3251,13 @@ msgstr "Selecciona un Archivo"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CopyMoveDialog.cs:95
 msgid "All unfiltered caches"
-msgstr ""
+msgstr "Todos los caches no filtrados"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CopyMoveDialog.cs:107
-#, fuzzy
 msgid "Just the selected cache"
-msgstr "Centrar en el _Cache Seleccionado"
+msgstr "Sólo el cache seleccionado"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CopyMoveDialog.cs:119
-#, fuzzy
 msgid "The entire database"
 msgstr "Base de Datos Completa"
 
@@ -3481,7 +3359,7 @@ msgstr "_Saltar"
 msgid "Exec"
 msgstr "Ejecutable"
 
-#: ../ocm-gtk/Dialogs/ConfigureEToolsDlg.cs:116
+#: ../ocm-gtk/Dialogs/ConfigureEToolsDlg.cs:117
 msgid "Are you sure you wish to delete '{0}'"
 msgstr "Estas seguro que quieres borrarlo '{0}'"
 
@@ -3502,40 +3380,34 @@ msgid "Delete"
 msgstr "Borrar"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:90
-#, fuzzy
 msgid "Has user notes"
-msgstr "Tiene Notas"
+msgstr "Tiene notas de usuario"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:100
-#, fuzzy
 msgid "User Data 1 contains:"
-msgstr "Detalles del Usuario"
+msgstr "Los Datos del Usuario 1 contienen:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:112
-#, fuzzy
 msgid "User Data 2 contains:"
-msgstr "Detalles del Usuario"
+msgstr "Los Datos del Usuario 2 contienen:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:124
-#, fuzzy
 msgid "User Data 3 contains:"
-msgstr "Detalles del Usuario"
+msgstr "Los Datos del Usuario3 contienen:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:136
-#, fuzzy
 msgid "User Data 4 contains:"
-msgstr "Detalles del Usuario"
+msgstr "Los Datos del Usuario 4 contienen:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:204
 msgid "<b>User Notes &amp; Data</b>"
-msgstr ""
+msgstr "<b>Notas del Usuario Y Datos</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:247
 msgid "Has at least one child of type:"
 msgstr "Tiene al menos un adicional:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:257
-#, fuzzy
 msgid "Has corrected coordinates"
 msgstr "Has corregido las Coordenadas"
 
@@ -3544,14 +3416,12 @@ msgid "Does not have any children of type:"
 msgstr "No hay caches adicionales:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:301
-#, fuzzy
 msgid "Does not have corrected coordinates"
-msgstr "No has Corregido las Coordenadas"
+msgstr "No tiene Coordenadas Corregidas"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage4.cs:313
-#, fuzzy
 msgid "<b>Waypoints &amp; Corrected Coordinates</b>"
-msgstr "Has corregido las Coordenadas"
+msgstr "<b>Waypoints Y Coordenadas Corregidas</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DeLormeWidget.cs:81
 msgid "<b>Important:</b>DeLorme USB format is only available in GPSBabel 1.4"
@@ -3613,6 +3483,10 @@ msgstr "Auto name on internal drive"
 msgid "Use specified file:"
 msgstr "Utilice  Archivo Especificado:"
 
+#: ../ocm-gtk/gtk-gui/ocmgtk.MarkFoundDialog.cs:35
+msgid "Mark Found"
+msgstr "Marcar como Encontrado"
+
 #: ../ocm-gtk/gtk-gui/ocmgtk.MarkFoundDialog.cs:97
 msgid "Found date:"
 msgstr "Fecha de Descubrimiento:"
@@ -3622,19 +3496,17 @@ msgid "Corrected Coordinates"
 msgstr "Coordenadas Corregidas"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CorrectedCoordinatesDlg.cs:73
-#, fuzzy
 msgid "Coodinate:"
 msgstr "Coordenada:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CorrectedCoordinatesDlg.cs:93
 #, fuzzy
-msgid "<b>Oringal Location</b>"
-msgstr "Localización Original"
+msgid "<b>Original Location</b>"
+msgstr "<b>Dirección Original</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CorrectedCoordinatesDlg.cs:119
-#, fuzzy
 msgid "<b>Corrected Location</b>"
-msgstr "Latitud Corregida:"
+msgstr "<b>Dirección Corregida</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CorrectedCoordinatesDlg.cs:151
 msgid "Reset"
@@ -3668,36 +3540,32 @@ msgid "Directory:"
 msgstr "Directorio:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ImportDirectoryDialog.cs:110
-#, fuzzy
 msgid "Delete files on completion"
 msgstr "Eliminar Archivos al Terminar"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ImportDirectoryDialog.cs:122
 #: ../ocm-gtk/gtk-gui/ocmgtk.ImportDialog.cs:93
-#, fuzzy
 msgid "Do not overwrite existing found status in database"
-msgstr "No se puede sobrescribir la base de datos actualmente abierta."
+msgstr "No sobrescribir la situación existente en la base de datos"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ImportDirectoryDialog.cs:134
 #: ../ocm-gtk/gtk-gui/ocmgtk.ImportDialog.cs:81
 msgid "Purge old cache logs"
-msgstr ""
+msgstr "Purgar registros de cache antiguos"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ImportDirectoryDialog.cs:146
 #: ../ocm-gtk/gtk-gui/ocmgtk.ImportDialog.cs:105
 msgid "Ignore GSAK/OCM extra fields in GPX file"
-msgstr ""
+msgstr "Ignorar campos extra GSAK/OMC en el archivo GPX"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ImportDirectoryDialog.cs:162
 #: ../ocm-gtk/gtk-gui/ocmgtk.ImportDialog.cs:121
-#, fuzzy
 msgid "Add to bookmark list:"
-msgstr "Añadir a Marcadores"
+msgstr "Añadir a la Lista de Marcadores"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ImportDirectoryDialog.cs:204
-#, fuzzy
 msgid "<b>Options</b>"
-msgstr "<b>Mas Opciones</b>"
+msgstr "<b>Opciones</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ExportGPXDialog.cs:95
 msgid "Export GPX..."
@@ -3716,19 +3584,16 @@ msgid "Export Paperless Caching Details"
 msgstr "Exportar Detalles Paperless Caching"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ExportGPXDialog.cs:208
-#, fuzzy
 msgid "Export Extra Fields in GPX"
-msgstr "Exportar GPX Encontrados"
+msgstr "Exportar Campos Extras en GPX"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ExportGPXDialog.cs:220
-#, fuzzy
 msgid "Use Custom Waypoint Symbols"
-msgstr "Simbolo del Waypoint"
+msgstr "Usar Simbolos para Waypoint Personalizados"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ExportGPXDialog.cs:232
-#, fuzzy
 msgid "<b>General</b>"
-msgstr "<b>Terreno:</b>"
+msgstr "<b>General</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ExportGPXDialog.cs:296
 msgid "Convert HTML to Plain Text"
@@ -3749,7 +3614,7 @@ msgstr "Opciones"
 
 #: ../ocm-gtk/Widgets/LocationWidget.cs:140
 msgid "Coordinates must be typed in using English formatting"
-msgstr ""
+msgstr "Las coordenadas se deben escribir usando el formato Inglés"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.LocationWidget.cs:69
 msgid "Latitude:"
@@ -3764,13 +3629,12 @@ msgid "Quick Filter:"
 msgstr "Filtro Rápido:"
 
 #: ../ocm-gtk/Dialogs/DeleteItem.cs:67
-#, fuzzy
 msgid "Location:"
-msgstr "Localización"
+msgstr "Dirección:"
 
 #: ../ocm-gtk/Dialogs/DeleteItem.cs:83
 msgid "GPS Profile:"
-msgstr ""
+msgstr "Perfil del GPS:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.DeleteItem.cs:30
 msgid "Delete Bookmark List..."
@@ -3798,220 +3662,184 @@ msgid "No cache selected."
 msgstr "Cache No Seleccionado"
 
 #: ../ocm-gtk/configuration/LocationList.cs:131
-#, fuzzy
 msgid "GPSD Position"
-msgstr "Configuración GPS..."
+msgstr "Posición GPSD"
 
 #: ../ocm-gtk/Dialogs/LoggingDialog.cs:51
-#, fuzzy
 msgid "{0}% complete"
-msgstr "Completo/a"
+msgstr "{0}% completo"
 
 #: ../ocm-gtk/Dialogs/LoggingDialog.cs:56
-#, fuzzy
 msgid "Loading..."
-msgstr "Hospedaje"
+msgstr "Cargando..."
 
 #: ../ocm-gtk/Dialogs/OfflineLogDialog.cs:97
-#: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:143
-#, fuzzy
+#: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:145
 msgid "<Name Unavailable>"
-msgstr "Marcar como Disponible"
+msgstr "<Nombre No Disponible>"
 
 #: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:39
-#, fuzzy
 msgid "File Location: {0}"
-msgstr "Punto Final"
+msgstr "Ubicación del Archivo: {0}"
 
 #: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:77
-#, fuzzy
 msgid "Date"
-msgstr "Base de Datos"
+msgstr "Fecha"
 
-#: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:212
-#, fuzzy
+#: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:214
 msgid "Are you sure you want to remove the log for '{0}'?"
-msgstr "¿Estás seguro que deseas quitar {0} de {1}?"
+msgstr "¿Estás seguro que deseas quitar el registro de '{0}'?"
+
+#: ../ocm-gtk/Dialogs/OffLineLogViewer.cs:252
+msgid ""
+"'{0}' is not within the list of unfiltered caches. Your filter settings may "
+"have filtered it out or it may not be in your database."
+msgstr ""
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:68
-#, fuzzy
 msgid "Conditions"
-msgstr "Localización"
+msgstr "Condiciones"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:134
-#, fuzzy
 msgid "<b>Distance: </b>"
-msgstr "<b>Archivo: </b>"
+msgstr "<b>Distancia: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:144
 msgid " mi"
-msgstr ""
+msgstr " mi"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:146
-#, fuzzy
 msgid " km"
-msgstr "km"
+msgstr " km"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:165
-#, fuzzy
 msgid "<b>User 1 contains: </b>"
-msgstr "<b>Tipos de Contenedor</b>"
+msgstr "<b>Usuario 1 contiene: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:171
-#, fuzzy
 msgid "<b>User 2 contains: </b>"
-msgstr "<b>Tipos de Contenedor</b>"
+msgstr "<b>Usuario 2 contiene: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:177
-#, fuzzy
 msgid "<b>User 3 contains: </b>"
-msgstr "<b>Tipos de Contenedor</b>"
+msgstr "<b>Usuario 3 contiene: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:183
-#, fuzzy
 msgid "<b>User 4 contains: </b>"
-msgstr "<b>Tipos de Contenedor</b>"
+msgstr "<b>Usuario 4 contiene: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:193
-#, fuzzy
 msgid "<b>Not updated within: </b>"
-msgstr "Última actualización el o posterior al:"
+msgstr "<b>No se actualiza desde: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:195
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:206
-#, fuzzy
 msgid " days"
-msgstr "días"
+msgstr " días"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:204
-#, fuzzy
 msgid "<b>Updated within: </b>"
-msgstr "<b>Última Actualización:</b>"
+msgstr "<b>Actualizado desde:</b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:215
-#, fuzzy
 msgid "<b>Status: </b>"
-msgstr "<b>Notas:</b>"
+msgstr "<b>Estado:</b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:218
-#, fuzzy
 msgid "Found "
 msgstr "Encontrado"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:220
-#, fuzzy
 msgid "Unfound "
-msgstr "Marcar como No Encontrado"
+msgstr "No Encontrado"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:222
-#, fuzzy
 msgid "Mine "
 msgstr "Propios"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:224
-#, fuzzy
 msgid "Available "
 msgstr "Disponible"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:226
-#, fuzzy
 msgid "Disabled "
 msgstr "Desactivado"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:228
-#, fuzzy
 msgid "Archived "
 msgstr "Archivado"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:374
-#, fuzzy
 msgid "<b>State/Province: </b>"
-msgstr "Estado/Provincia"
+msgstr "<b>Estado/Provincia:</b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:384
-#, fuzzy
 msgid "<b>Country: </b>"
-msgstr "<b>Pistas:</b>"
+msgstr "<b>Pais:</b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:394
-#, fuzzy
 msgid "<b>Last found by you on: </b>"
-msgstr "Último Cache Encontrado."
+msgstr "<b>Lo encontré por última vez el: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:404
-#, fuzzy
 msgid "<b>Last found by you on or before: </b>"
-msgstr "Última actualización el o anterior al:"
+msgstr "<b>Lo encontré por última vez el o anterior al:  </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:414
-#, fuzzy
 msgid "<b>Last found by you on or after: </b>"
-msgstr "Última actualización el o posterior al:"
+msgstr "<b>Lo encontré por última vez el o posterior al: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:424
-#, fuzzy
 msgid "<b>Last updated on or after: </b>"
-msgstr "Última actualización el o posterior al:"
+msgstr "<b>Última actualización el o posterior al: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:434
-#, fuzzy
 msgid "<b>Last updated on or before: </b>"
-msgstr "Última actualización el o anterior al:"
+msgstr "<b>Última actualización el o anterior al: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:444
-#, fuzzy
 msgid "<b>Placed on or after: </b>"
-msgstr "Puesto el o posterior al:"
+msgstr "<b>Puesto el o posterior al: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:454
-#, fuzzy
 msgid "<b>Placed on or before: </b>"
-msgstr "Puesto el o anterior al:"
+msgstr "<b>Puesto el o anterior al: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:464
-#, fuzzy
 msgid "Description Contains:"
-msgstr "Descripcion:"
+msgstr "Descripción del Contenedor:"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:474
-#, fuzzy
 msgid "<b>Placed By: </b>"
-msgstr "<b>Un cache de:</b>"
+msgstr "<b>Un cache de: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:484
-#, fuzzy
 msgid "<b>Container: </b>"
-msgstr "<b>Tipos de Contenedor</b>"
+msgstr "<b>Tipos de Contenedor: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:502
-#, fuzzy
 msgid "<b>Terrain: </b>"
-msgstr "<b>Terreno:</b>"
+msgstr "<b>Terreno: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:524
-#, fuzzy
 msgid "<b>Difficulty: </b>"
-msgstr "<b>Dificultad:</b>"
+msgstr "<b>Dificultad: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:547
-#, fuzzy
 msgid "<b>Cache Types: </b>"
-msgstr "<b>Tipos de Cache</b>"
+msgstr "<b>Tipos de Cache: </b>"
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:565
-#, fuzzy
 msgid "Add Condition..."
-msgstr "Locationless..."
+msgstr "Añadir Condiciones..."
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:583
-#, fuzzy
 msgid "Edit Condition..."
-msgstr "Locationless..."
+msgstr "Editar Condiciones..."
 
 #: ../ocm-gtk/Dialogs/AddComboFilter.cs:605
-#, fuzzy
 msgid "Are you sure you want to remove this filter?"
-msgstr "¿Estás seguro que deseas quitar {0} de {1}?"
+msgstr "¿Estás seguro que deseas quitar este filtro?"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:85
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:86
@@ -4023,33 +3851,28 @@ msgid "<span fgcolor=\"blue\">Advanced filters</span> have been applied."
 msgstr "<span fgcolor=\"blue\">Filtros Avanzados</span> han sido aplicados."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.CacheList.cs:261
-#, fuzzy
 msgid "<span fgcolor=\"blue\">A combination filter</span> is applied."
-msgstr "<span fgcolor=\"blue\">Filtros Avanzados</span> han sido aplicados."
+msgstr "<span fgcolor=\"blue\">Un filtro combinado</span> ha sido aplicado."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:97
-#, fuzzy
 msgid "Condition matches:"
-msgstr "Traditional Cache"
+msgstr "Condiciones:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:171
-#, fuzzy
 msgid "Last update date:"
-msgstr "Última actualización el o posterior al:"
+msgstr "Última actualización"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:182
-#, fuzzy
 msgid "Last updated within:"
-msgstr "Última actualización el o posterior al:"
+msgstr "Actualización hace al menos:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:225
 msgid "Not updated within:"
-msgstr ""
+msgstr "No actualizado hace al menos:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:248
-#, fuzzy
 msgid "<b>Last Updated</b>"
-msgstr "<b>Última Actualización:</b>"
+msgstr "<b>Última Actualización</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:273
 msgid "Last found by you"
@@ -4068,53 +3891,49 @@ msgid "on or before:"
 msgstr "el o anterior al:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:310
-#, fuzzy
 msgid "Last found by anyone"
-msgstr "Último Cache Encontrado."
+msgstr "La Última vez Encontrado"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OCMQueryPage6.cs:352
-#, fuzzy
 msgid "<b>Last Found</b>"
-msgstr "<b>Última Actualización:</b>"
+msgstr "<b>Último Encontrado</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.LoggingDialog.cs:35
-#, fuzzy
 msgid "Log Cache..."
-msgstr "Mover Caches..."
+msgstr "Registrar Cache..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.LoggingDialog.cs:59
 msgid ""
 "After completing your log online, click \"Close\" to return to OCM. To use "
 "offline logging, goto <b>Cache → Log to Field Notes File </b>"
 msgstr ""
+"Despues de completar tu registro online, click \"Close\" para volver a OMC. "
+"Para usar tu usuario offline, Ir a <b>Cache → Registrar Archivos de las "
+"Notas de Campo </b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OfflineLogDialog.cs:53
-#, fuzzy
 msgid "Log"
-msgstr "Registros"
+msgstr "Registro"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OfflineLogDialog.cs:101
-#, fuzzy
 msgid "Log Date:"
-msgstr "Longitud:"
+msgstr "Fecha del Registro:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OfflineLogDialog.cs:130
-#, fuzzy
 msgid "Log Type:"
-msgstr "Tipo:"
+msgstr "Tipo de Registro:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OfflineLogDialog.cs:138
-#, fuzzy
 msgid "Found it"
 msgstr "Encontrado"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OfflineLogDialog.cs:139
 msgid "Didn't Find it"
-msgstr ""
+msgstr "No Encontrado"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OfflineLogDialog.cs:140
 msgid "Write Note"
-msgstr ""
+msgstr "Escribir Nota"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OfflineLogDialog.cs:141
 msgid "Needs Maintenance"
@@ -4122,27 +3941,28 @@ msgstr "Necesidad de Mantenimiento"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.OfflineLogDialog.cs:163
 msgid "First To Find"
-msgstr ""
+msgstr "Primero para Encontrar"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:55
-#, fuzzy
+#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:57
 msgid "View Field Notes..."
-msgstr "Procesando Adicionales..."
+msgstr "Ver Notas de Campo..."
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:147
+#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:125
 #, fuzzy
+msgid "View Cache"
+msgstr "Caches Visibles"
+
+#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:161
 msgid "Delete All"
-msgstr "Borrar"
+msgstr "Borrar Todos"
 
-#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:192
-#, fuzzy
+#: ../ocm-gtk/gtk-gui/ocmgtk.OffLineLogViewer.cs:206
 msgid "<b>Log Text:</b>"
-msgstr "<b>Destino:</b>"
+msgstr "<b>Texto del Registro:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.LoadGPSFieldNotes.cs:52
-#, fuzzy
 msgid "Receive Field Notes..."
-msgstr "Procesando Adicionales..."
+msgstr "Recibiendo Notas de Campo..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.LoadGPSFieldNotes.cs:83
 msgid ""
@@ -4152,35 +3972,35 @@ msgid ""
 "If you wish to work with the comments entered in the field before logging "
 "your finds online, go to <b>View → Field Notes...</b>"
 msgstr ""
+"El archivo de las notas de campo desde tu GPS va a ser escaneado y OMC "
+"actualizará tus caches basados en archivos de notas de campo. \n"
+" \n"
+"Si desea trabajar con los comentarios introducidos en el campo antes de "
+"registrar los encontrados online, vaya a <b>Ver → Notas de Campo...</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.LoadGPSFieldNotes.cs:113
-#, fuzzy
 msgid "<b>Last field notes scan:</b>"
-msgstr "<b>Última Actualización:</b>"
+msgstr "<b>Últimas notas de campo escaneadas:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.LoadGPSFieldNotes.cs:123
-#, fuzzy
 msgid "label3"
-msgstr "Etiqueta 1"
+msgstr "Etiqueta3"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.LoadGPSFieldNotes.cs:141
 msgid "<b>Last field notes scan from this device:</b>"
-msgstr ""
+msgstr "<b>Las últimas notas de campo escaneadas desde el dispositivo:</b>"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.LoadGPSFieldNotes.cs:178
-#, fuzzy
 msgid "Ignore logs before:"
-msgstr "el o anterior al:"
+msgstr "Ignorar registros anterior al:"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.ImportDialog.cs:49
-#, fuzzy
 msgid "Import GPX/LOC/ZIP.."
-msgstr "_Importar Archivo GPX/Loc"
+msgstr "Importar Archivo GPX/LOC/ZIP..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.AddComboFilter.cs:45
-#, fuzzy
 msgid "Create Combination Filter..."
-msgstr "Crear Lista Marcadores"
+msgstr "Crear Filtro Combinado..."
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.AddComboFilter.cs:75
 msgid ""
@@ -4188,78 +4008,94 @@ msgid ""
 "conditions\n"
 "will be returned."
 msgstr ""
+"Haga click en <b>Añadir</b> para añadir un nueva condicion al filtro,elige "
+"las caracteristicas\n"
+"y regresa."
 
 #: ../ocm-gtk/Widgets/MapSelectionWidget.cs:67
 msgid "Baselayer"
-msgstr ""
+msgstr "Capa Base"
 
 #: ../ocm-gtk/Widgets/MapSelectionWidget.cs:68
-#, fuzzy
 msgid "Covered"
-msgstr "Refugio"
+msgstr "Cubierto"
 
 #: ../ocm-gtk/Widgets/MapSelectionWidget.cs:132
 msgid "yes"
-msgstr ""
+msgstr "si"
 
 #: ../ocm-gtk/Widgets/MapSelectionWidget.cs:132
 msgid "no"
-msgstr ""
+msgstr "no"
 
 #: ../ocm-gtk/Widgets/MapSelectionWidget.cs:180
-#, fuzzy
 msgid "Open Map Description File"
-msgstr "Descripción Larga:"
+msgstr "Abrir Archivo de la Descripción del Mapa"
 
 #: ../ocm-gtk/Widgets/MapSelectionWidget.cs:183
 msgid "OCM Map Files"
-msgstr ""
+msgstr "Achivos de Mapas OCM"
 
 #: ../ocm-gtk/Widgets/MapSelectionWidget.cs:211
-#, fuzzy
 msgid "Are you sure you want to delete map {0}?"
-msgstr "¿Estás seguro que quieres borarlo? {0}?"
+msgstr "¿Estás seguro que quieres borar el mapa {0}?"
 
 #: ../ocm-gtk/Widgets/MapSelectionWidget.cs:221
 msgid "Are really want to delete all maps and restore the default maps?"
 msgstr ""
+"¿Estas seguro que quieres borrar todos los mapas y restaurar los mapas por "
+"defecto?"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.MapSelectionWidget.cs:77
 msgid "The highest map in the list will be the default map when OCM starts."
 msgstr ""
+"El mayor mapa en la lista será el mapa por defecto cuando se inicia OCM"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.MapSelectionWidget.cs:123
-#, fuzzy
 msgid "Enable Map"
-msgstr "Activar al Inicio"
+msgstr "Activar Mapa"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.MapSelectionWidget.cs:151
-#, fuzzy
 msgid "Disable Map"
-msgstr "Desactivado"
+msgstr "Desactivar Mapa"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.MapSelectionWidget.cs:179
-#, fuzzy
 msgid "Delete Map"
-msgstr "Borrar"
+msgstr "Borrar Mapa"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.MapSelectionWidget.cs:207
-#, fuzzy
 msgid "Move Down"
-msgstr "Mover Geocaches"
+msgstr "Bajar"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.MapSelectionWidget.cs:259
-#, fuzzy
 msgid "Import Map File"
-msgstr "Importar Archivo GPX"
+msgstr "Importar Archivo del Mapa"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.MapSelectionWidget.cs:286
 msgid "Restore Defaults"
-msgstr ""
+msgstr "Restaurar Valores Iniciales"
 
 #: ../ocm-gtk/gtk-gui/ocmgtk.MapSelectionWidget.cs:314
 msgid "Move Up"
-msgstr ""
+msgstr "Subir"
+
+#~ msgid "Mark"
+#~ msgstr "Marcar"
+
+#~ msgid "Mark Unfound"
+#~ msgstr "Marcar como No Encontrado"
+
+#~ msgid "Mark Disabled"
+#~ msgstr "Marcar como Desactivado"
+
+#~ msgid "Mark Archived"
+#~ msgstr "Marcar como Archivado"
+
+#~ msgid "Mark Available"
+#~ msgstr "Marcar como Disponible"
+
+#~ msgid "Log Find"
+#~ msgstr "Registrar como  Encontrado"
 
 #~ msgid "Default Map:"
 #~ msgstr "Mapa por Defecto"
@@ -4304,9 +4140,6 @@ msgstr ""
 
 #~ msgid "Cache Details"
 #~ msgstr "Detalles del Cache"
-
-#~ msgid "Visible Caches"
-#~ msgstr "Caches Visibles"
 
 #~ msgid "Selected Cache"
 #~ msgstr "Caches Seleccionado"
@@ -4418,3 +4251,9 @@ msgstr ""
 
 #~ msgid "Open GPX File..."
 #~ msgstr "Abrir Archivo GPX"
+
+#~ msgid "Import GPX File"
+#~ msgstr "Importar Archivo GPX"
+
+#~ msgid "Long Description:"
+#~ msgstr "Descripción Larga:"
