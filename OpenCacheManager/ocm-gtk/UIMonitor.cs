@@ -59,6 +59,13 @@ namespace ocmgtk
 		private int m_height;
 		private QuickFilters m_filters;
 		private LocationList m_locations;
+		private EToolList m_tools;
+		public EToolList ExternalTools
+		{
+			get { return m_tools;}
+			set { m_tools = value;}
+		}
+		
 		public LocationList Locations
 		{
 			get { return m_locations;}
@@ -305,8 +312,8 @@ namespace ocmgtk
 			m_mainWin.RebuildProfilesMenu(m_profiles);
 			m_mainWin.RebuildProfEditMenu(m_profiles);
 			m_conf.CheckForDefaultGPS(m_profiles, m_mainWin);
-			EToolList tools = EToolList.LoadEToolList();
-			m_mainWin.RebuildEToolMenu(tools);
+			m_tools = EToolList.LoadEToolList();
+			m_mainWin.RebuildEToolMenu(m_tools);
 			m_ShowAllChildren = m_conf.ShowAllChildren;
 			if (m_conf.ShowNearby)
 				m_mainWin.SetNearbyEnabled();

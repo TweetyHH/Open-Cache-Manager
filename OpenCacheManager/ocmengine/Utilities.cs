@@ -55,6 +55,8 @@ namespace ocmengine
 		/// </returns>
 		public static double calculateDistance(double lat1, double lat2, double lon1, double lon2)
 		{
+			if ((lat1 == lat2) && (lon1 == lon2))
+				return 0;
 			int R = 6371;
 			lat1 = toRad(lat1);
 			lat2 = toRad(lat2);

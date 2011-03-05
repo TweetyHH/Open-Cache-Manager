@@ -116,6 +116,11 @@ namespace ocmgtk
 			return etMenu;
 		}
 		
+		public ExternalTool GetTool(String name)
+		{
+			return m_tools[name];
+		}
+		
 		void HandleActionActivated (object sender, EventArgs e)
 		{
 			m_tools[((sender) as Gtk.Action).Name].RunCommand();

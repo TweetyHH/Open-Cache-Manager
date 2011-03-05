@@ -207,13 +207,32 @@ public partial class MainWindow : Gtk.Window
 			printAction.Sensitive = true;
 			if (cache.Symbol.Contains("Found"))
 			{
-				MarkFoundAction.Sensitive = false;
+				if (cache.FTF)
+				{
+					MarkFoundAction.Sensitive = true;
+					MarkFirstToFindAction.Sensitive = false;
+				}
+				else
+				{
+					MarkFoundAction.Sensitive = false;
+					MarkFirstToFindAction.Sensitive = true;
+				}
 				MarkUnfoundAction1.Sensitive = true;
 			}
 			else
 			{
 				MarkFoundAction.Sensitive = true;
-				MarkUnfoundAction1.Sensitive = false;	
+				MarkFirstToFindAction.Sensitive = true;
+				if (cache.DNF)
+				{
+					MarkUnfoundAction1.Sensitive = true;	
+					MarkDidNotFindAction.Sensitive = false;
+				}
+				else
+				{
+					MarkDidNotFindAction.Sensitive = true;
+					MarkUnfoundAction1.Sensitive = false;
+				}	
 			}
 			CorrectedCoordinatesAction.Sensitive = true;
 			MarkArchivedAction1.Sensitive = false;
@@ -245,6 +264,8 @@ public partial class MainWindow : Gtk.Window
 			MarkDisabledAction1.Sensitive = false;
 			MarkUnfoundAction1.Sensitive = false;
 			ModifyCacheAction.Sensitive = false;
+			MarkDidNotFindAction.Sensitive = false;
+			MarkFirstToFindAction.Sensitive = false;
 			DeleteAction1.Sensitive = false;
 			CorrectedCoordinatesAction.Sensitive = false;
 			ViewSelectedCacheInQLandkarteGTAction.Sensitive = false;

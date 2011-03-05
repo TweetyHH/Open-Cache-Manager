@@ -75,12 +75,24 @@ namespace ocmgtk
 			}
 		}
 		
+		
 		public bool DisableDistanceFilter
 		{
 			get { return distanceBox.Sensitive;}
 			set { 
 				distanceBox.Sensitive = value;
 			}
+		}
+		
+		public bool ContainsCode(string code)
+		{
+			IEnumerator<Geocache> cacheEnum = getVisibleCaches().GetEnumerator();
+			while(cacheEnum.MoveNext())
+			{
+				if (cacheEnum.Current.Name == code)
+					return true;
+			}
+			return false;
 		}
 		
 		public void ShowInfoBox(bool isCombo, bool disableStatus, bool disableDistance)
@@ -580,6 +592,21 @@ namespace ocmgtk
 			MenuItem rmvCache = new MenuItem(Catalog.GetString("_Remove From Bookmark List"));
 			MenuItem qlandkarte = new MenuItem(Catalog.GetString("View in _QLandkarte GT..."));
 			MenuItem logCache = new MenuItem(Catalog.GetString("_Log Find"));
+			MenuItem externalTools = new MenuItem(Catalog.GetString("_External Tools"));
+			
+			EToolList eTools = m_monitor.ExternalTools;
+			Menu eToolMenu = new Menu();
+			foreach(ExternalTool tool in eTools.ToolArray)
+			{
+				if (tool.Command.Contains("%selected%"))
+				{
+					Gtk.Action eCmd = new Gtk.Action(tool.Name, tool.Name);
+					eCmd.Activated += HandleECmdActivated;
+					eToolMenu.Add(eCmd.CreateMenuItem());
+				}
+			}
+			externalTools.Submenu = eToolMenu;
+			
 			
 			TreePath path;
 			TreeIter itr;
@@ -697,6 +724,8 @@ namespace ocmgtk
 			mark.Submenu = markSub;
 			popup.Add(addWaypoint);			          
 			popup.Add(correctCoordinates);
+			popup.Add(new MenuItem());
+			popup.Add(externalTools);
 			popup.Add (new MenuItem());
 			popup.Add (bookmark);
 			popup.Add (rmvCache);
@@ -705,6 +734,11 @@ namespace ocmgtk
 			popup.Add (deleteItem);
 			popup.ShowAll ();
 			popup.Popup ();
+		}
+
+		void HandleECmdActivated (object sender, EventArgs e)
+		{
+			UIMonitor.getInstance().ExternalTools.GetTool((sender as Gtk.Action).Name).RunCommand();
 		}
 
 		void HandleMarkFTFActivated (object sender, EventArgs e)

@@ -975,9 +975,9 @@ namespace ocmengine
 		{
 			if ((type == "Unknown Cache") || (type == "Other") || (type == "Puzzle") || (type == "Unknown"))
 				cache.TypeOfCache = Geocache.CacheType.MYSTERY;
-			else if ((type == "Traditional Cache") || (type == "Classic") || (type == "Normal") || (type.Contains("Traditional")))
+			else if ((type == "Traditional Cache") || (type == "Classic") || (type == "Normal") || (type == "Traditional"))
 				cache.TypeOfCache = Geocache.CacheType.TRADITIONAL;
-			else if ((type == "Multi-cache") || (type == "Offset") || (type == "Multi-Part"))
+			else if ((type == "Multi-cache") || (type == "Offset") || (type == "Multi-Part") || (type=="Multi"))
 				cache.TypeOfCache = Geocache.CacheType.MULTI;
 			else if (type == "Letterbox Hybrid")
 				cache.TypeOfCache = Geocache.CacheType.LETTERBOX;
@@ -985,7 +985,7 @@ namespace ocmengine
 				cache.TypeOfCache = Geocache.CacheType.EARTH;
 			else if (type =="Wherigo Cache")
 				cache.TypeOfCache = Geocache.CacheType.WHERIGO;
-			else if (type == "Webcam Cache")
+			else if ((type == "Webcam Cache") || type == ("Webcam"))
 				cache.TypeOfCache = Geocache.CacheType.WEBCAM;
 			else if (type == "Cache In Trash Out Event")
 				cache.TypeOfCache = Geocache.CacheType.CITO;

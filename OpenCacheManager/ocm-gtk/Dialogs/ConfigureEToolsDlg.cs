@@ -92,6 +92,7 @@ namespace ocmgtk
 				m_treemodel.AppendValues(dlg.ETool);
 				m_toolList.AddTool(dlg.ETool);
 				UIMonitor.getInstance().Main.RebuildEToolMenu(m_toolList);
+				UIMonitor.getInstance().ExternalTools = m_toolList;
 			}
 		}
 		
@@ -121,6 +122,7 @@ namespace ocmgtk
 				m_toolList.DeleteTool(tool.Name);
 				RefreshList ();
 				UIMonitor.getInstance().Main.RebuildEToolMenu(m_toolList);
+				UIMonitor.getInstance().ExternalTools = m_toolList;
 			}
 			dlg.Hide();
 		}
@@ -146,6 +148,7 @@ namespace ocmgtk
 				m_toolList.AddTool(dlg.ETool);
 				RefreshList();
 				UIMonitor.getInstance().Main.RebuildEToolMenu(m_toolList);
+				UIMonitor.getInstance().ExternalTools = m_toolList;
 			}
 		}
 		

@@ -106,9 +106,11 @@ namespace ocmgtk
 				logEntry.Buffer.Text = val.LogMessage;
 				editButton.Sensitive = true;
 				deleteButton.Sensitive = true;
+				viewCacheButton.Sensitive = true;
 			} else {
 				editButton.Sensitive = false;
 				deleteButton.Sensitive = false;
+				viewCacheButton.Sensitive = false;
 			}
 		}
 		
@@ -238,6 +240,27 @@ namespace ocmgtk
 			PopulateLogs(m_Logs);
 		}
 		
-		
+		protected virtual void OnViewCache (object sender, System.EventArgs e)
+		{
+			Gtk.TreeIter itr;
+			Gtk.TreeModel model;
+			if (logView.Selection.GetSelected (out model, out itr)) 
+			{
+				CacheLog log = (CacheLog)model.GetValue (itr, 0);
+				if (!m_monitor.CacheListPane.ContainsCode(log.CacheCode))
+				{
+					MessageDialog dlg = new MessageDialog(this, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok, 
+					                                      Catalog.GetString("'{0}' is not within the list of unfiltered caches. Your filter settings may have filtered it out or it may not be in your database."),
+					                                      log.CacheCode);
+					dlg.Run();
+					dlg.Hide();
+					dlg.Dispose();
+					return;
+				}
+				m_monitor.SelectCache(log.CacheCode);
+				this.Hide();
+				this.Dispose();
+			}
+		}
 	}
 }

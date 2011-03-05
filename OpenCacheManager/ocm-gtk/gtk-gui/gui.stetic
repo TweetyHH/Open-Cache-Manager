@@ -18542,8 +18542,23 @@ Needs Maintenance</property>
               <widget class="Gtk.VButtonBox" id="vbuttonbox1">
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
-                <property name="Size">3</property>
+                <property name="Size">4</property>
                 <property name="LayoutStyle">Start</property>
+                <child>
+                  <widget class="Gtk.Button" id="viewCacheButton">
+                    <property name="MemberName" />
+                    <property name="Sensitive">False</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">View Cache</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnViewCache" />
+                  </widget>
+                  <packing>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
                 <child>
                   <widget class="Gtk.Button" id="editButton">
                     <property name="MemberName" />
@@ -18556,6 +18571,7 @@ Needs Maintenance</property>
                     <property name="label">gtk-edit</property>
                   </widget>
                   <packing>
+                    <property name="Position">1</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
                   </packing>
@@ -18572,7 +18588,7 @@ Needs Maintenance</property>
                     <property name="label">gtk-delete</property>
                   </widget>
                   <packing>
-                    <property name="Position">1</property>
+                    <property name="Position">2</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
                   </packing>
@@ -18587,7 +18603,7 @@ Needs Maintenance</property>
                     <signal name="Clicked" handler="OnDeleteAllClick" />
                   </widget>
                   <packing>
-                    <property name="Position">2</property>
+                    <property name="Position">3</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
                   </packing>
