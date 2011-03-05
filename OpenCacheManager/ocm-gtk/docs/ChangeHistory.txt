@@ -1,3 +1,9 @@
+Version 0.23.8
+--------------
+- Add "Add child waypoint" and "Corrected Coordinates" to cache list context menu
+- Fix import issue with new GC.com LOC file format
+- Fix import issue with opencaching.us style GPX files
+
 Version 0.23.7
 --------------
 - Add Last Found by Anyone filter

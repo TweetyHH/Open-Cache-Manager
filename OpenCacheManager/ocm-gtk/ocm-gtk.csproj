@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.23.7</ReleaseVersion>
+    <ReleaseVersion>0.23.8</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1251,9 +1251,6 @@
     <Resource Include="icons\24x24\disabled-dnf.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="maps\google-sat.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="icons\24x24\archived-ftf.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -1289,6 +1286,7 @@
     </None>
     <None Include="icons\24x24\locationless.png" />
     <None Include="icons\24x24\waypoint-flag-red.png" />
+    <None Include="maps\mappack-central-europe.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="OCM.desktop">

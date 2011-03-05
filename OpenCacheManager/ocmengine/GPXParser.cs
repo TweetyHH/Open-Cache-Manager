@@ -197,7 +197,7 @@ namespace ocmengine
 								m_store.BookMarkCache(pt.Name, m_bookmark);
 						}
 						
-						if (reader.Name == "waypoint")
+						if (reader.Name == "waypoint" && reader.IsStartElement())
 						{
 							Waypoint pt = processLocWaypoint(reader);
 							pt.Updated = System.DateTime.Now;
@@ -228,7 +228,7 @@ namespace ocmengine
 			
 			bool breakLoop = false;
 			
-			while (reader.Read() && !breakLoop)
+			while (!breakLoop && reader.Read())
 			{
 				switch (reader.NodeType)
 				{
@@ -248,7 +248,7 @@ namespace ocmengine
 		{
 			Waypoint newPoint = new Waypoint();
 			bool breakLoop = false;
-			while (reader.Read() && !breakLoop)
+			while (!breakLoop && reader.Read())
 			{
 				switch (reader.NodeType)
 				{
@@ -269,7 +269,7 @@ namespace ocmengine
 			if (reader.Name == "name")
 			{
 				pt.Name = reader.GetAttribute("id");
-				pt.Desc = reader.ReadElementContentAsString();
+				pt.Desc = reader.ReadElementContentAsString().Trim();
 				this.ParseWaypoint(this, new ParseEventArgs(String.Format("Processing Waypoint {0}", pt.Name)));
 			}
 			else if (reader.Name == "coord")
@@ -568,7 +568,7 @@ namespace ocmengine
 				string terr = reader.ReadElementContentAsString();
 				cache.Terrain = float.Parse(terr, CultureInfo.InvariantCulture);
 			}
-			else if (reader.LocalName == "short_description")
+			else if (reader.LocalName == "short_description" || reader.LocalName == "summary")
 			{
 				string html = reader.GetAttribute("html");
 				string val = reader.ReadElementContentAsString();
@@ -576,7 +576,7 @@ namespace ocmengine
 					val = val.Replace("\n", "<br/>");
 				cache.ShortDesc = val;
 			}
-			else if (reader.LocalName == "long_description")
+			else if (reader.LocalName == "long_description" || reader.LocalName == "description")
 			{
 				string html = reader.GetAttribute("html");	
 				string val = reader.ReadElementContentAsString();
@@ -584,7 +584,7 @@ namespace ocmengine
 					val = val.Replace("\n", "<br/>");
 				cache.LongDesc = val;
 			}
-			else if (reader.LocalName == "encoded_hints")
+			else if (reader.LocalName == "encoded_hints" || reader.LocalName == "hints")
 			{
 				cache.Hint = reader.ReadElementContentAsString();
 			}
@@ -794,11 +794,11 @@ namespace ocmengine
 			log.LogID = reader.GetAttribute("id");
 			log.LogKey = cache.Name + log.LogID;
 			bool breakLoop = false;
-			while (reader.Read() && !breakLoop)
-			{
-				if (reader.LocalName == "date")
+			while (!breakLoop && reader.Read())
+			{					
+				if ((reader.LocalName == "date" || reader.LocalName == "time"))
 				{
-					string date = reader.ReadElementContentAsString();
+					string date = reader.ReadString();
 					if (date.Contains("/"))
 						log.LogDate = DateTime.ParseExact(date, "MM/dd/yyyy'T'HH:mm:ss",CultureInfo.InvariantCulture);
 					else
@@ -806,7 +806,7 @@ namespace ocmengine
 				}
 				else if (reader.LocalName == "type")
 				{
-					log.LogStatus = reader.ReadElementContentAsString();
+					log.LogStatus = reader.ReadString();
 					if (log.FinderID == m_ownid && log.LogStatus == "Found it")
 					{
 						cache.Symbol = "Geocache Found";
@@ -816,18 +816,18 @@ namespace ocmengine
 						cache.Symbol = "Geocache Found";
 					}
 				}
-				else if (reader.LocalName == "finder" && reader.IsStartElement())
+				else if ((reader.LocalName == "finder" || reader.LocalName == "geocacher"))
 				{
 					log.FinderID = reader.GetAttribute("id");
-					log.LoggedBy = reader.ReadElementContentAsString();
+					log.LoggedBy = reader.ReadString();
 				}
-				else if (reader.LocalName == "text")
+				else if (reader.LocalName == "text" && reader.IsStartElement())
 				{
 					if (reader.GetAttribute("encoded") != null)
 						log.Encoded = Boolean.Parse(reader.GetAttribute("encoded"));
 					else
 						log.Encoded = false;
-					log.LogMessage = reader.ReadElementContentAsString();
+					log.LogMessage = reader.ReadString();
 				}
 				else if (reader.LocalName == "log")
 				{
@@ -887,7 +887,7 @@ namespace ocmengine
 			bool breakLoop = false;
 			log.LogID = reader.GetAttribute("id");
 			log.LogKey = cache.Name + log.LogID;
-			while (reader.Read() && !breakLoop)
+			while (!breakLoop && reader.Read())
 			{
 				if (reader.LocalName == "date")
 				{
@@ -975,7 +975,7 @@ namespace ocmengine
 		{
 			if ((type == "Unknown Cache") || (type == "Other") || (type == "Puzzle") || (type == "Unknown"))
 				cache.TypeOfCache = Geocache.CacheType.MYSTERY;
-			else if ((type == "Traditional Cache") || (type == "Classic") || (type == "Normal"))
+			else if ((type == "Traditional Cache") || (type == "Classic") || (type == "Normal") || (type.Contains("Traditional")))
 				cache.TypeOfCache = Geocache.CacheType.TRADITIONAL;
 			else if ((type == "Multi-cache") || (type == "Offset") || (type == "Multi-Part"))
 				cache.TypeOfCache = Geocache.CacheType.MULTI;
