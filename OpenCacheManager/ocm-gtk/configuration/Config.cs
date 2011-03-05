@@ -25,7 +25,7 @@ namespace ocmgtk
 
 	public class Config:IConfig
 	{
-		private GConf.Client m_client;
+		private Client m_client;
 		public SolvedMode SolvedModeState
 		{
 			get 
@@ -36,7 +36,7 @@ namespace ocmgtk
 			}
 			set 
 			{ 
-				m_client.Set("/apps/ocm/solved_mode", value.ToString()); 
+				this.Set("/apps/ocm/solved_mode", value.ToString()); 
 			}
 		}
 		
@@ -49,13 +49,13 @@ namespace ocmgtk
 		public double LastLat
 		{
 			get { return (double) this.Get ("/apps/ocm/lastlat", 0.0);}
-			set { m_client.Set("/apps/ocm/lastlat", value);}
+			set { this.Set("/apps/ocm/lastlat", value);}
 		}
 		
 		public double LastLon
 		{
 			get { return (double) this.Get ("/apps/ocm/lastlon", 0.0);}
-			set { m_client.Set("/apps/ocm/lastlon", value);}
+			set { this.Set("/apps/ocm/lastlon", value);}
 		}
 		
 		public string LastName
@@ -209,14 +209,14 @@ namespace ocmgtk
 				if (value == null)
 					UnsetKey("/apps/ocm/gps/currentprof");
 				else
-					m_client.Set("/apps/ocm/gps/currentprof", value);
+					this.Set("/apps/ocm/gps/currentprof", value);
 			}
 		}
 		
 		public bool IgnoreWaypointPrefixes
 		{
 			get { return (bool) this.Get("/apps/ocm/noprefixes", false);}
-			set { m_client.Set("/apps/ocm/noprefixes", value);}
+			set { this.Set("/apps/ocm/noprefixes", value);}
 		}
 		
 		public bool CheckForUpdates
