@@ -1,3 +1,7 @@
+Version 0.23.9
+--------------
+- Fix crash on add location
+
 Version 0.23.8
 --------------
 - Add "Add child waypoint" and "Corrected Coordinates" to cache list context menu

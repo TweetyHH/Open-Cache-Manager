@@ -27,6 +27,7 @@ namespace ocmgtk
 	[Serializable]
 	public class LocationList
 	{
+		[NonSerialized]
 		ToggleAction gpsdAction = null;
 
 		public LocationList ()
@@ -88,6 +89,7 @@ namespace ocmgtk
 		
 		public static LocationList LoadLocationList()
 		{
+			System.Console.WriteLine("Reading");
 			String path = System.Environment.GetFolderPath (System.Environment.SpecialFolder.ApplicationData);
 			if (!File.Exists(path + "/ocm/locs.oqf"))
 			{
@@ -97,11 +99,14 @@ namespace ocmgtk
 			BinaryFormatter ser = new BinaryFormatter();
 			System.Object filters = ser.Deserialize(fs);
 			fs.Close();
+			System.Console.WriteLine("Finished Reading");
 			return filters as LocationList;
+			
 		}
 		
 		private void UpdateLocFile()
 		{
+			System.Console.WriteLine("Writing");
 			String path = System.Environment.GetFolderPath (System.Environment.SpecialFolder.ApplicationData);
 			if (!Directory.Exists("ocm"))
 				Directory.CreateDirectory(path + "/ocm");
@@ -110,6 +115,7 @@ namespace ocmgtk
 			FileStream fs = new FileStream(path + "/locs.oqf", FileMode.Create, FileAccess.ReadWrite);
 			ser.Serialize(fs, this);
 			fs.Close();
+			System.Console.WriteLine("Finished");
 		}
 		
 		public Menu BuildLocationlMenu()

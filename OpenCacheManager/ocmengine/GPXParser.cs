@@ -314,7 +314,7 @@ namespace ocmengine
 					{
 						ParseNaviCache (pt);
 					}
-				}
+				}					
 			}
 			else if (reader.Name == "link")
 			{
@@ -410,12 +410,30 @@ namespace ocmengine
 			else if (reader.Name == "sym")
 			{
 				pt.Symbol = reader.ReadElementContentAsString();
+				
 			}
 			else if (reader.Name == "type")
 			{
 				pt.Type = reader.ReadElementContentAsString();
 				if (pt.Type.StartsWith("Geocache") || pt.Type.StartsWith("TerraCache"))
+				{
 				    pt = Geocache.convertFromWaypoint(pt);
+				}
+				else if (pt.Symbol == "Waymark")
+				{
+					// TEMP: For now, convert Waymark into a virtual cache
+					pt = Geocache.convertFromWaypoint(pt);
+					Geocache cache = pt as Geocache;
+					cache.ShortDesc = pt.Type + "\n\n";
+					cache.CacheName = "Waymark: " + cache.Name;
+					cache.TypeOfCache = Geocache.CacheType.VIRTUAL;
+					cache.Type = "Geocache";
+					cache.LongDesc = cache.Desc;
+					cache.Container = "Virtual";
+					cache.Difficulty = 1.0f;
+					cache.Terrain = 1.0f;
+					cache.PlacedBy = "Unknown";
+				}
 			}
 		}
 		
