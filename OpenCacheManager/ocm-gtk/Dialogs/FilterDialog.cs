@@ -54,7 +54,7 @@ namespace ocmgtk
 				GetInfoWithinFilter (filter);
 				GetUserDataFilters (filter);
 				LastFoundFilter (filter);
-				
+				GetSourceFilter (filter);
 				filter.AddFilterCriteria(FilterList.KEY_OWNERID, UIMonitor.getInstance().OwnerID);
 				return filter;
 			}
@@ -69,6 +69,18 @@ namespace ocmgtk
 				SetAttributeTabFilters (value);
 				SetUpdatedPageFilters(value);
  			}
+		}
+		
+		void GetSourceFilter (FilterList filter)
+		{
+			if (difficultyPage.CacheSources != null)
+				{
+					filter.AddFilterCriteria(FilterList.KEY_CACHE_SOURCE, difficultyPage.CacheSources);
+				}
+				else
+				{
+					filter.RemoveCriteria(FilterList.KEY_CACHE_SOURCE);
+				}
 		}
 		
 		private void LastFoundFilter (FilterList filter)
@@ -457,6 +469,11 @@ namespace ocmgtk
 			{
 				atLeastOne = true;
 				difficultyPage.SelectedCacheTypes = list.GetCriteria(FilterList.KEY_CACHETYPE) as List<string>;
+			}
+			if (list.Contains(FilterList.KEY_CACHE_SOURCE))
+			{
+				atLeastOne = true;
+				difficultyPage.CacheSources = list.GetCriteria(FilterList.KEY_CACHE_SOURCE) as List<String>;
 			}
 			if (atLeastOne)
 			{

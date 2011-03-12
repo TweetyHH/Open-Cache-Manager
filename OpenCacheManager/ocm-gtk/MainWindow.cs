@@ -924,5 +924,11 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.ReceiveGPSFieldNotes();
 	}
 	
+	protected virtual void OnExportPOI (object sender, System.EventArgs e)
+	{
+		m_monitor.ExportGarminPOI();
+	}
+	
+	
 	
 }

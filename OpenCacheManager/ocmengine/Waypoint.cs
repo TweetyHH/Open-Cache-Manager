@@ -14,6 +14,7 @@ using System;
 using System.Xml;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 using Mono.Unix;
 
 namespace ocmengine
@@ -165,6 +166,26 @@ namespace ocmengine
 				else
 					writer.WriteElementString("desc", cache.Name + "/" + cache.TypeOfCache.ToString());
 			}
+			else if (cache != null && gpx.DescriptionMode == WaypointDescMode.FULL)
+			{
+				StringBuilder builder = new StringBuilder();
+				builder.Append(cache.Name + ":" + cache.CacheName);
+				builder.Append(Geocache.GetCTypeString(cache.TypeOfCache));
+				builder.Append("<br/>D: " + cache.Difficulty.ToString() + " T: " + cache.Terrain.ToString());
+				builder.Append("<br/>S: " + cache.Container.ToString()  + " O: " + cache.PlacedBy.ToString());
+				builder.Append("<br/><br/>Hint: " + cache.Hint);
+				builder.Append("<br/><br/>" + cache.ShortDesc);
+				builder.Append("<br/><br/>" + cache.LongDesc);
+				writer.WriteStartElement("desc");
+				if (gpx.HTMLOutput == HTMLMode.GARMIN)
+					writer.WriteCData(Utilities.HTMLtoGarmin(builder.ToString()));
+				else if (gpx.HTMLOutput == HTMLMode.PLAINTEXT)
+					writer.WriteCData(Utilities.HTMLtoText(builder.ToString()));
+				else
+					writer.WriteCData(builder.ToString());
+				
+				writer.WriteEndElement();				
+			}
 			else
 			{
 				writer.WriteElementString("desc", this.Desc);	
@@ -178,6 +199,8 @@ namespace ocmengine
 				writer.WriteElementString("sym", this.Symbol);
 			else
 			{
+				
+				System.Console.WriteLine(this.Name);
 					if (cache != null && cache.Symbol == "Geocache Found")
 						writer.WriteElementString("sym", gpx.Mappings[this.Symbol]);					
 					else if (cache != null && cache.TypeOfCache != Geocache.CacheType.GENERIC)

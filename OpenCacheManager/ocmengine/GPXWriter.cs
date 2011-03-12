@@ -21,7 +21,7 @@ using System.IO;
 namespace ocmengine
 {
 	public enum WaypointNameMode{CODE,NAME,SHORTCODE};
-	public enum WaypointDescMode{DESC,CODESIZEANDHINT,CODESIZETYPE};
+	public enum WaypointDescMode{DESC,CODESIZEANDHINT,CODESIZETYPE,FULL};
 	public enum HTMLMode{HTML,GARMIN,PLAINTEXT};
 	
 	public class WriteEventArgs:EventArgs

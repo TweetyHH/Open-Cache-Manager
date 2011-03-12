@@ -215,6 +215,45 @@ namespace ocmgtk
 				}
 			}
 		}
+		
+		public List<String> CacheSources
+		{
+			get {
+				if (!providerCheck.Active)
+					return null;
+				List<String> sources = new List<String>();
+				if (gcComCheck.Active)
+					sources.Add("GC");
+				if (openCacheCheck.Active)
+					sources.Add("O");
+				if (NaviCacheCheck.Active)
+					sources.Add("NC");
+				if (terraCachingCheck.Active)
+				{
+					sources.Add("TC");
+					sources.Add("LC");
+				}
+				if (wayMarkingCheck.Active)
+				{
+					sources.Add("WM");
+				}
+				return sources;
+			}
+			set
+			{
+				providerCheck.Active = true;
+				if (!value.Contains("GC"))
+					gcComCheck.Active = false;
+				if (!value.Contains("O"))
+					openCacheCheck.Active = false;
+				if (!value.Contains("NC"))
+					NaviCacheCheck.Active = false;
+				if (!value.Contains("TC"))
+					terraCachingCheck.Active = false;
+				if (!value.Contains("WM"))
+					wayMarkingCheck.Active = false;
+			}
+		}
 
 		#endregion Properties
 
@@ -240,5 +279,11 @@ namespace ocmgtk
 		{
 			selCacheFrame.Sensitive = selCacheRadio.Active;
 		}
+		protected virtual void OnSourceToggle (object sender, System.EventArgs e)
+		{
+			sourceFrame.Sensitive = providerCheck.Active;
+		}
+		
+		
 	}
 }

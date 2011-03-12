@@ -62,6 +62,12 @@ namespace ocmengine
 			set {m_incAttr = value;}
 		}
 		
+		private string m_otherBabelParams;
+		public string OtherBabelParams
+		{
+			set {m_otherBabelParams = value;}
+		}
+		
 		private GPXWriter writer;
 
 		public event WriteEventHandler WriteWaypoint;
@@ -110,11 +116,19 @@ namespace ocmengine
 				return;
 			}
 			
-			if (m_format == "garmin")
-				writer.IncludeGroundSpeakExtensions = false;
-			else
-				writer.IncludeGroundSpeakExtensions = true;
+			writer.IncludeGroundSpeakExtensions = true;
 			writer.UseOCMPtTypes = true;
+			if (m_format == "garmin_gpi")
+			{
+				writer.UseOCMPtTypes = false;
+				writer.IncludeGroundSpeakExtensions = false;
+				writer.HTMLOutput = HTMLMode.PLAINTEXT;
+				writer.IncludeChildWaypoints = false;
+			}			
+			else if (m_format == "garmin")
+			{
+				writer.IncludeGroundSpeakExtensions = false;
+			}		
 			writer.Complete += HandleWriterComplete;
 			String tempFile = Path.GetTempFileName ();
 			writer.WriteWaypoint += HandleWriterWriteWaypoint;
@@ -125,8 +139,15 @@ namespace ocmengine
 			builder.Append (tempFile);
 			builder.Append (" -o ");
 			builder.Append (m_format);
+			if (!String.IsNullOrEmpty(m_otherBabelParams))
+			{
+				builder.Append(",");
+				builder.Append(m_otherBabelParams);
+			}
 			builder.Append (" -F ");
 			builder.Append (m_file);
+
+			System.Console.WriteLine(builder.ToString());
 			if (writer.Cancel)
 			{
 				throw new Exception ("Aborted");

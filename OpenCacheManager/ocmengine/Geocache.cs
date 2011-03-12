@@ -514,7 +514,7 @@ namespace ocmengine
 			case CacheType.GENERIC:
 				return "Geocache";
 			default:
-				throw new Exception("UNHANDLED CACHE TYPE");
+				throw new Exception("UNHANDLED CACHE TYPE: " + ct);
 			}
 		}
 		

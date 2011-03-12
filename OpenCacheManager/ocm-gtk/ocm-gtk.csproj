@@ -10,7 +10,7 @@
     <AssemblyName>ocm-gtk</AssemblyName>
     <Description>The GTK UI for Open Cache Manager</Description>
     <RootNamespace>ocmgtk</RootNamespace>
-    <ReleaseVersion>0.23.9</ReleaseVersion>
+    <ReleaseVersion>0.23.10</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -263,6 +263,10 @@
     <Compile Include="MapDescription.cs" />
     <Compile Include="Widgets\MapSelectionWidget.cs" />
     <Compile Include="gtk-gui\ocmgtk.MapSelectionWidget.cs" />
+    <Compile Include="Dialogs\ExportPOIDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.ExportPOIDialog.cs" />
+    <Compile Include="Dialogs\WebBrowser.cs" />
+    <Compile Include="gtk-gui\ocmgtk.WebBrowser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

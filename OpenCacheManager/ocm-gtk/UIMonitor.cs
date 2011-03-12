@@ -22,6 +22,7 @@ using ocmengine;
 using System.Diagnostics;
 using System.Globalization;
 using System.Timers;
+using System.Text;
 using org.freedesktop.DBus;
 using NDesk.DBus;
 using System.IO;
@@ -2369,6 +2370,43 @@ namespace ocmgtk
 			m_mainWin.ClearCombo();
 			m_cachelist.ClearInfoBoxes();
 			RefreshCaches();
+		}
+		
+		public void ExportGarminPOI()
+		{
+			ExportPOIDialog dlg = new ExportPOIDialog();
+			if ((int) ResponseType.Ok ==  dlg.Run())
+			{
+				GPSProfile poiProfile = new GPSProfile();
+				poiProfile.BabelFormat = "garmin_gpi";
+				poiProfile.NameMode = dlg.NameMode;
+				poiProfile.DescMode = dlg.DescMode;
+				poiProfile.OutputFile = dlg.FileName;
+				poiProfile.CacheLimit = dlg.CacheLimit;
+				poiProfile.FieldNotesFile = null;
+				poiProfile.IncludeAttributes = false;
+				poiProfile.Name = "POI";
+				StringBuilder builder = new StringBuilder ();
+				// Build other properties
+				if (dlg.BMPFile != null)
+				{
+					builder.Append("bitmap=\"");
+					builder.Append(dlg.BMPFile);
+					builder.Append("\"");
+				}
+				else
+				{
+					builder.Append("hide");
+				}
+				builder.Append(",");
+				builder.Append("category=\"");
+				builder.Append(dlg.Category);
+				builder.Append("\"");
+				poiProfile.OtherProperties = builder.ToString();
+				SendWaypointsDialog edlg = new SendWaypointsDialog();
+				edlg.Start(GetVisibleCacheList(), poiProfile);
+			}
+			dlg.Dispose();
 		}
 	}
 }

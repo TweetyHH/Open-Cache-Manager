@@ -69,6 +69,7 @@ namespace ocmengine
 		public const String KEY_U4 = "u4";
 		public const String KEY_LFOUND_BEFORE = "lastFoundBefore";
 		public const String KEY_LFOUND_AFTER = "lastFoundAfter";
+		public const String KEY_CACHE_SOURCE = "cacheSource";
 		public FilterList ()
 		{
 			
@@ -288,6 +289,24 @@ namespace ocmengine
 			{
 				builder.Append(" AND Geocache.user4 LIKE '%" + (m_criteria[KEY_U4] as string) + "%'");
 			}
+			if (m_criteria.Contains(KEY_CACHE_SOURCE))
+			{
+				List<string> sources =  m_criteria[KEY_CACHE_SOURCE] as List<string>;
+				builder.Append(" AND (");
+				bool isFirst = false;
+				foreach(string source in sources)
+				{
+					if (!isFirst)
+						isFirst = true;
+					else 
+						builder.Append(" OR ");
+					builder.Append("GEOCACHE.name LIKE '");
+					builder.Append(source);
+					builder.Append("%'");
+				}
+				builder.Append(")");
+			}
+			   
 			 
 			System.Console.WriteLine(builder.ToString());
 			return builder.ToString ();

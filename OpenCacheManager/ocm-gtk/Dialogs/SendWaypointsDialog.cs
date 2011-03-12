@@ -59,6 +59,7 @@ namespace ocmgtk
 				writer.NameMode = profile.NameMode;
 				writer.LogLimit = profile.LogLimit;
 				writer.IncludeAttributes = profile.IncludeAttributes;
+				writer.OtherBabelParams = profile.OtherProperties;
 				writer.WriteToGPS (caches, profile.WaypointMappings);
 				this.Show ();
 			} catch (Exception e) {

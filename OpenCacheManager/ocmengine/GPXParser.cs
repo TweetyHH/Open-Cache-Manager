@@ -1023,7 +1023,7 @@ namespace ocmengine
 				cache.TypeOfCache = Geocache.CacheType.MULTI;
 			else if (type == "Letterbox Hybrid")
 				cache.TypeOfCache = Geocache.CacheType.LETTERBOX;
-			else if (type == "Earthcache")
+			else if ((type ==  "EarthCache") || (type == "Earthcache"))
 				cache.TypeOfCache = Geocache.CacheType.EARTH;
 			else if (type =="Wherigo Cache")
 				cache.TypeOfCache = Geocache.CacheType.WHERIGO;
@@ -1046,7 +1046,10 @@ namespace ocmengine
 			else if (type == "Moving/Travelling")
 				cache.TypeOfCache = Geocache.CacheType.REVERSE;
 			else
-				cache.TypeOfCache = Geocache.CacheType.OTHER;
+			{
+				System.Console.WriteLine("WARNING: TYPE UNKNOWN:" + type);
+				cache.TypeOfCache = Geocache.CacheType.GENERIC;
+			}
 				
 		}
 	}

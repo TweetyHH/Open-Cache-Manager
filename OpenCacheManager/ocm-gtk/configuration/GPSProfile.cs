@@ -30,6 +30,7 @@ namespace ocmgtk
 		public string FieldNotesFile = null;
 		public string Name = null;
 		public int LogLimit = -1;
+		public string OtherProperties = null;
 		public bool IncludeAttributes = true;
 		public WaypointNameMode NameMode = WaypointNameMode.CODE;
 		public WaypointDescMode DescMode = WaypointDescMode.DESC;
