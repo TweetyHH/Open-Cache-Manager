@@ -68,6 +68,14 @@ namespace ocmgtk
 		bool ExportIncludeAttributes{get;set;}
 		bool ExportAsPlainText{get;set;}
 		bool WizardDone{get;set;}
+		string ExportPOIFile{get;set;}
+		ocmengine.WaypointNameMode ExportPOINameMode{get;set;}
+		ocmengine.WaypointDescMode ExportPOIDescMode{get;set;}
+		string ExportPOICategory{get;set;}
+		int ExportPOICacheLimit{get;set;}
+		bool ExportPOIIncludeChildren{get;set;}
+		string ExportPOIBitmap{get;set;}
+		
 		ocmengine.WaypointDescMode ExportWaypointDescMode{get;set;}
 		ocmengine.WaypointNameMode ExportWaypointNameMode{get;set;}
 		List<MapDescription> OpenLayerMaps{get;set;}

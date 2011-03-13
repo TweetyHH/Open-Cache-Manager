@@ -2374,7 +2374,7 @@ namespace ocmgtk
 		
 		public void ExportGarminPOI()
 		{
-			ExportPOIDialog dlg = new ExportPOIDialog();
+			ExportPOIDialog dlg = new ExportPOIDialog(m_conf);
 			if ((int) ResponseType.Ok ==  dlg.Run())
 			{
 				GPSProfile poiProfile = new GPSProfile();
@@ -2397,6 +2397,13 @@ namespace ocmgtk
 				else
 				{
 					builder.Append("hide");
+				}
+				if (dlg.ProximityDistance > 0)
+				{
+					builder.Append(",proximity=");
+					builder.Append(dlg.ProximityDistance.ToString());
+					builder.Append(",units=");
+					builder.Append(dlg.ProximityUnits);
 				}
 				builder.Append(",");
 				builder.Append("category=\"");

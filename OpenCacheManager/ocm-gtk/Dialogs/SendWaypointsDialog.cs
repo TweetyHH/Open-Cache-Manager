@@ -47,6 +47,11 @@ namespace ocmgtk
 
 		public void Start (List<Geocache> caches, GPSProfile profile)
 		{
+			Start(caches, profile, true);
+		}
+		
+		public void Start (List<Geocache> caches, GPSProfile profile, bool includeChildren)
+		{
 			try {
 				if (profile.CacheLimit == -1)
 					total = caches.Count + 1;
@@ -61,6 +66,7 @@ namespace ocmgtk
 				writer.IncludeAttributes = profile.IncludeAttributes;
 				writer.OtherBabelParams = profile.OtherProperties;
 				writer.WriteToGPS (caches, profile.WaypointMappings);
+				writer.IncludeChildren = includeChildren;
 				this.Show ();
 			} catch (Exception e) {
 				this.Hide ();

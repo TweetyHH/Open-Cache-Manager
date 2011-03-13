@@ -68,6 +68,12 @@ namespace ocmengine
 			set {m_otherBabelParams = value;}
 		}
 		
+		private bool m_includeChildren = true;
+		public bool IncludeChildren
+		{
+			set { m_includeChildren = value;}
+		}
+		
 		private GPXWriter writer;
 
 		public event WriteEventHandler WriteWaypoint;
@@ -118,12 +124,12 @@ namespace ocmengine
 			
 			writer.IncludeGroundSpeakExtensions = true;
 			writer.UseOCMPtTypes = true;
+			writer.IncludeChildWaypoints = m_includeChildren;
 			if (m_format == "garmin_gpi")
 			{
 				writer.UseOCMPtTypes = false;
 				writer.IncludeGroundSpeakExtensions = false;
 				writer.HTMLOutput = HTMLMode.PLAINTEXT;
-				writer.IncludeChildWaypoints = false;
 			}			
 			else if (m_format == "garmin")
 			{

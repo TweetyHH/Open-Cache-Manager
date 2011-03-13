@@ -168,14 +168,17 @@ namespace ocmengine
 			}
 			else if (cache != null && gpx.DescriptionMode == WaypointDescMode.FULL)
 			{
-				StringBuilder builder = new StringBuilder();
-				builder.Append(cache.Name + ":" + cache.CacheName);
-				builder.Append(Geocache.GetCTypeString(cache.TypeOfCache));
-				builder.Append("<br/>D: " + cache.Difficulty.ToString() + " T: " + cache.Terrain.ToString());
-				builder.Append("<br/>S: " + cache.Container.ToString()  + " O: " + cache.PlacedBy.ToString());
-				builder.Append("<br/><br/>Hint: " + cache.Hint);
+				StringBuilder builder = new StringBuilder();				
 				builder.Append("<br/><br/>" + cache.ShortDesc);
-				builder.Append("<br/><br/>" + cache.LongDesc);
+				builder.Append("<br/>" + cache.LongDesc);
+				builder.Append("<br/><br/>Hint: " + cache.Hint);
+				builder.Append("<br/><br/>Logs:<br/>");
+				List<CacheLog> logs = Engine.getInstance().Store.GetCacheLogs(cache.Name);
+				foreach(CacheLog log in logs)
+				{
+					builder.Append(log.toHTML());
+				}
+				
 				writer.WriteStartElement("desc");
 				if (gpx.HTMLOutput == HTMLMode.GARMIN)
 					writer.WriteCData(Utilities.HTMLtoGarmin(builder.ToString()));
@@ -184,7 +187,7 @@ namespace ocmengine
 				else
 					writer.WriteCData(builder.ToString());
 				
-				writer.WriteEndElement();				
+				writer.WriteEndElement();	
 			}
 			else
 			{
@@ -195,12 +198,13 @@ namespace ocmengine
 				writer.WriteElementString("url", this.URL.ToString());
 			if (!String.IsNullOrEmpty(this.URLName))
 				writer.WriteElementString("urlname", this.URLName);
-			if (!gpx.UseOCMPtTypes)
+			if (gpx.DescriptionMode == WaypointDescMode.FULL)
+				writer.WriteElementString("sym", "Information");
+			else if (!gpx.UseOCMPtTypes)
 				writer.WriteElementString("sym", this.Symbol);
 			else
-			{
-				
-				System.Console.WriteLine(this.Name);
+			{				
+					System.Console.WriteLine(this.Name);
 					if (cache != null && cache.Symbol == "Geocache Found")
 						writer.WriteElementString("sym", gpx.Mappings[this.Symbol]);					
 					else if (cache != null && cache.TypeOfCache != Geocache.CacheType.GENERIC)
@@ -216,7 +220,21 @@ namespace ocmengine
 			writer.WriteElementString("type", this.Type);
 			if (this.Parent != null)
 				writer.WriteElementString("parent", "http://opencachemanage.sourceforge.net/schema1", this.Parent);
-	
+			if (cache != null && gpx.DescriptionMode == WaypointDescMode.FULL)
+			{
+				writer.WriteStartElement("extensions");
+				writer.WriteStartElement("gpxx", "WaypointExtension", "http://www.garmin.com/xmlschemas/GpxExtensions/v3");
+				writer.WriteElementString("gpxx:DisplayMode","SymbolAndName");
+				writer.WriteStartElement("gpxx:Address");
+				StringBuilder builder = new StringBuilder();
+				builder.Append(cache.Name + ":" + cache.CacheName);
+				builder.Append("\n" + Geocache.GetCTypeString(cache.TypeOfCache) + "\nBy: " + cache.PlacedBy);
+				builder.Append("\nT:" + cache.Terrain.ToString() + " D:" + cache.Difficulty.ToString() + " S:" + cache.Container);
+				writer.WriteElementString("gpxx:PostalCode",builder.ToString());
+				writer.WriteEndElement();
+				writer.WriteEndElement();	
+				writer.WriteEndElement();
+			}
 		}
 		
 		public override string ToString ()

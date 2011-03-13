@@ -24,6 +24,7 @@ namespace ocmgtk
 
 	public partial class ExportPOIDialog : Gtk.Dialog
 	{
+		IConfig m_config;
 		
 		public string FileName
 		{
@@ -142,7 +143,64 @@ namespace ocmgtk
 					bmpFile.Text = value;
 				}
 			}
-		}		
+		}
+		
+		public double ProximityDistance
+		{
+			get
+			{
+				if (proximityAlertCheck.Active)
+					return double.Parse(proxEntry.Text);
+				return -1;
+			}
+			set
+			{
+				if (value > - 0)
+				{
+					proxEntry.Text = value.ToString();
+					proximityAlertCheck.Active = true;
+				}
+				else
+				{
+					proximityAlertCheck.Active = false;
+				}
+					
+			}
+		}
+		
+		public string ProximityUnits
+		{
+			get
+			{
+				switch (proxCombo.Active)
+				{
+				case 0:
+					return "m";
+				default:
+					return "s";
+				}
+			}
+			set
+			{
+				if (value== "m")
+					proxCombo.Active = 0;
+				else
+					proxCombo.Active = 1;
+			}
+		}
+		
+		public ExportPOIDialog (IConfig config)
+		{
+			this.Build ();
+			m_config = config;
+			fileEntry.Text = config.ExportPOIFile;
+			BMPFile = config.ExportPOIBitmap;
+			IncludeChildren = config.ExportPOIIncludeChildren;
+			NameMode = config.ExportPOINameMode;
+			DescMode = config.ExportPOIDescMode;
+			Category = config.ExportPOICategory;
+			CacheLimit = config.ExportPOICacheLimit;
+		}
 		
 		
 		protected virtual void OnFileClick (object sender, System.EventArgs e)
@@ -160,14 +218,15 @@ namespace ocmgtk
 			dlg.Destroy ();
 		}
 		
-		
-		public ExportPOIDialog ()
-		{
-			this.Build ();
-			this.fileEntry.Text = "/home/campbelk/test.gpi";
-		}
 		protected virtual void OnOKClick (object sender, System.EventArgs e)
 		{
+			m_config.ExportPOIFile = FileName;
+			m_config.ExportPOIBitmap = BMPFile;
+			m_config.ExportPOIIncludeChildren = IncludeChildren;
+			m_config.ExportPOINameMode = NameMode;
+			m_config.ExportPOIDescMode = DescMode;
+			m_config.ExportPOICategory = Category;
+			m_config.ExportPOICacheLimit = CacheLimit;
 			this.Hide();
 		}
 		
@@ -189,6 +248,26 @@ namespace ocmgtk
 			}
 			dlg.Destroy ();
 		}
+		
+		protected virtual void OnProxToggle (object sender, System.EventArgs e)
+		{
+			proxCombo.Sensitive = proximityAlertCheck.Active;
+			proxEntry.Sensitive = proximityAlertCheck.Active;
+		}
+		
+		protected virtual void OnCacheToggle (object sender, System.EventArgs e)
+		{
+			limitEntry.Sensitive = limitCaches.Active;
+		}
+		
+		protected virtual void OnBMPToggle (object sender, System.EventArgs e)
+		{
+			bmpButton.Sensitive = includeBMPCheck.Active;
+			bmpFile.Sensitive = includeBMPCheck.Active;
+		}
+		
+		
+		
 		
 		
 		

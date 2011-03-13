@@ -365,6 +365,69 @@ namespace ocmgtk
 			set { this.Set("/apps/ocm/exportnamemode", value.ToString());}
 		}
 		
+		public string ExportPOIFile
+		{
+			get { return (string) this.Get("/apps/ocm/exportpoifile", System.Environment.GetFolderPath (System.Environment.SpecialFolder.MyDocuments) + "/geocaches.gpi");}
+			set { this.Set("/apps/ocm/exportpoifile", value);}
+		}
+		
+		public WaypointNameMode ExportPOINameMode
+		{
+			get 
+			{ 
+				return (WaypointNameMode) Enum.Parse(typeof(WaypointNameMode), this.Get("/apps/ocm/exportpoinamemode", 
+				                                                                 WaypointNameMode.CODE.ToString()) 
+				                                     							as string); 
+			}
+			set 
+			{ 
+				this.Set("/apps/ocm/exportpoinamemode", value.ToString()); 
+			}
+		}
+		
+		public WaypointDescMode ExportPOIDescMode
+		{
+			get 
+			{ 
+				return (WaypointDescMode) Enum.Parse(typeof(WaypointDescMode), this.Get("/apps/ocm/exportpoidescmode", 
+				                                                                 WaypointDescMode.DESC.ToString()) 
+				                                     							as string); 
+			}
+			set 
+			{ 
+				this.Set("/apps/ocm/exportpoidescmode", value.ToString()); 
+			}
+		}
+
+		public string ExportPOICategory
+		{
+			get { return (string) this.Get("/apps/ocm/exportpoicat", "Geocaches");}
+			set { this.Set("/apps/ocm/exportpoicat", value);}
+		}
+		
+		public int ExportPOICacheLimit
+		{
+			get { return (int) this.Get("/apps/ocm/exportpoilimit", -1);}
+			set { this.Set("/apps/ocm/exportpoilimit", value);}
+		}
+		
+		public bool ExportPOIIncludeChildren
+		{
+			get { return (bool) this.Get("/apps/ocm/exportpoichildren", false);}
+			set { this.Set("/apps/ocm/exportpoichildren", value);}
+		}
+		
+		public string ExportPOIBitmap
+		{
+			get { return (string) this.Get("/apps/ocm/exportpoibmp", null);}
+			set { 
+				if (value == null)
+					this.UnsetKey("/apps/ocm/exportpoibmp");
+				else
+					this.Set("/apps/ocm/exportpoibmp", value);
+			}
+		}
+		
 		public List<MapDescription> OpenLayerMaps
 		{
 			get { 
