@@ -540,7 +540,7 @@ namespace ocmgtk
 		
 		private void UnsetKey(String keyname)
 		{
-			System.Diagnostics.Process.Start("gconftool-2 --unset " + keyname);
+			System.Diagnostics.Process.Start("/usr/bin/gconftool-2 --unset " + keyname);
 		}
 
 		public Config ()

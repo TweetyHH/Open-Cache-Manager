@@ -171,7 +171,8 @@ namespace ocmengine
 				StringBuilder builder = new StringBuilder();				
 				builder.Append("<br/><br/>" + cache.ShortDesc);
 				builder.Append("<br/>" + cache.LongDesc);
-				builder.Append("<br/><br/>Hint: " + cache.Hint);
+				if (!String.IsNullOrEmpty(cache.Hint))
+					builder.Append("<br/><br/>Hint: " + cache.Hint);
 				builder.Append("<br/><br/>Logs:<br/>");
 				List<CacheLog> logs = Engine.getInstance().Store.GetCacheLogs(cache.Name);
 				foreach(CacheLog log in logs)
@@ -227,9 +228,24 @@ namespace ocmengine
 				writer.WriteElementString("gpxx:DisplayMode","SymbolAndName");
 				writer.WriteStartElement("gpxx:Address");
 				StringBuilder builder = new StringBuilder();
-				builder.Append(cache.Name + ":" + cache.CacheName);
-				builder.Append("\n" + Geocache.GetCTypeString(cache.TypeOfCache) + "\nBy: " + cache.PlacedBy);
+				builder.Append(Geocache.GetCTypeString(cache.TypeOfCache) + "\nBy: " + cache.PlacedBy);
+				builder.Append("\n" + cache.Name + ":" + cache.CacheName);
+				builder.Append("\n" + Utilities.getCoordString(cache.Lat, cache.Lon));
 				builder.Append("\nT:" + cache.Terrain.ToString() + " D:" + cache.Difficulty.ToString() + " S:" + cache.Container);
+				writer.WriteElementString("gpxx:PostalCode",builder.ToString());
+				writer.WriteEndElement();
+				writer.WriteEndElement();	
+				writer.WriteEndElement();
+			}
+			else
+			{
+				writer.WriteStartElement("extensions");
+				writer.WriteStartElement("gpxx", "WaypointExtension", "http://www.garmin.com/xmlschemas/GpxExtensions/v3");
+				writer.WriteElementString("gpxx:DisplayMode","SymbolAndName");
+				writer.WriteStartElement("gpxx:Address");
+				StringBuilder builder = new StringBuilder();
+				builder.Append(this.Symbol + " for " + this.Parent);
+				builder.Append("\n" + Utilities.getCoordString(this.Lat, this.Lon));
 				writer.WriteElementString("gpxx:PostalCode",builder.ToString());
 				writer.WriteEndElement();
 				writer.WriteEndElement();	

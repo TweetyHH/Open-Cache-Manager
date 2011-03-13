@@ -330,7 +330,6 @@ DISABLED_WHERIGO_PNG_SOURCE=icons/24x24/disabled-wherigo.png
 DNF_PNG_SOURCE=icons/24x24/dnf.png
 ARCHIVED_DNF_PNG_SOURCE=icons/24x24/archived-dnf.png
 DISABLED_DNF_PNG_SOURCE=icons/24x24/disabled-dnf.png
-GOOGLE_SAT_XML_SOURCE=maps/google-sat.xml
 ARCHIVED_FTF_PNG_SOURCE=icons/24x24/archived-ftf.png
 DISABLED_FTF_PNG_SOURCE=icons/24x24/disabled-ftf.png
 FTF_PNG_SOURCE=icons/24x24/ftf.png
@@ -673,7 +672,6 @@ DISABLED_WHERIGO_PNG_SOURCE=icons/24x24/disabled-wherigo.png
 DNF_PNG_SOURCE=icons/24x24/dnf.png
 ARCHIVED_DNF_PNG_SOURCE=icons/24x24/archived-dnf.png
 DISABLED_DNF_PNG_SOURCE=icons/24x24/disabled-dnf.png
-GOOGLE_SAT_XML_SOURCE=maps/google-sat.xml
 ARCHIVED_FTF_PNG_SOURCE=icons/24x24/archived-ftf.png
 DISABLED_FTF_PNG_SOURCE=icons/24x24/disabled-ftf.png
 FTF_PNG_SOURCE=icons/24x24/ftf.png
@@ -1014,7 +1012,6 @@ DISABLED_WHERIGO_PNG_SOURCE=icons/24x24/disabled-wherigo.png
 DNF_PNG_SOURCE=icons/24x24/dnf.png
 ARCHIVED_DNF_PNG_SOURCE=icons/24x24/archived-dnf.png
 DISABLED_DNF_PNG_SOURCE=icons/24x24/disabled-dnf.png
-GOOGLE_SAT_XML_SOURCE=maps/google-sat.xml
 ARCHIVED_FTF_PNG_SOURCE=icons/24x24/archived-ftf.png
 DISABLED_FTF_PNG_SOURCE=icons/24x24/disabled-ftf.png
 FTF_PNG_SOURCE=icons/24x24/ftf.png
@@ -1391,7 +1388,6 @@ PROGRAMFILES_ICONS_SCALABLE_ATTRIBUTES = \
 	$(DIS_LONG_HIKE_10KM_SVG)  
 
 PROGRAMFILES_MAPS = \
-	$(GOOGLE_SAT_XML) \
 	$(DEFAULTMAPS_XML)  
 
 
@@ -1567,7 +1563,11 @@ FILES = \
 	gtk-gui/ocmgtk.AddComboFilter.cs \
 	MapDescription.cs \
 	Widgets/MapSelectionWidget.cs \
-	gtk-gui/ocmgtk.MapSelectionWidget.cs 
+	gtk-gui/ocmgtk.MapSelectionWidget.cs \
+	Dialogs/ExportPOIDialog.cs \
+	gtk-gui/ocmgtk.ExportPOIDialog.cs \
+	Dialogs/WebBrowser.cs \
+	gtk-gui/ocmgtk.WebBrowser.cs 
 
 DATA_FILES = 
 
@@ -1603,6 +1603,7 @@ EXTRAS = \
 	icons/scalable/attributes/dis_Long_Hike_(+10km).svg \
 	icons/24x24/locationless.png \
 	icons/24x24/waypoint-flag-red.png \
+	maps/mappack-central-europe.xml \
 	Main.cs.in \
 	ocm-gtk.in \
 	OCM.desktop.in 
@@ -1947,7 +1948,6 @@ DISABLED_WHERIGO_PNG = $(BUILD_DIR)/icons/24x24/disabled-wherigo.png
 DNF_PNG = $(BUILD_DIR)/icons/24x24/dnf.png
 ARCHIVED_DNF_PNG = $(BUILD_DIR)/icons/24x24/archived-dnf.png
 DISABLED_DNF_PNG = $(BUILD_DIR)/icons/24x24/disabled-dnf.png
-GOOGLE_SAT_XML = $(BUILD_DIR)/maps/google-sat.xml
 ARCHIVED_FTF_PNG = $(BUILD_DIR)/icons/24x24/archived-ftf.png
 DISABLED_FTF_PNG = $(BUILD_DIR)/icons/24x24/disabled-ftf.png
 FTF_PNG = $(BUILD_DIR)/icons/24x24/ftf.png
@@ -2277,7 +2277,6 @@ $(eval $(call emit-deploy-target,DISABLED_WHERIGO_PNG))
 $(eval $(call emit-deploy-target,DNF_PNG))
 $(eval $(call emit-deploy-target,ARCHIVED_DNF_PNG))
 $(eval $(call emit-deploy-target,DISABLED_DNF_PNG))
-$(eval $(call emit-deploy-target,GOOGLE_SAT_XML))
 $(eval $(call emit-deploy-target,ARCHIVED_FTF_PNG))
 $(eval $(call emit-deploy-target,DISABLED_FTF_PNG))
 $(eval $(call emit-deploy-target,FTF_PNG))

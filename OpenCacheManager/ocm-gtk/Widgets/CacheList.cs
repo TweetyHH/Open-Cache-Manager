@@ -67,23 +67,6 @@ namespace ocmgtk
 			refreshTimer.Elapsed += HandleRefreshTimerElapsed;
 		}
 		
-		public bool StatusFilterSensitive
-		{
-			get { return statusTable.Sensitive;}
-			set { 
-				statusTable.Sensitive = value;
-			}
-		}
-		
-		
-		public bool DisableDistanceFilter
-		{
-			get { return distanceBox.Sensitive;}
-			set { 
-				distanceBox.Sensitive = value;
-			}
-		}
-		
 		public bool ContainsCode(string code)
 		{
 			IEnumerator<Geocache> cacheEnum = getVisibleCaches().GetEnumerator();

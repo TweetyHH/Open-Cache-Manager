@@ -129,7 +129,7 @@ namespace ocmengine
 			{
 				writer.UseOCMPtTypes = false;
 				writer.IncludeGroundSpeakExtensions = false;
-				writer.HTMLOutput = HTMLMode.PLAINTEXT;
+				writer.HTMLOutput = HTMLMode.GARMIN;
 			}			
 			else if (m_format == "garmin")
 			{

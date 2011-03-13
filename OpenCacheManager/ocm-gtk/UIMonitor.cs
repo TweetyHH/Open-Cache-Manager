@@ -1776,20 +1776,6 @@ namespace ocmgtk
 			m_conf.VBarPosition = m_mainWin.VPos;
 		}
 		
-		public void ConfigureGPSD()
-		{
-			/*GPSDConfig dlg = new GPSDConfig();
-			dlg.Icon = m_mainWin.Icon;
-			dlg.GPSDOnStartup = (bool) m_conf.Get("/apps/ocm/gpsd/onstartup", false);
-			dlg.RecenterMap = (bool) m_conf.Get("/apps/ocm/gpsd/recenter", true);
-			dlg.PollInterval = (int) m_conf.Get("/apps/ocm/gpsd/poll", 30);
-			if ((int) ResponseType.Ok == dlg.Run())
-			{
-				m_conf.Set("/apps/ocm/gpsd/onstartup", dlg.GPSDOnStartup);
-				m_conf.Set("/apps/ocm/gpsd/recenter", dlg.RecenterMap);
-				m_conf.Set("/apps/ocm/gpsd/poll", dlg.PollInterval);
-			}*/
-		}
 		
 		public string GetOCMVersion()
 		{

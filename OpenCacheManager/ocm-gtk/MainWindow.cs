@@ -575,10 +575,7 @@ public partial class MainWindow : Gtk.Window
 		else
 			m_monitor.DisableGPS();
 	}
-	protected virtual void ConfigureGPSD (object sender, System.EventArgs e)
-	{
-		m_monitor.ConfigureGPSD();
-	}
+	
 	
 	public void SetGPSDOn()
 	{

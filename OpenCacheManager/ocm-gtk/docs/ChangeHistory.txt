@@ -4,6 +4,7 @@ Version 0.23.10
 - Add new filter by cache source
 - Add Garmin POI file export
 - Fix bug with earthcaches caused by change with gc.com
+- Fix bug where basic filters were disabled if no startup filter was set
 
 Version 0.23.9
 --------------

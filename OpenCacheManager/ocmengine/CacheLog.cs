@@ -107,6 +107,21 @@ namespace ocmengine
 			return logHTML;
 		}
 		
+		public override string ToString()
+		{
+			string logHTML = "Date:  ";
+			logHTML += m_logdate.ToLongDateString();
+			logHTML += "\n";
+			logHTML += m_status;
+			logHTML += "\n";
+			logHTML += "Logged By: ";
+			logHTML += m_logged_by;
+			logHTML += "-----";
+			logHTML += m_logmessage;
+			logHTML += "\n\n";
+			return logHTML;
+		}
+		
 		public void WriteToGPX(XmlWriter writer)
 		{
 			writer.WriteStartElement(LOG_PREFIX,"log", GPXWriter.NS_CACHE);
