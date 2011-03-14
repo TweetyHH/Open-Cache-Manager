@@ -1,3 +1,8 @@
+Version 0.23.11
+---------------
+- Fix bug with gconf and Mandriva 
+- Fix bug where OCM crashed when opening a ZIP file that had spaces in it's name
+
 Version 0.23.10
 ---------------
 - Add suport for waymarks as virtual caches

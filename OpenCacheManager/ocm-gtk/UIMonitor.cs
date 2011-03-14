@@ -2098,7 +2098,7 @@ namespace ocmgtk
 			String tempPath = System.IO.Path.GetTempPath();
 			ProcessStartInfo start = new ProcessStartInfo();
 			start.FileName = "unzip";
-			start.Arguments = "-o " + filename + " -d " + tempPath + "ocm_unzip";
+			start.Arguments = "-o \"" + filename + "\" -d " + tempPath + "ocm_unzip";
 			Process unzip =  Process.Start(start);
 			
 			while (!unzip.HasExited)
