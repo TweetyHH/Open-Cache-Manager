@@ -25,6 +25,7 @@ namespace ocmgtk
 			waypointView.UpdateCacheInfo();
 			descWidget.UpdateCacheInfo();
 			notesWidget.UpdateCacheInfo();
+			cacheImages.UpdateCaceheInfo();
 		}
 	}
 }

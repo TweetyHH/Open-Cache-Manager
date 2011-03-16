@@ -267,6 +267,10 @@
     <Compile Include="gtk-gui\ocmgtk.ExportPOIDialog.cs" />
     <Compile Include="Dialogs\WebBrowser.cs" />
     <Compile Include="gtk-gui\ocmgtk.WebBrowser.cs" />
+    <Compile Include="Widgets\ImagesWidget.cs" />
+    <Compile Include="gtk-gui\ocmgtk.ImagesWidget.cs" />
+    <Compile Include="Dialogs\ImageDialog.cs" />
+    <Compile Include="gtk-gui\ocmgtk.ImageDialog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

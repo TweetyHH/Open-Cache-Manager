@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
-    <widget-library name="../bin/Release_Translated/ocm-gtk.exe" internal="true" />
+    <widget-library name="../bind/ocm-gtk.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="1284 1201">
     <action-group name="Default">
@@ -2082,7 +2082,7 @@
           <widget class="Gtk.Notebook" id="notebook2">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">0</property>
+            <property name="CurrentPage">5</property>
             <child>
               <widget class="ocmgtk.GeocacheInfoPanel" id="cacheInfo">
                 <property name="MemberName" />
@@ -2090,7 +2090,7 @@
               </widget>
             </child>
             <child>
-              <widget class="Gtk.Label" id="label7">
+              <widget class="Gtk.Label" id="label12">
                 <property name="MemberName" />
                 <property name="LabelProp" translatable="yes">Quick Info</property>
               </widget>
@@ -2108,7 +2108,7 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Label" id="label8">
+              <widget class="Gtk.Label" id="label13">
                 <property name="MemberName" />
                 <property name="LabelProp" translatable="yes">Description</property>
               </widget>
@@ -2126,7 +2126,7 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Label" id="label9">
+              <widget class="Gtk.Label" id="label14">
                 <property name="MemberName" />
                 <property name="LabelProp" translatable="yes">Logs</property>
               </widget>
@@ -2144,7 +2144,7 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Label" id="label10">
+              <widget class="Gtk.Label" id="label15">
                 <property name="MemberName" />
                 <property name="LabelProp" translatable="yes">Waypoints</property>
               </widget>
@@ -2162,9 +2162,27 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Label" id="label11">
+              <widget class="Gtk.Label" id="label16">
                 <property name="MemberName" />
                 <property name="LabelProp" translatable="yes">Notes</property>
+              </widget>
+              <packing>
+                <property name="type">tab</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="ocmgtk.ImagesWidget" id="cacheImages">
+                <property name="MemberName" />
+                <property name="Events">ButtonPressMask</property>
+              </widget>
+              <packing>
+                <property name="Position">5</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="label17">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Images</property>
               </widget>
               <packing>
                 <property name="type">tab</property>
@@ -20446,6 +20464,122 @@ Cache Name</property>
           <packing>
             <property name="Position">1</property>
             <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Bin" id="ocmgtk.ImagesWidget" design-size="465 339">
+    <property name="MemberName" />
+    <property name="Visible">False</property>
+    <child>
+      <widget class="Gtk.HBox" id="hbox1">
+        <property name="MemberName" />
+        <property name="Spacing">6</property>
+        <property name="BorderWidth">6</property>
+        <child>
+          <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="ShadowType">In</property>
+            <child>
+              <widget class="Gtk.IconView" id="imagesView">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.VButtonBox" id="vbuttonbox1">
+            <property name="MemberName" />
+            <property name="Size">1</property>
+            <property name="LayoutStyle">Start</property>
+            <child>
+              <widget class="Gtk.Button" id="viewButton">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">View</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnViewClick" />
+              </widget>
+              <packing>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="ocmgtk.ImageDialog" design-size="400 300">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">Image</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Buttons">1</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="ShadowType">In</property>
+            <child>
+              <widget class="Gtk.Viewport" id="GtkViewport">
+                <property name="MemberName" />
+                <property name="ShadowType">None</property>
+                <child>
+                  <widget class="Gtk.Image" id="image">
+                    <property name="MemberName" />
+                  </widget>
+                </child>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">1</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-close</property>
+            <property name="ResponseId">-7</property>
+            <signal name="Clicked" handler="OnCloseClick" />
+            <property name="label">gtk-close</property>
+          </widget>
+          <packing>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>
