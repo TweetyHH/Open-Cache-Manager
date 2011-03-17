@@ -2,6 +2,8 @@ Version 0.23.11
 ---------------
 - Fix bug with gconf and Mandriva 
 - Fix bug where OCM crashed when opening a ZIP file that had spaces in it's name
+- Improve waymark parsing
+- Add new images pane for associating images with caches
 
 Version 0.23.10
 ---------------

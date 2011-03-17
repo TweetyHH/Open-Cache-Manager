@@ -26,8 +26,8 @@ namespace ocmgtk
 		{
 			this.Build ();
 			image.Pixbuf = new Gdk.Pixbuf(imageFile);
-			this.WidthRequest = image.Pixbuf.Width + 20;
-			this.HeightRequest = image.Pixbuf.Height + 20;
+			this.WidthRequest = image.Pixbuf.Width + 100;
+			this.HeightRequest = image.Pixbuf.Height + 100;
 		}
 		
 		protected virtual void OnCloseClick (object sender, System.EventArgs e)

@@ -425,13 +425,14 @@ namespace ocmengine
 					pt = Geocache.convertFromWaypoint(pt);
 					Geocache cache = pt as Geocache;
 					cache.ShortDesc = pt.Type + "\n\n";
-					cache.CacheName = "Waymark: " + cache.Name;
+					cache.CacheName = pt.Type + ":  " + pt.URLName;
 					cache.TypeOfCache = Geocache.CacheType.VIRTUAL;
 					cache.Type = "Geocache";
 					cache.LongDesc = cache.Desc;
 					cache.Container = "Virtual";
 					cache.Difficulty = 1.0f;
 					cache.Terrain = 1.0f;
+					pt.Desc = cache.CacheName;
 					cache.PlacedBy = "Unknown";
 				}
 			}

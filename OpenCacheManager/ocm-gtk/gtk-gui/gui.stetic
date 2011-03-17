@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
-    <widget-library name="../bind/ocm-gtk.exe" internal="true" />
+    <widget-library name="../bin/Release_Translated/ocm-gtk.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="1284 1201">
     <action-group name="Default">
@@ -916,6 +916,12 @@
         <property name="ShortLabel" translatable="yes">Export Garmin POI File...</property>
         <signal name="Activated" handler="OnExportPOI" />
       </action>
+      <action id="OCMForumsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">OCM Forums...</property>
+        <property name="ShortLabel" translatable="yes">OCM Forums...</property>
+        <signal name="Activated" handler="OnForumsClick" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">OCM</property>
@@ -1067,6 +1073,7 @@
               </node>
               <node type="Menu" action="HelpAction">
                 <node type="Menuitem" action="OCMWikiAction" />
+                <node type="Menuitem" action="OCMForumsAction" />
                 <node type="Separator" />
                 <node type="Menuitem" action="aboutAction" />
                 <node type="Menuitem" action="ChangeHistoryAction" />
@@ -18672,6 +18679,8 @@ Needs Maintenance</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">6</property>
+    <property name="AllowShrink">True</property>
+    <property name="Gravity">Center</property>
     <property name="SkipPagerHint">True</property>
     <property name="SkipTaskbarHint">True</property>
     <property name="Buttons">1</property>
@@ -20475,42 +20484,123 @@ Cache Name</property>
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
-      <widget class="Gtk.HBox" id="hbox1">
+      <widget class="Gtk.VBox" id="vbox2">
         <property name="MemberName" />
         <property name="Spacing">6</property>
         <property name="BorderWidth">6</property>
         <child>
-          <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
+          <widget class="Gtk.HBox" id="hbox2">
             <property name="MemberName" />
-            <property name="CanFocus">True</property>
-            <property name="ShadowType">In</property>
+            <property name="Spacing">6</property>
             <child>
-              <widget class="Gtk.IconView" id="imagesView">
+              <widget class="Gtk.Image" id="image33">
                 <property name="MemberName" />
-                <property name="CanFocus">True</property>
+                <property name="Pixbuf">stock:gtk-dialog-info LargeToolbar</property>
               </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="fileLabel">
+                <property name="MemberName" />
+                <property name="LabelProp">&lt;file location&gt;</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
             </child>
           </widget>
           <packing>
             <property name="Position">0</property>
             <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.VButtonBox" id="vbuttonbox1">
+          <widget class="Gtk.HBox" id="hbox1">
             <property name="MemberName" />
-            <property name="Size">1</property>
-            <property name="LayoutStyle">Start</property>
+            <property name="Spacing">6</property>
+            <property name="BorderWidth">6</property>
             <child>
-              <widget class="Gtk.Button" id="viewButton">
+              <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">View</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnViewClick" />
+                <property name="ShadowType">In</property>
+                <child>
+                  <widget class="Gtk.IconView" id="imagesView">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <signal name="ItemActivated" handler="OnDoubleClick" />
+                  </widget>
+                </child>
               </widget>
               <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.VButtonBox" id="vbuttonbox1">
+                <property name="MemberName" />
+                <property name="Spacing">6</property>
+                <property name="Size">3</property>
+                <property name="LayoutStyle">Start</property>
+                <child>
+                  <widget class="Gtk.Button" id="viewButton">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">View</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnViewClick" />
+                  </widget>
+                  <packing>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="GrabImagesButton">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Grab Images...</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnGrabImagesClick" />
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="openFolderButton">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Open Folder</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnOpenFolderClick" />
+                  </widget>
+                  <packing>
+                    <property name="Position">2</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
               </packing>
@@ -20519,8 +20609,6 @@ Cache Name</property>
           <packing>
             <property name="Position">1</property>
             <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
           </packing>
         </child>
       </widget>

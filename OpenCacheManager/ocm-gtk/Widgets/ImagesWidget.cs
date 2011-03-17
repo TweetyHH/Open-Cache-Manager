@@ -15,8 +15,13 @@
 
 using System;
 using System.IO;
+using System.Collections.Generic;
+using System.Net;
+using Mono.Unix;
+using ocmengine;
 using Gtk;
 using Gdk;
+using System.Text.RegularExpressions;
 
 namespace ocmgtk
 {
@@ -38,10 +43,16 @@ namespace ocmgtk
 		{
 			m_model = new ListStore(typeof(Pixbuf), typeof(string), typeof(string));
 			if (m_monitor.SelectedCache == null)
-				return;
-			if(Directory.Exists(m_monitor.Configuration.DataDirectory + "/images/" + m_monitor.SelectedCache.Name))
 			{
-				string[] files = Directory.GetFiles(m_monitor.Configuration.DataDirectory + "/images/" + m_monitor.SelectedCache.Name);
+				this.Sensitive = false;
+				return;
+			}
+			this.Sensitive = true;
+			string imagesFolder = GetImagesFolder ();
+			fileLabel.Text = String.Format(Catalog.GetString("Images Folder: {0}"), imagesFolder);
+			if(Directory.Exists(imagesFolder))
+			{
+				string[] files = Directory.GetFiles(imagesFolder);
 				foreach(string file in files)
 				{
 					Pixbuf buf = new Pixbuf(file,256, 256);
@@ -55,6 +66,26 @@ namespace ocmgtk
 			imagesView.SelectionMode = SelectionMode.Single;
 		}
 		
+		private string GetImagesFolder()
+		{
+			string dbName = GetDBName ();
+			return m_monitor.Configuration.DataDirectory + "/ocm_images/" + dbName + "/" +  m_monitor.SelectedCache.Name;
+		}
+		
+		private static string GetDBName ()
+		{
+			string dbFile = Engine.getInstance().Store.DBFile;
+			return GetFileName(dbFile);
+		}
+		
+		private static string GetFileName(string fullPath)
+		{
+			string[] dbPath = fullPath.Split('/');
+			string dbName = dbPath[dbPath.Length - 1];
+			dbName = dbName.Substring(0, dbName.Length -4);
+			return dbName;
+		}
+		
 		protected virtual void OnViewClick (object sender, System.EventArgs e)
 		{
 			TreeIter iter;
@@ -66,6 +97,63 @@ namespace ocmgtk
 			}
 		}
 		
+		protected virtual void OnOpenFolderClick (object sender, System.EventArgs e)
+		{
+			string imagesFolder = GetImagesFolder();
+			if (!Directory.Exists(imagesFolder))
+				Directory.CreateDirectory(imagesFolder);
+			System.Diagnostics.Process.Start(imagesFolder);
+		}
 		
+		protected virtual void OnGrabImagesClick (object sender, System.EventArgs e)
+		{
+			const string IMG = "(<[Ii][Mm][Gg])([^sS][^rR]*)([Ss][Rr][Cc]\\s?=\\s?)\"([^\"]*)\"([^>]*>)";
+			MatchCollection matches = Regex.Matches(m_monitor.SelectedCache.LongDesc, IMG);
+			List<string> files = new List<string>();
+			string imagesFolder = GetImagesFolder();
+			if (!Directory.Exists(imagesFolder))
+				Directory.CreateDirectory(imagesFolder);
+			foreach(Match match in matches)
+			{
+				files.Add(match.Groups[4].Value);
+			}
+		
+			foreach (string url in files)
+			{
+				System.Console.WriteLine(url);
+				WebRequest req = WebRequest.Create(url);
+				WebResponse resp = req.GetResponse();
+				System.IO.FileStream fs = new FileStream(imagesFolder + "/" + GetFileName(url), FileMode.Create);
+				System.IO.Stream webstream = resp.GetResponseStream();
+				byte[] buff = new byte[4096];
+				for(;;)
+				{
+					int read = webstream.Read(buff, 0, 4096);
+					System.Console.WriteLine(read.ToString());
+					if (read > 0)
+					{
+						fs.Write(buff, 0, read);
+					}
+					else
+					{
+						break;
+					}
+				}
+				fs.Close();
+				webstream.Close();
+				
+			}
+			UpdateCaceheInfo();
+		}
+		protected virtual void OnDoubleClick (object o, Gtk.ItemActivatedArgs args)
+		{
+			TreeIter iter;
+			if (imagesView.SelectedItems[0] != null) {
+				m_model.GetIter(out iter, imagesView.SelectedItems[0]);
+				string  file = (string)m_model.GetValue (iter, 2);
+				ImageDialog dlg = new ImageDialog(file);
+				dlg.Run();
+			}
+		}
 	}
 }

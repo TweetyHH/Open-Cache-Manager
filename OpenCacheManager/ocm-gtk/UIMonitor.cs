@@ -1796,7 +1796,7 @@ namespace ocmgtk
 			/*Connection DbusConnection = Bus.Session;
 			IQLandkarteGT ql = DbusConnection.GetObject<IQLandkarteGT> ("org.qlandkarte.dbus", new ObjectPath ("QLandkarteGT"));
 			System.Console.WriteLine("Connected");
-			ql.loadGeoData("/home/campbelk/Desktop/export.gpx");	*/		
+			ql.loadGeoData("/home/campbelk/Desktop/export.gpx");*/
 			
 			dlg.AutoClose = true;
 			dlg.Title = Catalog.GetString("Preparing to send to QLandKarte GT");

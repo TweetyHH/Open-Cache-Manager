@@ -926,6 +926,12 @@ public partial class MainWindow : Gtk.Window
 		m_monitor.ExportGarminPOI();
 	}
 	
+	protected virtual void OnForumsClick (object o, System.EventArgs args)
+	{
+		Process.Start("http://ocm.dafb-o.de/index.php");
+	}
+	
+	
 	
 	
 }
