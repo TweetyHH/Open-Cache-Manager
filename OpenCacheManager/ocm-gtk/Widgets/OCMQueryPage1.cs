@@ -242,16 +242,16 @@ namespace ocmgtk
 			set
 			{
 				providerCheck.Active = true;
-				if (!value.Contains("GC"))
-					gcComCheck.Active = false;
-				if (!value.Contains("O"))
-					openCacheCheck.Active = false;
-				if (!value.Contains("NC"))
-					NaviCacheCheck.Active = false;
-				if (!value.Contains("TC"))
-					terraCachingCheck.Active = false;
-				if (!value.Contains("WM"))
-					wayMarkingCheck.Active = false;
+				if (value.Contains("GC"))
+					gcComCheck.Active = true;
+				if (value.Contains("O"))
+					openCacheCheck.Active = true;
+				if (value.Contains("NC"))
+					NaviCacheCheck.Active = true;
+				if (value.Contains("TC"))
+					terraCachingCheck.Active = true;
+				if (value.Contains("WM"))
+					wayMarkingCheck.Active = true;
 			}
 		}
 

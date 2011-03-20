@@ -5923,7 +5923,6 @@ Less Than</property>
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="Label" translatable="yes">Geocaching.com</property>
-                                    <property name="Active">True</property>
                                     <property name="DrawIndicator">True</property>
                                     <property name="HasLabel">True</property>
                                     <property name="UseUnderline">True</property>
@@ -5944,7 +5943,6 @@ Less Than</property>
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="Label" translatable="yes">NaviCache</property>
-                                    <property name="Active">True</property>
                                     <property name="DrawIndicator">True</property>
                                     <property name="HasLabel">True</property>
                                     <property name="UseUnderline">True</property>
@@ -5966,8 +5964,7 @@ Less Than</property>
                                   <widget class="Gtk.CheckButton" id="openCacheCheck">
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
-                                    <property name="Label" translatable="yes">OpenCaching.org</property>
-                                    <property name="Active">True</property>
+                                    <property name="Label" translatable="yes">OpenCaching (.eu/.us/.jp)</property>
                                     <property name="DrawIndicator">True</property>
                                     <property name="HasLabel">True</property>
                                     <property name="UseUnderline">True</property>
@@ -5990,7 +5987,6 @@ Less Than</property>
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="Label" translatable="yes">Terracaching.com</property>
-                                    <property name="Active">True</property>
                                     <property name="DrawIndicator">True</property>
                                     <property name="HasLabel">True</property>
                                     <property name="UseUnderline">True</property>
@@ -6015,7 +6011,6 @@ Less Than</property>
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="Label" translatable="yes">Waymarking.com</property>
-                                    <property name="Active">True</property>
                                     <property name="DrawIndicator">True</property>
                                     <property name="HasLabel">True</property>
                                     <property name="UseUnderline">True</property>
@@ -6049,7 +6044,7 @@ Less Than</property>
               </widget>
             </child>
             <child>
-              <widget class="Gtk.Label" id="GtkLabel20">
+              <widget class="Gtk.Label" id="GtkLabel24">
                 <property name="MemberName" />
                 <property name="LabelProp" translatable="yes">&lt;b&gt;Cache Types&lt;/b&gt;</property>
                 <property name="UseMarkup">True</property>

@@ -92,8 +92,10 @@ namespace ocmgtk
 			if (val == -1)
 				logLimitCheck.Active = false;
 			else
+			{
 				logLimitEntry.Text = val.ToString();
 				logLimitCheck.Active = true;
+			}
 		}
 		
 		public bool IgnoreGeocacheOverrides()

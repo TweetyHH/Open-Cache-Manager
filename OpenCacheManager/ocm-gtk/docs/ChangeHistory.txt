@@ -8,6 +8,14 @@ Version 0.23.11
 - Make sure attributes are exported in gc.com format when exporting a GPX file
 - OCM can now import GCTour GPX files
 - Fix bug where waymarks weren't showing up on Garmin Colorado/Oregon (requires reimport of GPX)
+- Fix bug where limit log entry wasn't being set properly for Delorme
+- Fix typo in source type filter, and make it an opt-in instead of an opt-out filter
+- Add Use Plain Text option for POI export for Oregon/Colorado/Dakota/Map62
+- Add log limit option for POI export
+- Fix units problem with Proximity alerts and POI
+- Fix proximity units issue with non english locales
+- Fix bug where DNF icon was still showing in the cachelist even if "show DNF icon" was disabled in preferences
+- Fix bug where temporary directories created during directory import weren't being deleted
 
 Version 0.23.10
 ---------------

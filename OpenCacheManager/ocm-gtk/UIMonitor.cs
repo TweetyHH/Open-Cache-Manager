@@ -2401,7 +2401,7 @@ namespace ocmgtk
 				if (dlg.ProximityDistance > 0)
 				{
 					builder.Append(",proximity=");
-					builder.Append(dlg.ProximityDistance.ToString());
+					builder.Append(dlg.ProximityDistance.ToString(CultureInfo.InvariantCulture));
 					builder.Append(",units=");
 					builder.Append(dlg.ProximityUnits);
 				}

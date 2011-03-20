@@ -85,6 +85,8 @@ namespace ocmgtk
 			m_total = 0;
 			multiFileLabel.Visible = true;
 			
+			List<string> dirs = new List<string>();
+			
 			// Prescan for zip files and uncompress
 			for (int i=0; i < files.Length; i++)
 			{
@@ -92,6 +94,7 @@ namespace ocmgtk
 				{
 					this.progressbar6.Text = Catalog.GetString("Unzipping");
 					DirectoryInfo info = Directory.CreateDirectory(files[i].Substring(0, files[i].Length -4));
+					dirs.Add(info.FullName);
 					multiFileLabel.Text = Catalog.GetString("Unizpping");
 					this.waypointName.Markup = "<i>" + Catalog.GetString("Unzipping") + ":" + files[i] + "</i>";
 					while (Gtk.Application.EventsPending ())
@@ -139,6 +142,14 @@ namespace ocmgtk
 					fs.Close();
 					if (deleteOnCompletion)
 						File.Delete(file);
+				}
+			}
+			
+			if (deleteOnCompletion)
+			{
+				foreach (string dir in dirs)
+				{
+					Directory.Delete(dir);
 				}
 			}
 			m_parser.EndUpdate(store);

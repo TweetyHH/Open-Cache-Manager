@@ -349,7 +349,7 @@ namespace ocmgtk
 			CellRendererPixbuf icon = cell as CellRendererPixbuf;
 			if (cache.FTF)
 				icon.Pixbuf = IconManager.FTF_S;
-			else if (cache.DNF)
+			else if (cache.DNF && m_monitor.Configuration.ShowDNFIcon)
 				icon.Pixbuf = IconManager.DNF_S;
 			else if (cache.Found)
 				icon.Pixbuf = IconManager.GetSmallCacheIcon (Geocache.CacheType.FOUND);
