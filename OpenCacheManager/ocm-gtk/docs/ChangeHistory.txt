@@ -4,6 +4,10 @@ Version 0.23.11
 - Fix bug where OCM crashed when opening a ZIP file that had spaces in it's name
 - Improve waymark parsing
 - Add new images pane for associating images with caches
+- Add grab images feature
+- Make sure attributes are exported in gc.com format when exporting a GPX file
+- OCM can now import GCTour GPX files
+- Fix bug where waymarks weren't showing up on Garmin Colorado/Oregon (requires reimport of GPX)
 
 Version 0.23.10
 ---------------

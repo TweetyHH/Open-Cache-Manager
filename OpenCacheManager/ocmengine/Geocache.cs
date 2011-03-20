@@ -383,6 +383,23 @@ namespace ocmengine
 			writer.WriteEndElement();
 			writer.WriteElementString(CACHE_PREFIX,"type", GPXWriter.NS_CACHE, GetCTypeString(TypeOfCache));
 			writer.WriteElementString(CACHE_PREFIX,"container", GPXWriter.NS_CACHE, Container);
+			List <CacheAttribute> attrs = Engine.getInstance().Store.GetAttributes(this.Name);
+			IEnumerator<CacheAttribute> attr = attrs.GetEnumerator();
+			writer.WriteStartElement(CACHE_PREFIX, "attributes", GPXWriter.NS_CACHE);
+			while (attr.MoveNext())
+			{
+				CacheAttribute curr = attr.Current;
+				writer.WriteStartElement(CACHE_PREFIX, "attribute", GPXWriter.NS_CACHE);
+				if (!String.IsNullOrEmpty(curr.ID))
+					writer.WriteAttributeString("id", curr.ID);
+				if (curr.Include)
+					writer.WriteAttributeString("inc", "1");
+				else
+					writer.WriteAttributeString("inc", "0");
+				writer.WriteString(curr.AttrValue);
+				writer.WriteEndElement();
+			}
+			writer.WriteEndElement();
 			writer.WriteElementString(CACHE_PREFIX,"difficulty", GPXWriter.NS_CACHE, Difficulty.ToString("0.#", CultureInfo.InvariantCulture));
 			writer.WriteElementString(CACHE_PREFIX,"terrain", GPXWriter.NS_CACHE, Terrain.ToString("0.#", CultureInfo.InvariantCulture));
 			writer.WriteElementString(CACHE_PREFIX,"country", GPXWriter.NS_CACHE,  Country);
@@ -396,8 +413,8 @@ namespace ocmengine
 			}
 			if (gpx.WriteAttributes)
 			{
-				List <CacheAttribute> attrs = Engine.getInstance().Store.GetAttributes(this.Name);
-				IEnumerator<CacheAttribute> attr = attrs.GetEnumerator();
+				attrs = Engine.getInstance().Store.GetAttributes(this.Name);
+				attr = attrs.GetEnumerator();
 				while (attr.MoveNext())
 				{
 					CacheAttribute curr = attr.Current;

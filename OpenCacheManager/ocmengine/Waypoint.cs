@@ -237,7 +237,7 @@ namespace ocmengine
 				writer.WriteEndElement();	
 				writer.WriteEndElement();
 			}
-			else
+			else if (gpx.DescriptionMode == WaypointDescMode.FULL)
 			{
 				writer.WriteStartElement("extensions");
 				writer.WriteStartElement("gpxx", "WaypointExtension", "http://www.garmin.com/xmlschemas/GpxExtensions/v3");

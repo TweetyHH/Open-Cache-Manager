@@ -32,6 +32,7 @@ namespace ocmgtk
 		public int LogLimit = -1;
 		public string OtherProperties = null;
 		public bool IncludeAttributes = true;
+		public bool ForcePlainText = false;
 		public WaypointNameMode NameMode = WaypointNameMode.CODE;
 		public WaypointDescMode DescMode = WaypointDescMode.DESC;
 		public Dictionary<string, string> WaypointMappings = null;

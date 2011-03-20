@@ -44,6 +44,12 @@ namespace ocmengine
 			set { m_LogLimit = value;}
 		}
 		
+		private bool m_forcePlainText = false;
+		public bool ForcePlainText
+		{
+			set { m_forcePlainText = value;}
+		}
+		
 		private WaypointDescMode m_descMode = WaypointDescMode.DESC;
 		public WaypointDescMode DescMode
 		{
@@ -127,9 +133,13 @@ namespace ocmengine
 			writer.IncludeChildWaypoints = m_includeChildren;
 			if (m_format == "garmin_gpi")
 			{
+				System.Console.WriteLine("Text Mode: " + m_forcePlainText);
 				writer.UseOCMPtTypes = false;
 				writer.IncludeGroundSpeakExtensions = false;
-				writer.HTMLOutput = HTMLMode.GARMIN;
+				if (m_forcePlainText)
+					writer.HTMLOutput = HTMLMode.PLAINTEXT;
+				else
+					writer.HTMLOutput = HTMLMode.GARMIN;
 			}			
 			else if (m_format == "garmin")
 			{

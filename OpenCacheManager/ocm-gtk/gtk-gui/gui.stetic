@@ -3217,7 +3217,7 @@ Other</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.ProgressDialog" design-size="402 197">
+  <widget class="Gtk.Dialog" id="ocmgtk.ProgressDialog" design-size="412 197">
     <property name="MemberName" />
     <property name="WidthRequest">400</property>
     <property name="Title" translatable="yes">Import Data...</property>
@@ -7798,7 +7798,7 @@ USB to allow OCM to write to your Garmin Device. See:
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.SendWaypointsDialog" design-size="402 181">
+  <widget class="Gtk.Dialog" id="ocmgtk.SendWaypointsDialog" design-size="412 181">
     <property name="MemberName" />
     <property name="WidthRequest">400</property>
     <property name="Title" translatable="yes">Sending Caches...</property>
@@ -19901,7 +19901,7 @@ will be returned.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="ocmgtk.ExportPOIDialog" design-size="612 356">
+  <widget class="Gtk.Dialog" id="ocmgtk.ExportPOIDialog" design-size="612 415">
     <property name="MemberName" />
     <property name="WidthRequest">600</property>
     <property name="Title" translatable="yes">Export Garmin POI</property>
@@ -19992,7 +19992,7 @@ will be returned.</property>
                     <child>
                       <widget class="Gtk.Table" id="table1">
                         <property name="MemberName" />
-                        <property name="NRows">7</property>
+                        <property name="NRows">9</property>
                         <property name="NColumns">2</property>
                         <property name="RowSpacing">6</property>
                         <property name="ColumnSpacing">6</property>
@@ -20102,8 +20102,8 @@ Full Paperless</property>
                             </child>
                           </widget>
                           <packing>
-                            <property name="TopAttach">6</property>
-                            <property name="BottomAttach">7</property>
+                            <property name="TopAttach">8</property>
+                            <property name="BottomAttach">9</property>
                             <property name="RightAttach">2</property>
                             <property name="AutoSize">False</property>
                             <property name="XOptions">Fill</property>
@@ -20125,7 +20125,7 @@ Full Paperless</property>
                                 <property name="MemberName" />
                                 <property name="Sensitive">False</property>
                                 <property name="CanFocus">True</property>
-                                <property name="Text" translatable="yes">250</property>
+                                <property name="Text" translatable="yes">1</property>
                                 <property name="IsEditable">True</property>
                                 <property name="InvisibleChar">●</property>
                               </widget>
@@ -20139,7 +20139,7 @@ Full Paperless</property>
                                 <property name="MemberName" />
                                 <property name="Sensitive">False</property>
                                 <property name="IsTextCombo">True</property>
-                                <property name="Items" translatable="yes">meters
+                                <property name="Items" translatable="yes">kilometers
 miles</property>
                                 <property name="Active">0</property>
                               </widget>
@@ -20177,8 +20177,8 @@ miles</property>
                             <property name="UseUnderline">True</property>
                           </widget>
                           <packing>
-                            <property name="TopAttach">5</property>
-                            <property name="BottomAttach">6</property>
+                            <property name="TopAttach">6</property>
+                            <property name="BottomAttach">7</property>
                             <property name="RightAttach">2</property>
                             <property name="AutoSize">False</property>
                             <property name="XOptions">Fill</property>
@@ -20253,7 +20253,7 @@ miles</property>
                           <widget class="Gtk.CheckButton" id="limitCaches">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
-                            <property name="Label" translatable="yes">Cache Limit</property>
+                            <property name="Label" translatable="yes">Limit Number of Geocaches</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
                             <property name="UseUnderline">True</property>
@@ -20285,6 +20285,55 @@ miles</property>
                           <packing>
                             <property name="TopAttach">4</property>
                             <property name="BottomAttach">5</property>
+                            <property name="LeftAttach">1</property>
+                            <property name="RightAttach">2</property>
+                            <property name="AutoSize">True</property>
+                            <property name="XOptions">Fill</property>
+                            <property name="YOptions">Fill</property>
+                            <property name="XExpand">False</property>
+                            <property name="XFill">True</property>
+                            <property name="XShrink">False</property>
+                            <property name="YExpand">False</property>
+                            <property name="YFill">True</property>
+                            <property name="YShrink">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.CheckButton" id="logCheck">
+                            <property name="MemberName" />
+                            <property name="CanFocus">True</property>
+                            <property name="Label" translatable="yes">Limit Number of Logs</property>
+                            <property name="DrawIndicator">True</property>
+                            <property name="HasLabel">True</property>
+                            <property name="UseUnderline">True</property>
+                            <signal name="Toggled" handler="OnLogToggle" />
+                          </widget>
+                          <packing>
+                            <property name="TopAttach">5</property>
+                            <property name="BottomAttach">6</property>
+                            <property name="AutoSize">True</property>
+                            <property name="XOptions">Fill</property>
+                            <property name="YOptions">Fill</property>
+                            <property name="XExpand">False</property>
+                            <property name="XFill">True</property>
+                            <property name="XShrink">False</property>
+                            <property name="YExpand">False</property>
+                            <property name="YFill">True</property>
+                            <property name="YShrink">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Entry" id="logEntry">
+                            <property name="MemberName" />
+                            <property name="Sensitive">False</property>
+                            <property name="CanFocus">True</property>
+                            <property name="Text" translatable="yes">5</property>
+                            <property name="IsEditable">True</property>
+                            <property name="InvisibleChar">●</property>
+                          </widget>
+                          <packing>
+                            <property name="TopAttach">5</property>
+                            <property name="BottomAttach">6</property>
                             <property name="LeftAttach">1</property>
                             <property name="RightAttach">2</property>
                             <property name="AutoSize">True</property>
@@ -20343,12 +20392,36 @@ Cache Name</property>
                             <property name="YShrink">False</property>
                           </packing>
                         </child>
+                        <child>
+                          <widget class="Gtk.CheckButton" id="useHTMLCheck">
+                            <property name="MemberName" />
+                            <property name="CanFocus">True</property>
+                            <property name="Label" translatable="yes">Convert HTML to Plain Text</property>
+                            <property name="DrawIndicator">True</property>
+                            <property name="HasLabel">True</property>
+                            <property name="UseUnderline">True</property>
+                          </widget>
+                          <packing>
+                            <property name="TopAttach">7</property>
+                            <property name="BottomAttach">8</property>
+                            <property name="RightAttach">2</property>
+                            <property name="AutoSize">False</property>
+                            <property name="XOptions">Fill</property>
+                            <property name="YOptions">Fill</property>
+                            <property name="XExpand">False</property>
+                            <property name="XFill">True</property>
+                            <property name="XShrink">False</property>
+                            <property name="YExpand">False</property>
+                            <property name="YFill">True</property>
+                            <property name="YShrink">False</property>
+                          </packing>
+                        </child>
                       </widget>
                     </child>
                   </widget>
                 </child>
                 <child>
-                  <widget class="Gtk.Label" id="GtkLabel3">
+                  <widget class="Gtk.Label" id="GtkLabel4">
                     <property name="MemberName" />
                     <property name="LabelProp" translatable="yes">&lt;b&gt;POI Options&lt;/b&gt;</property>
                     <property name="UseMarkup">True</property>
@@ -20668,6 +20741,123 @@ Cache Name</property>
             <property name="label">gtk-close</property>
           </widget>
           <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="ocmgtk.FileDownloadProgress" design-size="462 173">
+    <property name="MemberName" />
+    <property name="WidthRequest">450</property>
+    <property name="Title" translatable="yes">Downloading File</property>
+    <property name="TypeHint">Dialog</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Modal">True</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
+    <property name="SkipPagerHint">True</property>
+    <property name="SkipTaskbarHint">True</property>
+    <property name="Buttons">2</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.VBox" id="vbox2">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <property name="BorderWidth">6</property>
+            <child>
+              <widget class="Gtk.Label" id="label1">
+                <property name="MemberName" />
+                <property name="Xalign">0</property>
+                <property name="LabelProp" translatable="yes">&lt;big&gt;&lt;b&gt;Downloading File&lt;/b&gt;&lt;/big&gt;</property>
+                <property name="UseMarkup">True</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="fileLabel">
+                <property name="MemberName" />
+                <property name="Xalign">0</property>
+                <property name="LabelProp" translatable="yes">Initializing</property>
+                <property name="UseMarkup">True</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.ProgressBar" id="progBar">
+                <property name="MemberName" />
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">2</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonCancel">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-cancel</property>
+            <property name="ResponseId">-6</property>
+            <signal name="Clicked" handler="OnCancelCLick" />
+            <property name="label">gtk-cancel</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="Visible">False</property>
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-ok</property>
+            <property name="ResponseId">-5</property>
+            <signal name="Clicked" handler="OnOKClick" />
+            <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>

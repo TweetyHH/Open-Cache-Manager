@@ -371,6 +371,30 @@ namespace ocmgtk
 			set { this.Set("/apps/ocm/exportpoifile", value);}
 		}
 		
+		public int ExportPOILogLimit
+		{
+			get { return (int) this.Get("/apps/ocm/exportpoilogs", -1);}
+			set { this.Set("/apps/ocm/exportpoilogs", value);}
+		}
+		
+		public bool ExportPOIForcePlain
+		{
+			get { return (bool) this.Get("/apps/ocm/exportpoiastext", false);}
+			set { this.Set("/apps/ocm/exportpoiastext", value);}
+		}
+		
+		public double ExportPOIProxDist
+		{
+			get { return (double) this.Get("/apps/ocm/exportpoidist", -1);}
+			set { this.Set("/apps/ocm/exportpoidist", value);}
+		}
+		
+		public string ExportPOIProxUnits
+		{
+			get { return this.Get("/apps/ocm/exportpoiproxunit", "m") as string;}
+			set { this.Set("/apps/ocm/exportpoiproxunit", value);}
+		}
+		
 		public WaypointNameMode ExportPOINameMode
 		{
 			get 

@@ -69,6 +69,7 @@ namespace ocmgtk
 				count++;
 				DeleteProgress(count, cache.Name);
 				store.DeleteGeocache(cache);
+				UIMonitor.getInstance().DeleteCacheImages(cache.Name);
 				
 			}
 			statusLabel.Markup = Catalog.GetString("<i>Complete</i>");

@@ -72,18 +72,11 @@ namespace ocmgtk
 			return m_monitor.Configuration.DataDirectory + "/ocm_images/" + dbName + "/" +  m_monitor.SelectedCache.Name;
 		}
 		
+		
 		private static string GetDBName ()
 		{
 			string dbFile = Engine.getInstance().Store.DBFile;
-			return GetFileName(dbFile);
-		}
-		
-		private static string GetFileName(string fullPath)
-		{
-			string[] dbPath = fullPath.Split('/');
-			string dbName = dbPath[dbPath.Length - 1];
-			dbName = dbName.Substring(0, dbName.Length -4);
-			return dbName;
+			return Utilities.GetFileShortName(dbFile);
 		}
 		
 		protected virtual void OnViewClick (object sender, System.EventArgs e)
@@ -109,6 +102,14 @@ namespace ocmgtk
 		{
 			const string IMG = "(<[Ii][Mm][Gg])([^sS][^rR]*)([Ss][Rr][Cc]\\s?=\\s?)\"([^\"]*)\"([^>]*>)";
 			MatchCollection matches = Regex.Matches(m_monitor.SelectedCache.LongDesc, IMG);
+			if (matches.Count == 0)
+			{
+				MessageDialog mdlg = new MessageDialog(null, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok, Catalog.GetString("No Images Found."));
+				mdlg.Run();
+				mdlg.Hide();
+				return;
+			}
+			
 			List<string> files = new List<string>();
 			string imagesFolder = GetImagesFolder();
 			if (!Directory.Exists(imagesFolder))
@@ -118,31 +119,8 @@ namespace ocmgtk
 				files.Add(match.Groups[4].Value);
 			}
 		
-			foreach (string url in files)
-			{
-				System.Console.WriteLine(url);
-				WebRequest req = WebRequest.Create(url);
-				WebResponse resp = req.GetResponse();
-				System.IO.FileStream fs = new FileStream(imagesFolder + "/" + GetFileName(url), FileMode.Create);
-				System.IO.Stream webstream = resp.GetResponseStream();
-				byte[] buff = new byte[4096];
-				for(;;)
-				{
-					int read = webstream.Read(buff, 0, 4096);
-					System.Console.WriteLine(read.ToString());
-					if (read > 0)
-					{
-						fs.Write(buff, 0, read);
-					}
-					else
-					{
-						break;
-					}
-				}
-				fs.Close();
-				webstream.Close();
-				
-			}
+			FileDownloadProgress dlg = new FileDownloadProgress();
+			dlg.Start(files, imagesFolder);
 			UpdateCaceheInfo();
 		}
 		protected virtual void OnDoubleClick (object o, Gtk.ItemActivatedArgs args)

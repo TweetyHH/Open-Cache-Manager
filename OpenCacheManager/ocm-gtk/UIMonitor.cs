@@ -1265,9 +1265,21 @@ namespace ocmgtk
 			MessageDialog dlg = new MessageDialog (null, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, String.Format(Catalog.GetString("Are you sure you want to delete {0}?"), m_selectedCache.Name));
 			if ((int)ResponseType.Yes == dlg.Run ()) {
 				Engine.getInstance ().Store.DeleteGeocacheAtomic (m_selectedCache);
+				DeleteCacheImages (SelectedCache.Name);
 				RefreshCaches ();
 			}
 			dlg.Hide ();
+		}
+		
+		public void DeleteCacheImages (String cachename)
+		{
+				string dir = Engine.getInstance ().Store.DBFile;
+				string[] fullPath = dir.Split('/');
+				dir = fullPath[fullPath.Length -1];
+				dir = dir.Substring(0, dir.Length -4);
+				dir = Configuration.DataDirectory + "/ocm_images/" + dir + "/" + cachename;
+				if (Directory.Exists(dir))
+				    Directory.Delete(dir, true);
 		}
 
 		public void SetAdditonalFilters ()
@@ -2369,8 +2381,10 @@ namespace ocmgtk
 				poiProfile.DescMode = dlg.DescMode;
 				poiProfile.OutputFile = dlg.FileName;
 				poiProfile.CacheLimit = dlg.CacheLimit;
+				poiProfile.LogLimit = dlg.LogLimit;
 				poiProfile.FieldNotesFile = null;
 				poiProfile.IncludeAttributes = false;
+				poiProfile.ForcePlainText = dlg.UsePlainText;
 				poiProfile.Name = "POI";
 				StringBuilder builder = new StringBuilder ();
 				// Build other properties
@@ -2397,6 +2411,7 @@ namespace ocmgtk
 				builder.Append("\"");
 				poiProfile.OtherProperties = builder.ToString();
 				SendWaypointsDialog edlg = new SendWaypointsDialog();
+				edlg.AutoClose = m_conf.AutoCloseWindows;
 				edlg.Start(GetVisibleCacheList(), poiProfile);
 			}
 			dlg.Dispose();

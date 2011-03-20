@@ -363,5 +363,13 @@ namespace ocmengine
 				return new System.Diagnostics.ProcessStartInfo(proc, args);
 			}
 		}
+		
+		public static string GetFileShortName(string fullPath)
+		{
+			string[] dbPath = fullPath.Split('/');
+			string dbName = dbPath[dbPath.Length - 1];
+			dbName = dbName.Substring(0, dbName.Length -4);
+			return dbName;
+		}
 	}	
 }

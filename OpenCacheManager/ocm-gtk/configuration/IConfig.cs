@@ -75,6 +75,10 @@ namespace ocmgtk
 		int ExportPOICacheLimit{get;set;}
 		bool ExportPOIIncludeChildren{get;set;}
 		string ExportPOIBitmap{get;set;}
+		int ExportPOILogLimit{get;set;}
+		bool ExportPOIForcePlain{get;set;}
+		double ExportPOIProxDist{get;set;}
+		string ExportPOIProxUnits{get;set;}
 		
 		ocmengine.WaypointDescMode ExportWaypointDescMode{get;set;}
 		ocmengine.WaypointNameMode ExportWaypointNameMode{get;set;}

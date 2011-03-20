@@ -189,6 +189,31 @@ namespace ocmgtk
 			}
 		}
 		
+		public bool UsePlainText
+		{
+			get{ return useHTMLCheck.Active;}
+			set{ useHTMLCheck.Active = value;}
+		}
+		
+		public int LogLimit
+		{
+			get
+			{
+				if (logCheck.Active)
+					return int.Parse(logEntry.Text);
+				else
+					return -1;
+			}
+			set
+			{
+				if (value > 0)
+				{
+					logCheck.Active = true;
+					logEntry.Text = value.ToString();
+				}
+			}
+		}
+		
 		public ExportPOIDialog (IConfig config)
 		{
 			this.Build ();
@@ -200,6 +225,10 @@ namespace ocmgtk
 			DescMode = config.ExportPOIDescMode;
 			Category = config.ExportPOICategory;
 			CacheLimit = config.ExportPOICacheLimit;
+			LogLimit = config.ExportPOILogLimit;
+			ProximityUnits = config.ExportPOIProxUnits;
+			ProximityDistance = config.ExportPOIProxDist;
+			UsePlainText = config.ExportPOIForcePlain;
 		}
 		
 		
@@ -227,6 +256,10 @@ namespace ocmgtk
 			m_config.ExportPOIDescMode = DescMode;
 			m_config.ExportPOICategory = Category;
 			m_config.ExportPOICacheLimit = CacheLimit;
+			m_config.ExportPOIForcePlain = UsePlainText;
+			m_config.ExportPOIProxDist = ProximityDistance;
+			m_config.ExportPOIProxUnits = ProximityUnits;
+			m_config.ExportPOILogLimit = LogLimit;
 			this.Hide();
 		}
 		
@@ -265,6 +298,12 @@ namespace ocmgtk
 			bmpButton.Sensitive = includeBMPCheck.Active;
 			bmpFile.Sensitive = includeBMPCheck.Active;
 		}
+		
+		protected virtual void OnLogToggle (object sender, System.EventArgs e)
+		{
+			logEntry.Sensitive = logCheck.Active;
+		}
+		
 		
 		
 		

@@ -185,7 +185,7 @@ namespace ocmengine
 						if (reader.Name == "url")
 						{
 							string val = reader.ReadElementContentAsString();
-							if (val.Contains("opencaching"))
+							if (val.Contains("opencaching")||val.Contains("gctour"))
 								m_source = "opencaching";
 						}
 						if (reader.Name == "wpt")
@@ -370,51 +370,54 @@ namespace ocmengine
 		
 		private void processWptElement(ref Waypoint pt, XmlReader reader)
 		{
+			System.Console.WriteLine("Processing: " + reader.LocalName);
 			if (pt is Geocache)
 			{
 				parseGeocacheElement(ref pt, reader);
 			}
-			else if (reader.Name == "name")
+			else if (reader.LocalName == "name")
 			{
-				pt.Name = reader.ReadElementContentAsString();
+				pt.Name = reader.ReadString();
+				System.Console.WriteLine("Name is : " + pt.Name);
 				this.ParseWaypoint(this, new ParseEventArgs(String.Format("Processing Waypoint {0}", pt.Name)));
 				pt.Parent = "GC" +  pt.Name.Substring(2);
 			}
-			else if (reader.Name == "url")
+			else if (reader.LocalName == "url")
 			{
-				String url = reader.ReadElementContentAsString().Trim();
+				String url = reader.ReadString().Trim();
 				if (!String.IsNullOrEmpty(url))
 					pt.URL = new Uri(url);
 			}
-			else if (reader.Name == "parent")
+			else if (reader.LocalName == "parent")
 			{
-				pt.Parent = reader.ReadElementContentAsString();
+				pt.Parent = reader.ReadString();
 			}	
-			else if (reader.Name == "desc")
+			else if (reader.LocalName == "desc")
 			{
 				pt.Desc = reader.ReadElementContentAsString();
 			}
-			else if (reader.Name == "time")
+			else if (reader.LocalName == "time")
 			{
-				pt.Time = reader.ReadElementContentAsDateTime();
+				string strVal = reader.ReadString();
+				pt.Time = DateTime.Parse(strVal);
 			}
-			else if (reader.Name == "link")
+			else if (reader.LocalName == "link")
 			{
 				pt.URL = new Uri(reader.GetAttribute("href"));
 				pt.URLName = pt.Name;
 			}
-			else if (reader.Name == "urlname")
+			else if (reader.LocalName == "urlname")
 			{
-				pt.URLName = reader.ReadElementContentAsString();
+				pt.URLName = reader.ReadString();
 			}
-			else if (reader.Name == "sym")
+			else if (reader.LocalName == "sym")
 			{
-				pt.Symbol = reader.ReadElementContentAsString();
+				pt.Symbol = reader.ReadString();
 				
 			}
-			else if (reader.Name == "type")
+			else if (reader.LocalName == "type")
 			{
-				pt.Type = reader.ReadElementContentAsString();
+				pt.Type = reader.ReadString();
 				if (pt.Type.StartsWith("Geocache") || pt.Type.StartsWith("TerraCache"))
 				{
 				    pt = Geocache.convertFromWaypoint(pt);
@@ -426,6 +429,9 @@ namespace ocmengine
 					Geocache cache = pt as Geocache;
 					cache.ShortDesc = pt.Type + "\n\n";
 					cache.CacheName = pt.Type + ":  " + pt.URLName;
+					// Need to give it a unique ID for Oregon/Colorado.
+					Random rand = new Random();
+					cache.CacheID = rand.Next(50000000).ToString();
 					cache.TypeOfCache = Geocache.CacheType.VIRTUAL;
 					cache.Type = "Geocache";
 					cache.LongDesc = cache.Desc;
@@ -433,6 +439,8 @@ namespace ocmengine
 					cache.Difficulty = 1.0f;
 					cache.Terrain = 1.0f;
 					pt.Desc = cache.CacheName;
+					pt.Symbol = "Geocache";
+					pt.Type = "Geocache|Virtual Cache";
 					cache.PlacedBy = "Unknown";
 				}
 			}
@@ -820,6 +828,7 @@ namespace ocmengine
 			bool logsChecked = false;
 			while (reader.Read())
 			{
+				System.Console.WriteLine(reader.LocalName);
 				if (reader.LocalName == "log")
 				{
 					ParseCacheLog(ref cache, reader, ref logsChecked);
@@ -890,6 +899,7 @@ namespace ocmengine
 				return;
 			}
 			
+			System.Console.WriteLine("Adding log:" + log.LogKey);
 			m_store.AddLog(cache.Name, log);	
 			if (!logsChecked)
 			{
